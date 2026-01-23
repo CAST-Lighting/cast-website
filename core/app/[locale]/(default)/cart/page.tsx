@@ -66,6 +66,7 @@ export default async function Cart({ params }: Props) {
   setRequestLocale(locale);
 
   const t = await getTranslations('Cart');
+  const tGiftCertificates = await getTranslations('GiftCertificates');
   const format = await getFormatter();
   const cartId = await getCartId();
 
@@ -281,6 +282,7 @@ export default async function Cart({ params }: Props) {
                   giftCertificateCodes: checkout?.giftCertificates.map((gc) => gc.code) ?? [],
                   ctaLabel: t('GiftCertificate.apply'),
                   label: t('GiftCertificate.giftCertificateCode'),
+                  placeholder: tGiftCertificates('CheckBalance.inputPlaceholder'),
                   removeLabel: t('GiftCertificate.removeGiftCertificate'),
                 }
               : undefined
