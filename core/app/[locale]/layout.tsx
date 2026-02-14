@@ -11,6 +11,9 @@ import { cache, PropsWithChildren } from 'react';
 import '../../globals.css';
 
 import { fonts } from '~/app/fonts';
+import { MakeswiftProvider } from '~/lib/makeswift/provider';
+import { getSiteVersion } from '@makeswift/runtime/next/server';
+import '~/lib/makeswift/components';
 import { CookieNotifications } from '~/app/notifications';
 import { Providers } from '~/app/providers';
 import { client } from '~/client';
@@ -108,6 +111,7 @@ export default async function RootLayout({ params, children }: Props) {
 
   const rootData = await fetchRootLayoutMetadata();
   const toastNotificationCookieData = await getToastNotification();
+  const siteVersion = await getSiteVersion();
 
   if (!routing.locales.includes(locale)) {
     notFound();
@@ -138,10 +142,12 @@ export default async function RootLayout({ params, children }: Props) {
                 settings={rootData.data.site.settings}
               >
                 <Providers>
-                  {toastNotificationCookieData && (
-                    <CookieNotifications {...toastNotificationCookieData} />
-                  )}
-                  {children}
+                  <MakeswiftProvider siteVersion={siteVersion}>
+                    {toastNotificationCookieData && (
+                      <CookieNotifications {...toastNotificationCookieData} />
+                    )}
+                    {children}
+                  </MakeswiftProvider>
                 </Providers>
               </AnalyticsProvider>
             </NuqsAdapter>
