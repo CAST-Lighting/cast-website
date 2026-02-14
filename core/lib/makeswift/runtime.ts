@@ -16,7 +16,6 @@ const runtime = new ReactRuntimeCore({
     large: { width: 1024, viewport: 1000, label: 'Large' },
     screen: { width: 1280, label: 'XL' },
   },
-  fetch,
 });
 
 // Only register necessary built-in components. Omitted components are:
