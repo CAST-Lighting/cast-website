@@ -1,11 +1,14 @@
 import bundleAnalyzer from '@next/bundle-analyzer';
 import type { NextConfig } from 'next';
+import MakeswiftNextPlugin from '@makeswift/runtime/next/plugin';
 import createNextIntlPlugin from 'next-intl/plugin';
 
 import { writeBuildConfig } from './build-config/writer';
 import { client } from './client';
 import { graphql } from './client/graphql';
 import { cspHeader } from './lib/content-security-policy';
+
+const withMakeswift = MakeswiftNextPlugin();
 
 const withNextIntl = createNextIntlPlugin({
   experimental: {
@@ -94,6 +97,9 @@ export default async (): Promise<NextConfig> => {
       ];
     },
   };
+
+  // Apply Makeswift plugin (adds preview-mode rewrites and image domains)
+  nextConfig = withMakeswift(nextConfig);
 
   // Apply withNextIntl to the config
   nextConfig = withNextIntl(nextConfig);
