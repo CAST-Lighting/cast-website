@@ -3,13 +3,15 @@ import { connection } from 'next/server';
 import { getPageSnapshot } from '~/lib/makeswift/client';
 import { MakeswiftPageShim } from '~/lib/makeswift/makeswift-page-shim';
 
+import '~/lib/makeswift/components';
+
 interface PageProps {
-  params: Promise<{ locale: string; rest: string[] }>;
+  params: Promise<{ locale: string; rest?: string[] }>;
 }
 
 export default async function CatchAllPage({ params }: PageProps) {
   const { locale, rest } = await params;
-  const path = `/${rest.join('/')}`;
+  const path = rest ? `/${rest.join('/')}` : '/';
 
   const snapshot = await getPageSnapshot({ path, locale });
 
@@ -24,7 +26,7 @@ export default async function CatchAllPage({ params }: PageProps) {
 
 export async function generateMetadata({ params }: PageProps) {
   const { locale, rest } = await params;
-  const path = `/${rest.join('/')}`;
+  const path = rest ? `/${rest.join('/')}` : '/';
 
   const snapshot = await getPageSnapshot({ path, locale });
 
