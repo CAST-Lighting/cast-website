@@ -128,6 +128,10 @@ export default async function RootLayout({ params, children }: Props) {
 
   return (
     <html className={clsx(fonts.map((f) => f.variable))} lang={locale}>
+      {/* CAST Lighting brand fonts */}
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+      <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Urbanist:wght@400;500;600;700&display=swap" rel="stylesheet" />
       <body className="flex min-h-screen flex-col">
         <NextIntlClientProvider>
           <ConsentManager

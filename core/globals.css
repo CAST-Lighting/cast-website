@@ -2,6 +2,35 @@
 @tailwind components;
 @tailwind utilities;
 
+/* CAST Lighting brand variables */
+:root {
+  --color-primary: #004960;
+  --color-secondary: #005c7a;
+  --color-accent: #057cb0;
+  --color-light: #afe5fd;
+  --color-title: #1a2332;
+  --color-content: #4c586f;
+  --font-heading: 'Barlow', sans-serif;
+}
+
+.site-container {
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 64px;
+  padding-right: 64px;
+}
+
+@media (max-width: 1200px) {
+  .site-container { padding-left: 40px; padding-right: 40px; }
+}
+@media (max-width: 768px) {
+  .site-container { padding-left: 32px; padding-right: 32px; }
+}
+@media (max-width: 480px) {
+  .site-container { padding-left: 20px; padding-right: 20px; }
+}
+
 :root {
   --primary: 96 100% 68%;
   --accent: 96 100% 88%;
