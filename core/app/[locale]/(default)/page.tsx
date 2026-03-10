@@ -1,3 +1,4 @@
+import { notFound } from 'next/navigation';
 import { connection } from 'next/server';
 import { setRequestLocale } from 'next-intl/server';
 
@@ -18,8 +19,9 @@ export default async function Home({ params }: Props) {
   const snapshot = await getPageSnapshot({ path: '/', locale });
 
   if (snapshot == null) {
+    // Allows Makeswift editor to detect and enable editing for unpublished pages
     await connection();
-    return null;
+    return notFound();
   }
 
   return <MakeswiftPageShim metadata={false} snapshot={snapshot} />;
