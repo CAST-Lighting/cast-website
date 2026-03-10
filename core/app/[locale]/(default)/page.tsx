@@ -1,4 +1,3 @@
-import { notFound } from 'next/navigation';
 import { connection } from 'next/server';
 import { setRequestLocale } from 'next-intl/server';
 
@@ -16,13 +15,11 @@ export default async function Home({ params }: Props) {
 
   setRequestLocale(locale);
 
-  const snapshot = await getPageSnapshot({ path: '/', locale });
+  // connection() ensures the page is always dynamic so Makeswift
+  // draft mode headers are read on every request
+  await connection();
 
-  if (snapshot == null) {
-    // Allows Makeswift editor to detect and enable editing for unpublished pages
-    await connection();
-    return notFound();
-  }
+  const snapshot = await getPageSnapshot({ path: '/', locale });
 
   return <MakeswiftPageShim metadata={false} snapshot={snapshot} />;
 }
