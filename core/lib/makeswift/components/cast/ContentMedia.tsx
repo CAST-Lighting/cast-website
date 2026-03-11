@@ -110,7 +110,7 @@ const ContentMedia = forwardRef(function ContentMedia(
       `}</style>
       <div
         ref={ref}
-        className={`relative overflow-x-hidden ${sectionStyle || ""} ${className || ""}`}
+        className={`relative ${sectionStyle || ""} ${className || ""}`}
         style={{ backgroundColor: bgColor || "#111827", width: "100%" }}
       >
         {bgImage && (
