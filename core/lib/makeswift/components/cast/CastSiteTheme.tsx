@@ -10,7 +10,7 @@ interface CastSiteThemeProps {
   lightColor?: string
   titleColor?: string
   bodyColor?: string
-  // Typography — sizes in px, rendered as rem (divide by htmlBasePx)
+  // Typography — sizes in px
   htmlBasePx?: number
   h1Px?: number
   h2Px?: number
@@ -35,7 +35,6 @@ export default forwardRef(function CastSiteTheme(
     lightColor = "#7fbee8",
     titleColor = "#1a2332",
     bodyColor = "#3c3c47",
-    htmlBasePx = 18,
     h1Px = 46,
     h2Px = 36,
     h3Px = 29,
@@ -51,10 +50,7 @@ export default forwardRef(function CastSiteTheme(
   }: CastSiteThemeProps,
   _ref: Ref<HTMLDivElement>,
 ) {
-  const base = htmlBasePx || 18
-
   const css = `
-html { font-size: ${base}px; }
 :root {
   --color-primary: ${primaryColor};
   --color-accent: ${accentColor};
@@ -64,12 +60,12 @@ html { font-size: ${base}px; }
   --color-content: ${bodyColor};
   --color-theme-primary: ${accentColor};
   --color-theme-secondary: ${primaryColor};
-  --h1-size: ${(h1Px / base).toFixed(4)}em;
-  --h2-size: ${(h2Px / base).toFixed(4)}em;
-  --h3-size: ${(h3Px / base).toFixed(4)}em;
-  --h4-size: ${(h4Px / base).toFixed(4)}em;
-  --h5-size: ${(h5Px / base).toFixed(4)}em;
-  --h6-size: ${(h6Px / base).toFixed(4)}em;
+  --h1-size: ${h1Px}px;
+  --h2-size: ${h2Px}px;
+  --h3-size: ${h3Px}px;
+  --h4-size: ${h4Px}px;
+  --h5-size: ${h5Px}px;
+  --h6-size: ${h6Px}px;
   --body-size: ${bodyPx}px;
   --body-lg-size: ${bodyLgPx}px;
   --body-sm-size: ${bodySmPx}px;
