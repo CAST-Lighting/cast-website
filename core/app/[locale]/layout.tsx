@@ -122,8 +122,8 @@ export default async function RootLayout({ params, children }: Props) {
   setRequestLocale(locale);
 
   const scripts = scriptsTransformer(rootData.data.site.content.scripts);
-  const isCookieConsentEnabled =
-    rootData.data.site.settings?.privacy?.cookieConsentEnabled ?? false;
+  // CAST manages its own cookie consent — disable the Catalyst/BigCommerce banner
+  const isCookieConsentEnabled = false;
   const privacyPolicyUrl = rootData.data.site.settings?.privacy?.privacyPolicyUrl;
 
   return (
