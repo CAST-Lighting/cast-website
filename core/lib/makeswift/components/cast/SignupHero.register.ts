@@ -1,5 +1,5 @@
 import { lazy } from "react"
-import { Style, TextInput, List, Shape, Image, Color } from "@makeswift/runtime/controls"
+import { Style, TextInput, Image, Color } from "@makeswift/runtime/controls"
 import { runtime } from "~/lib/makeswift/runtime"
 
 runtime.registerComponent(
@@ -17,15 +17,6 @@ runtime.registerComponent(
       subheading: TextInput({ label: "Subheading", defaultValue: "CAST Lighting's TradePro program gives professional landscape contractors access to exclusive pricing." }),
       formHeading: TextInput({ label: "Form Heading", defaultValue: "Start Your Application" }),
       submitButtonText: TextInput({ label: "Submit Button Text", defaultValue: "Submit Application" }),
-      benefits: List({
-        label: "Benefits",
-        type: Shape({
-          type: {
-            text: TextInput({ label: "Benefit Text", defaultValue: "Exclusive TradePro pricing" }),
-          },
-        }),
-        getItemLabel(item) { return item?.text?.slice(0, 40) || "Benefit"; },
-      }),
     },
   }
 )
