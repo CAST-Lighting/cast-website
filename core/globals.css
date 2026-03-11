@@ -6,9 +6,6 @@
    CAST Lighting — Design System (matches cast-lighting.com)
    ============================================================ */
 
-/* Base font size matches cast-lighting.com */
-html { font-size: 18px; }
-
 :root {
   /* Brand colors — exact values from cast-lighting.com */
   --color-theme-primary:          #057cb0;
@@ -21,46 +18,32 @@ html { font-size: 18px; }
   --color-theme-contrast:         #f5f5f5;
 
   /* Aliases used by CAST components */
-  --color-primary:   var(--color-theme-secondary);  /* #004960 dark blue */
+  --color-primary:   #004960;
   --color-secondary: #005c7a;
-  --color-accent:    var(--color-theme-primary);    /* #057cb0 mid blue  */
-  --color-light:     var(--color-theme-secondary-accent); /* #7fbee8    */
+  --color-accent:    #057cb0;
+  --color-light:     #7fbee8;
   --color-title:     #1a2332;
   --color-content:   #3c3c47;
   --font-heading:    'Barlow', sans-serif;
 
-  /* Heading scale — mobile (matches cast-lighting.com :root defaults) */
-  --h1-size: 2.2806973457em;   /* ~41px  */
-  --h2-size: 1.8020324707em;   /* ~32px  */
-  --h3-size: 1.423828125em;    /* ~26px  */
-  --h4-size: 1.265625em;       /* ~23px  */
-  --h5-size: 1.125em;          /* ~20px  */
-  --h6-size: 1em;              /* ~18px  */
-
-  /* Gutters — mobile */
-  --gutter-xslim:   0.2314814815rem;
-  --gutter-slim:    0.3472222222rem;
-  --gutter-default: 0.6944444444rem;
-  --gutter-wide:    1.3888888889rem;
-  --gutter-xwide:   2.0833333333rem;
+  /* Heading scale in px — mobile (matches cast-lighting.com at 18px base) */
+  --h1-size: 41px;
+  --h2-size: 32px;
+  --h3-size: 26px;
+  --h4-size: 23px;
+  --h5-size: 20px;
+  --h6-size: 18px;
 }
 
-@media screen and (min-width: 40em) {
+@media screen and (min-width: 640px) {
   :root {
-    /* Heading scale — desktop (matches cast-lighting.com @media desktop) */
-    --h1-size: 2.565784514em;    /* ~46px  */
-    --h2-size: 2.0272865295em;   /* ~36.5px */
-    --h3-size: 1.6018066406em;   /* ~28.8px */
-    --h4-size: 1.423828125em;    /* ~25.6px */
-    --h5-size: 1.265625em;       /* ~22.8px */
-    --h6-size: 1.125em;          /* ~20.25px */
-
-    /* Gutters — desktop */
-    --gutter-xslim:   0.462962963rem;
-    --gutter-slim:    0.6944444444rem;
-    --gutter-default: 1.3888888889rem;
-    --gutter-wide:    2.7777777778rem;
-    --gutter-xwide:   4.1666666667rem;
+    /* Heading scale — desktop */
+    --h1-size: 46px;
+    --h2-size: 36px;
+    --h3-size: 29px;
+    --h4-size: 26px;
+    --h5-size: 23px;
+    --h6-size: 20px;
   }
 }
 
@@ -70,7 +53,7 @@ html { font-size: 18px; }
    and create matching Text Styles in the Design panel.
    ============================================================ */
 
-/* --- Heading Styles (matches cast-lighting.com modular scale, base 18px) --- */
+/* --- Heading Styles (matches cast-lighting.com scale, px-based) --- */
 .heading-style-h1 {
   font-family: 'Barlow', sans-serif;
   font-size: var(--h1-size);

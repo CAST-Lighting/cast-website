@@ -1,6 +1,5 @@
 import { getPageSnapshot } from '~/lib/makeswift/client';
 import { MakeswiftPageShim } from '~/lib/makeswift/makeswift-page-shim';
-import '~/lib/makeswift/components';
 
 export async function GlobalThemeLoader({ locale }: { locale: string }) {
   const snapshot = await getPageSnapshot({ path: '/global-styles', locale });
