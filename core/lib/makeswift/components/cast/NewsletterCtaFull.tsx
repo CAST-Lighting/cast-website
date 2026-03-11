@@ -92,7 +92,7 @@ const NewsletterCtaFull = forwardRef(function NewsletterCtaFull(
           min-width: 0;
         }
         .nlf-heading {
-          font-family: 'Urbanist', sans-serif;
+          font-family: 'Barlow', sans-serif;
           font-size: 32px;
           font-weight: 700;
           line-height: 1.2;
@@ -143,7 +143,7 @@ const NewsletterCtaFull = forwardRef(function NewsletterCtaFull(
           background: var(--color-primary);
           border: none;
           border-radius: 8px;
-          font-family: 'Urbanist', sans-serif;
+          font-family: 'Barlow', sans-serif;
           font-size: 16px;
           font-weight: 600;
           color: #ffffff;

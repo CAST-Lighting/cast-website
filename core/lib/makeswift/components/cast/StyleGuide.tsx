@@ -114,15 +114,15 @@ const StyleGuide = forwardRef(function StyleGuide(
           <div className="sg-section-label">Heading Styles</div>
 
           <div className="sg-row">
-            <span className="sg-class-tag">.heading-style-h1 — Urbanist 700, 72px</span>
+            <span className="sg-class-tag">.heading-style-h1 — Barlow 700, ~46px desktop</span>
             <h1 className="heading-style-h1">Premium Landscape Lighting</h1>
           </div>
           <div className="sg-row">
-            <span className="sg-class-tag">.heading-style-h2 — Urbanist 700, 52px</span>
+            <span className="sg-class-tag">.heading-style-h2 — Barlow 700, ~36px desktop</span>
             <h2 className="heading-style-h2">Our Favorite Picks</h2>
           </div>
           <div className="sg-row">
-            <span className="sg-class-tag">.heading-style-h3 — Urbanist 600, 40px</span>
+            <span className="sg-class-tag">.heading-style-h3 — Barlow 600, ~29px desktop</span>
             <h3 className="heading-style-h3">The TradePro Advantage</h3>
           </div>
           <div className="sg-row">
@@ -260,9 +260,9 @@ const StyleGuide = forwardRef(function StyleGuide(
         <div className="sg-section">
           <div className="sg-section-label">Font Families</div>
           <div className="sg-font-specimen">
-            <p className="sg-font-name">Urbanist — Headings (H1, H2, H3)</p>
-            <p className="sg-font-big" style={{ fontFamily: "'Urbanist', sans-serif" }}>Aa Bb Cc 123</p>
-            <p className="sg-font-alpha" style={{ fontFamily: "'Urbanist', sans-serif" }}>
+            <p className="sg-font-name">Barlow — All Headings & Body</p>
+            <p className="sg-font-big" style={{ fontFamily: "'Barlow', sans-serif" }}>Aa Bb Cc 123</p>
+            <p className="sg-font-alpha" style={{ fontFamily: "'Barlow', sans-serif" }}>
               ABCDEFGHIJKLMNOPQRSTUVWXYZ<br />
               abcdefghijklmnopqrstuvwxyz · 0123456789
             </p>

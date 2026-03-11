@@ -86,7 +86,7 @@ const TradeProSection = forwardRef(function TradeProSection(
           margin: 0 auto 60px;
         }
         .tp-subtitle {
-          font-family: 'Urbanist', sans-serif;
+          font-family: 'Barlow', sans-serif;
           font-size: 14px;
           font-weight: 700;
           text-transform: uppercase;
@@ -95,7 +95,7 @@ const TradeProSection = forwardRef(function TradeProSection(
           margin: 0 0 12px;
         }
         .tp-heading {
-          font-family: 'Urbanist', sans-serif;
+          font-family: 'Barlow', sans-serif;
           font-size: 42px;
           font-weight: 700;
           line-height: 1.15;
@@ -145,7 +145,7 @@ const TradeProSection = forwardRef(function TradeProSection(
           color: var(--color-title);
         }
         .tp-card-title {
-          font-family: 'Urbanist', sans-serif;
+          font-family: 'Barlow', sans-serif;
           font-size: 16px;
           font-weight: 700;
           text-transform: uppercase;
@@ -172,7 +172,7 @@ const TradeProSection = forwardRef(function TradeProSection(
           padding: 16px 32px;
           border: 2px solid var(--color-primary);
           background: transparent;
-          font-family: 'Urbanist', sans-serif;
+          font-family: 'Barlow', sans-serif;
           font-size: 16px;
           font-weight: 600;
           color: var(--color-title);

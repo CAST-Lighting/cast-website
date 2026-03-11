@@ -94,7 +94,7 @@ const NewsletterCta = forwardRef(function NewsletterCta(
           z-index: 1;
         }
         .nl-heading {
-          font-family: 'Urbanist', sans-serif;
+          font-family: 'Barlow', sans-serif;
           font-size: 32px;
           font-weight: 700;
           line-height: 1.2;
@@ -145,7 +145,7 @@ const NewsletterCta = forwardRef(function NewsletterCta(
           background: var(--color-primary);
           border: none;
           border-radius: 8px;
-          font-family: 'Urbanist', sans-serif;
+          font-family: 'Barlow', sans-serif;
           font-size: 16px;
           font-weight: 600;
           color: #ffffff;
