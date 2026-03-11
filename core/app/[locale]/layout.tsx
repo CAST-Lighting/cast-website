@@ -27,6 +27,7 @@ import { ContainerQueryPolyfill } from '~/components/polyfills/container-query';
 import { scriptsTransformer } from '~/data-transformers/scripts-transformer';
 import { routing } from '~/i18n/routing';
 import { getToastNotification } from '~/lib/server-toast';
+import { GlobalThemeLoader } from '~/lib/makeswift/components/cast/GlobalThemeLoader';
 
 const RootLayoutMetadataQuery = graphql(
   `
@@ -133,6 +134,7 @@ export default async function RootLayout({ params, children }: Props) {
       <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
       <body className="flex min-h-screen flex-col">
+        <GlobalThemeLoader locale={locale} />
         <NextIntlClientProvider>
           <ConsentManager
             isCookieConsentEnabled={isCookieConsentEnabled}

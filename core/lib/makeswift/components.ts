@@ -32,3 +32,4 @@ import './components/cast/NewsletterCta.register';
 import './components/cast/NewsletterCtaFull.register';
 import './components/cast/SiteFooter.register';
 import './components/cast/StyleGuide.register';
+import './components/cast/CastSiteTheme.register';
