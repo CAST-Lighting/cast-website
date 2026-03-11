@@ -156,6 +156,216 @@
   color: var(--color-accent);
 }
 
+/* ============================================================
+   BUTTON SYSTEM — CAST Lighting
+   Edit these variables to update all buttons site-wide.
+   Reference these classes when building components.
+   ============================================================ */
+
+/* -- Solid buttons — Light background -- */
+.sg-btn-solid-sm {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 8px 16px; font-size: 13px;
+  background: var(--color-primary); color: #fff;
+  font-family: 'Barlow', sans-serif; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.05em;
+  border: 2px solid transparent; cursor: pointer; text-decoration: none;
+  transition: background 200ms ease, color 200ms ease, border-color 200ms ease;
+}
+.sg-btn-solid-sm:hover { background: #003647; }
+
+.sg-btn-solid-md {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 12px 24px; font-size: 15px;
+  background: var(--color-primary); color: #fff;
+  font-family: 'Barlow', sans-serif; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.05em;
+  border: 2px solid transparent; cursor: pointer; text-decoration: none;
+  transition: background 200ms ease, color 200ms ease, border-color 200ms ease;
+}
+.sg-btn-solid-md:hover { background: #003647; }
+
+.sg-btn-solid-lg {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 16px 32px; font-size: 17px;
+  background: var(--color-primary); color: #fff;
+  font-family: 'Barlow', sans-serif; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.05em;
+  border: 2px solid transparent; cursor: pointer; text-decoration: none;
+  transition: background 200ms ease, color 200ms ease, border-color 200ms ease;
+}
+.sg-btn-solid-lg:hover { background: #003647; }
+
+/* -- Solid buttons — Dark background -- */
+.sg-btn-solid-dark-sm {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 8px 16px; font-size: 13px;
+  background: #ffffff; color: var(--color-primary);
+  font-family: 'Barlow', sans-serif; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.05em;
+  border: 2px solid transparent; cursor: pointer; text-decoration: none;
+  transition: background 200ms ease, color 200ms ease;
+}
+.sg-btn-solid-dark-sm:hover { background: #afe5fd; }
+
+.sg-btn-solid-dark-md {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 12px 24px; font-size: 15px;
+  background: #ffffff; color: var(--color-primary);
+  font-family: 'Barlow', sans-serif; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.05em;
+  border: 2px solid transparent; cursor: pointer; text-decoration: none;
+  transition: background 200ms ease, color 200ms ease;
+}
+.sg-btn-solid-dark-md:hover { background: #afe5fd; }
+
+.sg-btn-solid-dark-lg {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 16px 32px; font-size: 17px;
+  background: #ffffff; color: var(--color-primary);
+  font-family: 'Barlow', sans-serif; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.05em;
+  border: 2px solid transparent; cursor: pointer; text-decoration: none;
+  transition: background 200ms ease, color 200ms ease;
+}
+.sg-btn-solid-dark-lg:hover { background: #afe5fd; }
+
+/* -- Outline buttons — Light background -- */
+.sg-btn-outline-sm {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 6px 14px; font-size: 13px;
+  background: transparent; color: var(--color-primary);
+  font-family: 'Barlow', sans-serif; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.05em;
+  border: 2px solid var(--color-accent); cursor: pointer; text-decoration: none;
+  transition: background 200ms ease, border-color 200ms ease, color 200ms ease;
+}
+.sg-btn-outline-sm:hover { background: #e6f7ff; border-color: #046a99; color: #003647; }
+
+.sg-btn-outline-md {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 10px 22px; font-size: 15px;
+  background: transparent; color: var(--color-primary);
+  font-family: 'Barlow', sans-serif; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.05em;
+  border: 2px solid var(--color-accent); cursor: pointer; text-decoration: none;
+  transition: background 200ms ease, border-color 200ms ease, color 200ms ease;
+}
+.sg-btn-outline-md:hover { background: #e6f7ff; border-color: #046a99; color: #003647; }
+
+.sg-btn-outline-lg {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 14px 30px; font-size: 17px;
+  background: transparent; color: var(--color-primary);
+  font-family: 'Barlow', sans-serif; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.05em;
+  border: 2px solid var(--color-accent); cursor: pointer; text-decoration: none;
+  transition: background 200ms ease, border-color 200ms ease, color 200ms ease;
+}
+.sg-btn-outline-lg:hover { background: #e6f7ff; border-color: #046a99; color: #003647; }
+
+/* -- Outline buttons — Dark background -- */
+.sg-btn-outline-dark-sm {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 6px 14px; font-size: 13px;
+  background: transparent; color: #ffffff;
+  font-family: 'Barlow', sans-serif; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.05em;
+  border: 2px solid #afe5fd; cursor: pointer; text-decoration: none;
+  transition: background 200ms ease, border-color 200ms ease;
+}
+.sg-btn-outline-dark-sm:hover { background: rgba(175,229,253,0.15); border-color: #ffffff; }
+
+.sg-btn-outline-dark-md {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 10px 22px; font-size: 15px;
+  background: transparent; color: #ffffff;
+  font-family: 'Barlow', sans-serif; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.05em;
+  border: 2px solid #afe5fd; cursor: pointer; text-decoration: none;
+  transition: background 200ms ease, border-color 200ms ease;
+}
+.sg-btn-outline-dark-md:hover { background: rgba(175,229,253,0.15); border-color: #ffffff; }
+
+.sg-btn-outline-dark-lg {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 14px 30px; font-size: 17px;
+  background: transparent; color: #ffffff;
+  font-family: 'Barlow', sans-serif; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.05em;
+  border: 2px solid #afe5fd; cursor: pointer; text-decoration: none;
+  transition: background 200ms ease, border-color 200ms ease;
+}
+.sg-btn-outline-dark-lg:hover { background: rgba(175,229,253,0.15); border-color: #ffffff; }
+
+/* -- Underline buttons — Light background -- */
+.sg-btn-underline-sm {
+  display: inline-flex; align-items: center; font-size: 13px;
+  background: transparent; color: var(--color-primary);
+  font-family: 'Barlow', sans-serif; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.05em;
+  border: none; cursor: pointer;
+  text-decoration: underline; text-underline-offset: 3px;
+  transition: color 200ms ease;
+}
+.sg-btn-underline-sm:hover { color: var(--color-accent); }
+
+.sg-btn-underline-md {
+  display: inline-flex; align-items: center; font-size: 15px;
+  background: transparent; color: var(--color-primary);
+  font-family: 'Barlow', sans-serif; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.05em;
+  border: none; cursor: pointer;
+  text-decoration: underline; text-underline-offset: 3px;
+  transition: color 200ms ease;
+}
+.sg-btn-underline-md:hover { color: var(--color-accent); }
+
+.sg-btn-underline-lg {
+  display: inline-flex; align-items: center; font-size: 17px;
+  background: transparent; color: var(--color-primary);
+  font-family: 'Barlow', sans-serif; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.05em;
+  border: none; cursor: pointer;
+  text-decoration: underline; text-underline-offset: 3px;
+  transition: color 200ms ease;
+}
+.sg-btn-underline-lg:hover { color: var(--color-accent); }
+
+/* -- Underline buttons — Dark background -- */
+.sg-btn-underline-dark-sm {
+  display: inline-flex; align-items: center; font-size: 13px;
+  background: transparent; color: #ffffff;
+  font-family: 'Barlow', sans-serif; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.05em;
+  border: none; cursor: pointer;
+  text-decoration: underline; text-underline-offset: 3px;
+  transition: color 200ms ease;
+}
+.sg-btn-underline-dark-sm:hover { color: #afe5fd; }
+
+.sg-btn-underline-dark-md {
+  display: inline-flex; align-items: center; font-size: 15px;
+  background: transparent; color: #ffffff;
+  font-family: 'Barlow', sans-serif; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.05em;
+  border: none; cursor: pointer;
+  text-decoration: underline; text-underline-offset: 3px;
+  transition: color 200ms ease;
+}
+.sg-btn-underline-dark-md:hover { color: #afe5fd; }
+
+.sg-btn-underline-dark-lg {
+  display: inline-flex; align-items: center; font-size: 17px;
+  background: transparent; color: #ffffff;
+  font-family: 'Barlow', sans-serif; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.05em;
+  border: none; cursor: pointer;
+  text-decoration: underline; text-underline-offset: 3px;
+  transition: color 200ms ease;
+}
+.sg-btn-underline-dark-lg:hover { color: #afe5fd; }
+
 /* --- Text Colors --- */
 .text-color-primary   { color: var(--color-primary); }
 .text-color-secondary { color: var(--color-secondary); }

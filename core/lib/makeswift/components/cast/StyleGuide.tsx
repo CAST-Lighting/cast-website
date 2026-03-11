@@ -239,19 +239,112 @@ const StyleGuide = forwardRef(function StyleGuide(
 
         {/* Buttons */}
         <div className="sg-section">
-          <div className="sg-section-label">Buttons</div>
+          <div className="sg-section-label">Buttons — Light Background</div>
+
+          {/* Solid */}
+          <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: "#9ca3af", marginBottom: 16 }}>Solid</p>
+          <div className="sg-btns" style={{ marginBottom: 40 }}>
+            <div className="sg-btn-group">
+              <span className="sg-btn-label">.sg-btn-solid-sm</span>
+              <button className="sg-btn-solid-sm">Shop Now</button>
+            </div>
+            <div className="sg-btn-group">
+              <span className="sg-btn-label">.sg-btn-solid-md</span>
+              <button className="sg-btn-solid-md">Shop Now</button>
+            </div>
+            <div className="sg-btn-group">
+              <span className="sg-btn-label">.sg-btn-solid-lg</span>
+              <button className="sg-btn-solid-lg">Shop Now</button>
+            </div>
+          </div>
+
+          {/* Outline */}
+          <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: "#9ca3af", marginBottom: 16 }}>Outline</p>
+          <div className="sg-btns" style={{ marginBottom: 40 }}>
+            <div className="sg-btn-group">
+              <span className="sg-btn-label">.sg-btn-outline-sm</span>
+              <button className="sg-btn-outline-sm">Learn More</button>
+            </div>
+            <div className="sg-btn-group">
+              <span className="sg-btn-label">.sg-btn-outline-md</span>
+              <button className="sg-btn-outline-md">Learn More</button>
+            </div>
+            <div className="sg-btn-group">
+              <span className="sg-btn-label">.sg-btn-outline-lg</span>
+              <button className="sg-btn-outline-lg">Learn More</button>
+            </div>
+          </div>
+
+          {/* Underline */}
+          <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: "#9ca3af", marginBottom: 16 }}>Underline</p>
           <div className="sg-btns">
             <div className="sg-btn-group">
-              <span className="sg-btn-label">.sg-btn-primary</span>
-              <button className="sg-btn-primary">Shop Products</button>
+              <span className="sg-btn-label">.sg-btn-underline-sm</span>
+              <button className="sg-btn-underline-sm">View Details</button>
             </div>
             <div className="sg-btn-group">
-              <span className="sg-btn-label">.sg-btn-secondary</span>
-              <button className="sg-btn-secondary">Learn More</button>
+              <span className="sg-btn-label">.sg-btn-underline-md</span>
+              <button className="sg-btn-underline-md">View Details</button>
             </div>
             <div className="sg-btn-group">
-              <span className="sg-btn-label">.sg-btn-ghost</span>
-              <button className="sg-btn-ghost">Become a TradePro →</button>
+              <span className="sg-btn-label">.sg-btn-underline-lg</span>
+              <button className="sg-btn-underline-lg">View Details</button>
+            </div>
+          </div>
+        </div>
+
+        {/* Buttons — Dark Background */}
+        <div className="sg-section" style={{ background: "#111827" }}>
+          <div className="sg-section-label" style={{ color: "rgba(255,255,255,0.5)", borderColor: "rgba(255,255,255,0.2)" }}>Buttons — Dark Background</div>
+
+          {/* Solid Dark */}
+          <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: "rgba(255,255,255,0.3)", marginBottom: 16 }}>Solid</p>
+          <div className="sg-btns" style={{ marginBottom: 40 }}>
+            <div className="sg-btn-group">
+              <span className="sg-btn-label" style={{ color: "rgba(255,255,255,0.3)" }}>.sg-btn-solid-dark-sm</span>
+              <button className="sg-btn-solid-dark-sm">Shop Now</button>
+            </div>
+            <div className="sg-btn-group">
+              <span className="sg-btn-label" style={{ color: "rgba(255,255,255,0.3)" }}>.sg-btn-solid-dark-md</span>
+              <button className="sg-btn-solid-dark-md">Shop Now</button>
+            </div>
+            <div className="sg-btn-group">
+              <span className="sg-btn-label" style={{ color: "rgba(255,255,255,0.3)" }}>.sg-btn-solid-dark-lg</span>
+              <button className="sg-btn-solid-dark-lg">Shop Now</button>
+            </div>
+          </div>
+
+          {/* Outline Dark */}
+          <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: "rgba(255,255,255,0.3)", marginBottom: 16 }}>Outline</p>
+          <div className="sg-btns" style={{ marginBottom: 40 }}>
+            <div className="sg-btn-group">
+              <span className="sg-btn-label" style={{ color: "rgba(255,255,255,0.3)" }}>.sg-btn-outline-dark-sm</span>
+              <button className="sg-btn-outline-dark-sm">Learn More</button>
+            </div>
+            <div className="sg-btn-group">
+              <span className="sg-btn-label" style={{ color: "rgba(255,255,255,0.3)" }}>.sg-btn-outline-dark-md</span>
+              <button className="sg-btn-outline-dark-md">Learn More</button>
+            </div>
+            <div className="sg-btn-group">
+              <span className="sg-btn-label" style={{ color: "rgba(255,255,255,0.3)" }}>.sg-btn-outline-dark-lg</span>
+              <button className="sg-btn-outline-dark-lg">Learn More</button>
+            </div>
+          </div>
+
+          {/* Underline Dark */}
+          <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: "rgba(255,255,255,0.3)", marginBottom: 16 }}>Underline</p>
+          <div className="sg-btns">
+            <div className="sg-btn-group">
+              <span className="sg-btn-label" style={{ color: "rgba(255,255,255,0.3)" }}>.sg-btn-underline-dark-sm</span>
+              <button className="sg-btn-underline-dark-sm">View Details</button>
+            </div>
+            <div className="sg-btn-group">
+              <span className="sg-btn-label" style={{ color: "rgba(255,255,255,0.3)" }}>.sg-btn-underline-dark-md</span>
+              <button className="sg-btn-underline-dark-md">View Details</button>
+            </div>
+            <div className="sg-btn-group">
+              <span className="sg-btn-label" style={{ color: "rgba(255,255,255,0.3)" }}>.sg-btn-underline-dark-lg</span>
+              <button className="sg-btn-underline-dark-lg">View Details</button>
             </div>
           </div>
         </div>
