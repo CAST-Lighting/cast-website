@@ -95,17 +95,17 @@ const NewsletterCta = forwardRef(function NewsletterCta(
         }
         .nl-heading {
           font-family: 'Barlow', sans-serif;
-          font-size: 32px;
-          font-weight: 700;
-          line-height: 1.2;
+          font-size: var(--h2-size);
+          font-weight: var(--heading-weight, 700);
+          line-height: var(--heading-line-height, 1.1);
           color: #ffffff;
           margin: 0 0 8px;
         }
         .nl-desc {
-          font-family: 'Inter', sans-serif;
-          font-size: 16px;
+          font-family: 'Barlow', sans-serif;
+          font-size: var(--body-size, 18px);
           font-weight: 400;
-          line-height: 1.6;
+          line-height: var(--body-line-height, 1.6);
           color: rgba(255,255,255,0.6);
           margin: 0 0 28px;
         }
@@ -123,7 +123,7 @@ const NewsletterCta = forwardRef(function NewsletterCta(
           border: 1px solid rgba(255,255,255,0.15);
           border-radius: 8px;
           background: rgba(255,255,255,0.06);
-          font-family: 'Inter', sans-serif;
+          font-family: 'Barlow', sans-serif;
           font-size: 15px;
           color: #ffffff;
           outline: none;
@@ -165,7 +165,7 @@ const NewsletterCta = forwardRef(function NewsletterCta(
           transform: translateX(3px);
         }
         .nl-success {
-          font-family: 'Inter', sans-serif;
+          font-family: 'Barlow', sans-serif;
           font-size: 15px;
           color: #22c55e;
           display: flex;
@@ -194,7 +194,7 @@ const NewsletterCta = forwardRef(function NewsletterCta(
           display: flex;
           align-items: center;
           gap: 14px;
-          font-family: 'Inter', sans-serif;
+          font-family: 'Barlow', sans-serif;
           font-size: 14px;
           font-weight: 500;
           color: rgba(255,255,255,0.85);
@@ -220,9 +220,6 @@ const NewsletterCta = forwardRef(function NewsletterCta(
             flex-direction: column;
             padding: 36px 24px;
             gap: 32px;
-          }
-          .nl-heading {
-            font-size: 26px;
           }
           .nl-form {
             flex-direction: column;

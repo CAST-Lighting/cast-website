@@ -96,17 +96,17 @@ const TradeProSection = forwardRef(function TradeProSection(
         }
         .tp-heading {
           font-family: 'Barlow', sans-serif;
-          font-size: 42px;
-          font-weight: 700;
-          line-height: 1.15;
+          font-size: var(--h2-size);
+          font-weight: var(--heading-weight, 700);
+          line-height: var(--heading-line-height, 1.1);
           color: var(--color-title);
           margin: 0 0 16px;
         }
         .tp-desc {
-          font-family: 'Inter', sans-serif;
-          font-size: 18px;
+          font-family: 'Barlow', sans-serif;
+          font-size: var(--body-size, 18px);
           font-weight: 400;
-          line-height: 1.6;
+          line-height: var(--body-line-height, 1.6);
           color: #4c586f;
           margin: 0;
         }
@@ -155,10 +155,10 @@ const TradeProSection = forwardRef(function TradeProSection(
           margin: 0 0 12px;
         }
         .tp-card-desc {
-          font-family: 'Inter', sans-serif;
-          font-size: 15px;
+          font-family: 'Barlow', sans-serif;
+          font-size: var(--body-sm-size, 15px);
           font-weight: 400;
-          line-height: 1.6;
+          line-height: var(--body-line-height, 1.6);
           color: #4c586f;
           margin: 0;
         }
@@ -189,17 +189,11 @@ const TradeProSection = forwardRef(function TradeProSection(
             grid-template-columns: repeat(2, 1fr);
             gap: 40px 24px;
           }
-          .tp-heading {
-            font-size: 34px;
-          }
         }
         @media (max-width: 479px) {
           .tp-grid {
             grid-template-columns: 1fr;
             gap: 36px;
-          }
-          .tp-heading {
-            font-size: 28px;
           }
           .tp-header {
             margin-bottom: 40px;

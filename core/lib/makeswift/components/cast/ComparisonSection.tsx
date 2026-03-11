@@ -136,17 +136,17 @@ const ComparisonSection = forwardRef(function ComparisonSection(
         }
         .comp-heading {
           font-family: 'Barlow', sans-serif;
-          font-size: 42px;
-          font-weight: 700;
-          line-height: 1.15;
+          font-size: var(--h2-size);
+          font-weight: var(--heading-weight, 700);
+          line-height: var(--heading-line-height, 1.1);
           color: var(--color-title);
           margin: 0 0 20px;
         }
         .comp-desc {
           font-family: 'Barlow', sans-serif;
-          font-size: 18px;
+          font-size: var(--body-size, 18px);
           font-weight: 400;
-          line-height: 1.6;
+          line-height: var(--body-line-height, 1.6);
           color: #4c586f;
           margin: 0;
         }
@@ -187,8 +187,9 @@ const ComparisonSection = forwardRef(function ComparisonSection(
         }
         .comp-card-heading {
           font-family: 'Barlow', sans-serif;
-          font-size: 28px;
-          font-weight: 700;
+          font-size: var(--h3-size);
+          font-weight: var(--heading-weight, 700);
+          line-height: var(--heading-line-height, 1.1);
           margin: 0 0 32px;
           position: relative;
           z-index: 1;
@@ -238,9 +239,9 @@ const ComparisonSection = forwardRef(function ComparisonSection(
         }
         .comp-item-title {
           font-family: 'Barlow', sans-serif;
-          font-size: 17px;
-          font-weight: 700;
-          line-height: 1.3;
+          font-size: var(--h5-size);
+          font-weight: var(--heading-weight, 700);
+          line-height: var(--heading-line-height, 1.1);
           margin: 0 0 6px;
         }
         .comp-cast-card .comp-item-title {
@@ -248,9 +249,9 @@ const ComparisonSection = forwardRef(function ComparisonSection(
         }
         .comp-item-desc {
           font-family: 'Barlow', sans-serif;
-          font-size: 15px;
+          font-size: var(--body-sm-size, 15px);
           font-weight: 400;
-          line-height: 1.55;
+          line-height: var(--body-line-height, 1.6);
           margin: 0;
         }
         .comp-cast-card .comp-item-desc {
@@ -295,9 +296,6 @@ const ComparisonSection = forwardRef(function ComparisonSection(
         }
 
         @media (max-width: 1023px) {
-          .comp-heading {
-            font-size: 34px;
-          }
           .comp-cast-card,
           .comp-other-card {
             padding: 32px 28px;
@@ -306,9 +304,6 @@ const ComparisonSection = forwardRef(function ComparisonSection(
         @media (max-width: 767px) {
           .comp-grid {
             grid-template-columns: 1fr;
-          }
-          .comp-heading {
-            font-size: 28px;
           }
           .comp-cast-card,
           .comp-other-card {

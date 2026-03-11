@@ -151,14 +151,11 @@ const CategoryGrid = forwardRef(function CategoryGrid(
         <div style={{ position: "relative", zIndex: 2 }}>
           <div className="site-container">
             <div className="mb-8 flex flex-col gap-4 md:mb-14 lg:mb-16" style={{ textAlign: "center", alignItems: "center" }}>
-              <h2
-                className="text-3xl font-medium md:text-4xl lg:text-5xl"
-                style={{ fontFamily: "var(--font-heading)", color: "var(--color-title)" }}
-              >
+              <h2 style={{ fontFamily: "'Barlow', sans-serif", color: "var(--color-title)", fontSize: "var(--h2-size)", fontWeight: "var(--heading-weight, 700)", lineHeight: "var(--heading-line-height, 1.1)" }}>
                 {title}
               </h2>
               {description && (
-                <p className="max-w-lg" style={{ color: "var(--color-content)", fontSize: "18px" }}>
+                <p className="max-w-lg" style={{ fontFamily: "'Barlow', sans-serif", color: "var(--color-content)", fontSize: "var(--body-size, 18px)" }}>
                   {description}
                 </p>
               )}

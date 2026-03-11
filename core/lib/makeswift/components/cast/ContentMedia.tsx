@@ -158,12 +158,12 @@ const ContentMedia = forwardRef(function ContentMedia(
             {/* Text side */}
             <div className="cm-text-content" style={{ flex: "1 1 50%", maxWidth: "42rem", minWidth: 0 }}>
               <h2
-                className="text-3xl font-semibold tracking-tight text-balance text-white sm:text-5xl"
-                style={{ fontFamily: "'Barlow', sans-serif" }}
+                className="tracking-tight text-balance text-white"
+                style={{ fontFamily: "'Barlow', sans-serif", fontSize: "var(--h2-size)", fontWeight: "var(--heading-weight, 700)", lineHeight: "var(--heading-line-height, 1.1)" }}
               >
                 {heading}
               </h2>
-              <p className="mt-6 text-lg font-medium text-pretty text-gray-300 sm:text-xl/8">
+              <p className="mt-6 text-pretty text-gray-300" style={{ fontFamily: "'Barlow', sans-serif", fontSize: "var(--body-lg-size, 20px)", lineHeight: "var(--body-line-height, 1.6)" }}>
                 {description}
               </p>
               {(primaryButtonText || secondaryButtonText) && (
