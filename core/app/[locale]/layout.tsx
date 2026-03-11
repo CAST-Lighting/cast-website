@@ -27,6 +27,7 @@ import { ContainerQueryPolyfill } from '~/components/polyfills/container-query';
 import { scriptsTransformer } from '~/data-transformers/scripts-transformer';
 import { routing } from '~/i18n/routing';
 import { getToastNotification } from '~/lib/server-toast';
+import { GlobalThemeLoader } from '~/lib/makeswift/components/cast/GlobalThemeLoader';
 
 const RootLayoutMetadataQuery = graphql(
   `
@@ -147,6 +148,7 @@ export default async function RootLayout({ params, children }: Props) {
               >
                 <Providers>
                   <MakeswiftProvider siteVersion={siteVersion}>
+                    <GlobalThemeLoader locale={locale} />
                     {toastNotificationCookieData && (
                       <CookieNotifications {...toastNotificationCookieData} />
                     )}
