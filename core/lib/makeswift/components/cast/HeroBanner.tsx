@@ -272,7 +272,7 @@ const HeroBanner = forwardRef(function HeroBanner(
           }
         }
       `}</style>
-      <div ref={ref} className={`relative ${className || ""}`} style={{ backgroundColor: bgColor || "#111827", width: "100%", overflowX: "hidden", zIndex: 1 }}>
+      <div ref={ref} className={`relative ${className || ""}`} style={{ backgroundColor: bgColor || "#111827", width: "100%", zIndex: 1 }}>
         {bgImage && (
           <div style={{ position: "absolute", inset: 0, backgroundImage: `url(${bgImage})`, backgroundSize: "cover", backgroundPosition: "center", zIndex: 0 }} />
         )}
