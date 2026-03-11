@@ -17,7 +17,6 @@ runtime.registerComponent(
       titleColor: Color({ label: "Title Text", defaultValue: "#1a2332" }),
       bodyColor: Color({ label: "Body Text", defaultValue: "#3c3c47" }),
       // Typography
-      htmlBasePx: Number({ label: "Base Font Size (px)", defaultValue: 18, min: 14, max: 24, step: 1 }),
       h1Px: Number({ label: "H1 Size (px)", defaultValue: 46, min: 28, max: 96, step: 1 }),
       h2Px: Number({ label: "H2 Size (px)", defaultValue: 36, min: 22, max: 72, step: 1 }),
       h3Px: Number({ label: "H3 Size (px)", defaultValue: 29, min: 18, max: 56, step: 1 }),

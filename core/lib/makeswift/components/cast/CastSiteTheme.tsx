@@ -11,7 +11,6 @@ interface CastSiteThemeProps {
   titleColor?: string
   bodyColor?: string
   // Typography — sizes in px
-  htmlBasePx?: number
   h1Px?: number
   h2Px?: number
   h3Px?: number

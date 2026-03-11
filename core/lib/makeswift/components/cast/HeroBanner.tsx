@@ -153,7 +153,7 @@ const HeroBanner = forwardRef(function HeroBanner(
     width: "100%",
     minHeight: "50px",
     padding: "0 20px",
-    fontFamily: "var(--font-inter), 'Inter', sans-serif",
+    fontFamily: "'Barlow', sans-serif",
     fontSize: "16px",
     color: "#ffffff",
     outline: "none",
@@ -168,7 +168,7 @@ const HeroBanner = forwardRef(function HeroBanner(
       marginBottom: "4px",
       fontSize: "14px",
       fontWeight: 500,
-      fontFamily: "var(--font-urbanist), 'Barlow', sans-serif",
+      fontFamily: "'Barlow', sans-serif",
     }
 
     if (field.type === "select") {
@@ -372,7 +372,7 @@ const HeroBanner = forwardRef(function HeroBanner(
               >
                 {heading}
               </h1>
-              <p className="mt-8 text-lg font-medium text-pretty text-gray-300 sm:text-xl/8">
+              <p className="mt-8 text-pretty text-gray-300" style={{ fontFamily: "'Barlow', sans-serif", fontSize: "var(--body-lg-size, 20px)", lineHeight: "var(--body-line-height, 1.6)" }}>
                 {subtitle}
               </p>
               <div className="buttons-wrap mt-10 flex items-center gap-x-6">
@@ -438,7 +438,7 @@ const HeroBanner = forwardRef(function HeroBanner(
                 <h3 style={{
                   color: "#fff",
                   margin: "0 0 8px 0",
-                  fontFamily: "var(--font-urbanist), 'Barlow', sans-serif",
+                  fontFamily: "'Barlow', sans-serif",
                   fontSize: "22px",
                   fontWeight: 600,
                   lineHeight: 1.2,
@@ -501,7 +501,7 @@ const HeroBanner = forwardRef(function HeroBanner(
                             border: "1px solid rgba(255,255,255,0.3)",
                             color: "#fff",
                             padding: "14px 20px",
-                            fontFamily: "var(--font-urbanist), 'Barlow', sans-serif",
+                            fontFamily: "'Barlow', sans-serif",
                             fontSize: "15px",
                             fontWeight: 600,
                             lineHeight: 1,
@@ -522,7 +522,7 @@ const HeroBanner = forwardRef(function HeroBanner(
                           border: "1px solid var(--color-primary)",
                           color: "#fff",
                           padding: "18px 27px",
-                          fontFamily: "var(--font-urbanist), 'Barlow', sans-serif",
+                          fontFamily: "'Barlow', sans-serif",
                           fontSize: "18px",
                           fontWeight: 600,
                           lineHeight: 1,
