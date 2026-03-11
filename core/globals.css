@@ -13,6 +13,148 @@
   --font-heading: 'Barlow', sans-serif;
 }
 
+/* ============================================================
+   CLIENT-FIRST TYPOGRAPHY SYSTEM — CAST Lighting
+   Use these class names when styling text in Makeswift,
+   and create matching Text Styles in the Design panel.
+   ============================================================ */
+
+/* --- Heading Styles --- */
+.heading-style-h1 {
+  font-family: 'Urbanist', sans-serif;
+  font-size: 72px;
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--color-title);
+}
+.heading-style-h2 {
+  font-family: 'Urbanist', sans-serif;
+  font-size: 52px;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  color: var(--color-title);
+}
+.heading-style-h3 {
+  font-family: 'Urbanist', sans-serif;
+  font-size: 40px;
+  font-weight: 600;
+  line-height: 1.15;
+  color: var(--color-title);
+}
+.heading-style-h4 {
+  font-family: 'Barlow', sans-serif;
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--color-title);
+}
+.heading-style-h5 {
+  font-family: 'Barlow', sans-serif;
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--color-title);
+}
+.heading-style-h6 {
+  font-family: 'Barlow', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-title);
+}
+
+/* --- Text Sizes --- */
+.text-size-xlarge {
+  font-family: 'Barlow', sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--color-content);
+}
+.text-size-large {
+  font-family: 'Barlow', sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.7;
+  color: var(--color-content);
+}
+.text-size-medium {
+  font-family: 'Barlow', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.7;
+  color: var(--color-content);
+}
+.text-size-small {
+  font-family: 'Barlow', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--color-content);
+}
+.text-size-tiny {
+  font-family: 'Barlow', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--color-content);
+}
+
+/* --- Text Weights --- */
+.text-weight-bold     { font-weight: 700; }
+.text-weight-semibold { font-weight: 600; }
+.text-weight-medium   { font-weight: 500; }
+.text-weight-normal   { font-weight: 400; }
+.text-weight-light    { font-weight: 300; }
+
+/* --- Text Styles --- */
+.text-style-italic    { font-style: italic; }
+.text-style-allcaps   { text-transform: uppercase; letter-spacing: 0.08em; }
+.text-style-muted     { color: var(--color-content); opacity: 0.6; }
+.text-style-overline  {
+  font-family: 'Barlow', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+/* --- Text Colors --- */
+.text-color-primary   { color: var(--color-primary); }
+.text-color-secondary { color: var(--color-secondary); }
+.text-color-accent    { color: var(--color-accent); }
+.text-color-title     { color: var(--color-title); }
+.text-color-body      { color: var(--color-content); }
+.text-color-white     { color: #ffffff; }
+.text-color-light     { color: var(--color-light); }
+
+/* --- Text Alignment --- */
+.text-align-left      { text-align: left; }
+.text-align-center    { text-align: center; }
+.text-align-right     { text-align: right; }
+
+/* --- Responsive heading scale --- */
+@media (max-width: 1024px) {
+  .heading-style-h1 { font-size: 56px; }
+  .heading-style-h2 { font-size: 42px; }
+  .heading-style-h3 { font-size: 32px; }
+}
+@media (max-width: 768px) {
+  .heading-style-h1 { font-size: 42px; }
+  .heading-style-h2 { font-size: 32px; }
+  .heading-style-h3 { font-size: 26px; }
+  .heading-style-h4 { font-size: 22px; }
+}
+@media (max-width: 480px) {
+  .heading-style-h1 { font-size: 34px; }
+  .heading-style-h2 { font-size: 26px; }
+}
+
 .site-container {
   max-width: 1400px;
   margin-left: auto;
