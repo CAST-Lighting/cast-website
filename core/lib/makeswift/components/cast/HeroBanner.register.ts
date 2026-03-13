@@ -44,6 +44,8 @@ runtime.registerComponent(
       formTitle: TextInput({ label: 'Form Title', defaultValue: 'Get An Easy, No-Pressure Quote' }),
       formSubtitle: TextInput({ label: 'Form Subtitle', defaultValue: "Tell us about your project and we'll get back to you within 24 hours." }),
       formSubmitLabel: TextInput({ label: 'Form Submit Button', defaultValue: 'Get A Free Quote' }),
+      formWidth: NumberControl({ label: 'Form Width', defaultValue: 480, min: 280, max: 800, step: 8, suffix: 'px' }),
+      formOffsetBottom: NumberControl({ label: 'Form Offset (overlap below)', defaultValue: 0, min: 0, max: 400, step: 8, suffix: 'px' }),
 
       // ── Background ──────────────────────────────────────────
       bgColor: Color({ label: 'Overlay Color' }),

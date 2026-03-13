@@ -11,11 +11,11 @@ const DEFAULT_SLIDES = [
 interface HeroBannerProps {
   className?: string
   // Slides
-  slide1Image?: { url: string }
-  slide2Image?: { url: string }
-  slide3Image?: { url: string }
-  slide4Image?: { url: string }
-  slide5Image?: { url: string }
+  slide1Image?: string
+  slide2Image?: string
+  slide3Image?: string
+  slide4Image?: string
+  slide5Image?: string
   // Rotating phrases
   phrase1?: string
   phrase2?: string
@@ -35,6 +35,8 @@ interface HeroBannerProps {
   formTitle?: string
   formSubtitle?: string
   formSubmitLabel?: string
+  formWidth?: number
+  formOffsetBottom?: number
   // Background
   bgColor?: string
   bgOpacity?: number
@@ -57,7 +59,7 @@ const HeroBanner = forwardRef(function HeroBanner(
     description,
     btn1Label, btn1Href,
     btn2Label, btn2Href,
-    formTitle, formSubtitle, formSubmitLabel,
+    formTitle, formSubtitle, formSubmitLabel, formWidth, formOffsetBottom,
     bgColor, bgOpacity, gradientFrom, gradientTo, gradientDirection,
     lineHeight, paddingTop, paddingBottom,
   }: HeroBannerProps,
@@ -67,7 +69,6 @@ const HeroBanner = forwardRef(function HeroBanner(
   const [phraseIndex, setPhraseIndex] = useState(0)
 
   const slideImages = [slide1Image, slide2Image, slide3Image, slide4Image, slide5Image]
-    .map(img => img?.url)
     .filter(Boolean) as string[]
   const images = slideImages.length > 0 ? slideImages : DEFAULT_SLIDES
 
@@ -102,6 +103,8 @@ const HeroBanner = forwardRef(function HeroBanner(
       className={`relative flex items-center ${className || ""}`}
       style={{
         minHeight: '70vh',
+        position: 'relative',
+        zIndex: 2,
         '--section-line-height': lineHeight,
         paddingTop: paddingTop ?? 80,
         paddingBottom: paddingBottom ?? 80,
@@ -175,7 +178,16 @@ const HeroBanner = forwardRef(function HeroBanner(
           </div>
 
           {/* Right — Quote form */}
-          <div className="hidden lg:block">
+          <div
+            className="hidden lg:block"
+            style={{
+              position: 'relative',
+              zIndex: 50,
+              width: formWidth ? `${formWidth}px` : undefined,
+              marginLeft: 'auto',
+              transform: formOffsetBottom ? `translateY(${formOffsetBottom}px)` : undefined,
+            }}
+          >
             <div
               className="backdrop-blur-2xl rounded-2xl p-8 border border-primary/30 relative overflow-hidden"
               style={{
