@@ -318,7 +318,7 @@ const ComparisonSection = forwardRef(function ComparisonSection(
       <section
         ref={ref}
         className={`comp-section ${sectionStyle || ""} ${className || ""}`}
-        style={{ position: "relative", backgroundColor: bgColor || "#25262d" }}
+        style={{ position: "relative", backgroundColor: "#2d353c" }}
       >
         {bgImage && (
           <div style={{ position: "absolute", inset: 0, backgroundImage: `url(${bgImage})`, backgroundSize: "cover", backgroundPosition: "center", zIndex: 0 }} />

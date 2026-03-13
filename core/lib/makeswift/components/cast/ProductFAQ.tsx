@@ -38,7 +38,7 @@ const ProductFAQ = forwardRef(function ProductFAQ(
     <div
       ref={ref}
       className={`${className || ""} ${sectionStyle || ""}`}
-      style={{ width: "100%", boxSizing: "border-box", backgroundColor: bgColor || "#25262d", borderTop: "1px solid rgba(255,255,255,0.08)" }}
+      style={{ width: "100%", boxSizing: "border-box", backgroundColor: "#25262d", borderTop: "1px solid rgba(255,255,255,0.08)" }}
     >
       <div className="site-container" style={{ paddingTop: 56, paddingBottom: 56, maxWidth: 860 }}>
         <h2 style={{ fontSize: "var(--h3-size)", fontWeight: "var(--heading-weight, 700)", lineHeight: "var(--heading-line-height, 1.1)", fontFamily: "'Essonnes', 'Playfair Display', serif", color: "var(--color-title)", margin: "0 0 32px" }}>

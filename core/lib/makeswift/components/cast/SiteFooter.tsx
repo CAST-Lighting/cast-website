@@ -234,7 +234,7 @@ const SiteFooter = forwardRef(function SiteFooter(
         }
       `}</style>
 
-      <footer ref={ref} className={`sf2 ${className || ""}`} style={{ backgroundColor: bgColor || "#25262d" }}>
+      <footer ref={ref} className={`sf2 ${className || ""}`} style={{ backgroundColor: "#25262d" }}>
         {bgImage && (
           <div style={{ position: "absolute", inset: 0, backgroundImage: `url(${bgImage})`, backgroundSize: "cover", backgroundPosition: "center", zIndex: 0 }} />
         )}

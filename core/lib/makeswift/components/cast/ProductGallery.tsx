@@ -107,7 +107,7 @@ const ProductGallery = forwardRef(function ProductGallery(
       <section
         ref={ref}
         className={`${sectionStyle || ""} ${className || ""}`}
-        style={{ width: "100%", boxSizing: "border-box", position: "relative", backgroundColor: bgColor || undefined }}
+        style={{ width: "100%", boxSizing: "border-box", position: "relative", backgroundColor: "#25262d" }}
       >
         {bgImage && <div style={{ position: "absolute", inset: 0, backgroundImage: `url(${bgImage})`, backgroundSize: "cover", backgroundPosition: "center", zIndex: 0 }} />}
         {overlayColor && (overlayOpacity ?? 0) > 0 && <div style={{ position: "absolute", inset: 0, backgroundColor: overlayColor, opacity: (overlayOpacity ?? 0) / 100, zIndex: 1 }} />}

@@ -43,7 +43,7 @@ const PartsGrid = forwardRef(function PartsGrid(
     <div
       ref={ref}
       className={`${className || ""} ${sectionStyle || ""}`}
-      style={{ width: "100%", boxSizing: "border-box", backgroundColor: bgColor || "#25262d", borderTop: "1px solid rgba(255,255,255,0.08)" }}
+      style={{ width: "100%", boxSizing: "border-box", backgroundColor: "#25262d", borderTop: "1px solid rgba(255,255,255,0.08)" }}
     >
       <div className="site-container" style={{ paddingTop: 56, paddingBottom: 56 }}>
         {overline && (

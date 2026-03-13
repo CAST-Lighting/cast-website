@@ -56,7 +56,7 @@ const ProductHero = forwardRef(function ProductHero(
     <div
       ref={ref}
       className={className || ""}
-      style={{ width: "100%", boxSizing: "border-box", backgroundColor: bgColor || "#25262d" }}
+      style={{ width: "100%", boxSizing: "border-box", backgroundColor: "#25262d" }}
     >
       <style>{`
         .ph-thumb {

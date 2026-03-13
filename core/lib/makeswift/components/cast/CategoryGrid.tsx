@@ -140,7 +140,7 @@ const CategoryGrid = forwardRef(function CategoryGrid(
       <section
         ref={ref}
         className={`cg-section ${sectionStyle || ""} ${className || ""}`}
-        style={{ position: "relative", backgroundColor: bgColor || undefined }}
+        style={{ position: "relative", backgroundColor: "#25262d" }}
       >
         {bgImage && (
           <div style={{ position: "absolute", inset: 0, backgroundImage: `url(${bgImage})`, backgroundSize: "cover", backgroundPosition: "center", zIndex: 0 }} />

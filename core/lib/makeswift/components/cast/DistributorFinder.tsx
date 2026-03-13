@@ -58,7 +58,7 @@ const DistributorFinder = forwardRef(function DistributorFinder(
     <div
       ref={ref}
       className={`${className || ""} ${sectionStyle || ""}`}
-      style={{ width: "100%", boxSizing: "border-box", backgroundColor: bgColor || "#25262d" }}
+      style={{ width: "100%", boxSizing: "border-box", backgroundColor: "#25262d" }}
     >
       {/* Hero */}
       <div style={{ background: "var(--color-primary)", padding: "72px 0" }}>

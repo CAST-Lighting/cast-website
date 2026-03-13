@@ -111,7 +111,7 @@ const ContentMedia = forwardRef(function ContentMedia(
       <div
         ref={ref}
         className={`relative ${sectionStyle || ""} ${className || ""}`}
-        style={{ backgroundColor: bgColor || "#25262d", width: "100%" }}
+        style={{ backgroundColor: "#25262d", width: "100%" }}
       >
         {bgImage && (
           <div style={{ position: "absolute", inset: 0, backgroundImage: `url(${bgImage})`, backgroundSize: "cover", backgroundPosition: "center", zIndex: 0 }} />

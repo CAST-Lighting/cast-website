@@ -39,7 +39,7 @@ const SignupHero = forwardRef(function SignupHero(
     <div
       ref={ref}
       className={`${className || ""} ${sectionStyle || ""}`}
-      style={{ width: "100%", boxSizing: "border-box", backgroundColor: bgColor || "#25262d" }}
+      style={{ width: "100%", boxSizing: "border-box", backgroundColor: "#25262d" }}
     >
       {/* Hero banner */}
       <div

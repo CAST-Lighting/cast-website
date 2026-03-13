@@ -67,7 +67,7 @@ const BrandLogos = forwardRef(function BrandLogos(
     <div
       ref={ref}
       className={`${className || ""} ${sectionStyle || ""}`}
-      style={{ width: "100%", boxSizing: "border-box", backgroundColor: bgColor || "#25262d" }}
+      style={{ width: "100%", boxSizing: "border-box", backgroundColor: "#2d353c" }}
     >
       <div className="site-container" style={{ paddingTop: 56, paddingBottom: 56 }}>
         {overline && (
