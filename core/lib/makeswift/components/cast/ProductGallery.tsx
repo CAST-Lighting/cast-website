@@ -1,44 +1,36 @@
-"use client";
+"use client"
 
-import { ArrowLeft, ArrowRight } from "lucide-react";
-import { forwardRef, useEffect, useState, type Ref } from "react";
-
-import { Button } from "./ui/button";
-import {
-  Carousel,
-  CarouselApi,
-  CarouselContent,
-  CarouselItem,
-} from "./ui/carousel";
+import { forwardRef, useEffect, useRef, useState, type Ref } from "react"
+import { ArrowLeft, ArrowRight } from "lucide-react"
 
 export interface GalleryItem {
-  category?: string;
-  image?: string;
-  name?: string;
-  price?: string;
-  href?: string;
+  category?: string
+  image?: string
+  name?: string
+  price?: string
+  href?: string
 }
 
 export interface ProductGalleryProps {
-  className?: string;
-  sectionStyle?: string;
-  title?: string;
-  description?: string;
-  items?: GalleryItem[];
-  bgImage?: string;
-  bgColor?: string;
-  overlayColor?: string;
-  overlayOpacity?: number;
+  className?: string
+  sectionStyle?: string
+  title?: string
+  description?: string
+  items?: GalleryItem[]
+  bgImage?: string
+  bgColor?: string
+  overlayColor?: string
+  overlayOpacity?: number
 }
 
 const defaultItems: GalleryItem[] = [
-  { category: "Path Lights", name: "Classic Path Light", price: "$189.99", href: "#", image: "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=600&q=80" },
-  { category: "Path Lights", name: "Chelsea London Path Light", price: "$219.99", href: "#", image: "https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?w=600&q=80" },
-  { category: "Spot Lights", name: "Classic Bullet Light", price: "$149.99", href: "#", image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80" },
-  { category: "Path Lights", name: "Nouveau Path Light", price: "$199.99", href: "#", image: "https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=600&q=80" },
-  { category: "Well Lights", name: "Classic Well Light", price: "$129.99", href: "#", image: "https://images.unsplash.com/photo-1524484485831-a92ffc0de03f?w=600&q=80" },
-  { category: "Spot Lights", name: "Craft Directional Light", price: "$234.99", href: "#", image: "https://images.unsplash.com/photo-1550070881-a5d71eda5800?w=600&q=80" },
-];
+  { category: "Path Lights", name: "Classic Brass Path Light", price: "$189.00", href: "#", image: "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=600&q=80" },
+  { category: "Path Lights", name: "Modern Copper Path Light", price: "$209.00", href: "#", image: "https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?w=600&q=80" },
+  { category: "Spot Lights", name: "Pro Series Spotlight", price: "$149.00", href: "#", image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80" },
+  { category: "Spot Lights", name: "Compact LED Spotlight", price: "$129.00", href: "#", image: "https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=600&q=80" },
+  { category: "Wall Wash", name: "Copper Wall Washer", price: "$219.00", href: "#", image: "https://images.unsplash.com/photo-1524484485831-a92ffc0de03f?w=600&q=80" },
+  { category: "Well Lights", name: "In-Ground LED Well Light", price: "$169.00", href: "#", image: "https://images.unsplash.com/photo-1550070881-a5d71eda5800?w=600&q=80" },
+]
 
 const ProductGallery = forwardRef(function ProductGallery(
   {
@@ -46,7 +38,7 @@ const ProductGallery = forwardRef(function ProductGallery(
     sectionStyle,
     title = "Our Favorite Picks",
     description = "Explore our most popular landscape lighting fixtures trusted by contractors nationwide.",
-    items = defaultItems,
+    items,
     bgImage,
     bgColor,
     overlayColor,
@@ -54,328 +46,161 @@ const ProductGallery = forwardRef(function ProductGallery(
   }: ProductGalleryProps,
   ref: Ref<HTMLElement>
 ) {
-  const [carouselApi, setCarouselApi] = useState<CarouselApi>();
-  const [canScrollPrev, setCanScrollPrev] = useState(false);
-  const [canScrollNext, setCanScrollNext] = useState(false);
-  const [currentSlide, setCurrentSlide] = useState(0);
+  const products = (items && items.length > 0 ? items : defaultItems)
+  const scrollRef = useRef<HTMLDivElement>(null)
+  const [canScrollLeft, setCanScrollLeft] = useState(false)
+  const [canScrollRight, setCanScrollRight] = useState(true)
+
+  const checkScroll = () => {
+    const el = scrollRef.current
+    if (!el) return
+    setCanScrollLeft(el.scrollLeft > 0)
+    setCanScrollRight(el.scrollLeft < el.scrollWidth - el.clientWidth - 1)
+  }
 
   useEffect(() => {
-    if (!carouselApi) return;
-    const updateSelection = () => {
-      setCanScrollPrev(carouselApi.canScrollPrev());
-      setCanScrollNext(carouselApi.canScrollNext());
-      setCurrentSlide(carouselApi.selectedScrollSnap());
-    };
-    updateSelection();
-    carouselApi.on("select", updateSelection);
-    return () => { carouselApi.off("select", updateSelection); };
-  }, [carouselApi]);
+    const el = scrollRef.current
+    if (!el) return
+    checkScroll()
+    el.addEventListener("scroll", checkScroll)
+    window.addEventListener("resize", checkScroll)
+    return () => {
+      el.removeEventListener("scroll", checkScroll)
+      window.removeEventListener("resize", checkScroll)
+    }
+  }, [])
+
+  const scroll = (direction: "left" | "right") => {
+    const el = scrollRef.current
+    if (!el) return
+    const cardWidth = 300
+    const distance = direction === "left" ? -cardWidth * 2 : cardWidth * 2
+    const start = el.scrollLeft
+    const duration = 600
+    let startTime: number | null = null
+    const easeInOutCubic = (t: number) => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2
+    const animate = (time: number) => {
+      if (!startTime) startTime = time
+      const progress = Math.min((time - startTime) / duration, 1)
+      el.scrollLeft = start + distance * easeInOutCubic(progress)
+      if (progress < 1) requestAnimationFrame(animate)
+    }
+    requestAnimationFrame(animate)
+  }
 
   return (
-    <>
-      <style>{`
-        .pg-card {
-          border: 1px solid rgba(127,190,232,0.12);
-          border-radius: 16px;
-          overflow: hidden;
-          display: flex;
-          flex-direction: column;
-          height: 100%;
-          background: #243340;
-          transition: border-color 0.22s, box-shadow 0.22s, transform 0.22s;
-        }
-        .pg-card:hover {
-          border-color: #007cb0;
-          box-shadow: 0 8px 32px rgba(0,124,176,0.18);
-          transform: translateY(-3px);
-        }
-        .pg-card-image-wrap {
-          background: #111820;
-          aspect-ratio: 1 / 1;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          overflow: hidden;
-          position: relative;
-        }
-        .pg-card-image-wrap img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          transition: transform 0.35s ease;
-        }
-        .pg-card:hover .pg-card-image-wrap img {
-          transform: scale(1.06);
-        }
-        .pg-card-image-placeholder {
-          width: 100%;
-          height: 100%;
-          background: linear-gradient(135deg, #111820 0%, #1a2330 100%);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-        .pg-card-category {
-          position: absolute;
-          top: 12px;
-          left: 12px;
-          background: rgba(17,24,32,0.82);
-          border: 1px solid rgba(127,190,232,0.18);
-          border-radius: 6px;
-          padding: 4px 10px;
-          font-family: 'Barlow', sans-serif;
-          font-size: 11px;
-          font-weight: 700;
-          text-transform: uppercase;
-          letter-spacing: 0.07em;
-          color: #7ebee8;
-          backdrop-filter: blur(4px);
-        }
-        .pg-card-body {
-          padding: 20px;
-          display: flex;
-          flex-direction: column;
-          flex: 1;
-          gap: 4px;
-        }
-        .pg-card-name {
-          font-family: 'Barlow', sans-serif;
-          font-size: 17px;
-          font-weight: 600;
-          line-height: 1.35;
-          color: #e2edf2;
-          margin: 0 0 6px 0;
-        }
-        .pg-card-price {
-          font-family: 'Barlow', sans-serif;
-          font-size: 20px;
-          font-weight: 700;
-          color: #7ebee8;
-          margin: 0 0 16px 0;
-          letter-spacing: -0.02em;
-        }
-        .pg-card-btn {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          gap: 8px;
-          margin-top: auto;
-          padding: 12px 20px;
-          border: none;
-          border-radius: 8px;
-          background: #007cb0;
-          font-family: 'Barlow', sans-serif;
-          font-size: 14px;
-          font-weight: 600;
-          color: #ffffff;
-          cursor: pointer;
-          transition: background 0.2s, box-shadow 0.2s;
-          text-decoration: none;
-          width: 100%;
-          letter-spacing: 0.02em;
-        }
-        .pg-card-btn:hover {
-          background: #005c7a;
-          box-shadow: 0 4px 14px rgba(0,124,176,0.3);
-        }
-        .pg-card-btn svg {
-          width: 15px;
-          height: 15px;
-          transition: transform 0.2s;
-        }
-        .pg-card-btn:hover svg {
-          transform: translateX(3px);
-        }
-        .pg-dot {
-          height: 6px;
-          border-radius: 3px;
-          border: none;
-          cursor: pointer;
-          transition: background 0.2s, width 0.2s;
-          padding: 0;
-        }
-        .pg-nav-btn {
-          width: 38px;
-          height: 38px;
-          border-radius: 50%;
-          border: 1px solid rgba(127,190,232,0.2);
-          background: #1e2d38;
-          color: #7ebee8;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          cursor: pointer;
-          transition: background 0.2s, border-color 0.2s, color 0.2s;
-        }
-        .pg-nav-btn:hover:not(:disabled) {
-          background: #007cb0;
-          border-color: #007cb0;
-          color: #ffffff;
-        }
-        .pg-nav-btn:disabled {
-          opacity: 0.3;
-          cursor: not-allowed;
-        }
-      `}</style>
-      <section
-        ref={ref}
-        className={`${sectionStyle || ""} ${className || ""}`}
-        style={{ width: "100%", boxSizing: "border-box", position: "relative", backgroundColor: "#1e2d38" }}
-      >
-        {bgImage && (
-          <div
-            style={{
-              position: "absolute",
-              inset: 0,
-              backgroundImage: `url(${bgImage})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              zIndex: 0,
-            }}
-          />
-        )}
-        {overlayColor && (overlayOpacity ?? 0) > 0 && (
-          <div
-            style={{
-              position: "absolute",
-              inset: 0,
-              backgroundColor: overlayColor,
-              opacity: (overlayOpacity ?? 0) / 100,
-              zIndex: 1,
-            }}
-          />
-        )}
-        <div style={{ position: "relative", zIndex: 2 }}>
-          <div className="site-container">
-            <div
-              style={{
-                display: "flex",
-                alignItems: "flex-end",
-                justifyContent: "space-between",
-                marginBottom: 48,
-                gap: 24,
-                flexWrap: "wrap",
-              }}
-            >
-              <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-                <h2
-                  style={{
-                    fontFamily: "'Essonnes', 'Playfair Display', serif",
-                    color: "#e2edf2",
-                    fontSize: "var(--h2-size)",
-                    fontWeight: "var(--heading-weight, 700)",
-                    lineHeight: "var(--heading-line-height, 1.1)",
-                    margin: 0,
-                  }}
-                >
-                  {title}
-                </h2>
-                <p
-                  style={{
-                    fontFamily: "'Barlow', sans-serif",
-                    color: "#90a4ae",
-                    fontSize: "var(--body-size, 18px)",
-                    margin: 0,
-                    maxWidth: 480,
-                    lineHeight: 1.6,
-                  }}
-                >
-                  {description}
-                </p>
-              </div>
-              <div style={{ display: "flex", gap: 8, flexShrink: 0 }}>
-                <button
-                  className="pg-nav-btn"
-                  onClick={() => carouselApi?.scrollPrev()}
-                  disabled={!canScrollPrev}
-                  aria-label="Previous products"
-                >
-                  <ArrowLeft size={16} />
-                </button>
-                <button
-                  className="pg-nav-btn"
-                  onClick={() => carouselApi?.scrollNext()}
-                  disabled={!canScrollNext}
-                  aria-label="Next products"
-                >
-                  <ArrowRight size={16} />
-                </button>
-              </div>
-            </div>
+    <section
+      ref={ref}
+      className={`relative py-24 overflow-hidden ${sectionStyle || ""} ${className || ""}`}
+    >
+      {/* Animated background */}
+      <div className="absolute inset-0 bg-background">
+        <div
+          className="absolute w-[800px] h-[800px] rounded-full opacity-[0.07] blur-[120px]"
+          style={{
+            background: "radial-gradient(circle, hsl(var(--brand-light-blue)), transparent 70%)",
+            top: "-20%",
+            left: "-10%",
+            animation: "drift1 20s ease-in-out infinite",
+          }}
+        />
+        <div
+          className="absolute w-[600px] h-[600px] rounded-full opacity-[0.05] blur-[100px]"
+          style={{
+            background: "radial-gradient(circle, hsl(var(--brand-medium-blue)), transparent 70%)",
+            bottom: "-15%",
+            right: "-5%",
+            animation: "drift2 25s ease-in-out infinite",
+          }}
+        />
+      </div>
+
+      {bgImage && (
+        <img src={bgImage} alt="" className="absolute inset-0 w-full h-full object-cover z-[1]" />
+      )}
+      {overlayColor && (overlayOpacity ?? 0) > 0 && (
+        <div
+          className="absolute inset-0 z-[2]"
+          style={{ backgroundColor: overlayColor, opacity: (overlayOpacity ?? 0) / 100 }}
+        />
+      )}
+
+      <div className="site-container relative z-10">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-12">
+          <div>
+            <h2 className="section-heading text-4xl md:text-5xl text-foreground mb-3">
+              {title}
+            </h2>
+            <p className="section-desc max-w-md">{description}</p>
           </div>
-          <div className="w-full">
-            <Carousel
-              setApi={setCarouselApi}
-              opts={{ breakpoints: { "(max-width: 768px)": { dragFree: true } } }}
+          <div className="flex items-center gap-3 mt-4 md:mt-0">
+            <button
+              onClick={() => scroll("left")}
+              disabled={!canScrollLeft}
+              className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-foreground hover:border-primary hover:text-primary transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
             >
-              <CarouselContent className="ml-[max(44px,calc((100vw-1400px)/2+44px))] max-[1024px]:ml-[20px] max-[768px]:ml-[12px] max-[575px]:ml-[0px]">
-                {items.map((item, index) => (
-                  <CarouselItem key={index} className="max-w-[280px] pl-[20px] lg:max-w-[300px]">
-                    <div className="pg-card">
-                      <div className="pg-card-image-wrap">
-                        {item.category && (
-                          <span className="pg-card-category">{item.category}</span>
-                        )}
-                        {item.image ? (
-                          <img src={item.image} alt={item.name || ""} />
-                        ) : (
-                          <div className="pg-card-image-placeholder">
-                            <svg
-                              width="48"
-                              height="48"
-                              viewBox="0 0 24 24"
-                              fill="none"
-                              stroke="rgba(127,190,232,0.2)"
-                              strokeWidth="1.5"
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                            >
-                              <rect x="3" y="3" width="18" height="18" rx="2" />
-                              <circle cx="8.5" cy="8.5" r="1.5" />
-                              <polyline points="21 15 16 10 5 21" />
-                            </svg>
-                          </div>
-                        )}
-                      </div>
-                      <div className="pg-card-body">
-                        <h3 className="pg-card-name">{item.name}</h3>
-                        <p className="pg-card-price">{item.price}</p>
-                        <a href={item.href || "#"} className="pg-card-btn">
-                          View Product <ArrowRight />
-                        </a>
-                      </div>
-                    </div>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-            </Carousel>
-            <div
-              style={{
-                marginTop: 32,
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                gap: 6,
-              }}
+              <ArrowLeft className="w-4 h-4" />
+            </button>
+            <button
+              onClick={() => scroll("right")}
+              disabled={!canScrollRight}
+              className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-foreground hover:border-primary hover:text-primary transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
             >
-              {items.map((_, index) => (
-                <button
-                  key={index}
-                  className="pg-dot"
-                  onClick={() => carouselApi?.scrollTo(index)}
-                  aria-label={`Go to slide ${index + 1}`}
-                  style={{
-                    width: currentSlide === index ? 20 : 6,
-                    background: currentSlide === index ? "#007cb0" : "rgba(127,190,232,0.2)",
-                  }}
-                />
-              ))}
-            </div>
+              <ArrowRight className="w-4 h-4" />
+            </button>
+            <a href="#" className="flex items-center gap-2 text-primary hover:text-accent transition-colors text-sm font-medium ml-4">
+              View All <ArrowRight className="w-4 h-4" />
+            </a>
           </div>
         </div>
-      </section>
-    </>
-  );
-});
+      </div>
 
-export default ProductGallery;
+      {/* Carousel — left-aligned, bleeds right */}
+      <div className="pl-[max(1.5rem,calc((100vw-1400px)/2+1.5rem))] relative z-10">
+        <div
+          ref={scrollRef}
+          className="flex gap-6 overflow-x-auto pr-6"
+          style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+        >
+          {products.map((product, i) => (
+            <div
+              key={i}
+              className="group flex-shrink-0 w-[280px] bg-card border border-border rounded-xl overflow-hidden hover:border-primary/40 transition-all duration-300 shadow-md"
+            >
+              <div className="relative overflow-hidden aspect-[4/5]">
+                {product.category && (
+                  <span className="absolute top-3 left-3 z-10 px-3 py-1 rounded-md bg-background/80 backdrop-blur-sm text-xs font-semibold text-primary tracking-wide uppercase">
+                    {product.category}
+                  </span>
+                )}
+                {product.image ? (
+                  <img
+                    src={product.image}
+                    alt={product.name || ""}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                ) : (
+                  <div className="w-full h-full bg-secondary flex items-center justify-center">
+                    <span className="text-muted-foreground text-sm">No Image</span>
+                  </div>
+                )}
+              </div>
+              <div className="p-5">
+                <h3 className="card-title text-foreground mb-1">{product.name}</h3>
+                <p className="text-primary text-lg font-bold mb-3">{product.price}</p>
+                <a
+                  href={product.href || "#"}
+                  className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-primary transition-colors"
+                >
+                  View Product <ArrowRight className="w-3.5 h-3.5" />
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+})
+
+export default ProductGallery

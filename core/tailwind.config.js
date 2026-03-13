@@ -81,13 +81,39 @@ const config = {
       colors: {
         primary: {
           DEFAULT: 'hsl(var(--primary))',
+          foreground: 'hsl(var(--primary-foreground))',
           highlight: 'color-mix(in oklab, hsl(var(--primary)), white 75%)',
           shadow: 'color-mix(in oklab, hsl(var(--primary)), black 75%)',
         },
         accent: {
           DEFAULT: 'hsl(var(--accent))',
+          foreground: 'hsl(var(--accent-foreground))',
           highlight: 'color-mix(in oklab, hsl(var(--accent)), white 75%)',
           shadow: 'color-mix(in oklab, hsl(var(--accent)), black 75%)',
+        },
+        card: {
+          DEFAULT: 'hsl(var(--card))',
+          foreground: 'hsl(var(--card-foreground))',
+        },
+        secondary: {
+          DEFAULT: 'hsl(var(--secondary))',
+          foreground: 'hsl(var(--secondary-foreground))',
+        },
+        muted: {
+          DEFAULT: 'hsl(var(--muted))',
+          foreground: 'hsl(var(--muted-foreground))',
+        },
+        destructive: {
+          DEFAULT: 'hsl(var(--destructive))',
+          foreground: 'hsl(var(--destructive-foreground))',
+        },
+        border: 'hsl(var(--border))',
+        input: 'hsl(var(--input))',
+        ring: 'hsl(var(--ring))',
+        'warm-glow': 'hsl(var(--warm-glow))',
+        popover: {
+          DEFAULT: 'hsl(var(--popover))',
+          foreground: 'hsl(var(--popover-foreground))',
         },
         success: {
           DEFAULT: 'hsl(var(--success))',
