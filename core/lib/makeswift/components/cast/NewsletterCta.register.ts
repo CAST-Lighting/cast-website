@@ -1,5 +1,5 @@
 import { lazy } from "react"
-import { Style, Color, Image, Number as NumberControl, Select } from "@makeswift/runtime/controls"
+import { Style, Color, Image, Number as NumberControl, Select, TextInput } from "@makeswift/runtime/controls"
 import { runtime } from "~/lib/makeswift/runtime"
 
 runtime.registerComponent(
@@ -29,6 +29,10 @@ runtime.registerComponent(
       lineHeight: NumberControl({ label: 'Text Line Height', defaultValue: 1.6, min: 1, max: 3, step: 0.05 }),
       paddingTop: NumberControl({ label: 'Padding Top', defaultValue: 80, min: 0, max: 400, step: 8, suffix: 'px' }),
       paddingBottom: NumberControl({ label: 'Padding Bottom', defaultValue: 80, min: 0, max: 400, step: 8, suffix: 'px' }),
+      heading: TextInput({ label: 'Heading', defaultValue: 'Stay in the Loop' }),
+      description: TextInput({ label: 'Description', defaultValue: 'Get the latest on new products, contractor resources, and exclusive offers delivered straight to your inbox.' }),
+      submitLabel: TextInput({ label: 'Submit Button Label', defaultValue: 'Subscribe' }),
+      inputPlaceholder: TextInput({ label: 'Input Placeholder', defaultValue: 'Enter your email' }),
     },
   }
 )

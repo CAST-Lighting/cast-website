@@ -1,5 +1,5 @@
 import { lazy } from "react"
-import { Style, Color, Image, Number as NumberControl, Select } from "@makeswift/runtime/controls"
+import { Style, Color, Image, Number as NumberControl, Select, TextInput } from "@makeswift/runtime/controls"
 import { runtime } from "~/lib/makeswift/runtime"
 
 runtime.registerComponent(
@@ -29,6 +29,22 @@ runtime.registerComponent(
       lineHeight: NumberControl({ label: 'Text Line Height', defaultValue: 1.6, min: 1, max: 3, step: 0.05 }),
       paddingTop: NumberControl({ label: 'Padding Top', defaultValue: 96, min: 0, max: 400, step: 8, suffix: 'px' }),
       paddingBottom: NumberControl({ label: 'Padding Bottom', defaultValue: 96, min: 0, max: 400, step: 8, suffix: 'px' }),
+      heading: TextInput({ label: 'Heading', defaultValue: 'Unmatched Quality, Technology &' }),
+      headingAccent: TextInput({ label: 'Heading Accent', defaultValue: 'Durability' }),
+      bodyText: TextInput({ label: 'Body Text', defaultValue: 'Every CAST fixture is made from solid brass and copper alloys that will never rust or corrode. Our proprietary LED technology delivers superior color rendering and energy efficiency.' }),
+      feature1Title: TextInput({ label: 'Feature 1 Title', defaultValue: 'Lifetime Warranty' }),
+      feature1Desc: TextInput({ label: 'Feature 1 Description', defaultValue: 'Every fixture backed by our industry-leading lifetime warranty.' }),
+      feature2Title: TextInput({ label: 'Feature 2 Title', defaultValue: 'Solid Brass & Copper' }),
+      feature2Desc: TextInput({ label: 'Feature 2 Description', defaultValue: 'Premium alloys that never rust, corrode, or degrade over time.' }),
+      feature3Title: TextInput({ label: 'Feature 3 Title', defaultValue: 'Field Serviceable' }),
+      feature3Desc: TextInput({ label: 'Feature 3 Description', defaultValue: 'Designed for easy maintenance and component replacement in the field.' }),
+      btn1Label: TextInput({ label: 'Button 1 Label', defaultValue: 'Shop Products' }),
+      btn1Href: TextInput({ label: 'Button 1 Href', defaultValue: '/shop' }),
+      btn2Label: TextInput({ label: 'Button 2 Label', defaultValue: 'Learn More →' }),
+      btn2Href: TextInput({ label: 'Button 2 Href', defaultValue: '/about' }),
+      videoUrl: TextInput({ label: 'Video URL', defaultValue: 'https://www.youtube.com/embed/dQw4w9WcXgQ' }),
+      stat: TextInput({ label: 'Stat Number', defaultValue: '25+' }),
+      statLabel: TextInput({ label: 'Stat Label', defaultValue: 'Years of Excellence' }),
     },
   }
 )

@@ -21,6 +21,14 @@ const SiteFooter = forwardRef(function SiteFooter(
     lineHeight,
     paddingTop,
     paddingBottom,
+    phone,
+    address,
+    copyright,
+    tagline,
+    facebookHref,
+    instagramHref,
+    youtubeHref,
+    linkedinHref,
   }: {
     className?: string
     bgImage?: string
@@ -32,24 +40,36 @@ const SiteFooter = forwardRef(function SiteFooter(
     lineHeight?: number
     paddingTop?: number
     paddingBottom?: number
+    phone?: string
+    address?: string
+    copyright?: string
+    tagline?: string
+    facebookHref?: string
+    instagramHref?: string
+    youtubeHref?: string
+    linkedinHref?: string
   },
   ref: Ref<HTMLElement>
 ) {
   const bgImageUrl = bgImage
-  const overlayOpacity = typeof bgOpacity === 'number' ? bgOpacity / 100 : 0.85
   const hasGradient = !!(gradientFrom && gradientTo)
+  const overlayOpacity = typeof bgOpacity === 'number' ? bgOpacity / 100 : 0.85
+  const sectionBackground = hasGradient
+    ? `linear-gradient(${gradientDirection || 'to bottom'}, ${gradientFrom}, ${gradientTo})`
+    : bgColor || '#004a61'
 
-  const sectionBg: React.CSSProperties = bgImageUrl
-    ? {}
-    : hasGradient
-    ? { background: `linear-gradient(${gradientDirection || 'to bottom'}, ${gradientFrom}, ${gradientTo})` }
-    : { background: bgColor || '#004a61' }
+  const socialLinks = [
+    { icon: Facebook, href: facebookHref || "#", label: "Facebook" },
+    { icon: Instagram, href: instagramHref || "#", label: "Instagram" },
+    { icon: Youtube, href: youtubeHref || "#", label: "YouTube" },
+    { icon: Linkedin, href: linkedinHref || "#", label: "LinkedIn" },
+  ]
 
   return (
     <footer
       ref={ref}
       className={`relative border-t border-border ${className || ""}`}
-      style={{ ...sectionBg, '--section-line-height': lineHeight, paddingTop: paddingTop ?? 64, paddingBottom: paddingBottom ?? 64 } as React.CSSProperties}
+      style={{ ...(!bgImageUrl ? { background: sectionBackground } : {}), '--section-line-height': lineHeight, paddingTop: paddingTop ?? 64, paddingBottom: paddingBottom ?? 64 } as React.CSSProperties}
     >
       {/* bg image layer */}
       {bgImageUrl && (
@@ -59,43 +79,36 @@ const SiteFooter = forwardRef(function SiteFooter(
       {bgImageUrl && (
         <div className="absolute inset-0" style={{
           zIndex: 1,
-          background: hasGradient
-            ? `linear-gradient(${gradientDirection || 'to bottom'}, ${gradientFrom}, ${gradientTo})`
-            : bgColor || '#014960',
+          background: sectionBackground,
           opacity: overlayOpacity
         }} />
       )}
 
       {/* content — always relative z-10 */}
       <div className="relative" style={{ zIndex: 10 }}>
-        <div className="container mx-auto px-6">
+        <div className="site-container">
           <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-10 mb-12">
             <div className="lg:col-span-1">
               <a href="/" className="heading-style-h5 tracking-wider text-foreground">
                 CAST <span className="text-primary">LIGHTING</span>
               </a>
               <p className="text-size-small text-muted-foreground mt-4 leading-relaxed">
-                Professional-grade landscape lighting trusted by contractors since 2001.
+                {tagline || "Professional-grade landscape lighting trusted by contractors since 2001."}
               </p>
               <div className="flex items-start gap-2 mt-4 text-size-small text-muted-foreground">
                 <Phone className="w-4 h-4 mt-0.5 text-primary flex-shrink-0" />
-                <span>(800) 555-CAST</span>
+                <span>{phone || "(800) 555-CAST"}</span>
               </div>
               <div className="flex items-start gap-2 mt-2 text-size-small text-muted-foreground">
                 <MapPin className="w-4 h-4 mt-0.5 text-primary flex-shrink-0" />
-                <span>Pine Brook, NJ 07058</span>
+                <span>{address || "Pine Brook, NJ 07058"}</span>
               </div>
               <div className="flex items-center gap-3 mt-5">
-                {[
-                  { icon: Facebook, href: "#", label: "Facebook" },
-                  { icon: Instagram, href: "#", label: "Instagram" },
-                  { icon: Youtube, href: "#", label: "YouTube" },
-                  { icon: Linkedin, href: "#", label: "LinkedIn" }].
-                  map(({ icon: Icon, href, label }) => (
-                    <a key={label} href={href} aria-label={label} className="w-9 h-9 rounded-full bg-secondary flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors">
-                      <Icon className="w-4 h-4" />
-                    </a>
-                  ))}
+                {socialLinks.map(({ icon: Icon, href, label }) => (
+                  <a key={label} href={href} aria-label={label} className="w-9 h-9 rounded-full bg-secondary flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors">
+                    <Icon className="w-4 h-4" />
+                  </a>
+                ))}
               </div>
             </div>
 
@@ -117,7 +130,7 @@ const SiteFooter = forwardRef(function SiteFooter(
 
           <div className="border-t border-border pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-size-small text-muted-foreground">
-              &copy; 2026 CAST Lighting. All rights reserved.
+              {copyright || "© 2026 CAST Lighting. All rights reserved."}
             </p>
             <div className="flex gap-6 text-size-small text-muted-foreground">
               <a href="#" className="hover:text-primary transition-colors">Privacy Policy</a>

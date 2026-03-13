@@ -1,5 +1,5 @@
 import { lazy } from "react"
-import { Style, Color, Image, Number as NumberControl, Select } from "@makeswift/runtime/controls"
+import { Style, Color, Image, Number as NumberControl, Select, TextInput } from "@makeswift/runtime/controls"
 import { runtime } from "~/lib/makeswift/runtime"
 
 runtime.registerComponent(
@@ -29,6 +29,14 @@ runtime.registerComponent(
       lineHeight: NumberControl({ label: 'Text Line Height', defaultValue: 1.6, min: 1, max: 3, step: 0.05 }),
       paddingTop: NumberControl({ label: 'Padding Top', defaultValue: 64, min: 0, max: 400, step: 8, suffix: 'px' }),
       paddingBottom: NumberControl({ label: 'Padding Bottom', defaultValue: 64, min: 0, max: 400, step: 8, suffix: 'px' }),
+      tagline: TextInput({ label: 'Tagline', defaultValue: 'Professional-grade landscape lighting trusted by contractors since 2001.' }),
+      phone: TextInput({ label: 'Phone', defaultValue: '(800) 555-CAST' }),
+      address: TextInput({ label: 'Address', defaultValue: 'Pine Brook, NJ 07058' }),
+      copyright: TextInput({ label: 'Copyright', defaultValue: '© 2026 CAST Lighting. All rights reserved.' }),
+      facebookHref: TextInput({ label: 'Facebook URL', defaultValue: '#' }),
+      instagramHref: TextInput({ label: 'Instagram URL', defaultValue: '#' }),
+      youtubeHref: TextInput({ label: 'YouTube URL', defaultValue: '#' }),
+      linkedinHref: TextInput({ label: 'LinkedIn URL', defaultValue: '#' }),
     },
   }
 )

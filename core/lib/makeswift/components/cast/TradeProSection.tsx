@@ -2,12 +2,7 @@
 import { forwardRef, type Ref } from "react"
 import { DollarSign, Palette, Clock, Headphones, ArrowRight } from "lucide-react"
 
-const benefits = [
-  { icon: DollarSign, title: "Exclusive Contractor Pricing", desc: "Access wholesale pricing with volume discounts that improve your margins on every project." },
-  { icon: Palette, title: "Design Control in the Field", desc: "Interchangeable optics and adjustable fixtures let you fine-tune lighting on-site." },
-  { icon: Clock, title: "Lifetime Product Warranty", desc: "Every CAST product is backed by our industry-leading lifetime warranty—no questions asked." },
-  { icon: Headphones, title: "Dedicated Support Team", desc: "Get direct access to our expert lighting designers for project planning and troubleshooting." },
-]
+const benefitIcons = [DollarSign, Palette, Clock, Headphones]
 
 const TradeProSection = forwardRef(function TradeProSection(
   {
@@ -21,6 +16,20 @@ const TradeProSection = forwardRef(function TradeProSection(
     lineHeight,
     paddingTop,
     paddingBottom,
+    overline,
+    heading,
+    headingAccent,
+    description,
+    benefit1Title,
+    benefit1Desc,
+    benefit2Title,
+    benefit2Desc,
+    benefit3Title,
+    benefit3Desc,
+    benefit4Title,
+    benefit4Desc,
+    btnLabel,
+    btnHref,
   }: {
     className?: string
     bgImage?: string
@@ -32,24 +41,58 @@ const TradeProSection = forwardRef(function TradeProSection(
     lineHeight?: number
     paddingTop?: number
     paddingBottom?: number
+    overline?: string
+    heading?: string
+    headingAccent?: string
+    description?: string
+    benefit1Title?: string
+    benefit1Desc?: string
+    benefit2Title?: string
+    benefit2Desc?: string
+    benefit3Title?: string
+    benefit3Desc?: string
+    benefit4Title?: string
+    benefit4Desc?: string
+    btnLabel?: string
+    btnHref?: string
   },
   ref: Ref<HTMLElement>
 ) {
   const bgImageUrl = bgImage
-  const overlayOpacity = typeof bgOpacity === 'number' ? bgOpacity / 100 : 0.85
   const hasGradient = !!(gradientFrom && gradientTo)
+  const overlayOpacity = typeof bgOpacity === 'number' ? bgOpacity / 100 : 0.85
+  const sectionBackground = hasGradient
+    ? `linear-gradient(${gradientDirection || 'to bottom'}, ${gradientFrom}, ${gradientTo})`
+    : bgColor || '#1e2d3e'
 
-  const sectionBg: React.CSSProperties = bgImageUrl
-    ? {}
-    : hasGradient
-    ? { background: `linear-gradient(${gradientDirection || 'to bottom'}, ${gradientFrom}, ${gradientTo})` }
-    : { background: bgColor || '#1e2d3e' }
+  const benefits = [
+    {
+      icon: benefitIcons[0],
+      title: benefit1Title || "Exclusive Contractor Pricing",
+      desc: benefit1Desc || "Access wholesale pricing with volume discounts that improve your margins on every project.",
+    },
+    {
+      icon: benefitIcons[1],
+      title: benefit2Title || "Design Control in the Field",
+      desc: benefit2Desc || "Interchangeable optics and adjustable fixtures let you fine-tune lighting on-site.",
+    },
+    {
+      icon: benefitIcons[2],
+      title: benefit3Title || "Lifetime Product Warranty",
+      desc: benefit3Desc || "Every CAST product is backed by our industry-leading lifetime warranty—no questions asked.",
+    },
+    {
+      icon: benefitIcons[3],
+      title: benefit4Title || "Dedicated Support Team",
+      desc: benefit4Desc || "Get direct access to our expert lighting designers for project planning and troubleshooting.",
+    },
+  ]
 
   return (
     <section
       ref={ref}
       className={`relative ${className || ""}`}
-      style={{ ...sectionBg, '--section-line-height': lineHeight, paddingTop: paddingTop ?? 96, paddingBottom: paddingBottom ?? 96 } as React.CSSProperties}
+      style={{ ...(!bgImageUrl ? { background: sectionBackground } : {}), '--section-line-height': lineHeight, paddingTop: paddingTop ?? 96, paddingBottom: paddingBottom ?? 96 } as React.CSSProperties}
     >
       {/* bg image layer */}
       {bgImageUrl && (
@@ -59,25 +102,23 @@ const TradeProSection = forwardRef(function TradeProSection(
       {bgImageUrl && (
         <div className="absolute inset-0" style={{
           zIndex: 1,
-          background: hasGradient
-            ? `linear-gradient(${gradientDirection || 'to bottom'}, ${gradientFrom}, ${gradientTo})`
-            : bgColor || '#014960',
+          background: sectionBackground,
           opacity: overlayOpacity
         }} />
       )}
 
       {/* content — always relative z-10 */}
       <div className="relative" style={{ zIndex: 10 }}>
-        <div className="container mx-auto px-6">
+        <div className="site-container">
           <div className="text-center mb-4">
-            <span className="overline">Benefits for Contractors &amp; Installers</span>
+            <span className="overline">{overline || "Benefits for Contractors & Installers"}</span>
           </div>
           <div className="text-center mb-14">
             <h2 className="section-heading text-4xl md:text-5xl text-foreground mb-3">
-              The TradePro <span className="text-gradient-warm">Advantage</span>
+              {heading || "The TradePro"} <span className="text-gradient-warm">{headingAccent || "Advantage"}</span>
             </h2>
             <p className="section-desc max-w-xl mx-auto">
-              Access professional products with lifetime warranties that give you design control in the field.
+              {description || "Access professional products with lifetime warranties that give you design control in the field."}
             </p>
           </div>
 
@@ -94,8 +135,8 @@ const TradeProSection = forwardRef(function TradeProSection(
           </div>
 
           <div className="text-center">
-            <a href="#" className="sg-btn-solid-md">
-              Learn More About TradePro <ArrowRight className="w-4 h-4" />
+            <a href={btnHref || "/trade-pro"} className="sg-btn-solid-md">
+              {btnLabel || "Learn More About TradePro"} <ArrowRight className="w-4 h-4" />
             </a>
           </div>
         </div>

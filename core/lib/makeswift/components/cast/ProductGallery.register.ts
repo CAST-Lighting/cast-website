@@ -1,5 +1,5 @@
 import { lazy } from "react"
-import { Style, Color, Image, Number as NumberControl, Select } from "@makeswift/runtime/controls"
+import { Style, Color, Image, Number as NumberControl, Select, TextInput } from "@makeswift/runtime/controls"
 import { runtime } from "~/lib/makeswift/runtime"
 
 runtime.registerComponent(
@@ -9,6 +9,15 @@ runtime.registerComponent(
     label: "Site / Product Gallery",
     props: {
       className: Style(),
+
+      // ── Content ─────────────────────────────────────────────
+      sectionTitle: TextInput({ label: 'Section Title', defaultValue: 'Our Favorite' }),
+      sectionTitleAccent: TextInput({ label: 'Title Accent Word', defaultValue: 'Picks' }),
+      sectionDescription: TextInput({ label: 'Description', defaultValue: 'Explore our most popular landscape lighting fixtures trusted by contractors nationwide.' }),
+      viewAllLabel: TextInput({ label: 'View All Label', defaultValue: 'View All' }),
+      viewAllHref: TextInput({ label: 'View All Link', defaultValue: '/shop' }),
+
+      // ── Background ──────────────────────────────────────────
       bgImage: Image({ label: 'Background Image' }),
       bgColor: Color({ label: 'Background Color' }),
       bgOpacity: NumberControl({ label: 'Background Opacity', defaultValue: 85, min: 0, max: 100, step: 1, suffix: '%' }),
