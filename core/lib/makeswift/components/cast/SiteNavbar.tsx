@@ -118,8 +118,8 @@ const SiteNavbar = forwardRef(function SiteNavbar(
   }, [])
 
   const mainBg = transparentMode
-    ? scrolled ? "rgba(0,44,64,0.92)" : "transparent"
-    : bgColor
+    ? scrolled ? "rgba(11,22,32,0.96)" : "transparent"
+    : "#0d1824"
   const mainTextColor = "#ffffff"
 
   const navItemStyle = {
@@ -193,7 +193,7 @@ const SiteNavbar = forwardRef(function SiteNavbar(
           .nav-mobile-toggle { display: flex !important; }
         }
         .nav-mobile-panel {
-          position: fixed; inset: 0; z-index: 100; background: #003344;
+          position: fixed; inset: 0; z-index: 100; background: #0d1824;
           overflow-y: auto; padding: 80px var(--nav-pad) 40px; font-family: 'Barlow', sans-serif;
         }
         .nav-mob-btn {

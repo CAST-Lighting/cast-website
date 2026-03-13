@@ -1,5 +1,5 @@
 import { lazy } from "react"
-import { Style, TextInput, Color, Checkbox } from "@makeswift/runtime/controls"
+import { Style, TextInput, Color, Checkbox, List } from "@makeswift/runtime/controls"
 import { runtime } from "~/lib/makeswift/runtime"
 
 runtime.registerComponent(
@@ -21,6 +21,10 @@ runtime.registerComponent(
       phone: TextInput({ label: "Phone Number", defaultValue: "(973) 423-2303" }),
       rightLinkText: TextInput({ label: "Right Link Text", defaultValue: "Contact Us" }),
       rightLinkHref: TextInput({ label: "Right Link URL", defaultValue: "/contact" }),
+      marqueeItems: List(TextInput({ label: "Message" }), {
+        label: "Marquee Messages",
+        getItemLabel: (item) => item ?? "Message",
+      }),
     },
   }
 )
