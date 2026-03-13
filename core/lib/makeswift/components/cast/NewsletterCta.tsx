@@ -16,7 +16,7 @@ const NewsletterCta = forwardRef(function NewsletterCta(
     paddingBottom,
   }: {
     className?: string
-    bgImage?: { url: string }
+    bgImage?: string
     bgColor?: string
     bgOpacity?: number
     gradientFrom?: string
@@ -28,7 +28,7 @@ const NewsletterCta = forwardRef(function NewsletterCta(
   },
   ref: Ref<HTMLElement>
 ) {
-  const bgImageUrl = bgImage?.url
+  const bgImageUrl = bgImage
   const overlayOpacity = typeof bgOpacity === 'number' ? bgOpacity / 100 : 0.85
   const hasGradient = !!(gradientFrom && gradientTo)
 

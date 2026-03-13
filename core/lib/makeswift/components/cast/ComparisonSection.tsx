@@ -32,7 +32,7 @@ const ComparisonSection = forwardRef(function ComparisonSection(
     paddingBottom,
   }: {
     className?: string
-    bgImage?: { url: string }
+    bgImage?: string
     bgColor?: string
     bgOpacity?: number
     gradientFrom?: string
@@ -44,7 +44,7 @@ const ComparisonSection = forwardRef(function ComparisonSection(
   },
   ref: Ref<HTMLElement>
 ) {
-  const bgImageUrl = bgImage?.url
+  const bgImageUrl = bgImage
   const overlayOpacity = typeof bgOpacity === 'number' ? bgOpacity / 100 : 0.85
   const hasGradient = !!(gradientFrom && gradientTo)
 
