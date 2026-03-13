@@ -57,34 +57,35 @@ const NewsletterCta = forwardRef(function NewsletterCta(
           box-sizing: border-box;
         }
         .nl-card {
-          background: #111827;
-          border-radius: 16px;
+          background: #1e2d38;
+          border: 1px solid rgba(127,190,232,0.15);
+          border-radius: 20px;
           display: flex;
           align-items: flex-start;
           justify-content: space-between;
-          gap: 48px;
-          padding: 56px 64px;
+          gap: 56px;
+          padding: 56px 60px;
           position: relative;
           overflow: hidden;
         }
         .nl-card::before {
           content: '';
           position: absolute;
-          top: -100px;
-          right: -100px;
-          width: 300px;
-          height: 300px;
-          background: radial-gradient(circle, rgba(0,73,96,0.12) 0%, transparent 70%);
+          top: -80px;
+          right: -80px;
+          width: 340px;
+          height: 340px;
+          background: radial-gradient(circle, rgba(0,124,176,0.14) 0%, transparent 65%);
           pointer-events: none;
         }
         .nl-card::after {
           content: '';
           position: absolute;
-          bottom: -80px;
-          left: -60px;
-          width: 220px;
-          height: 220px;
-          background: radial-gradient(circle, rgba(0,73,96,0.06) 0%, transparent 70%);
+          bottom: -70px;
+          left: -50px;
+          width: 240px;
+          height: 240px;
+          background: radial-gradient(circle, rgba(126,190,232,0.06) 0%, transparent 65%);
           pointer-events: none;
         }
         .nl-left {
@@ -94,71 +95,80 @@ const NewsletterCta = forwardRef(function NewsletterCta(
           z-index: 1;
         }
         .nl-heading {
-          font-family: 'Barlow', sans-serif;
+          font-family: 'Essonnes', 'Playfair Display', serif;
           font-size: var(--h2-size);
           font-weight: var(--heading-weight, 700);
           line-height: var(--heading-line-height, 1.1);
-          color: #ffffff;
-          margin: 0 0 8px;
+          color: #e2edf2;
+          margin: 0 0 12px;
         }
         .nl-desc {
           font-family: 'Barlow', sans-serif;
           font-size: var(--body-size, 18px);
           font-weight: 400;
-          line-height: var(--body-line-height, 1.6);
-          color: rgba(255,255,255,0.6);
-          margin: 0 0 28px;
+          line-height: 1.65;
+          color: #90a4ae;
+          margin: 0 0 30px;
         }
         .nl-form {
           display: flex;
           gap: 12px;
           flex-wrap: wrap;
         }
-        .nl-form-row {
-          display: contents;
+        .nl-inputs {
+          display: flex;
+          gap: 10px;
+          flex: 1 1 auto;
+          min-width: 0;
+          flex-wrap: wrap;
         }
         .nl-input {
-          flex: 1;
-          padding: 14px 18px;
-          border: 1px solid rgba(255,255,255,0.15);
+          flex: 1 1 160px;
+          min-width: 0;
+          padding: 13px 16px;
+          border: 1px solid rgba(127,190,232,0.18);
           border-radius: 8px;
-          background: rgba(255,255,255,0.06);
+          background: rgba(17,24,32,0.6);
           font-family: 'Barlow', sans-serif;
           font-size: 15px;
-          color: #ffffff;
+          color: #e2edf2;
           outline: none;
-          transition: border-color 0.2s, background 0.2s;
+          transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
         }
         .nl-input::placeholder {
-          color: rgba(255,255,255,0.35);
+          color: #546f7a;
         }
         .nl-input:focus {
-          border-color: var(--color-primary);
-          background: rgba(255,255,255,0.1);
+          border-color: #007cb0;
+          background: rgba(17,24,32,0.85);
+          box-shadow: 0 0 0 3px rgba(0,124,176,0.12);
         }
         .nl-submit {
           display: inline-flex;
           align-items: center;
           justify-content: center;
           gap: 8px;
-          padding: 14px 32px;
-          background: var(--color-primary);
+          padding: 13px 28px;
+          background: #007cb0;
           border: none;
           border-radius: 8px;
           font-family: 'Barlow', sans-serif;
-          font-size: 16px;
+          font-size: 15px;
           font-weight: 600;
           color: #ffffff;
           cursor: pointer;
-          transition: background 0.2s;
+          transition: background 0.2s, box-shadow 0.2s;
           white-space: nowrap;
+          flex-shrink: 0;
+          letter-spacing: 0.03em;
         }
         .nl-submit:hover {
-          background: var(--color-secondary);
+          background: #005c7a;
+          box-shadow: 0 4px 18px rgba(0,124,176,0.35);
         }
         .nl-submit svg {
-          width: 16px;
-          height: 16px;
+          width: 15px;
+          height: 15px;
           transition: transform 0.2s;
         }
         .nl-submit:hover svg {
@@ -167,20 +177,32 @@ const NewsletterCta = forwardRef(function NewsletterCta(
         .nl-success {
           font-family: 'Barlow', sans-serif;
           font-size: 15px;
+          font-weight: 500;
           color: #22c55e;
           display: flex;
           align-items: center;
-          gap: 8px;
-          padding: 14px 0;
+          gap: 10px;
+          padding: 13px 0;
         }
         .nl-success svg {
           width: 18px;
           height: 18px;
+          flex-shrink: 0;
         }
         .nl-right {
           flex: 0 0 auto;
           position: relative;
           z-index: 1;
+          padding-top: 4px;
+        }
+        .nl-items-label {
+          font-family: 'Barlow', sans-serif;
+          font-size: 11px;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 0.13em;
+          color: #546f7a;
+          margin: 0 0 16px;
         }
         .nl-items {
           list-style: none;
@@ -188,73 +210,109 @@ const NewsletterCta = forwardRef(function NewsletterCta(
           padding: 0;
           display: flex;
           flex-direction: column;
-          gap: 12px;
+          gap: 10px;
         }
         .nl-items li {
           display: flex;
           align-items: center;
-          gap: 14px;
+          gap: 12px;
           font-family: 'Barlow', sans-serif;
           font-size: 14px;
           font-weight: 500;
-          color: rgba(255,255,255,0.85);
+          color: #90a4ae;
+          line-height: 1.4;
         }
         .nl-check-box {
           width: 20px;
           height: 20px;
           border-radius: 4px;
-          background: rgba(0,73,96,0.15);
-          border: 1px solid rgba(0,73,96,0.4);
+          background: rgba(0,124,176,0.12);
+          border: 1px solid rgba(126,190,232,0.22);
           display: flex;
           align-items: center;
           justify-content: center;
           flex-shrink: 0;
         }
         .nl-check-box svg {
-          width: 12px;
-          height: 12px;
-          color: var(--color-primary);
+          width: 11px;
+          height: 11px;
+          color: #7ebee8;
+        }
+        @media (max-width: 1023px) {
+          .nl-card {
+            flex-direction: column;
+            padding: 44px 40px;
+            gap: 36px;
+          }
+          .nl-right {
+            width: 100%;
+          }
+          .nl-items {
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 10px 24px;
+          }
         }
         @media (max-width: 767px) {
           .nl-card {
-            flex-direction: column;
             padding: 36px 24px;
             gap: 32px;
           }
           .nl-form {
             flex-direction: column;
           }
-          .nl-form-row {
-            display: flex;
+          .nl-inputs {
             flex-direction: column;
-            gap: 12px;
+          }
+          .nl-submit {
+            width: 100%;
           }
         }
       `}</style>
       <section
         ref={ref}
         className={`nl-section ${sectionStyle || ""} ${className || ""}`}
-        style={{ position: "relative", backgroundColor: "#25262d" }}
+        style={{ position: "relative", backgroundColor: "#111820" }}
       >
         {bgImage && (
-          <div style={{ position: "absolute", inset: 0, backgroundImage: `url(${bgImage})`, backgroundSize: "cover", backgroundPosition: "center", zIndex: 0 }} />
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              backgroundImage: `url(${bgImage})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              zIndex: 0,
+            }}
+          />
         )}
         {overlayColor && (overlayOpacity ?? 0) > 0 && (
-          <div style={{ position: "absolute", inset: 0, backgroundColor: overlayColor, opacity: (overlayOpacity ?? 0) / 100, zIndex: 1 }} />
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              backgroundColor: overlayColor,
+              opacity: (overlayOpacity ?? 0) / 100,
+              zIndex: 1,
+            }}
+          />
         )}
         <div className="site-container" style={{ position: "relative", zIndex: 2 }}>
-          <div className="nl-card" style={containerBgColor ? { background: containerBgColor } : undefined}>
+          <div
+            className="nl-card"
+            style={containerBgColor ? { background: containerBgColor } : undefined}
+          >
             <div className="nl-left">
               <h3 className="nl-heading">{heading}</h3>
               <p className="nl-desc">{description}</p>
               {submitted ? (
                 <div className="nl-success">
                   <Check />
-                  Thanks for subscribing! Check your inbox.
+                  Thanks for subscribing! Check your inbox soon.
                 </div>
               ) : (
                 <form className="nl-form" onSubmit={handleSubmit}>
-                  <div className="nl-form-row">
+                  <div className="nl-inputs">
                     <input
                       type="text"
                       className="nl-input"
@@ -275,10 +333,13 @@ const NewsletterCta = forwardRef(function NewsletterCta(
               )}
             </div>
             <div className="nl-right">
+              <p className="nl-items-label">What you&apos;ll get</p>
               <ul className="nl-items">
                 {items.map((item, i) => (
                   <li key={i}>
-                    <span className="nl-check-box"><Check /></span>
+                    <span className="nl-check-box">
+                      <Check />
+                    </span>
                     {item.text}
                   </li>
                 ))}

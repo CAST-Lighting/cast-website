@@ -49,12 +49,32 @@ const ContentMedia = forwardRef(function ContentMedia(
   return (
     <>
       <style>{`
+        .cm-section {
+          width: 100%;
+          box-sizing: border-box;
+        }
+        .cm-layout {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 60px;
+        }
+        .cm-text-content {
+          flex: 1 1 48%;
+          max-width: 560px;
+          min-width: 0;
+        }
+        .cm-media-outer {
+          flex: 1 1 48%;
+          min-width: 0;
+        }
         .cm-media-wrap {
           position: relative;
-          border-radius: 12px;
+          border-radius: 16px;
           overflow: hidden;
           aspect-ratio: 16 / 10;
-          box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+          background: #111820;
+          box-shadow: 0 0 0 1px rgba(127,190,232,0.12), 0 24px 64px rgba(0,0,0,0.5), 0 0 60px rgba(0,124,176,0.1);
         }
         .cm-media-wrap iframe {
           width: 100%;
@@ -63,125 +83,215 @@ const ContentMedia = forwardRef(function ContentMedia(
           top: 0;
           left: 0;
           border: none;
-          border-radius: 12px;
         }
         .cm-media-wrap img {
           width: 100%;
           height: 100%;
           object-fit: cover;
-          border-radius: 12px;
+          display: block;
         }
-        .cm-play-overlay {
+        .cm-play-btn {
           position: absolute;
           inset: 0;
           display: flex;
           align-items: center;
           justify-content: center;
-          background: rgba(0,0,0,0.25);
-          border-radius: 12px;
+          background: rgba(13,26,36,0.35);
           cursor: pointer;
-          transition: background 0.2s;
+          transition: background 0.25s;
+          border: none;
+          padding: 0;
         }
-        .cm-play-overlay:hover {
-          background: rgba(0,0,0,0.4);
+        .cm-play-btn:hover {
+          background: rgba(13,26,36,0.5);
         }
-        .cm-play-overlay:hover svg circle {
-          fill: rgba(0,73,96,1);
+        .cm-play-circle {
+          width: 72px;
+          height: 72px;
+          border-radius: 50%;
+          background: rgba(0,124,176,0.88);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: transform 0.25s, background 0.25s, box-shadow 0.25s;
+          box-shadow: 0 4px 24px rgba(0,124,176,0.5);
+        }
+        .cm-play-btn:hover .cm-play-circle {
+          transform: scale(1.1);
+          background: #007cb0;
+          box-shadow: 0 6px 32px rgba(0,124,176,0.65);
+        }
+        .cm-heading {
+          font-family: 'Essonnes', 'Playfair Display', serif;
+          font-size: var(--h2-size);
+          font-weight: var(--heading-weight, 700);
+          line-height: var(--heading-line-height, 1.1);
+          color: #e2edf2;
+          margin: 0 0 20px;
+        }
+        .cm-description {
+          font-family: 'Barlow', sans-serif;
+          font-size: var(--body-lg-size, 20px);
+          line-height: 1.65;
+          color: #90a4ae;
+          margin: 0 0 36px;
+        }
+        .cm-buttons {
+          display: flex;
+          align-items: center;
+          gap: 24px;
+          flex-wrap: wrap;
+        }
+        .cm-btn-primary {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          padding: 14px 32px;
+          background: #007cb0;
+          border: none;
+          border-radius: 8px;
+          font-family: 'Barlow', sans-serif;
+          font-size: 15px;
+          font-weight: 600;
+          color: #ffffff;
+          text-decoration: none;
+          letter-spacing: 0.03em;
+          transition: background 0.2s, box-shadow 0.2s;
+          white-space: nowrap;
+        }
+        .cm-btn-primary:hover {
+          background: #005c7a;
+          box-shadow: 0 4px 20px rgba(0,124,176,0.35);
+        }
+        .cm-btn-secondary {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          font-family: 'Barlow', sans-serif;
+          font-size: 15px;
+          font-weight: 600;
+          color: #7ebee8;
+          text-decoration: none;
+          letter-spacing: 0.02em;
+          transition: color 0.2s, gap 0.2s;
+          white-space: nowrap;
+        }
+        .cm-btn-secondary:hover {
+          color: #e2edf2;
+          gap: 12px;
+        }
+        .cm-blob-1 {
+          position: absolute;
+          top: -120px;
+          right: -120px;
+          width: 400px;
+          height: 400px;
+          border-radius: 50%;
+          background: radial-gradient(circle, rgba(0,124,176,0.12) 0%, transparent 65%);
+          pointer-events: none;
+          z-index: 0;
+        }
+        .cm-blob-2 {
+          position: absolute;
+          bottom: -100px;
+          left: -80px;
+          width: 320px;
+          height: 320px;
+          border-radius: 50%;
+          background: radial-gradient(circle, rgba(126,190,232,0.06) 0%, transparent 65%);
+          pointer-events: none;
+          z-index: 0;
         }
         @media (max-width: 1023px) {
           .cm-layout {
             flex-direction: column !important;
-            align-items: center !important;
+            align-items: stretch !important;
+            gap: 40px;
           }
           .cm-text-content {
             max-width: 100% !important;
             flex: none !important;
             width: 100% !important;
-            text-align: center !important;
-          }
-          .cm-text-content .cm-buttons {
-            justify-content: center !important;
           }
           .cm-media-outer {
             width: 100% !important;
             flex: none !important;
           }
+          .cm-heading,
+          .cm-description {
+            text-align: center;
+          }
+          .cm-buttons {
+            justify-content: center;
+          }
         }
       `}</style>
       <div
         ref={ref}
-        className={`relative ${sectionStyle || ""} ${className || ""}`}
-        style={{ backgroundColor: "#25262d", width: "100%" }}
+        className={`cm-section ${sectionStyle || ""} ${className || ""}`}
+        style={{ position: "relative", backgroundColor: "#111820" }}
       >
         {bgImage && (
-          <div style={{ position: "absolute", inset: 0, backgroundImage: `url(${bgImage})`, backgroundSize: "cover", backgroundPosition: "center", zIndex: 0 }} />
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              backgroundImage: `url(${bgImage})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              zIndex: 0,
+            }}
+          />
         )}
         {overlayColor && (overlayOpacity ?? 0) > 0 && (
-          <div style={{ position: "absolute", inset: 0, backgroundColor: overlayColor, opacity: (overlayOpacity ?? 0) / 100, zIndex: 1 }} />
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              backgroundColor: overlayColor,
+              opacity: (overlayOpacity ?? 0) / 100,
+              zIndex: 1,
+            }}
+          />
         )}
-        {/* Gradient blobs */}
-        <div
-          aria-hidden="true"
-          className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
-        >
-          <div
-            style={{
-              clipPath: "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)",
-            }}
-            className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#004960] to-[#057cb0] opacity-20 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
-          />
-        </div>
-        <div
-          aria-hidden="true"
-          className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
-        >
-          <div
-            style={{
-              clipPath: "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)",
-            }}
-            className="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#004960] to-[#057cb0] opacity-20 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]"
-          />
-        </div>
 
-        {/* Content */}
-        <div className="relative z-10">
+        {/* Decorative blobs */}
+        <div className="cm-blob-1" aria-hidden="true" />
+        <div className="cm-blob-2" aria-hidden="true" />
+
+        <div className="site-container" style={{ position: "relative", zIndex: 2 }}>
           <div
-            className="cm-layout w-full site-container"
+            className="cm-layout"
             style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              gap: "48px",
               flexDirection: mediaPosition === "left" ? "row-reverse" : "row",
             }}
           >
             {/* Text side */}
-            <div className="cm-text-content" style={{ flex: "1 1 50%", maxWidth: "42rem", minWidth: 0 }}>
-              <h2
-                className="tracking-tight text-balance text-white"
-                style={{ fontFamily: "'Essonnes', 'Playfair Display', serif", fontSize: "var(--h2-size)", fontWeight: "var(--heading-weight, 700)", lineHeight: "var(--heading-line-height, 1.1)" }}
-              >
-                {heading}
-              </h2>
-              <p className="mt-6 text-pretty text-gray-300" style={{ fontFamily: "'Barlow', sans-serif", fontSize: "var(--body-lg-size, 20px)", lineHeight: "var(--body-line-height, 1.6)" }}>
-                {description}
-              </p>
+            <div className="cm-text-content">
+              <h2 className="cm-heading">{heading}</h2>
+              <p className="cm-description">{description}</p>
               {(primaryButtonText || secondaryButtonText) && (
-                <div className="cm-buttons mt-10 flex items-center gap-x-6">
+                <div className="cm-buttons">
                   {primaryButtonText && (
-                    <a
-                      href={primaryButtonHref || "#"}
-                      className="rounded-md px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs"
-                      style={{ backgroundColor: "var(--color-primary)" }}
-                      onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "var(--color-secondary)")}
-                      onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "var(--color-primary)")}
-                    >
+                    <a href={primaryButtonHref || "#"} className="cm-btn-primary">
                       {primaryButtonText}
                     </a>
                   )}
                   {secondaryButtonText && (
-                    <a href={secondaryButtonHref || "#"} className="text-sm/6 font-semibold text-white">
-                      {secondaryButtonText} <span aria-hidden="true">→</span>
+                    <a href={secondaryButtonHref || "#"} className="cm-btn-secondary">
+                      {secondaryButtonText}
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                      </svg>
                     </a>
                   )}
                 </div>
@@ -189,7 +299,7 @@ const ContentMedia = forwardRef(function ContentMedia(
             </div>
 
             {/* Media side */}
-            <div className={`cm-media-outer ${mediaStyle || ""}`} style={{ flex: "1 1 50%", minWidth: 0 }}>
+            <div className={`cm-media-outer ${mediaStyle || ""}`}>
               <div className="cm-media-wrap">
                 {mediaType === "video" ? (
                   isPlaying || !mediaSrc ? (
@@ -200,19 +310,33 @@ const ContentMedia = forwardRef(function ContentMedia(
                       allowFullScreen
                     />
                   ) : (
-                    <div onClick={() => setIsPlaying(true)} style={{ position: "relative", width: "100%", height: "100%" }}>
+                    <>
                       <img src={mediaSrc} alt={heading || ""} />
-                      <div className="cm-play-overlay">
-                        <svg width="72" height="72" viewBox="0 0 72 72" fill="none">
-                          <circle cx="36" cy="36" r="36" fill="rgba(0,73,96,0.85)" />
-                          <path d="M29 22L51 36L29 50V22Z" fill="white" />
-                        </svg>
-                      </div>
-                    </div>
+                      <button
+                        className="cm-play-btn"
+                        onClick={() => setIsPlaying(true)}
+                        aria-label="Play video"
+                      >
+                        <div className="cm-play-circle">
+                          <svg
+                            width="26"
+                            height="26"
+                            viewBox="0 0 24 24"
+                            fill="white"
+                            style={{ marginLeft: 3 }}
+                          >
+                            <path d="M8 5v14l11-7z" />
+                          </svg>
+                        </div>
+                      </button>
+                    </>
                   )
                 ) : (
                   <img
-                    src={mediaSrc || "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=720&q=80"}
+                    src={
+                      mediaSrc ||
+                      "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=720&q=80"
+                    }
                     alt={heading || ""}
                   />
                 )}

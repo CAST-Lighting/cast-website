@@ -76,124 +76,143 @@ const TradeProSection = forwardRef(function TradeProSection(
         .tp-section {
           width: 100%;
           box-sizing: border-box;
-          background: unset;
-        }
-        .tp-inner {
         }
         .tp-header {
           text-align: center;
-          max-width: 640px;
-          margin: 0 auto 60px;
+          max-width: 620px;
+          margin: 0 auto 64px;
         }
         .tp-subtitle {
           font-family: 'Barlow', sans-serif;
-          font-size: 14px;
+          font-size: 12px;
           font-weight: 700;
           text-transform: uppercase;
-          letter-spacing: 0.1em;
-          color: var(--color-primary);
-          margin: 0 0 12px;
+          letter-spacing: 0.15em;
+          color: #7ebee8;
+          margin: 0 0 14px;
         }
         .tp-heading {
-          font-family: 'Barlow', sans-serif;
+          font-family: 'Essonnes', 'Playfair Display', serif;
           font-size: var(--h2-size);
           font-weight: var(--heading-weight, 700);
           line-height: var(--heading-line-height, 1.1);
-          color: var(--color-title);
-          margin: 0 0 16px;
+          color: #e2edf2;
+          margin: 0 0 18px;
         }
         .tp-desc {
           font-family: 'Barlow', sans-serif;
           font-size: var(--body-size, 18px);
           font-weight: 400;
-          line-height: var(--body-line-height, 1.6);
-          color: #4c586f;
+          line-height: 1.65;
+          color: #90a4ae;
           margin: 0;
         }
         .tp-grid {
           display: grid;
           grid-template-columns: repeat(4, 1fr);
-          gap: 32px;
-          margin-bottom: 48px;
+          gap: 24px;
+          margin-bottom: 56px;
         }
         .tp-card {
           display: flex;
           flex-direction: column;
           align-items: center;
           text-align: center;
-          padding: 0 8px;
+          padding: 32px 20px;
+          background: #1e2d38;
+          border: 1px solid rgba(127,190,232,0.12);
+          border-radius: 16px;
+          transition: border-color 0.22s, box-shadow 0.22s, transform 0.22s;
         }
-        .tp-card-icon {
-          width: 88px;
-          height: 88px;
+        .tp-card:hover {
+          border-color: rgba(127,190,232,0.28);
+          box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+          transform: translateY(-4px);
+        }
+        .tp-card-icon-wrap {
+          width: 80px;
+          height: 80px;
           border-radius: 50%;
-          background: #2d353c;
-          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+          background: rgba(0,124,176,0.1);
+          border: 1px solid rgba(0,124,176,0.2);
           display: flex;
           align-items: center;
           justify-content: center;
           margin-bottom: 24px;
-          transition: box-shadow 0.2s, transform 0.2s;
+          transition: background 0.22s, box-shadow 0.22s, border-color 0.22s;
+          flex-shrink: 0;
         }
-        .tp-card:hover .tp-card-icon {
-          box-shadow: 0 8px 30px rgba(0, 73, 96, 0.15);
-          transform: translateY(-4px);
+        .tp-card:hover .tp-card-icon-wrap {
+          background: rgba(0,124,176,0.18);
+          border-color: rgba(0,124,176,0.4);
+          box-shadow: 0 0 24px rgba(0,124,176,0.2);
         }
-        .tp-card-icon svg {
-          width: 36px;
-          height: 36px;
-          color: var(--color-title);
+        .tp-card-icon-wrap svg {
+          width: 34px;
+          height: 34px;
+          color: #7ebee8;
         }
         .tp-card-title {
           font-family: 'Barlow', sans-serif;
-          font-size: 16px;
+          font-size: 15px;
           font-weight: 700;
           text-transform: uppercase;
-          letter-spacing: 0.03em;
+          letter-spacing: 0.04em;
           line-height: 1.3;
-          color: var(--color-title);
+          color: #e2edf2;
           margin: 0 0 12px;
         }
         .tp-card-desc {
           font-family: 'Barlow', sans-serif;
           font-size: var(--body-sm-size, 15px);
           font-weight: 400;
-          line-height: var(--body-line-height, 1.6);
-          color: #4c586f;
+          line-height: 1.65;
+          color: #90a4ae;
           margin: 0;
         }
         .tp-cta {
           text-align: center;
         }
-        .tp-cta a {
+        .tp-cta-btn {
           display: inline-flex;
           align-items: center;
           justify-content: center;
-          padding: 16px 32px;
-          border: 2px solid var(--color-primary);
+          gap: 10px;
+          padding: 15px 36px;
+          border: 2px solid #007cb0;
           background: transparent;
+          border-radius: 8px;
           font-family: 'Barlow', sans-serif;
-          font-size: 16px;
+          font-size: 15px;
           font-weight: 600;
-          color: var(--color-title);
+          color: #7ebee8;
           text-decoration: none;
-          transition: all 0.2s;
+          letter-spacing: 0.04em;
+          transition: background 0.2s, color 0.2s, box-shadow 0.2s;
         }
-        .tp-cta a:hover {
-          background: var(--color-primary);
-          border-color: var(--color-primary);
+        .tp-cta-btn:hover {
+          background: #007cb0;
           color: #ffffff;
+          box-shadow: 0 4px 20px rgba(0,124,176,0.3);
+        }
+        .tp-cta-btn svg {
+          width: 16px;
+          height: 16px;
+          transition: transform 0.2s;
+        }
+        .tp-cta-btn:hover svg {
+          transform: translateX(3px);
         }
         @media (max-width: 1023px) {
           .tp-grid {
             grid-template-columns: repeat(2, 1fr);
-            gap: 40px 24px;
+            gap: 20px;
           }
         }
         @media (max-width: 479px) {
           .tp-grid {
             grid-template-columns: 1fr;
-            gap: 36px;
+            gap: 16px;
           }
           .tp-header {
             margin-bottom: 40px;
@@ -203,15 +222,36 @@ const TradeProSection = forwardRef(function TradeProSection(
       <section
         ref={ref}
         className={`tp-section ${sectionStyle || ""} ${className || ""}`}
-        style={{ position: "relative", backgroundColor: "#2d353c" }}
+        style={{
+          position: "relative",
+          backgroundColor: "#111820",
+          background: "linear-gradient(180deg, #111820 0%, #0d1a24 100%)",
+        }}
       >
         {bgImage && (
-          <div style={{ position: "absolute", inset: 0, backgroundImage: `url(${bgImage})`, backgroundSize: "cover", backgroundPosition: "center", zIndex: 0 }} />
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              backgroundImage: `url(${bgImage})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              zIndex: 0,
+            }}
+          />
         )}
         {overlayColor && (overlayOpacity ?? 0) > 0 && (
-          <div style={{ position: "absolute", inset: 0, backgroundColor: overlayColor, opacity: (overlayOpacity ?? 0) / 100, zIndex: 1 }} />
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              backgroundColor: overlayColor,
+              opacity: (overlayOpacity ?? 0) / 100,
+              zIndex: 1,
+            }}
+          />
         )}
-        <div className="tp-inner site-container" style={{ position: "relative", zIndex: 2 }}>
+        <div className="site-container" style={{ position: "relative", zIndex: 2 }}>
           <div className="tp-header">
             <p className="tp-subtitle">{subtitle}</p>
             <h2 className="tp-heading">{heading}</h2>
@@ -221,7 +261,7 @@ const TradeProSection = forwardRef(function TradeProSection(
             {cards.map((card, index) => (
               <div key={index} className="tp-card">
                 <div
-                  className="tp-card-icon"
+                  className="tp-card-icon-wrap"
                   dangerouslySetInnerHTML={{
                     __html: card.icon || defaultIcons[index % defaultIcons.length],
                   }}
@@ -233,7 +273,12 @@ const TradeProSection = forwardRef(function TradeProSection(
           </div>
           {buttonText && (
             <div className="tp-cta">
-              <a href={buttonHref || "#"}>{buttonText}</a>
+              <a href={buttonHref || "#"} className="tp-cta-btn">
+                {buttonText}
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </a>
             </div>
           )}
         </div>

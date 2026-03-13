@@ -117,76 +117,85 @@ const ComparisonSection = forwardRef(function ComparisonSection(
         .comp-section {
           width: 100%;
           box-sizing: border-box;
-          background: unset;
-        }
-        .comp-inner {
         }
         .comp-header {
-          max-width: 800px;
-          margin-bottom: 48px;
+          max-width: 760px;
+          margin-bottom: 52px;
         }
         .comp-subtitle {
           font-family: 'Barlow', sans-serif;
-          font-size: 14px;
+          font-size: 12px;
           font-weight: 700;
           text-transform: uppercase;
-          letter-spacing: 0.1em;
-          color: var(--color-primary);
-          margin: 0 0 12px;
+          letter-spacing: 0.15em;
+          color: #7ebee8;
+          margin: 0 0 14px;
         }
         .comp-heading {
-          font-family: 'Barlow', sans-serif;
+          font-family: 'Essonnes', 'Playfair Display', serif;
           font-size: var(--h2-size);
           font-weight: var(--heading-weight, 700);
           line-height: var(--heading-line-height, 1.1);
-          color: var(--color-title);
-          margin: 0 0 20px;
+          color: #e2edf2;
+          margin: 0 0 18px;
         }
         .comp-desc {
           font-family: 'Barlow', sans-serif;
           font-size: var(--body-size, 18px);
           font-weight: 400;
-          line-height: var(--body-line-height, 1.6);
-          color: #4c586f;
+          line-height: 1.65;
+          color: #90a4ae;
           margin: 0;
         }
         .comp-grid {
           display: grid;
           grid-template-columns: 1fr 1fr;
-          gap: 24px;
+          gap: 20px;
           align-items: start;
         }
 
-        /* CAST card — dark premium */
+        /* CAST card */
         .comp-cast-card {
-          background: #111827;
+          background: #0d1f2d;
           border-radius: 16px;
           padding: 40px 36px;
           position: relative;
           overflow: hidden;
+          border-top: 3px solid #007cb0;
+          box-shadow: 0 8px 40px rgba(0,124,176,0.12);
         }
         .comp-cast-card::before {
           content: '';
           position: absolute;
-          top: -80px;
-          right: -80px;
-          width: 240px;
-          height: 240px;
-          background: radial-gradient(circle, rgba(0,73,96,0.15) 0%, transparent 70%);
+          top: -60px;
+          right: -60px;
+          width: 260px;
+          height: 260px;
+          background: radial-gradient(circle, rgba(0,124,176,0.14) 0%, transparent 68%);
           pointer-events: none;
         }
         .comp-cast-card::after {
           content: '';
           position: absolute;
-          bottom: -60px;
-          left: -60px;
-          width: 200px;
-          height: 200px;
-          background: radial-gradient(circle, rgba(0,73,96,0.08) 0%, transparent 70%);
+          bottom: -50px;
+          left: -40px;
+          width: 180px;
+          height: 180px;
+          background: radial-gradient(circle, rgba(0,124,176,0.07) 0%, transparent 70%);
           pointer-events: none;
         }
+
+        /* Other brands card */
+        .comp-other-card {
+          background: #1e2d38;
+          border-radius: 16px;
+          padding: 40px 36px;
+          border: 1px solid rgba(127,190,232,0.1);
+          border-top: 3px solid rgba(127,190,232,0.15);
+        }
+
         .comp-card-heading {
-          font-family: 'Barlow', sans-serif;
+          font-family: 'Essonnes', 'Playfair Display', serif;
           font-size: var(--h3-size);
           font-weight: var(--heading-weight, 700);
           line-height: var(--heading-line-height, 1.1);
@@ -195,17 +204,12 @@ const ComparisonSection = forwardRef(function ComparisonSection(
           z-index: 1;
         }
         .comp-cast-card .comp-card-heading {
-          color: #ffffff;
+          color: #e2edf2;
         }
-        .comp-cast-card .comp-card-heading::after {
-          content: '';
-          display: block;
-          width: 48px;
-          height: 3px;
-          background: var(--color-primary);
-          margin-top: 16px;
-          border-radius: 2px;
+        .comp-other-card .comp-card-heading {
+          color: #546f7a;
         }
+
         .comp-item {
           display: flex;
           gap: 16px;
@@ -213,86 +217,69 @@ const ComparisonSection = forwardRef(function ComparisonSection(
           z-index: 1;
         }
         .comp-item + .comp-item {
-          margin-top: 28px;
-          padding-top: 28px;
+          margin-top: 24px;
+          padding-top: 24px;
         }
         .comp-cast-card .comp-item + .comp-item {
-          border-top: 1px solid rgba(255,255,255,0.08);
+          border-top: 1px solid rgba(127,190,232,0.08);
         }
+        .comp-other-card .comp-item + .comp-item {
+          border-top: 1px solid rgba(127,190,232,0.06);
+        }
+
         .comp-item-icon {
           flex-shrink: 0;
-          width: 28px;
-          height: 28px;
+          width: 26px;
+          height: 26px;
           border-radius: 50%;
           display: flex;
           align-items: center;
           justify-content: center;
-          margin-top: 2px;
+          margin-top: 1px;
         }
         .comp-cast-card .comp-item-icon {
-          background: rgba(34, 197, 94, 0.15);
+          background: rgba(34,197,94,0.12);
         }
         .comp-cast-card .comp-item-icon svg {
-          width: 16px;
-          height: 16px;
+          width: 14px;
+          height: 14px;
           color: #22c55e;
         }
+        .comp-other-card .comp-item-icon {
+          background: rgba(239,68,68,0.1);
+        }
+        .comp-other-card .comp-item-icon svg {
+          width: 13px;
+          height: 13px;
+          color: #ef4444;
+        }
+
         .comp-item-title {
           font-family: 'Barlow', sans-serif;
           font-size: var(--h5-size);
-          font-weight: var(--heading-weight, 700);
-          line-height: var(--heading-line-height, 1.1);
-          margin: 0 0 6px;
+          font-weight: 700;
+          line-height: 1.25;
+          margin: 0 0 5px;
         }
         .comp-cast-card .comp-item-title {
-          color: #ffffff;
+          color: #e2edf2;
         }
+        .comp-other-card .comp-item-title {
+          color: #546f7a;
+        }
+
         .comp-item-desc {
           font-family: 'Barlow', sans-serif;
           font-size: var(--body-sm-size, 15px);
           font-weight: 400;
-          line-height: var(--body-line-height, 1.6);
+          line-height: 1.6;
           margin: 0;
         }
         .comp-cast-card .comp-item-desc {
-          color: rgba(255,255,255,0.6);
-        }
-
-        /* Other brands card — light muted */
-        .comp-other-card {
-          background: #2d353c;
-          border-radius: 16px;
-          padding: 40px 36px;
-          border: 1px solid rgba(255,255,255,0.1);
-        }
-        .comp-other-card .comp-card-heading {
-          color: #6b7280;
-        }
-        .comp-other-card .comp-card-heading::after {
-          content: '';
-          display: block;
-          width: 48px;
-          height: 3px;
-          background: #d1d5db;
-          margin-top: 16px;
-          border-radius: 2px;
-        }
-        .comp-other-card .comp-item + .comp-item {
-          border-top: 1px solid #f3f4f6;
-        }
-        .comp-other-card .comp-item-icon {
-          background: rgba(239, 68, 68, 0.1);
-        }
-        .comp-other-card .comp-item-icon svg {
-          width: 14px;
-          height: 14px;
-          color: #ef4444;
-        }
-        .comp-other-card .comp-item-title {
-          color: #6b7280;
+          color: rgba(144,164,174,0.85);
         }
         .comp-other-card .comp-item-desc {
-          color: #9ca3af;
+          color: #546f7a;
         }
 
         @media (max-width: 1023px) {
@@ -310,23 +297,40 @@ const ComparisonSection = forwardRef(function ComparisonSection(
             padding: 28px 20px;
           }
           .comp-item + .comp-item {
-            margin-top: 20px;
-            padding-top: 20px;
+            margin-top: 18px;
+            padding-top: 18px;
           }
         }
       `}</style>
       <section
         ref={ref}
         className={`comp-section ${sectionStyle || ""} ${className || ""}`}
-        style={{ position: "relative", backgroundColor: "#2d353c" }}
+        style={{ position: "relative", backgroundColor: "#1a2330" }}
       >
         {bgImage && (
-          <div style={{ position: "absolute", inset: 0, backgroundImage: `url(${bgImage})`, backgroundSize: "cover", backgroundPosition: "center", zIndex: 0 }} />
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              backgroundImage: `url(${bgImage})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              zIndex: 0,
+            }}
+          />
         )}
         {overlayColor && (overlayOpacity ?? 0) > 0 && (
-          <div style={{ position: "absolute", inset: 0, backgroundColor: overlayColor, opacity: (overlayOpacity ?? 0) / 100, zIndex: 1 }} />
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              backgroundColor: overlayColor,
+              opacity: (overlayOpacity ?? 0) / 100,
+              zIndex: 1,
+            }}
+          />
         )}
-        <div className="comp-inner site-container" style={{ position: "relative", zIndex: 2 }}>
+        <div className="site-container" style={{ position: "relative", zIndex: 2 }}>
           <div className="comp-header">
             <p className="comp-subtitle">{subtitle}</p>
             <h2 className="comp-heading">{heading}</h2>
@@ -335,12 +339,22 @@ const ComparisonSection = forwardRef(function ComparisonSection(
 
           <div className="comp-grid">
             {/* CAST Advantages */}
-            <div className="comp-cast-card" style={castCardBgColor ? { background: castCardBgColor } : undefined}>
+            <div
+              className="comp-cast-card"
+              style={castCardBgColor ? { background: castCardBgColor } : undefined}
+            >
               <h3 className="comp-card-heading">{castHeading}</h3>
               {castItems.map((item, i) => (
                 <div key={i} className="comp-item">
                   <div className="comp-item-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="3"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
                       <polyline points="20 6 9 17 4 12" />
                     </svg>
                   </div>
@@ -353,12 +367,22 @@ const ComparisonSection = forwardRef(function ComparisonSection(
             </div>
 
             {/* Other Brands */}
-            <div className="comp-other-card" style={otherCardBgColor ? { background: otherCardBgColor } : undefined}>
+            <div
+              className="comp-other-card"
+              style={otherCardBgColor ? { background: otherCardBgColor } : undefined}
+            >
               <h3 className="comp-card-heading">{otherHeading}</h3>
               {otherItems.map((item, i) => (
                 <div key={i} className="comp-item">
                   <div className="comp-item-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="3"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
                       <line x1="18" y1="6" x2="6" y2="18" />
                       <line x1="6" y1="6" x2="18" y2="18" />
                     </svg>
