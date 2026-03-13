@@ -15,7 +15,7 @@ export default async function DefaultLayout({ params, children }: Props) {
 
   return (
     <>
-      <CastSiteNavbar transparentMode={false} bgColor="#ffffff" />
+      <CastSiteNavbar transparentMode={false} bgColor="#005c7a" />
       <main>{children}</main>
       <CastSiteFooter />
     </>

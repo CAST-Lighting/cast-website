@@ -10,7 +10,7 @@ runtime.registerComponent(
     props: {
       className: Style(),
       sectionStyle: Style({ properties: [Style.Padding, Style.Margin] }),
-      bgColor: Color({ label: "Background Color", defaultValue: "#212120" }),
+      bgColor: Color({ label: "Background Color", defaultValue: "#003344" }),
       leftLink1Text: TextInput({ label: "Left Link 1 Text", defaultValue: "EASY CONTRACTOR PRICING" }),
       leftLink1Href: TextInput({ label: "Left Link 1 URL", defaultValue: "/contractor-pricing" }),
       leftLink2Text: TextInput({ label: "Left Link 2 Text", defaultValue: "BECOME A TRADE PRO" }),

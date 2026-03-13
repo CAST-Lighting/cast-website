@@ -89,7 +89,7 @@ const NavigationTopper = forwardRef(function NavigationTopper(
       <div
         ref={ref}
         className={`nav-topper ${sectionStyle || ""} ${className || ""}`}
-        style={{ backgroundColor: bgColor || "var(--color-primary)" }}
+        style={{ backgroundColor: bgColor || "#003344" }}
       >
         <div className="nav-topper-inner">
           <div style={{ display: "flex", alignItems: "center" }}>

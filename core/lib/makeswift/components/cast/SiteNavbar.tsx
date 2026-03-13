@@ -59,7 +59,7 @@ const SiteNavbar = forwardRef(function SiteNavbar(
   {
     className,
     transparentMode = true,
-    bgColor = "#ffffff",
+    bgColor = "#005c7a",
     logoImage,
     logoText = "CAST LIGHTING",
     ctaText = "LOGIN / SIGNUP",
@@ -118,9 +118,9 @@ const SiteNavbar = forwardRef(function SiteNavbar(
   }, [])
 
   const mainBg = transparentMode
-    ? scrolled ? "rgba(33,33,32,0.85)" : "transparent"
+    ? scrolled ? "rgba(0,44,64,0.92)" : "transparent"
     : bgColor
-  const mainTextColor = transparentMode ? "#ffffff" : "var(--color-title)"
+  const mainTextColor = "#ffffff"
 
   const navItemStyle = {
     display: "inline-flex" as const,
@@ -151,41 +151,41 @@ const SiteNavbar = forwardRef(function SiteNavbar(
         @media (max-width: 480px) { :root { --nav-pad: 20px; } }
         .nav-dropdown-anchor { position: relative; }
         .nav-dropdown {
-          position: absolute; top: 100%; left: 0; background: #ffffff;
-          border: 1px solid #eaeaea; border-radius: 10px;
-          box-shadow: 0 12px 40px rgba(0,0,0,0.12); z-index: 40; margin-top: 4px;
+          position: absolute; top: 100%; left: 0; background: #1a2e3a;
+          border: 1px solid rgba(255,255,255,0.1); border-radius: 10px;
+          box-shadow: 0 12px 40px rgba(0,0,0,0.4); z-index: 40; margin-top: 4px;
           min-width: 220px; animation: navDropIn 0.18s ease-out;
         }
         @keyframes navDropIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
         .nav-dropdown-inner { padding: 8px; display: flex; flex-direction: column; gap: 2px; }
         .nav-dropdown-link {
           display: block; padding: 10px 14px; border-radius: 6px; font-size: 14px;
-          font-family: 'Barlow', sans-serif; font-weight: 500; color: var(--color-title);
+          font-family: 'Barlow', sans-serif; font-weight: 500; color: rgba(255,255,255,0.85);
           text-decoration: none; transition: background-color 0.12s, color 0.12s; white-space: nowrap;
         }
-        .nav-dropdown-link:hover { background: #f6f7f8; color: var(--color-primary); }
+        .nav-dropdown-link:hover { background: rgba(255,255,255,0.08); color: #7ebee8; }
         .nav-search-bar {
           position: absolute; top: 100%; left: 0; right: 0; display: flex;
           justify-content: center; margin-top: 8px; z-index: 40; pointer-events: none;
         }
         .nav-search-pill {
-          width: 100%; max-width: 800px; background: #ffffff; border: 1px solid #eaeaea;
-          border-radius: 999px; box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+          width: 100%; max-width: 800px; background: #1a2e3a; border: 1px solid rgba(255,255,255,0.12);
+          border-radius: 999px; box-shadow: 0 12px 40px rgba(0,0,0,0.4);
           pointer-events: auto; animation: navSearchIn 0.2s ease-out;
         }
         @keyframes navSearchIn { from { opacity: 0; transform: translateY(-6px) scale(0.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
         .nav-search-inner { padding: 18px 24px; display: flex; align-items: center; gap: 14px; }
         .nav-search-input {
           flex: 1; border: none; outline: none; font-size: 18px; font-family: 'Barlow', sans-serif;
-          color: var(--color-title); background: transparent;
+          color: #ffffff; background: transparent;
         }
-        .nav-search-input::placeholder { color: #bbb; }
+        .nav-search-input::placeholder { color: rgba(255,255,255,0.35); }
         .nav-search-close {
-          background: none; border: 1px solid #e5e7eb; border-radius: 6px; cursor: pointer;
-          color: #9ca3af; padding: 4px 10px; display: flex; align-items: center; gap: 4px;
+          background: none; border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; cursor: pointer;
+          color: rgba(255,255,255,0.5); padding: 4px 10px; display: flex; align-items: center; gap: 4px;
           font-size: 11px; font-family: 'Barlow', sans-serif; transition: color 0.15s, border-color 0.15s;
         }
-        .nav-search-close:hover { color: #212120; border-color: #ccc; }
+        .nav-search-close:hover { color: #ffffff; border-color: rgba(255,255,255,0.4); }
         .nav-desktop { display: flex !important; }
         .nav-mobile-toggle { display: none !important; }
         @media (max-width: 1023px) {
@@ -193,7 +193,7 @@ const SiteNavbar = forwardRef(function SiteNavbar(
           .nav-mobile-toggle { display: flex !important; }
         }
         .nav-mobile-panel {
-          position: fixed; inset: 0; z-index: 100; background: var(--color-primary);
+          position: fixed; inset: 0; z-index: 100; background: #003344;
           overflow-y: auto; padding: 80px var(--nav-pad) 40px; font-family: 'Barlow', sans-serif;
         }
         .nav-mob-btn {
@@ -268,7 +268,7 @@ const SiteNavbar = forwardRef(function SiteNavbar(
               <a href="/cart" aria-label="Cart" style={{ color: mainTextColor, padding: 6, display: "flex", alignItems: "center", textDecoration: "none" }}>
                 <ShoppingCart size={20} />
               </a>
-              <a href={ctaHref} className="nav-desktop" style={{ display: "inline-flex", alignItems: "center", padding: "8px 18px", fontSize: 12, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.06em", textDecoration: "none", borderRadius: 4, border: `1.5px solid ${transparentMode ? "rgba(255,255,255,0.5)" : "var(--color-primary)"}`, color: mainTextColor, background: "transparent", whiteSpace: "nowrap" }}>
+              <a href={ctaHref} className="nav-desktop" style={{ display: "inline-flex", alignItems: "center", padding: "8px 18px", fontSize: 12, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.06em", textDecoration: "none", borderRadius: 4, border: "1.5px solid rgba(255,255,255,0.5)", color: mainTextColor, background: "transparent", whiteSpace: "nowrap" }}>
                 {ctaText}
               </a>
               <button type="button" onClick={() => setMobileMenuOpen(!mobileMenuOpen)} aria-label="Toggle menu" className="nav-mobile-toggle" style={{ background: "none", border: "none", cursor: "pointer", color: mainTextColor, padding: 4, display: "none", alignItems: "center" }}>

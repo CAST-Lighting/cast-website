@@ -10,7 +10,7 @@ runtime.registerComponent(
     props: {
       className: Style(),
       transparentMode: Checkbox({ label: "Transparent Mode", defaultValue: true }),
-      bgColor: Color({ label: "Background Color (Solid Mode)", defaultValue: "#ffffff" }),
+      bgColor: Color({ label: "Background Color (Solid Mode)", defaultValue: "#005c7a" }),
       logoImage: Image({ label: "Logo Image" }),
       logoText: TextInput({ label: "Logo Text (Fallback)", defaultValue: "CAST LIGHTING" }),
       ctaText: TextInput({ label: "CTA Button Text", defaultValue: "LOGIN / SIGNUP" }),
