@@ -18,7 +18,6 @@ runtime.registerComponent(
           },
         }),
         label: 'Slides',
-        getItemLabel: (_item: any, index: number) => `Slide ${(index ?? 0) + 1}`,
       }),
 
       // ── Badge ───────────────────────────────────────────────
@@ -33,7 +32,6 @@ runtime.registerComponent(
           },
         }),
         label: 'Rotating Phrases',
-        getItemLabel: (item: any) => item?.text || 'Phrase',
       }),
 
       // ── Description ─────────────────────────────────────────
