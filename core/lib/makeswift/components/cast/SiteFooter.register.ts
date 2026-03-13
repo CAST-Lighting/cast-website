@@ -1,5 +1,5 @@
 import { lazy } from "react"
-import { Style, Color, Image, Number as NumberControl, Select, TextInput } from "@makeswift/runtime/controls"
+import { Style, Color, Image, Number as NumberControl, Select, TextInput, List, Shape } from "@makeswift/runtime/controls"
 import { runtime } from "~/lib/makeswift/runtime"
 
 runtime.registerComponent(
@@ -37,6 +37,50 @@ runtime.registerComponent(
       instagramHref: TextInput({ label: 'Instagram URL', defaultValue: '#' }),
       youtubeHref: TextInput({ label: 'YouTube URL', defaultValue: '#' }),
       linkedinHref: TextInput({ label: 'LinkedIn URL', defaultValue: '#' }),
+      col1Title: TextInput({ label: 'Column 1 Title', defaultValue: 'Products' }),
+      col1Links: List({
+        label: 'Column 1 Links',
+        type: Shape({
+          type: {
+            label: TextInput({ label: 'Label', defaultValue: '' }),
+            href: TextInput({ label: 'URL', defaultValue: '#' }),
+          },
+        }),
+        getItemLabel(item) { return item?.label || 'Link' },
+      }),
+      col2Title: TextInput({ label: 'Column 2 Title', defaultValue: 'Resources' }),
+      col2Links: List({
+        label: 'Column 2 Links',
+        type: Shape({
+          type: {
+            label: TextInput({ label: 'Label', defaultValue: '' }),
+            href: TextInput({ label: 'URL', defaultValue: '#' }),
+          },
+        }),
+        getItemLabel(item) { return item?.label || 'Link' },
+      }),
+      col3Title: TextInput({ label: 'Column 3 Title', defaultValue: 'Company' }),
+      col3Links: List({
+        label: 'Column 3 Links',
+        type: Shape({
+          type: {
+            label: TextInput({ label: 'Label', defaultValue: '' }),
+            href: TextInput({ label: 'URL', defaultValue: '#' }),
+          },
+        }),
+        getItemLabel(item) { return item?.label || 'Link' },
+      }),
+      col4Title: TextInput({ label: 'Column 4 Title', defaultValue: 'Support' }),
+      col4Links: List({
+        label: 'Column 4 Links',
+        type: Shape({
+          type: {
+            label: TextInput({ label: 'Label', defaultValue: '' }),
+            href: TextInput({ label: 'URL', defaultValue: '#' }),
+          },
+        }),
+        getItemLabel(item) { return item?.label || 'Link' },
+      }),
     },
   }
 )

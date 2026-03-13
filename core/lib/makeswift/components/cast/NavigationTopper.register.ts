@@ -21,9 +21,10 @@ runtime.registerComponent(
       phone: TextInput({ label: "Phone Number", defaultValue: "(973) 423-2303" }),
       rightLinkText: TextInput({ label: "Right Link Text", defaultValue: "Contact Us" }),
       rightLinkHref: TextInput({ label: "Right Link URL", defaultValue: "/contact" }),
-      marqueeItems: List(TextInput({ label: "Message" }), {
+      marqueeItems: List({
         label: "Marquee Messages",
-        getItemLabel: (item) => item ?? "Message",
+        type: TextInput({ label: "Message" }),
+        getItemLabel(item) { return (item as string) || "Message" },
       }),
     },
   }

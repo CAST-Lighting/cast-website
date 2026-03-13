@@ -91,7 +91,7 @@ const TradeProSection = forwardRef(function TradeProSection(
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
             {benefits.map((b, i) => {
-              const Icon = BENEFIT_ICONS[i % BENEFIT_ICONS.length]
+              const Icon = BENEFIT_ICONS[i % BENEFIT_ICONS.length] as React.ElementType
               return (
                 <div key={i} className="p-6 rounded-xl border border-border bg-secondary/30 hover:border-primary/30 transition-all group">
                   <div className="icon-box mb-5 group-hover:bg-primary/20 transition-colors">

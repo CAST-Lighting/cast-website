@@ -110,7 +110,7 @@ const ContentMedia = forwardRef(function ContentMedia(
 
               <div className="space-y-6 mb-10">
                 {features.map((item, i) => {
-                  const Icon = FEATURE_ICONS[i % FEATURE_ICONS.length]
+                  const Icon = FEATURE_ICONS[i % FEATURE_ICONS.length] as React.ElementType
                   return (
                     <div key={i} className="flex gap-4">
                       <div className="icon-box">

@@ -2,12 +2,51 @@
 import { forwardRef, type Ref } from "react"
 import { Facebook, Instagram, Youtube, Linkedin, Phone, MapPin } from "lucide-react"
 
-const footerLinks = {
-  Products: ["Path Lights", "Spot Lights", "Wall Wash", "Well Lights", "Deck Lights", "Transformers"],
-  Resources: ["Product Catalog", "Installation Guides", "Design Tips", "Case Studies", "FAQs"],
-  Company: ["About CAST", "Careers", "Contact Us", "Dealer Locator", "Blog"],
-  Support: ["Warranty Info", "Returns", "Shipping", "Technical Support", "Trade Pro Program"]
-}
+const FALLBACK_COLS = [
+  {
+    title: "Products",
+    links: [
+      { label: "Path Lights", href: "#" },
+      { label: "Spot Lights", href: "#" },
+      { label: "Wall Wash", href: "#" },
+      { label: "Well Lights", href: "#" },
+      { label: "Deck Lights", href: "#" },
+      { label: "Transformers", href: "#" },
+    ],
+  },
+  {
+    title: "Resources",
+    links: [
+      { label: "Product Catalog", href: "#" },
+      { label: "Installation Guides", href: "#" },
+      { label: "Design Tips", href: "#" },
+      { label: "Case Studies", href: "#" },
+      { label: "FAQs", href: "#" },
+    ],
+  },
+  {
+    title: "Company",
+    links: [
+      { label: "About CAST", href: "#" },
+      { label: "Careers", href: "#" },
+      { label: "Contact Us", href: "#" },
+      { label: "Dealer Locator", href: "#" },
+      { label: "Blog", href: "#" },
+    ],
+  },
+  {
+    title: "Support",
+    links: [
+      { label: "Warranty Info", href: "#" },
+      { label: "Returns", href: "#" },
+      { label: "Shipping", href: "#" },
+      { label: "Technical Support", href: "#" },
+      { label: "Trade Pro Program", href: "#" },
+    ],
+  },
+]
+
+interface LinkItem { label?: string; href?: string }
 
 const SiteFooter = forwardRef(function SiteFooter(
   {
@@ -29,6 +68,14 @@ const SiteFooter = forwardRef(function SiteFooter(
     instagramHref,
     youtubeHref,
     linkedinHref,
+    col1Title,
+    col1Links,
+    col2Title,
+    col2Links,
+    col3Title,
+    col3Links,
+    col4Title,
+    col4Links,
   }: {
     className?: string
     bgImage?: string
@@ -48,6 +95,14 @@ const SiteFooter = forwardRef(function SiteFooter(
     instagramHref?: string
     youtubeHref?: string
     linkedinHref?: string
+    col1Title?: string
+    col1Links?: LinkItem[]
+    col2Title?: string
+    col2Links?: LinkItem[]
+    col3Title?: string
+    col3Links?: LinkItem[]
+    col4Title?: string
+    col4Links?: LinkItem[]
   },
   ref: Ref<HTMLElement>
 ) {
@@ -65,26 +120,26 @@ const SiteFooter = forwardRef(function SiteFooter(
     { icon: Linkedin, href: linkedinHref || "#", label: "LinkedIn" },
   ]
 
+  const cols = [
+    { title: col1Title || FALLBACK_COLS[0].title, links: col1Links?.length ? col1Links : FALLBACK_COLS[0].links },
+    { title: col2Title || FALLBACK_COLS[1].title, links: col2Links?.length ? col2Links : FALLBACK_COLS[1].links },
+    { title: col3Title || FALLBACK_COLS[2].title, links: col3Links?.length ? col3Links : FALLBACK_COLS[2].links },
+    { title: col4Title || FALLBACK_COLS[3].title, links: col4Links?.length ? col4Links : FALLBACK_COLS[3].links },
+  ]
+
   return (
     <footer
       ref={ref}
       className={`relative border-t border-border ${className || ""}`}
       style={{ ...(!bgImageUrl ? { background: sectionBackground } : {}), '--section-line-height': lineHeight, paddingTop: paddingTop ?? 64, paddingBottom: paddingBottom ?? 64 } as React.CSSProperties}
     >
-      {/* bg image layer */}
       {bgImageUrl && (
         <img src={bgImageUrl} alt="" className="absolute inset-0 w-full h-full object-cover" style={{ zIndex: 0 }} />
       )}
-      {/* overlay layer — shown when image present */}
       {bgImageUrl && (
-        <div className="absolute inset-0" style={{
-          zIndex: 1,
-          background: sectionBackground,
-          opacity: overlayOpacity
-        }} />
+        <div className="absolute inset-0" style={{ zIndex: 1, background: sectionBackground, opacity: overlayOpacity }} />
       )}
 
-      {/* content — always relative z-10 */}
       <div className="relative" style={{ zIndex: 10 }}>
         <div className="site-container">
           <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-10 mb-12">
@@ -112,14 +167,14 @@ const SiteFooter = forwardRef(function SiteFooter(
               </div>
             </div>
 
-            {Object.entries(footerLinks).map(([title, links]) => (
-              <div key={title}>
-                <h4 className="heading-style-h6 tracking-wider text-foreground mb-4 uppercase" style={{ fontSize: '14px' }}>{title}</h4>
+            {cols.map((col) => (
+              <div key={col.title}>
+                <h4 className="heading-style-h6 tracking-wider text-foreground mb-4 uppercase" style={{ fontSize: '14px' }}>{col.title}</h4>
                 <ul className="space-y-2.5">
-                  {links.map((link) => (
-                    <li key={link}>
-                      <a href="#" className="text-size-small text-muted-foreground hover:text-primary transition-colors">
-                        {link}
+                  {col.links.map((link, i) => (
+                    <li key={i}>
+                      <a href={link.href || '#'} className="text-size-small text-muted-foreground hover:text-primary transition-colors">
+                        {link.label}
                       </a>
                     </li>
                   ))}
