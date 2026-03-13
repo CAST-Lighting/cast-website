@@ -10,7 +10,7 @@ runtime.registerComponent(
     props: {
       className: Style(),
       sectionStyle: Style({ properties: [Style.Padding, Style.Margin] }),
-      bgColor: Color({ label: "Background Color", defaultValue: "#f6f7f8" }),
+      bgColor: Color({ label: "Background Color", defaultValue: "#25262d" }),
       overline: TextInput({ label: "Overline", defaultValue: "Frequently Bought Together" }),
       heading: TextInput({ label: "Heading", defaultValue: "Bundle These Products" }),
       buttonText: TextInput({ label: "Button Text", defaultValue: "Add All To Cart" }),

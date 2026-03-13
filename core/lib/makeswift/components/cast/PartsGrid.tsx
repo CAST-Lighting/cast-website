@@ -43,7 +43,7 @@ const PartsGrid = forwardRef(function PartsGrid(
     <div
       ref={ref}
       className={`${className || ""} ${sectionStyle || ""}`}
-      style={{ width: "100%", boxSizing: "border-box", backgroundColor: bgColor || "#ffffff", borderTop: "1px solid #e9ecef" }}
+      style={{ width: "100%", boxSizing: "border-box", backgroundColor: bgColor || "#25262d", borderTop: "1px solid rgba(255,255,255,0.08)" }}
     >
       <div className="site-container" style={{ paddingTop: 56, paddingBottom: 56 }}>
         {overline && (
@@ -54,7 +54,7 @@ const PartsGrid = forwardRef(function PartsGrid(
         </h2>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 20 }}>
           {list.map((part, i) => (
-            <div key={i} style={{ background: "#f8f9fa", border: "1px solid #e9ecef", borderRadius: 8, overflow: "hidden" }}>
+            <div key={i} style={{ background: "#2d353c", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 8, overflow: "hidden" }}>
               <div style={{ aspectRatio: "1", background: "#e9ecef", display: "flex", alignItems: "center", justifyContent: "center" }}>
                 {part.image
                   ? <img src={part.image} alt={part.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
@@ -67,7 +67,7 @@ const PartsGrid = forwardRef(function PartsGrid(
                 <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 15, fontWeight: 700, color: "var(--color-primary)", margin: "0 0 10px" }}>{part.price}</p>
                 <div style={{ display: "flex", gap: 6 }}>
                   <a href={part.href || "#"} className="sg-btn-solid-sm" style={{ flex: 1, justifyContent: "center", textDecoration: "none" }}>Add Cart</a>
-                  <a href={part.href || "#"} style={{ width: 32, height: 32, border: "1.5px solid #dee2e6", borderRadius: 4, background: "#fff", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }} aria-label="View product">
+                  <a href={part.href || "#"} style={{ width: 32, height: 32, border: "1px solid rgba(255,255,255,0.12)", borderRadius: 4, background: "#2d353c", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }} aria-label="View product">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--color-content)" strokeWidth="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
                   </a>
                 </div>

@@ -10,7 +10,7 @@ runtime.registerComponent(
     props: {
       className: Style(),
       sectionStyle: Style({ properties: [Style.Padding, Style.Margin] }),
-      bgColor: Color({ label: "Background Color", defaultValue: "#f6f7f8" }),
+      bgColor: Color({ label: "Background Color", defaultValue: "#2d353c" }),
       heading: TextInput({ label: "Heading", defaultValue: "Documents" }),
       documents: List({
         label: "Documents",

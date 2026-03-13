@@ -56,11 +56,11 @@ const ReviewsCarousel = forwardRef(function ReviewsCarousel(
     <div
       ref={ref}
       className={`${className || ""} ${sectionStyle || ""}`}
-      style={{ width: "100%", boxSizing: "border-box", backgroundColor: bgColor || "#f6f7f8" }}
+      style={{ width: "100%", boxSizing: "border-box", backgroundColor: bgColor || "#25262d" }}
     >
       <style>{`
         .rc-card {
-          background: #fff;
+          background: #2d353c;
           border-radius: 8px;
           padding: 28px;
           box-shadow: 0 2px 12px rgba(0,0,0,0.07);

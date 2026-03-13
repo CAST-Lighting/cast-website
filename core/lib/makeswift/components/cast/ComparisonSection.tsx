@@ -260,7 +260,7 @@ const ComparisonSection = forwardRef(function ComparisonSection(
 
         /* Other brands card — light muted */
         .comp-other-card {
-          background: #ffffff;
+          background: #2d353c;
           border-radius: 16px;
           padding: 40px 36px;
           border: 1px solid #eaeaea;
@@ -318,7 +318,7 @@ const ComparisonSection = forwardRef(function ComparisonSection(
       <section
         ref={ref}
         className={`comp-section ${sectionStyle || ""} ${className || ""}`}
-        style={{ position: "relative", backgroundColor: bgColor || "#f6f7f8" }}
+        style={{ position: "relative", backgroundColor: bgColor || "#25262d" }}
       >
         {bgImage && (
           <div style={{ position: "absolute", inset: 0, backgroundImage: `url(${bgImage})`, backgroundSize: "cover", backgroundPosition: "center", zIndex: 0 }} />

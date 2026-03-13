@@ -11,7 +11,7 @@ runtime.registerComponent(
       className: Style(),
       sectionStyle: Style({ properties: [Style.Padding, Style.Margin] }),
       bgImage: Image({ label: "Background Image" }),
-      bgColor: Color({ label: "Background Color", defaultValue: "#f6f7f8" }),
+      bgColor: Color({ label: "Background Color", defaultValue: "#2d353c" }),
       overlayColor: Color({ label: "Overlay Color" }),
       overlayOpacity: Number({ label: "Overlay Opacity %", defaultValue: 0, min: 0, max: 100, step: 5 }),
       subtitle: TextInput({ label: "Subtitle", defaultValue: "Benefits for Contractors & Installers" }),

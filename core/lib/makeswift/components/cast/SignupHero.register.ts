@@ -10,7 +10,7 @@ runtime.registerComponent(
     props: {
       className: Style(),
       sectionStyle: Style({ properties: [Style.Padding, Style.Margin] }),
-      bgColor: Color({ label: "Background Color", defaultValue: "#f6f7f8" }),
+      bgColor: Color({ label: "Background Color", defaultValue: "#25262d" }),
       image: Image({ label: "Hero Background Image" }),
       overline: TextInput({ label: "Overline", defaultValue: "Apply Today" }),
       heading: TextInput({ label: "Heading", defaultValue: "Join The CAST TradePro Program" }),

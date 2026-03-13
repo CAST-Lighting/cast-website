@@ -10,7 +10,7 @@ runtime.registerComponent(
     props: {
       className: Style(),
       sectionStyle: Style({ properties: [Style.Padding, Style.Margin] }),
-      bgColor: Color({ label: "Background Color", defaultValue: "#ffffff" }),
+      bgColor: Color({ label: "Background Color", defaultValue: "#25262d" }),
       productName: TextInput({ label: "Product Name", defaultValue: "Brass Path Light" }),
       modelNumber: TextInput({ label: "Model Number", defaultValue: "BPL-55-BR" }),
       rating: TextInput({ label: "Star Rating (1–5)", defaultValue: "4.9" }),

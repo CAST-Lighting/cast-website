@@ -10,7 +10,7 @@ runtime.registerComponent(
     props: {
       className: Style(),
       sectionStyle: Style({ properties: [Style.Padding, Style.Margin] }),
-      bgColor: Color({ label: "Background Color", defaultValue: "#ffffff" }),
+      bgColor: Color({ label: "Background Color", defaultValue: "#2d353c" }),
       heading: TextInput({ label: "Heading", defaultValue: "Product Description" }),
       description: TextArea({ label: "Description", defaultValue: "" }),
       bulletPoints: List({

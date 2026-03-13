@@ -44,7 +44,7 @@ const BundleProducts = forwardRef(function BundleProducts(
     <div
       ref={ref}
       className={`${className || ""} ${sectionStyle || ""}`}
-      style={{ width: "100%", boxSizing: "border-box", backgroundColor: bgColor || "#f6f7f8", borderTop: "1px solid #e9ecef" }}
+      style={{ width: "100%", boxSizing: "border-box", backgroundColor: bgColor || "#25262d", borderTop: "1px solid rgba(255,255,255,0.08)" }}
     >
       <div className="site-container" style={{ paddingTop: 56, paddingBottom: 56 }}>
         {overline && (
@@ -57,7 +57,7 @@ const BundleProducts = forwardRef(function BundleProducts(
         <div style={{ display: "flex", alignItems: "flex-start", gap: 24, flexWrap: "wrap" }}>
           <div style={{ display: "flex", gap: 20, flexWrap: "wrap", flex: 1 }}>
             {list.map((item, i) => (
-              <div key={i} style={{ background: "#fff", border: "1px solid #e9ecef", borderRadius: 8, overflow: "hidden", width: 180, flexShrink: 0 }}>
+              <div key={i} style={{ background: "#2d353c", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 8, overflow: "hidden", width: 180, flexShrink: 0 }}>
                 <div style={{ aspectRatio: "1", background: "#f1f3f5", display: "flex", alignItems: "center", justifyContent: "center", position: "relative" }}>
                   {item.image
                     ? <img src={item.image} alt={item.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
@@ -75,7 +75,7 @@ const BundleProducts = forwardRef(function BundleProducts(
             ))}
           </div>
 
-          <div style={{ background: "#fff", border: "1px solid #e9ecef", borderRadius: 8, padding: "24px", minWidth: 200, alignSelf: "center" }}>
+          <div style={{ background: "#2d353c", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 8, padding: "24px", minWidth: 200, alignSelf: "center" }}>
             <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 14, color: "var(--color-content)", margin: "0 0 8px" }}>Total Price:</p>
             <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 24, fontWeight: 700, color: "var(--color-title)", margin: "0 0 20px" }}>${totalStr}</p>
             <button className="sg-btn-solid-md" style={{ width: "100%", justifyContent: "center" }}>

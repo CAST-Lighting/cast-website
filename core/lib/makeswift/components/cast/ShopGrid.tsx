@@ -43,7 +43,7 @@ const CATEGORIES = ["All", "Path & Area Lights", "Accent & Spot Lights", "Transf
 const PRICE_RANGES = ["$0 – $100", "$101 – $500", "$501 – $1,000", "$1,000+"]
 
 const ProductCard = ({ product }: { product: Product }) => (
-  <div style={{ background: "#fff", border: "1px solid #e9ecef", borderRadius: 8, overflow: "hidden", display: "flex", flexDirection: "column" }}>
+  <div style={{ background: "#2d353c", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 8, overflow: "hidden", display: "flex", flexDirection: "column" }}>
     {/* Image placeholder */}
     <div style={{ aspectRatio: "4/3", background: "#f1f3f5", display: "flex", alignItems: "center", justifyContent: "center", position: "relative" }}>
       {product.image
@@ -89,14 +89,14 @@ const ShopGrid = forwardRef(function ShopGrid(
     <div
       ref={ref}
       className={`${className || ""} ${sectionStyle || ""}`}
-      style={{ width: "100%", boxSizing: "border-box", backgroundColor: bgColor || "#f6f7f8" }}
+      style={{ width: "100%", boxSizing: "border-box", backgroundColor: bgColor || "#25262d" }}
     >
       <style>{`
         .sg-sidebar {
           width: 220px;
           flex-shrink: 0;
-          background: #fff;
-          border: 1px solid #e9ecef;
+          background: #2d353c;
+          border: 1px solid rgba(255,255,255,0.1);
           border-radius: 8px;
           padding: 24px;
           align-self: flex-start;
@@ -122,7 +122,7 @@ const ShopGrid = forwardRef(function ShopGrid(
         .sg-filter-item input { cursor: pointer; accent-color: var(--color-primary); }
         .sg-search-input {
           width: 100%; box-sizing: border-box;
-          border: 1.5px solid #dee2e6; border-radius: 4px;
+          border: 1px solid rgba(255,255,255,0.12); border-radius: 4px;
           padding: 8px 12px; font-family: 'Barlow', sans-serif; font-size: 14px;
           outline: none; color: var(--color-title);
           transition: border-color 200ms;
@@ -208,7 +208,7 @@ const ShopGrid = forwardRef(function ShopGrid(
                   <p className="sg-section-heading">Shop Lighting</p>
                   <h2 className="sg-section-title">{cat}</h2>
                   <div style={{ display: "flex", justifyContent: "flex-end", marginBottom: 16 }}>
-                    <select style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, border: "1px solid #dee2e6", borderRadius: 4, padding: "6px 12px", color: "var(--color-title)", background: "#fff" }}>
+                    <select style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, border: "1px solid rgba(255,255,255,0.12)", borderRadius: 4, padding: "6px 12px", color: "var(--color-title)", background: "#2d353c" }}>
                       <option>Sort Products</option>
                       <option>Price: Low to High</option>
                       <option>Price: High to Low</option>

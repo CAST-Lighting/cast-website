@@ -48,7 +48,7 @@ const ProductDocuments = forwardRef(function ProductDocuments(
     <div
       ref={ref}
       className={`${className || ""} ${sectionStyle || ""}`}
-      style={{ width: "100%", boxSizing: "border-box", backgroundColor: bgColor || "#f6f7f8", borderTop: "1px solid #e9ecef" }}
+      style={{ width: "100%", boxSizing: "border-box", backgroundColor: bgColor || "#25262d", borderTop: "1px solid rgba(255,255,255,0.08)" }}
     >
       <div className="site-container" style={{ paddingTop: 56, paddingBottom: 56 }}>
         <h2 style={{ fontSize: "var(--h3-size)", fontWeight: "var(--heading-weight, 700)", lineHeight: "var(--heading-line-height, 1.1)", fontFamily: "'Essonnes', 'Playfair Display', serif", color: "var(--color-title)", margin: "0 0 32px" }}>
@@ -56,7 +56,7 @@ const ProductDocuments = forwardRef(function ProductDocuments(
         </h2>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 16 }}>
           {list.map((doc, i) => (
-            <div key={i} style={{ background: "#fff", border: "1px solid #e9ecef", borderRadius: 8, padding: "20px", display: "flex", gap: 16, alignItems: "flex-start" }}>
+            <div key={i} style={{ background: "#2d353c", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 8, padding: "20px", display: "flex", gap: 16, alignItems: "flex-start" }}>
               <FileIcon type={doc.fileType} />
               <div style={{ flex: 1, minWidth: 0 }}>
                 <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 15, fontWeight: 600, color: "var(--color-title)", margin: "0 0 4px" }}>{doc.title}</p>

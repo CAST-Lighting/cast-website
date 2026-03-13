@@ -56,7 +56,7 @@ const ProductHero = forwardRef(function ProductHero(
     <div
       ref={ref}
       className={className || ""}
-      style={{ width: "100%", boxSizing: "border-box", backgroundColor: bgColor || "#ffffff" }}
+      style={{ width: "100%", boxSizing: "border-box", backgroundColor: bgColor || "#25262d" }}
     >
       <style>{`
         .ph-thumb {
@@ -67,8 +67,8 @@ const ProductHero = forwardRef(function ProductHero(
         }
         .ph-thumb.active { border-color: var(--color-primary); }
         .ph-thumb:hover { border-color: var(--color-accent); }
-        .ph-qty { display: flex; align-items: center; border: 1.5px solid #dee2e6; border-radius: 4px; overflow: hidden; width: fit-content; }
-        .ph-qty button { width: 36px; height: 36px; border: none; background: #f8f9fa; cursor: pointer; font-size: 18px; color: var(--color-primary); display: flex; align-items: center; justify-content: center; transition: background 200ms; }
+        .ph-qty { display: flex; align-items: center; border: 1px solid rgba(255,255,255,0.12); border-radius: 4px; overflow: hidden; width: fit-content; }
+        .ph-qty button { width: 36px; height: 36px; border: none; background: #2d353c; cursor: pointer; font-size: 18px; color: var(--color-primary); display: flex; align-items: center; justify-content: center; transition: background 200ms; }
         .ph-qty button:hover { background: #e9ecef; }
         .ph-qty input { width: 48px; border: none; text-align: center; font-family: 'Barlow', sans-serif; font-size: 16px; font-weight: 600; color: var(--color-title); outline: none; }
         .ph-tradepro-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(0,73,96,0.08); color: var(--color-primary); font-family: 'Barlow', sans-serif; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; padding: 4px 10px; border-radius: 3px; }
@@ -139,7 +139,7 @@ const ProductHero = forwardRef(function ProductHero(
                   Add To Quote
                   {tradeProOnly && <span className="ph-tradepro-badge" style={{ marginLeft: 8 }}>TradePro Only</span>}
                 </button>
-                <button style={{ width: 44, height: 44, border: "2px solid #dee2e6", borderRadius: 4, background: "#fff", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, transition: "border-color 200ms" }} aria-label="Add to wishlist">
+                <button style={{ width: 44, height: 44, border: "1.5px solid rgba(255,255,255,0.12)", borderRadius: 4, background: "#2d353c", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, transition: "border-color 200ms" }} aria-label="Add to wishlist">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-content)" strokeWidth="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" /></svg>
                 </button>
               </div>

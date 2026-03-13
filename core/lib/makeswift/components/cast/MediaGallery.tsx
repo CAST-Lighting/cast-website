@@ -68,7 +68,7 @@ const MediaGallery = forwardRef(function MediaGallery(
     <div
       ref={ref}
       className={`${className || ""} ${sectionStyle || ""}`}
-      style={{ width: "100%", boxSizing: "border-box", backgroundColor: bgColor || "#f6f7f8", borderTop: "1px solid #e9ecef" }}
+      style={{ width: "100%", boxSizing: "border-box", backgroundColor: bgColor || "#25262d", borderTop: "1px solid rgba(255,255,255,0.08)" }}
     >
       <div className="site-container" style={{ paddingTop: 56, paddingBottom: 56 }}>
         <h2 style={{ fontSize: "var(--h3-size)", fontWeight: "var(--heading-weight, 700)", lineHeight: "var(--heading-line-height, 1.1)", fontFamily: "'Essonnes', 'Playfair Display', serif", color: "var(--color-title)", margin: "0 0 32px" }}>
@@ -80,7 +80,7 @@ const MediaGallery = forwardRef(function MediaGallery(
             <div
               key={i}
               onClick={() => setLightbox(i)}
-              style={{ cursor: "pointer", borderRadius: 8, overflow: "hidden", border: "1px solid #e9ecef" }}
+              style={{ cursor: "pointer", borderRadius: 8, overflow: "hidden", border: "1px solid rgba(255,255,255,0.1)" }}
             >
               {item.src ? (
                 item.type === "video" ? (
@@ -100,7 +100,7 @@ const MediaGallery = forwardRef(function MediaGallery(
                 <PlaceholderImage caption={item.caption} isVideo={item.type === "video"} />
               )}
               {item.caption && (
-                <div style={{ padding: "10px 12px", background: "#fff" }}>
+                <div style={{ padding: "10px 12px", background: "#2d353c" }}>
                   <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, color: "var(--color-content)", margin: 0 }}>{item.caption}</p>
                 </div>
               )}

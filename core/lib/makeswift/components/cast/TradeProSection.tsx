@@ -127,7 +127,7 @@ const TradeProSection = forwardRef(function TradeProSection(
           width: 88px;
           height: 88px;
           border-radius: 50%;
-          background: #ffffff;
+          background: #2d353c;
           box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
           display: flex;
           align-items: center;
@@ -203,7 +203,7 @@ const TradeProSection = forwardRef(function TradeProSection(
       <section
         ref={ref}
         className={`tp-section ${sectionStyle || ""} ${className || ""}`}
-        style={{ position: "relative", backgroundColor: bgColor || "#f6f7f8" }}
+        style={{ position: "relative", backgroundColor: bgColor || "#25262d" }}
       >
         {bgImage && (
           <div style={{ position: "absolute", inset: 0, backgroundImage: `url(${bgImage})`, backgroundSize: "cover", backgroundPosition: "center", zIndex: 0 }} />

@@ -11,7 +11,7 @@ runtime.registerComponent(
       className: Style(),
       sectionStyle: Style({ properties: [Style.Padding, Style.Margin] }),
       bgImage: Image({ label: "Background Image" }),
-      bgColor: Color({ label: "Background Color", defaultValue: "#ffffff" }),
+      bgColor: Color({ label: "Background Color", defaultValue: "#25262d" }),
       overlayColor: Color({ label: "Overlay Color" }),
       overlayOpacity: Number({ label: "Overlay Opacity %", defaultValue: 0, min: 0, max: 100, step: 5 }),
       title: TextInput({ label: "Title", defaultValue: "Product Categories" }),
