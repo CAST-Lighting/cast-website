@@ -70,7 +70,7 @@
   font-weight: 700; line-height: 1.15; letter-spacing: -0.01em;
 }
 .section-desc {
-  font-size: 18px; line-height: 1.6; color: hsl(var(--muted-foreground));
+  font-size: 18px; line-height: var(--section-line-height, 1.6); color: hsl(var(--muted-foreground));
 }
 .card-title {
   font-family: 'Essonnes', 'Playfair Display', serif;

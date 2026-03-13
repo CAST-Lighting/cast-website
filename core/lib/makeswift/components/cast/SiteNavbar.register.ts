@@ -1,5 +1,5 @@
 import { lazy } from "react"
-import { Style } from "@makeswift/runtime/controls"
+import { Style, Number as NumberControl } from "@makeswift/runtime/controls"
 import { runtime } from "~/lib/makeswift/runtime"
 
 runtime.registerComponent(
@@ -9,6 +9,7 @@ runtime.registerComponent(
     label: "Site / Navbar",
     props: {
       className: Style(),
+      lineHeight: NumberControl({ label: 'Text Line Height', defaultValue: 1.6, min: 1, max: 3, step: 0.05 }),
     },
   }
 )
