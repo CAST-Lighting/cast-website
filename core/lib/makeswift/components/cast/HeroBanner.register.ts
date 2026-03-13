@@ -11,28 +11,30 @@ runtime.registerComponent(
       className: Style(),
 
       // ── Slides ──────────────────────────────────────────────
-      slides: List(
-        Shape({
+      slides: List({
+        type: Shape({
           type: {
             image: Image({ label: 'Slide Image' }),
           },
         }),
-        { label: 'Slides', getItemLabel: (_item, index) => `Slide ${(index ?? 0) + 1}` }
-      ),
+        label: 'Slides',
+        getItemLabel: (_item: any, index: number) => `Slide ${(index ?? 0) + 1}`,
+      }),
 
       // ── Badge ───────────────────────────────────────────────
       badgeText: TextInput({ label: 'Badge Text', defaultValue: 'New 2026 Product Catalog Now Available' }),
 
       // ── Heading ─────────────────────────────────────────────
       headingLine1: TextInput({ label: 'Heading', defaultValue: 'Premium Landscape Lighting' }),
-      rotatingPhrasesList: List(
-        Shape({
+      rotatingPhrasesList: List({
+        type: Shape({
           type: {
             text: TextInput({ label: 'Phrase', defaultValue: 'Built to Last Forever' }),
           },
         }),
-        { label: 'Rotating Phrases', getItemLabel: (item) => (item as any)?.text || 'Phrase' }
-      ),
+        label: 'Rotating Phrases',
+        getItemLabel: (item: any) => item?.text || 'Phrase',
+      }),
 
       // ── Description ─────────────────────────────────────────
       description: TextInput({
