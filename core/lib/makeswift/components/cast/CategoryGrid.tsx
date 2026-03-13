@@ -8,6 +8,19 @@ const categoryIcons = [Lamp, Zap, Sun, CircleDot, SquareAsterisk, Zap, Focus, Li
 
 interface BCCategory { name: string; path: string }
 
+interface CategoryItem { name?: string; href?: string }
+
+const FALLBACK_CATEGORIES = [
+  { name: "Path Lights", href: "#" },
+  { name: "Spot Lights", href: "#" },
+  { name: "Wall Wash", href: "#" },
+  { name: "Well Lights", href: "#" },
+  { name: "Deck Lights", href: "#" },
+  { name: "Flood Lights", href: "#" },
+  { name: "Accent Lights", href: "#" },
+  { name: "Transformers", href: "#" },
+]
+
 const CategoryGrid = forwardRef(function CategoryGrid(
   {
     className,
@@ -23,22 +36,7 @@ const CategoryGrid = forwardRef(function CategoryGrid(
     sectionTitle,
     sectionTitleAccent,
     sectionDescription,
-    cat1Name,
-    cat2Name,
-    cat3Name,
-    cat4Name,
-    cat5Name,
-    cat6Name,
-    cat7Name,
-    cat8Name,
-    cat1Href,
-    cat2Href,
-    cat3Href,
-    cat4Href,
-    cat5Href,
-    cat6Href,
-    cat7Href,
-    cat8Href,
+    categories: propCategories,
   }: {
     className?: string
     bgImage?: string
@@ -53,22 +51,7 @@ const CategoryGrid = forwardRef(function CategoryGrid(
     sectionTitle?: string
     sectionTitleAccent?: string
     sectionDescription?: string
-    cat1Name?: string
-    cat2Name?: string
-    cat3Name?: string
-    cat4Name?: string
-    cat5Name?: string
-    cat6Name?: string
-    cat7Name?: string
-    cat8Name?: string
-    cat1Href?: string
-    cat2Href?: string
-    cat3Href?: string
-    cat4Href?: string
-    cat5Href?: string
-    cat6Href?: string
-    cat7Href?: string
-    cat8Href?: string
+    categories?: CategoryItem[]
   },
   ref: Ref<HTMLElement>
 ) {
@@ -89,15 +72,16 @@ const CategoryGrid = forwardRef(function CategoryGrid(
     ? `linear-gradient(${gradientDirection || 'to bottom'}, ${gradientFrom}, ${gradientTo})`
     : bgColor || '#003344'
 
-  const propNames = [cat1Name, cat2Name, cat3Name, cat4Name, cat5Name, cat6Name, cat7Name, cat8Name]
-  const propHrefs = [cat1Href, cat2Href, cat3Href, cat4Href, cat5Href, cat6Href, cat7Href, cat8Href]
-  const fallbackNames = ["Path Lights", "Spot Lights", "Wall Wash", "Well Lights", "Deck Lights", "Flood Lights", "Accent Lights", "Transformers"]
-
-  // Use BC categories when available, prop overrides take priority, then fallback
-  const categories = Array.from({ length: 8 }, (_, i) => ({
-    name: propNames[i] || bcCategories[i]?.name || fallbackNames[i],
-    href: propHrefs[i] || bcCategories[i]?.path || '#',
-  }))
+  // Build display categories: prop list → BC categories → fallback
+  const hasPropCategories = propCategories && propCategories.length > 0
+  const displayCategories = hasPropCategories
+    ? propCategories.map((cat, i) => ({
+        name: cat.name || bcCategories[i]?.name || FALLBACK_CATEGORIES[i]?.name || `Category ${i + 1}`,
+        href: cat.href || bcCategories[i]?.path || '#',
+      }))
+    : bcCategories.length > 0
+      ? bcCategories.slice(0, 8).map((cat) => ({ name: cat.name, href: cat.path }))
+      : FALLBACK_CATEGORIES
 
   return (
     <section
@@ -132,8 +116,8 @@ const CategoryGrid = forwardRef(function CategoryGrid(
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-4">
-            {categories.map((cat, i) => {
-              const Icon = categoryIcons[i]
+            {displayCategories.map((cat, i) => {
+              const Icon = categoryIcons[i % categoryIcons.length]
               return (
                 <a
                   key={i}

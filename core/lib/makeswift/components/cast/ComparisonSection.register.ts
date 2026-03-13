@@ -1,5 +1,5 @@
 import { lazy } from "react"
-import { Style, Color, Image, Number as NumberControl, Select, TextInput } from "@makeswift/runtime/controls"
+import { Style, Color, Image, Number as NumberControl, Select, TextInput, List, Shape } from "@makeswift/runtime/controls"
 import { runtime } from "~/lib/makeswift/runtime"
 
 runtime.registerComponent(
@@ -35,16 +35,24 @@ runtime.registerComponent(
       description: TextInput({ label: 'Description', defaultValue: 'See how CAST Lighting compares to other landscape lighting brands.' }),
       castTitle: TextInput({ label: 'CAST Column Title', defaultValue: 'CAST Advantages' }),
       othersTitle: TextInput({ label: 'Others Column Title', defaultValue: 'Other Lighting Brands' }),
-      cast1: TextInput({ label: 'CAST Point 1', defaultValue: 'Solid brass & copper construction' }),
-      cast2: TextInput({ label: 'CAST Point 2', defaultValue: 'Lifetime warranty on all fixtures' }),
-      cast3: TextInput({ label: 'CAST Point 3', defaultValue: 'Field-serviceable LED modules' }),
-      cast4: TextInput({ label: 'CAST Point 4', defaultValue: 'Interchangeable optics system' }),
-      cast5: TextInput({ label: 'CAST Point 5', defaultValue: 'Direct contractor support line' }),
-      other1: TextInput({ label: 'Others Point 1', defaultValue: 'Aluminum or plastic housings' }),
-      other2: TextInput({ label: 'Others Point 2', defaultValue: 'Limited 5-10 year warranties' }),
-      other3: TextInput({ label: 'Others Point 3', defaultValue: 'Sealed, non-serviceable units' }),
-      other4: TextInput({ label: 'Others Point 4', defaultValue: 'Fixed beam angles only' }),
-      other5: TextInput({ label: 'Others Point 5', defaultValue: 'Generic customer support' }),
+      castPoints: List({
+        label: 'CAST Points',
+        type: Shape({
+          type: {
+            text: TextInput({ label: 'Point', defaultValue: '' }),
+          },
+        }),
+        getItemLabel(item) { return item?.text || 'Point' },
+      }),
+      otherPoints: List({
+        label: 'Other Brand Points',
+        type: Shape({
+          type: {
+            text: TextInput({ label: 'Point', defaultValue: '' }),
+          },
+        }),
+        getItemLabel(item) { return item?.text || 'Point' },
+      }),
     },
   }
 )
