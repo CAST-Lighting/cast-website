@@ -8,3 +8,4 @@ import './components/cast/TradeProSection.register';
 import './components/cast/ComparisonSection.register';
 import './components/cast/NewsletterCta.register';
 import './components/cast/SiteFooter.register';
+import './components/cast/StyleGuide.register';
