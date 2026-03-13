@@ -85,7 +85,7 @@ const ShopHero = forwardRef(function ShopHero(
       )}
 
       <div className="site-container" style={{ position: "relative", zIndex: 1, paddingTop: 72, paddingBottom: 72 }}>
-        <h1 style={{ fontSize: "var(--h1-size)", fontWeight: "var(--heading-weight, 700)", lineHeight: "var(--heading-line-height, 1.1)", fontFamily: "'Barlow', sans-serif", color: "#ffffff", margin: "0 0 16px", maxWidth: 640 }}>
+        <h1 style={{ fontSize: "var(--h1-size)", fontWeight: "var(--heading-weight, 700)", lineHeight: "var(--heading-line-height, 1.1)", fontFamily: "'Essonnes', 'Playfair Display', serif", color: "#ffffff", margin: "0 0 16px", maxWidth: 640 }}>
           {slide?.heading || DEFAULT_SLIDES[0].heading}
         </h1>
         <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 18, color: "rgba(255,255,255,0.8)", lineHeight: 1.6, margin: "0 0 36px", maxWidth: 520 }}>

@@ -3,6 +3,18 @@
 @tailwind utilities;
 
 /* ============================================================
+   CAST BRAND FONTS — self-hosted
+   ============================================================ */
+@font-face {
+  font-family: 'Essonnes';
+  src: url('/fonts/essonnes-text.woff2') format('woff2'),
+       url('/fonts/essonnes-text.woff') format('woff');
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ============================================================
    CAST Lighting — Design System (matches cast-lighting.com)
    ============================================================ */
 
@@ -24,7 +36,7 @@
   --color-light:     #7fbee8;
   --color-title:     #1a2332;
   --color-content:   #3c3c47;
-  --font-heading:    'Barlow', sans-serif;
+  --font-heading:    'Essonnes', 'Playfair Display', serif;
 
   /* Heading scale in px — mobile (matches cast-lighting.com at 18px base) */
   --h1-size: 41px;
@@ -55,42 +67,42 @@
 
 /* --- Heading Styles (matches cast-lighting.com scale, px-based) --- */
 .heading-style-h1 {
-  font-family: 'Barlow', sans-serif;
+  font-family: 'Essonnes', 'Playfair Display', serif;
   font-size: var(--h1-size);
   font-weight: var(--heading-weight, 700);
   line-height: var(--heading-line-height, 1.1);
   color: var(--color-title);
 }
 .heading-style-h2 {
-  font-family: 'Barlow', sans-serif;
+  font-family: 'Essonnes', 'Playfair Display', serif;
   font-size: var(--h2-size);
   font-weight: var(--heading-weight, 700);
   line-height: var(--heading-line-height, 1.1);
   color: var(--color-title);
 }
 .heading-style-h3 {
-  font-family: 'Barlow', sans-serif;
+  font-family: 'Essonnes', 'Playfair Display', serif;
   font-size: var(--h3-size);
   font-weight: var(--heading-weight, 600);
   line-height: var(--heading-line-height, 1.1);
   color: var(--color-title);
 }
 .heading-style-h4 {
-  font-family: 'Barlow', sans-serif;
+  font-family: 'Essonnes', 'Playfair Display', serif;
   font-size: var(--h4-size);
   font-weight: var(--heading-weight, 600);
   line-height: var(--heading-line-height, 1.1);
   color: var(--color-title);
 }
 .heading-style-h5 {
-  font-family: 'Barlow', sans-serif;
+  font-family: 'Essonnes', 'Playfair Display', serif;
   font-size: var(--h5-size);
   font-weight: var(--heading-weight, 600);
   line-height: var(--heading-line-height, 1.1);
   color: var(--color-title);
 }
 .heading-style-h6 {
-  font-family: 'Barlow', sans-serif;
+  font-family: 'Essonnes', 'Playfair Display', serif;
   font-size: var(--h6-size);
   font-weight: var(--heading-weight, 700);
   line-height: var(--heading-line-height, 1.1);
@@ -382,6 +394,70 @@
 
 /* Heading sizes scale automatically via --h1-size … --h6-size CSS vars
    (mobile values in :root, desktop values in @media 40em above) */
+
+/* ============================================================
+   LOVABLE DESIGN UTILITIES — ported from Lovable design system
+   ============================================================ */
+
+/* Gradient text — light blue → medium blue, for headline accents */
+.text-gradient-warm {
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  background-image: linear-gradient(135deg, #7fbee8, #057cb0);
+}
+
+/* Glow effects — for buttons and cards on dark sections */
+.glow-warm {
+  box-shadow: 0 0 40px -10px rgba(127, 190, 232, 0.3);
+}
+.glow-warm-sm {
+  box-shadow: 0 0 20px -5px rgba(127, 190, 232, 0.2);
+}
+
+/* Dark gradient background — for alternating dark sections */
+.bg-gradient-dark {
+  background: linear-gradient(180deg, #1a2332 0%, #1e2d3e 100%);
+}
+
+/* Badge pill — announcement / label above hero headings */
+.badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 9999px;
+  background-color: rgba(0, 73, 96, 0.12);
+  border: 1px solid rgba(0, 73, 96, 0.25);
+  font-family: 'Barlow', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-accent);
+}
+
+/* Icon box — small rounded containers for section icons */
+.icon-box {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  background-color: rgba(0, 73, 96, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.icon-box-lg {
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+}
+
+/* Slot-in animation — used in hero rotating text */
+@keyframes slotIn {
+  0%   { transform: translateY(100%); opacity: 0; }
+  20%  { opacity: 1; }
+  100% { transform: translateY(0); opacity: 1; }
+}
 
 .site-container {
   max-width: 1400px;

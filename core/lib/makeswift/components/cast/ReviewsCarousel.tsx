@@ -94,7 +94,7 @@ const ReviewsCarousel = forwardRef(function ReviewsCarousel(
           </p>
         )}
         <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", marginBottom: 40, gap: 16, flexWrap: "wrap" }}>
-          <h2 style={{ fontSize: "var(--h2-size)", fontWeight: "var(--heading-weight, 700)", lineHeight: "var(--heading-line-height, 1.1)", fontFamily: "'Barlow', sans-serif", color: "var(--color-title)", margin: 0 }}>
+          <h2 style={{ fontSize: "var(--h2-size)", fontWeight: "var(--heading-weight, 700)", lineHeight: "var(--heading-line-height, 1.1)", fontFamily: "'Essonnes', 'Playfair Display', serif", color: "var(--color-title)", margin: 0 }}>
             {heading}
           </h2>
           <div style={{ display: "flex", gap: 8 }}>

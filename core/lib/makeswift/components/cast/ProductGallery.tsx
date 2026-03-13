@@ -115,7 +115,7 @@ const ProductGallery = forwardRef(function ProductGallery(
           <div className="site-container">
             <div className="mb-8 flex items-end justify-between md:mb-14 lg:mb-16">
               <div className="flex flex-col gap-4">
-                <h2 style={{ fontFamily: "'Barlow', sans-serif", color: "var(--color-title)", fontSize: "var(--h2-size)", fontWeight: "var(--heading-weight, 700)", lineHeight: "var(--heading-line-height, 1.1)" }}>{title}</h2>
+                <h2 style={{ fontFamily: "'Essonnes', 'Playfair Display', serif", color: "var(--color-title)", fontSize: "var(--h2-size)", fontWeight: "var(--heading-weight, 700)", lineHeight: "var(--heading-line-height, 1.1)" }}>{title}</h2>
                 <p className="max-w-lg" style={{ fontFamily: "'Barlow', sans-serif", color: "var(--color-content)", fontSize: "var(--body-size, 18px)" }}>{description}</p>
               </div>
               <div className="hidden shrink-0 gap-2 md:flex">

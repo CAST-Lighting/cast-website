@@ -51,7 +51,7 @@ const ProductDocuments = forwardRef(function ProductDocuments(
       style={{ width: "100%", boxSizing: "border-box", backgroundColor: bgColor || "#f6f7f8", borderTop: "1px solid #e9ecef" }}
     >
       <div className="site-container" style={{ paddingTop: 56, paddingBottom: 56 }}>
-        <h2 style={{ fontSize: "var(--h3-size)", fontWeight: "var(--heading-weight, 700)", lineHeight: "var(--heading-line-height, 1.1)", fontFamily: "'Barlow', sans-serif", color: "var(--color-title)", margin: "0 0 32px" }}>
+        <h2 style={{ fontSize: "var(--h3-size)", fontWeight: "var(--heading-weight, 700)", lineHeight: "var(--heading-line-height, 1.1)", fontFamily: "'Essonnes', 'Playfair Display', serif", color: "var(--color-title)", margin: "0 0 32px" }}>
           {heading}
         </h2>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 16 }}>

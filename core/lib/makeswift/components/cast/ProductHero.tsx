@@ -101,7 +101,7 @@ const ProductHero = forwardRef(function ProductHero(
           {/* Right: Product info */}
           <div style={{ flex: 1, minWidth: 0 }}>
             <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, color: "var(--color-content)", margin: "0 0 8px" }}>Model #: {modelNumber}</p>
-            <h1 style={{ fontSize: "var(--h2-size)", fontWeight: "var(--heading-weight, 700)", lineHeight: "var(--heading-line-height, 1.1)", fontFamily: "'Barlow', sans-serif", color: "var(--color-title)", margin: "0 0 12px" }}>
+            <h1 style={{ fontSize: "var(--h2-size)", fontWeight: "var(--heading-weight, 700)", lineHeight: "var(--heading-line-height, 1.1)", fontFamily: "'Essonnes', 'Playfair Display', serif", color: "var(--color-title)", margin: "0 0 12px" }}>
               {productName}
             </h1>
 

@@ -138,7 +138,7 @@ const ShopGrid = forwardRef(function ShopGrid(
           font-size: var(--h3-size);
           font-weight: var(--heading-weight, 700);
           line-height: var(--heading-line-height, 1.1);
-          font-family: 'Barlow', sans-serif;
+          font-family: 'Essonnes', 'Playfair Display', serif;
           color: var(--color-title); margin: 0 0 20px;
         }
         .sg-product-grid {

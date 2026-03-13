@@ -159,7 +159,7 @@ const ContentMedia = forwardRef(function ContentMedia(
             <div className="cm-text-content" style={{ flex: "1 1 50%", maxWidth: "42rem", minWidth: 0 }}>
               <h2
                 className="tracking-tight text-balance text-white"
-                style={{ fontFamily: "'Barlow', sans-serif", fontSize: "var(--h2-size)", fontWeight: "var(--heading-weight, 700)", lineHeight: "var(--heading-line-height, 1.1)" }}
+                style={{ fontFamily: "'Essonnes', 'Playfair Display', serif", fontSize: "var(--h2-size)", fontWeight: "var(--heading-weight, 700)", lineHeight: "var(--heading-line-height, 1.1)" }}
               >
                 {heading}
               </h2>

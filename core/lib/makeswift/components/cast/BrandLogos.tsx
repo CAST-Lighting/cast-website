@@ -76,7 +76,7 @@ const BrandLogos = forwardRef(function BrandLogos(
           </p>
         )}
         {heading && (
-          <h2 style={{ fontSize: "var(--h3-size)", fontWeight: "var(--heading-weight, 700)", lineHeight: "var(--heading-line-height, 1.1)", fontFamily: "'Barlow', sans-serif", color: "var(--color-title)", textAlign: "center", margin: "0 0 40px" }}>
+          <h2 style={{ fontSize: "var(--h3-size)", fontWeight: "var(--heading-weight, 700)", lineHeight: "var(--heading-line-height, 1.1)", fontFamily: "'Essonnes', 'Playfair Display', serif", color: "var(--color-title)", textAlign: "center", margin: "0 0 40px" }}>
             {heading}
           </h2>
         )}

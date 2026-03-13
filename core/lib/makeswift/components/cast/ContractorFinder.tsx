@@ -49,7 +49,7 @@ const ContractorFinder = forwardRef(function ContractorFinder(
           {overline && (
             <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 12, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.12em", color: "rgba(255,255,255,0.7)", margin: "0 0 12px" }}>{overline}</p>
           )}
-          <h1 style={{ fontSize: "var(--h1-size)", fontWeight: "var(--heading-weight, 700)", lineHeight: "var(--heading-line-height, 1.1)", fontFamily: "'Barlow', sans-serif", color: "#fff", margin: "0 0 16px", maxWidth: 620 }}>
+          <h1 style={{ fontSize: "var(--h1-size)", fontWeight: "var(--heading-weight, 700)", lineHeight: "var(--heading-line-height, 1.1)", fontFamily: "'Essonnes', 'Playfair Display', serif", color: "#fff", margin: "0 0 16px", maxWidth: 620 }}>
             {heading}
           </h1>
           <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 17, color: "rgba(255,255,255,0.82)", lineHeight: 1.6, maxWidth: 540, margin: "0 0 36px" }}>

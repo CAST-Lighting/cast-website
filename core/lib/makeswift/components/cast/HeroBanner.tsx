@@ -364,7 +364,7 @@ const HeroBanner = forwardRef(function HeroBanner(
               <h1
                 className="tracking-tight text-balance text-white"
                 style={{
-                  fontFamily: "'Barlow', sans-serif",
+                  fontFamily: "'Essonnes', 'Playfair Display', serif",
                   fontSize: 'var(--h1-size)',
                   fontWeight: 'var(--heading-weight, 700)',
                   lineHeight: 'var(--heading-line-height, 1.1)',
@@ -421,24 +421,28 @@ const HeroBanner = forwardRef(function HeroBanner(
               <div
                 className={`hero-form-wrapper ${formStyle || ""}`}
                 style={{
-                  backdropFilter: "blur(25px)",
-                  WebkitBackdropFilter: "blur(25px)",
-                  background: formBackgroundColor,
+                  backdropFilter: "blur(32px)",
+                  WebkitBackdropFilter: "blur(32px)",
+                  background: `linear-gradient(160deg, rgba(0,49,64,0.92) 0%, rgba(0,92,122,0.85) 100%)`,
+                  border: "1px solid rgba(127,190,232,0.2)",
                   borderRadius: `${formBorderRadius || 0}px`,
                   width: "400px",
                   padding: "44px 32px 36px",
-                  boxShadow: "0 8px 32px rgba(0,0,0,0.3)",
+                  boxShadow: "0 8px 60px -12px rgba(127,190,232,0.25), 0 2px 20px -4px rgba(0,49,64,0.5), inset 0 1px 0 0 rgba(127,190,232,0.12)",
                   position: "absolute",
                   right: "24px",
                   top: "50%",
                   transform: "translateY(-50%)",
                   zIndex: 20,
+                  overflow: "hidden",
                 }}
               >
+                {/* Top accent line */}
+                <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "2px", background: "linear-gradient(90deg, transparent, rgba(127,190,232,0.55), transparent)", pointerEvents: "none" }} />
                 <h3 style={{
                   color: "#fff",
                   margin: "0 0 8px 0",
-                  fontFamily: "'Barlow', sans-serif",
+                  fontFamily: "'Essonnes', 'Playfair Display', serif",
                   fontSize: "22px",
                   fontWeight: 600,
                   lineHeight: 1.2,

@@ -44,7 +44,7 @@ const ReadyCTA = forwardRef(function ReadyCTA(
             {overline}
           </p>
         )}
-        <h2 style={{ fontSize: "var(--h2-size)", fontWeight: "var(--heading-weight, 700)", lineHeight: "var(--heading-line-height, 1.1)", fontFamily: "'Barlow', sans-serif", color: textColor || "#ffffff", margin: "0 0 20px" }}>
+        <h2 style={{ fontSize: "var(--h2-size)", fontWeight: "var(--heading-weight, 700)", lineHeight: "var(--heading-line-height, 1.1)", fontFamily: "'Essonnes', 'Playfair Display', serif", color: textColor || "#ffffff", margin: "0 0 20px" }}>
           {heading}
         </h2>
         {subheading && (
