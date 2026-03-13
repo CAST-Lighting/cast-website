@@ -85,6 +85,14 @@
 }
 .form-input::placeholder { color: hsl(var(--muted-foreground)); }
 .form-input:focus { border-color: hsl(var(--primary)); outline: none; }
+.form-label {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  color: hsl(var(--muted-foreground));
+  margin-bottom: 6px;
+  font-family: 'Barlow', sans-serif;
+}
 .btn-primary {
   display: inline-flex; align-items: center; padding: 16px 32px;
   border-radius: 8px; background-color: hsl(var(--primary));
