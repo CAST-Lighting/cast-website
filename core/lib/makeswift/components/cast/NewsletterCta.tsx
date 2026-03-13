@@ -12,6 +12,8 @@ const NewsletterCta = forwardRef(function NewsletterCta(
     gradientTo,
     gradientDirection,
     lineHeight,
+    paddingTop,
+    paddingBottom,
   }: {
     className?: string
     bgImage?: { url: string }
@@ -21,6 +23,8 @@ const NewsletterCta = forwardRef(function NewsletterCta(
     gradientTo?: string
     gradientDirection?: string
     lineHeight?: number
+    paddingTop?: number
+    paddingBottom?: number
   },
   ref: Ref<HTMLElement>
 ) {
@@ -37,8 +41,8 @@ const NewsletterCta = forwardRef(function NewsletterCta(
   return (
     <section
       ref={ref}
-      className={`relative py-20 ${className || ""}`}
-      style={{ ...sectionBg, '--section-line-height': lineHeight } as React.CSSProperties}
+      className={`relative ${className || ""}`}
+      style={{ ...sectionBg, '--section-line-height': lineHeight, paddingTop: paddingTop ?? 80, paddingBottom: paddingBottom ?? 80 } as React.CSSProperties}
     >
       {/* bg image layer */}
       {bgImageUrl && (

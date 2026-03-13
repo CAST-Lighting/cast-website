@@ -27,6 +27,8 @@ const ProductGallery = forwardRef(function ProductGallery(
     gradientTo,
     gradientDirection,
     lineHeight,
+    paddingTop,
+    paddingBottom,
   }: {
     className?: string
     bgImage?: { url: string }
@@ -36,6 +38,8 @@ const ProductGallery = forwardRef(function ProductGallery(
     gradientTo?: string
     gradientDirection?: string
     lineHeight?: number
+    paddingTop?: number
+    paddingBottom?: number
   },
   ref: Ref<HTMLElement>
 ) {
@@ -97,8 +101,8 @@ const ProductGallery = forwardRef(function ProductGallery(
   return (
     <section
       ref={ref}
-      className={`relative py-24 overflow-hidden ${className || ""}`}
-      style={{ ...sectionBg, '--section-line-height': lineHeight } as React.CSSProperties}
+      className={`relative overflow-hidden ${className || ""}`}
+      style={{ ...sectionBg, '--section-line-height': lineHeight, paddingTop: paddingTop ?? 96, paddingBottom: paddingBottom ?? 96 } as React.CSSProperties}
     >
       {/* bg image layer */}
       {bgImageUrl && (

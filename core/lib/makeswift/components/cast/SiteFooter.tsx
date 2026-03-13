@@ -19,6 +19,8 @@ const SiteFooter = forwardRef(function SiteFooter(
     gradientTo,
     gradientDirection,
     lineHeight,
+    paddingTop,
+    paddingBottom,
   }: {
     className?: string
     bgImage?: { url: string }
@@ -28,6 +30,8 @@ const SiteFooter = forwardRef(function SiteFooter(
     gradientTo?: string
     gradientDirection?: string
     lineHeight?: number
+    paddingTop?: number
+    paddingBottom?: number
   },
   ref: Ref<HTMLElement>
 ) {
@@ -44,8 +48,8 @@ const SiteFooter = forwardRef(function SiteFooter(
   return (
     <footer
       ref={ref}
-      className={`relative border-t border-border py-16 ${className || ""}`}
-      style={{ ...sectionBg, '--section-line-height': lineHeight } as React.CSSProperties}
+      className={`relative border-t border-border ${className || ""}`}
+      style={{ ...sectionBg, '--section-line-height': lineHeight, paddingTop: paddingTop ?? 64, paddingBottom: paddingBottom ?? 64 } as React.CSSProperties}
     >
       {/* bg image layer */}
       {bgImageUrl && (

@@ -19,6 +19,8 @@ const HeroBanner = forwardRef(function HeroBanner(
     gradientTo,
     gradientDirection,
     lineHeight,
+    paddingTop,
+    paddingBottom,
   }: {
     className?: string
     bgImage?: { url: string }
@@ -28,6 +30,8 @@ const HeroBanner = forwardRef(function HeroBanner(
     gradientTo?: string
     gradientDirection?: string
     lineHeight?: number
+    paddingTop?: number
+    paddingBottom?: number
   },
   ref: Ref<HTMLElement>
 ) {
@@ -63,8 +67,8 @@ const HeroBanner = forwardRef(function HeroBanner(
   return (
     <section
       ref={ref}
-      className={`relative h-[70vh] flex items-center pt-20 ${className || ""}`}
-      style={{ ...sectionBg, '--section-line-height': lineHeight } as React.CSSProperties}
+      className={`relative h-[70vh] flex items-center ${className || ""}`}
+      style={{ ...sectionBg, '--section-line-height': lineHeight, paddingTop: paddingTop ?? 80, paddingBottom: paddingBottom ?? 80 } as React.CSSProperties}
     >
       {/* Background: single prop image OR carousel */}
       {bgImageUrl ? (
