@@ -77,11 +77,11 @@ const ProductGallery = forwardRef(function ProductGallery(
         .pg-card {
           border: 1px solid #e5e7eb; border-radius: 16px; overflow: hidden;
           display: flex; flex-direction: column; height: 100%;
-          transition: border-color 0.2s, box-shadow 0.2s; background: #fff;
+          transition: border-color 0.2s, box-shadow 0.2s; background: #2d353c;
         }
         .pg-card:hover { border-color: var(--color-primary); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
         .pg-card-image-wrap {
-          background: #f6f7f8; aspect-ratio: 1 / 1; display: flex;
+          background: #2d353c; aspect-ratio: 1 / 1; display: flex;
           align-items: center; justify-content: center; overflow: hidden; position: relative;
         }
         .pg-card-image-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease; }

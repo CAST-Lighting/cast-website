@@ -58,7 +58,7 @@ const DistributorFinder = forwardRef(function DistributorFinder(
     <div
       ref={ref}
       className={`${className || ""} ${sectionStyle || ""}`}
-      style={{ width: "100%", boxSizing: "border-box", backgroundColor: bgColor || "#f6f7f8" }}
+      style={{ width: "100%", boxSizing: "border-box", backgroundColor: bgColor || "#25262d" }}
     >
       {/* Hero */}
       <div style={{ background: "var(--color-primary)", padding: "72px 0" }}>
@@ -72,7 +72,7 @@ const DistributorFinder = forwardRef(function DistributorFinder(
           <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 17, color: "rgba(255,255,255,0.82)", lineHeight: 1.6, maxWidth: 540, margin: "0 0 36px" }}>
             {subheading}
           </p>
-          <form onSubmit={handleSearch} style={{ display: "flex", gap: 0, maxWidth: 480, background: "#fff", borderRadius: 8, overflow: "hidden", boxShadow: "0 4px 16px rgba(0,0,0,0.15)" }}>
+          <form onSubmit={handleSearch} style={{ display: "flex", gap: 0, maxWidth: 480, background: "#2d353c", borderRadius: 8, overflow: "hidden", boxShadow: "0 4px 16px rgba(0,0,0,0.15)" }}>
             <input
               type="text"
               value={zip}
@@ -111,13 +111,13 @@ const DistributorFinder = forwardRef(function DistributorFinder(
 
             <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
               {PLACEHOLDER_DISTRIBUTORS.map((d, i) => (
-                <div key={i} style={{ background: "#fff", border: "1px solid #e9ecef", borderRadius: 10, padding: "18px 20px" }}>
+                <div key={i} style={{ background: "#2d353c", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 10, padding: "18px 20px" }}>
                   <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 15, fontWeight: 700, color: "var(--color-title)", margin: "0 0 4px" }}>{d.name}</p>
                   <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, color: "var(--color-content)", margin: "0 0 4px" }}>{d.city}, {d.state} · {d.type}</p>
                   <a href={`tel:${d.phone}`} style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, fontWeight: 600, color: "var(--color-accent)", textDecoration: "none", display: "block", marginBottom: 8 }}>{d.phone}</a>
                   <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
                     {d.brands.map((b, bi) => (
-                      <span key={bi} style={{ background: "#f1f3f5", border: "1px solid #dee2e6", borderRadius: 3, fontSize: 11, fontFamily: "'Barlow', sans-serif", fontWeight: 600, color: "var(--color-content)", padding: "2px 8px" }}>{b}</span>
+                      <span key={bi} style={{ background: "#2d353c", border: "1px solid #dee2e6", borderRadius: 3, fontSize: 11, fontFamily: "'Barlow', sans-serif", fontWeight: 600, color: "rgba(255,255,255,0.7)", padding: "2px 8px" }}>{b}</span>
                     ))}
                   </div>
                 </div>
@@ -127,7 +127,7 @@ const DistributorFinder = forwardRef(function DistributorFinder(
 
           {/* Application form */}
           <div>
-            <div style={{ background: "#fff", border: "1px solid #e9ecef", borderRadius: 12, padding: "36px 32px", boxShadow: "0 4px 24px rgba(0,0,0,0.06)" }}>
+            <div style={{ background: "#2d353c", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 12, padding: "36px 32px", boxShadow: "0 4px 24px rgba(0,0,0,0.06)" }}>
               {submitted ? (
                 <div style={{ textAlign: "center", padding: "40px 0" }}>
                   <svg width="56" height="56" viewBox="0 0 24 24" fill="none" style={{ marginBottom: 16 }}>
@@ -152,23 +152,23 @@ const DistributorFinder = forwardRef(function DistributorFinder(
                   <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 14 }}>
                     <div>
                       <label style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, fontWeight: 600, color: "var(--color-title)", display: "block", marginBottom: 6 }}>Company Name*</label>
-                      <input required type="text" placeholder="Acme Landscape Supply" style={{ width: "100%", padding: "10px 14px", border: "1.5px solid #dee2e6", borderRadius: 6, fontFamily: "'Barlow', sans-serif", fontSize: 14, color: "var(--color-title)", boxSizing: "border-box", outline: "none" }} />
+                      <input required type="text" placeholder="Acme Landscape Supply" style={{ width: "100%", padding: "10px 14px", border: "1px solid rgba(255,255,255,0.12)", borderRadius: 6, fontFamily: "'Barlow', sans-serif", fontSize: 14, color: "var(--color-title)", boxSizing: "border-box", outline: "none" }} />
                     </div>
                     <div>
                       <label style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, fontWeight: 600, color: "var(--color-title)", display: "block", marginBottom: 6 }}>Contact Name*</label>
-                      <input required type="text" placeholder="Jane Doe" style={{ width: "100%", padding: "10px 14px", border: "1.5px solid #dee2e6", borderRadius: 6, fontFamily: "'Barlow', sans-serif", fontSize: 14, color: "var(--color-title)", boxSizing: "border-box", outline: "none" }} />
+                      <input required type="text" placeholder="Jane Doe" style={{ width: "100%", padding: "10px 14px", border: "1px solid rgba(255,255,255,0.12)", borderRadius: 6, fontFamily: "'Barlow', sans-serif", fontSize: 14, color: "var(--color-title)", boxSizing: "border-box", outline: "none" }} />
                     </div>
                     <div>
                       <label style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, fontWeight: 600, color: "var(--color-title)", display: "block", marginBottom: 6 }}>Email*</label>
-                      <input required type="email" placeholder="jane@acmesupply.com" style={{ width: "100%", padding: "10px 14px", border: "1.5px solid #dee2e6", borderRadius: 6, fontFamily: "'Barlow', sans-serif", fontSize: 14, color: "var(--color-title)", boxSizing: "border-box", outline: "none" }} />
+                      <input required type="email" placeholder="jane@acmesupply.com" style={{ width: "100%", padding: "10px 14px", border: "1px solid rgba(255,255,255,0.12)", borderRadius: 6, fontFamily: "'Barlow', sans-serif", fontSize: 14, color: "var(--color-title)", boxSizing: "border-box", outline: "none" }} />
                     </div>
                     <div>
                       <label style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, fontWeight: 600, color: "var(--color-title)", display: "block", marginBottom: 6 }}>Territory / State*</label>
-                      <input required type="text" placeholder="e.g. Southern California" style={{ width: "100%", padding: "10px 14px", border: "1.5px solid #dee2e6", borderRadius: 6, fontFamily: "'Barlow', sans-serif", fontSize: 14, color: "var(--color-title)", boxSizing: "border-box", outline: "none" }} />
+                      <input required type="text" placeholder="e.g. Southern California" style={{ width: "100%", padding: "10px 14px", border: "1px solid rgba(255,255,255,0.12)", borderRadius: 6, fontFamily: "'Barlow', sans-serif", fontSize: 14, color: "var(--color-title)", boxSizing: "border-box", outline: "none" }} />
                     </div>
                     <div>
                       <label style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, fontWeight: 600, color: "var(--color-title)", display: "block", marginBottom: 6 }}>Annual Revenue Range</label>
-                      <select style={{ width: "100%", padding: "10px 14px", border: "1.5px solid #dee2e6", borderRadius: 6, fontFamily: "'Barlow', sans-serif", fontSize: 14, color: "var(--color-title)", boxSizing: "border-box", background: "#fff", outline: "none" }}>
+                      <select style={{ width: "100%", padding: "10px 14px", border: "1px solid rgba(255,255,255,0.12)", borderRadius: 6, fontFamily: "'Barlow', sans-serif", fontSize: 14, color: "var(--color-title)", boxSizing: "border-box", background: "#2d353c", outline: "none" }}>
                         <option value="">Select...</option>
                         <option>Under $500K</option>
                         <option>$500K – $2M</option>

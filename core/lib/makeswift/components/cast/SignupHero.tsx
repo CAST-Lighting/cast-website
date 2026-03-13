@@ -39,7 +39,7 @@ const SignupHero = forwardRef(function SignupHero(
     <div
       ref={ref}
       className={`${className || ""} ${sectionStyle || ""}`}
-      style={{ width: "100%", boxSizing: "border-box", backgroundColor: bgColor || "#f6f7f8" }}
+      style={{ width: "100%", boxSizing: "border-box", backgroundColor: bgColor || "#25262d" }}
     >
       {/* Hero banner */}
       <div
@@ -65,7 +65,7 @@ const SignupHero = forwardRef(function SignupHero(
 
       {/* Form card — centered, pulls up slightly into the hero */}
       <div className="site-container" style={{ paddingTop: 56, paddingBottom: 72 }}>
-        <div style={{ background: "#fff", border: "1px solid #e9ecef", borderRadius: 12, padding: "40px 36px", boxShadow: "0 4px 24px rgba(0,0,0,0.08)", maxWidth: 560, margin: "0 auto" }}>
+        <div style={{ background: "#2d353c", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 12, padding: "40px 36px", boxShadow: "0 4px 24px rgba(0,0,0,0.08)", maxWidth: 560, margin: "0 auto" }}>
           {submitted ? (
             <div style={{ textAlign: "center", padding: "40px 0" }}>
               <svg width="56" height="56" viewBox="0 0 24 24" fill="none" style={{ marginBottom: 16 }}>
@@ -82,28 +82,28 @@ const SignupHero = forwardRef(function SignupHero(
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
                   <div>
                     <label style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, fontWeight: 600, color: "var(--color-title)", display: "block", marginBottom: 6 }}>First Name*</label>
-                    <input required type="text" placeholder="John" style={{ width: "100%", padding: "10px 14px", border: "1.5px solid #dee2e6", borderRadius: 6, fontFamily: "'Barlow', sans-serif", fontSize: 14, color: "var(--color-title)", boxSizing: "border-box", outline: "none" }} />
+                    <input required type="text" placeholder="John" style={{ width: "100%", padding: "10px 14px", border: "1px solid rgba(255,255,255,0.12)", borderRadius: 6, fontFamily: "'Barlow', sans-serif", fontSize: 14, color: "var(--color-title)", boxSizing: "border-box", outline: "none" }} />
                   </div>
                   <div>
                     <label style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, fontWeight: 600, color: "var(--color-title)", display: "block", marginBottom: 6 }}>Last Name*</label>
-                    <input required type="text" placeholder="Smith" style={{ width: "100%", padding: "10px 14px", border: "1.5px solid #dee2e6", borderRadius: 6, fontFamily: "'Barlow', sans-serif", fontSize: 14, color: "var(--color-title)", boxSizing: "border-box", outline: "none" }} />
+                    <input required type="text" placeholder="Smith" style={{ width: "100%", padding: "10px 14px", border: "1px solid rgba(255,255,255,0.12)", borderRadius: 6, fontFamily: "'Barlow', sans-serif", fontSize: 14, color: "var(--color-title)", boxSizing: "border-box", outline: "none" }} />
                   </div>
                 </div>
                 <div>
                   <label style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, fontWeight: 600, color: "var(--color-title)", display: "block", marginBottom: 6 }}>Business Name*</label>
-                  <input required type="text" placeholder="Smith Landscape Co." style={{ width: "100%", padding: "10px 14px", border: "1.5px solid #dee2e6", borderRadius: 6, fontFamily: "'Barlow', sans-serif", fontSize: 14, color: "var(--color-title)", boxSizing: "border-box", outline: "none" }} />
+                  <input required type="text" placeholder="Smith Landscape Co." style={{ width: "100%", padding: "10px 14px", border: "1px solid rgba(255,255,255,0.12)", borderRadius: 6, fontFamily: "'Barlow', sans-serif", fontSize: 14, color: "var(--color-title)", boxSizing: "border-box", outline: "none" }} />
                 </div>
                 <div>
                   <label style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, fontWeight: 600, color: "var(--color-title)", display: "block", marginBottom: 6 }}>Business Email*</label>
-                  <input required type="email" placeholder="john@smithlandscape.com" style={{ width: "100%", padding: "10px 14px", border: "1.5px solid #dee2e6", borderRadius: 6, fontFamily: "'Barlow', sans-serif", fontSize: 14, color: "var(--color-title)", boxSizing: "border-box", outline: "none" }} />
+                  <input required type="email" placeholder="john@smithlandscape.com" style={{ width: "100%", padding: "10px 14px", border: "1px solid rgba(255,255,255,0.12)", borderRadius: 6, fontFamily: "'Barlow', sans-serif", fontSize: 14, color: "var(--color-title)", boxSizing: "border-box", outline: "none" }} />
                 </div>
                 <div>
                   <label style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, fontWeight: 600, color: "var(--color-title)", display: "block", marginBottom: 6 }}>Phone Number</label>
-                  <input type="tel" placeholder="(555) 000-0000" style={{ width: "100%", padding: "10px 14px", border: "1.5px solid #dee2e6", borderRadius: 6, fontFamily: "'Barlow', sans-serif", fontSize: 14, color: "var(--color-title)", boxSizing: "border-box", outline: "none" }} />
+                  <input type="tel" placeholder="(555) 000-0000" style={{ width: "100%", padding: "10px 14px", border: "1px solid rgba(255,255,255,0.12)", borderRadius: 6, fontFamily: "'Barlow', sans-serif", fontSize: 14, color: "var(--color-title)", boxSizing: "border-box", outline: "none" }} />
                 </div>
                 <div>
                   <label style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, fontWeight: 600, color: "var(--color-title)", display: "block", marginBottom: 6 }}>Business Type*</label>
-                  <select required style={{ width: "100%", padding: "10px 14px", border: "1.5px solid #dee2e6", borderRadius: 6, fontFamily: "'Barlow', sans-serif", fontSize: 14, color: "var(--color-title)", boxSizing: "border-box", background: "#fff", outline: "none" }}>
+                  <select required style={{ width: "100%", padding: "10px 14px", border: "1px solid rgba(255,255,255,0.12)", borderRadius: 6, fontFamily: "'Barlow', sans-serif", fontSize: 14, color: "var(--color-title)", boxSizing: "border-box", background: "#2d353c", outline: "none" }}>
                     <option value="">Select one...</option>
                     <option>Landscape Contractor</option>
                     <option>Landscape Designer</option>

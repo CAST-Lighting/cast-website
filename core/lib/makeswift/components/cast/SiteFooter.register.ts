@@ -11,7 +11,7 @@ runtime.registerComponent(
       logoText: TextInput({ label: "Logo Text", defaultValue: "CAST LIGHTING" }),
       logoImage: Image({ label: "Logo Image" }),
       bgImage: Image({ label: "Background Image" }),
-      bgColor: Color({ label: "Background Color", defaultValue: "#111827" }),
+      bgColor: Color({ label: "Background Color", defaultValue: "#25262d" }),
       overlayColor: Color({ label: "Overlay Color" }),
       overlayOpacity: Number({ label: "Overlay Opacity %", defaultValue: 0, min: 0, max: 100, step: 5 }),
       phone: TextInput({ label: "Phone", defaultValue: "(973) 423-2303" }),

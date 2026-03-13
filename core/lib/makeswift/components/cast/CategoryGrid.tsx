@@ -86,7 +86,7 @@ const CategoryGrid = forwardRef(function CategoryGrid(
           transition: background 0.2s, transform 0.2s;
         }
         .cg-card:hover {
-          background: #f6f7f8;
+          background: #2d353c;
           transform: translateY(-4px);
         }
         .cg-card-icon {
@@ -94,7 +94,7 @@ const CategoryGrid = forwardRef(function CategoryGrid(
           height: 88px;
           border-radius: 50%;
           overflow: hidden;
-          background: #f6f7f8;
+          background: #2d353c;
           border: 2px solid #e5e7eb;
           display: flex;
           align-items: center;

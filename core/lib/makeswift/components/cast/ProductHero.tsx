@@ -27,7 +27,7 @@ const Stars = ({ count = 4.7, total = 5 }: { count?: number; total?: number }) =
 )
 
 const ImagePlaceholder = () => (
-  <div style={{ width: "100%", aspectRatio: "1", background: "#f1f3f5", borderRadius: 6, display: "flex", alignItems: "center", justifyContent: "center" }}>
+  <div style={{ width: "100%", aspectRatio: "1", background: "#2d353c", borderRadius: 6, display: "flex", alignItems: "center", justifyContent: "center" }}>
     <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#ced4da" strokeWidth="1"><rect x="3" y="3" width="18" height="18" rx="2" /><circle cx="8.5" cy="8.5" r="1.5" /><path d="M21 15l-5-5L5 21" /></svg>
   </div>
 )
@@ -61,7 +61,7 @@ const ProductHero = forwardRef(function ProductHero(
       <style>{`
         .ph-thumb {
           width: 72px; height: 72px; border-radius: 4px; border: 2px solid transparent;
-          background: #f1f3f5; cursor: pointer; overflow: hidden; flex-shrink: 0;
+          background: #2d353c; cursor: pointer; overflow: hidden; flex-shrink: 0;
           display: flex; align-items: center; justify-content: center;
           transition: border-color 200ms;
         }
@@ -69,7 +69,7 @@ const ProductHero = forwardRef(function ProductHero(
         .ph-thumb:hover { border-color: var(--color-accent); }
         .ph-qty { display: flex; align-items: center; border: 1px solid rgba(255,255,255,0.12); border-radius: 4px; overflow: hidden; width: fit-content; }
         .ph-qty button { width: 36px; height: 36px; border: none; background: #2d353c; cursor: pointer; font-size: 18px; color: var(--color-primary); display: flex; align-items: center; justify-content: center; transition: background 200ms; }
-        .ph-qty button:hover { background: #e9ecef; }
+        .ph-qty button:hover { background: #37474f; }
         .ph-qty input { width: 48px; border: none; text-align: center; font-family: 'Barlow', sans-serif; font-size: 16px; font-weight: 600; color: var(--color-title); outline: none; }
         .ph-tradepro-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(0,73,96,0.08); color: var(--color-primary); font-family: 'Barlow', sans-serif; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; padding: 4px 10px; border-radius: 3px; }
         @media (max-width: 900px) { .ph-layout { flex-direction: column !important; } .ph-gallery { max-width: 100% !important; } }
@@ -119,7 +119,7 @@ const ProductHero = forwardRef(function ProductHero(
               </span>
             </div>
 
-            <div style={{ height: 1, background: "#e9ecef", margin: "20px 0" }} />
+            <div style={{ height: 1, background: "#37474f", margin: "20px 0" }} />
 
             {/* QTY */}
             <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 16 }}>

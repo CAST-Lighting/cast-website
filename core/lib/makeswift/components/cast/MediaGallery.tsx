@@ -27,7 +27,7 @@ const DEFAULT_ITEMS: MediaItem[] = [
 ]
 
 const PlaceholderImage = ({ caption, isVideo }: { caption?: string; isVideo?: boolean }) => (
-  <div style={{ width: "100%", aspectRatio: "16/10", background: "#e9ecef", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", borderRadius: 8, position: "relative", overflow: "hidden" }}>
+  <div style={{ width: "100%", aspectRatio: "16/10", background: "#37474f", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", borderRadius: 8, position: "relative", overflow: "hidden" }}>
     {isVideo ? (
       <>
         <svg width="48" height="48" viewBox="0 0 24 24" fill="none" style={{ marginBottom: 8 }}>

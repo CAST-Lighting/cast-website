@@ -58,7 +58,7 @@ const BundleProducts = forwardRef(function BundleProducts(
           <div style={{ display: "flex", gap: 20, flexWrap: "wrap", flex: 1 }}>
             {list.map((item, i) => (
               <div key={i} style={{ background: "#2d353c", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 8, overflow: "hidden", width: 180, flexShrink: 0 }}>
-                <div style={{ aspectRatio: "1", background: "#f1f3f5", display: "flex", alignItems: "center", justifyContent: "center", position: "relative" }}>
+                <div style={{ aspectRatio: "1", background: "#37474f", display: "flex", alignItems: "center", justifyContent: "center", position: "relative" }}>
                   {item.image
                     ? <img src={item.image} alt={item.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                     : <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#ced4da" strokeWidth="1.5"><rect x="3" y="3" width="18" height="18" rx="2" /><circle cx="8.5" cy="8.5" r="1.5" /></svg>

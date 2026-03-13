@@ -263,7 +263,7 @@ const ComparisonSection = forwardRef(function ComparisonSection(
           background: #2d353c;
           border-radius: 16px;
           padding: 40px 36px;
-          border: 1px solid #eaeaea;
+          border: 1px solid rgba(255,255,255,0.1);
         }
         .comp-other-card .comp-card-heading {
           color: #6b7280;

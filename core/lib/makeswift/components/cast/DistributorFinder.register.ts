@@ -10,7 +10,7 @@ runtime.registerComponent(
     props: {
       className: Style(),
       sectionStyle: Style({ properties: [Style.Padding, Style.Margin] }),
-      bgColor: Color({ label: "Background Color", defaultValue: "#f6f7f8" }),
+      bgColor: Color({ label: "Background Color", defaultValue: "#25262d" }),
       overline: TextInput({ label: "Overline", defaultValue: "Find Or Become A Distributor" }),
       heading: TextInput({ label: "Heading", defaultValue: "CAST Distribution Partners" }),
       subheading: TextInput({ label: "Subheading", defaultValue: "CAST Lighting works with a select network of professional landscape supply distributors." }),

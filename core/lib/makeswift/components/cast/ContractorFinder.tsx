@@ -41,7 +41,7 @@ const ContractorFinder = forwardRef(function ContractorFinder(
     <div
       ref={ref}
       className={`${className || ""} ${sectionStyle || ""}`}
-      style={{ width: "100%", boxSizing: "border-box", backgroundColor: bgColor || "#f6f7f8" }}
+      style={{ width: "100%", boxSizing: "border-box", backgroundColor: bgColor || "#25262d" }}
     >
       {/* Hero */}
       <div style={{ background: "var(--color-primary)", padding: "72px 0" }}>
@@ -55,7 +55,7 @@ const ContractorFinder = forwardRef(function ContractorFinder(
           <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 17, color: "rgba(255,255,255,0.82)", lineHeight: 1.6, maxWidth: 540, margin: "0 0 36px" }}>
             {subheading}
           </p>
-          <form onSubmit={handleSearch} style={{ display: "flex", gap: 0, maxWidth: 480, background: "#fff", borderRadius: 8, overflow: "hidden", boxShadow: "0 4px 16px rgba(0,0,0,0.15)" }}>
+          <form onSubmit={handleSearch} style={{ display: "flex", gap: 0, maxWidth: 480, background: "#2d353c", borderRadius: 8, overflow: "hidden", boxShadow: "0 4px 16px rgba(0,0,0,0.15)" }}>
             <input
               type="text"
               value={zip}
@@ -96,7 +96,7 @@ const ContractorFinder = forwardRef(function ContractorFinder(
 
             <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
               {(searched ? PLACEHOLDER_CONTRACTORS : PLACEHOLDER_CONTRACTORS.slice(0, 2)).map((c, i) => (
-                <div key={i} style={{ background: "#fff", border: "1px solid #e9ecef", borderRadius: 10, padding: "18px 20px" }}>
+                <div key={i} style={{ background: "#2d353c", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 10, padding: "18px 20px" }}>
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 6 }}>
                     <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 15, fontWeight: 700, color: "var(--color-title)", margin: 0 }}>{c.name}</p>
                     {c.certified && (
@@ -113,7 +113,7 @@ const ContractorFinder = forwardRef(function ContractorFinder(
               ))}
 
               {!searched && (
-                <div style={{ background: "#fff", border: "1.5px dashed #dee2e6", borderRadius: 10, padding: "24px 20px", textAlign: "center" }}>
+                <div style={{ background: "#2d353c", border: "1.5px dashed rgba(255,255,255,0.2)", borderRadius: 10, padding: "24px 20px", textAlign: "center" }}>
                   <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 14, color: "var(--color-content)", margin: 0, lineHeight: 1.6 }}>
                     Search by ZIP code to see CAST-certified contractors near you.
                   </p>

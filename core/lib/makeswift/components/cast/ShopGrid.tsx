@@ -45,7 +45,7 @@ const PRICE_RANGES = ["$0 – $100", "$101 – $500", "$501 – $1,000", "$1,000
 const ProductCard = ({ product }: { product: Product }) => (
   <div style={{ background: "#2d353c", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 8, overflow: "hidden", display: "flex", flexDirection: "column" }}>
     {/* Image placeholder */}
-    <div style={{ aspectRatio: "4/3", background: "#f1f3f5", display: "flex", alignItems: "center", justifyContent: "center", position: "relative" }}>
+    <div style={{ aspectRatio: "4/3", background: "#37474f", display: "flex", alignItems: "center", justifyContent: "center", position: "relative" }}>
       {product.image
         ? <img src={product.image} alt={product.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
         : <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#ced4da" strokeWidth="1.5"><rect x="3" y="3" width="18" height="18" rx="2" /><circle cx="8.5" cy="8.5" r="1.5" /><path d="M21 15l-5-5L5 21" /></svg>

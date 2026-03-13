@@ -55,7 +55,7 @@ const PartsGrid = forwardRef(function PartsGrid(
         <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 20 }}>
           {list.map((part, i) => (
             <div key={i} style={{ background: "#2d353c", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 8, overflow: "hidden" }}>
-              <div style={{ aspectRatio: "1", background: "#e9ecef", display: "flex", alignItems: "center", justifyContent: "center" }}>
+              <div style={{ aspectRatio: "1", background: "#37474f", display: "flex", alignItems: "center", justifyContent: "center" }}>
                 {part.image
                   ? <img src={part.image} alt={part.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                   : <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#adb5bd" strokeWidth="1.5"><rect x="3" y="3" width="18" height="18" rx="2" /><circle cx="8.5" cy="8.5" r="1.5" /></svg>

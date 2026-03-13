@@ -34,7 +34,7 @@ const PlaceholderLogo = ({ name }: { name: string }) => {
     <div style={{
       width: 140,
       height: 60,
-      border: "1.5px solid #dee2e6",
+      border: "1px solid rgba(255,255,255,0.12)",
       borderRadius: 6,
       display: "flex",
       flexDirection: "column",
@@ -67,7 +67,7 @@ const BrandLogos = forwardRef(function BrandLogos(
     <div
       ref={ref}
       className={`${className || ""} ${sectionStyle || ""}`}
-      style={{ width: "100%", boxSizing: "border-box", backgroundColor: bgColor || "#ffffff" }}
+      style={{ width: "100%", boxSizing: "border-box", backgroundColor: bgColor || "#25262d" }}
     >
       <div className="site-container" style={{ paddingTop: 56, paddingBottom: 56 }}>
         {overline && (
