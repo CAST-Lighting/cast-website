@@ -1,10 +1,12 @@
 "use client"
-import { forwardRef, type Ref } from "react"
+import { forwardRef, type Ref, useState, useEffect } from "react"
 import { Lightbulb, Sun, CircleDot, Lamp, SquareAsterisk, Zap, Focus } from "lucide-react"
 
 const defaultBgSrc = "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=1600&q=80"
 
 const categoryIcons = [Lamp, Zap, Sun, CircleDot, SquareAsterisk, Zap, Focus, Lightbulb]
+
+interface BCCategory { name: string; path: string }
 
 const CategoryGrid = forwardRef(function CategoryGrid(
   {
@@ -70,6 +72,15 @@ const CategoryGrid = forwardRef(function CategoryGrid(
   },
   ref: Ref<HTMLElement>
 ) {
+  const [bcCategories, setBcCategories] = useState<BCCategory[]>([])
+
+  useEffect(() => {
+    fetch('/api/cast/categories')
+      .then((r) => r.json())
+      .then((data: BCCategory[]) => { if (data.length > 0) setBcCategories(data) })
+      .catch(() => {})
+  }, [])
+
   const bgImageUrl = bgImage
   const resolvedImgSrc = bgImageUrl || defaultBgSrc
   const hasGradient = !!(gradientFrom && gradientTo)
@@ -78,27 +89,15 @@ const CategoryGrid = forwardRef(function CategoryGrid(
     ? `linear-gradient(${gradientDirection || 'to bottom'}, ${gradientFrom}, ${gradientTo})`
     : bgColor || '#003344'
 
-  const catNames = [
-    cat1Name || "Path Lights",
-    cat2Name || "Spot Lights",
-    cat3Name || "Wall Wash",
-    cat4Name || "Well Lights",
-    cat5Name || "Deck Lights",
-    cat6Name || "Flood Lights",
-    cat7Name || "Accent Lights",
-    cat8Name || "Transformers",
-  ]
+  const propNames = [cat1Name, cat2Name, cat3Name, cat4Name, cat5Name, cat6Name, cat7Name, cat8Name]
+  const propHrefs = [cat1Href, cat2Href, cat3Href, cat4Href, cat5Href, cat6Href, cat7Href, cat8Href]
+  const fallbackNames = ["Path Lights", "Spot Lights", "Wall Wash", "Well Lights", "Deck Lights", "Flood Lights", "Accent Lights", "Transformers"]
 
-  const catHrefs = [
-    cat1Href || "/shop/path-lights",
-    cat2Href || "/shop/spot-lights",
-    cat3Href || "/shop/wall-wash",
-    cat4Href || "/shop/well-lights",
-    cat5Href || "/shop/deck-lights",
-    cat6Href || "/shop/flood-lights",
-    cat7Href || "/shop/accent-lights",
-    cat8Href || "/shop/transformers",
-  ]
+  // Use BC categories when available, prop overrides take priority, then fallback
+  const categories = Array.from({ length: 8 }, (_, i) => ({
+    name: propNames[i] || bcCategories[i]?.name || fallbackNames[i],
+    href: propHrefs[i] || bcCategories[i]?.path || '#',
+  }))
 
   return (
     <section
@@ -133,17 +132,17 @@ const CategoryGrid = forwardRef(function CategoryGrid(
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-4">
-            {catNames.map((name, i) => {
+            {categories.map((cat, i) => {
               const Icon = categoryIcons[i]
               return (
                 <a
                   key={i}
-                  href={catHrefs[i]}
+                  href={cat.href}
                   className="group flex flex-col items-center gap-3 p-5 rounded-xl border border-border bg-secondary hover:border-primary/40 hover:bg-secondary/80 transition-all duration-300"
                 >
                   <Icon className="w-8 h-8 text-muted-foreground group-hover:text-primary transition-colors" />
                   <span className="text-size-small font-medium text-secondary-foreground group-hover:text-primary text-center transition-colors">
-                    {name}
+                    {cat.name}
                   </span>
                 </a>
               )
