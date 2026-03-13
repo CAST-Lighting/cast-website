@@ -10,40 +10,31 @@ const DEFAULT_SLIDES = [
 
 interface HeroBannerProps {
   className?: string
-  // Slides
   slide1Image?: string
   slide2Image?: string
   slide3Image?: string
   slide4Image?: string
   slide5Image?: string
-  // Rotating phrases
   phrase1?: string
   phrase2?: string
   phrase3?: string
-  // Badge
   badgeText?: string
-  // Heading
   headingLine1?: string
-  // Description
   description?: string
-  // Buttons
   btn1Label?: string
   btn1Href?: string
   btn2Label?: string
   btn2Href?: string
-  // Form
   formTitle?: string
   formSubtitle?: string
   formSubmitLabel?: string
   formWidth?: number
   formOffsetBottom?: number
-  // Background
   bgColor?: string
   bgOpacity?: number
   gradientFrom?: string
   gradientTo?: string
   gradientDirection?: string
-  // Layout
   lineHeight?: number
   paddingTop?: number
   paddingBottom?: number
@@ -59,7 +50,8 @@ const HeroBanner = forwardRef(function HeroBanner(
     description,
     btn1Label, btn1Href,
     btn2Label, btn2Href,
-    formTitle, formSubtitle, formSubmitLabel, formWidth, formOffsetBottom,
+    formTitle, formSubtitle, formSubmitLabel,
+    formWidth, formOffsetBottom,
     bgColor, bgOpacity, gradientFrom, gradientTo, gradientDirection,
     lineHeight, paddingTop, paddingBottom,
   }: HeroBannerProps,
@@ -67,28 +59,30 @@ const HeroBanner = forwardRef(function HeroBanner(
 ) {
   const [current, setCurrent] = useState(0)
   const [phraseIndex, setPhraseIndex] = useState(0)
+  const [isAnimating, setIsAnimating] = useState(false)
 
-  const slideImages = [slide1Image, slide2Image, slide3Image, slide4Image, slide5Image]
-    .filter(Boolean) as string[]
+  const slideImages = [slide1Image, slide2Image, slide3Image, slide4Image, slide5Image].filter(Boolean) as string[]
   const images = slideImages.length > 0 ? slideImages : DEFAULT_SLIDES
 
   const phrases = [phrase1, phrase2, phrase3].filter(Boolean) as string[]
   const activePhrases = phrases.length > 0 ? phrases : ["Built to Last Forever", "Designed for Contractors", "Loved by Homeowners"]
 
-  const next = useCallback(() => {
-    setCurrent((prev) => (prev + 1) % images.length)
-  }, [images.length])
+  const next = useCallback(() => setCurrent(p => (p + 1) % images.length), [images.length])
 
   useEffect(() => {
-    const timer = setInterval(next, 5000)
-    return () => clearInterval(timer)
+    const t = setInterval(next, 5000)
+    return () => clearInterval(t)
   }, [next])
 
   useEffect(() => {
-    const phraseTimer = setInterval(() => {
-      setPhraseIndex((prev) => (prev + 1) % activePhrases.length)
+    const t = setInterval(() => {
+      setIsAnimating(true)
+      setTimeout(() => {
+        setPhraseIndex(p => (p + 1) % activePhrases.length)
+        setIsAnimating(false)
+      }, 300)
     }, 3000)
-    return () => clearInterval(phraseTimer)
+    return () => clearInterval(t)
   }, [activePhrases.length])
 
   const hasGradient = !!(gradientFrom && gradientTo)
@@ -100,14 +94,13 @@ const HeroBanner = forwardRef(function HeroBanner(
   return (
     <section
       ref={ref}
-      className={`relative flex items-center ${className || ""}`}
+      className={`relative ${className || ""}`}
       style={{
-        minHeight: '70vh',
         position: 'relative',
         zIndex: 2,
-        '--section-line-height': lineHeight,
         paddingTop: paddingTop ?? 80,
         paddingBottom: paddingBottom ?? 80,
+        '--section-line-height': lineHeight,
       } as React.CSSProperties}
     >
       {/* Slide images */}
@@ -117,23 +110,23 @@ const HeroBanner = forwardRef(function HeroBanner(
           className="absolute inset-0 transition-opacity duration-1000 ease-in-out"
           style={{ opacity: i === current ? 1 : 0, zIndex: 0 }}
         >
-          <img src={src} alt={`Slide ${i + 1}`} className="w-full h-full object-cover" />
+          <img src={src} alt="" className="w-full h-full object-cover" />
         </div>
       ))}
 
       {/* Overlay */}
       <div className="absolute inset-0" style={{ background: overlayBg, opacity: overlayOpacity, zIndex: 1 }} />
 
-      {/* Carousel indicators */}
+      {/* Slide indicators */}
       {images.length > 1 && (
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2" style={{ zIndex: 20 }}>
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2" style={{ zIndex: 20 }}>
           {images.map((_, i) => (
             <button
               key={i}
               onClick={() => setCurrent(i)}
-              className={`h-2 rounded-full transition-all duration-300 ${i === current ? "w-6" : "w-2"}`}
-              style={{ background: i === current ? 'var(--color-accent)' : 'rgba(255,255,255,0.35)' }}
-              aria-label={`Go to slide ${i + 1}`}
+              className={`h-2 rounded-full transition-all duration-300 ${i === current ? "w-6" : "w-2 opacity-50"}`}
+              style={{ background: i === current ? 'var(--color-accent)' : '#fff' }}
+              aria-label={`Slide ${i + 1}`}
             />
           ))}
         </div>
@@ -141,33 +134,40 @@ const HeroBanner = forwardRef(function HeroBanner(
 
       {/* Content */}
       <div className="site-container w-full relative" style={{ zIndex: 10 }}>
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start lg:items-center">
 
-          {/* Left content */}
-          <div className="max-w-xl">
-            <div className="badge-pill mb-6">
-              <span className="w-2 h-2 rounded-full animate-pulse" style={{ background: 'var(--color-accent)' }} />
-              {badgeText || "New 2026 Product Catalog Now Available"}
+          {/* ── Left: text ── */}
+          <div className="flex flex-col gap-6">
+            {/* Badge */}
+            <div className="badge-pill self-start">
+              <span className="w-2 h-2 rounded-full animate-pulse flex-shrink-0" style={{ background: 'var(--color-accent)' }} />
+              <span>{badgeText || "New 2026 Product Catalog Now Available"}</span>
             </div>
 
-            <h1 className="heading-style-h1 mb-6" style={{ color: 'var(--color-blue-grey-100)' }}>
-              {headingLine1 || "Premium Landscape Lighting"}{" "}
-              <span className="inline-block overflow-hidden align-bottom h-[1.2em]">
-                <span
-                  key={phraseIndex}
-                  className="text-gradient-warm inline-block whitespace-nowrap"
-                  style={{ animation: "slotIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards" }}
-                >
-                  {activePhrases[phraseIndex]}
-                </span>
+            {/* Heading */}
+            <h1 className="heading-style-h1" style={{ color: 'var(--color-blue-grey-100)' }}>
+              {headingLine1 || "Premium Landscape Lighting"}
+              <br />
+              <span
+                className="text-gradient-warm"
+                style={{
+                  display: 'inline-block',
+                  transition: 'opacity 0.3s ease, transform 0.3s ease',
+                  opacity: isAnimating ? 0 : 1,
+                  transform: isAnimating ? 'translateY(8px)' : 'translateY(0)',
+                }}
+              >
+                {activePhrases[phraseIndex]}
               </span>
             </h1>
 
-            <p className="section-desc mb-8 max-w-md">
+            {/* Description */}
+            <p className="section-desc max-w-md" style={{ color: 'var(--color-blue-grey-300)' }}>
               {description || "Professional-grade brass and copper fixtures trusted by contractors nationwide. Lifetime warranty on every product."}
             </p>
 
-            <div className="flex flex-wrap items-center gap-4">
+            {/* Buttons */}
+            <div className="flex flex-wrap gap-3">
               <a href={btn1Href || "#"} className="sg-btn-solid-md">
                 {btn1Label || "Shop Products"}
               </a>
@@ -177,54 +177,59 @@ const HeroBanner = forwardRef(function HeroBanner(
             </div>
           </div>
 
-          {/* Right — Quote form */}
+          {/* ── Right: form ── */}
           <div
-            className="hidden lg:block"
             style={{
               position: 'relative',
               zIndex: 50,
-              width: formWidth ? `${formWidth}px` : undefined,
+              maxWidth: formWidth ? `${formWidth}px` : undefined,
               marginLeft: 'auto',
               transform: formOffsetBottom ? `translateY(${formOffsetBottom}px)` : undefined,
             }}
           >
             <div
-              className="backdrop-blur-2xl rounded-2xl p-8 border border-primary/30 relative overflow-hidden"
+              className="rounded-2xl p-6 lg:p-8 border border-white/10 relative overflow-hidden"
               style={{
-                background: 'linear-gradient(160deg, hsl(193 98% 16% / 0.95), hsl(198 100% 28% / 0.9))',
-                boxShadow: '0 8px 60px -12px hsl(204 72% 70% / 0.3), 0 2px 20px -4px hsl(193 98% 19% / 0.5), inset 0 1px 0 0 hsl(204 72% 70% / 0.15)'
+                background: 'linear-gradient(160deg, hsl(193 98% 16% / 0.97), hsl(198 100% 28% / 0.93))',
+                backdropFilter: 'blur(24px)',
+                boxShadow: '0 8px 60px -12px hsl(204 72% 70% / 0.3), 0 2px 20px -4px hsl(193 98% 19% / 0.5), inset 0 1px 0 0 hsl(204 72% 70% / 0.15)',
               }}
             >
+              {/* top accent line */}
               <div className="absolute top-0 left-0 right-0 h-[2px]" style={{ background: 'linear-gradient(90deg, transparent, hsl(204 72% 70% / 0.6), transparent)' }} />
 
-              <h3 className="heading-style-h4 mb-2" style={{ color: '#fff' }}>
+              <h3 className="heading-style-h4 mb-1" style={{ color: '#fff' }}>
                 {formTitle || "Get An Easy, No-Pressure Quote"}
               </h3>
-              <p className="text-size-small mb-6" style={{ color: 'var(--color-blue-grey-300)' }}>
+              <p className="text-size-small mb-5" style={{ color: 'var(--color-blue-grey-300)' }}>
                 {formSubtitle || "Tell us about your project and we'll get back to you within 24 hours."}
               </p>
 
-              <form className="space-y-4">
-                <div>
-                  <label className="form-label" style={{ color: 'rgba(175,229,253,0.7)' }}>Full Name</label>
-                  <input type="text" placeholder="John Smith" className="w-full px-4 py-3 rounded-lg text-white text-base focus:outline-none transition-all" style={{ border: '1px solid rgba(175,229,253,0.2)', background: 'rgba(255,255,255,0.06)' }} />
+              <form className="space-y-3">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div>
+                    <label className="form-label" style={{ color: 'rgba(175,229,253,0.7)' }}>Full Name</label>
+                    <input type="text" placeholder="John Smith" className="w-full px-4 py-3 rounded-lg text-white text-sm focus:outline-none" style={{ border: '1px solid rgba(175,229,253,0.2)', background: 'rgba(255,255,255,0.06)' }} />
+                  </div>
+                  <div>
+                    <label className="form-label" style={{ color: 'rgba(175,229,253,0.7)' }}>Project Type</label>
+                    <select className="w-full px-4 py-3 rounded-lg text-white text-sm focus:outline-none appearance-none" style={{ border: '1px solid rgba(175,229,253,0.2)', background: 'rgba(40,90,110,0.8)' }}>
+                      <option>Select...</option>
+                      <option>Residential</option>
+                      <option>Commercial</option>
+                      <option>Municipal</option>
+                    </select>
+                  </div>
                 </div>
-                <div>
-                  <label className="form-label" style={{ color: 'rgba(175,229,253,0.7)' }}>Project Type</label>
-                  <select className="w-full px-4 py-3 rounded-lg text-white text-base focus:outline-none transition-all appearance-none" style={{ border: '1px solid rgba(175,229,253,0.2)', background: 'rgba(255,255,255,0.06)' }}>
-                    <option style={{ background: '#014960' }}>Select...</option>
-                    <option style={{ background: '#014960' }}>Residential</option>
-                    <option style={{ background: '#014960' }}>Commercial</option>
-                    <option style={{ background: '#014960' }}>Municipal</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="form-label" style={{ color: 'rgba(175,229,253,0.7)' }}>Email</label>
-                  <input type="email" placeholder="john@company.com" className="w-full px-4 py-3 rounded-lg text-white text-base focus:outline-none transition-all" style={{ border: '1px solid rgba(175,229,253,0.2)', background: 'rgba(255,255,255,0.06)' }} />
-                </div>
-                <div>
-                  <label className="form-label" style={{ color: 'rgba(175,229,253,0.7)' }}>Phone</label>
-                  <input type="tel" placeholder="(555) 123-4567" className="w-full px-4 py-3 rounded-lg text-white text-base focus:outline-none transition-all" style={{ border: '1px solid rgba(175,229,253,0.2)', background: 'rgba(255,255,255,0.06)' }} />
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div>
+                    <label className="form-label" style={{ color: 'rgba(175,229,253,0.7)' }}>Email</label>
+                    <input type="email" placeholder="john@company.com" className="w-full px-4 py-3 rounded-lg text-white text-sm focus:outline-none" style={{ border: '1px solid rgba(175,229,253,0.2)', background: 'rgba(255,255,255,0.06)' }} />
+                  </div>
+                  <div>
+                    <label className="form-label" style={{ color: 'rgba(175,229,253,0.7)' }}>Phone</label>
+                    <input type="tel" placeholder="(555) 123-4567" className="w-full px-4 py-3 rounded-lg text-white text-sm focus:outline-none" style={{ border: '1px solid rgba(175,229,253,0.2)', background: 'rgba(255,255,255,0.06)' }} />
+                  </div>
                 </div>
                 <button type="submit" className="sg-btn-solid-dark-lg w-full justify-center">
                   {formSubmitLabel || "Get A Free Quote"}
