@@ -41,7 +41,7 @@ export async function GET() {
         entityId: e.node.entityId,
         name: e.node.name,
         path: e.node.path,
-        image: e.node.defaultImage?.url ?? '',
+        image: (e.node.defaultImage?.url ?? '').replace('{:size}', '600x600'),
         imageAlt: e.node.defaultImage?.altText ?? e.node.name,
         price,
       }
