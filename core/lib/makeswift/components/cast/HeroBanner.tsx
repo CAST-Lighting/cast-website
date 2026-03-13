@@ -27,6 +27,17 @@ interface HeroBannerProps {
   btn2Href?: string
   formTitle?: string
   formSubtitle?: string
+  field1Label?: string
+  field1Placeholder?: string
+  field2Label?: string
+  field2Option1?: string
+  field2Option2?: string
+  field2Option3?: string
+  field2Option4?: string
+  field3Label?: string
+  field3Placeholder?: string
+  field4Label?: string
+  field4Placeholder?: string
   formSubmitLabel?: string
   formWidth?: number
   formOffsetBottom?: number
@@ -50,7 +61,12 @@ const HeroBanner = forwardRef(function HeroBanner(
     description,
     btn1Label, btn1Href,
     btn2Label, btn2Href,
-    formTitle, formSubtitle, formSubmitLabel,
+    formTitle, formSubtitle,
+    field1Label, field1Placeholder,
+    field2Label, field2Option1, field2Option2, field2Option3, field2Option4,
+    field3Label, field3Placeholder,
+    field4Label, field4Placeholder,
+    formSubmitLabel,
     formWidth, formOffsetBottom,
     bgColor, bgOpacity, gradientFrom, gradientTo, gradientDirection,
     lineHeight, paddingTop, paddingBottom,
@@ -206,30 +222,27 @@ const HeroBanner = forwardRef(function HeroBanner(
               </p>
 
               <form className="space-y-3">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  <div>
-                    <label className="form-label" style={{ color: 'rgba(175,229,253,0.7)' }}>Full Name</label>
-                    <input type="text" placeholder="John Smith" className="w-full px-4 py-3 rounded-lg text-white text-sm focus:outline-none" style={{ border: '1px solid rgba(175,229,253,0.2)', background: 'rgba(255,255,255,0.06)' }} />
-                  </div>
-                  <div>
-                    <label className="form-label" style={{ color: 'rgba(175,229,253,0.7)' }}>Project Type</label>
-                    <select className="w-full px-4 py-3 rounded-lg text-white text-sm focus:outline-none appearance-none" style={{ border: '1px solid rgba(175,229,253,0.2)', background: 'rgba(40,90,110,0.8)' }}>
-                      <option>Select...</option>
-                      <option>Residential</option>
-                      <option>Commercial</option>
-                      <option>Municipal</option>
-                    </select>
-                  </div>
+                <div>
+                  <label className="form-label" style={{ color: 'rgba(175,229,253,0.7)' }}>{field1Label || 'Full Name'}</label>
+                  <input type="text" placeholder={field1Placeholder || 'John Smith'} className="w-full px-4 py-3 rounded-lg text-white text-sm focus:outline-none" style={{ border: '1px solid rgba(175,229,253,0.2)', background: 'rgba(255,255,255,0.06)' }} />
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  <div>
-                    <label className="form-label" style={{ color: 'rgba(175,229,253,0.7)' }}>Email</label>
-                    <input type="email" placeholder="john@company.com" className="w-full px-4 py-3 rounded-lg text-white text-sm focus:outline-none" style={{ border: '1px solid rgba(175,229,253,0.2)', background: 'rgba(255,255,255,0.06)' }} />
-                  </div>
-                  <div>
-                    <label className="form-label" style={{ color: 'rgba(175,229,253,0.7)' }}>Phone</label>
-                    <input type="tel" placeholder="(555) 123-4567" className="w-full px-4 py-3 rounded-lg text-white text-sm focus:outline-none" style={{ border: '1px solid rgba(175,229,253,0.2)', background: 'rgba(255,255,255,0.06)' }} />
-                  </div>
+                <div>
+                  <label className="form-label" style={{ color: 'rgba(175,229,253,0.7)' }}>{field2Label || 'Project Type'}</label>
+                  <select className="w-full px-4 py-3 rounded-lg text-white text-sm focus:outline-none appearance-none" style={{ border: '1px solid rgba(175,229,253,0.2)', background: 'rgba(40,90,110,0.8)' }}>
+                    <option value="">Select...</option>
+                    {[field2Option1, field2Option2, field2Option3, field2Option4]
+                      .filter(Boolean)
+                      .map((opt, i) => <option key={i} value={opt}>{opt}</option>)
+                    }
+                  </select>
+                </div>
+                <div>
+                  <label className="form-label" style={{ color: 'rgba(175,229,253,0.7)' }}>{field3Label || 'Email'}</label>
+                  <input type="email" placeholder={field3Placeholder || 'john@company.com'} className="w-full px-4 py-3 rounded-lg text-white text-sm focus:outline-none" style={{ border: '1px solid rgba(175,229,253,0.2)', background: 'rgba(255,255,255,0.06)' }} />
+                </div>
+                <div>
+                  <label className="form-label" style={{ color: 'rgba(175,229,253,0.7)' }}>{field4Label || 'Phone'}</label>
+                  <input type="tel" placeholder={field4Placeholder || '(555) 123-4567'} className="w-full px-4 py-3 rounded-lg text-white text-sm focus:outline-none" style={{ border: '1px solid rgba(175,229,253,0.2)', background: 'rgba(255,255,255,0.06)' }} />
                 </div>
                 <button type="submit" className="sg-btn-solid-dark-lg w-full justify-center">
                   {formSubmitLabel || "Get A Free Quote"}
