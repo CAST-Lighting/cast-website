@@ -8,21 +8,22 @@ const DEFAULT_SLIDES = [
   "https://images.unsplash.com/photo-1524484485831-a92ffc0de03f?w=1600&q=80",
 ]
 
-const DEFAULT_PHRASES = ["Built to Last Forever", "Designed for Contractors", "Loved by Homeowners"]
-
-interface SlideItem {
-  image?: { url: string }
-}
-
 interface HeroBannerProps {
   className?: string
   // Slides
-  slides?: SlideItem[]
+  slide1Image?: { url: string }
+  slide2Image?: { url: string }
+  slide3Image?: { url: string }
+  slide4Image?: { url: string }
+  slide5Image?: { url: string }
+  // Rotating phrases
+  phrase1?: string
+  phrase2?: string
+  phrase3?: string
   // Badge
   badgeText?: string
   // Heading
   headingLine1?: string
-  rotatingPhrasesList?: Array<{ text?: string }>
   // Description
   description?: string
   // Buttons
@@ -49,44 +50,33 @@ interface HeroBannerProps {
 const HeroBanner = forwardRef(function HeroBanner(
   {
     className,
-    slides,
+    slide1Image, slide2Image, slide3Image, slide4Image, slide5Image,
+    phrase1, phrase2, phrase3,
     badgeText,
     headingLine1,
-    rotatingPhrasesList,
     description,
-    btn1Label,
-    btn1Href,
-    btn2Label,
-    btn2Href,
-    formTitle,
-    formSubtitle,
-    formSubmitLabel,
-    bgColor,
-    bgOpacity,
-    gradientFrom,
-    gradientTo,
-    gradientDirection,
-    lineHeight,
-    paddingTop,
-    paddingBottom,
+    btn1Label, btn1Href,
+    btn2Label, btn2Href,
+    formTitle, formSubtitle, formSubmitLabel,
+    bgColor, bgOpacity, gradientFrom, gradientTo, gradientDirection,
+    lineHeight, paddingTop, paddingBottom,
   }: HeroBannerProps,
   ref: Ref<HTMLElement>
 ) {
   const [current, setCurrent] = useState(0)
   const [phraseIndex, setPhraseIndex] = useState(0)
 
-  // Resolve slide images — use prop slides if provided, else defaults
-  const slideImages: string[] = (slides && slides.length > 0)
-    ? slides.map(s => s.image?.url).filter(Boolean) as string[]
-    : DEFAULT_SLIDES
+  const slideImages = [slide1Image, slide2Image, slide3Image, slide4Image, slide5Image]
+    .map(img => img?.url)
+    .filter(Boolean) as string[]
+  const images = slideImages.length > 0 ? slideImages : DEFAULT_SLIDES
 
-  const phrases: string[] = (rotatingPhrasesList && rotatingPhrasesList.length > 0)
-    ? rotatingPhrasesList.map(p => p.text).filter(Boolean) as string[]
-    : DEFAULT_PHRASES
+  const phrases = [phrase1, phrase2, phrase3].filter(Boolean) as string[]
+  const activePhrases = phrases.length > 0 ? phrases : ["Built to Last Forever", "Designed for Contractors", "Loved by Homeowners"]
 
   const next = useCallback(() => {
-    setCurrent((prev) => (prev + 1) % slideImages.length)
-  }, [slideImages.length])
+    setCurrent((prev) => (prev + 1) % images.length)
+  }, [images.length])
 
   useEffect(() => {
     const timer = setInterval(next, 5000)
@@ -95,12 +85,11 @@ const HeroBanner = forwardRef(function HeroBanner(
 
   useEffect(() => {
     const phraseTimer = setInterval(() => {
-      setPhraseIndex((prev) => (prev + 1) % phrases.length)
+      setPhraseIndex((prev) => (prev + 1) % activePhrases.length)
     }, 3000)
     return () => clearInterval(phraseTimer)
-  }, [phrases.length])
+  }, [activePhrases.length])
 
-  // Overlay: uses bg controls, falls back to dark teal at 70%
   const hasGradient = !!(gradientFrom && gradientTo)
   const overlayOpacity = typeof bgOpacity === 'number' ? bgOpacity / 100 : 0.70
   const overlayBg = hasGradient
@@ -119,7 +108,7 @@ const HeroBanner = forwardRef(function HeroBanner(
       } as React.CSSProperties}
     >
       {/* Slide images */}
-      {slideImages.map((src, i) => (
+      {images.map((src, i) => (
         <div
           key={i}
           className="absolute inset-0 transition-opacity duration-1000 ease-in-out"
@@ -129,13 +118,13 @@ const HeroBanner = forwardRef(function HeroBanner(
         </div>
       ))}
 
-      {/* Overlay — fully controlled via Makeswift panel */}
+      {/* Overlay */}
       <div className="absolute inset-0" style={{ background: overlayBg, opacity: overlayOpacity, zIndex: 1 }} />
 
       {/* Carousel indicators */}
-      {slideImages.length > 1 && (
+      {images.length > 1 && (
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2" style={{ zIndex: 20 }}>
-          {slideImages.map((_, i) => (
+          {images.map((_, i) => (
             <button
               key={i}
               onClick={() => setCurrent(i)}
@@ -166,7 +155,7 @@ const HeroBanner = forwardRef(function HeroBanner(
                   className="text-gradient-warm inline-block whitespace-nowrap"
                   style={{ animation: "slotIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards" }}
                 >
-                  {phrases[phraseIndex]}
+                  {activePhrases[phraseIndex]}
                 </span>
               </span>
             </h1>

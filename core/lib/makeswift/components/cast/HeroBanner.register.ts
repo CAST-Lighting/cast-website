@@ -1,5 +1,5 @@
 import { lazy } from "react"
-import { Style, Color, Image, Number as NumberControl, Select, List, Shape, TextInput } from "@makeswift/runtime/controls"
+import { Style, Color, Image, Number as NumberControl, Select, TextInput } from "@makeswift/runtime/controls"
 import { runtime } from "~/lib/makeswift/runtime"
 
 runtime.registerComponent(
@@ -11,28 +11,22 @@ runtime.registerComponent(
       className: Style(),
 
       // ── Slides ──────────────────────────────────────────────
-      slides: List({
-        type: Shape({
-          type: {
-            image: Image({ label: 'Slide Image' }),
-          },
-        }),
-        label: 'Slides',
-      }),
+      slide1Image: Image({ label: 'Slide 1 Image' }),
+      slide2Image: Image({ label: 'Slide 2 Image' }),
+      slide3Image: Image({ label: 'Slide 3 Image' }),
+      slide4Image: Image({ label: 'Slide 4 Image' }),
+      slide5Image: Image({ label: 'Slide 5 Image' }),
+
+      // ── Rotating Phrases ────────────────────────────────────
+      phrase1: TextInput({ label: 'Phrase 1', defaultValue: 'Built to Last Forever' }),
+      phrase2: TextInput({ label: 'Phrase 2', defaultValue: 'Designed for Contractors' }),
+      phrase3: TextInput({ label: 'Phrase 3', defaultValue: 'Loved by Homeowners' }),
 
       // ── Badge ───────────────────────────────────────────────
       badgeText: TextInput({ label: 'Badge Text', defaultValue: 'New 2026 Product Catalog Now Available' }),
 
       // ── Heading ─────────────────────────────────────────────
       headingLine1: TextInput({ label: 'Heading', defaultValue: 'Premium Landscape Lighting' }),
-      rotatingPhrasesList: List({
-        type: Shape({
-          type: {
-            text: TextInput({ label: 'Phrase', defaultValue: 'Built to Last Forever' }),
-          },
-        }),
-        label: 'Rotating Phrases',
-      }),
 
       // ── Description ─────────────────────────────────────────
       description: TextInput({
