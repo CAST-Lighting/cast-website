@@ -139,6 +139,6 @@ export function scriptsTransformer(scripts: BigCommerceScripts): C15tScripts {
       return { ...baseConfig, src: script.src, attributes };
     }
 
-    return { ...baseConfig, attributes };
-  });
+    return null;
+  }).filter((script): script is NonNullable<typeof script> => script !== null);
 }
