@@ -115,7 +115,7 @@ const CategoryGrid = forwardRef(function CategoryGrid(
             </p>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-4 justify-items-center">
             {displayCategories.map((cat, i) => {
               const Icon = categoryIcons[i % categoryIcons.length] as React.ElementType
               return (

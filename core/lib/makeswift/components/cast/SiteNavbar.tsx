@@ -33,6 +33,7 @@ const SiteNavbar = forwardRef(function SiteNavbar(
   const [openDropdown, setOpenDropdown] = useState<string | null>(null)
   const [mobileExpanded, setMobileExpanded] = useState<string | null>(null)
   const [searchOpen, setSearchOpen] = useState(false)
+  const [cartOpen, setCartOpen] = useState(false)
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   const handleMouseEnter = (label: string) => {
@@ -82,8 +83,8 @@ const SiteNavbar = forwardRef(function SiteNavbar(
       {/* Main nav */}
       <nav className="backdrop-blur-md border-b border-[#004a61] bg-[#005C7A]/80">
         <div className="container mx-auto flex items-center justify-between px-6 py-4">
-          <a href="/" className="font-display text-2xl font-bold tracking-wider text-foreground">
-            CAST <span className="text-primary">LIGHTING</span>
+          <a href="/" className="flex items-center">
+            <img src="/images/logos/cast__lighting_white.svg" alt="CAST Lighting" className="h-10 w-auto" />
           </a>
 
           <div className="hidden lg:flex items-center gap-8 font-body font-medium text-sm tracking-wide">
@@ -127,7 +128,7 @@ const SiteNavbar = forwardRef(function SiteNavbar(
             >
               <Search className="w-5 h-5" />
             </button>
-            <button className="text-secondary-foreground hover:text-primary transition-colors">
+            <button className="text-secondary-foreground hover:text-primary transition-colors" onClick={() => setCartOpen(true)}>
               <ShoppingCart className="w-5 h-5" />
             </button>
             <a
@@ -201,6 +202,41 @@ const SiteNavbar = forwardRef(function SiteNavbar(
           </div>
         )}
       </nav>
+      {/* Cart Drawer */}
+      {cartOpen && (
+        <>
+          {/* Overlay */}
+          <div
+            className="fixed inset-0 bg-black/60 z-[100]"
+            onClick={() => setCartOpen(false)}
+          />
+          {/* Slide-in panel */}
+          <div className="fixed top-0 right-0 h-full w-80 max-w-full bg-card border-l border-border z-[101] flex flex-col shadow-2xl">
+            {/* Header */}
+            <div className="flex items-center justify-between px-6 py-5 border-b border-border">
+              <h2 className="text-lg font-semibold font-display text-foreground">Your Cart</h2>
+              <button
+                onClick={() => setCartOpen(false)}
+                className="text-muted-foreground hover:text-foreground transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            {/* Body */}
+            <div className="flex-1 flex flex-col items-center justify-center gap-4 px-6 text-center">
+              <ShoppingCart className="w-12 h-12 text-muted-foreground/40" />
+              <p className="text-secondary-foreground font-body">Your cart is empty.</p>
+              <a
+                href="/shop"
+                onClick={() => setCartOpen(false)}
+                className="inline-flex items-center px-6 py-2.5 rounded-md bg-primary text-primary-foreground font-semibold text-sm hover:bg-warm-glow transition-colors"
+              >
+                Shop Now
+              </a>
+            </div>
+          </div>
+        </>
+      )}
     </header>
   )
 })
