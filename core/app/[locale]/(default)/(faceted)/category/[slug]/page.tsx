@@ -1,284 +1,303 @@
-import { removeEdgesAndNodes } from '@bigcommerce/catalyst-client';
 import type { Metadata } from 'next';
-import { notFound } from 'next/navigation';
-import { getFormatter, getTranslations, setRequestLocale } from 'next-intl/server';
-import { createLoader, SearchParams } from 'nuqs/server';
-import { cache } from 'react';
+import { setRequestLocale } from 'next-intl/server';
+import { Suspense } from 'react';
 
-import { Stream, Streamable } from '@/vibes/soul/lib/streamable';
-import { createCompareLoader } from '@/vibes/soul/primitives/compare-drawer/loader';
-import { ProductsListSection } from '@/vibes/soul/sections/products-list-section';
-import { getFilterParsers } from '@/vibes/soul/sections/products-list-section/filter-parsers';
-import { getSessionCustomerAccessToken } from '~/auth';
-import { facetsTransformer } from '~/data-transformers/facets-transformer';
-import { pageInfoTransformer } from '~/data-transformers/page-info-transformer';
-import { productCardTransformer } from '~/data-transformers/product-card-transformer';
-import { getPreferredCurrencyCode } from '~/lib/currency';
+import TradeProSection from '~/lib/makeswift/components/cast/TradeProSection';
 
-import { MAX_COMPARE_LIMIT } from '../../../compare/page-data';
-import { getCompareProducts } from '../../fetch-compare-products';
-import { fetchFacetedSearch } from '../../fetch-faceted-search';
+import CategoryProductsGrid, {
+  type BCProduct,
+} from './_components/CategoryProductsGrid';
 
-import { CategoryViewed } from './_components/category-viewed';
-import { getCategoryPageData } from './page-data';
+const BC_STORE_HASH = 'o3r3vyxngd';
+const BC_TOKEN = 'm44g12165hann457yzf0156dbc9qdp9';
 
-const getCachedCategory = cache((categoryId: number) => {
-  return {
-    category: categoryId,
-  };
-});
+const CATEGORY_NAMES: Record<number, string> = {
+  24: 'Path Lights',
+  26: 'Area Lights',
+  31: 'Spot & Accent Lights',
+  35: 'Well & In-Ground Lights',
+  30: 'Wall & Deck Lights',
+  32: 'Down Lights',
+  45: 'Transformers',
+  19: 'Accessories',
+  23: 'All Products',
+};
 
-const compareLoader = createCompareLoader();
+interface BCCategoryData {
+  id: number;
+  name: string;
+  meta_description?: string;
+  meta_keywords?: string;
+  page_title?: string;
+}
 
-const createCategorySearchParamsLoader = cache(
-  async (categoryId: number, customerAccessToken?: string) => {
-    const cachedCategory = getCachedCategory(categoryId);
-    const categorySearch = await fetchFacetedSearch(cachedCategory, undefined, customerAccessToken);
-    const categoryFacets = categorySearch.facets.items.filter(
-      (facet) => facet.__typename !== 'CategorySearchFilter',
+async function fetchCategory(categoryId: number): Promise<BCCategoryData | null> {
+  try {
+    const res = await fetch(
+      `https://api.bigcommerce.com/stores/${BC_STORE_HASH}/v3/catalog/categories/${categoryId}`,
+      {
+        headers: {
+          'X-Auth-Token': BC_TOKEN,
+          'Content-Type': 'application/json',
+        },
+        next: { revalidate: 3600 },
+      },
     );
-    const transformedCategoryFacets = await facetsTransformer({
-      refinedFacets: categoryFacets,
-      allFacets: categoryFacets,
-      searchParams: {},
+    if (!res.ok) return null;
+    const data = (await res.json()) as { data: BCCategoryData };
+    return data.data;
+  } catch {
+    return null;
+  }
+}
+
+async function fetchProducts(categoryId: number): Promise<BCProduct[]> {
+  try {
+    const params = new URLSearchParams({
+      limit: '50',
+      include: 'images',
+      is_visible: 'true',
     });
-    const categoryFilters = transformedCategoryFacets.filter((facet) => facet != null);
-    const filterParsers = getFilterParsers(categoryFilters);
-
-    // If there are no filters, return `null`, since calling `createLoader` with an empty
-    // object will throw the following cryptic error:
-    //
-    // ```
-    // Error: [nuqs] Empty search params cache. Search params can't be accessed in Layouts.
-    //   See https://err.47ng.com/NUQS-500
-    // ```
-    if (Object.keys(filterParsers).length === 0) {
-      return null;
+    if (categoryId !== 23) {
+      params.set('categories:in', String(categoryId));
     }
-
-    return createLoader(filterParsers);
-  },
-);
+    const res = await fetch(
+      `https://api.bigcommerce.com/stores/${BC_STORE_HASH}/v3/catalog/products?${params.toString()}`,
+      {
+        headers: {
+          'X-Auth-Token': BC_TOKEN,
+          'Content-Type': 'application/json',
+        },
+        next: { revalidate: 60 },
+      },
+    );
+    if (!res.ok) return [];
+    const data = (await res.json()) as { data: BCProduct[] };
+    return data.data;
+  } catch {
+    return [];
+  }
+}
 
 interface Props {
-  params: Promise<{
-    slug: string;
-    locale: string;
-  }>;
-  searchParams: Promise<SearchParams>;
+  params: Promise<{ slug: string; locale: string }>;
 }
 
 export async function generateMetadata(props: Props): Promise<Metadata> {
   const { slug } = await props.params;
-  const customerAccessToken = await getSessionCustomerAccessToken();
-
   const categoryId = Number(slug);
+  const fallbackName = CATEGORY_NAMES[categoryId] ?? 'Products';
 
-  const { category } = await getCategoryPageData(categoryId, customerAccessToken);
-
-  if (!category) {
-    return notFound();
-  }
-
-  const { pageTitle, metaDescription, metaKeywords } = category.seo;
+  const category = await fetchCategory(categoryId);
+  const name = category?.name ?? fallbackName;
 
   return {
-    title: pageTitle || category.name,
-    description: metaDescription,
-    keywords: metaKeywords ? metaKeywords.split(',') : null,
+    title: category?.page_title || `${name} | CAST Lighting`,
+    description:
+      category?.meta_description ||
+      `Shop CAST Lighting ${name} — solid brass & copper outdoor landscape lighting built to last a lifetime.`,
+    keywords: category?.meta_keywords ? category.meta_keywords.split(',') : undefined,
   };
 }
 
-export default async function Category(props: Props) {
-  const { slug, locale } = await props.params;
-  const customerAccessToken = await getSessionCustomerAccessToken();
+const TRUST_BADGES = [
+  { icon: '🏅', label: 'Lifetime Warranty' },
+  { icon: '🇺🇸', label: 'Made in USA' },
+  { icon: '🚚', label: 'Free Shipping over $500' },
+  { icon: '💼', label: 'TradePro Pricing Available' },
+];
 
+export default async function CategoryPage(props: Props) {
+  const { slug, locale } = await props.params;
   setRequestLocale(locale);
 
-  const t = await getTranslations('Faceted');
-
   const categoryId = Number(slug);
+  const fallbackName = CATEGORY_NAMES[categoryId] ?? 'Products';
 
-  const { category, settings, categoryTree } = await getCategoryPageData(
-    categoryId,
-    customerAccessToken,
-  );
+  const [category, products] = await Promise.all([
+    fetchCategory(categoryId),
+    fetchProducts(categoryId),
+  ]);
 
-  if (!category) {
-    return notFound();
-  }
-
-  const breadcrumbs = removeEdgesAndNodes(category.breadcrumbs).map(({ name, path }) => ({
-    label: name,
-    href: path ?? '#',
-  }));
-
-  const showRating = Boolean(settings?.reviews.enabled && settings.display.showProductRating);
-
-  const productComparisonsEnabled =
-    settings?.storefront.catalog?.productComparisonsEnabled ?? false;
-
-  const streamableFacetedSearch = Streamable.from(async () => {
-    const searchParams = await props.searchParams;
-    const currencyCode = await getPreferredCurrencyCode();
-
-    const loadSearchParams = await createCategorySearchParamsLoader(
-      categoryId,
-      customerAccessToken,
-    );
-    const parsedSearchParams = loadSearchParams?.(searchParams) ?? {};
-
-    const search = await fetchFacetedSearch(
-      {
-        ...searchParams,
-        ...parsedSearchParams,
-        category: categoryId,
-      },
-      currencyCode,
-      customerAccessToken,
-    );
-
-    return search;
-  });
-
-  const streamableProducts = Streamable.from(async () => {
-    const format = await getFormatter();
-
-    const search = await streamableFacetedSearch;
-    const products = search.products.items;
-
-    const { defaultOutOfStockMessage, showOutOfStockMessage, showBackorderMessage } =
-      settings?.inventory ?? {};
-
-    return productCardTransformer(
-      products,
-      format,
-      showOutOfStockMessage ? defaultOutOfStockMessage : undefined,
-      showBackorderMessage,
-    );
-  });
-
-  const streamableTotalCount = Streamable.from(async () => {
-    const format = await getFormatter();
-    const search = await streamableFacetedSearch;
-
-    return format.number(search.products.collectionInfo?.totalItems ?? 0);
-  });
-
-  const streamablePagination = Streamable.from(async () => {
-    const search = await streamableFacetedSearch;
-
-    return pageInfoTransformer(search.products.pageInfo);
-  });
-
-  const streamableFilters = Streamable.from(async () => {
-    const searchParams = await props.searchParams;
-
-    const loadSearchParams = await createCategorySearchParamsLoader(
-      categoryId,
-      customerAccessToken,
-    );
-    const parsedSearchParams = loadSearchParams?.(searchParams) ?? {};
-    const cachedCategory = getCachedCategory(categoryId);
-    const categorySearch = await fetchFacetedSearch(cachedCategory, undefined, customerAccessToken);
-    const refinedSearch = await streamableFacetedSearch;
-
-    const allFacets = categorySearch.facets.items.filter(
-      (facet) => facet.__typename !== 'CategorySearchFilter',
-    );
-    const refinedFacets = refinedSearch.facets.items.filter(
-      (facet) => facet.__typename !== 'CategorySearchFilter',
-    );
-
-    const transformedFacets = await facetsTransformer({
-      refinedFacets,
-      allFacets,
-      searchParams: { ...searchParams, ...parsedSearchParams },
-    });
-
-    const filters = transformedFacets.filter((facet) => facet != null);
-
-    const tree = categoryTree[0];
-    const subCategoriesFilters =
-      tree == null || tree.children.length === 0
-        ? []
-        : [
-            {
-              type: 'link-group' as const,
-              label: t('Category.subCategories'),
-              links: tree.children.map((child) => ({
-                label: child.name,
-                href: child.path,
-              })),
-            },
-          ];
-
-    return [...subCategoriesFilters, ...filters];
-  });
-
-  const streamableCompareProducts = Streamable.from(async () => {
-    const searchParams = await props.searchParams;
-
-    if (!productComparisonsEnabled) {
-      return [];
-    }
-
-    const { compare } = compareLoader(searchParams);
-
-    const compareIds = { entityIds: compare ? compare.map((id: string) => Number(id)) : [] };
-
-    const products = await getCompareProducts(compareIds, customerAccessToken);
-
-    return products.map((product) => ({
-      id: product.entityId.toString(),
-      title: product.name,
-      image: product.defaultImage
-        ? { src: product.defaultImage.url, alt: product.defaultImage.altText }
-        : undefined,
-      href: product.path,
-    }));
-  });
+  const categoryName = category?.name ?? fallbackName;
 
   return (
-    <>
-      <ProductsListSection
-        breadcrumbs={breadcrumbs}
-        compareLabel={t('Compare.compare')}
-        compareProducts={streamableCompareProducts}
-        emptyStateSubtitle={t('Category.Empty.subtitle')}
-        emptyStateTitle={t('Category.Empty.title')}
-        filterLabel={t('FacetedSearch.filters')}
-        filters={streamableFilters}
-        filtersPanelTitle={t('FacetedSearch.filters')}
-        maxCompareLimitMessage={t('Compare.maxCompareLimit')}
-        maxItems={MAX_COMPARE_LIMIT}
-        paginationInfo={streamablePagination}
-        products={streamableProducts}
-        rangeFilterApplyLabel={t('FacetedSearch.Range.apply')}
-        removeLabel={t('Compare.remove')}
-        resetFiltersLabel={t('FacetedSearch.resetFilters')}
-        showCompare={productComparisonsEnabled}
-        showRating={showRating}
-        sortDefaultValue="featured"
-        sortLabel={t('SortBy.sortBy')}
-        sortOptions={[
-          { value: 'featured', label: t('SortBy.featuredItems') },
-          { value: 'newest', label: t('SortBy.newestItems') },
-          { value: 'best_selling', label: t('SortBy.bestSellingItems') },
-          { value: 'a_to_z', label: t('SortBy.aToZ') },
-          { value: 'z_to_a', label: t('SortBy.zToA') },
-          { value: 'best_reviewed', label: t('SortBy.byReview') },
-          { value: 'lowest_price', label: t('SortBy.priceAscending') },
-          { value: 'highest_price', label: t('SortBy.priceDescending') },
-          { value: 'relevance', label: t('SortBy.relevance') },
-        ]}
-        sortParamName="sort"
-        title={category.name}
-        totalCount={streamableTotalCount}
-      />
-      <Stream value={streamableFacetedSearch}>
-        {(search) => <CategoryViewed category={category} products={search.products.items} />}
-      </Stream>
-    </>
+    <div style={{ background: 'var(--color-bg, #1a2332)', minHeight: '100vh' }}>
+      {/* ── Hero Banner ── */}
+      <section
+        style={{
+          background: 'linear-gradient(180deg, #0d1620 0%, #1a2332 100%)',
+          padding: '72px 0 56px',
+          borderBottom: '1px solid rgba(200,151,42,0.15)',
+        }}
+      >
+        <div className="site-container">
+          {/* Breadcrumb */}
+          <nav style={{ marginBottom: 20 }}>
+            <ol
+              style={{
+                display: 'flex',
+                gap: 8,
+                alignItems: 'center',
+                listStyle: 'none',
+                margin: 0,
+                padding: 0,
+                fontFamily: "'Barlow', sans-serif",
+                fontSize: 13,
+                color: 'rgba(255,255,255,0.45)',
+              }}
+            >
+              <li>
+                <a
+                  href="/"
+                  style={{
+                    color: 'rgba(255,255,255,0.45)',
+                    textDecoration: 'none',
+                    transition: 'color 150ms',
+                  }}
+                  onMouseEnter={(e) => {
+                    (e.currentTarget as HTMLAnchorElement).style.color = '#c8972a';
+                  }}
+                  onMouseLeave={(e) => {
+                    (e.currentTarget as HTMLAnchorElement).style.color =
+                      'rgba(255,255,255,0.45)';
+                  }}
+                >
+                  Home
+                </a>
+              </li>
+              <li style={{ color: 'rgba(255,255,255,0.25)' }}>›</li>
+              <li>
+                <a
+                  href="/shop"
+                  style={{
+                    color: 'rgba(255,255,255,0.45)',
+                    textDecoration: 'none',
+                    transition: 'color 150ms',
+                  }}
+                  onMouseEnter={(e) => {
+                    (e.currentTarget as HTMLAnchorElement).style.color = '#c8972a';
+                  }}
+                  onMouseLeave={(e) => {
+                    (e.currentTarget as HTMLAnchorElement).style.color =
+                      'rgba(255,255,255,0.45)';
+                  }}
+                >
+                  Shop
+                </a>
+              </li>
+              <li style={{ color: 'rgba(255,255,255,0.25)' }}>›</li>
+              <li style={{ color: 'rgba(255,255,255,0.7)' }}>{categoryName}</li>
+            </ol>
+          </nav>
+
+          {/* Heading + badge */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: 16, flexWrap: 'wrap' }}>
+            <h1
+              style={{
+                fontFamily: "'Essonnes', 'Playfair Display', serif",
+                fontSize: 'clamp(2rem, 5vw, 3.25rem)',
+                fontWeight: 700,
+                color: '#fff',
+                margin: 0,
+                lineHeight: 1.1,
+              }}
+            >
+              {categoryName}
+            </h1>
+            {products.length > 0 && (
+              <span
+                style={{
+                  background: 'rgba(200,151,42,0.15)',
+                  border: '1px solid rgba(200,151,42,0.35)',
+                  color: '#c8972a',
+                  fontFamily: "'Barlow', sans-serif",
+                  fontSize: 13,
+                  fontWeight: 700,
+                  padding: '4px 12px',
+                  borderRadius: 20,
+                  letterSpacing: '0.04em',
+                }}
+              >
+                {products.length} Products
+              </span>
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Sidebar + Grid ── */}
+      <section style={{ padding: '64px 0' }}>
+        <div className="site-container">
+          <Suspense
+            fallback={
+              <div
+                style={{
+                  fontFamily: "'Barlow', sans-serif",
+                  color: 'rgba(255,255,255,0.4)',
+                  padding: '48px 0',
+                  textAlign: 'center',
+                }}
+              >
+                Loading products…
+              </div>
+            }
+          >
+            <CategoryProductsGrid products={products} categoryName={categoryName} />
+          </Suspense>
+        </div>
+      </section>
+
+      {/* ── Trust Badges ── */}
+      <section
+        style={{
+          background: '#151e2a',
+          borderTop: '1px solid rgba(255,255,255,0.06)',
+          borderBottom: '1px solid rgba(255,255,255,0.06)',
+          padding: '40px 0',
+        }}
+      >
+        <div className="site-container">
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
+              gap: 24,
+            }}
+          >
+            {TRUST_BADGES.map((badge) => (
+              <div
+                key={badge.label}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 12,
+                  padding: '16px 20px',
+                  background: 'rgba(255,255,255,0.03)',
+                  border: '1px solid rgba(255,255,255,0.07)',
+                  borderRadius: 8,
+                }}
+              >
+                <span style={{ fontSize: 22 }}>{badge.icon}</span>
+                <span
+                  style={{
+                    fontFamily: "'Barlow', sans-serif",
+                    fontSize: 13,
+                    fontWeight: 600,
+                    color: 'rgba(255,255,255,0.75)',
+                    letterSpacing: '0.02em',
+                  }}
+                >
+                  {badge.label}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── TradePro CTA ── */}
+      <TradeProSection />
+    </div>
   );
 }
