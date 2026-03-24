@@ -1,6 +1,153 @@
 "use client"
-import { forwardRef } from "react"
-const ReadyCTA = forwardRef(function ReadyCTA(_props: any, ref: any) {
-  return null
+import { forwardRef, type Ref } from "react"
+import { ArrowRight } from "lucide-react"
+
+interface ReadyCTAProps {
+  className?: string
+  bgColor?: string
+  bgImage?: string
+  bgOpacity?: number
+  gradientFrom?: string
+  gradientTo?: string
+  gradientDirection?: string
+  paddingTop?: number
+  paddingBottom?: number
+  overline?: string
+  heading?: string
+  headingAccent?: string
+  body?: string
+  btn1Label?: string
+  btn1Href?: string
+  btn2Label?: string
+  btn2Href?: string
+}
+
+const ReadyCTA = forwardRef(function ReadyCTA(
+  {
+    className,
+    bgColor,
+    bgImage,
+    bgOpacity,
+    gradientFrom,
+    gradientTo,
+    gradientDirection,
+    paddingTop,
+    paddingBottom,
+    overline = "Get Started Today",
+    heading = "Ready to Upgrade Your",
+    headingAccent = "Outdoor Lighting?",
+    body = "Join thousands of contractors and homeowners who trust CAST Lighting for professional-grade outdoor fixtures. Apply for TradePro pricing or shop our full catalog today.",
+    btn1Label = "Shop Products",
+    btn1Href = "/shop",
+    btn2Label = "Join TradePro",
+    btn2Href = "/trade-pro",
+  }: ReadyCTAProps,
+  ref: Ref<HTMLElement>
+) {
+  const hasGradient = !!(gradientFrom && gradientTo)
+  const overlayOpacity = typeof bgOpacity === "number" ? bgOpacity / 100 : 0.88
+  const sectionBackground = hasGradient
+    ? `linear-gradient(${gradientDirection || "135deg"}, ${gradientFrom}, ${gradientTo})`
+    : bgColor || "var(--color-primary, #004960)"
+
+  return (
+    <section
+      ref={ref}
+      className={`relative overflow-hidden ${className || ""}`}
+      style={{
+        ...(!bgImage ? { background: sectionBackground } : {}),
+        paddingTop: paddingTop ?? 96,
+        paddingBottom: paddingBottom ?? 96,
+      }}
+    >
+      {bgImage && (
+        <img
+          src={bgImage}
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover"
+          style={{ zIndex: 0 }}
+        />
+      )}
+      {bgImage && (
+        <div
+          className="absolute inset-0"
+          style={{ zIndex: 1, background: sectionBackground, opacity: overlayOpacity }}
+        />
+      )}
+
+      {/* Decorative glow */}
+      <div
+        style={{
+          position: "absolute",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+          width: 600,
+          height: 300,
+          background: "radial-gradient(ellipse, rgba(200,151,42,0.15), transparent 70%)",
+          pointerEvents: "none",
+          zIndex: 2,
+        }}
+      />
+
+      <div className="relative" style={{ zIndex: 10 }}>
+        <div className="site-container" style={{ textAlign: "center", maxWidth: 720 }}>
+          {overline && (
+            <p style={{
+              fontFamily: "'Barlow', sans-serif",
+              fontSize: 12,
+              fontWeight: 700,
+              textTransform: "uppercase",
+              letterSpacing: "0.14em",
+              color: "rgba(255,255,255,0.6)",
+              margin: "0 0 16px",
+            }}>
+              {overline}
+            </p>
+          )}
+
+          <h2 style={{
+            fontFamily: "'Essonnes', 'Playfair Display', serif",
+            fontSize: "clamp(32px, 4vw, 52px)",
+            fontWeight: 700,
+            lineHeight: 1.15,
+            color: "#fff",
+            margin: "0 0 20px",
+          }}>
+            {heading}{" "}
+            <span style={{
+              background: "linear-gradient(135deg, #c8972a, #e8b84b)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+            }}>
+              {headingAccent}
+            </span>
+          </h2>
+
+          <p style={{
+            fontFamily: "'Barlow', sans-serif",
+            fontSize: 17,
+            color: "rgba(255,255,255,0.75)",
+            lineHeight: 1.7,
+            margin: "0 0 40px",
+          }}>
+            {body}
+          </p>
+
+          <div style={{ display: "flex", gap: 16, justifyContent: "center", flexWrap: "wrap" }}>
+            <a href={btn1Href} className="sg-btn-solid-md" style={{ textDecoration: "none" }}>
+              {btn1Label} <ArrowRight style={{ width: 16, height: 16 }} />
+            </a>
+            {btn2Label && (
+              <a href={btn2Href} className="sg-btn-outline-md" style={{ textDecoration: "none" }}>
+                {btn2Label}
+              </a>
+            )}
+          </div>
+        </div>
+      </div>
+    </section>
+  )
 })
+
 export default ReadyCTA

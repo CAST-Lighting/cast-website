@@ -1,5 +1,5 @@
 import { lazy } from "react"
-import { Style, TextInput, List, Shape, Color } from "@makeswift/runtime/controls"
+import { Style, TextInput, List, Shape, Color, Number } from "@makeswift/runtime/controls"
 import { runtime } from "~/lib/makeswift/runtime"
 
 runtime.registerComponent(
@@ -9,21 +9,24 @@ runtime.registerComponent(
     label: "Site / Reviews Carousel",
     props: {
       className: Style(),
-      sectionStyle: Style({ properties: [Style.Padding, Style.Margin] }),
-      bgColor: Color({ label: "Background Color", defaultValue: "#25262d" }),
+      bgColor: Color({ label: "Background Color", defaultValue: "#141e27" }),
+      paddingTop: Number({ label: "Padding Top (px)", defaultValue: 96 }),
+      paddingBottom: Number({ label: "Padding Bottom (px)", defaultValue: 96 }),
       overline: TextInput({ label: "Overline", defaultValue: "What Our Customers Say" }),
-      heading: TextInput({ label: "Heading", defaultValue: "Trusted By Thousands Of Professionals" }),
+      heading: TextInput({ label: "Heading", defaultValue: "Trusted by Contractors" }),
+      headingAccent: TextInput({ label: "Heading Accent (gold)", defaultValue: "Nationwide" }),
       reviews: List({
         label: "Reviews",
         type: Shape({
           type: {
-            author: TextInput({ label: "Author Name", defaultValue: "John Smith" }),
+            name: TextInput({ label: "Reviewer Name", defaultValue: "John Smith" }),
             role: TextInput({ label: "Role / Title", defaultValue: "Landscape Contractor" }),
-            rating: TextInput({ label: "Rating (1–5)", defaultValue: "5" }),
-            text: TextInput({ label: "Review Text", defaultValue: "Incredible fixtures." }),
+            location: TextInput({ label: "Location", defaultValue: "Austin, TX" }),
+            rating: Number({ label: "Rating (1–5)", defaultValue: 5, min: 1, max: 5, step: 1 }),
+            quote: TextInput({ label: "Review Text", defaultValue: "Incredible fixtures that last a lifetime." }),
           },
         }),
-        getItemLabel(item) { return item?.author || "Review"; },
+        getItemLabel(item) { return item?.name || "Review"; },
       }),
     },
   }
