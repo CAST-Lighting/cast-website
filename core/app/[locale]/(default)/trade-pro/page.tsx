@@ -82,7 +82,7 @@ export default async function TradeProPage({ params }: Props) {
     { text: 'Imported — no domestic support' },
     { text: 'Fixed optics — no field adjustment' },
     { text: 'No dedicated contractor program' },
-    { text: 'Replace, don't repair' },
+    { text: "Replace, don't repair" },
   ];
 
   return (
