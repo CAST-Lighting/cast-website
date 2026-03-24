@@ -1,7 +1,11 @@
 import { setRequestLocale } from 'next-intl/server';
 import { type Metadata } from 'next';
-import { Page } from '~/lib/makeswift/page';
-import '~/lib/makeswift/components';
+import ShopHero from '~/lib/makeswift/components/cast/ShopHero';
+import ShopGrid from '~/lib/makeswift/components/cast/ShopGrid';
+import CategoryGrid from '~/lib/makeswift/components/cast/CategoryGrid';
+import ReviewsCarousel from '~/lib/makeswift/components/cast/ReviewsCarousel';
+import TradeProSection from '~/lib/makeswift/components/cast/TradeProSection';
+import NewsletterCta from '~/lib/makeswift/components/cast/NewsletterCta';
 
 interface Props {
   params: Promise<{ locale: string }>;
@@ -15,5 +19,18 @@ export const metadata: Metadata = {
 export default async function ShopPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
-  return <Page path="/shop" locale={locale} />;
+
+  return (
+    <>
+      <ShopHero
+        headline="Shop Professional Outdoor Lighting"
+        subheadline="Built for contractors. Tested for decades."
+      />
+      <ShopGrid />
+      <CategoryGrid />
+      <ReviewsCarousel />
+      <TradeProSection />
+      <NewsletterCta />
+    </>
+  );
 }
