@@ -1,303 +1,164 @@
-import type { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
-import { Suspense } from 'react';
-
+import { type Metadata } from 'next';
+import ShopGrid from '~/lib/makeswift/components/cast/ShopGrid';
 import TradeProSection from '~/lib/makeswift/components/cast/TradeProSection';
-
-import CategoryProductsGrid, {
-  type BCProduct,
-} from './_components/CategoryProductsGrid';
-
-const BC_STORE_HASH = 'o3r3vyxngd';
-const BC_TOKEN = 'm44g12165hann457yzf0156dbc9qdp9';
-
-const CATEGORY_NAMES: Record<number, string> = {
-  24: 'Path Lights',
-  26: 'Area Lights',
-  31: 'Spot & Accent Lights',
-  35: 'Well & In-Ground Lights',
-  30: 'Wall & Deck Lights',
-  32: 'Down Lights',
-  45: 'Transformers',
-  19: 'Accessories',
-  23: 'All Products',
-};
-
-interface BCCategoryData {
-  id: number;
-  name: string;
-  meta_description?: string;
-  meta_keywords?: string;
-  page_title?: string;
-}
-
-async function fetchCategory(categoryId: number): Promise<BCCategoryData | null> {
-  try {
-    const res = await fetch(
-      `https://api.bigcommerce.com/stores/${BC_STORE_HASH}/v3/catalog/categories/${categoryId}`,
-      {
-        headers: {
-          'X-Auth-Token': BC_TOKEN,
-          'Content-Type': 'application/json',
-        },
-        next: { revalidate: 3600 },
-      },
-    );
-    if (!res.ok) return null;
-    const data = (await res.json()) as { data: BCCategoryData };
-    return data.data;
-  } catch {
-    return null;
-  }
-}
-
-async function fetchProducts(categoryId: number): Promise<BCProduct[]> {
-  try {
-    const params = new URLSearchParams({
-      limit: '50',
-      include: 'images',
-      is_visible: 'true',
-    });
-    if (categoryId !== 23) {
-      params.append('categories:in', String(categoryId));
-    }
-    const res = await fetch(
-      `https://api.bigcommerce.com/stores/${BC_STORE_HASH}/v3/catalog/products?${params.toString()}`,
-      {
-        headers: {
-          'X-Auth-Token': BC_TOKEN,
-          'Content-Type': 'application/json',
-        },
-        next: { revalidate: 60 },
-      },
-    );
-    if (!res.ok) return [];
-    const data = (await res.json()) as { data: BCProduct[] };
-    return data.data;
-  } catch {
-    return [];
-  }
-}
+import ReadyCTA from '~/lib/makeswift/components/cast/ReadyCTA';
 
 interface Props {
   params: Promise<{ slug: string; locale: string }>;
 }
 
-export async function generateMetadata(props: Props): Promise<Metadata> {
-  const { slug } = await props.params;
+const CATEGORY_NAMES: Record<number, string> = {
+  19: 'Accessories',
+  23: 'All Products',
+  24: 'Path Lights',
+  25: 'Spot & Accent Lights',
+  26: 'Area Lights',
+  27: 'LED Lamps & Modules',
+  28: 'Bluetooth Color Control',
+  29: 'Wall Lights',
+  30: 'Capstone Lights',
+  31: 'Bullet Lights',
+  32: 'Down Lights',
+  34: 'Wall Wash',
+  35: 'Ground Lights',
+  37: 'Lamps',
+  38: 'Path Light Modules',
+  39: 'Accessories',
+  45: 'Transformers',
+  47: 'Range Extenders',
+  50: 'Smart Controls',
+  63: 'In-Ground Lights',
+};
+
+interface BCProduct {
+  id: number;
+  name: string;
+  price: number;
+  custom_url: { url: string };
+  categories: number[];
+  images: Array<{ url_standard: string; is_thumbnail: boolean }>;
+}
+
+async function fetchCategoryProducts(categoryId: number): Promise<BCProduct[]> {
+  try {
+    const url = categoryId === 23
+      ? 'https://api.bigcommerce.com/stores/o3r3vyxngd/v3/catalog/products?limit=50&include=images&is_visible=true'
+      : `https://api.bigcommerce.com/stores/o3r3vyxngd/v3/catalog/products?limit=50&include=images&is_visible=true&categories:in=${categoryId}`;
+
+    const res = await fetch(url, {
+      headers: {
+        'X-Auth-Token': 'm44g12165hann457yzf0156dbc9qdp9',
+        'Content-Type': 'application/json',
+      },
+      next: { revalidate: 3600 },
+    });
+    if (!res.ok) return [];
+    const data = await res.json() as { data: BCProduct[] };
+    return (data.data || []).filter(p => p.id !== 115 && p.name !== 'Test');
+  } catch {
+    return [];
+  }
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params;
   const categoryId = Number(slug);
-  const fallbackName = CATEGORY_NAMES[categoryId] ?? 'Products';
-
-  const category = await fetchCategory(categoryId);
-  const name = category?.name ?? fallbackName;
-
+  const name = CATEGORY_NAMES[categoryId] ?? 'Products';
   return {
-    title: category?.page_title || `${name} | CAST Lighting`,
-    description:
-      category?.meta_description ||
-      `Shop CAST Lighting ${name} — solid brass & copper outdoor landscape lighting built to last a lifetime.`,
-    keywords: category?.meta_keywords ? category.meta_keywords.split(',') : undefined,
+    title: `${name} | CAST Lighting`,
+    description: `Shop CAST Lighting ${name} — professional outdoor lighting in solid brass and copper. Lifetime warranty on every fixture.`,
   };
 }
 
-const TRUST_BADGES = [
-  { icon: '🏅', label: 'Lifetime Warranty' },
-  { icon: '🇺🇸', label: 'Made in USA' },
-  { icon: '🚚', label: 'Free Shipping over $500' },
-  { icon: '💼', label: 'TradePro Pricing Available' },
-];
-
-export default async function CategoryPage(props: Props) {
-  const { slug, locale } = await props.params;
+export default async function CategoryPage({ params }: Props) {
+  const { slug, locale } = await params;
   setRequestLocale(locale);
 
   const categoryId = Number(slug);
-  const fallbackName = CATEGORY_NAMES[categoryId] ?? 'Products';
+  const categoryName = CATEGORY_NAMES[categoryId] ?? 'Products';
 
-  const [category, products] = await Promise.all([
-    fetchCategory(categoryId),
-    fetchProducts(categoryId),
-  ]);
+  const bcProducts = await fetchCategoryProducts(categoryId);
 
-  const categoryName = category?.name ?? fallbackName;
+  const products = bcProducts.map(p => {
+    const thumbnail = p.images?.find(img => img.is_thumbnail) ?? p.images?.[0];
+    const nonAllCat = p.categories?.find(id => id !== 23);
+    const category = nonAllCat ? (CATEGORY_NAMES[nonAllCat] ?? 'Products') : 'Products';
+    const price = `$${p.price.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+    return {
+      image: thumbnail?.url_standard,
+      name: p.name,
+      price,
+      href: p.custom_url?.url,
+      category,
+    };
+  });
 
   return (
-    <div style={{ background: 'var(--color-bg, #1a2332)', minHeight: '100vh' }}>
-      {/* ── Hero Banner ── */}
-      <section
-        style={{
-          background: 'linear-gradient(180deg, #0d1620 0%, #1a2332 100%)',
-          padding: '72px 0 56px',
-          borderBottom: '1px solid rgba(200,151,42,0.15)',
-        }}
-      >
+    <>
+      {/* Category Hero */}
+      <div style={{
+        background: 'linear-gradient(180deg, #0d1620 0%, #1a2332 100%)',
+        padding: '64px 0 48px',
+      }}>
         <div className="site-container">
-          {/* Breadcrumb */}
-          <nav style={{ marginBottom: 20 }}>
-            <ol
-              style={{
-                display: 'flex',
-                gap: 8,
-                alignItems: 'center',
-                listStyle: 'none',
-                margin: 0,
-                padding: 0,
-                fontFamily: "'Barlow', sans-serif",
-                fontSize: 13,
-                color: 'rgba(255,255,255,0.45)',
-              }}
-            >
-              <li>
-                <a
-                  href="/"
-                  style={{
-                    color: 'rgba(255,255,255,0.45)',
-                    textDecoration: 'none',
-                    transition: 'color 150ms',
-                  }}
-                  onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLAnchorElement).style.color = '#c8972a';
-                  }}
-                  onMouseLeave={(e) => {
-                    (e.currentTarget as HTMLAnchorElement).style.color =
-                      'rgba(255,255,255,0.45)';
-                  }}
-                >
-                  Home
-                </a>
-              </li>
-              <li style={{ color: 'rgba(255,255,255,0.25)' }}>›</li>
-              <li>
-                <a
-                  href="/shop"
-                  style={{
-                    color: 'rgba(255,255,255,0.45)',
-                    textDecoration: 'none',
-                    transition: 'color 150ms',
-                  }}
-                  onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLAnchorElement).style.color = '#c8972a';
-                  }}
-                  onMouseLeave={(e) => {
-                    (e.currentTarget as HTMLAnchorElement).style.color =
-                      'rgba(255,255,255,0.45)';
-                  }}
-                >
-                  Shop
-                </a>
-              </li>
-              <li style={{ color: 'rgba(255,255,255,0.25)' }}>›</li>
-              <li style={{ color: 'rgba(255,255,255,0.7)' }}>{categoryName}</li>
-            </ol>
-          </nav>
-
-          {/* Heading + badge */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: 16, flexWrap: 'wrap' }}>
-            <h1
-              style={{
-                fontFamily: "'Essonnes', 'Playfair Display', serif",
-                fontSize: 'clamp(2rem, 5vw, 3.25rem)',
-                fontWeight: 700,
-                color: '#fff',
-                margin: 0,
-                lineHeight: 1.1,
-              }}
-            >
-              {categoryName}
-            </h1>
-            {products.length > 0 && (
-              <span
-                style={{
-                  background: 'rgba(200,151,42,0.15)',
-                  border: '1px solid rgba(200,151,42,0.35)',
-                  color: '#c8972a',
-                  fontFamily: "'Barlow', sans-serif",
-                  fontSize: 13,
-                  fontWeight: 700,
-                  padding: '4px 12px',
-                  borderRadius: 20,
-                  letterSpacing: '0.04em',
-                }}
-              >
-                {products.length} Products
-              </span>
-            )}
-          </div>
+          <p style={{
+            fontFamily: "'Barlow', sans-serif",
+            fontSize: 11,
+            fontWeight: 700,
+            textTransform: 'uppercase',
+            letterSpacing: '0.14em',
+            color: 'var(--color-accent, #c8972a)',
+            margin: '0 0 12px',
+          }}>
+            <a href="/" style={{ color: 'inherit', textDecoration: 'none' }}>Home</a>
+            {' / '}
+            <a href="/shop" style={{ color: 'inherit', textDecoration: 'none' }}>Shop</a>
+            {' / '}
+            {categoryName}
+          </p>
+          <h1 style={{
+            fontFamily: "'Essonnes', 'Playfair Display', serif",
+            fontSize: 'var(--h1-size, 3rem)',
+            fontWeight: 700,
+            color: '#fff',
+            margin: '0 0 16px',
+            lineHeight: 1.1,
+          }}>
+            {categoryName}
+          </h1>
+          <p style={{
+            fontFamily: "'Barlow', sans-serif",
+            fontSize: 17,
+            color: 'rgba(255,255,255,0.7)',
+            margin: 0,
+          }}>
+            {products.length} professional-grade fixture{products.length !== 1 ? 's' : ''} — solid brass and copper, lifetime warranty
+          </p>
         </div>
-      </section>
+      </div>
 
-      {/* ── Sidebar + Grid ── */}
-      <section style={{ padding: '64px 0' }}>
-        <div className="site-container">
-          <Suspense
-            fallback={
-              <div
-                style={{
-                  fontFamily: "'Barlow', sans-serif",
-                  color: 'rgba(255,255,255,0.4)',
-                  padding: '48px 0',
-                  textAlign: 'center',
-                }}
-              >
-                Loading products…
-              </div>
-            }
-          >
-            <CategoryProductsGrid products={products} categoryName={categoryName} />
-          </Suspense>
-        </div>
-      </section>
+      {/* Products Grid */}
+      <ShopGrid products={products} />
 
-      {/* ── Trust Badges ── */}
-      <section
-        style={{
-          background: '#151e2a',
-          borderTop: '1px solid rgba(255,255,255,0.06)',
-          borderBottom: '1px solid rgba(255,255,255,0.06)',
-          padding: '40px 0',
-        }}
-      >
-        <div className="site-container">
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
-              gap: 24,
-            }}
-          >
-            {TRUST_BADGES.map((badge) => (
-              <div
-                key={badge.label}
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: 12,
-                  padding: '16px 20px',
-                  background: 'rgba(255,255,255,0.03)',
-                  border: '1px solid rgba(255,255,255,0.07)',
-                  borderRadius: 8,
-                }}
-              >
-                <span style={{ fontSize: 22 }}>{badge.icon}</span>
-                <span
-                  style={{
-                    fontFamily: "'Barlow', sans-serif",
-                    fontSize: 13,
-                    fontWeight: 600,
-                    color: 'rgba(255,255,255,0.75)',
-                    letterSpacing: '0.02em',
-                  }}
-                >
-                  {badge.label}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* TradePro CTA */}
+      <TradeProSection
+        overline="For Landscape Professionals"
+        heading="The TradePro"
+        headingAccent="Advantage"
+        btnLabel="Join TradePro Program"
+        btnHref="/trade-pro"
+      />
 
-      {/* ── TradePro CTA ── */}
-      <TradeProSection />
-    </div>
+      <ReadyCTA
+        heading="Need Help Choosing?"
+        headingAccent="We can help."
+        body="Our lighting experts are available to help you select the right fixtures for your project. Call us or start your TradePro application today."
+        btn1Label="Call Us: (973) 423-2303"
+        btn1Href="tel:9734232303"
+        btn2Label="Join TradePro"
+        btn2Href="/trade-pro"
+      />
+    </>
   );
 }
