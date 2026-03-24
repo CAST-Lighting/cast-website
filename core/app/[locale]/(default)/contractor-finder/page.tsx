@@ -21,7 +21,7 @@ export default async function ContractorFinderPage({ params }: Props) {
   const certificationFeatures = [
     {
       title: 'All Installers Are TradePro Certified',
-      desc: 'Every contractor listed has completed CAST's TradePro certification and maintains active membership.',
+      desc: "Every contractor listed has completed CAST's TradePro certification and maintains active membership.",
     },
     {
       title: 'Vetted and Approved by CAST',

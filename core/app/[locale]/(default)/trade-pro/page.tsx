@@ -59,7 +59,7 @@ export default async function TradeProPage({ params }: Props) {
     },
     {
       title: 'Lifetime Product Warranty',
-      desc: 'Every fixture backed by CAST's lifetime warranty—no questions asked. Replace or repair at no cost.',
+      desc: "Every fixture backed by CAST's lifetime warranty—no questions asked. Replace or repair at no cost.",
     },
     {
       title: 'Dedicated Support Team',

@@ -36,7 +36,7 @@ export default async function RetailSignupPage({ params }: Props) {
       location: 'Oregon',
       rating: 5,
       quote:
-        'The margins are excellent and the product sells itself. We haven't had a single warranty claim in three years.',
+        "The margins are excellent and the product sells itself. We haven't had a single warranty claim in three years.",
     },
     {
       name: 'Tom B.',
@@ -44,7 +44,7 @@ export default async function RetailSignupPage({ params }: Props) {
       location: 'Georgia',
       rating: 5,
       quote:
-        'CAST's co-op advertising program helped us grow our landscape lighting category by 40% in year one.',
+        "CAST's co-op advertising program helped us grow our landscape lighting category by 40% in year one.",
     },
   ];
 
