@@ -2,21 +2,47 @@
 import { forwardRef, type Ref, useState, useRef, useEffect } from "react"
 import { Phone, ShoppingCart, Search, Menu, X, ChevronDown } from "lucide-react"
 
-const navItems = [
+interface NavItem {
+  label: string
+  href?: string
+  dropdown?: { label: string; href: string }[]
+}
+
+const navItems: NavItem[] = [
   {
     label: "SHOP",
-    dropdown: ["Path Lights", "Spot Lights", "Well Lights", "Wall Washes", "Deck Lights", "Transformers", "Accessories"]
+    href: "/shop",
+    dropdown: [
+      { label: "All Products", href: "/shop" },
+      { label: "Path & Area Lights", href: "/shop" },
+      { label: "Spot & Accent Lights", href: "/shop" },
+      { label: "Well & In-Ground Lights", href: "/shop" },
+      { label: "Step & Deck Lights", href: "/shop" },
+      { label: "Flood Lights", href: "/shop" },
+      { label: "Transformers", href: "/shop" },
+      { label: "Accessories", href: "/shop" },
+    ],
   },
-  { label: "DEALS" },
+  { label: "DEALS", href: "/shop" },
   {
     label: "RESOURCES",
-    dropdown: ["Installation Guides", "Technical Support", "Trainings & Events", "Downloads"]
+    dropdown: [
+      { label: "Installation Guides", href: "#" },
+      { label: "Technical Support", href: "#" },
+      { label: "Trainings & Events", href: "#" },
+      { label: "Downloads", href: "#" },
+    ],
   },
   {
     label: "CONTRACTORS",
-    dropdown: ["TradePro", "Support", "Login"]
+    dropdown: [
+      { label: "TradePro Program", href: "/trade-pro" },
+      { label: "Find a Contractor", href: "/contractor-finder" },
+      { label: "Find a Distributor", href: "/distributor-finder" },
+      { label: "Become a Retailer", href: "/retail-signup" },
+    ],
   },
-  { label: "ABOUT" }
+  { label: "ABOUT", href: "#" },
 ]
 
 const SiteNavbar = forwardRef(function SiteNavbar(
@@ -61,11 +87,11 @@ const SiteNavbar = forwardRef(function SiteNavbar(
       <div className="bg-[#003344]/85 border-b backdrop-blur-md border-[#004a61]">
         <div className="container mx-auto flex items-center justify-between px-6 py-2 text-sm font-body">
           <div className="flex items-center gap-4">
-            <a href="#" className="text-primary hover:text-warm-glow transition-colors font-semibold tracking-wide">
+            <a href="/trade-pro" className="text-primary hover:text-warm-glow transition-colors font-semibold tracking-wide">
               EASY CONTRACTOR PRICING
             </a>
             <span className="text-muted-foreground hidden sm:inline">|</span>
-            <a href="#" className="text-secondary-foreground hover:text-primary transition-colors hidden sm:inline tracking-wide">
+            <a href="/trade-pro" className="text-secondary-foreground hover:text-primary transition-colors hidden sm:inline tracking-wide">
               BECOME A TRADE PRO
             </a>
           </div>
@@ -96,7 +122,7 @@ const SiteNavbar = forwardRef(function SiteNavbar(
                 onMouseLeave={item.dropdown ? handleMouseLeave : undefined}
               >
                 <a
-                  href="#"
+                  href={item.href || "#"}
                   className="flex items-center gap-1 text-secondary-foreground hover:text-primary transition-colors py-2"
                 >
                   {item.label}
@@ -107,11 +133,11 @@ const SiteNavbar = forwardRef(function SiteNavbar(
                     <div className="min-w-[200px] rounded-lg border border-border bg-card/95 backdrop-blur-md shadow-lg py-2">
                       {item.dropdown.map((sub) => (
                         <a
-                          key={sub}
-                          href="#"
+                          key={sub.label}
+                          href={sub.href}
                           className="block px-4 py-2.5 text-sm text-secondary-foreground hover:text-primary hover:bg-primary/5 transition-colors"
                         >
-                          {sub}
+                          {sub.label}
                         </a>
                       ))}
                     </div>
@@ -185,11 +211,11 @@ const SiteNavbar = forwardRef(function SiteNavbar(
                   <div className="pl-4 pb-2 space-y-1">
                     {item.dropdown.map((sub) => (
                       <a
-                        key={sub}
-                        href="#"
+                        key={sub.label}
+                        href={sub.href}
                         className="block text-sm text-muted-foreground hover:text-primary py-1.5"
                       >
-                        {sub}
+                        {sub.label}
                       </a>
                     ))}
                   </div>
