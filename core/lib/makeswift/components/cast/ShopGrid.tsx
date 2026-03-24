@@ -46,7 +46,6 @@ const DEFAULT_PRODUCTS: Product[] = [
   { category: "Transformers & Power Supply", name: "600W Commercial Transformer", price: "$449.99", badge: "Pro", href: "/individual-product" },
 ]
 
-const CATEGORIES = ["All", "Path & Area Lights", "Accent & Spot Lights", "Transformers & Power Supply"]
 const PRICE_RANGES = ["$0 – $100", "$101 – $500", "$501 – $1,000", "$1,000+"]
 
 const ProductCard = ({ product }: { product: Product }) => (
@@ -114,6 +113,7 @@ const ShopGrid = forwardRef(function ShopGrid(
   const [search, setSearch] = useState("")
 
   const list = products && products.length > 0 ? products : DEFAULT_PRODUCTS
+  const categories = ["All", ...Array.from(new Set(list.map(p => p.category).filter((c): c is string => !!c)))]
   const filtered = list.filter(p => {
     const matchCat = activeCategory === "All" || p.category === activeCategory
     const matchSearch = !search || (p.name || "").toLowerCase().includes(search.toLowerCase())
@@ -220,7 +220,7 @@ const ShopGrid = forwardRef(function ShopGrid(
 
             <div className="sg-filter-section">
               <p className="sg-filter-label">Categories</p>
-              {CATEGORIES.map(cat => (
+              {categories.map(cat => (
                 <label key={cat} className="sg-filter-item">
                   <input type="radio" name="category" checked={activeCategory === cat} onChange={() => setActiveCategory(cat)} />
                   {cat}

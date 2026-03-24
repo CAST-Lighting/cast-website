@@ -117,8 +117,8 @@ const ContentMedia = forwardRef(function ContentMedia(
                         <Icon className="w-6 h-6 text-primary" />
                       </div>
                       <div>
-                        <h4 className="card-title text-foreground mb-1">{item.title}</h4>
-                        <p className="text-size-small text-muted-foreground">{item.desc}</p>
+                        <h4 className="card-title mb-1" style={{ color: '#ffffff' }}>{item.title}</h4>
+                        <p className="text-size-small" style={{ color: 'rgba(255,255,255,0.85)' }}>{item.desc}</p>
                       </div>
                     </div>
                   )
@@ -148,7 +148,7 @@ const ContentMedia = forwardRef(function ContentMedia(
                 )}
               </div>
               <div className="absolute -bottom-6 -left-6 bg-card border border-border rounded-xl p-5 glow-warm-sm">
-                <div className="heading-style-h3 text-primary">{stat || "25+"}</div>
+                <div className="heading-style-h3" style={{ color: 'var(--color-accent, #c8972a)' }}>{stat || "25+"}</div>
                 <div className="text-size-small text-muted-foreground">{statLabel || "Years of Excellence"}</div>
               </div>
             </div>
