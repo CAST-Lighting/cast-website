@@ -12,6 +12,13 @@ import { pricesTransformer } from '~/data-transformers/prices-transformer';
 import { productCardTransformer } from '~/data-transformers/product-card-transformer';
 import { productOptionsTransformer } from '~/data-transformers/product-options-transformer';
 import { getPreferredCurrencyCode } from '~/lib/currency';
+import BundleProducts from '~/lib/makeswift/components/cast/BundleProducts';
+import MediaGallery from '~/lib/makeswift/components/cast/MediaGallery';
+import ProductDocuments from '~/lib/makeswift/components/cast/ProductDocuments';
+import ProductFAQ from '~/lib/makeswift/components/cast/ProductFAQ';
+import PartsGrid from '~/lib/makeswift/components/cast/PartsGrid';
+import ReviewsCarousel from '~/lib/makeswift/components/cast/ReviewsCarousel';
+import TradeProSection from '~/lib/makeswift/components/cast/TradeProSection';
 
 import { addToCart } from './_actions/add-to-cart';
 import { submitReview } from './_actions/submit-review';
@@ -618,6 +625,19 @@ export default async function Product({ params, searchParams }: Props) {
         productSku={streamableProductSku}
         searchParams={searchParams}
       />
+
+      {/* CAST product page sections */}
+      <BundleProducts />
+      <MediaGallery />
+      <ProductDocuments />
+      <ProductFAQ />
+      <PartsGrid />
+      <ReviewsCarousel
+        overline="What Our Customers Say"
+        heading="Professional Reviews"
+        headingAccent="From The Field"
+      />
+      <TradeProSection />
     </>
   );
 }
