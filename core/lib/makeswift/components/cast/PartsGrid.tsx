@@ -26,13 +26,6 @@ interface PartsGridProps {
   paddingBottom?: number
 }
 
-const DEFAULT_PARTS: Part[] = [
-  { name: "Replacement LED Module 5.5W", price: "$24.99", partNumber: "LED-55-2700K" },
-  { name: "Brass Mounting Stake 12\"", price: "$9.99", partNumber: "STK-12-BR" },
-  { name: "Locking Collar Assembly", price: "$7.99", partNumber: "COL-ASY-BR" },
-  { name: "Lens & Gasket Kit", price: "$14.99", partNumber: "LNS-GSK-KT" },
-]
-
 const PartsGrid = forwardRef(function PartsGrid(
   {
     className,
@@ -51,7 +44,8 @@ const PartsGrid = forwardRef(function PartsGrid(
   }: PartsGridProps,
   ref: Ref<HTMLDivElement>
 ) {
-  const list = parts && parts.length > 0 ? parts : DEFAULT_PARTS
+  if (!parts || parts.length === 0) return null
+  const list = parts
   const hasGradient = !!(gradientFrom && gradientTo)
   const overlayOpacity = typeof bgOpacity === 'number' ? bgOpacity / 100 : 0.85
   const sectionBackground = hasGradient

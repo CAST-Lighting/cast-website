@@ -24,15 +24,6 @@ interface MediaGalleryProps {
   paddingBottom?: number
 }
 
-const DEFAULT_ITEMS: MediaItem[] = [
-  { type: "image", caption: "Brass Path Light – Garden Installation" },
-  { type: "image", caption: "Copper Accent Light – Pool Terrace" },
-  { type: "video", caption: "Installation Walkthrough – Path Light Series" },
-  { type: "image", caption: "Landscape Lighting – Evening Showcase" },
-  { type: "image", caption: "In-Grade Well Light – Driveway" },
-  { type: "video", caption: "CAST Transformer Setup Guide" },
-]
-
 const PlaceholderImage = ({ caption, isVideo }: { caption?: string; isVideo?: boolean }) => (
   <div style={{ width: "100%", aspectRatio: "16/10", background: "#37474f", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", borderRadius: 8, position: "relative", overflow: "hidden" }}>
     {isVideo ? (
@@ -76,7 +67,8 @@ const MediaGallery = forwardRef(function MediaGallery(
   ref: Ref<HTMLDivElement>
 ) {
   const [lightbox, setLightbox] = useState<number | null>(null)
-  const list = items && items.length > 0 ? items : DEFAULT_ITEMS
+  if (!items || items.length === 0) return null
+  const list = items
   const hasGradient = !!(gradientFrom && gradientTo)
   const overlayOpacity = typeof bgOpacity === 'number' ? bgOpacity / 100 : 0.85
   const sectionBackground = hasGradient

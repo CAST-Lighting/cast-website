@@ -632,9 +632,14 @@ export default async function Product({ params, searchParams }: Props) {
         heading="Bundle These Products"
         buttonText="Add All To Cart"
       />
-      <MediaGallery
-        heading="Photos & Videos"
-      />
+      <Stream value={streamableImages}>
+        {(images) => (
+          <MediaGallery
+            heading="Photos & Videos"
+            items={images.map((img) => ({ type: 'image' as const, src: img.src, caption: img.alt }))}
+          />
+        )}
+      </Stream>
       <ProductDocuments
         heading="Spec Sheets & Downloads"
         documents={[

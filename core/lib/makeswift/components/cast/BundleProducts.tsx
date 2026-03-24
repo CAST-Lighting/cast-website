@@ -26,12 +26,6 @@ interface BundleProductsProps {
   paddingBottom?: number
 }
 
-const DEFAULT_ITEMS: BundleItem[] = [
-  { name: "Brass Connectors 10-Pack", price: "$14.99", badge: "ACCESSORY" },
-  { name: "Extension Wire 50ft", price: "$24.99", badge: "ACCESSORY" },
-  { name: "Landscape Stake Kit 6-Pack", price: "$19.99", badge: "ACCESSORY" },
-]
-
 const BundleProducts = forwardRef(function BundleProducts(
   {
     className,
@@ -51,7 +45,8 @@ const BundleProducts = forwardRef(function BundleProducts(
   }: BundleProductsProps,
   ref: Ref<HTMLDivElement>
 ) {
-  const list = items && items.length > 0 ? items : DEFAULT_ITEMS
+  if (!items || items.length === 0) return null
+  const list = items
   const totalStr = list.reduce((sum, item) => sum + parseFloat((item.price || "$0").replace("$", "")), 0).toFixed(2)
   const hasGradient = !!(gradientFrom && gradientTo)
   const overlayOpacity = typeof bgOpacity === 'number' ? bgOpacity / 100 : 0.85
