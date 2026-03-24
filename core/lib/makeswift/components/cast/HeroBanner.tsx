@@ -39,6 +39,7 @@ interface HeroBannerProps {
   field4Label?: string
   field4Placeholder?: string
   formSubmitLabel?: string
+  hideForm?: boolean
   formWidth?: number
   formOffsetBottom?: number
   bgColor?: string
@@ -67,6 +68,7 @@ const HeroBanner = forwardRef(function HeroBanner(
     field3Label, field3Placeholder,
     field4Label, field4Placeholder,
     formSubmitLabel,
+    hideForm,
     formWidth, formOffsetBottom,
     bgColor, bgOpacity, gradientFrom, gradientTo, gradientDirection,
     lineHeight, paddingTop, paddingBottom,
@@ -150,7 +152,7 @@ const HeroBanner = forwardRef(function HeroBanner(
 
       {/* Content */}
       <div className="site-container w-full relative" style={{ zIndex: 10 }}>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start lg:items-center">
+        <div className={`grid grid-cols-1 gap-10 lg:gap-16 items-start lg:items-center ${hideForm ? '' : 'lg:grid-cols-2'}`}>
 
           {/* ── Left: text ── */}
           <div className="flex flex-col gap-6">
@@ -194,7 +196,7 @@ const HeroBanner = forwardRef(function HeroBanner(
           </div>
 
           {/* ── Right: form ── */}
-          <div
+          {!hideForm && <div
             style={{
               position: 'relative',
               zIndex: 50,
@@ -249,7 +251,7 @@ const HeroBanner = forwardRef(function HeroBanner(
                 </button>
               </form>
             </div>
-          </div>
+          </div>}
 
         </div>
       </div>

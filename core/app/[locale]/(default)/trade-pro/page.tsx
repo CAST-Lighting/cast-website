@@ -45,13 +45,14 @@ export default async function TradeProPage({ params }: Props) {
         phrase2="Exclusive Contractor Pricing"
         phrase3="Lifetime Warranty Included"
         badgeText="Join 10,000+ Landscape Contractors"
+        hideForm={true}
       />
       <div id="apply">
         <SignupHero
           overline="For Landscape Professionals"
           heading="Start Your TradePro Application"
           subheading="Join 10,000+ landscape professionals. Get exclusive pricing, lifetime warranty, and dedicated support — apply free in minutes."
-          formHeading="Start Your Application"
+          formHeading="Start Your TradePro Application"
           submitButtonText="Apply Now — It's Free"
           image="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=1600&q=80"
         />

@@ -14,23 +14,23 @@ const navItems: NavItem[] = [
     href: "/shop",
     dropdown: [
       { label: "All Products", href: "/shop" },
-      { label: "Path & Area Lights", href: "/shop" },
-      { label: "Spot & Accent Lights", href: "/shop" },
-      { label: "Well & In-Ground Lights", href: "/shop" },
-      { label: "Step & Deck Lights", href: "/shop" },
-      { label: "Flood Lights", href: "/shop" },
-      { label: "Transformers", href: "/shop" },
-      { label: "Accessories", href: "/shop" },
+      { label: "Path & Area Lights", href: "/category/path-and-area-lights" },
+      { label: "Spot & Accent Lights", href: "/category/spot-and-accent-lights" },
+      { label: "Well & In-Ground Lights", href: "/category/well-in-ground-lights" },
+      { label: "Step & Deck Lights", href: "/category/step-deck-lights" },
+      { label: "Flood Lights", href: "/category/flood-lights" },
+      { label: "Transformers", href: "/category/transformers-controllers" },
+      { label: "Accessories", href: "/category/accessories" },
     ],
   },
   { label: "DEALS", href: "/shop" },
   {
     label: "RESOURCES",
     dropdown: [
-      { label: "Installation Guides", href: "#" },
-      { label: "Technical Support", href: "#" },
-      { label: "Trainings & Events", href: "#" },
-      { label: "Downloads", href: "#" },
+      { label: "Installation Guides", href: "/shop" },
+      { label: "Technical Support", href: "/shop" },
+      { label: "Trainings & Events", href: "/shop" },
+      { label: "Downloads", href: "/shop" },
     ],
   },
   {
@@ -42,7 +42,7 @@ const navItems: NavItem[] = [
       { label: "Become a Retailer", href: "/retail-signup" },
     ],
   },
-  { label: "ABOUT", href: "#" },
+  { label: "ABOUT", href: "/about" },
 ]
 
 const SiteNavbar = forwardRef(function SiteNavbar(

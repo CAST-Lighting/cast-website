@@ -137,7 +137,7 @@ const DistributorFinder = forwardRef(function DistributorFinder(
                   <a href={`tel:${d.phone}`} style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, fontWeight: 600, color: "var(--color-accent)", textDecoration: "none", display: "block", marginBottom: 8 }}>{d.phone}</a>
                   <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
                     {d.brands.map((b, bi) => (
-                      <span key={bi} style={{ background: "#2d353c", border: "1px solid #dee2e6", borderRadius: 3, fontSize: 11, fontFamily: "'Barlow', sans-serif", fontWeight: 600, color: "rgba(255,255,255,0.7)", padding: "2px 8px" }}>{b}</span>
+                      <span key={bi} style={{ background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.2)", borderRadius: 3, fontSize: 11, fontFamily: "'Barlow', sans-serif", fontWeight: 600, color: "rgba(255,255,255,0.85)", padding: "2px 8px" }}>{b}</span>
                     ))}
                   </div>
                 </div>

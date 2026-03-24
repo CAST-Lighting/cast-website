@@ -627,11 +627,36 @@ export default async function Product({ params, searchParams }: Props) {
       />
 
       {/* CAST product page sections */}
-      <BundleProducts />
-      <MediaGallery />
-      <ProductDocuments />
-      <ProductFAQ />
-      <PartsGrid />
+      <BundleProducts
+        overline="Complete Your Installation"
+        heading="Bundle These Products"
+        buttonText="Add All To Cart"
+      />
+      <MediaGallery
+        heading="Photos & Videos"
+      />
+      <ProductDocuments
+        heading="Spec Sheets & Downloads"
+        documents={[
+          { title: "Spec Sheet", description: "Full technical specifications including lumen output, color temperature, beam angle, IP rating, and dimensional drawings.", fileType: "PDF" },
+          { title: "Installation Guide", description: "Step-by-step instructions for mounting, wiring, and aiming your CAST fixture. Includes torque specs and wire gauge recommendations.", fileType: "PDF" },
+          { title: "Warranty Card", description: "CAST lifetime warranty terms and conditions. Keep this on file for your records and share with your client.", fileType: "PDF" },
+        ]}
+      />
+      <ProductFAQ
+        heading="Common Questions"
+        faqs={[
+          { question: "What warranty does this product include?", answer: "All CAST Lighting fixtures come with a lifetime warranty against defects in materials and workmanship. This covers the brass and copper body, the LED module, and all electrical components. Contact us with proof of purchase and we'll replace or repair at no cost." },
+          { question: "Is this fixture compatible with my existing 12V transformer?", answer: "CAST fixtures work with any quality 12V low-voltage transformer. For best performance and full warranty coverage, we recommend CAST transformers, which are specifically tuned for our LED modules and include smart protection features." },
+          { question: "Can this fixture be used in wet or submerged locations?", answer: "CAST path, accent, and area lights carry an IP67 waterproof rating — fully protected against dust and temporary submersion. In-grade and well lights carry IP68 for permanent submersion applications." },
+          { question: "How do I install this fixture?", answer: "Each CAST fixture ships with a detailed installation guide. In general, connect the fixture's quick-connect leads to 12V low-voltage wire, drive the stake into the ground, aim the fixture, and power on. No tools required for most installations." },
+          { question: "Can I replace the LED module if it ever fails?", answer: "Yes. All CAST fixtures use serviceable, field-replaceable LED modules. Replacement modules are available in our accessories section and can be swapped without special tools, ensuring your investment lasts a lifetime." },
+        ]}
+      />
+      <PartsGrid
+        overline="Replacement Parts"
+        heading="Parts For This Product"
+      />
       <ReviewsCarousel
         overline="What Our Customers Say"
         heading="Professional Reviews"

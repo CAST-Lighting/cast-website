@@ -45,10 +45,11 @@ export default async function RetailSignupPage({ params }: Props) {
         phrase2="Exclusive Territory Protection"
         phrase3="Full Co-op Advertising"
         badgeText="Authorized Dealer Program"
+        hideForm={true}
       />
       <div id="apply">
         <SignupHero
-          overline="Dealer Application"
+          overline="Authorized Retailer Program"
           heading="Become a CAST Authorized Retailer"
           subheading="Partner with the industry leader in professional outdoor lighting. High margins, exclusive territory, and full co-op advertising support."
           formHeading="Start Your Dealer Application"
