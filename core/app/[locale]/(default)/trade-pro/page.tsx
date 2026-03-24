@@ -28,6 +28,7 @@ export default async function TradeProPage({ params }: Props) {
         subheading="Get exclusive contractor pricing, lifetime product support, and the best outdoor lighting fixtures. Trusted by 10,000+ landscape contractors."
         formHeading="Start Your Application"
         submitButtonText="Apply Now — It's Free"
+        image="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=1600&q=80"
       />
       <TradeProSection
         benefits={[
@@ -78,7 +79,8 @@ export default async function TradeProPage({ params }: Props) {
         ]}
       />
       <ReadyCTA
-        heading="Ready to Grow Your Business?"
+        heading="Ready to Grow"
+        headingAccent="Your Business"
         btn1Label="Apply for TradePro Access"
         btn1Href="/trade-pro"
         btn2Label="Shop Products"

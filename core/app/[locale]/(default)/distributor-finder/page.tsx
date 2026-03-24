@@ -24,7 +24,8 @@ export default async function DistributorFinderPage({ params }: Props) {
         heading="Find A CAST Distributor Near You"
       />
       <ContentMedia
-        heading="Why Distribute CAST Lighting?"
+        heading="Why Distribute"
+        headingAccent="CAST Lighting"
         features={[
           { title: "Strong Brand Recognition", desc: "CAST is a trusted name among landscape contractors and designers nationwide." },
           { title: "High Sell-Through Rates", desc: "Professional-grade products that contractors actively seek out and specify by name." },

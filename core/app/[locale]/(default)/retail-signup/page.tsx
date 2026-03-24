@@ -27,9 +27,11 @@ export default async function RetailSignupPage({ params }: Props) {
         subheading="Partner with the industry leader in professional outdoor lighting."
         formHeading="Start Your Dealer Application"
         submitButtonText="Apply to Become a Dealer"
+        image="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=1600&q=80"
       />
       <ContentMedia
-        heading="Why Partner With CAST?"
+        heading="Why Partner"
+        headingAccent="With CAST?"
         features={[
           { title: "High Margins — 40–50%", desc: "Industry-leading dealer margins on every CAST product you sell." },
           { title: "Co-op Advertising", desc: "Joint marketing programs to drive traffic and close more sales in your market." },
@@ -84,7 +86,8 @@ export default async function RetailSignupPage({ params }: Props) {
         ]}
       />
       <ReadyCTA
-        heading="Start Selling CAST Lighting"
+        heading="Start Selling"
+        headingAccent="CAST Lighting"
         btn1Label="Apply to Become a Dealer"
         btn1Href="/retail-signup"
         btn2Label="Contact Our Sales Team"

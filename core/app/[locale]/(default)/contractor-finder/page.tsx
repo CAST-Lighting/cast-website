@@ -24,7 +24,8 @@ export default async function ContractorFinderPage({ params }: Props) {
         heading="Find A CAST Installer Near You"
       />
       <ContentMedia
-        heading="Find a Certified CAST Installer Near You"
+        heading="Why Choose a"
+        headingAccent="CAST Installer"
         features={[
           { title: "TradePro Certified", desc: "Every installer in our network has completed the CAST TradePro certification program." },
           { title: "Vetted by CAST", desc: "Our team reviews each contractor before they are listed in the installer directory." },
