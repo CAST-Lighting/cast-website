@@ -11,6 +11,13 @@ interface SignupHeroProps {
   formHeading?: string
   submitButtonText?: string
   bgColor?: string
+  bgImage?: string
+  bgOpacity?: number
+  gradientFrom?: string
+  gradientTo?: string
+  gradientDirection?: string
+  paddingTop?: number
+  paddingBottom?: number
   image?: string
 }
 
@@ -24,6 +31,13 @@ const SignupHero = forwardRef(function SignupHero(
     formHeading = "Start Your Application",
     submitButtonText = "Submit Application",
     bgColor,
+    bgImage,
+    bgOpacity,
+    gradientFrom,
+    gradientTo,
+    gradientDirection,
+    paddingTop,
+    paddingBottom,
     image,
   }: SignupHeroProps,
   ref: Ref<HTMLDivElement>
@@ -35,11 +49,17 @@ const SignupHero = forwardRef(function SignupHero(
     setSubmitted(true)
   }
 
+  const hasGradient = !!(gradientFrom && gradientTo)
+  const overlayOpacity = typeof bgOpacity === 'number' ? bgOpacity / 100 : 0.85
+  const sectionBackground = hasGradient
+    ? `linear-gradient(${gradientDirection || 'to bottom'}, ${gradientFrom}, ${gradientTo})`
+    : bgColor || "#25262d"
+
   return (
     <div
       ref={ref}
       className={`${className || ""} ${sectionStyle || ""}`}
-      style={{ width: "100%", boxSizing: "border-box", backgroundColor: "#25262d" }}
+      style={{ width: "100%", boxSizing: "border-box", background: sectionBackground, paddingTop: paddingTop ?? 0, paddingBottom: paddingBottom ?? 0 }}
     >
       {/* Hero banner */}
       <div

@@ -8,6 +8,12 @@ interface ShopHeroProps {
   subheadline?: string
   bgImage?: string
   bgColor?: string
+  bgOpacity?: number
+  gradientFrom?: string
+  gradientTo?: string
+  gradientDirection?: string
+  paddingTop?: number
+  paddingBottom?: number
   ctaLabel?: string
   ctaHref?: string
   showSearch?: boolean
@@ -20,15 +26,26 @@ const ShopHero = forwardRef(function ShopHero(
     subheadline = "Professional outdoor lighting fixtures built to last a lifetime. Solid brass, copper, and bronze construction with lifetime warranties.",
     bgImage,
     bgColor,
+    bgOpacity,
+    gradientFrom,
+    gradientTo,
+    gradientDirection,
+    paddingTop,
+    paddingBottom,
     ctaLabel = "Browse All Products",
     ctaHref = "#shop-grid",
     showSearch = true,
   }: ShopHeroProps,
   ref: Ref<HTMLDivElement>
 ) {
-  const bg = bgImage
-    ? `linear-gradient(rgba(10,25,35,0.75), rgba(10,25,35,0.75)), url(${bgImage}) center/cover no-repeat`
+  const hasGradient = !!(gradientFrom && gradientTo)
+  const overlayOpacity = typeof bgOpacity === 'number' ? bgOpacity / 100 : 0.75
+  const sectionBackground = hasGradient
+    ? `linear-gradient(${gradientDirection || 'to bottom'}, ${gradientFrom}, ${gradientTo})`
     : bgColor || "var(--color-primary)"
+  const bg = bgImage
+    ? `linear-gradient(rgba(10,25,35,${overlayOpacity}), rgba(10,25,35,${overlayOpacity})), url(${bgImage}) center/cover no-repeat`
+    : sectionBackground
 
   return (
     <div
@@ -36,7 +53,8 @@ const ShopHero = forwardRef(function ShopHero(
       className={className || ""}
       style={{
         background: bg,
-        padding: "96px 0 80px",
+        paddingTop: paddingTop ?? 96,
+        paddingBottom: paddingBottom ?? 80,
         width: "100%",
         boxSizing: "border-box",
       }}

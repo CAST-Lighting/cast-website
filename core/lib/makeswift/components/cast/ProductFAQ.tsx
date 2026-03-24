@@ -13,6 +13,13 @@ interface ProductFAQProps {
   heading?: string
   faqs?: FAQ[]
   bgColor?: string
+  bgImage?: string
+  bgOpacity?: number
+  gradientFrom?: string
+  gradientTo?: string
+  gradientDirection?: string
+  paddingTop?: number
+  paddingBottom?: number
 }
 
 const DEFAULT_FAQS: FAQ[] = [
@@ -28,19 +35,38 @@ const ProductFAQ = forwardRef(function ProductFAQ(
     heading = "Frequently Asked Questions",
     faqs,
     bgColor,
+    bgImage,
+    bgOpacity,
+    gradientFrom,
+    gradientTo,
+    gradientDirection,
+    paddingTop,
+    paddingBottom,
   }: ProductFAQProps,
   ref: Ref<HTMLDivElement>
 ) {
   const [open, setOpen] = useState<number | null>(null)
   const list = faqs && faqs.length > 0 ? faqs : DEFAULT_FAQS
+  const hasGradient = !!(gradientFrom && gradientTo)
+  const overlayOpacity = typeof bgOpacity === 'number' ? bgOpacity / 100 : 0.85
+  const sectionBackground = hasGradient
+    ? `linear-gradient(${gradientDirection || 'to bottom'}, ${gradientFrom}, ${gradientTo})`
+    : bgColor || "#25262d"
 
   return (
     <div
       ref={ref}
       className={`${className || ""} ${sectionStyle || ""}`}
-      style={{ width: "100%", boxSizing: "border-box", backgroundColor: "#25262d", borderTop: "1px solid rgba(255,255,255,0.08)" }}
+      style={{ position: "relative", width: "100%", boxSizing: "border-box", ...(!bgImage ? { background: sectionBackground } : {}), paddingTop: paddingTop ?? 96, paddingBottom: paddingBottom ?? 96, borderTop: "1px solid rgba(255,255,255,0.08)" }}
     >
-      <div className="site-container" style={{ paddingTop: 56, paddingBottom: 56, maxWidth: 860 }}>
+      {bgImage && (
+        <img src={bgImage} alt="" className="absolute inset-0 w-full h-full object-cover" style={{ zIndex: 0 }} />
+      )}
+      {bgImage && (
+        <div className="absolute inset-0" style={{ zIndex: 1, background: sectionBackground, opacity: overlayOpacity }} />
+      )}
+      <div className="relative" style={{ zIndex: 10 }}>
+      <div className="site-container" style={{ maxWidth: 860 }}>
         <h2 style={{ fontSize: "var(--h3-size)", fontWeight: "var(--heading-weight, 700)", lineHeight: "var(--heading-line-height, 1.1)", fontFamily: "'Essonnes', 'Playfair Display', serif", color: "var(--color-title)", margin: "0 0 32px" }}>
           {heading}
         </h2>
@@ -65,6 +91,7 @@ const ProductFAQ = forwardRef(function ProductFAQ(
           ))}
           <div style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }} />
         </div>
+      </div>
       </div>
     </div>
   )

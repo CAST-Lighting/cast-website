@@ -9,6 +9,13 @@ interface ContractorFinderProps {
   heading?: string
   subheading?: string
   bgColor?: string
+  bgImage?: string
+  bgOpacity?: number
+  gradientFrom?: string
+  gradientTo?: string
+  gradientDirection?: string
+  paddingTop?: number
+  paddingBottom?: number
 }
 
 const PLACEHOLDER_CONTRACTORS = [
@@ -26,6 +33,13 @@ const ContractorFinder = forwardRef(function ContractorFinder(
     heading = "Find A CAST Installer Near You",
     subheading = "Connect with CAST-certified landscape lighting contractors in your area. Every professional in our network is trained on CAST products and committed to quality installation.",
     bgColor,
+    bgImage,
+    bgOpacity,
+    gradientFrom,
+    gradientTo,
+    gradientDirection,
+    paddingTop,
+    paddingBottom,
   }: ContractorFinderProps,
   ref: Ref<HTMLDivElement>
 ) {
@@ -37,11 +51,17 @@ const ContractorFinder = forwardRef(function ContractorFinder(
     setSearched(true)
   }
 
+  const hasGradient = !!(gradientFrom && gradientTo)
+  const overlayOpacity = typeof bgOpacity === 'number' ? bgOpacity / 100 : 0.85
+  const sectionBackground = hasGradient
+    ? `linear-gradient(${gradientDirection || 'to bottom'}, ${gradientFrom}, ${gradientTo})`
+    : bgColor || "#25262d"
+
   return (
     <div
       ref={ref}
       className={`${className || ""} ${sectionStyle || ""}`}
-      style={{ width: "100%", boxSizing: "border-box", backgroundColor: "#25262d" }}
+      style={{ width: "100%", boxSizing: "border-box", background: sectionBackground, paddingTop: paddingTop ?? 0, paddingBottom: paddingBottom ?? 0 }}
     >
       {/* Hero */}
       <div style={{ background: "var(--color-primary)", padding: "72px 0" }}>

@@ -14,6 +14,13 @@ interface ProductHeroProps {
   images?: Array<{ src?: string; alt?: string }>
   tradeProOnly?: boolean
   bgColor?: string
+  bgImage?: string
+  bgOpacity?: number
+  gradientFrom?: string
+  gradientTo?: string
+  gradientDirection?: string
+  paddingTop?: number
+  paddingBottom?: number
 }
 
 const Stars = ({ count = 4.7, total = 5 }: { count?: number; total?: number }) => (
@@ -45,19 +52,37 @@ const ProductHero = forwardRef(function ProductHero(
     images,
     tradeProOnly = false,
     bgColor,
+    bgImage,
+    bgOpacity,
+    gradientFrom,
+    gradientTo,
+    gradientDirection,
+    paddingTop,
+    paddingBottom,
   }: ProductHeroProps,
   ref: Ref<HTMLDivElement>
 ) {
   const [activeImg, setActiveImg] = useState(0)
   const [qty, setQty] = useState(1)
   const imgList = images && images.length > 0 ? images : [{}, {}, {}, {}]
+  const hasGradient = !!(gradientFrom && gradientTo)
+  const overlayOpacity = typeof bgOpacity === 'number' ? bgOpacity / 100 : 0.85
+  const sectionBackground = hasGradient
+    ? `linear-gradient(${gradientDirection || 'to bottom'}, ${gradientFrom}, ${gradientTo})`
+    : bgColor || "#25262d"
 
   return (
     <div
       ref={ref}
       className={className || ""}
-      style={{ width: "100%", boxSizing: "border-box", backgroundColor: "#25262d" }}
+      style={{ position: "relative", width: "100%", boxSizing: "border-box", ...(!bgImage ? { background: sectionBackground } : {}), paddingTop: paddingTop ?? 96, paddingBottom: paddingBottom ?? 96 }}
     >
+      {bgImage && (
+        <img src={bgImage} alt="" className="absolute inset-0 w-full h-full object-cover" style={{ zIndex: 0 }} />
+      )}
+      {bgImage && (
+        <div className="absolute inset-0" style={{ zIndex: 1, background: sectionBackground, opacity: overlayOpacity }} />
+      )}
       <style>{`
         .ph-thumb {
           width: 72px; height: 72px; border-radius: 4px; border: 2px solid transparent;
@@ -75,7 +100,8 @@ const ProductHero = forwardRef(function ProductHero(
         @media (max-width: 900px) { .ph-layout { flex-direction: column !important; } .ph-gallery { max-width: 100% !important; } }
       `}</style>
 
-      <div className="site-container" style={{ paddingTop: 48, paddingBottom: 64 }}>
+      <div className="relative" style={{ zIndex: 10 }}>
+      <div className="site-container">
         <div className="ph-layout" style={{ display: "flex", gap: 56, alignItems: "flex-start" }}>
 
           {/* Left: Image gallery — sticky scroll */}
@@ -150,6 +176,7 @@ const ProductHero = forwardRef(function ProductHero(
             </p>
           </div>
         </div>
+      </div>
       </div>
     </div>
   )

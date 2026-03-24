@@ -17,6 +17,13 @@ interface PartsGridProps {
   heading?: string
   parts?: Part[]
   bgColor?: string
+  bgImage?: string
+  bgOpacity?: number
+  gradientFrom?: string
+  gradientTo?: string
+  gradientDirection?: string
+  paddingTop?: number
+  paddingBottom?: number
 }
 
 const DEFAULT_PARTS: Part[] = [
@@ -34,18 +41,37 @@ const PartsGrid = forwardRef(function PartsGrid(
     heading = "Parts For This Product",
     parts,
     bgColor,
+    bgImage,
+    bgOpacity,
+    gradientFrom,
+    gradientTo,
+    gradientDirection,
+    paddingTop,
+    paddingBottom,
   }: PartsGridProps,
   ref: Ref<HTMLDivElement>
 ) {
   const list = parts && parts.length > 0 ? parts : DEFAULT_PARTS
+  const hasGradient = !!(gradientFrom && gradientTo)
+  const overlayOpacity = typeof bgOpacity === 'number' ? bgOpacity / 100 : 0.85
+  const sectionBackground = hasGradient
+    ? `linear-gradient(${gradientDirection || 'to bottom'}, ${gradientFrom}, ${gradientTo})`
+    : bgColor || "#25262d"
 
   return (
     <div
       ref={ref}
       className={`${className || ""} ${sectionStyle || ""}`}
-      style={{ width: "100%", boxSizing: "border-box", backgroundColor: "#25262d", borderTop: "1px solid rgba(255,255,255,0.08)" }}
+      style={{ position: "relative", width: "100%", boxSizing: "border-box", ...(!bgImage ? { background: sectionBackground } : {}), paddingTop: paddingTop ?? 96, paddingBottom: paddingBottom ?? 96, borderTop: "1px solid rgba(255,255,255,0.08)" }}
     >
-      <div className="site-container" style={{ paddingTop: 56, paddingBottom: 56 }}>
+      {bgImage && (
+        <img src={bgImage} alt="" className="absolute inset-0 w-full h-full object-cover" style={{ zIndex: 0 }} />
+      )}
+      {bgImage && (
+        <div className="absolute inset-0" style={{ zIndex: 1, background: sectionBackground, opacity: overlayOpacity }} />
+      )}
+      <div className="relative" style={{ zIndex: 10 }}>
+      <div className="site-container">
         {overline && (
           <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 12, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.12em", color: "var(--color-content)", margin: "0 0 10px" }}>{overline}</p>
         )}
@@ -75,6 +101,7 @@ const PartsGrid = forwardRef(function PartsGrid(
             </div>
           ))}
         </div>
+      </div>
       </div>
     </div>
   )

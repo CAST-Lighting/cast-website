@@ -10,6 +10,13 @@ interface DistributorFinderProps {
   subheading?: string
   formHeading?: string
   bgColor?: string
+  bgImage?: string
+  bgOpacity?: number
+  gradientFrom?: string
+  gradientTo?: string
+  gradientDirection?: string
+  paddingTop?: number
+  paddingBottom?: number
 }
 
 const PLACEHOLDER_DISTRIBUTORS = [
@@ -37,6 +44,13 @@ const DistributorFinder = forwardRef(function DistributorFinder(
     subheading = "CAST Lighting works with a select network of professional landscape supply distributors across the country. Find a distributor near you, or apply to carry CAST in your territory.",
     formHeading = "Apply To Become A CAST Distributor",
     bgColor,
+    bgImage,
+    bgOpacity,
+    gradientFrom,
+    gradientTo,
+    gradientDirection,
+    paddingTop,
+    paddingBottom,
   }: DistributorFinderProps,
   ref: Ref<HTMLDivElement>
 ) {
@@ -54,11 +68,17 @@ const DistributorFinder = forwardRef(function DistributorFinder(
     setSubmitted(true)
   }
 
+  const hasGradient = !!(gradientFrom && gradientTo)
+  const overlayOpacity = typeof bgOpacity === 'number' ? bgOpacity / 100 : 0.85
+  const sectionBackground = hasGradient
+    ? `linear-gradient(${gradientDirection || 'to bottom'}, ${gradientFrom}, ${gradientTo})`
+    : bgColor || "#25262d"
+
   return (
     <div
       ref={ref}
       className={`${className || ""} ${sectionStyle || ""}`}
-      style={{ width: "100%", boxSizing: "border-box", backgroundColor: "#25262d" }}
+      style={{ width: "100%", boxSizing: "border-box", background: sectionBackground, paddingTop: paddingTop ?? 0, paddingBottom: paddingBottom ?? 0 }}
     >
       {/* Hero */}
       <div style={{ background: "var(--color-primary)", padding: "72px 0" }}>

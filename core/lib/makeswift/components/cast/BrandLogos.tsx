@@ -21,6 +21,9 @@ interface BrandLogosProps {
   bgColor?: string
   bgImage?: string
   bgOpacity?: number
+  gradientFrom?: string
+  gradientTo?: string
+  gradientDirection?: string
   paddingTop?: number
   paddingBottom?: number
   logos?: LogoItem[]
@@ -34,6 +37,9 @@ const BrandLogos = forwardRef(function BrandLogos(
     bgColor,
     bgImage,
     bgOpacity,
+    gradientFrom,
+    gradientTo,
+    gradientDirection,
     paddingTop,
     paddingBottom,
     logos: logosProp,
@@ -42,7 +48,10 @@ const BrandLogos = forwardRef(function BrandLogos(
 ) {
   const logos = logosProp && logosProp.length > 0 ? logosProp : FALLBACK_LOGOS
   const overlayOpacity = typeof bgOpacity === "number" ? bgOpacity / 100 : 0.88
-  const bg = bgColor || "#1a2533"
+  const hasGradient = !!(gradientFrom && gradientTo)
+  const bg = hasGradient
+    ? `linear-gradient(${gradientDirection || 'to bottom'}, ${gradientFrom}, ${gradientTo})`
+    : bgColor || "#1a2533"
 
   return (
     <section

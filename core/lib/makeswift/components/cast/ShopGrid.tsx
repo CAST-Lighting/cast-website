@@ -16,6 +16,13 @@ interface ShopGridProps {
   sectionStyle?: string
   products?: Product[]
   bgColor?: string
+  bgImage?: string
+  bgOpacity?: number
+  gradientFrom?: string
+  gradientTo?: string
+  gradientDirection?: string
+  paddingTop?: number
+  paddingBottom?: number
 }
 
 const DEFAULT_PRODUCTS: Product[] = [
@@ -65,7 +72,7 @@ const ProductCard = ({ product }: { product: Product }) => (
 )
 
 const ShopGrid = forwardRef(function ShopGrid(
-  { className, sectionStyle, products, bgColor }: ShopGridProps,
+  { className, sectionStyle, products, bgColor, bgImage, bgOpacity, gradientFrom, gradientTo, gradientDirection, paddingTop, paddingBottom }: ShopGridProps,
   ref: Ref<HTMLDivElement>
 ) {
   const [activeCategory, setActiveCategory] = useState("All")
@@ -85,12 +92,24 @@ const ShopGrid = forwardRef(function ShopGrid(
     grouped[cat].push(p)
   })
 
+  const hasGradient = !!(gradientFrom && gradientTo)
+  const overlayOpacity = typeof bgOpacity === 'number' ? bgOpacity / 100 : 0.85
+  const sectionBackground = hasGradient
+    ? `linear-gradient(${gradientDirection || 'to bottom'}, ${gradientFrom}, ${gradientTo})`
+    : bgColor || "#25262d"
+
   return (
     <div
       ref={ref}
       className={`${className || ""} ${sectionStyle || ""}`}
-      style={{ width: "100%", boxSizing: "border-box", backgroundColor: "#25262d" }}
+      style={{ position: "relative", width: "100%", boxSizing: "border-box", ...(!bgImage ? { background: sectionBackground } : {}), paddingTop: paddingTop ?? 96, paddingBottom: paddingBottom ?? 96 }}
     >
+      {bgImage && (
+        <img src={bgImage} alt="" className="absolute inset-0 w-full h-full object-cover" style={{ zIndex: 0 }} />
+      )}
+      {bgImage && (
+        <div className="absolute inset-0" style={{ zIndex: 1, background: sectionBackground, opacity: overlayOpacity }} />
+      )}
       <style>{`
         .sg-sidebar {
           width: 220px;
@@ -151,7 +170,8 @@ const ShopGrid = forwardRef(function ShopGrid(
         @media (max-width: 575px) { .sg-product-grid { grid-template-columns: 1fr; } }
       `}</style>
 
-      <div className="site-container" style={{ paddingTop: 48, paddingBottom: 72 }}>
+      <div className="relative" style={{ zIndex: 10 }}>
+      <div className="site-container">
         <div className="sg-layout" style={{ display: "flex", gap: 32, alignItems: "flex-start" }}>
 
           {/* Sidebar */}
@@ -223,6 +243,7 @@ const ShopGrid = forwardRef(function ShopGrid(
             )}
           </div>
         </div>
+      </div>
       </div>
     </div>
   )
