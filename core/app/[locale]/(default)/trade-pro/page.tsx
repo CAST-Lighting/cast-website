@@ -1,5 +1,6 @@
 import { setRequestLocale } from 'next-intl/server';
 import { type Metadata } from 'next';
+import HeroBanner from '~/lib/makeswift/components/cast/HeroBanner';
 import SignupHero from '~/lib/makeswift/components/cast/SignupHero';
 import TradeProSection from '~/lib/makeswift/components/cast/TradeProSection';
 import ComparisonSection from '~/lib/makeswift/components/cast/ComparisonSection';
@@ -20,16 +21,41 @@ export default async function TradeProPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
 
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "CAST TradePro Contractor Program",
+    "provider": { "@type": "Organization", "name": "CAST Lighting" },
+    "description": "Exclusive contractor pricing, lifetime warranty, and dedicated support for landscape professionals. Join 10,000+ TradePro contractors.",
+    "areaServed": "US",
+    "audience": { "@type": "Audience", "audienceType": "Landscape Contractors, Lighting Designers, Electrical Contractors" },
+  };
+
   return (
     <>
-      <SignupHero
-        overline="For Landscape Professionals"
-        heading="Join The CAST TradePro Program"
-        subheading="Get exclusive contractor pricing, lifetime product support, and the best outdoor lighting fixtures. Trusted by 10,000+ landscape contractors."
-        formHeading="Start Your Application"
-        submitButtonText="Apply Now — It's Free"
-        image="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=1600&q=80"
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
+      <HeroBanner
+        headingLine1="Join The CAST TradePro Program"
+        description="Get exclusive contractor pricing, lifetime product support, and the best outdoor lighting fixtures. Trusted by 10,000+ landscape contractors."
+        btn1Label="Apply for TradePro Access"
+        btn1Href="#apply"
+        btn2Label="View Products"
+        btn2Href="/shop"
+        phrase1="For Landscape Professionals"
+        phrase2="Exclusive Contractor Pricing"
+        phrase3="Lifetime Warranty Included"
+        badgeText="Join 10,000+ Landscape Contractors"
       />
+      <div id="apply">
+        <SignupHero
+          overline="For Landscape Professionals"
+          heading="Start Your TradePro Application"
+          subheading="Join 10,000+ landscape professionals. Get exclusive pricing, lifetime warranty, and dedicated support — apply free in minutes."
+          formHeading="Start Your Application"
+          submitButtonText="Apply Now — It's Free"
+          image="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=1600&q=80"
+        />
+      </div>
       <TradeProSection
         benefits={[
           { title: "Exclusive Contractor Pricing", desc: "Access wholesale pricing with volume discounts that improve your margins on every project." },

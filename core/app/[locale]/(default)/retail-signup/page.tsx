@@ -1,5 +1,6 @@
 import { setRequestLocale } from 'next-intl/server';
 import { type Metadata } from 'next';
+import HeroBanner from '~/lib/makeswift/components/cast/HeroBanner';
 import SignupHero from '~/lib/makeswift/components/cast/SignupHero';
 import ContentMedia from '~/lib/makeswift/components/cast/ContentMedia';
 import TradeProSection from '~/lib/makeswift/components/cast/TradeProSection';
@@ -20,15 +21,41 @@ export default async function RetailSignupPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
 
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "CAST Lighting Authorized Dealer Program",
+    "provider": { "@type": "Organization", "name": "CAST Lighting" },
+    "description": "Become a CAST authorized retailer. 40–50% dealer margins, exclusive territory, co-op advertising, and full dealer support.",
+    "areaServed": "US",
+    "audience": { "@type": "Audience", "audienceType": "Lighting Retailers, Landscape Supply Dealers, Showroom Owners" },
+  };
+
   return (
     <>
-      <SignupHero
-        heading="Become a CAST Authorized Retailer"
-        subheading="Partner with the industry leader in professional outdoor lighting."
-        formHeading="Start Your Dealer Application"
-        submitButtonText="Apply to Become a Dealer"
-        image="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=1600&q=80"
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
+      <HeroBanner
+        headingLine1="Become a CAST Authorized Retailer"
+        description="Partner with the industry leader in professional outdoor lighting. Earn 40–50% dealer margins with exclusive territory and full co-op advertising support."
+        btn1Label="Apply to Become a Dealer"
+        btn1Href="#apply"
+        btn2Label="View Products"
+        btn2Href="/shop"
+        phrase1="40–50% Dealer Margins"
+        phrase2="Exclusive Territory Protection"
+        phrase3="Full Co-op Advertising"
+        badgeText="Authorized Dealer Program"
       />
+      <div id="apply">
+        <SignupHero
+          overline="Dealer Application"
+          heading="Become a CAST Authorized Retailer"
+          subheading="Partner with the industry leader in professional outdoor lighting. High margins, exclusive territory, and full co-op advertising support."
+          formHeading="Start Your Dealer Application"
+          submitButtonText="Apply to Become a Dealer"
+          image="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=1600&q=80"
+        />
+      </div>
       <ContentMedia
         heading="Why Partner"
         headingAccent="With CAST?"

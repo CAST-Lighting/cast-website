@@ -17,8 +17,20 @@ export default async function ContractorFinderPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
 
+  const localBusinessSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "CAST Certified Installer Finder",
+    "provider": { "@type": "Organization", "name": "CAST Lighting" },
+    "description": "Find CAST-certified landscape lighting contractors near you. Every installer is TradePro certified, vetted by CAST, fully insured, and trained on every product line.",
+    "areaServed": "US",
+    "serviceType": "Landscape Lighting Installation",
+    "audience": { "@type": "Audience", "audienceType": "Homeowners, Property Managers, Commercial Property Owners" },
+  };
+
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }} />
       <ContractorFinder
         overline="Find A Professional Installer"
         heading="Find A CAST Installer Near You"

@@ -50,23 +50,58 @@ const CATEGORIES = ["All", "Path & Area Lights", "Accent & Spot Lights", "Transf
 const PRICE_RANGES = ["$0 – $100", "$101 – $500", "$501 – $1,000", "$1,000+"]
 
 const ProductCard = ({ product }: { product: Product }) => (
-  <div style={{ background: "#2d353c", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 8, overflow: "hidden", display: "flex", flexDirection: "column" }}>
-    {/* Image placeholder */}
-    <div style={{ aspectRatio: "4/3", background: "#37474f", display: "flex", alignItems: "center", justifyContent: "center", position: "relative" }}>
-      {product.image
-        ? <img src={product.image} alt={product.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-        : <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#ced4da" strokeWidth="1.5"><rect x="3" y="3" width="18" height="18" rx="2" /><circle cx="8.5" cy="8.5" r="1.5" /><path d="M21 15l-5-5L5 21" /></svg>
-      }
-      {product.badge && (
-        <span style={{ position: "absolute", top: 10, left: 10, background: "var(--color-primary)", color: "#fff", fontFamily: "'Barlow', sans-serif", fontSize: 10, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.06em", padding: "3px 8px", borderRadius: 3 }}>
-          {product.badge}
-        </span>
+  <div style={{ background: "#2d353c", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 10, overflow: "hidden", display: "flex", flexDirection: "column", transition: "border-color 200ms, box-shadow 200ms" }}
+    onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(200,151,42,0.4)"; (e.currentTarget as HTMLDivElement).style.boxShadow = "0 4px 24px rgba(0,0,0,0.18)"; }}
+    onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(255,255,255,0.08)"; (e.currentTarget as HTMLDivElement).style.boxShadow = "none"; }}
+  >
+    {/* Image / placeholder */}
+    <div style={{ aspectRatio: "4/3", position: "relative", overflow: "hidden" }}>
+      {product.image ? (
+        <img src={product.image} alt={product.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+      ) : (
+        <div style={{
+          width: "100%", height: "100%",
+          background: "linear-gradient(135deg, #1a2e3a 0%, #0d4a5c 50%, #1a3a4a 100%)",
+          display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 10,
+        }}>
+          {/* Decorative grid pattern */}
+          <div style={{ position: "absolute", inset: 0, backgroundImage: "linear-gradient(rgba(175,229,253,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(175,229,253,0.04) 1px, transparent 1px)", backgroundSize: "24px 24px" }} />
+          {/* CAST brass accent icon */}
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" style={{ opacity: 0.5, position: "relative", zIndex: 1 }}>
+            <circle cx="12" cy="12" r="10" stroke="#c8972a" strokeWidth="1.5" />
+            <path d="M8 12h8M12 8v8" stroke="#c8972a" strokeWidth="1.5" strokeLinecap="round" />
+          </svg>
+          {product.category && (
+            <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 10, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.12em", color: "rgba(200,151,42,0.7)", position: "relative", zIndex: 1, textAlign: "center", maxWidth: 120 }}>
+              {product.category}
+            </span>
+          )}
+        </div>
       )}
+      {/* Badges */}
+      <div style={{ position: "absolute", top: 10, left: 10, display: "flex", flexDirection: "column", gap: 4 }}>
+        {product.badge && (
+          <span style={{ background: "var(--color-accent, #c8972a)", color: "#fff", fontFamily: "'Barlow', sans-serif", fontSize: 10, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", padding: "3px 8px", borderRadius: 4, display: "inline-block" }}>
+            {product.badge}
+          </span>
+        )}
+      </div>
     </div>
-    <div style={{ padding: "16px", flex: 1, display: "flex", flexDirection: "column", gap: 8 }}>
-      <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 15, fontWeight: 600, color: "var(--color-title)", margin: 0, lineHeight: 1.3 }}>{product.name}</p>
-      <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 16, fontWeight: 700, color: "var(--color-primary)", margin: 0 }}>{product.price}</p>
-      <a href={product.href || "#"} className="sg-btn-solid-sm" style={{ marginTop: "auto", textAlign: "center", textDecoration: "none" }}>View Product</a>
+    <div style={{ padding: "18px 16px", flex: 1, display: "flex", flexDirection: "column", gap: 8 }}>
+      {product.category && (
+        <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 10, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: "var(--color-accent, #c8972a)", margin: 0 }}>
+          {product.category}
+        </p>
+      )}
+      <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 15, fontWeight: 600, color: "var(--color-title)", margin: 0, lineHeight: 1.35 }}>{product.name}</p>
+      <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 18, fontWeight: 700, color: "#fff", margin: 0 }}>{product.price}</p>
+      <a
+        href={product.href || "#"}
+        className="sg-btn-solid-md"
+        style={{ marginTop: "auto", textAlign: "center", textDecoration: "none", justifyContent: "center" }}
+      >
+        View Product →
+      </a>
     </div>
   </div>
 )

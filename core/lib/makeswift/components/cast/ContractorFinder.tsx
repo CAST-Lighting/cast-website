@@ -84,30 +84,50 @@ const ContractorFinder = forwardRef(function ContractorFinder(
               style={{ flex: 1, padding: "14px 18px", border: "none", fontFamily: "'Barlow', sans-serif", fontSize: 15, color: "var(--color-title)", outline: "none" }}
             />
             <button type="submit" style={{ background: "var(--color-accent)", color: "#fff", border: "none", padding: "14px 24px", fontFamily: "'Barlow', sans-serif", fontSize: 14, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.06em", cursor: "pointer", flexShrink: 0 }}>
-              Search
+              Find Installers
             </button>
           </form>
         </div>
       </div>
 
+      <style>{`
+        .cf-map-grid {
+          display: grid;
+          grid-template-columns: 1fr 380px;
+          gap: 32px;
+          align-items: flex-start;
+        }
+        @media (max-width: 860px) {
+          .cf-map-grid {
+            grid-template-columns: 1fr;
+          }
+          .cf-map-grid .cf-map-panel {
+            order: 2;
+          }
+          .cf-map-grid .cf-results-panel {
+            order: 1;
+          }
+        }
+      `}</style>
+
       {/* Map placeholder + results */}
       <div className="site-container" style={{ paddingTop: 56, paddingBottom: 72 }}>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 380px", gap: 32, alignItems: "flex-start" }}>
+        <div className="cf-map-grid">
           {/* Map placeholder */}
-          <div style={{ background: "#e2e8ed", borderRadius: 12, overflow: "hidden", minHeight: 480, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", border: "1px solid #d1d9e0", position: "relative" }}>
+          <div className="cf-map-panel" style={{ background: "#e2e8ed", borderRadius: 12, overflow: "hidden", minHeight: 480, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", border: "1px solid #d1d9e0", position: "relative" }}>
             <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" strokeWidth="1.5" style={{ marginBottom: 16, opacity: 0.5 }}>
               <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
               <circle cx="12" cy="10" r="3" />
             </svg>
-            <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 14, color: "var(--color-content)", margin: 0, opacity: 0.7, textAlign: "center", maxWidth: 200 }}>
-              Interactive map will be connected in the next build phase
+            <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 14, color: "var(--color-content)", margin: 0, opacity: 0.7, textAlign: "center", maxWidth: 220 }}>
+              Search by ZIP code above to find certified installers near you
             </p>
             {/* Decorative grid lines */}
             <div style={{ position: "absolute", inset: 0, backgroundImage: "linear-gradient(rgba(0,73,96,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(0,73,96,0.06) 1px, transparent 1px)", backgroundSize: "40px 40px", pointerEvents: "none" }} />
           </div>
 
           {/* Results panel */}
-          <div>
+          <div className="cf-results-panel">
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16 }}>
               <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 15, fontWeight: 600, color: "var(--color-title)", margin: 0 }}>
                 {searched ? `${PLACEHOLDER_CONTRACTORS.length} results near "${zip}"` : "Enter a ZIP code to search"}
