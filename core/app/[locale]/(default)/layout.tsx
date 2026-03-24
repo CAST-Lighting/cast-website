@@ -1,8 +1,7 @@
 import { setRequestLocale } from 'next-intl/server';
 import { PropsWithChildren } from 'react';
-
-import CastSiteNavbar from '~/lib/makeswift/components/cast/SiteNavbar';
-import CastSiteFooter from '~/lib/makeswift/components/cast/SiteFooter';
+import { GlobalNavLoader } from '~/lib/makeswift/components/cast/GlobalNavLoader';
+import { GlobalFooterLoader } from '~/lib/makeswift/components/cast/GlobalFooterLoader';
 
 interface Props extends PropsWithChildren {
   params: Promise<{ locale: string }>;
@@ -15,9 +14,9 @@ export default async function DefaultLayout({ params, children }: Props) {
 
   return (
     <>
-      <CastSiteNavbar />
+      <GlobalNavLoader locale={locale} />
       <main>{children}</main>
-      <CastSiteFooter />
+      <GlobalFooterLoader locale={locale} />
     </>
   );
 }
