@@ -115,17 +115,18 @@ const CategoryGrid = forwardRef(function CategoryGrid(
             </p>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-4 justify-items-center">
+          <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 16 }}>
             {displayCategories.map((cat, i) => {
               const Icon = categoryIcons[i % categoryIcons.length] as React.ElementType
               return (
                 <a
                   key={i}
                   href={cat.href}
-                  className="group flex flex-col items-center gap-3 p-5 rounded-xl border border-border bg-secondary hover:border-primary/40 hover:bg-secondary/80 transition-all duration-300"
+                  className="group flex flex-col items-center gap-3 rounded-xl border border-border bg-secondary hover:border-primary/40 hover:bg-secondary/80 transition-all duration-300"
+                  style={{ width: 112, flexShrink: 0, padding: '20px 8px' }}
                 >
                   <Icon className="w-8 h-8 text-muted-foreground group-hover:text-primary transition-colors" />
-                  <span className="text-size-small font-medium text-secondary-foreground group-hover:text-primary text-center transition-colors">
+                  <span className="text-size-small font-medium text-secondary-foreground group-hover:text-primary text-center transition-colors" style={{ lineHeight: 1.3 }}>
                     {cat.name}
                   </span>
                 </a>
