@@ -59,7 +59,7 @@ async function fetchProducts(categoryId: number): Promise<BCProduct[]> {
       is_visible: 'true',
     });
     if (categoryId !== 23) {
-      params.set('categories:in', String(categoryId));
+      params.append('categories:in', String(categoryId));
     }
     const res = await fetch(
       `https://api.bigcommerce.com/stores/${BC_STORE_HASH}/v3/catalog/products?${params.toString()}`,
