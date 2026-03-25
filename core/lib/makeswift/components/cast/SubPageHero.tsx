@@ -47,7 +47,7 @@ const SubPageHero = forwardRef(function SubPageHero(
     btn1Label, btn1Href,
     btn2Label, btn2Href,
     bgColor, bgOpacity, gradientFrom, gradientTo, gradientDirection,
-    lineHeight, paddingTop = 136, paddingBottom = 112,
+    lineHeight, paddingTop = 175, paddingBottom = 112,
   }: SubPageHeroProps,
   ref: Ref<HTMLElement>
 ) {
