@@ -53,7 +53,7 @@ export async function POST(request: Request) {
       Slug: body.slug,
       Status: body.status ?? 'Draft',
       Body: body.body ?? '',
-      Category: body.category ?? 'Insights',
+      Category: body.category ?? 'Landscape Lighting',
       Tags: body.tags ?? '',
       Author: body.author ?? 'CAST Lighting Team',
       'Read Time': body.readTime ?? 1,

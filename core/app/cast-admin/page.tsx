@@ -5,12 +5,12 @@ import { useState, useEffect, useCallback } from 'react';
 const ADMIN_PASSWORD = 'cast2026admin';
 
 const CATEGORIES = [
-  'Installation',
-  'Product Guides',
-  'Design Tips',
-  'Case Studies',
+  'Landscape Lighting',
+  'Tips & Tricks',
+  'Trends',
+  'Inspiration',
   'Industry News',
-  'Insights',
+  'Press',
 ];
 
 interface Post {
