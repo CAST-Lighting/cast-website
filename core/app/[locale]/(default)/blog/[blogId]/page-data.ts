@@ -1,54 +1,39 @@
 import { cache } from 'react';
 
-import { client } from '~/client';
-import { graphql, VariablesOf } from '~/client/graphql';
-import { revalidate } from '~/client/revalidate-target';
+import { fetchBlogPostBySlug } from '~/lib/airtable-blog';
 
-const BlogPageQuery = graphql(`
-  query BlogPageQuery($entityId: Int!) {
-    site {
-      content {
-        blog {
-          name
-          path
-          post(entityId: $entityId) {
-            author
-            htmlBody
-            name
-            publishedDate {
-              utc
-            }
-            tags
-            thumbnailImage {
-              altText
-              url: urlTemplate(lossy: true)
-            }
-            seo {
-              pageTitle
-              metaDescription
-              metaKeywords
-            }
-          }
-        }
-      }
-    }
-  }
-`);
+export const getBlogPageData = cache(async (slug: string) => {
+  const record = await fetchBlogPostBySlug(slug);
+  if (!record) return null;
 
-type Variables = VariablesOf<typeof BlogPageQuery>;
+  const f = record.fields;
 
-export const getBlogPageData = cache(async (variables: Variables) => {
-  const response = await client.fetch({
-    document: BlogPageQuery,
-    variables,
-    fetchOptions: { next: { revalidate } },
-  });
+  // Tags: stored as comma-separated string
+  const tags = f.Tags
+    ? f.Tags.split(',').map((t) => t.trim()).filter(Boolean)
+    : [];
 
-  const { blog } = response.data.site.content;
-
-  if (!blog?.post) {
-    return null;
-  }
-
-  return blog;
+  return {
+    name: 'CAST Lighting Blog',
+    path: '/blog',
+    post: {
+      author: f.Author ?? null,
+      htmlBody: f.Body ?? '',
+      name: f.Title ?? '(Untitled)',
+      publishedDate: {
+        utc: f['Published Date']
+          ? new Date(f['Published Date'] + 'T00:00:00Z').toISOString()
+          : new Date().toISOString(),
+      },
+      tags,
+      thumbnailImage: f['Featured Image URL']
+        ? { altText: f.Title ?? '', url: f['Featured Image URL'] }
+        : null,
+      seo: {
+        pageTitle: f['SEO Title'] ?? f.Title ?? '',
+        metaDescription: f['Meta Description'] ?? '',
+        metaKeywords: f.Tags ?? '',
+      },
+    },
+  };
 });

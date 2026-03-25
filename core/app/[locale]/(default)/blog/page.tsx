@@ -4,8 +4,6 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import type { SearchParams } from 'nuqs';
 import { createSearchParamsCache, parseAsInteger, parseAsString } from 'nuqs/server';
 
-import { defaultPageInfo, pageInfoTransformer } from '~/data-transformers/page-info-transformer';
-
 import { getBlog, getBlogPosts } from './page-data';
 
 interface Props {
@@ -57,7 +55,7 @@ export default async function Blog(props: Props) {
 
   const blogPosts = await getBlogPosts({ tag, before, after, limit });
   const posts = blogPosts?.posts ?? [];
-  const pageInfo = pageInfoTransformer(blogPosts?.pageInfo ?? defaultPageInfo);
+  const pageInfo = blogPosts?.pageInfo ?? { hasNextPage: false, hasPreviousPage: false, startCursor: null, endCursor: null };
 
   const buildPageUrl = (cursor: string | null, paramName: string) => {
     const qs = new URLSearchParams();
@@ -68,10 +66,10 @@ export default async function Blog(props: Props) {
   };
 
   const prevUrl = pageInfo.startCursor
-    ? buildPageUrl(pageInfo.startCursor, pageInfo.startCursorParamName)
+    ? buildPageUrl(pageInfo.startCursor, 'before')
     : null;
   const nextUrl = pageInfo.endCursor
-    ? buildPageUrl(pageInfo.endCursor, pageInfo.endCursorParamName)
+    ? buildPageUrl(pageInfo.endCursor, 'after')
     : null;
 
   return (

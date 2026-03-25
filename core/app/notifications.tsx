@@ -6,7 +6,7 @@ import { toast } from '@/vibes/soul/primitives/toaster';
 import { type ServerToastData } from '~/lib/server-toast';
 
 export const CookieNotifications = (notification: ServerToastData) => {
-  const lastRendered = useRef<ServerToastData>(null);
+  const lastRendered = useRef<ServerToastData | null>(null);
 
   useEffect(() => {
     const { message, variant, position, description } = notification;

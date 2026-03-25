@@ -32,8 +32,8 @@ export async function generateMetadata({ params }: PageProps) {
 
   return snapshot
     ? {
-        title: snapshot.title || 'Page',
-        description: snapshot.description,
+        title: (snapshot as Record<string, unknown>).title as string || 'Page',
+        description: (snapshot as Record<string, unknown>).description as string,
       }
     : {};
 }

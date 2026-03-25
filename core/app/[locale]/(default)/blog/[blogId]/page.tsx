@@ -1,11 +1,8 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getFormatter, setRequestLocale } from 'next-intl/server';
-import { cache } from 'react';
 
 import { getBlogPageData } from './page-data';
-
-const cachedBlogPageDataVariables = cache((blogId: string) => ({ entityId: Number(blogId) }));
 
 interface Props {
   params: Promise<{
@@ -16,8 +13,7 @@ interface Props {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { blogId } = await params;
-  const variables = cachedBlogPageDataVariables(blogId);
-  const blog = await getBlogPageData(variables);
+  const blog = await getBlogPageData(blogId);
   const blogPost = blog?.post;
 
   if (!blogPost) return {};
@@ -36,8 +32,7 @@ export default async function BlogPost(props: Props) {
   setRequestLocale(locale);
 
   const format = await getFormatter();
-  const variables = cachedBlogPageDataVariables(blogId);
-  const blog = await getBlogPageData(variables);
+  const blog = await getBlogPageData(blogId);
   const blogPost = blog?.post;
 
   if (!blog || !blogPost) return notFound();
