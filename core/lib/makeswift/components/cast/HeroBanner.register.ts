@@ -59,10 +59,10 @@ runtime.registerComponent(
       formOffsetBottom: NumberControl({ label: 'Form Offset (overlap below)', defaultValue: 32, min: 0, max: 400, step: 8, suffix: 'px' }),
 
       // ── Background ──────────────────────────────────────────
-      bgColor: Color({ label: 'Overlay Color' }),
+      bgColor: Color({ label: 'Overlay Color', defaultValue: '#25262d' }),
       bgOpacity: NumberControl({ label: 'Overlay Opacity', defaultValue: 60, min: 0, max: 100, step: 1, suffix: '%' }),
-      gradientFrom: Color({ label: 'Gradient From' }),
-      gradientTo: Color({ label: 'Gradient To' }),
+      gradientFrom: Color({ label: 'Gradient From', defaultValue: '#25262d' }),
+      gradientTo: Color({ label: 'Gradient To', defaultValue: '#25262d' }),
       gradientDirection: Select({
         label: 'Gradient Direction',
         options: [
@@ -73,7 +73,7 @@ runtime.registerComponent(
           { value: '135deg', label: '↘ Diagonal ↘' },
           { value: '225deg', label: '↙ Diagonal ↙' },
         ],
-        defaultValue: 'to bottom',
+        defaultValue: '135deg',
       }),
 
       // ── Layout ──────────────────────────────────────────────
