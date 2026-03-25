@@ -55,12 +55,12 @@ runtime.registerComponent(
       field4Label: TextInput({ label: 'Field 4 Label', defaultValue: 'Phone' }),
       field4Placeholder: TextInput({ label: 'Field 4 Placeholder', defaultValue: '(555) 123-4567' }),
       formSubmitLabel: TextInput({ label: 'Submit Button', defaultValue: 'Get A Free Quote' }),
-      formWidth: NumberControl({ label: 'Form Width', defaultValue: 480, min: 280, max: 800, step: 8, suffix: 'px' }),
-      formOffsetBottom: NumberControl({ label: 'Form Offset (overlap below)', defaultValue: 0, min: 0, max: 400, step: 8, suffix: 'px' }),
+      formWidth: NumberControl({ label: 'Form Width', defaultValue: 472, min: 280, max: 800, step: 8, suffix: 'px' }),
+      formOffsetBottom: NumberControl({ label: 'Form Offset (overlap below)', defaultValue: 30, min: 0, max: 400, step: 8, suffix: 'px' }),
 
       // ── Background ──────────────────────────────────────────
       bgColor: Color({ label: 'Overlay Color' }),
-      bgOpacity: NumberControl({ label: 'Overlay Opacity', defaultValue: 70, min: 0, max: 100, step: 1, suffix: '%' }),
+      bgOpacity: NumberControl({ label: 'Overlay Opacity', defaultValue: 60, min: 0, max: 100, step: 1, suffix: '%' }),
       gradientFrom: Color({ label: 'Gradient From' }),
       gradientTo: Color({ label: 'Gradient To' }),
       gradientDirection: Select({

@@ -3,9 +3,9 @@ import { forwardRef, type Ref, useState, useEffect, useCallback } from "react"
 
 const DEFAULT_SLIDES = [
   "https://storage.googleapis.com/s.mkswft.com/RmlsZTpmNGU1MTkzMi02Y2JlLTQ0ZjAtOWIwNC03ZmI3MmQwNzYwMDk=/background-1.jpg",
-  "https://storage.googleapis.com/s.mkswft.com/RmlsZTo2Yzc2NDcxYi03ZWM5LTQzNmQtYWVhNy05N2IxN2UxZWUwMGU=/background-2.jpg",
+  "https://storage.googleapis.com/s.mkswft.com/RmlsZTpkZDVmYmU0ZS1hMzE3LTRlYWYtODg0Zi0wY2Q0MWVlOWU2ZTk=/background-6.jpg",
   "https://storage.googleapis.com/s.mkswft.com/RmlsZTphN2U4ZjZlNS02ZDg0LTQzZmQtYTM4Ni0yMmNmOWNlNDYxMDM=/background-3.jpg",
-  "https://storage.googleapis.com/s.mkswft.com/RmlsZTozYzVkZmVjNC1kMjlmLTQ0MjItOWM1MS1lMTJiY2ZjOGY0NWM=/background-4.jpg",
+  "https://storage.googleapis.com/s.mkswft.com/RmlsZTo5NmM1NDI2ZS1iMTZkLTQzYzItYTYyYy1hNDc1MWM5NDFiOWE=/background-7.jpg",
   "https://storage.googleapis.com/s.mkswft.com/RmlsZTo5M2JkMWM4NC1mOTA3LTRlZDktYThkMC0xNGZmYTAxODQ2MWI=/background-5.jpg",
 ]
 
