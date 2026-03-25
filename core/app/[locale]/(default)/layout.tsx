@@ -3,6 +3,7 @@ import { PropsWithChildren } from 'react';
 import { GlobalNavLoader } from '~/lib/makeswift/components/cast/GlobalNavLoader';
 import { GlobalFooterLoader } from '~/lib/makeswift/components/cast/GlobalFooterLoader';
 import CastSiteNavbar from '~/lib/makeswift/components/cast/SiteNavbar';
+import CastNavigationTopper from '~/lib/makeswift/components/cast/NavigationTopper';
 import CastSiteFooter from '~/lib/makeswift/components/cast/SiteFooter';
 
 interface Props extends PropsWithChildren {
@@ -20,7 +21,12 @@ async function NavWithFallback({ locale }: { locale: string }) {
       return <MakeswiftPageShim metadata={false} snapshot={snapshot} />;
     }
   } catch {}
-  return <CastSiteNavbar />;
+  return (
+    <>
+      <CastNavigationTopper />
+      <CastSiteNavbar />
+    </>
+  );
 }
 
 async function FooterWithFallback({ locale }: { locale: string }) {

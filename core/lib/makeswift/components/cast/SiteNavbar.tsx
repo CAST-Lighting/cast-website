@@ -1,6 +1,6 @@
 "use client"
 import { forwardRef, type Ref, useState, useRef, useEffect } from "react"
-import { Phone, ShoppingCart, Search, Menu, X, ChevronDown } from "lucide-react"
+import { ShoppingCart, Search, Menu, X, ChevronDown } from "lucide-react"
 
 interface NavItem {
   label: string
@@ -83,29 +83,6 @@ const SiteNavbar = forwardRef(function SiteNavbar(
       className={`fixed top-0 left-0 right-0 z-50 ${className || ""}`}
       style={{ '--section-line-height': lineHeight } as React.CSSProperties}
     >
-      {/* Top bar */}
-      <div className="bg-[#003344]/85 border-b backdrop-blur-md border-[#004a61]">
-        <div className="container mx-auto flex items-center justify-between px-6 py-2 text-sm font-body">
-          <div className="flex items-center gap-4">
-            <a href="/trade-pro" className="text-primary hover:text-warm-glow transition-colors font-semibold tracking-wide">
-              EASY CONTRACTOR PRICING
-            </a>
-            <span className="text-muted-foreground hidden sm:inline">|</span>
-            <a href="/trade-pro" className="text-secondary-foreground hover:text-primary transition-colors hidden sm:inline tracking-wide">
-              BECOME A TRADE PRO
-            </a>
-          </div>
-          <div className="flex items-center gap-4">
-            <a href="tel:9734232303" className="flex items-center gap-1.5 text-secondary-foreground hover:text-primary transition-colors">
-              <Phone className="w-3.5 h-3.5" />
-              <span className="hidden md:inline">(973) 423-2303</span>
-            </a>
-            <span className="text-muted-foreground">|</span>
-            <a href="#" className="text-secondary-foreground hover:text-primary transition-colors">Contact Us</a>
-          </div>
-        </div>
-      </div>
-
       {/* Main nav */}
       <nav className="backdrop-blur-md border-b border-[#004a61] bg-[#005C7A]/80">
         <div className="container mx-auto flex items-center justify-between px-6 py-4">
