@@ -44,27 +44,27 @@ const ContactSection = forwardRef(function ContactSection(
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 64, alignItems: 'start' }}>
           {/* Left: info */}
           <div>
-            {overline && <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.14em', color: '#c8972a', margin: '0 0 16px' }}>{overline}</p>}
+            {overline && <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.14em', color: '#007CB0', margin: '0 0 16px' }}>{overline}</p>}
             <h2 style={{ fontFamily: "'Essonnes', 'Playfair Display', serif", fontSize: 'clamp(28px, 4vw, 48px)', fontWeight: 700, color: '#fff', lineHeight: 1.15, margin: '0 0 20px' }}>
-              {heading || 'Get In'} <span style={{ background: 'linear-gradient(135deg, #c8972a, #e8b84b)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>{headingAccent || 'Touch'}</span>
+              {heading || 'Get In'} <span style={{ background: 'linear-gradient(135deg, #007CB0, #7EBEE8)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>{headingAccent || 'Touch'}</span>
             </h2>
             {description && <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 17, color: 'rgba(255,255,255,0.7)', lineHeight: 1.7, margin: '0 0 40px' }}>{description}</p>}
             <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
               {phone && <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
-                <div style={{ width: 40, height: 40, borderRadius: 8, background: 'rgba(200,151,42,0.12)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                  <Phone style={{ width: 18, height: 18, color: '#c8972a' }} />
+                <div style={{ width: 40, height: 40, borderRadius: 8, background: 'rgba(0,124,176,0.12)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                  <Phone style={{ width: 18, height: 18, color: '#007CB0' }} />
                 </div>
                 <a href={`tel:${phone.replace(/\D/g,'')}`} style={{ fontFamily: "'Barlow', sans-serif", fontSize: 16, color: '#fff', textDecoration: 'none' }}>{phone}</a>
               </div>}
               {email && <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
-                <div style={{ width: 40, height: 40, borderRadius: 8, background: 'rgba(200,151,42,0.12)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                  <Mail style={{ width: 18, height: 18, color: '#c8972a' }} />
+                <div style={{ width: 40, height: 40, borderRadius: 8, background: 'rgba(0,124,176,0.12)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                  <Mail style={{ width: 18, height: 18, color: '#007CB0' }} />
                 </div>
                 <a href={`mailto:${email}`} style={{ fontFamily: "'Barlow', sans-serif", fontSize: 16, color: '#fff', textDecoration: 'none' }}>{email}</a>
               </div>}
               {address && <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
-                <div style={{ width: 40, height: 40, borderRadius: 8, background: 'rgba(200,151,42,0.12)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                  <MapPin style={{ width: 18, height: 18, color: '#c8972a' }} />
+                <div style={{ width: 40, height: 40, borderRadius: 8, background: 'rgba(0,124,176,0.12)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                  <MapPin style={{ width: 18, height: 18, color: '#007CB0' }} />
                 </div>
                 <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 16, color: 'rgba(255,255,255,0.7)' }}>{address}</span>
               </div>}
@@ -93,7 +93,7 @@ const ContactSection = forwardRef(function ContactSection(
                 <label style={{ fontFamily: "'Barlow', sans-serif", fontSize: 12, fontWeight: 600, color: 'rgba(255,255,255,0.5)', display: 'block', marginBottom: 6 }}>Message</label>
                 <textarea placeholder="Tell us about your project..." rows={4} style={{ width: '100%', padding: '10px 14px', background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.12)', borderRadius: 8, color: '#fff', fontFamily: "'Barlow', sans-serif", fontSize: 15, resize: 'vertical', boxSizing: 'border-box' }} />
               </div>
-              <button type="submit" style={{ width: '100%', padding: '14px 24px', background: 'linear-gradient(135deg, #c8972a, #e8b84b)', border: 'none', borderRadius: 8, fontFamily: "'Barlow', sans-serif", fontSize: 15, fontWeight: 700, color: '#0d1620', cursor: 'pointer', letterSpacing: '0.03em' }}>
+              <button type="submit" style={{ width: '100%', padding: '14px 24px', background: 'linear-gradient(135deg, #007CB0, #7EBEE8)', border: 'none', borderRadius: 8, fontFamily: "'Barlow', sans-serif", fontSize: 15, fontWeight: 700, color: '#0d1620', cursor: 'pointer', letterSpacing: '0.03em' }}>
                 {submitLabel || 'Send Message'}
               </button>
             </form>

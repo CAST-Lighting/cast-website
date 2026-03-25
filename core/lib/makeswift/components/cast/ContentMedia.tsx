@@ -157,7 +157,7 @@ const ContentMedia = forwardRef(function ContentMedia(
                 )}
               </div>
               <div className="absolute -bottom-6 -left-6 rounded-xl p-5 glow-warm-sm" style={{ background: '#ffffff', border: '1px solid rgba(0,0,0,0.08)' }}>
-                <div className="heading-style-h3" style={{ color: '#c8972a' }}>{stat || "25+"}</div>
+                <div className="heading-style-h3" style={{ color: '#007CB0' }}>{stat || "25+"}</div>
                 <div className="text-size-small" style={{ color: '#1a2332', fontWeight: 600 }}>{statLabel || "Years of Excellence"}</div>
               </div>
             </div>

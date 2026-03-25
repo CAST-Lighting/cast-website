@@ -84,7 +84,7 @@ const ShopHero = forwardRef(function ShopHero(
             <>
               {headline.replace("CAST", "").trim().split(" ").slice(0, -0).join(" ")
                 .replace("Shop", "Shop ")}
-              <span style={{ background: "linear-gradient(135deg, #c8972a, #e8b84b)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
+              <span style={{ background: "linear-gradient(135deg, #007CB0, #7EBEE8)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
                 {" "}CAST{" "}
               </span>
               {headline.split("CAST")[1]?.trim()}
@@ -133,7 +133,7 @@ const ShopHero = forwardRef(function ShopHero(
             <button
               type="submit"
               style={{
-                background: "var(--color-accent, #c8972a)",
+                background: "var(--color-accent, #007CB0)",
                 border: "none",
                 padding: "14px 20px",
                 cursor: "pointer",
@@ -185,7 +185,7 @@ const ShopHero = forwardRef(function ShopHero(
                 fontFamily: "'Essonnes', 'Playfair Display', serif",
                 fontSize: 28,
                 fontWeight: 700,
-                background: "linear-gradient(135deg, #c8972a, #e8b84b)",
+                background: "linear-gradient(135deg, #007CB0, #7EBEE8)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
               }}>

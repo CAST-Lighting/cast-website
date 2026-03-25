@@ -84,7 +84,7 @@ const ReadyCTA = forwardRef(function ReadyCTA(
           transform: "translate(-50%, -50%)",
           width: 600,
           height: 300,
-          background: "radial-gradient(ellipse, rgba(200,151,42,0.15), transparent 70%)",
+          background: "radial-gradient(ellipse, rgba(0,124,176,0.15), transparent 70%)",
           pointerEvents: "none",
           zIndex: 2,
         }}
@@ -116,7 +116,7 @@ const ReadyCTA = forwardRef(function ReadyCTA(
           }}>
             {heading}{" "}
             <span style={{
-              background: "linear-gradient(135deg, #c8972a, #e8b84b)",
+              background: "linear-gradient(135deg, #007CB0, #7EBEE8)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
             }}>

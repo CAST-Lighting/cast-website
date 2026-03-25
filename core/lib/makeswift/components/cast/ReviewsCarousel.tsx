@@ -83,8 +83,8 @@ function StarRating({ rating }: { rating: number }) {
           style={{
             width: 16,
             height: 16,
-            fill: i <= rating ? "var(--color-accent, #c8972a)" : "transparent",
-            stroke: "var(--color-accent, #c8972a)",
+            fill: i <= rating ? "var(--color-accent, #007CB0)" : "transparent",
+            stroke: "var(--color-accent, #007CB0)",
           }}
         />
       ))}
@@ -203,7 +203,7 @@ const ReviewsCarousel = forwardRef(function ReviewsCarousel(
                   <img
                     src={review.avatar || PLACEHOLDER_PERSON}
                     alt={review.name || "Reviewer"}
-                    style={{ width: 40, height: 40, borderRadius: "50%", objectFit: "cover", flexShrink: 0, border: "2px solid rgba(200,151,42,0.3)" }}
+                    style={{ width: 40, height: 40, borderRadius: "50%", objectFit: "cover", flexShrink: 0, border: "2px solid rgba(0,124,176,0.3)" }}
                   />
                   <div>
                     <p style={{
@@ -263,7 +263,7 @@ const ReviewsCarousel = forwardRef(function ReviewsCarousel(
                       borderRadius: "50%",
                       border: "none",
                       cursor: "pointer",
-                      background: i === page ? "var(--color-accent, #c8972a)" : "rgba(255,255,255,0.25)",
+                      background: i === page ? "var(--color-accent, #007CB0)" : "rgba(255,255,255,0.25)",
                       padding: 0,
                     }}
                   />
