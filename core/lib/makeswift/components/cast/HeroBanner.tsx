@@ -72,7 +72,7 @@ const HeroBanner = forwardRef(function HeroBanner(
     hideForm,
     formWidth, formOffsetBottom,
     bgColor, bgOpacity, gradientFrom, gradientTo, gradientDirection,
-    lineHeight, paddingTop, paddingBottom,
+    lineHeight, paddingTop = 40, paddingBottom = 48,
   }: HeroBannerProps,
   ref: Ref<HTMLElement>
 ) {
