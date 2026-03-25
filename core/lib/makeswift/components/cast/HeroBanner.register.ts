@@ -56,7 +56,7 @@ runtime.registerComponent(
       field4Placeholder: TextInput({ label: 'Field 4 Placeholder', defaultValue: '(555) 123-4567' }),
       formSubmitLabel: TextInput({ label: 'Submit Button', defaultValue: 'Get A Free Quote' }),
       formWidth: NumberControl({ label: 'Form Width', defaultValue: 472, min: 280, max: 800, step: 8, suffix: 'px' }),
-      formOffsetBottom: NumberControl({ label: 'Form Offset (overlap below)', defaultValue: 30, min: 0, max: 400, step: 8, suffix: 'px' }),
+      formOffsetBottom: NumberControl({ label: 'Form Offset (overlap below)', defaultValue: 32, min: 0, max: 400, step: 8, suffix: 'px' }),
 
       // ── Background ──────────────────────────────────────────
       bgColor: Color({ label: 'Overlay Color' }),
