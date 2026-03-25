@@ -104,7 +104,7 @@ const BlogPostContent = forwardRef(function BlogPostContent(
       className={`relative ${className || ""}`}
       style={{ background: bgColor || '#0f1923', paddingTop, paddingBottom }}
     >
-      <div style={{ maxWidth: 860, margin: '0 auto', padding: '0 24px' }}>
+      <div className="site-container">
 
         {/* ── Category breadcrumb ── */}
         {category && (
