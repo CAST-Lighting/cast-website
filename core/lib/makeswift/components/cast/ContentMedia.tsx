@@ -127,7 +127,7 @@ const ContentMedia = forwardRef(function ContentMedia(
 
               <div className="flex flex-wrap gap-4">
                 <a href={btn1Href || "/shop"} className="sg-btn-solid-md">{btn1Label || "Shop Products"}</a>
-                <a href={btn2Href || "/about"} className="sg-btn-outline-md">{btn2Label || "Learn More →"}</a>
+                <a href={btn2Href || "/about"} className="sg-btn-outline-md" style={{ color: '#ffffff', borderColor: 'rgba(255,255,255,0.5)' }}>{btn2Label || "Learn More →"}</a>
               </div>
             </div>
 
@@ -147,9 +147,9 @@ const ContentMedia = forwardRef(function ContentMedia(
                   </div>
                 )}
               </div>
-              <div className="absolute -bottom-6 -left-6 bg-card border border-border rounded-xl p-5 glow-warm-sm">
-                <div className="heading-style-h3" style={{ color: 'var(--color-accent, #c8972a)' }}>{stat || "25+"}</div>
-                <div className="text-size-small text-muted-foreground">{statLabel || "Years of Excellence"}</div>
+              <div className="absolute -bottom-6 -left-6 rounded-xl p-5 glow-warm-sm" style={{ background: '#ffffff', border: '1px solid rgba(0,0,0,0.08)' }}>
+                <div className="heading-style-h3" style={{ color: '#c8972a' }}>{stat || "25+"}</div>
+                <div className="text-size-small" style={{ color: '#1a2332', fontWeight: 600 }}>{statLabel || "Years of Excellence"}</div>
               </div>
             </div>
           </div>
