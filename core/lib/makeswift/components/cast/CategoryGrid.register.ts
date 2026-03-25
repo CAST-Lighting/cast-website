@@ -10,8 +10,8 @@ runtime.registerComponent(
     props: {
       className: Style(),
       bgImage: Image({ label: 'Background Image' }),
-      bgColor: Color({ label: 'Background Color' }),
-      bgOpacity: NumberControl({ label: 'Background Opacity', defaultValue: 85, min: 0, max: 100, step: 1, suffix: '%' }),
+      bgColor: Color({ label: 'Background Color', defaultValue: '#27474f' }),
+      bgOpacity: NumberControl({ label: 'Background Opacity', defaultValue: 100, min: 0, max: 100, step: 1, suffix: '%' }),
       gradientFrom: Color({ label: 'Gradient From' }),
       gradientTo: Color({ label: 'Gradient To' }),
       gradientDirection: Select({
