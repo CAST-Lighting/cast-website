@@ -6,7 +6,7 @@ runtime.registerComponent(
   lazy(() => import("./NewsletterCtaFull")),
   {
     type: "site-newsletter-cta-full",
-    label: "Site / Newsletter CTA - Full",
+    label: "CTA / Newsletter Full",
     props: {
       className: Style(),
       sectionStyle: Style({ properties: [Style.Padding, Style.Margin] }),

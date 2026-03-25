@@ -6,7 +6,7 @@ runtime.registerComponent(
   lazy(() => import("./ReadyCTA")),
   {
     type: "site-ready-cta",
-    label: "Site / Ready CTA",
+    label: "CTA / Ready CTA",
     props: {
       className: Style(),
       bgColor: Color({ label: "Background Color", defaultValue: "#004960" }),

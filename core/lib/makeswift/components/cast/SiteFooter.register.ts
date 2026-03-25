@@ -6,7 +6,7 @@ runtime.registerComponent(
   lazy(() => import("./SiteFooter")),
   {
     type: "site-footer",
-    label: "Site / Footer",
+    label: "Footer / Site Footer",
     props: {
       className: Style(),
       bgImage: Image({ label: 'Background Image' }),

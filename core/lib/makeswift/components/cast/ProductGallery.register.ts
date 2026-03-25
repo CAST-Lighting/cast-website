@@ -6,7 +6,7 @@ runtime.registerComponent(
   lazy(() => import("./ProductGallery")),
   {
     type: "site-product-gallery",
-    label: "Site / Product Gallery",
+    label: "Sections / Product Carousel",
     props: {
       className: Style(),
 

@@ -6,7 +6,7 @@ runtime.registerComponent(
   lazy(() => import("./SiteNavbar")),
   {
     type: "site-navbar",
-    label: "Site / Navbar",
+    label: "Navigation / Navbar",
     props: {
       className: Style(),
       lineHeight: NumberControl({ label: 'Text Line Height', defaultValue: 1.6, min: 1, max: 3, step: 0.05 }),

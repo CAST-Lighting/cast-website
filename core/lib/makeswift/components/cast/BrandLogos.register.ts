@@ -6,7 +6,7 @@ runtime.registerComponent(
   lazy(() => import("./BrandLogos")),
   {
     type: "site-brand-logos",
-    label: "Site / Brand Logos",
+    label: "Sections / Brand Logos",
     props: {
       className: Style(),
       sectionStyle: Style({ properties: [Style.Padding, Style.Margin] }),

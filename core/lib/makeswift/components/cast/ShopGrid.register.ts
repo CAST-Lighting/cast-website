@@ -6,7 +6,7 @@ runtime.registerComponent(
   lazy(() => import("./ShopGrid")),
   {
     type: "site-shop-grid",
-    label: "Site / Shop Grid",
+    label: "Product / Shop Grid",
     props: {
       className: Style(),
       sectionStyle: Style({ properties: [Style.Padding, Style.Margin] }),

@@ -6,7 +6,7 @@ runtime.registerComponent(
   lazy(() => import("./ContentMedia")),
   {
     type: "site-content-media",
-    label: "Site / Content + Media",
+    label: "Sections / Content + Video",
     props: {
       className: Style(),
       bgImage: Image({ label: 'Background Image' }),

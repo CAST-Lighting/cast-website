@@ -6,7 +6,7 @@ runtime.registerComponent(
   lazy(() => import("./DistributorFinder")),
   {
     type: "site-distributor-finder",
-    label: "Site / Distributor Finder",
+    label: "Forms / Distributor Finder",
     props: {
       className: Style(),
       sectionStyle: Style({ properties: [Style.Padding, Style.Margin] }),

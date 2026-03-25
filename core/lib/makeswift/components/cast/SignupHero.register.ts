@@ -6,7 +6,7 @@ runtime.registerComponent(
   lazy(() => import("./SignupHero")),
   {
     type: "site-signup-hero",
-    label: "Site / Signup Hero",
+    label: "Hero / Signup Hero",
     props: {
       className: Style(),
       sectionStyle: Style({ properties: [Style.Padding, Style.Margin] }),

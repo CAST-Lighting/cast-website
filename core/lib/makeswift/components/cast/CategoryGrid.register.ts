@@ -6,7 +6,7 @@ runtime.registerComponent(
   lazy(() => import("./CategoryGrid")),
   {
     type: "site-category-grid",
-    label: "Site / Category Grid",
+    label: "Sections / Category Grid",
     props: {
       className: Style(),
       bgImage: Image({ label: 'Background Image' }),

@@ -6,7 +6,7 @@ runtime.registerComponent(
   lazy(() => import("./NewsletterCta")),
   {
     type: "site-newsletter",
-    label: "Site / Newsletter",
+    label: "CTA / Newsletter Bar",
     props: {
       className: Style(),
       bgImage: Image({ label: 'Background Image' }),

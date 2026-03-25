@@ -6,7 +6,7 @@ runtime.registerComponent(
   lazy(() => import("./HeroBanner")),
   {
     type: "site-hero-banner",
-    label: "Site / Hero Banner",
+    label: "Hero / Homepage Hero",
     props: {
       className: Style(),
 

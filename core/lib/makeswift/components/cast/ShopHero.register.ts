@@ -6,7 +6,7 @@ runtime.registerComponent(
   lazy(() => import("./ShopHero")),
   {
     type: "site-shop-hero",
-    label: "Site / Shop Hero",
+    label: "Hero / Shop Hero",
     props: {
       className: Style(),
       headline: TextInput({ label: "Headline", defaultValue: "Shop Professional Outdoor Lighting" }),

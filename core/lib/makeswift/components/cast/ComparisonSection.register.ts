@@ -6,7 +6,7 @@ runtime.registerComponent(
   lazy(() => import("./ComparisonSection")),
   {
     type: "site-comparison",
-    label: "Site / Comparison Section",
+    label: "Sections / Brand Comparison",
     props: {
       className: Style(),
       bgImage: Image({ label: 'Background Image' }),

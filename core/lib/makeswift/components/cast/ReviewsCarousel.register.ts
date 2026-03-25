@@ -6,15 +6,15 @@ runtime.registerComponent(
   lazy(() => import("./ReviewsCarousel")),
   {
     type: "site-reviews-carousel",
-    label: "Site / Reviews Carousel",
+    label: "Sections / Reviews Carousel",
     props: {
       className: Style(),
       bgColor: Color({ label: "Background Color", defaultValue: "#141e27" }),
       paddingTop: Number({ label: "Padding Top (px)", defaultValue: 96 }),
       paddingBottom: Number({ label: "Padding Bottom (px)", defaultValue: 96 }),
-      overline: TextInput({ label: "Overline", defaultValue: "What Our Customers Say" }),
-      heading: TextInput({ label: "Heading", defaultValue: "Trusted by Contractors" }),
-      headingAccent: TextInput({ label: "Heading Accent (gold)", defaultValue: "Nationwide" }),
+      overline: TextInput({ label: "Overline", defaultValue: "Trusted By Contractors" }),
+      heading: TextInput({ label: "Heading", defaultValue: "Hear From The" }),
+      headingAccent: TextInput({ label: "Heading Accent (gold)", defaultValue: "Field" }),
       reviews: List({
         label: "Reviews",
         type: Shape({

@@ -11,14 +11,14 @@ interface BCCategory { name: string; path: string }
 interface CategoryItem { name?: string; href?: string }
 
 const FALLBACK_CATEGORIES = [
-  { name: "Path Lights", href: "#" },
-  { name: "Spot Lights", href: "#" },
-  { name: "Wall Wash", href: "#" },
-  { name: "Well Lights", href: "#" },
-  { name: "Deck Lights", href: "#" },
-  { name: "Flood Lights", href: "#" },
-  { name: "Accent Lights", href: "#" },
-  { name: "Transformers", href: "#" },
+  { name: "Path & Area Lights", href: "/category/26" },
+  { name: "Spot & Accent", href: "/category/31" },
+  { name: "Well & Ground", href: "/category/35" },
+  { name: "Deck & Wall", href: "/category/30" },
+  { name: "Down Lights", href: "/category/32" },
+  { name: "Transformers", href: "/category/45" },
+  { name: "Accessories", href: "/category/19" },
+  { name: "All Products", href: "/category/23" },
 ]
 
 const CategoryGrid = forwardRef(function CategoryGrid(

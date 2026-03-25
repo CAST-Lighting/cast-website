@@ -6,7 +6,7 @@ runtime.registerComponent(
   lazy(() => import("./TradeProSection")),
   {
     type: "site-trade-pro",
-    label: "Site / TradePro Section",
+    label: "CTA / TradePro Benefits",
     props: {
       className: Style(),
       bgImage: Image({ label: 'Background Image' }),
@@ -29,7 +29,7 @@ runtime.registerComponent(
       lineHeight: NumberControl({ label: 'Text Line Height', defaultValue: 1.6, min: 1, max: 3, step: 0.05 }),
       paddingTop: NumberControl({ label: 'Padding Top', defaultValue: 96, min: 0, max: 400, step: 8, suffix: 'px' }),
       paddingBottom: NumberControl({ label: 'Padding Bottom', defaultValue: 96, min: 0, max: 400, step: 8, suffix: 'px' }),
-      overline: TextInput({ label: 'Overline', defaultValue: 'Benefits for Contractors & Installers' }),
+      overline: TextInput({ label: 'Overline', defaultValue: 'For Contractors & Installers' }),
       heading: TextInput({ label: 'Heading', defaultValue: 'The TradePro' }),
       headingAccent: TextInput({ label: 'Heading Accent', defaultValue: 'Advantage' }),
       description: TextInput({ label: 'Description', defaultValue: 'Access professional products with lifetime warranties that give you design control in the field.' }),
@@ -43,7 +43,7 @@ runtime.registerComponent(
         }),
         getItemLabel(item) { return item?.title || 'Benefit' },
       }),
-      btnLabel: TextInput({ label: 'Button Label', defaultValue: 'Learn More About TradePro' }),
+      btnLabel: TextInput({ label: 'Button Label', defaultValue: 'Join The TradePro Program' }),
       btnHref: TextInput({ label: 'Button Href', defaultValue: '/trade-pro' }),
     },
   }

@@ -6,7 +6,7 @@ runtime.registerComponent(
   lazy(() => import("./ProductHero")),
   {
     type: "site-product-hero",
-    label: "Product / Hero",
+    label: "Hero / Product Hero",
     props: {
       className: Style(),
       sectionStyle: Style({ properties: [Style.Padding, Style.Margin] }),

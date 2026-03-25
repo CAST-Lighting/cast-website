@@ -6,7 +6,7 @@ runtime.registerComponent(
   lazy(() => import("./StyleGuide")),
   {
     type: "cast-style-guide",
-    label: "Site / Style Guide",
+    label: "Utilities / Style Guide",
     props: {
       className: Style(),
     },

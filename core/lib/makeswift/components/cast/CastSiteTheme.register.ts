@@ -6,7 +6,7 @@ runtime.registerComponent(
   lazy(() => import("./CastSiteTheme")),
   {
     type: "cast-site-theme",
-    label: "Site / Global Theme",
+    label: "Utilities / Global Theme",
     props: {
       className: Style(),
       // Colors
