@@ -151,8 +151,8 @@ const SiteNavbar = forwardRef(function SiteNavbar(
 
         {/* Search dropdown */}
         {searchOpen && (
-          <div className="flex justify-center py-4 px-6">
-            <div className="w-full max-w-3xl bg-white rounded-full shadow-lg px-8 py-4 flex items-center gap-3">
+          <div className="absolute left-0 right-0 flex justify-center px-6" style={{ top: '100%', paddingTop: 12, paddingBottom: 12 }}>
+            <div className="w-full max-w-3xl bg-white rounded-full shadow-2xl px-8 py-4 flex items-center gap-3">
               <Search className="w-5 h-5 text-muted-foreground/60 flex-shrink-0" />
               <input
                 type="text"
