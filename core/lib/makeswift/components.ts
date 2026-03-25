@@ -8,6 +8,7 @@ import './components/cast/SiteFooter.register';
 // Hero & Landing sections
 import './components/cast/HeroBanner.register';
 import './components/cast/BlogHero.register';
+import './components/cast/SubPageHero.register';
 import './components/cast/ShopHero.register';
 import './components/cast/SignupHero.register';
 import './components/cast/ProductHero.register';
