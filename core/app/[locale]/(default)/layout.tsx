@@ -65,6 +65,8 @@ export default async function DefaultLayout({ params, children }: Props) {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }} />
       <NavWithFallback locale={locale} />
+      {/* Spacer that clears both fixed bars: top bar (~36px) + main nav (~72px) */}
+      <div style={{ height: 108 }} aria-hidden="true" />
       <main>{children}</main>
       <FooterWithFallback locale={locale} />
     </>
