@@ -7,6 +7,7 @@ import './components/cast/SiteFooter.register';
 
 // Hero & Landing sections
 import './components/cast/HeroBanner.register';
+import './components/cast/BlogHero.register';
 import './components/cast/ShopHero.register';
 import './components/cast/SignupHero.register';
 import './components/cast/ProductHero.register';
@@ -35,6 +36,9 @@ import './components/cast/TradeProSection.register';
 import './components/cast/ReadyCTA.register';
 import './components/cast/NewsletterCta.register';
 import './components/cast/NewsletterCtaFull.register';
+
+// Forms & Contact
+import './components/cast/ContactSection.register';
 
 // Trade & Finder tools
 import './components/cast/ContractorFinder.register';
