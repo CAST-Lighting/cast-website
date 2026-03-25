@@ -29,7 +29,7 @@ const NavigationTopper = forwardRef(function NavigationTopper(
   return (
     <div
       ref={ref}
-      className={`border-b backdrop-blur-md border-[#004a61] ${className || ""}`}
+      className={`fixed top-0 left-0 right-0 z-[51] border-b backdrop-blur-md border-[#004a61] ${className || ""}`}
       style={{ background: bgColor || "rgba(0,51,68,0.85)" }}
     >
       <div className="container mx-auto flex items-center justify-between px-6 py-2 text-sm font-body">
