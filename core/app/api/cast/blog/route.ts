@@ -56,7 +56,7 @@ export async function POST(request: Request) {
       Category: body.category ?? 'Landscape Lighting',
       Tags: body.tags ?? '',
       Author: body.author ?? 'CAST Lighting Team',
-      'Read Time': body.readTime ?? 1,
+      'Read Time': String(body.readTime ?? '1 min'),
       'Published Date': body.publishedDate ?? new Date().toISOString().slice(0, 10),
       'SEO Title': body.seoTitle ?? body.title,
       'Meta Description': body.metaDescription ?? '',
@@ -77,6 +77,7 @@ export async function POST(request: Request) {
     });
   } catch (err) {
     console.error('[POST /api/cast/blog]', err);
-    return Response.json({ error: 'Failed to create post' }, { status: 500 });
+    const message = err instanceof Error ? err.message : 'Failed to create post';
+    return Response.json({ error: message }, { status: 500 });
   }
 }

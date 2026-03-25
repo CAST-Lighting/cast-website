@@ -22,7 +22,7 @@ export interface AirtableBlogRecord {
     'Meta Description'?: string;
     'OG Image URL'?: string;
     Author?: string;
-    'Read Time'?: number;
+    'Read Time'?: string;
     'Published Date'?: string;
   };
 }
