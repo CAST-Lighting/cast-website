@@ -72,7 +72,7 @@ const HeroBanner = forwardRef(function HeroBanner(
     hideForm,
     formWidth, formOffsetBottom,
     bgColor, bgOpacity, gradientFrom, gradientTo, gradientDirection,
-    lineHeight, paddingTop = 40, paddingBottom = 48,
+    lineHeight, paddingTop = 136, paddingBottom = 112,
   }: HeroBannerProps,
   ref: Ref<HTMLElement>
 ) {
@@ -117,8 +117,8 @@ const HeroBanner = forwardRef(function HeroBanner(
       style={{
         position: 'relative',
         zIndex: 2,
-        paddingTop: (paddingTop ?? 40) + 109,
-        paddingBottom: paddingBottom ?? 48,
+        paddingTop: paddingTop ?? 136,
+        paddingBottom: paddingBottom ?? 112,
         '--section-line-height': lineHeight,
       } as React.CSSProperties}
     >
