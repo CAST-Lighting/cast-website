@@ -117,8 +117,8 @@ const HeroBanner = forwardRef(function HeroBanner(
       style={{
         position: 'relative',
         zIndex: 2,
-        paddingTop: paddingTop ?? 80,
-        paddingBottom: paddingBottom ?? 80,
+        paddingTop: (paddingTop ?? 40) + 109,
+        paddingBottom: paddingBottom ?? 48,
         '--section-line-height': lineHeight,
       } as React.CSSProperties}
     >
