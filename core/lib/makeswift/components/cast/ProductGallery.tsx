@@ -11,13 +11,15 @@ interface BCProduct {
   price: string
 }
 
+const PLACEHOLDER_PICTURE = "https://storage.googleapis.com/s.mkswft.com/RmlsZToxYjc5OTY1Mi1hNTE0LTRjMDYtODMwZC1hNThiZTg0ZTIyNTE=/placeholder_picture.webp"
+
 const FALLBACK_PRODUCTS: BCProduct[] = [
-  { entityId: 1, name: "Classic Brass Path Light", price: "$189.00", image: "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=600&q=80", imageAlt: "Classic Brass Path Light", path: "/shop" },
-  { entityId: 2, name: "Modern Copper Path Light", price: "$209.00", image: "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=600&q=80", imageAlt: "Modern Copper Path Light", path: "/shop" },
-  { entityId: 3, name: "Pro Series Spotlight", price: "$149.00", image: "https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?w=600&q=80", imageAlt: "Pro Series Spotlight", path: "/shop" },
-  { entityId: 4, name: "Compact LED Spotlight", price: "$129.00", image: "https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?w=600&q=80", imageAlt: "Compact LED Spotlight", path: "/shop" },
-  { entityId: 5, name: "Copper Wall Washer", price: "$219.00", image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80", imageAlt: "Copper Wall Washer", path: "/shop" },
-  { entityId: 6, name: "Slim Profile Wall Wash", price: "$199.00", image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80", imageAlt: "Slim Profile Wall Wash", path: "/shop" },
+  { entityId: 1, name: "Classic Brass Path Light", price: "$189.00", image: PLACEHOLDER_PICTURE, imageAlt: "Classic Brass Path Light", path: "/shop" },
+  { entityId: 2, name: "Modern Copper Path Light", price: "$209.00", image: PLACEHOLDER_PICTURE, imageAlt: "Modern Copper Path Light", path: "/shop" },
+  { entityId: 3, name: "Pro Series Spotlight", price: "$149.00", image: PLACEHOLDER_PICTURE, imageAlt: "Pro Series Spotlight", path: "/shop" },
+  { entityId: 4, name: "Compact LED Spotlight", price: "$129.00", image: PLACEHOLDER_PICTURE, imageAlt: "Compact LED Spotlight", path: "/shop" },
+  { entityId: 5, name: "Copper Wall Washer", price: "$219.00", image: PLACEHOLDER_PICTURE, imageAlt: "Copper Wall Washer", path: "/shop" },
+  { entityId: 6, name: "Slim Profile Wall Wash", price: "$199.00", image: PLACEHOLDER_PICTURE, imageAlt: "Slim Profile Wall Wash", path: "/shop" },
 ]
 
 interface ProductGalleryProps {

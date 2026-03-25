@@ -2,12 +2,15 @@
 import { forwardRef, useState, type Ref } from "react"
 import { Star, ChevronLeft, ChevronRight } from "lucide-react"
 
+const PLACEHOLDER_PERSON = "https://storage.googleapis.com/s.mkswft.com/RmlsZTo0MzUyZTgwOS1jZDk2LTQ3YWQtOGM0ZC1kZDdhYmRlODhkMDY=/placeholder_person.webp"
+
 interface Review {
   name?: string
   role?: string
   quote?: string
   rating?: number
   location?: string
+  avatar?: string
 }
 
 interface ReviewsCarouselProps {
@@ -196,24 +199,31 @@ const ReviewsCarousel = forwardRef(function ReviewsCarousel(
                 }}>
                   &ldquo;{review.quote}&rdquo;
                 </p>
-                <div style={{ borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: 16 }}>
-                  <p style={{
-                    fontFamily: "'Barlow', sans-serif",
-                    fontSize: 14,
-                    fontWeight: 700,
-                    color: "#fff",
-                    margin: "0 0 2px",
-                  }}>
-                    {review.name}
-                  </p>
-                  <p style={{
-                    fontFamily: "'Barlow', sans-serif",
-                    fontSize: 13,
-                    color: "rgba(255,255,255,0.5)",
-                    margin: 0,
-                  }}>
-                    {review.role}{review.location ? ` · ${review.location}` : ""}
-                  </p>
+                <div style={{ borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: 16, display: "flex", alignItems: "center", gap: 12 }}>
+                  <img
+                    src={review.avatar || PLACEHOLDER_PERSON}
+                    alt={review.name || "Reviewer"}
+                    style={{ width: 40, height: 40, borderRadius: "50%", objectFit: "cover", flexShrink: 0, border: "2px solid rgba(200,151,42,0.3)" }}
+                  />
+                  <div>
+                    <p style={{
+                      fontFamily: "'Barlow', sans-serif",
+                      fontSize: 14,
+                      fontWeight: 700,
+                      color: "#fff",
+                      margin: "0 0 2px",
+                    }}>
+                      {review.name}
+                    </p>
+                    <p style={{
+                      fontFamily: "'Barlow', sans-serif",
+                      fontSize: 13,
+                      color: "rgba(255,255,255,0.5)",
+                      margin: 0,
+                    }}>
+                      {review.role}{review.location ? ` · ${review.location}` : ""}
+                    </p>
+                  </div>
                 </div>
               </div>
             ))}

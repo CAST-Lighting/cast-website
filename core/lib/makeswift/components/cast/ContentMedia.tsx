@@ -142,8 +142,17 @@ const ContentMedia = forwardRef(function ContentMedia(
                     allowFullScreen
                   />
                 ) : (
-                  <div className="w-full h-[500px] flex items-center justify-center bg-secondary/20 text-muted-foreground text-size-small">
-                    Add a YouTube URL in the panel to display a video
+                  <div className="w-full h-[500px] relative">
+                    <img
+                      src="https://storage.googleapis.com/s.mkswft.com/RmlsZToyYWIwMGYxYS1hZDc1LTRmMjgtOGQ0YS0yODNkMjExZmQ1ODg=/placeholder_video.webp"
+                      alt="Add a YouTube URL in the panel to display a video"
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div style={{ width: 64, height: 64, borderRadius: '50%', background: 'rgba(0,0,0,0.55)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
+                      </div>
+                    </div>
                   </div>
                 )}
               </div>

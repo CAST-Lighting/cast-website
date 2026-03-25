@@ -1,15 +1,17 @@
 "use client"
 import { forwardRef, type Ref } from "react"
 
+const PLACEHOLDER_LOGO = "https://storage.googleapis.com/s.mkswft.com/RmlsZTphNGQxOTA3OS0xMTNlLTQwNDEtOTIzMy02N2FmN2FjNDJhNmY=/placeholder_logo_horizontal.webp"
+
 const FALLBACK_LOGOS = [
-  { name: "Willow Creek Landscapes" },
-  { name: "Elite Outdoor Living" },
-  { name: "Premier Landscape Design" },
-  { name: "Green Horizons Inc." },
-  { name: "SunPath Landscaping" },
-  { name: "Terrain Masters" },
-  { name: "LightWork Contractors" },
-  { name: "NovaTech Outdoor" },
+  { name: "Willow Creek Landscapes", image: PLACEHOLDER_LOGO },
+  { name: "Elite Outdoor Living", image: PLACEHOLDER_LOGO },
+  { name: "Premier Landscape Design", image: PLACEHOLDER_LOGO },
+  { name: "Green Horizons Inc.", image: PLACEHOLDER_LOGO },
+  { name: "SunPath Landscaping", image: PLACEHOLDER_LOGO },
+  { name: "Terrain Masters", image: PLACEHOLDER_LOGO },
+  { name: "LightWork Contractors", image: PLACEHOLDER_LOGO },
+  { name: "NovaTech Outdoor", image: PLACEHOLDER_LOGO },
 ]
 
 interface LogoItem { name?: string; image?: string }
