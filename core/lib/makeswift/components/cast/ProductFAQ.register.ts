@@ -33,8 +33,8 @@ runtime.registerComponent(
         label: "FAQs",
         type: Shape({
           type: {
-            question: TextInput({ label: "Question", defaultValue: "Your question here?" }),
-            answer: TextArea({ label: "Answer", defaultValue: "Your answer here." }),
+            question: TextInput({ label: "Question", defaultValue: "Question goes here?" }),
+            answer: TextArea({ label: "Answer", defaultValue: "Lorem ipsum dolor sit amet, consectetur adipiscing elit." }),
           },
         }),
         getItemLabel(item) { return item?.question?.slice(0, 50) || "FAQ"; },

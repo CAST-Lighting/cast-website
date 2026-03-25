@@ -28,8 +28,8 @@ runtime.registerComponent(
       }),
       paddingTop: NumberControl({ label: 'Padding Top', defaultValue: 96, min: 0, max: 400, step: 8, suffix: 'px' }),
       paddingBottom: NumberControl({ label: 'Padding Bottom', defaultValue: 96, min: 0, max: 400, step: 8, suffix: 'px' }),
-      overline: TextInput({ label: "Overline", defaultValue: "Need Parts?" }),
-      heading: TextInput({ label: "Heading", defaultValue: "Parts For This Product" }),
+      overline: TextInput({ label: "Overline", defaultValue: "Section Label" }),
+      heading: TextInput({ label: "Heading", defaultValue: "Heading Goes Here" }),
       parts: List({
         label: "Parts",
         type: Shape({
@@ -37,7 +37,7 @@ runtime.registerComponent(
             image: Image({ label: "Part Image" }),
             name: TextInput({ label: "Part Name", defaultValue: "Part Name" }),
             partNumber: TextInput({ label: "Part Number", defaultValue: "PART-001" }),
-            price: TextInput({ label: "Price", defaultValue: "$9.99" }),
+            price: TextInput({ label: "Price", defaultValue: "$0.00" }),
             href: TextInput({ label: "Product URL", defaultValue: "#" }),
           },
         }),

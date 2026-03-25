@@ -28,7 +28,7 @@ runtime.registerComponent(
       }),
       paddingTop: NumberControl({ label: 'Padding Top', defaultValue: 96, min: 0, max: 400, step: 8, suffix: 'px' }),
       paddingBottom: NumberControl({ label: 'Padding Bottom', defaultValue: 96, min: 0, max: 400, step: 8, suffix: 'px' }),
-      heading: TextInput({ label: "Heading", defaultValue: "Photos & Videos" }),
+      heading: TextInput({ label: "Heading", defaultValue: "Heading Goes Here" }),
       items: List({
         label: "Media Items",
         type: Shape({
@@ -42,7 +42,7 @@ runtime.registerComponent(
               defaultValue: "image",
             }),
             src: Image({ label: "Image / Video Thumbnail" }),
-            caption: TextInput({ label: "Caption", defaultValue: "Image caption" }),
+            caption: TextInput({ label: "Caption", defaultValue: "Media caption" }),
           },
         }),
         getItemLabel(item) { return item?.caption || "Media Item"; },

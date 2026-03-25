@@ -28,10 +28,10 @@ runtime.registerComponent(
       }),
       paddingTop: NumberControl({ label: 'Padding Top', defaultValue: 96, min: 0, max: 400, step: 8, suffix: 'px' }),
       paddingBottom: NumberControl({ label: 'Padding Bottom', defaultValue: 96, min: 0, max: 400, step: 8, suffix: 'px' }),
-      overline: TextInput({ label: "Overline", defaultValue: "Find Or Become A Distributor" }),
-      heading: TextInput({ label: "Heading", defaultValue: "CAST Distribution Partners" }),
-      subheading: TextInput({ label: "Subheading", defaultValue: "CAST Lighting works with a select network of professional landscape supply distributors." }),
-      formHeading: TextInput({ label: "Form Heading", defaultValue: "Apply To Become A CAST Distributor" }),
+      overline: TextInput({ label: "Overline", defaultValue: "Section Label" }),
+      heading: TextInput({ label: "Heading", defaultValue: "Heading Goes Here" }),
+      subheading: TextInput({ label: "Subheading", defaultValue: "Lorem ipsum dolor sit amet, consectetur adipiscing elit." }),
+      formHeading: TextInput({ label: "Form Heading", defaultValue: "Form Heading Here" }),
     },
   }
 )

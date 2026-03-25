@@ -29,11 +29,11 @@ runtime.registerComponent(
       paddingTop: NumberControl({ label: 'Padding Top', defaultValue: 96, min: 0, max: 400, step: 8, suffix: 'px' }),
       paddingBottom: NumberControl({ label: 'Padding Bottom', defaultValue: 96, min: 0, max: 400, step: 8, suffix: 'px' }),
       image: Image({ label: "Hero Background Image" }),
-      overline: TextInput({ label: "Overline", defaultValue: "Apply Today" }),
-      heading: TextInput({ label: "Heading", defaultValue: "Join The CAST TradePro Program" }),
-      subheading: TextInput({ label: "Subheading", defaultValue: "CAST Lighting's TradePro program gives professional landscape contractors access to exclusive pricing." }),
-      formHeading: TextInput({ label: "Form Heading", defaultValue: "Start Your Application" }),
-      submitButtonText: TextInput({ label: "Submit Button Text", defaultValue: "Submit Application" }),
+      overline: TextInput({ label: "Overline", defaultValue: "Section Label" }),
+      heading: TextInput({ label: "Heading", defaultValue: "Heading Goes Here" }),
+      subheading: TextInput({ label: "Subheading", defaultValue: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt." }),
+      formHeading: TextInput({ label: "Form Heading", defaultValue: "Form Heading Here" }),
+      submitButtonText: TextInput({ label: "Submit Button Text", defaultValue: "Submit" }),
     },
   }
 )

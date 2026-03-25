@@ -28,17 +28,17 @@ runtime.registerComponent(
       }),
       paddingTop: NumberControl({ label: 'Padding Top', defaultValue: 96, min: 0, max: 400, step: 8, suffix: 'px' }),
       paddingBottom: NumberControl({ label: 'Padding Bottom', defaultValue: 96, min: 0, max: 400, step: 8, suffix: 'px' }),
-      overline: TextInput({ label: "Overline", defaultValue: "Frequently Bought Together" }),
-      heading: TextInput({ label: "Heading", defaultValue: "Bundle These Products" }),
-      buttonText: TextInput({ label: "Button Text", defaultValue: "Add All To Cart" }),
+      overline: TextInput({ label: "Overline", defaultValue: "Section Label" }),
+      heading: TextInput({ label: "Heading", defaultValue: "Heading Goes Here" }),
+      buttonText: TextInput({ label: "Button Text", defaultValue: "Button Here" }),
       items: List({
         label: "Bundle Items",
         type: Shape({
           type: {
             image: Image({ label: "Product Image" }),
-            name: TextInput({ label: "Product Name", defaultValue: "Accessory Name" }),
-            price: TextInput({ label: "Price", defaultValue: "$19.99" }),
-            badge: TextInput({ label: "Badge (optional)", defaultValue: "ACCESSORY" }),
+            name: TextInput({ label: "Product Name", defaultValue: "Product Name" }),
+            price: TextInput({ label: "Price", defaultValue: "$0.00" }),
+            badge: TextInput({ label: "Badge (optional)", defaultValue: "" }),
           },
         }),
         getItemLabel(item) { return item?.name || "Item"; },

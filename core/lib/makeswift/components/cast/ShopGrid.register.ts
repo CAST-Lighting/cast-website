@@ -34,8 +34,8 @@ runtime.registerComponent(
           type: {
             image: Image({ label: "Product Image" }),
             name: TextInput({ label: "Product Name", defaultValue: "Product Name" }),
-            price: TextInput({ label: "Price", defaultValue: "$249.99" }),
-            category: TextInput({ label: "Category", defaultValue: "Path Lights" }),
+            price: TextInput({ label: "Price", defaultValue: "$0.00" }),
+            category: TextInput({ label: "Category", defaultValue: "Category" }),
             badge: TextInput({ label: "Badge (optional)", defaultValue: "" }),
             href: TextInput({ label: "Product URL", defaultValue: "#" }),
           },

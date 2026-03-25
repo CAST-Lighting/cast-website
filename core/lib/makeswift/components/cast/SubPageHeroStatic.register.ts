@@ -31,13 +31,13 @@ runtime.registerComponent(
 
       // ── Content ─────────────────────────────────────────────
       badgeText: TextInput({ label: 'Badge Text', defaultValue: '' }),
-      headingLine1: TextInput({ label: 'Heading', defaultValue: 'Premium Landscape Lighting' }),
+      headingLine1: TextInput({ label: 'Heading', defaultValue: 'Heading Goes Here' }),
       headingAccent: TextInput({ label: 'Heading Accent (gold)', defaultValue: '' }),
       description: TextInput({ label: 'Description', defaultValue: '' }),
 
       // ── Buttons ─────────────────────────────────────────────
       btn1Label: TextInput({ label: 'Button 1 Label', defaultValue: '' }),
-      btn1Href: TextInput({ label: 'Button 1 Link', defaultValue: '/shop' }),
+      btn1Href: TextInput({ label: 'Button 1 Link', defaultValue: '#' }),
       btn2Label: TextInput({ label: 'Button 2 Label', defaultValue: '' }),
       btn2Href: TextInput({ label: 'Button 2 Link', defaultValue: '' }),
 

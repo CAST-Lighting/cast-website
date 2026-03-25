@@ -9,8 +9,8 @@ runtime.registerComponent(
     label: "Hero / Shop Hero",
     props: {
       className: Style(),
-      headline: TextInput({ label: "Headline", defaultValue: "Shop Professional Outdoor Lighting" }),
-      subheadline: TextInput({ label: "Subheadline", defaultValue: "Built for contractors. Tested for decades. Trusted by the industry." }),
+      headline: TextInput({ label: "Headline", defaultValue: "Heading Goes Here" }),
+      subheadline: TextInput({ label: "Subheadline", defaultValue: "Lorem ipsum dolor sit amet, consectetur adipiscing elit." }),
       bgImage: Image({ label: "Background Image" }),
       bgColor: Color({ label: "Background Color", defaultValue: "#0f1e28" }),
       bgOpacity: NumberControl({ label: 'Background Opacity', defaultValue: 85, min: 0, max: 100, step: 1, suffix: '%' }),
@@ -29,8 +29,8 @@ runtime.registerComponent(
       }),
       paddingTop: NumberControl({ label: 'Padding Top', defaultValue: 96, min: 0, max: 400, step: 8, suffix: 'px' }),
       paddingBottom: NumberControl({ label: 'Padding Bottom', defaultValue: 96, min: 0, max: 400, step: 8, suffix: 'px' }),
-      ctaLabel: TextInput({ label: "CTA Button Label", defaultValue: "Browse All Products" }),
-      ctaHref: TextInput({ label: "CTA Button URL", defaultValue: "#shop-grid" }),
+      ctaLabel: TextInput({ label: "CTA Button Label", defaultValue: "Button Here" }),
+      ctaHref: TextInput({ label: "CTA Button URL", defaultValue: "#" }),
       showSearch: Checkbox({ label: "Show Search Bar", defaultValue: true }),
     },
   }

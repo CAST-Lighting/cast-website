@@ -28,8 +28,8 @@ runtime.registerComponent(
       }),
       paddingTop: NumberControl({ label: 'Padding Top', defaultValue: 96, min: 0, max: 400, step: 8, suffix: 'px' }),
       paddingBottom: NumberControl({ label: 'Padding Bottom', defaultValue: 96, min: 0, max: 400, step: 8, suffix: 'px' }),
-      overline: TextInput({ label: "Overline", defaultValue: "Trusted By Thousands" }),
-      heading: TextInput({ label: "Heading", defaultValue: "Used By The Best In The Industry" }),
+      overline: TextInput({ label: "Overline", defaultValue: "Section Label" }),
+      heading: TextInput({ label: "Heading", defaultValue: "Heading Goes Here" }),
       logos: List({
         label: "Brand Logos",
         type: Shape({

@@ -18,27 +18,27 @@ runtime.registerComponent(
       slide5Image: Image({ label: 'Slide 5 Image' }),
 
       // ── Rotating Phrases ────────────────────────────────────
-      phrase1: TextInput({ label: 'Phrase 1', defaultValue: 'Built to Last Forever' }),
-      phrase2: TextInput({ label: 'Phrase 2', defaultValue: 'Designed for Contractors' }),
-      phrase3: TextInput({ label: 'Phrase 3', defaultValue: 'Loved by Homeowners' }),
+      phrase1: TextInput({ label: 'Phrase 1', defaultValue: 'Lorem Ipsum Dolor' }),
+      phrase2: TextInput({ label: 'Phrase 2', defaultValue: 'Consectetur Adipiscing' }),
+      phrase3: TextInput({ label: 'Phrase 3', defaultValue: 'Sed Do Eiusmod' }),
 
       // ── Badge ───────────────────────────────────────────────
       badgeText: TextInput({ label: 'Badge Text', defaultValue: '' }),
 
       // ── Heading ─────────────────────────────────────────────
-      headingLine1: TextInput({ label: 'Heading', defaultValue: 'Premium Landscape Lighting' }),
+      headingLine1: TextInput({ label: 'Heading', defaultValue: 'Heading Goes Here' }),
 
       // ── Description ─────────────────────────────────────────
       description: TextInput({
         label: 'Description',
-        defaultValue: 'Professional-grade brass and copper fixtures trusted by contractors nationwide. Lifetime warranty on every product.',
+        defaultValue: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
       }),
 
       // ── Buttons ─────────────────────────────────────────────
-      btn1Label: TextInput({ label: 'Button 1 Label', defaultValue: 'Shop Products' }),
-      btn1Href: TextInput({ label: 'Button 1 Link', defaultValue: '/shop' }),
+      btn1Label: TextInput({ label: 'Button 1 Label', defaultValue: 'Button Here' }),
+      btn1Href: TextInput({ label: 'Button 1 Link', defaultValue: '#' }),
       btn2Label: TextInput({ label: 'Button 2 Label', defaultValue: '' }),
-      btn2Href: TextInput({ label: 'Button 2 Link', defaultValue: '' }),
+      btn2Href: TextInput({ label: 'Button 2 Link', defaultValue: '#' }),
 
       // ── Background ──────────────────────────────────────────
       bgColor: Color({ label: 'Overlay Color', defaultValue: '#25262d' }),

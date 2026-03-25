@@ -30,12 +30,12 @@ runtime.registerComponent(
       }),
       paddingTop: NumberControl({ label: 'Padding Top', defaultValue: 96, min: 0, max: 400, step: 8, suffix: 'px' }),
       paddingBottom: NumberControl({ label: 'Padding Bottom', defaultValue: 96, min: 0, max: 400, step: 8, suffix: 'px' }),
-      heading: TextInput({ label: "Heading", defaultValue: "Stay in the Loop" }),
+      heading: TextInput({ label: "Heading", defaultValue: "Heading Goes Here" }),
       description: TextArea({
         label: "Description",
         defaultValue: "Get the latest on new products, contractor resources, and exclusive offers delivered straight to your inbox.",
       }),
-      buttonText: TextInput({ label: "Button Text", defaultValue: "Subscribe" }),
+      buttonText: TextInput({ label: "Button Text", defaultValue: "Submit" }),
       items: List({
         label: "Benefit Items",
         type: Shape({
