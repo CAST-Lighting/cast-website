@@ -30,16 +30,16 @@ runtime.registerComponent(
       }),
 
       // ── Content ─────────────────────────────────────────────
-      badgeText: TextInput({ label: 'Badge Text', defaultValue: '' }),
+      badgeText: TextInput({ label: 'Badge Text', defaultValue: 'Section Label' }),
       headingLine1: TextInput({ label: 'Heading', defaultValue: 'Heading Goes Here' }),
-      headingAccent: TextInput({ label: 'Heading Accent (gold)', defaultValue: '' }),
-      description: TextInput({ label: 'Description', defaultValue: '' }),
+      headingAccent: TextInput({ label: 'Heading Accent (blue)', defaultValue: 'Accent' }),
+      description: TextInput({ label: 'Description', defaultValue: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' }),
 
       // ── Buttons ─────────────────────────────────────────────
-      btn1Label: TextInput({ label: 'Button 1 Label', defaultValue: '' }),
+      btn1Label: TextInput({ label: 'Button 1 Label', defaultValue: 'Button Here' }),
       btn1Href: TextInput({ label: 'Button 1 Link', defaultValue: '#' }),
       btn2Label: TextInput({ label: 'Button 2 Label', defaultValue: '' }),
-      btn2Href: TextInput({ label: 'Button 2 Link', defaultValue: '' }),
+      btn2Href: TextInput({ label: 'Button 2 Link', defaultValue: '#' }),
 
       // ── Layout ──────────────────────────────────────────────
       lineHeight: NumberControl({ label: 'Text Line Height', defaultValue: 1.6, min: 1, max: 3, step: 0.05 }),
