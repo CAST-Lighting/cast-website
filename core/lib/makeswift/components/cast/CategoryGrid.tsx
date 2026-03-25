@@ -2,7 +2,7 @@
 import { forwardRef, type Ref, useState, useEffect } from "react"
 import { Lightbulb, Sun, CircleDot, Lamp, SquareAsterisk, Zap, Focus } from "lucide-react"
 
-const defaultBgSrc = "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=1600&q=80"
+const defaultBgSrc = "https://storage.googleapis.com/s.mkswft.com/RmlsZTpkZDVmYmU0ZS1hMzE3LTRlYWYtODg0Zi0wY2Q0MWVlOWU2ZTk=/background-6.jpg"
 
 const categoryIcons = [Lamp, Zap, Sun, CircleDot, SquareAsterisk, Zap, Focus, Lightbulb]
 

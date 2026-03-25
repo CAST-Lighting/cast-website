@@ -2,10 +2,11 @@
 import { forwardRef, type Ref, useState, useEffect, useCallback } from "react"
 
 const DEFAULT_SLIDES = [
-  "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=1600&q=80",
-  "https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?w=1600&q=80",
-  "https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600&q=80",
-  "https://images.unsplash.com/photo-1524484485831-a92ffc0de03f?w=1600&q=80",
+  "https://storage.googleapis.com/s.mkswft.com/RmlsZTpmNGU1MTkzMi02Y2JlLTQ0ZjAtOWIwNC03ZmI3MmQwNzYwMDk=/background-1.jpg",
+  "https://storage.googleapis.com/s.mkswft.com/RmlsZTo2Yzc2NDcxYi03ZWM5LTQzNmQtYWVhNy05N2IxN2UxZWUwMGU=/background-2.jpg",
+  "https://storage.googleapis.com/s.mkswft.com/RmlsZTphN2U4ZjZlNS02ZDg0LTQzZmQtYTM4Ni0yMmNmOWNlNDYxMDM=/background-3.jpg",
+  "https://storage.googleapis.com/s.mkswft.com/RmlsZTozYzVkZmVjNC1kMjlmLTQ0MjItOWM1MS1lMTJiY2ZjOGY0NWM=/background-4.jpg",
+  "https://storage.googleapis.com/s.mkswft.com/RmlsZTo5M2JkMWM4NC1mOTA3LTRlZDktYThkMC0xNGZmYTAxODQ2MWI=/background-5.jpg",
 ]
 
 interface HeroBannerProps {
