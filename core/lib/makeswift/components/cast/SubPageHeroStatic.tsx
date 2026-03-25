@@ -29,7 +29,7 @@ const SubPageHeroStatic = forwardRef(function SubPageHeroStatic(
     className,
     bgImage,
     bgColor, bgOpacity, gradientFrom, gradientTo, gradientDirection,
-    lineHeight, paddingTop = 136, paddingBottom = 112,
+    lineHeight, paddingTop = 64, paddingBottom = 64,
     badgeText,
     headingLine1,
     headingAccent,
