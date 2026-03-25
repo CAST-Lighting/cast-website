@@ -73,8 +73,8 @@ export default async function BlogPost(props: Props) {
           margin: 1.5em 0;
           display: block;
         }
-        .bp-prose a { color: #c8972a; text-decoration: underline; }
-        .bp-prose a:hover { color: #e8b84b; }
+        .bp-prose a { color: #007CB0; text-decoration: underline; }
+        .bp-prose a:hover { color: #7EBEE8; }
         .bp-prose ul, .bp-prose ol {
           font-family: 'Barlow', sans-serif;
           font-size: 17px;
@@ -85,10 +85,10 @@ export default async function BlogPost(props: Props) {
         }
         .bp-prose li { margin-bottom: 0.35em; }
         .bp-prose blockquote {
-          border-left: 3px solid #c8972a;
+          border-left: 3px solid #007CB0;
           margin: 1.5em 0;
           padding: 0.6em 1.5em;
-          background: rgba(200,151,42,0.07);
+          background: rgba(0,124,176,0.07);
           border-radius: 0 6px 6px 0;
         }
         .bp-prose blockquote p { color: rgba(255,255,255,0.85); font-style: italic; margin: 0; }
@@ -98,7 +98,7 @@ export default async function BlogPost(props: Props) {
           border: 1px solid rgba(255,255,255,0.08);
           border-radius: 6px;
           font-size: 14px;
-          color: #c8972a;
+          color: #007CB0;
           padding: 1.2em 1.4em;
           overflow-x: auto;
           margin: 1.4em 0;
@@ -108,14 +108,14 @@ export default async function BlogPost(props: Props) {
           background: rgba(0,0,0,0.35);
           border-radius: 4px;
           font-size: 14px;
-          color: #c8972a;
+          color: #007CB0;
           padding: 2px 7px;
         }
         .bp-prose pre code { background: none; padding: 0; border-radius: 0; }
         .bp-prose table { width: 100%; border-collapse: collapse; margin: 1.5em 0; font-family: 'Barlow', sans-serif; font-size: 15px; }
-        .bp-prose th { background: rgba(200,151,42,0.12); color: #fff; padding: 10px 14px; text-align: left; border-bottom: 2px solid rgba(200,151,42,0.3); }
+        .bp-prose th { background: rgba(0,124,176,0.12); color: #fff; padding: 10px 14px; text-align: left; border-bottom: 2px solid rgba(0,124,176,0.3); }
         .bp-prose td { color: rgba(255,255,255,0.7); padding: 10px 14px; border-bottom: 1px solid rgba(255,255,255,0.06); }
-        .bp-tag:hover { background: rgba(200,151,42,0.25); color: #e8b84b; border-color: rgba(200,151,42,0.5); }
+        .bp-tag:hover { background: rgba(0,124,176,0.25); color: #7EBEE8; border-color: rgba(0,124,176,0.5); }
       `}</style>
 
       <div style={{ background: '#0f1923', minHeight: '100vh' }}>
@@ -126,7 +126,7 @@ export default async function BlogPost(props: Props) {
             <div style={{ position: 'absolute', inset: 0, backgroundImage: `url(${thumbSrc})`, backgroundSize: 'cover', backgroundPosition: 'center', opacity: 0.12 }} />
           ) : null}
           <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(26,35,50,0.6) 0%, #1a2332 100%)' }} />
-          <div style={{ position: 'absolute', inset: 0, backgroundImage: 'linear-gradient(rgba(200,151,42,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(200,151,42,0.03) 1px, transparent 1px)', backgroundSize: '48px 48px' }} />
+          <div style={{ position: 'absolute', inset: 0, backgroundImage: 'linear-gradient(rgba(0,124,176,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,124,176,0.03) 1px, transparent 1px)', backgroundSize: '48px 48px' }} />
 
           <div className="site-container" style={{ position: 'relative', zIndex: 1, maxWidth: 860 }}>
             {/* Back link */}
@@ -152,9 +152,9 @@ export default async function BlogPost(props: Props) {
                       fontWeight: 700,
                       textTransform: 'uppercase',
                       letterSpacing: '0.1em',
-                      color: '#c8972a',
-                      background: 'rgba(200,151,42,0.12)',
-                      border: '1px solid rgba(200,151,42,0.25)',
+                      color: '#007CB0',
+                      background: 'rgba(0,124,176,0.12)',
+                      border: '1px solid rgba(0,124,176,0.25)',
                       borderRadius: 100,
                       padding: '4px 13px',
                       textDecoration: 'none',
@@ -173,7 +173,7 @@ export default async function BlogPost(props: Props) {
 
             <div style={{ display: 'flex', gap: 20, alignItems: 'center', flexWrap: 'wrap' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                <div style={{ width: 32, height: 32, borderRadius: '50%', background: 'linear-gradient(135deg, #c8972a, #e8b84b)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                <div style={{ width: 32, height: 32, borderRadius: '50%', background: 'linear-gradient(135deg, #007CB0, #7EBEE8)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
                     <circle cx="12" cy="8" r="4" stroke="#fff" strokeWidth="1.5" />
                     <path d="M4 20c0-3.314 3.582-6 8-6s8 2.686 8 6" stroke="#fff" strokeWidth="1.5" strokeLinecap="round" />
@@ -225,9 +225,9 @@ export default async function BlogPost(props: Props) {
                     fontFamily: "'Barlow', sans-serif",
                     fontSize: 12,
                     fontWeight: 600,
-                    color: '#c8972a',
-                    background: 'rgba(200,151,42,0.1)',
-                    border: '1px solid rgba(200,151,42,0.22)',
+                    color: '#007CB0',
+                    background: 'rgba(0,124,176,0.1)',
+                    border: '1px solid rgba(0,124,176,0.22)',
                     borderRadius: 100,
                     padding: '5px 14px',
                     textDecoration: 'none',
@@ -242,7 +242,7 @@ export default async function BlogPost(props: Props) {
 
           {/* ── Author Bio ── */}
           <div style={{ marginTop: 44, background: '#2d353c', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 10, padding: '24px 28px', display: 'flex', alignItems: 'center', gap: 20 }}>
-            <div style={{ width: 52, height: 52, borderRadius: '50%', background: 'linear-gradient(135deg, #c8972a, #e8b84b)', flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <div style={{ width: 52, height: 52, borderRadius: '50%', background: 'linear-gradient(135deg, #007CB0, #7EBEE8)', flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                 <circle cx="12" cy="8" r="4" stroke="#fff" strokeWidth="1.5" />
                 <path d="M4 20c0-3.314 3.582-6 8-6s8 2.686 8 6" stroke="#fff" strokeWidth="1.5" strokeLinecap="round" />
@@ -262,7 +262,7 @@ export default async function BlogPost(props: Props) {
           <div style={{ marginTop: 40, textAlign: 'center' }}>
             <a
               href={blog.path}
-              style={{ fontFamily: "'Barlow', sans-serif", fontSize: 14, fontWeight: 600, color: '#c8972a', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 8, padding: '10px 24px', border: '1px solid rgba(200,151,42,0.3)', borderRadius: 8, transition: 'all 200ms' }}
+              style={{ fontFamily: "'Barlow', sans-serif", fontSize: 14, fontWeight: 600, color: '#007CB0', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 8, padding: '10px 24px', border: '1px solid rgba(0,124,176,0.3)', borderRadius: 8, transition: 'all 200ms' }}
             >
               More from the Blog &rarr;
             </a>
@@ -271,14 +271,14 @@ export default async function BlogPost(props: Props) {
 
         {/* ── TradePro CTA ── */}
         <section style={{ background: 'var(--color-primary, #004960)', padding: '96px 0', position: 'relative', overflow: 'hidden', textAlign: 'center' }}>
-          <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: 600, height: 300, background: 'radial-gradient(ellipse, rgba(200,151,42,0.15), transparent 70%)', pointerEvents: 'none' }} />
+          <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: 600, height: 300, background: 'radial-gradient(ellipse, rgba(0,124,176,0.15), transparent 70%)', pointerEvents: 'none' }} />
           <div className="site-container" style={{ position: 'relative', zIndex: 1, maxWidth: 720 }}>
             <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 12, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.14em', color: 'rgba(255,255,255,0.6)', margin: '0 0 16px' }}>
               Get Started Today
             </p>
             <h2 style={{ fontFamily: "'Essonnes', 'Playfair Display', serif", fontSize: 'clamp(28px, 4vw, 48px)', fontWeight: 700, color: '#fff', lineHeight: 1.15, margin: '0 0 20px' }}>
               Ready to Elevate Your{' '}
-              <span style={{ background: 'linear-gradient(135deg, #c8972a, #e8b84b)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+              <span style={{ background: 'linear-gradient(135deg, #007CB0, #7EBEE8)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
                 Outdoor Lighting?
               </span>
             </h2>

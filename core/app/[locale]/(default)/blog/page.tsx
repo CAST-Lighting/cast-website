@@ -95,19 +95,19 @@ export default async function Blog(props: Props) {
           color: inherit;
         }
         .blog-card:hover {
-          border-color: rgba(200,151,42,0.45);
+          border-color: rgba(0,124,176,0.45);
           box-shadow: 0 8px 32px rgba(0,0,0,0.25);
           transform: translateY(-2px);
         }
         .blog-cat-pill:hover {
-          background: rgba(200,151,42,0.25);
-          color: #e8b84b;
-          border-color: rgba(200,151,42,0.5);
+          background: rgba(0,124,176,0.25);
+          color: #7EBEE8;
+          border-color: rgba(0,124,176,0.5);
         }
         .blog-pg-btn:hover {
-          background: rgba(200,151,42,0.12);
-          border-color: rgba(200,151,42,0.6);
-          color: #c8972a;
+          background: rgba(0,124,176,0.12);
+          border-color: rgba(0,124,176,0.6);
+          color: #007CB0;
         }
         .blog-back-link:hover { color: rgba(255,255,255,0.8); }
       `}</style>
@@ -116,10 +116,10 @@ export default async function Blog(props: Props) {
 
         {/* ── Hero ── */}
         <section style={{ background: '#1a2332', paddingTop: 96, paddingBottom: 96, textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
-          <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: 700, height: 350, background: 'radial-gradient(ellipse, rgba(200,151,42,0.1), transparent 70%)', pointerEvents: 'none' }} />
-          <div style={{ position: 'absolute', inset: 0, backgroundImage: 'linear-gradient(rgba(200,151,42,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(200,151,42,0.03) 1px, transparent 1px)', backgroundSize: '48px 48px' }} />
+          <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: 700, height: 350, background: 'radial-gradient(ellipse, rgba(0,124,176,0.1), transparent 70%)', pointerEvents: 'none' }} />
+          <div style={{ position: 'absolute', inset: 0, backgroundImage: 'linear-gradient(rgba(0,124,176,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,124,176,0.03) 1px, transparent 1px)', backgroundSize: '48px 48px' }} />
           <div className="site-container" style={{ position: 'relative', zIndex: 1 }}>
-            <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.16em', color: '#c8972a', margin: '0 0 16px' }}>
+            <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.16em', color: '#007CB0', margin: '0 0 16px' }}>
               Resources &amp; Insights
             </p>
             <h1 style={{ fontFamily: "'Essonnes', 'Playfair Display', serif", fontSize: 'clamp(36px, 5vw, 64px)', fontWeight: 700, color: '#fff', lineHeight: 1.1, margin: '0 0 20px' }}>
@@ -152,7 +152,7 @@ export default async function Blog(props: Props) {
                       padding: '8px 18px',
                       borderRadius: 100,
                       border: isActive ? 'none' : '1px solid rgba(255,255,255,0.18)',
-                      background: isActive ? '#c8972a' : 'transparent',
+                      background: isActive ? '#007CB0' : 'transparent',
                       color: isActive ? '#fff' : 'rgba(255,255,255,0.65)',
                       textDecoration: 'none',
                       whiteSpace: 'nowrap',
@@ -178,7 +178,7 @@ export default async function Blog(props: Props) {
                 </p>
                 <a
                   href="/blog"
-                  style={{ fontFamily: "'Barlow', sans-serif", fontSize: 14, fontWeight: 600, color: '#c8972a', textDecoration: 'none' }}
+                  style={{ fontFamily: "'Barlow', sans-serif", fontSize: 14, fontWeight: 600, color: '#007CB0', textDecoration: 'none' }}
                 >
                   View all posts &rarr;
                 </a>
@@ -201,10 +201,10 @@ export default async function Blog(props: Props) {
                           />
                         ) : (
                           <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'absolute', inset: 0 }}>
-                            <div style={{ position: 'absolute', inset: 0, backgroundImage: 'linear-gradient(rgba(200,151,42,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(200,151,42,0.04) 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
+                            <div style={{ position: 'absolute', inset: 0, backgroundImage: 'linear-gradient(rgba(0,124,176,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0,124,176,0.04) 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
                             <svg width="36" height="36" viewBox="0 0 24 24" fill="none" style={{ opacity: 0.4, position: 'relative', zIndex: 1 }}>
-                              <circle cx="12" cy="12" r="10" stroke="#c8972a" strokeWidth="1.5" />
-                              <path d="M8 12h8M12 8v8" stroke="#c8972a" strokeWidth="1.5" strokeLinecap="round" />
+                              <circle cx="12" cy="12" r="10" stroke="#007CB0" strokeWidth="1.5" />
+                              <path d="M8 12h8M12 8v8" stroke="#007CB0" strokeWidth="1.5" strokeLinecap="round" />
                             </svg>
                           </div>
                         )}
@@ -212,7 +212,7 @@ export default async function Blog(props: Props) {
                         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(15,25,35,0.55) 0%, transparent 50%)' }} />
                         {/* Category tag */}
                         <div style={{ position: 'absolute', top: 12, left: 12 }}>
-                          <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.09em', color: '#fff', background: '#c8972a', padding: '3px 10px', borderRadius: 4 }}>
+                          <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.09em', color: '#fff', background: '#007CB0', padding: '3px 10px', borderRadius: 4 }}>
                             {displayTag}
                           </span>
                         </div>
@@ -232,7 +232,7 @@ export default async function Blog(props: Props) {
                           <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 12, color: 'rgba(255,255,255,0.38)' }}>
                             {post.date}
                           </span>
-                          <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, fontWeight: 700, color: '#c8972a', letterSpacing: '0.02em' }}>
+                          <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, fontWeight: 700, color: '#007CB0', letterSpacing: '0.02em' }}>
                             Read More &rarr;
                           </span>
                         </div>
@@ -250,7 +250,7 @@ export default async function Blog(props: Props) {
                   <a
                     href={prevUrl}
                     className="blog-pg-btn"
-                    style={{ fontFamily: "'Barlow', sans-serif", fontSize: 14, fontWeight: 600, color: '#fff', background: '#2d353c', border: '1px solid rgba(200,151,42,0.35)', borderRadius: 8, padding: '12px 32px', textDecoration: 'none', transition: 'all 200ms' }}
+                    style={{ fontFamily: "'Barlow', sans-serif", fontSize: 14, fontWeight: 600, color: '#fff', background: '#2d353c', border: '1px solid rgba(0,124,176,0.35)', borderRadius: 8, padding: '12px 32px', textDecoration: 'none', transition: 'all 200ms' }}
                   >
                     &larr; Previous
                   </a>
@@ -259,7 +259,7 @@ export default async function Blog(props: Props) {
                   <a
                     href={nextUrl}
                     className="blog-pg-btn"
-                    style={{ fontFamily: "'Barlow', sans-serif", fontSize: 14, fontWeight: 600, color: '#fff', background: '#2d353c', border: '1px solid rgba(200,151,42,0.35)', borderRadius: 8, padding: '12px 32px', textDecoration: 'none', transition: 'all 200ms' }}
+                    style={{ fontFamily: "'Barlow', sans-serif", fontSize: 14, fontWeight: 600, color: '#fff', background: '#2d353c', border: '1px solid rgba(0,124,176,0.35)', borderRadius: 8, padding: '12px 32px', textDecoration: 'none', transition: 'all 200ms' }}
                   >
                     Next &rarr;
                   </a>
@@ -271,14 +271,14 @@ export default async function Blog(props: Props) {
 
         {/* ── Bottom CTA ── */}
         <section style={{ background: 'var(--color-primary, #004960)', padding: '96px 0', position: 'relative', overflow: 'hidden', textAlign: 'center' }}>
-          <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: 600, height: 300, background: 'radial-gradient(ellipse, rgba(200,151,42,0.15), transparent 70%)', pointerEvents: 'none' }} />
+          <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: 600, height: 300, background: 'radial-gradient(ellipse, rgba(0,124,176,0.15), transparent 70%)', pointerEvents: 'none' }} />
           <div className="site-container" style={{ position: 'relative', zIndex: 1, maxWidth: 720 }}>
             <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 12, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.14em', color: 'rgba(255,255,255,0.6)', margin: '0 0 16px' }}>
               Get Started Today
             </p>
             <h2 style={{ fontFamily: "'Essonnes', 'Playfair Display', serif", fontSize: 'clamp(28px, 4vw, 52px)', fontWeight: 700, color: '#fff', lineHeight: 1.15, margin: '0 0 20px' }}>
               Ready to Elevate Your{' '}
-              <span style={{ background: 'linear-gradient(135deg, #c8972a, #e8b84b)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+              <span style={{ background: 'linear-gradient(135deg, #007CB0, #7EBEE8)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
                 Outdoor Lighting?
               </span>
             </h2>

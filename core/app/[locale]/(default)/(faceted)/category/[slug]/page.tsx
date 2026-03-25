@@ -108,7 +108,7 @@ export default async function CategoryPage({ params }: Props) {
             fontWeight: 700,
             textTransform: 'uppercase',
             letterSpacing: '0.14em',
-            color: 'var(--color-accent, #c8972a)',
+            color: 'var(--color-accent, #007CB0)',
             margin: '0 0 12px',
           }}>
             <a href="/" style={{ color: 'inherit', textDecoration: 'none' }}>Home</a>

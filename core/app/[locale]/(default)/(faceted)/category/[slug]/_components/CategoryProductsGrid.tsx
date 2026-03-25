@@ -55,7 +55,7 @@ const ProductCard = ({ product }: { product: BCProduct }) => {
         transition: 'border-color 200ms, box-shadow 200ms',
       }}
       onMouseEnter={(e) => {
-        (e.currentTarget as HTMLDivElement).style.borderColor = 'rgba(200,151,42,0.4)';
+        (e.currentTarget as HTMLDivElement).style.borderColor = 'rgba(0,124,176,0.4)';
         (e.currentTarget as HTMLDivElement).style.boxShadow = '0 4px 24px rgba(0,0,0,0.18)';
       }}
       onMouseLeave={(e) => {
@@ -101,10 +101,10 @@ const ProductCard = ({ product }: { product: BCProduct }) => {
               fill="none"
               style={{ opacity: 0.5, position: 'relative', zIndex: 1 }}
             >
-              <circle cx="12" cy="12" r="10" stroke="#c8972a" strokeWidth="1.5" />
+              <circle cx="12" cy="12" r="10" stroke="#007CB0" strokeWidth="1.5" />
               <path
                 d="M8 12h8M12 8v8"
-                stroke="#c8972a"
+                stroke="#007CB0"
                 strokeWidth="1.5"
                 strokeLinecap="round"
               />
@@ -115,7 +115,7 @@ const ProductCard = ({ product }: { product: BCProduct }) => {
           <div style={{ position: 'absolute', top: 10, left: 10 }}>
             <span
               style={{
-                background: 'var(--color-accent, #c8972a)',
+                background: 'var(--color-accent, #007CB0)',
                 color: '#fff',
                 fontFamily: "'Barlow', sans-serif",
                 fontSize: 10,
@@ -309,9 +309,9 @@ export default function CategoryProductsGrid({ products, categoryName }: Props) 
               onClick={() => setActivePriceRanges([])}
               style={{
                 background: 'transparent',
-                border: '1px solid rgba(200,151,42,0.4)',
+                border: '1px solid rgba(0,124,176,0.4)',
                 borderRadius: 4,
-                color: 'var(--color-accent, #c8972a)',
+                color: 'var(--color-accent, #007CB0)',
                 fontFamily: "'Barlow', sans-serif",
                 fontSize: 12,
                 fontWeight: 600,
