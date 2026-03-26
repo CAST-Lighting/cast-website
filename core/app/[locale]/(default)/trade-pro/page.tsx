@@ -1,118 +1,164 @@
 import { setRequestLocale } from 'next-intl/server';
 import { type Metadata } from 'next';
-import HeroBanner from '~/lib/makeswift/components/cast/HeroBanner';
-import SignupHero from '~/lib/makeswift/components/cast/SignupHero';
-import TradeProSection from '~/lib/makeswift/components/cast/TradeProSection';
-import ComparisonSection from '~/lib/makeswift/components/cast/ComparisonSection';
-import BrandLogos from '~/lib/makeswift/components/cast/BrandLogos';
-import ReviewsCarousel from '~/lib/makeswift/components/cast/ReviewsCarousel';
-import ReadyCTA from '~/lib/makeswift/components/cast/ReadyCTA';
 
 interface Props {
   params: Promise<{ locale: string }>;
 }
 
 export const metadata: Metadata = {
-  title: 'TradePro Program — Contractor Pricing & Support | CAST Lighting',
-  description: 'Join 10,000+ landscape professionals in the CAST TradePro program. Exclusive contractor pricing, lifetime warranty, dedicated support. Apply free.',
+  title: 'Trade Professional Registration | CAST Lighting',
+  description: 'Apply for a CAST Lighting landscape account. For contractors and landscape architects without a Distributor in your area. Application takes 2-5 business days.',
 };
 
 export default async function TradeProPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
 
-  const serviceSchema = {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "name": "CAST TradePro Contractor Program",
-    "provider": { "@type": "Organization", "name": "CAST Lighting" },
-    "description": "Exclusive contractor pricing, lifetime warranty, and dedicated support for landscape professionals. Join 10,000+ TradePro contractors.",
-    "areaServed": "US",
-    "audience": { "@type": "Audience", "audienceType": "Landscape Contractors, Lighting Designers, Electrical Contractors" },
-  };
-
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
-      <HeroBanner
-        headingLine1="Join The CAST TradePro Program"
-        description="Get exclusive contractor pricing, lifetime product support, and the best outdoor lighting fixtures. Trusted by 10,000+ landscape contractors."
-        btn1Label="Apply for TradePro Access"
-        btn1Href="#apply"
-        btn2Label="View Products"
-        btn2Href="/shop"
-        phrase1="For Landscape Professionals"
-        phrase2="Exclusive Contractor Pricing"
-        phrase3="Lifetime Warranty Included"
-        badgeText="Join 10,000+ Landscape Contractors"
-        hideForm={true}
-      />
-      <div id="apply">
-        <SignupHero
-          overline="For Landscape Professionals"
-          heading="Start Your TradePro Application"
-          subheading="Join 10,000+ landscape professionals. Get exclusive pricing, lifetime warranty, and dedicated support — apply free in minutes."
-          formHeading="Start Your TradePro Application"
-          submitButtonText="Apply Now — It's Free"
-          image="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=1600&q=80"
-        />
+      <style>{`
+        .reg-container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+        .reg-grid { display: grid; grid-template-columns: 1fr 380px; gap: 48px; align-items: start; }
+        @media (max-width: 900px) { .reg-grid { grid-template-columns: 1fr; } }
+        .reg-input { width: 100%; padding: 11px 14px; border: 1px solid rgba(255,255,255,0.12); border-radius: 6px; font-family: 'Barlow', sans-serif; font-size: 14px; color: #fff; box-sizing: border-box; outline: none; background: rgba(255,255,255,0.05); }
+        .reg-input:focus { border-color: #007CB0; }
+        .reg-label { font-family: 'Barlow', sans-serif; font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.85); display: block; margin-bottom: 6px; }
+        .reg-select { width: 100%; padding: 11px 14px; border: 1px solid rgba(255,255,255,0.12); border-radius: 6px; font-family: 'Barlow', sans-serif; font-size: 14px; color: #fff; box-sizing: border-box; background: rgba(255,255,255,0.05); outline: none; appearance: none; }
+        .reg-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .reg-row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+        @media (max-width: 640px) { .reg-row-2, .reg-row-3 { grid-template-columns: 1fr; } }
+      `}</style>
+
+      <div style={{ background: '#0f1923', minHeight: '100vh' }}>
+        {/* Hero */}
+        <section style={{ background: '#1a2332', paddingTop: 96, paddingBottom: 64, textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
+          <div style={{ position: 'absolute', inset: 0, backgroundImage: 'linear-gradient(rgba(0,124,176,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,124,176,0.03) 1px, transparent 1px)', backgroundSize: '48px 48px' }} />
+          <div className="reg-container" style={{ position: 'relative', zIndex: 1 }}>
+            <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.16em', color: '#007CB0', margin: '0 0 16px' }}>Account Application</p>
+            <h1 style={{ fontFamily: "'Essonnes', 'Playfair Display', serif", fontSize: 'clamp(32px, 5vw, 56px)', fontWeight: 700, color: '#fff', lineHeight: 1.1, margin: '0 0 20px' }}>Trade Professional Registration</h1>
+            <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 18, color: 'rgba(255,255,255,0.6)', maxWidth: 620, margin: '0 auto', lineHeight: 1.7 }}>Application for an Account</p>
+          </div>
+        </section>
+
+        {/* Form + Sidebar */}
+        <div style={{ padding: '64px 0 96px' }}>
+          <div className="reg-container">
+            <div className="reg-grid">
+              {/* Form */}
+              <div style={{ background: '#2d353c', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 12, padding: '40px 36px' }}>
+                <form style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
+                  <div className="reg-row-2">
+                    <div>
+                      <label className="reg-label">First Name *</label>
+                      <input className="reg-input" type="text" required placeholder="First Name" />
+                    </div>
+                    <div>
+                      <label className="reg-label">Last Name *</label>
+                      <input className="reg-input" type="text" required placeholder="Last Name" />
+                    </div>
+                  </div>
+                  <div>
+                    <label className="reg-label">Email *</label>
+                    <input className="reg-input" type="email" required placeholder="you@company.com" />
+                  </div>
+                  <div>
+                    <label className="reg-label">Best Phone Contact *</label>
+                    <input className="reg-input" type="tel" required placeholder="(555) 000-0000" />
+                  </div>
+                  <div>
+                    <label className="reg-label">I Am A... *</label>
+                    <select className="reg-select" required>
+                      <option value="">Select one...</option>
+                      <option>Contractor / Installer</option>
+                      <option>Landscape Architect</option>
+                      <option>Lighting Designer</option>
+                      <option>Electrical Contractor</option>
+                      <option>Distributor</option>
+                      <option>Other</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className="reg-label">Company or Organization *</label>
+                    <input className="reg-input" type="text" required placeholder="Company Name" />
+                  </div>
+                  <div>
+                    <label className="reg-label">Address Line 1 *</label>
+                    <input className="reg-input" type="text" required placeholder="Street Address" />
+                  </div>
+                  <div>
+                    <label className="reg-label">Address Line 2</label>
+                    <input className="reg-input" type="text" placeholder="Suite, Unit, etc. (optional)" />
+                  </div>
+                  <div className="reg-row-3">
+                    <div>
+                      <label className="reg-label">City *</label>
+                      <input className="reg-input" type="text" required placeholder="City" />
+                    </div>
+                    <div>
+                      <label className="reg-label">State *</label>
+                      <input className="reg-input" type="text" required placeholder="State" />
+                    </div>
+                    <div>
+                      <label className="reg-label">Postal Code *</label>
+                      <input className="reg-input" type="text" required placeholder="Zip" />
+                    </div>
+                  </div>
+                  <div>
+                    <label className="reg-label">Country *</label>
+                    <select className="reg-select" required>
+                      <option value="US">United States</option>
+                      <option value="CA">Canada</option>
+                    </select>
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                    <input type="checkbox" id="tax-exempt" style={{ accentColor: '#007CB0' }} />
+                    <label htmlFor="tax-exempt" style={{ fontFamily: "'Barlow', sans-serif", fontSize: 14, color: 'rgba(255,255,255,0.75)' }}>Tax Exempt</label>
+                  </div>
+                  <div>
+                    <label className="reg-label">Comments / Questions</label>
+                    <textarea className="reg-input" rows={4} placeholder="Any additional information..." style={{ resize: 'vertical' }} />
+                  </div>
+                  <div>
+                    <label className="reg-label">Subscribe to our newsletter?</label>
+                    <div style={{ display: 'flex', gap: 20, marginTop: 4 }}>
+                      <label style={{ display: 'flex', alignItems: 'center', gap: 6, fontFamily: "'Barlow', sans-serif", fontSize: 14, color: 'rgba(255,255,255,0.75)' }}>
+                        <input type="radio" name="newsletter" value="yes" defaultChecked style={{ accentColor: '#007CB0' }} /> Yes
+                      </label>
+                      <label style={{ display: 'flex', alignItems: 'center', gap: 6, fontFamily: "'Barlow', sans-serif", fontSize: 14, color: 'rgba(255,255,255,0.75)' }}>
+                        <input type="radio" name="newsletter" value="no" style={{ accentColor: '#007CB0' }} /> No
+                      </label>
+                    </div>
+                  </div>
+                  <button type="submit" className="sg-btn-solid-md" style={{ width: '100%', justifyContent: 'center', marginTop: 8 }}>
+                    Submit Application &rarr;
+                  </button>
+                </form>
+              </div>
+
+              {/* Sidebar */}
+              <div style={{ background: '#1a2332', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 12, padding: '32px 28px' }}>
+                <h3 style={{ fontFamily: "'Essonnes', 'Playfair Display', serif", fontSize: 22, fontWeight: 700, color: '#fff', margin: '0 0 16px' }}>Landscape Account</h3>
+                <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 15, color: 'rgba(255,255,255,0.65)', lineHeight: 1.7, margin: '0 0 20px' }}>
+                  If you are a contractor or landscape architect without a Distributor or Specification Sales Agency in your area, you can apply to have your own CAST online ordering account.
+                </p>
+                <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 15, color: 'rgba(255,255,255,0.65)', lineHeight: 1.7, margin: '0 0 20px' }}>
+                  Application may take between 2&ndash;5 business days to be approved and we may contact you with questions after an application has been submitted.
+                </p>
+                <div style={{ background: 'rgba(0,124,176,0.1)', border: '1px solid rgba(0,124,176,0.25)', borderRadius: 8, padding: '14px 16px', marginBottom: 20 }}>
+                  <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 14, fontWeight: 600, color: '#007CB0', margin: 0 }}>FREE Shipping on orders $1,000 or greater.</p>
+                </div>
+                <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 14, color: 'rgba(255,255,255,0.5)', lineHeight: 1.6, margin: '0 0 12px' }}>Already have an account?</p>
+                <a href="/login" style={{ fontFamily: "'Barlow', sans-serif", fontSize: 14, fontWeight: 600, color: '#007CB0', textDecoration: 'none' }}>Login Now &rarr;</a>
+                <div style={{ marginTop: 24, paddingTop: 20, borderTop: '1px solid rgba(255,255,255,0.08)' }}>
+                  <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 12, color: 'rgba(255,255,255,0.4)', lineHeight: 1.6, margin: 0 }}>
+                    CAST Lighting stores information on its own servers for verification and contact purposes. We will not sell or share your information with a third-party without your consent.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <TradeProSection
-        benefits={[
-          { title: "Exclusive Contractor Pricing", desc: "Access wholesale pricing with volume discounts that improve your margins on every project." },
-          { title: "Design Control in the Field", desc: "Interchangeable optics and adjustable fixtures let you fine-tune lighting on-site." },
-          { title: "Lifetime Product Warranty", desc: "Every CAST product is backed by our industry-leading lifetime warranty — no questions asked." },
-          { title: "Dedicated Support Team", desc: "Get direct access to our expert lighting designers for project planning and troubleshooting." },
-        ]}
-      />
-      <ComparisonSection
-        castPoints={[
-          { text: "Solid brass and copper construction" },
-          { text: "Lifetime warranty on all fixtures" },
-          { text: "Made in USA — designed and engineered" },
-          { text: "Interchangeable optics system" },
-        ]}
-        otherPoints={[
-          { text: "Zinc or aluminum body construction" },
-          { text: "Limited warranty — typically 1–3 years" },
-          { text: "Imported — overseas manufacturing" },
-          { text: "Fixed optics with no field adjustability" },
-        ]}
-      />
-      <BrandLogos />
-      <ReviewsCarousel
-        reviews={[
-          {
-            name: "Mike T.",
-            role: "Landscape Contractor",
-            location: "Texas",
-            rating: 5,
-            quote: "CAST has completely transformed how I run my business. The contractor pricing is unbeatable and every client I've installed for has been thrilled with the quality.",
-          },
-          {
-            name: "Sarah K.",
-            role: "Landscape Designer",
-            location: "Florida",
-            rating: 5,
-            quote: "The TradePro program is the real deal. The support team knows the products inside and out, and the lifetime warranty means I never have to worry about callbacks.",
-          },
-          {
-            name: "James R.",
-            role: "Landscape Contractor",
-            location: "California",
-            rating: 5,
-            quote: "I switched to CAST two years ago and my close rate went up immediately. Clients can feel the quality difference the moment they hold a fixture.",
-          },
-        ]}
-      />
-      <ReadyCTA
-        heading="Ready to Grow"
-        headingAccent="Your Business"
-        btn1Label="Apply for TradePro Access"
-        btn1Href="/trade-pro"
-        btn2Label="Shop Products"
-        btn2Href="/shop"
-      />
     </>
   );
 }

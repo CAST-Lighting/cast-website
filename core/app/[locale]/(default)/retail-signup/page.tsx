@@ -1,126 +1,158 @@
 import { setRequestLocale } from 'next-intl/server';
 import { type Metadata } from 'next';
-import HeroBanner from '~/lib/makeswift/components/cast/HeroBanner';
-import SignupHero from '~/lib/makeswift/components/cast/SignupHero';
-import ContentMedia from '~/lib/makeswift/components/cast/ContentMedia';
-import TradeProSection from '~/lib/makeswift/components/cast/TradeProSection';
-import BrandLogos from '~/lib/makeswift/components/cast/BrandLogos';
-import ReviewsCarousel from '~/lib/makeswift/components/cast/ReviewsCarousel';
-import ReadyCTA from '~/lib/makeswift/components/cast/ReadyCTA';
 
 interface Props {
   params: Promise<{ locale: string }>;
 }
 
 export const metadata: Metadata = {
-  title: 'Become a CAST Authorized Retailer | CAST Lighting',
-  description: 'Partner with the industry leader in professional outdoor lighting. High margins, exclusive territory, co-op advertising, and full dealer support.',
+  title: 'Retail Store Registration | CAST Lighting',
+  description: 'Register for a CAST Lighting retail store account. Access repair parts, lamps, and accessories at 20% off MSRP. Free shipping on orders over $1,000.',
 };
 
 export default async function RetailSignupPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
 
-  const serviceSchema = {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "name": "CAST Lighting Authorized Dealer Program",
-    "provider": { "@type": "Organization", "name": "CAST Lighting" },
-    "description": "Become a CAST authorized retailer. 40–50% dealer margins, exclusive territory, co-op advertising, and full dealer support.",
-    "areaServed": "US",
-    "audience": { "@type": "Audience", "audienceType": "Lighting Retailers, Landscape Supply Dealers, Showroom Owners" },
-  };
-
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
-      <HeroBanner
-        headingLine1="Become a CAST Authorized Retailer"
-        description="Partner with the industry leader in professional outdoor lighting. Earn 40–50% dealer margins with exclusive territory and full co-op advertising support."
-        btn1Label="Apply to Become a Dealer"
-        btn1Href="#apply"
-        btn2Label="View Products"
-        btn2Href="/shop"
-        phrase1="40–50% Dealer Margins"
-        phrase2="Exclusive Territory Protection"
-        phrase3="Full Co-op Advertising"
-        badgeText="Authorized Dealer Program"
-        hideForm={true}
-      />
-      <div id="apply">
-        <SignupHero
-          overline="Authorized Retailer Program"
-          heading="Become a CAST Authorized Retailer"
-          subheading="Partner with the industry leader in professional outdoor lighting. High margins, exclusive territory, and full co-op advertising support."
-          formHeading="Start Your Dealer Application"
-          submitButtonText="Apply to Become a Dealer"
-          image="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=1600&q=80"
-        />
+      <style>{`
+        .reg-container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+        .reg-grid { display: grid; grid-template-columns: 1fr 380px; gap: 48px; align-items: start; }
+        @media (max-width: 900px) { .reg-grid { grid-template-columns: 1fr; } }
+        .reg-input { width: 100%; padding: 11px 14px; border: 1px solid rgba(255,255,255,0.12); border-radius: 6px; font-family: 'Barlow', sans-serif; font-size: 14px; color: #fff; box-sizing: border-box; outline: none; background: rgba(255,255,255,0.05); }
+        .reg-input:focus { border-color: #007CB0; }
+        .reg-label { font-family: 'Barlow', sans-serif; font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.85); display: block; margin-bottom: 6px; }
+        .reg-select { width: 100%; padding: 11px 14px; border: 1px solid rgba(255,255,255,0.12); border-radius: 6px; font-family: 'Barlow', sans-serif; font-size: 14px; color: #fff; box-sizing: border-box; background: rgba(255,255,255,0.05); outline: none; appearance: none; }
+        .reg-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .reg-row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+        @media (max-width: 640px) { .reg-row-2, .reg-row-3 { grid-template-columns: 1fr; } }
+      `}</style>
+
+      <div style={{ background: '#0f1923', minHeight: '100vh' }}>
+        {/* Hero */}
+        <section style={{ background: '#1a2332', paddingTop: 96, paddingBottom: 64, textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
+          <div style={{ position: 'absolute', inset: 0, backgroundImage: 'linear-gradient(rgba(0,124,176,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,124,176,0.03) 1px, transparent 1px)', backgroundSize: '48px 48px' }} />
+          <div className="reg-container" style={{ position: 'relative', zIndex: 1 }}>
+            <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.16em', color: '#007CB0', margin: '0 0 16px' }}>Account Application</p>
+            <h1 style={{ fontFamily: "'Essonnes', 'Playfair Display', serif", fontSize: 'clamp(32px, 5vw, 56px)', fontWeight: 700, color: '#fff', lineHeight: 1.1, margin: '0 0 20px' }}>Retail Store Registration</h1>
+            <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 18, color: 'rgba(255,255,255,0.6)', maxWidth: 620, margin: '0 auto', lineHeight: 1.7 }}>First-time users, register for an account below</p>
+          </div>
+        </section>
+
+        {/* Form + Sidebar */}
+        <div style={{ padding: '64px 0 96px' }}>
+          <div className="reg-container">
+            <div className="reg-grid">
+              {/* Form */}
+              <div style={{ background: '#2d353c', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 12, padding: '40px 36px' }}>
+                <form style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
+                  <div className="reg-row-2">
+                    <div>
+                      <label className="reg-label">First Name *</label>
+                      <input className="reg-input" type="text" required placeholder="First Name" />
+                    </div>
+                    <div>
+                      <label className="reg-label">Last Name *</label>
+                      <input className="reg-input" type="text" required placeholder="Last Name" />
+                    </div>
+                  </div>
+                  <div>
+                    <label className="reg-label">Email *</label>
+                    <input className="reg-input" type="email" required placeholder="you@email.com" />
+                  </div>
+                  <div>
+                    <label className="reg-label">Best Phone Contact *</label>
+                    <input className="reg-input" type="tel" required placeholder="(555) 000-0000" />
+                  </div>
+                  <div>
+                    <label className="reg-label">Company or Organization</label>
+                    <input className="reg-input" type="text" placeholder="Company Name (optional)" />
+                  </div>
+                  <div>
+                    <label className="reg-label">Address Line 1 *</label>
+                    <input className="reg-input" type="text" required placeholder="Street Address" />
+                  </div>
+                  <div>
+                    <label className="reg-label">Address Line 2</label>
+                    <input className="reg-input" type="text" placeholder="Suite, Unit, etc. (optional)" />
+                  </div>
+                  <div className="reg-row-3">
+                    <div>
+                      <label className="reg-label">City *</label>
+                      <input className="reg-input" type="text" required placeholder="City" />
+                    </div>
+                    <div>
+                      <label className="reg-label">State *</label>
+                      <input className="reg-input" type="text" required placeholder="State" />
+                    </div>
+                    <div>
+                      <label className="reg-label">Postal Code *</label>
+                      <input className="reg-input" type="text" required placeholder="Zip" />
+                    </div>
+                  </div>
+                  <div>
+                    <label className="reg-label">Country *</label>
+                    <select className="reg-select" required>
+                      <option value="US">United States</option>
+                      <option value="CA">Canada</option>
+                    </select>
+                  </div>
+                  <div className="reg-row-2">
+                    <div>
+                      <label className="reg-label">Password *</label>
+                      <input className="reg-input" type="password" required placeholder="Create a password" />
+                    </div>
+                    <div>
+                      <label className="reg-label">Retype Password *</label>
+                      <input className="reg-input" type="password" required placeholder="Confirm password" />
+                    </div>
+                  </div>
+                  <div>
+                    <label className="reg-label">Comments / Questions</label>
+                    <textarea className="reg-input" rows={4} placeholder="Any additional information..." style={{ resize: 'vertical' }} />
+                  </div>
+                  <div>
+                    <label className="reg-label">Subscribe to our newsletter?</label>
+                    <div style={{ display: 'flex', gap: 20, marginTop: 4 }}>
+                      <label style={{ display: 'flex', alignItems: 'center', gap: 6, fontFamily: "'Barlow', sans-serif", fontSize: 14, color: 'rgba(255,255,255,0.75)' }}>
+                        <input type="radio" name="newsletter" value="yes" defaultChecked style={{ accentColor: '#007CB0' }} /> Yes
+                      </label>
+                      <label style={{ display: 'flex', alignItems: 'center', gap: 6, fontFamily: "'Barlow', sans-serif", fontSize: 14, color: 'rgba(255,255,255,0.75)' }}>
+                        <input type="radio" name="newsletter" value="no" style={{ accentColor: '#007CB0' }} /> No
+                      </label>
+                    </div>
+                  </div>
+                  <button type="submit" className="sg-btn-solid-md" style={{ width: '100%', justifyContent: 'center', marginTop: 8 }}>
+                    Register &amp; Continue to Checkout &rarr;
+                  </button>
+                </form>
+              </div>
+
+              {/* Sidebar */}
+              <div style={{ background: '#1a2332', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 12, padding: '32px 28px' }}>
+                <h3 style={{ fontFamily: "'Essonnes', 'Playfair Display', serif", fontSize: 22, fontWeight: 700, color: '#fff', margin: '0 0 16px' }}>Retail Store Account</h3>
+                <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 15, color: 'rgba(255,255,255,0.65)', lineHeight: 1.7, margin: '0 0 20px' }}>
+                  The CAST Retail Store is a resource for repair parts, lamps and accessories to help our customers maintain their lighting systems.
+                </p>
+                <div style={{ background: 'rgba(0,124,176,0.1)', border: '1px solid rgba(0,124,176,0.25)', borderRadius: 8, padding: '14px 16px', marginBottom: 16 }}>
+                  <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 14, fontWeight: 600, color: '#007CB0', margin: 0 }}>Retail Customers Receive 20% off MSRP on Lamps and Repair Parts once Registered and Logged In.</p>
+                </div>
+                <div style={{ background: 'rgba(0,124,176,0.1)', border: '1px solid rgba(0,124,176,0.25)', borderRadius: 8, padding: '14px 16px', marginBottom: 20 }}>
+                  <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 14, fontWeight: 600, color: '#007CB0', margin: 0 }}>FREE Shipping on orders $1,000 or greater.</p>
+                </div>
+                <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 14, color: 'rgba(255,255,255,0.5)', lineHeight: 1.6, margin: '0 0 12px' }}>Already have an account?</p>
+                <a href="/login" style={{ fontFamily: "'Barlow', sans-serif", fontSize: 14, fontWeight: 600, color: '#007CB0', textDecoration: 'none' }}>Login Now &rarr;</a>
+                <div style={{ marginTop: 24, paddingTop: 20, borderTop: '1px solid rgba(255,255,255,0.08)' }}>
+                  <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 12, color: 'rgba(255,255,255,0.4)', lineHeight: 1.6, margin: 0 }}>
+                    CAST Lighting stores information on its own servers for verification and contact purposes. We will not sell or share your information with a third-party without your consent.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <ContentMedia
-        heading="Why Partner"
-        headingAccent="With CAST?"
-        features={[
-          { title: "High Margins — 40–50%", desc: "Industry-leading dealer margins on every CAST product you sell." },
-          { title: "Co-op Advertising", desc: "Joint marketing programs to drive traffic and close more sales in your market." },
-          { title: "Dedicated Dealer Support", desc: "A direct line to our dealer support team for training, ordering, and product questions." },
-          { title: "Training and Certification", desc: "Full product training so your team can confidently sell and specify CAST fixtures." },
-          { title: "Display Fixture Program", desc: "Discounted display inventory to showcase CAST products in your showroom." },
-          { title: "Exclusive Territory", desc: "Protected dealer territory so you can build a sustainable CAST business." },
-        ]}
-        btn1Label="Apply Now"
-        btn1Href="/retail-signup"
-        btn2Label="Contact Sales"
-        btn2Href="/contact"
-      />
-      <TradeProSection
-        overline="Retailer Benefits"
-        heading="The CAST Dealer"
-        headingAccent="Advantage"
-        benefits={[
-          { title: "Premium Margins", desc: "40–50% dealer margins on the full CAST product line, with volume incentives available." },
-          { title: "Marketing Support", desc: "Co-op advertising funds, digital assets, and campaign support to grow your CAST sales." },
-          { title: "Exclusive Territory", desc: "Protected dealer territory ensures you can build a reliable, recurring CAST revenue stream." },
-          { title: "Training and Certification", desc: "Factory training, product certification, and ongoing education from the CAST team." },
-        ]}
-      />
-      <BrandLogos />
-      <ReviewsCarousel
-        overline="What Our Dealers Say"
-        heading="Trusted by Dealers"
-        headingAccent="Nationwide"
-        reviews={[
-          {
-            name: "Tom B.",
-            role: "Showroom Owner",
-            location: "Arizona",
-            rating: 5,
-            quote: "CAST is our top-performing brand by a wide margin. The product sells itself, and the margins keep our business healthy. The dealer support team is genuinely exceptional.",
-          },
-          {
-            name: "Karen M.",
-            role: "Landscape Supply Dealer",
-            location: "Georgia",
-            rating: 5,
-            quote: "We added CAST to our lineup two years ago and it has consistently been our best seller. The display program helped us showcase the product and the results were immediate.",
-          },
-          {
-            name: "David L.",
-            role: "Lighting Showroom Owner",
-            location: "North Carolina",
-            rating: 5,
-            quote: "The exclusive territory protection was the deciding factor for us. We knew we could invest in building the CAST brand without competing against other local dealers.",
-          },
-        ]}
-      />
-      <ReadyCTA
-        heading="Start Selling"
-        headingAccent="CAST Lighting"
-        btn1Label="Apply to Become a Dealer"
-        btn1Href="/retail-signup"
-        btn2Label="Contact Our Sales Team"
-        btn2Href="/contact"
-      />
     </>
   );
 }
