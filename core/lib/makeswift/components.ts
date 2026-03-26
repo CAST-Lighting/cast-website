@@ -7,6 +7,7 @@ import './components/cast/SiteFooter.register';
 
 // Hero & Landing sections
 import './components/cast/HeroBanner.register';
+import './components/cast/RotatingTextHero.register';
 import './components/cast/BlogHero.register';
 import './components/cast/BlogPostContent.register';
 import './components/cast/SubPageHero.register';
