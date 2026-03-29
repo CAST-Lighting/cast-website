@@ -692,13 +692,17 @@
   border-radius: 0 !important;
 }
 
-/* Reset filters (last button in aside) → sg-btn-outline-dark */
-.group\/products-list-section aside > button:last-child {
+/* Reset filters button → sg-btn-outline-dark */
+.group\/products-list-section aside .sticky > button:last-of-type {
   background: transparent !important;
   color: #ffffff !important;
   border: 2px solid #afe5fd !important;
+  --button-secondary-background: transparent;
+  --button-secondary-text: #ffffff;
+  --button-secondary-border: #afe5fd;
+  --button-secondary-background-hover: rgba(175,229,253,0.15);
 }
-.group\/products-list-section aside > button:last-child:hover {
+.group\/products-list-section aside .sticky > button:last-of-type:hover {
   background: rgba(175,229,253,0.15) !important;
   border-color: #ffffff !important;
 }
