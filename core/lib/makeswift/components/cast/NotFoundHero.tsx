@@ -37,7 +37,7 @@ const NotFoundHero = forwardRef(function NotFoundHero(
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault()
     if (query.trim()) {
-      window.location.href = `/search?q=${encodeURIComponent(query.trim())}`
+      window.location.href = `/search-results?q=${encodeURIComponent(query.trim())}`
     }
   }
 
