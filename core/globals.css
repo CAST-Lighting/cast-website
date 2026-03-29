@@ -656,34 +656,31 @@
    SEARCH LEFT PANEL ONLY — Brand guide fixes
    Scoped to aside within products-list-section
    Does NOT touch product cards or main grid
+   Kill all Vibes/Soul animation, apply sg-btn styles directly
    ============================================================ */
 
+/* Kill the Vibes ::after slide animation on ALL sidebar buttons */
+.group\/products-list-section aside button::after,
+.group\/products-list-section aside a::after {
+  display: none !important;
+}
+
 /* Toggle pills (Brand, Is Featured) — allow text wrap */
-.group\/products-list-section aside button.rounded-full,
-.group\/products-list-section aside [class*="rounded-full"][class*="whitespace"] {
+.group\/products-list-section aside button.rounded-full {
   white-space: normal !important;
   height: auto !important;
   min-height: 48px;
   line-height: 1.3;
+  background: transparent !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255,255,255,0.3) !important;
+  border-radius: 9999px !important;
+  font-family: 'Barlow', sans-serif !important;
+  transition: background 200ms, border-color 200ms !important;
 }
-
-/* Price number inputs — visible border on dark bg */
-.group\/products-list-section aside input[type="number"] {
-  border: 1px solid rgba(255,255,255,0.2) !important;
-  border-radius: 4px;
-}
-
-/* Override Vibes/Soul button CSS vars in aside for CAST brand (dark bg) */
-.group\/products-list-section aside {
-  --button-font-family: 'Barlow', sans-serif;
-}
-
-/* Toggle pills — hover = subtle brand blue tint, not white */
-.group\/products-list-section aside button.rounded-full {
-  --button-secondary-background: transparent !important;
-  --button-secondary-text: #ffffff !important;
-  --button-secondary-border: rgba(255,255,255,0.3) !important;
-  --button-secondary-background-hover: rgba(0,124,176,0.25) !important;
+.group\/products-list-section aside button.rounded-full:hover {
+  background: rgba(0,124,176,0.2) !important;
+  border-color: #007CB0 !important;
 }
 .group\/products-list-section aside button.rounded-full[data-state="on"],
 .group\/products-list-section aside button.rounded-full[aria-pressed="true"] {
@@ -692,40 +689,45 @@
   color: #fff !important;
 }
 
-/* Apply/Go button (price filter) — sg-btn-solid-dark */
-.group\/products-list-section aside button.shrink-0 {
-  --button-secondary-background: #ffffff !important;
-  --button-secondary-text: var(--color-primary, #007CB0) !important;
-  --button-secondary-border: transparent !important;
-  --button-secondary-background-hover: #afe5fd !important;
-  border-radius: 0 !important;
-}
-
-/* Min/Max price inputs — square corners to match brand */
+/* Price number inputs — visible border, square */
 .group\/products-list-section aside input[type="number"] {
+  border: 1px solid rgba(255,255,255,0.2) !important;
   border-radius: 0 !important;
 }
 
-/* Reset filters button — outline-dark, no fill on hover */
-.group\/products-list-section aside .sticky > button:last-of-type {
-  --button-secondary-background: transparent !important;
-  --button-secondary-text: #ffffff !important;
-  --button-secondary-border: #afe5fd !important;
-  --button-secondary-background-hover: transparent !important;
+/* Apply button (price) — sg-btn-solid-dark-sm exact */
+.group\/products-list-section aside button.shrink-0 {
+  background: #ffffff !important;
+  color: var(--color-primary, #007CB0) !important;
+  border: 2px solid transparent !important;
   border-radius: 0 !important;
-}
-.group\/products-list-section aside .sticky > button:last-of-type::after {
-  display: none !important;
-}
-
-/* Both action buttons in sidebar — brand font + uppercase */
-.group\/products-list-section aside > button[class*="inline-flex"],
-.group\/products-list-section aside button[class*="select-none"] {
   font-family: 'Barlow', sans-serif !important;
   font-weight: 600 !important;
   text-transform: uppercase !important;
   letter-spacing: 0.05em !important;
+  transition: background 200ms !important;
+}
+.group\/products-list-section aside button.shrink-0:hover {
+  background: #afe5fd !important;
+}
+
+/* Reset filters — sg-btn-outline-dark-md exact */
+.group\/products-list-section aside .sticky > button:last-of-type {
+  background: transparent !important;
+  color: #ffffff !important;
+  border: 2px solid #afe5fd !important;
   border-radius: 0 !important;
+  font-family: 'Barlow', sans-serif !important;
+  font-weight: 600 !important;
+  font-size: 15px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  padding: 10px 22px !important;
+  transition: background 200ms, border-color 200ms !important;
+}
+.group\/products-list-section aside .sticky > button:last-of-type:hover {
+  background: rgba(175,229,253,0.15) !important;
+  border-color: #ffffff !important;
 }
 
 
