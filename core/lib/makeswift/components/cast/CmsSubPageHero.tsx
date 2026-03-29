@@ -1,5 +1,6 @@
 "use client"
 import { forwardRef, type Ref } from "react"
+import { useCmsData } from "~/lib/makeswift/cms-context"
 
 const DEFAULT_BG = "https://storage.googleapis.com/s.mkswft.com/RmlsZTpmNGU1MTkzMi02Y2JlLTQ0ZjAtOWIwNC03ZmI3MmQwNzYwMDk=/background-1.jpg"
 
@@ -14,18 +15,15 @@ export interface CmsSubPageHeroProps {
   paddingTop?: number
   paddingBottom?: number
   badgeText?: string
-  /** Heading — editable in Makeswift, overridden by CMS when used in code */
+  /** Heading — editable in Makeswift, overridden by CMS context when live */
   headingLine1?: string
   headingAccent?: string
-  /** Description — editable in Makeswift, overridden by CMS when used in code */
+  /** Description — editable in Makeswift, overridden by CMS context when live */
   description?: string
   btn1Label?: string
   btn1Href?: string
   btn2Label?: string
   btn2Href?: string
-  /** CMS overrides — set by code, not editable in Makeswift */
-  cmsHeading?: string
-  cmsDescription?: string
 }
 
 const CmsSubPageHero = forwardRef(function CmsSubPageHero(
@@ -40,20 +38,19 @@ const CmsSubPageHero = forwardRef(function CmsSubPageHero(
     description,
     btn1Label, btn1Href,
     btn2Label, btn2Href,
-    cmsHeading,
-    cmsDescription,
   }: CmsSubPageHeroProps,
   ref: Ref<HTMLElement>
 ) {
+  const cms = useCmsData()
   const hasGradient = !!(gradientFrom && gradientTo)
   const overlayOpacity = typeof bgOpacity === 'number' ? bgOpacity / 100 : 0.60
   const overlayBg = hasGradient
     ? `linear-gradient(${gradientDirection || '135deg'}, ${gradientFrom}, ${gradientTo})`
     : bgColor || '#25262d'
 
-  // CMS content takes priority over Makeswift-edited defaults
-  const displayHeading = cmsHeading || headingLine1 || "Page Title"
-  const displayDescription = cmsDescription || description
+  // CMS context takes priority → then Makeswift defaults
+  const displayHeading = cms?.heading || headingLine1 || "Page Title"
+  const displayDescription = cms?.description || description
 
   return (
     <section
@@ -87,7 +84,7 @@ const CmsSubPageHero = forwardRef(function CmsSubPageHero(
           {/* Heading */}
           <h1 className="heading-style-h1" style={{ color: 'var(--color-blue-grey-100)' }}>
             {displayHeading}
-            {headingAccent && !cmsHeading && (
+            {headingAccent && !cms?.heading && (
               <>
                 <br />
                 <span className="text-gradient-warm">{headingAccent}</span>

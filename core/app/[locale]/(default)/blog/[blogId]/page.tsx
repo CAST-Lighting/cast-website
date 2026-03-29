@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getFormatter, setRequestLocale } from 'next-intl/server';
 
+import { CmsPageRenderer } from '~/lib/makeswift/cms-page-renderer';
 import { getBlogPageData } from './page-data';
 
 interface Props {
@@ -42,6 +43,26 @@ export default async function BlogPost(props: Props) {
   const thumbAlt = blogPost.thumbnailImage?.altText ?? blogPost.name;
   const authorName = blogPost.author ?? 'CAST Lighting Team';
 
+  // Try Makeswift template first — if /blog-post/ exists in Makeswift, use it
+  const makeswiftPage = await CmsPageRenderer({
+    templatePath: '/blog-post',
+    data: {
+      type: 'blog',
+      heading: blogPost.name,
+      description: `By ${authorName} · ${formattedDate}`,
+      meta: {
+        author: authorName,
+        date: formattedDate,
+        tags: blogPost.tags,
+        featuredImage: thumbSrc ?? undefined,
+        htmlBody: blogPost.htmlBody,
+      },
+    },
+  });
+
+  if (makeswiftPage) return makeswiftPage;
+
+  // Fallback: hardcoded blog post layout
   return (
     <>
       <style>{`
