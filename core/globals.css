@@ -678,21 +678,18 @@
   --button-font-family: 'Barlow', sans-serif;
 }
 
-/* Toggle pills — selected = brand blue, hover = subtle glow, not white */
+/* Toggle pills — hover = subtle brand blue tint, not white */
 .group\/products-list-section aside button.rounded-full {
-  --button-secondary-background: transparent;
-  --button-secondary-text: #ffffff;
-  --button-secondary-border: rgba(255,255,255,0.3);
-  --button-secondary-background-hover: rgba(0,124,176,0.2);
+  --button-secondary-background: transparent !important;
+  --button-secondary-text: #ffffff !important;
+  --button-secondary-border: rgba(255,255,255,0.3) !important;
+  --button-secondary-background-hover: rgba(0,124,176,0.25) !important;
 }
 .group\/products-list-section aside button.rounded-full[data-state="on"],
 .group\/products-list-section aside button.rounded-full[aria-pressed="true"] {
   background: #007CB0 !important;
   border-color: #007CB0 !important;
   color: #fff !important;
-}
-.group\/products-list-section aside button.rounded-full::after {
-  background: rgba(0,124,176,0.2) !important;
 }
 
 /* Apply/Go button (price filter) — sg-btn-solid-dark */
