@@ -235,8 +235,17 @@ const ProductHero = forwardRef(function ProductHero(
             </h2>
 
             {/* Long description paragraphs */}
+            <style>{`
+              .ph-body-html a { color: #7EBEE8; text-decoration: underline; text-underline-offset: 2px; }
+              .ph-body-html a:hover { color: #007CB0; }
+              .ph-body-html p { margin: 0 0 16px; }
+              .ph-body-html ul, .ph-body-html ol { padding-left: 20px; margin: 0 0 16px; }
+              .ph-body-html li { margin-bottom: 6px; }
+              .ph-body-html strong, .ph-body-html b { color: #fff; font-weight: 600; }
+              .ph-body-html h2, .ph-body-html h3, .ph-body-html h4 { font-family: 'Essonnes', 'Playfair Display', serif; color: #fff; margin: 24px 0 12px; }
+            `}</style>
             {isHtml ? (
-              <div style={{ fontFamily: "'Barlow', sans-serif", fontSize: 16, color: "var(--color-content)", lineHeight: 1.7 }} dangerouslySetInnerHTML={{ __html: body }} />
+              <div className="ph-body-html" style={{ fontFamily: "'Barlow', sans-serif", fontSize: 16, color: "var(--color-content)", lineHeight: 1.7 }} dangerouslySetInnerHTML={{ __html: body }} />
             ) : (
               body.split("\n\n").map((para, i) => (
                 <p key={i} style={{ fontFamily: "'Barlow', sans-serif", fontSize: 16, color: "var(--color-content)", lineHeight: 1.7, margin: "0 0 18px" }}>{para}</p>
