@@ -21,7 +21,20 @@ interface ProductHeroProps {
   gradientDirection?: string
   paddingTop?: number
   paddingBottom?: number
+  bodyText?: string
+  bulletPoints?: Array<{ text?: string }>
 }
+
+const DEFAULT_BODY = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sed enim fringilla, suscipit felis eget, euismod nisi. Vestibulum ac fermentum ex, ac cursus sem. Nam vel bibendum erat. Pellentesque blandit viverra viverra. Nullam vestibulum ex eget gravida volutpat.\n\nPhasellus laoreet gravida libero, at porttitor diam fringilla at. Sed ac orci facilisis, placerat augue a, pulvinar enim. Integer volutpat velit nulla, vel varius purus elementum at. Cras euismod semper mi, at bibendum odio tincidunt vitae.\n\nPellentesque blandit viverra viverra. Nullam vestibulum ex eget gravida volutpat. Phasellus laoreet gravida libero, at porttitor diam fringilla at."
+
+const DEFAULT_BULLETS = [
+  { text: "Solid brass construction — will never rust, corrode, or fade" },
+  { text: "5.5W LED module — 400 lumen output, 2700K warm white" },
+  { text: "IP67 waterproof rating — suitable for all weather conditions" },
+  { text: "Compatible with all CAST 12V transformers" },
+  { text: "Unique mounting stake with locking collar" },
+  { text: "Lifetime warranty against defects and weather damage" },
+]
 
 const Stars = ({ count = 4.7, total = 5 }: { count?: number; total?: number }) => (
   <div style={{ display: "flex", gap: 2, alignItems: "center" }}>
@@ -59,6 +72,8 @@ const ProductHero = forwardRef(function ProductHero(
     gradientDirection,
     paddingTop,
     paddingBottom,
+    bodyText,
+    bulletPoints,
   }: ProductHeroProps,
   ref: Ref<HTMLDivElement>
 ) {
@@ -70,6 +85,9 @@ const ProductHero = forwardRef(function ProductHero(
   const sectionBackground = hasGradient
     ? `linear-gradient(${gradientDirection || 'to bottom'}, ${gradientFrom}, ${gradientTo})`
     : bgColor || "#25262d"
+
+  const body = bodyText || DEFAULT_BODY
+  const bullets = bulletPoints && bulletPoints.length > 0 ? bulletPoints : DEFAULT_BULLETS
 
   return (
     <div
@@ -97,7 +115,10 @@ const ProductHero = forwardRef(function ProductHero(
         .ph-qty button:hover { background: #37474f; }
         .ph-qty input { width: 48px; border: none; text-align: center; font-family: 'Barlow', sans-serif; font-size: 16px; font-weight: 600; color: var(--color-title); outline: none; }
         .ph-tradepro-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(0,73,96,0.08); color: var(--color-primary); font-family: 'Barlow', sans-serif; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; padding: 4px 10px; border-radius: 3px; }
-        @media (max-width: 900px) { .ph-layout { flex-direction: column !important; } .ph-gallery { max-width: 100% !important; } }
+        @media (max-width: 900px) {
+          .ph-layout { flex-direction: column !important; }
+          .ph-gallery { max-width: 100% !important; flex: unset !important; position: relative !important; top: auto !important; align-self: stretch !important; }
+        }
       `}</style>
 
       <div className="relative" style={{ zIndex: 10 }}>
@@ -105,7 +126,7 @@ const ProductHero = forwardRef(function ProductHero(
         <div className="ph-layout" style={{ display: "flex", gap: 56, alignItems: "flex-start" }}>
 
           {/* Left: Image gallery — sticky scroll */}
-          <div className="ph-gallery" style={{ flex: "0 0 480px", maxWidth: 480, position: "sticky", top: 100 }}>
+          <div className="ph-gallery" style={{ flex: "0 0 480px", maxWidth: 480, position: "sticky", top: 100, alignSelf: "flex-start" }}>
             <div style={{ marginBottom: 12 }}>
               {imgList[activeImg]?.src
                 ? <img src={imgList[activeImg].src} alt={imgList[activeImg].alt || productName} style={{ width: "100%", aspectRatio: "1", objectFit: "cover", borderRadius: 8 }} />
@@ -124,20 +145,26 @@ const ProductHero = forwardRef(function ProductHero(
             </div>
           </div>
 
-          {/* Right: Product info */}
+          {/* Right: Product info + description (scrolls naturally) */}
           <div style={{ flex: 1, minWidth: 0 }}>
+            {/* Model number */}
             <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, color: "var(--color-content)", margin: "0 0 8px" }}>Model #: {modelNumber}</p>
+
+            {/* Product name */}
             <h1 style={{ fontSize: "var(--h2-size)", fontWeight: "var(--heading-weight, 700)", lineHeight: "var(--heading-line-height, 1.1)", fontFamily: "'Essonnes', 'Playfair Display', serif", color: "var(--color-title)", margin: "0 0 12px" }}>
               {productName}
             </h1>
 
+            {/* Rating */}
             <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 16 }}>
               <Stars count={rating} />
               <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, color: "var(--color-accent)", fontWeight: 600 }}>{rating} · {reviewCount} Ratings</span>
             </div>
 
+            {/* Short description */}
             <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 16, color: "var(--color-content)", lineHeight: 1.6, margin: "0 0 20px" }}>{shortDescription}</p>
 
+            {/* Price + stock */}
             <div style={{ display: "flex", alignItems: "baseline", gap: 12, marginBottom: 8 }}>
               <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 32, fontWeight: 700, color: "var(--color-title)" }}>{price}</span>
               <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 14, fontWeight: 600, color: inStock ? "#10b981" : "#ef4444" }}>
@@ -145,6 +172,7 @@ const ProductHero = forwardRef(function ProductHero(
               </span>
             </div>
 
+            {/* Divider */}
             <div style={{ height: 1, background: "#37474f", margin: "20px 0" }} />
 
             {/* QTY */}
@@ -171,9 +199,42 @@ const ProductHero = forwardRef(function ProductHero(
               </div>
             </div>
 
+            {/* TradePro badge */}
+            {tradeProOnly && (
+              <div style={{ marginTop: 12 }}>
+                <span className="ph-tradepro-badge">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" /></svg>
+                  TradePro Exclusive
+                </span>
+              </div>
+            )}
+
+            {/* Login prompt */}
             <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, color: "var(--color-content)", marginTop: 16 }}>
               Already a customer? <a href="#" style={{ color: "var(--color-accent)" }}>Please login here</a> to favorite, save, or view order history for later reference.
             </p>
+
+            {/* Divider before description */}
+            <div style={{ height: 1, background: "#37474f", margin: "28px 0" }} />
+
+            {/* Product Description section */}
+            <h2 style={{ fontSize: "var(--h3-size)", fontWeight: "var(--heading-weight, 700)", lineHeight: "var(--heading-line-height, 1.1)", fontFamily: "'Essonnes', 'Playfair Display', serif", color: "var(--color-title)", margin: "0 0 24px" }}>
+              Product Description
+            </h2>
+
+            {/* Long description paragraphs */}
+            {body.split("\n\n").map((para, i) => (
+              <p key={i} style={{ fontFamily: "'Barlow', sans-serif", fontSize: 16, color: "var(--color-content)", lineHeight: 1.7, margin: "0 0 18px" }}>{para}</p>
+            ))}
+
+            {/* Bullet points */}
+            {bullets.length > 0 && (
+              <ul style={{ margin: "16px 0 0", paddingLeft: 20, display: "flex", flexDirection: "column", gap: 8 }}>
+                {bullets.map((b, i) => (
+                  <li key={i} style={{ fontFamily: "'Barlow', sans-serif", fontSize: 16, color: "var(--color-content)", lineHeight: 1.6 }}>{b.text}</li>
+                ))}
+              </ul>
+            )}
           </div>
         </div>
       </div>

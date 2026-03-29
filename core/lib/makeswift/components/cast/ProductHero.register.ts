@@ -46,6 +46,19 @@ runtime.registerComponent(
         }),
         getItemLabel(item) { return item?.alt || "Image"; },
       }),
+      bodyText: TextArea({
+        label: "Product Description",
+        defaultValue: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sed enim fringilla, suscipit felis eget, euismod nisi. Vestibulum ac fermentum ex, ac cursus sem. Nam vel bibendum erat. Pellentesque blandit viverra viverra. Nullam vestibulum ex eget gravida volutpat.\n\nPhasellus laoreet gravida libero, at porttitor diam fringilla at. Sed ac orci facilisis, placerat augue a, pulvinar enim. Integer volutpat velit nulla, vel varius purus elementum at. Cras euismod semper mi, at bibendum odio tincidunt vitae.\n\nPellentesque blandit viverra viverra. Nullam vestibulum ex eget gravida volutpat. Phasellus laoreet gravida libero, at porttitor diam fringilla at.",
+      }),
+      bulletPoints: List({
+        label: "Feature Bullet Points",
+        type: Shape({
+          type: {
+            text: TextInput({ label: "Bullet Text", defaultValue: "Feature description goes here" }),
+          },
+        }),
+        getItemLabel(item) { return item?.text || "Bullet"; },
+      }),
     },
   }
 )
