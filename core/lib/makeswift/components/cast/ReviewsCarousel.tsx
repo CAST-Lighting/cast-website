@@ -1,6 +1,6 @@
 "use client"
-import { forwardRef, useState, type Ref } from "react"
-import { Star, ChevronLeft, ChevronRight } from "lucide-react"
+import { forwardRef, useState, useRef, useEffect, type Ref } from "react"
+import { Star, ArrowLeft, ArrowRight } from "lucide-react"
 
 const PLACEHOLDER_PERSON = "https://storage.googleapis.com/s.mkswft.com/RmlsZTo0MzUyZTgwOS1jZDk2LTQ3YWQtOGM0ZC1kZDdhYmRlODhkMDY=/placeholder_person.webp"
 
@@ -110,11 +110,47 @@ const ReviewsCarousel = forwardRef(function ReviewsCarousel(
   }: ReviewsCarouselProps,
   ref: Ref<HTMLElement>
 ) {
-  const [page, setPage] = useState(0)
+  const scrollRef = useRef<HTMLDivElement>(null)
+  const [canScrollLeft, setCanScrollLeft] = useState(false)
+  const [canScrollRight, setCanScrollRight] = useState(true)
   const reviews = reviewsProp && reviewsProp.length > 0 ? reviewsProp : DEFAULT_REVIEWS
-  const perPage = 3
-  const pageCount = Math.ceil(reviews.length / perPage)
-  const visible = reviews.slice(page * perPage, page * perPage + perPage)
+
+  const checkScroll = () => {
+    const el = scrollRef.current
+    if (!el) return
+    setCanScrollLeft(el.scrollLeft > 0)
+    setCanScrollRight(el.scrollLeft < el.scrollWidth - el.clientWidth - 1)
+  }
+
+  useEffect(() => {
+    const el = scrollRef.current
+    if (!el) return
+    checkScroll()
+    el.addEventListener("scroll", checkScroll)
+    window.addEventListener("resize", checkScroll)
+    return () => {
+      el.removeEventListener("scroll", checkScroll)
+      window.removeEventListener("resize", checkScroll)
+    }
+  }, [])
+
+  const scroll = (dir: "left" | "right") => {
+    const el = scrollRef.current
+    if (!el) return
+    const cardWidth = el.querySelector("div")?.offsetWidth ?? 340
+    const distance = dir === "left" ? -cardWidth * 2 : cardWidth * 2
+    const start = el.scrollLeft
+    const duration = 600
+    let startTime: number | null = null
+    const ease = (t: number) => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2
+    const animate = (time: number) => {
+      if (!startTime) startTime = time
+      const progress = Math.min((time - startTime) / duration, 1)
+      el.scrollLeft = start + distance * ease(progress)
+      if (progress < 1) requestAnimationFrame(animate)
+    }
+    requestAnimationFrame(animate)
+  }
 
   const hasGradient = !!(gradientFrom && gradientTo)
   const overlayOpacity = typeof bgOpacity === "number" ? bgOpacity / 100 : 0.88
@@ -148,35 +184,45 @@ const ReviewsCarousel = forwardRef(function ReviewsCarousel(
       )}
 
       <div className="relative" style={{ zIndex: 10 }}>
-        <div className="site-container">
-          {/* Header */}
-          <div style={{ textAlign: "center", marginBottom: 56 }}>
-            <span className="overline">{overline}</span>
-            <h2 className="section-heading" style={{ marginTop: 12, fontSize: "clamp(32px, 4vw, 48px)" }}>
-              {heading}{" "}
-              <span className="text-gradient-warm">{headingAccent}</span>
-            </h2>
-            {/* Aggregate rating */}
-            <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 12, marginTop: 16 }}>
-              <StarRating rating={5} />
-              <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 15, color: "rgba(255,255,255,0.7)" }}>
-                4.9 / 5 — based on 200+ verified reviews
-              </span>
+        {/* Header — aligned to site-container */}
+        <div className="site-container mb-10">
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between">
+            <div style={{ textAlign: "left" }}>
+              <span className="overline">{overline}</span>
+              <h2 className="section-heading" style={{ marginTop: 12, fontSize: "clamp(32px, 4vw, 48px)" }}>
+                {heading}{" "}
+                <span className="text-gradient-warm">{headingAccent}</span>
+              </h2>
+              {/* Aggregate rating */}
+              <div style={{ display: "flex", alignItems: "center", gap: 12, marginTop: 16 }}>
+                <StarRating rating={5} />
+                <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 15, color: "rgba(255,255,255,0.7)" }}>
+                  4.9 / 5 — based on 200+ verified reviews
+                </span>
+              </div>
+            </div>
+            <div className="flex items-center gap-3 mt-4 md:mt-0">
+              <button onClick={() => scroll("left")} disabled={!canScrollLeft} className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-foreground hover:border-primary hover:text-primary transition-colors disabled:opacity-30 disabled:cursor-not-allowed">
+                <ArrowLeft className="w-4 h-4" />
+              </button>
+              <button onClick={() => scroll("right")} disabled={!canScrollRight} className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-foreground hover:border-primary hover:text-primary transition-colors disabled:opacity-30 disabled:cursor-not-allowed">
+                <ArrowRight className="w-4 h-4" />
+              </button>
             </div>
           </div>
+        </div>
 
-          {/* Review cards */}
+        {/* Carousel — left edge aligns with site-container, bleeds right */}
+        <div style={{ paddingLeft: "max(64px, calc((100vw - 1600px) / 2 + 64px))" }}>
           <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-              gap: 24,
-              marginBottom: 40,
-            }}
+            ref={scrollRef}
+            className="flex gap-6 overflow-x-auto pr-16 [&::-webkit-scrollbar]:hidden"
+            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
           >
-            {visible.map((review, i) => (
+            {reviews.map((review, i) => (
               <div
                 key={i}
+                className="flex-shrink-0 w-[340px]"
                 style={{
                   background: "rgba(255,255,255,0.05)",
                   border: "1px solid rgba(255,255,255,0.1)",
@@ -228,69 +274,6 @@ const ReviewsCarousel = forwardRef(function ReviewsCarousel(
               </div>
             ))}
           </div>
-
-          {/* Pagination */}
-          {pageCount > 1 && (
-            <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: 16 }}>
-              <button
-                onClick={() => setPage(p => Math.max(0, p - 1))}
-                disabled={page === 0}
-                style={{
-                  background: "rgba(255,255,255,0.08)",
-                  border: "1px solid rgba(255,255,255,0.15)",
-                  borderRadius: "50%",
-                  width: 40,
-                  height: 40,
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  cursor: page === 0 ? "default" : "pointer",
-                  opacity: page === 0 ? 0.4 : 1,
-                  color: "#fff",
-                }}
-              >
-                <ChevronLeft style={{ width: 20, height: 20 }} />
-              </button>
-
-              <div style={{ display: "flex", gap: 8 }}>
-                {Array.from({ length: pageCount }).map((_, i) => (
-                  <button
-                    key={i}
-                    onClick={() => setPage(i)}
-                    style={{
-                      width: 8,
-                      height: 8,
-                      borderRadius: "50%",
-                      border: "none",
-                      cursor: "pointer",
-                      background: i === page ? "var(--color-accent, #007CB0)" : "rgba(255,255,255,0.25)",
-                      padding: 0,
-                    }}
-                  />
-                ))}
-              </div>
-
-              <button
-                onClick={() => setPage(p => Math.min(pageCount - 1, p + 1))}
-                disabled={page === pageCount - 1}
-                style={{
-                  background: "rgba(255,255,255,0.08)",
-                  border: "1px solid rgba(255,255,255,0.15)",
-                  borderRadius: "50%",
-                  width: 40,
-                  height: 40,
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  cursor: page === pageCount - 1 ? "default" : "pointer",
-                  opacity: page === pageCount - 1 ? 0.4 : 1,
-                  color: "#fff",
-                }}
-              >
-                <ChevronRight style={{ width: 20, height: 20 }} />
-              </button>
-            </div>
-          )}
         </div>
       </div>
     </section>

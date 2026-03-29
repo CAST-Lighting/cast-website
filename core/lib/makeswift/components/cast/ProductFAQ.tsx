@@ -66,7 +66,7 @@ const ProductFAQ = forwardRef(function ProductFAQ(
         <div className="absolute inset-0" style={{ zIndex: 1, background: sectionBackground, opacity: overlayOpacity }} />
       )}
       <div className="relative" style={{ zIndex: 10 }}>
-      <div className="site-container" style={{ maxWidth: 860 }}>
+      <div className="site-container" style={{ maxWidth: 860, textAlign: "left", marginLeft: "max(64px, calc((100vw - 1600px) / 2 + 64px))", marginRight: "auto" }}>
         <h2 style={{ fontSize: "var(--h3-size)", fontWeight: "var(--heading-weight, 700)", lineHeight: "var(--heading-line-height, 1.1)", fontFamily: "'Essonnes', 'Playfair Display', serif", color: "var(--color-title)", margin: "0 0 32px" }}>
           {heading}
         </h2>

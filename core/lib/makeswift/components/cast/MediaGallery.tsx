@@ -1,6 +1,7 @@
 "use client"
 
-import { forwardRef, useState, type Ref } from "react"
+import { forwardRef, useState, useRef, useEffect, type Ref } from "react"
+import { ArrowLeft, ArrowRight } from "lucide-react"
 
 interface MediaItem {
   type?: "image" | "video"
@@ -67,17 +68,60 @@ const MediaGallery = forwardRef(function MediaGallery(
   ref: Ref<HTMLDivElement>
 ) {
   const [lightbox, setLightbox] = useState<number | null>(null)
-  const DEFAULT_MEDIA = [
-    { src: "https://storage.googleapis.com/s.mkswft.com/RmlsZToxYjc5OTY1Mi1hNTE0LTRjMDYtODMwZC1hNThiZTg0ZTIyNTE=/placeholder_picture.webp", alt: "Product Photo 1", type: "image" as const, caption: "Product Photo 1" },
-    { src: "https://storage.googleapis.com/s.mkswft.com/RmlsZToxYjc5OTY1Mi1hNTE0LTRjMDYtODMwZC1hNThiZTg0ZTIyNTE=/placeholder_picture.webp", alt: "Product Photo 2", type: "image" as const, caption: "Product Photo 2" },
-    { src: "https://storage.googleapis.com/s.mkswft.com/RmlsZToxYjc5OTY1Mi1hNTE0LTRjMDYtODMwZC1hNThiZTg0ZTIyNTE=/placeholder_picture.webp", alt: "Product Photo 3", type: "image" as const, caption: "Product Photo 3" },
-    { src: "https://storage.googleapis.com/s.mkswft.com/RmlsZToxYjc5OTY1Mi1hNTE0LTRjMDYtODMwZC1hNThiZTg0ZTIyNTE=/placeholder_picture.webp", alt: "Product Photo 4", type: "image" as const, caption: "Product Photo 4" },
+  const scrollRef = useRef<HTMLDivElement>(null)
+  const [canScrollLeft, setCanScrollLeft] = useState(false)
+  const [canScrollRight, setCanScrollRight] = useState(true)
+
+  const DEFAULT_MEDIA: MediaItem[] = [
+    { src: "https://storage.googleapis.com/s.mkswft.com/RmlsZToxYjc5OTY1Mi1hNTE0LTRjMDYtODMwZC1hNThiZTg0ZTIyNTE=/placeholder_picture.webp", type: "image", caption: "Product Photo 1" },
+    { src: "https://storage.googleapis.com/s.mkswft.com/RmlsZToxYjc5OTY1Mi1hNTE0LTRjMDYtODMwZC1hNThiZTg0ZTIyNTE=/placeholder_picture.webp", type: "image", caption: "Product Photo 2" },
+    { src: "https://storage.googleapis.com/s.mkswft.com/RmlsZToxYjc5OTY1Mi1hNTE0LTRjMDYtODMwZC1hNThiZTg0ZTIyNTE=/placeholder_picture.webp", type: "image", caption: "Product Photo 3" },
+    { src: "https://storage.googleapis.com/s.mkswft.com/RmlsZToxYjc5OTY1Mi1hNTE0LTRjMDYtODMwZC1hNThiZTg0ZTIyNTE=/placeholder_picture.webp", type: "image", caption: "Product Photo 4" },
+    { src: "", type: "video", caption: "Installation Video" },
   ]
   const list = items && items.length > 0 ? items : DEFAULT_MEDIA
+
+  const checkScroll = () => {
+    const el = scrollRef.current
+    if (!el) return
+    setCanScrollLeft(el.scrollLeft > 0)
+    setCanScrollRight(el.scrollLeft < el.scrollWidth - el.clientWidth - 1)
+  }
+
+  useEffect(() => {
+    const el = scrollRef.current
+    if (!el) return
+    checkScroll()
+    el.addEventListener("scroll", checkScroll)
+    window.addEventListener("resize", checkScroll)
+    return () => {
+      el.removeEventListener("scroll", checkScroll)
+      window.removeEventListener("resize", checkScroll)
+    }
+  }, [])
+
+  const scroll = (dir: "left" | "right") => {
+    const el = scrollRef.current
+    if (!el) return
+    const cardWidth = el.querySelector("div")?.offsetWidth ?? 320
+    const distance = dir === "left" ? -cardWidth * 2 : cardWidth * 2
+    const start = el.scrollLeft
+    const duration = 600
+    let startTime: number | null = null
+    const ease = (t: number) => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2
+    const animate = (time: number) => {
+      if (!startTime) startTime = time
+      const progress = Math.min((time - startTime) / duration, 1)
+      el.scrollLeft = start + distance * ease(progress)
+      if (progress < 1) requestAnimationFrame(animate)
+    }
+    requestAnimationFrame(animate)
+  }
+
   const hasGradient = !!(gradientFrom && gradientTo)
-  const overlayOpacity = typeof bgOpacity === 'number' ? bgOpacity / 100 : 0.85
+  const overlayOpacity = typeof bgOpacity === "number" ? bgOpacity / 100 : 0.85
   const sectionBackground = hasGradient
-    ? `linear-gradient(${gradientDirection || 'to bottom'}, ${gradientFrom}, ${gradientTo})`
+    ? `linear-gradient(${gradientDirection || "to bottom"}, ${gradientFrom}, ${gradientTo})`
     : bgColor || "#25262d"
 
   return (
@@ -93,44 +137,65 @@ const MediaGallery = forwardRef(function MediaGallery(
         <div className="absolute inset-0" style={{ zIndex: 1, background: sectionBackground, opacity: overlayOpacity }} />
       )}
       <div className="relative" style={{ zIndex: 10 }}>
-      <div className="site-container">
-        <h2 style={{ fontSize: "var(--h3-size)", fontWeight: "var(--heading-weight, 700)", lineHeight: "var(--heading-line-height, 1.1)", fontFamily: "'Essonnes', 'Playfair Display', serif", color: "var(--color-title)", margin: "0 0 32px" }}>
-          {heading}
-        </h2>
-
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16 }}>
-          {list.map((item, i) => (
-            <div
-              key={i}
-              onClick={() => setLightbox(i)}
-              style={{ cursor: "pointer", borderRadius: 8, overflow: "hidden", border: "1px solid rgba(255,255,255,0.1)" }}
-            >
-              {item.src ? (
-                item.type === "video" ? (
-                  <div style={{ position: "relative" }}>
-                    <img src={item.thumbnail || item.src} alt={item.caption} style={{ width: "100%", aspectRatio: "16/10", objectFit: "cover", display: "block" }} />
-                    <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", background: "rgba(0,0,0,0.3)" }}>
-                      <svg width="52" height="52" viewBox="0 0 24 24" fill="none">
-                        <circle cx="12" cy="12" r="11" fill="rgba(255,255,255,0.9)" />
-                        <polygon points="10,8 17,12 10,16" fill="var(--color-primary)" />
-                      </svg>
-                    </div>
-                  </div>
-                ) : (
-                  <img src={item.src} alt={item.caption} style={{ width: "100%", aspectRatio: "16/10", objectFit: "cover", display: "block" }} />
-                )
-              ) : (
-                <PlaceholderImage caption={item.caption} isVideo={item.type === "video"} />
-              )}
-              {item.caption && (
-                <div style={{ padding: "10px 12px", background: "#2d353c" }}>
-                  <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, color: "var(--color-content)", margin: 0 }}>{item.caption}</p>
-                </div>
-              )}
+        {/* Header with arrows — aligned to site-container */}
+        <div className="site-container" style={{ marginBottom: 32 }}>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+            <h2 style={{ fontSize: "var(--h3-size)", fontWeight: "var(--heading-weight, 700)", lineHeight: "var(--heading-line-height, 1.1)", fontFamily: "'Essonnes', 'Playfair Display', serif", color: "var(--color-title)", margin: 0 }}>
+              {heading}
+            </h2>
+            <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+              <button onClick={() => scroll("left")} disabled={!canScrollLeft} className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-foreground hover:border-primary hover:text-primary transition-colors disabled:opacity-30 disabled:cursor-not-allowed">
+                <ArrowLeft className="w-4 h-4" />
+              </button>
+              <button onClick={() => scroll("right")} disabled={!canScrollRight} className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-foreground hover:border-primary hover:text-primary transition-colors disabled:opacity-30 disabled:cursor-not-allowed">
+                <ArrowRight className="w-4 h-4" />
+              </button>
             </div>
-          ))}
+          </div>
         </div>
 
+        {/* Carousel — left edge aligns with site-container, bleeds right */}
+        <div style={{ paddingLeft: "max(64px, calc((100vw - 1600px) / 2 + 64px))" }}>
+          <div
+            ref={scrollRef}
+            className="flex gap-6 overflow-x-auto pr-16 [&::-webkit-scrollbar]:hidden"
+            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+          >
+            {list.map((item, i) => (
+              <div
+                key={i}
+                onClick={() => setLightbox(i)}
+                className="group flex-shrink-0 w-[320px] bg-card border border-border rounded-xl overflow-hidden hover:border-primary/40 transition-all duration-300 shadow-md shadow-black/20 hover:shadow-lg hover:shadow-black/30"
+                style={{ cursor: "pointer" }}
+              >
+                {item.src ? (
+                  item.type === "video" ? (
+                    <div style={{ position: "relative" }}>
+                      <img src={item.thumbnail || item.src} alt={item.caption} style={{ width: "100%", aspectRatio: "16/10", objectFit: "cover", display: "block" }} />
+                      <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", background: "rgba(0,0,0,0.3)" }}>
+                        <svg width="52" height="52" viewBox="0 0 24 24" fill="none">
+                          <circle cx="12" cy="12" r="11" fill="rgba(255,255,255,0.9)" />
+                          <polygon points="10,8 17,12 10,16" fill="var(--color-primary)" />
+                        </svg>
+                      </div>
+                    </div>
+                  ) : (
+                    <img src={item.src} alt={item.caption} className="w-full group-hover:scale-105 transition-transform duration-500" style={{ aspectRatio: "16/10", objectFit: "cover", display: "block" }} />
+                  )
+                ) : (
+                  <PlaceholderImage caption={item.caption} isVideo={item.type === "video"} />
+                )}
+                {item.caption && (
+                  <div style={{ padding: "10px 14px" }}>
+                    <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, color: "var(--color-content)", margin: 0 }}>{item.caption}</p>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Lightbox */}
         {lightbox !== null && (
           <div
             onClick={() => setLightbox(null)}
@@ -142,14 +207,17 @@ const MediaGallery = forwardRef(function MediaGallery(
               aria-label="Close"
             >×</button>
             <div style={{ maxWidth: "80vw", maxHeight: "80vh", textAlign: "center" }}>
-              <PlaceholderImage isVideo={list[lightbox]?.type === "video"} />
+              {list[lightbox]?.src ? (
+                <img src={list[lightbox].src} alt={list[lightbox]?.caption} style={{ maxWidth: "100%", maxHeight: "80vh", borderRadius: 8 }} />
+              ) : (
+                <PlaceholderImage isVideo={list[lightbox]?.type === "video"} />
+              )}
               {list[lightbox]?.caption && (
                 <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 14, color: "#fff", marginTop: 12 }}>{list[lightbox]?.caption}</p>
               )}
             </div>
           </div>
         )}
-      </div>
       </div>
     </div>
   )
