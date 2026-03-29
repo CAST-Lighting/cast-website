@@ -187,37 +187,28 @@ const ProductHero = forwardRef(function ProductHero(
               </div>
             </div>
 
-            {/* Action buttons — Add to Cart + heart on same row, Add to Quote below */}
-            <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-              <div style={{ display: "flex", gap: 10 }}>
-                <button className="sg-btn-solid-lg" style={{ justifyContent: "center", flex: 1 }}>Add To Cart</button>
-                <button style={{ width: 48, height: 48, border: "1.5px solid rgba(255,255,255,0.12)", borderRadius: 4, background: "#2d353c", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, transition: "border-color 200ms" }} aria-label="Add to wishlist">
+            {/* Action buttons — not full width, natural sizing */}
+            <div style={{ display: "flex", flexDirection: "column", gap: 10, alignItems: "flex-start" }}>
+              <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
+                <button className="sg-btn-solid-md" style={{ justifyContent: "center" }}>Add To Cart</button>
+                <button style={{ width: 44, height: 44, border: "1.5px solid rgba(255,255,255,0.12)", borderRadius: 4, background: "#2d353c", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, transition: "border-color 200ms" }} aria-label="Add to wishlist">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-content)" strokeWidth="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" /></svg>
                 </button>
                 {tradeProOnly && <span className="ph-tradepro-badge">TradePro Only</span>}
               </div>
-              <button className="sg-btn-outline-md" style={{ justifyContent: "center", width: "100%" }}>
-                Add To Quote
-              </button>
-            </div>
-
-            {/* TradePro badge */}
-            {tradeProOnly && (
-              <div style={{ marginTop: 12 }}>
-                <span className="ph-tradepro-badge">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" /></svg>
-                  TradePro Exclusive
-                </span>
+              <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
+                <button className="sg-btn-outline-md" style={{ justifyContent: "center" }}>Add To Quote</button>
+                <button className="sg-btn-outline-md" style={{ justifyContent: "center" }}>Track Price</button>
               </div>
-            )}
+            </div>
 
             {/* Login prompt */}
             <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, color: "var(--color-content)", marginTop: 16 }}>
               Already a customer? <a href="#" style={{ color: "var(--color-accent)" }}>Please login here</a> to favorite, save, or view order history for later reference.
             </p>
 
-            {/* Divider before description */}
-            <div style={{ height: 1, background: "#37474f", margin: "28px 0" }} />
+            {/* Thin separator between login prompt and description */}
+            <div style={{ height: 1, background: "rgba(255,255,255,0.08)", margin: "24px 0" }} />
 
             {/* Product Description section */}
             <h2 style={{ fontSize: "var(--h3-size)", fontWeight: "var(--heading-weight, 700)", lineHeight: "var(--heading-line-height, 1.1)", fontFamily: "'Essonnes', 'Playfair Display', serif", color: "var(--color-title)", margin: "0 0 24px" }}>
