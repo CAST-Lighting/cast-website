@@ -1,6 +1,7 @@
 "use client"
 import { forwardRef, useState, useRef, useEffect, type Ref } from "react"
 import { Star, ArrowLeft, ArrowRight } from "lucide-react"
+import { useCmsData } from "~/lib/makeswift/cms-context"
 
 const PLACEHOLDER_PERSON = "https://storage.googleapis.com/s.mkswft.com/RmlsZTo0MzUyZTgwOS1jZDk2LTQ3YWQtOGM0ZC1kZDdhYmRlODhkMDY=/placeholder_person.webp"
 
@@ -110,10 +111,26 @@ const ReviewsCarousel = forwardRef(function ReviewsCarousel(
   }: ReviewsCarouselProps,
   ref: Ref<HTMLElement>
 ) {
+  const cms = useCmsData()
+  const cmsReviews = cms?.type === 'product' ? cms.meta?.reviews : null
+
   const scrollRef = useRef<HTMLDivElement>(null)
   const [canScrollLeft, setCanScrollLeft] = useState(false)
   const [canScrollRight, setCanScrollRight] = useState(true)
-  const reviews = reviewsProp && reviewsProp.length > 0 ? reviewsProp : DEFAULT_REVIEWS
+
+  // CMS reviews → component reviews, with fallback to props then defaults
+  const cmsReviewsMapped: Review[] | null = cmsReviews && cmsReviews.length > 0
+    ? cmsReviews.map((r) => ({
+        name: r.author,
+        rating: r.rating,
+        quote: r.text,
+        location: r.date,
+      }))
+    : null
+
+  const reviews = reviewsProp && reviewsProp.length > 0
+    ? reviewsProp
+    : (cmsReviewsMapped ?? DEFAULT_REVIEWS)
 
   const checkScroll = () => {
     const el = scrollRef.current

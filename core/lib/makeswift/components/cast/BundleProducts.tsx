@@ -1,6 +1,7 @@
 "use client"
 
 import { forwardRef, type Ref } from "react"
+import { useCmsData } from "~/lib/makeswift/cms-context"
 
 interface BundleItem {
   image?: string
@@ -45,12 +46,25 @@ const BundleProducts = forwardRef(function BundleProducts(
   }: BundleProductsProps,
   ref: Ref<HTMLDivElement>
 ) {
+  const cms = useCmsData()
+  const cmsRelated = cms?.type === 'product' ? cms.meta?.relatedProducts : null
+
   const DEFAULT_ITEMS: BundleItem[] = [
     { name: "Accessory #1", price: "$49.99", badge: "Popular" },
     { name: "Accessory #2", price: "$39.99" },
     { name: "Accessory #3", price: "$35.35" },
   ]
-  const list = items && items.length > 0 ? items : DEFAULT_ITEMS
+
+  // CMS related products → bundle items, with fallback to props then defaults
+  const cmsItems: BundleItem[] | null = cmsRelated && cmsRelated.length > 0
+    ? cmsRelated.slice(0, 6).map((rp) => ({
+        name: rp.name,
+        price: rp.price,
+        image: rp.image,
+      }))
+    : null
+
+  const list = items && items.length > 0 ? items : (cmsItems ?? DEFAULT_ITEMS)
   const totalStr = list.reduce((sum, item) => sum + parseFloat((item.price || "$0").replace("$", "")), 0).toFixed(2)
   const hasGradient = !!(gradientFrom && gradientTo)
   const overlayOpacity = typeof bgOpacity === 'number' ? bgOpacity / 100 : 0.85

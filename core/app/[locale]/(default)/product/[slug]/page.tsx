@@ -98,6 +98,99 @@ export default async function Product({ params, searchParams }: Props) {
   }
 
   // Try Makeswift template first — if /product-page/ exists in Makeswift, use it
+  // Fetch full product data for CMS context
+  const searchParamsResolved = await searchParams;
+  const optionValueIdsForCms = Object.keys(searchParamsResolved)
+    .map((option) => ({
+      optionEntityId: Number(option),
+      valueEntityId: Number(searchParamsResolved[option]),
+    }))
+    .filter(
+      (option) => !Number.isNaN(option.optionEntityId) && !Number.isNaN(option.valueEntityId),
+    );
+
+  const cmsStreamableProduct = await getStreamableProduct(
+    {
+      entityId: productId,
+      optionValueIds: optionValueIdsForCms,
+      useDefaultOptionSelections: true,
+    },
+    customerAccessToken,
+  );
+
+  const cmsCurrencyCode = await getPreferredCurrencyCode();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const cmsPricingProduct = await getProductPricingAndRelatedProducts(
+    {
+      entityId: productId,
+      optionValueIds: optionValueIdsForCms,
+      useDefaultOptionSelections: true,
+      currencyCode: cmsCurrencyCode,
+    } as any,
+    customerAccessToken,
+  );
+
+  // Format price as a simple string for CMS context
+  let cmsPrice: string | undefined;
+  if (cmsPricingProduct?.prices) {
+    const p = cmsPricingProduct.prices;
+    const fmtNum = (v: number, cc: string) =>
+      new Intl.NumberFormat('en-US', { style: 'currency', currency: cc }).format(v);
+    if (p.priceRange.min.value !== p.priceRange.max.value) {
+      cmsPrice = `${fmtNum(p.priceRange.min.value, p.price.currencyCode)} – ${fmtNum(p.priceRange.max.value, p.price.currencyCode)}`;
+    } else if (p.salePrice && p.basePrice && p.salePrice.value !== p.basePrice.value) {
+      cmsPrice = fmtNum(p.price.value, p.price.currencyCode);
+    } else {
+      cmsPrice = fmtNum(p.price.value, p.price.currencyCode);
+    }
+  }
+
+  // Map images — replace {:size} placeholder with 960w
+  const fixBcUrl = (url: string) => url.replace('{:size}', '960w');
+  let cmsImages: { src: string; alt: string }[] = [];
+  if (cmsStreamableProduct) {
+    const allImages = removeEdgesAndNodes(cmsStreamableProduct.images)
+      .filter((img) => img.url !== cmsStreamableProduct.defaultImage?.url)
+      .map((img) => ({ src: fixBcUrl(img.url), alt: img.altText }));
+    if (cmsStreamableProduct.defaultImage) {
+      cmsImages = [
+        { src: fixBcUrl(cmsStreamableProduct.defaultImage.url), alt: cmsStreamableProduct.defaultImage.altText },
+        ...allImages,
+      ];
+    } else {
+      cmsImages = allImages;
+    }
+  }
+
+  // Map related products for CMS context
+  let cmsRelatedProducts: { name: string; price: string; image?: string; href: string }[] = [];
+  if (cmsPricingProduct) {
+    const relatedRaw = removeEdgesAndNodes(cmsPricingProduct.relatedProducts);
+    cmsRelatedProducts = relatedRaw.map((rp) => {
+      let rpPrice = '';
+      if (rp.prices?.price) {
+        rpPrice = new Intl.NumberFormat('en-US', {
+          style: 'currency',
+          currency: rp.prices.price.currencyCode,
+        }).format(rp.prices.price.value);
+      }
+      return {
+        name: rp.name,
+        price: rpPrice,
+        image: rp.defaultImage ? fixBcUrl(rp.defaultImage.url) : undefined,
+        href: rp.path,
+      };
+    });
+  }
+
+  // Map custom fields
+  const cmsCustomFields = cmsStreamableProduct
+    ? removeEdgesAndNodes(cmsStreamableProduct.customFields).map((f) => ({
+        name: f.name,
+        value: f.value,
+      }))
+    : [];
+
   const makeswiftPage = await CmsPageRenderer({
     templatePath: '/product-page',
     data: {
@@ -106,6 +199,19 @@ export default async function Product({ params, searchParams }: Props) {
       description: baseProduct.description,
       meta: {
         brand: baseProduct.brand?.name ?? undefined,
+        modelNumber: cmsStreamableProduct?.sku,
+        rating: baseProduct.reviewSummary?.averageRating,
+        reviewCount: baseProduct.reviewSummary?.numberOfReviews,
+        shortDescription: baseProduct.description
+          ? baseProduct.description.replace(/<[^>]*>/g, '').slice(0, 160)
+          : undefined,
+        inStock: cmsStreamableProduct?.inventory?.isInStock ?? false,
+        price: cmsPrice,
+        images: cmsImages,
+        bodyHtml: baseProduct.description,
+        relatedProducts: cmsRelatedProducts,
+        warranty: cmsStreamableProduct?.warranty ?? undefined,
+        customFields: cmsCustomFields,
       },
     },
   });

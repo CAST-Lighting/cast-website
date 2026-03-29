@@ -38,6 +38,28 @@ export interface CmsPageData {
     brand?: string
     /** Product: images */
     images?: { src: string; alt: string }[]
+    /** Product: model number / SKU */
+    modelNumber?: string
+    /** Product: rating (1-5) */
+    rating?: number
+    /** Product: review count */
+    reviewCount?: number
+    /** Product: short description */
+    shortDescription?: string
+    /** Product: in stock */
+    inStock?: boolean
+    /** Product: is TradePro only */
+    tradeProOnly?: boolean
+    /** Product: full HTML description */
+    bodyHtml?: string
+    /** Product: related products (for Parts Grid / Bundle) */
+    relatedProducts?: { name: string; price: string; image?: string; href: string }[]
+    /** Product: reviews */
+    reviews?: { author: string; rating: number; text: string; date?: string }[]
+    /** Product: warranty text */
+    warranty?: string
+    /** Product: custom fields */
+    customFields?: { name: string; value: string }[]
     /** Category: product count */
     productCount?: number
     /** Search: result count */

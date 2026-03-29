@@ -1,6 +1,7 @@
 "use client"
 
 import { forwardRef, useState, type Ref } from "react"
+import { useCmsData } from "~/lib/makeswift/cms-context"
 
 interface ProductHeroProps {
   className?: string
@@ -77,16 +78,35 @@ const ProductHero = forwardRef(function ProductHero(
   }: ProductHeroProps,
   ref: Ref<HTMLDivElement>
 ) {
+  const cms = useCmsData()
+  const m = cms?.type === 'product' ? cms.meta : null
+
   const [activeImg, setActiveImg] = useState(0)
   const [qty, setQty] = useState(1)
-  const imgList = images && images.length > 0 ? images : [{}, {}, {}, {}]
+
+  // CMS data with fallback to Makeswift props
+  const resolvedProductName = m ? (cms?.heading ?? productName) : productName
+  const resolvedModelNumber = m?.modelNumber ?? modelNumber
+  const resolvedRating = m?.rating ?? rating
+  const resolvedReviewCount = m?.reviewCount ?? reviewCount
+  const resolvedShortDescription = m?.shortDescription ?? shortDescription
+  const resolvedPrice = m?.price ?? price
+  const resolvedInStock = m?.inStock ?? inStock
+  const resolvedBodyText = m?.bodyHtml ?? bodyText
+  const resolvedImages = m?.images && m.images.length > 0
+    ? m.images.map((img) => ({ src: img.src, alt: img.alt }))
+    : images
+
+  const imgList = resolvedImages && resolvedImages.length > 0 ? resolvedImages : [{}, {}, {}, {}]
   const hasGradient = !!(gradientFrom && gradientTo)
   const overlayOpacity = typeof bgOpacity === 'number' ? bgOpacity / 100 : 0.85
   const sectionBackground = hasGradient
     ? `linear-gradient(${gradientDirection || 'to bottom'}, ${gradientFrom}, ${gradientTo})`
     : bgColor || "#25262d"
 
-  const body = bodyText || DEFAULT_BODY
+  const rawBody = resolvedBodyText || DEFAULT_BODY
+  const isHtml = rawBody.includes('<')
+  const body = rawBody
   const bullets = bulletPoints && bulletPoints.length > 0 ? bulletPoints : DEFAULT_BULLETS
 
   return (
@@ -141,7 +161,7 @@ const ProductHero = forwardRef(function ProductHero(
             {/* Main image */}
             <div style={{ flex: 1, minWidth: 0 }}>
               {imgList[activeImg]?.src
-                ? <img src={imgList[activeImg].src} alt={imgList[activeImg].alt || productName} style={{ width: "100%", aspectRatio: "1", objectFit: "cover", borderRadius: 8 }} />
+                ? <img src={imgList[activeImg].src} alt={imgList[activeImg].alt || resolvedProductName} style={{ width: "100%", aspectRatio: "1", objectFit: "cover", borderRadius: 8 }} />
                 : <ImagePlaceholder />
               }
             </div>
@@ -151,26 +171,26 @@ const ProductHero = forwardRef(function ProductHero(
           <div style={{ flex: 1, minWidth: 0 }}>
             {/* Product name FIRST */}
             <h1 style={{ fontSize: "var(--h2-size)", fontWeight: "var(--heading-weight, 700)", lineHeight: "var(--heading-line-height, 1.1)", fontFamily: "'Essonnes', 'Playfair Display', serif", color: "var(--color-title)", margin: "0 0 8px" }}>
-              {productName}
+              {resolvedProductName}
             </h1>
 
             {/* Model number SECOND */}
-            <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, color: "var(--color-content)", margin: "0 0 12px" }}>Model #: {modelNumber}</p>
+            <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, color: "var(--color-content)", margin: "0 0 12px" }}>Model #: {resolvedModelNumber}</p>
 
             {/* Rating */}
             <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 16 }}>
-              <Stars count={rating} />
-              <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, color: "var(--color-accent)", fontWeight: 600 }}>{rating} · {reviewCount} Ratings</span>
+              <Stars count={resolvedRating} />
+              <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, color: "var(--color-accent)", fontWeight: 600 }}>{resolvedRating} · {resolvedReviewCount} Ratings</span>
             </div>
 
             {/* Short description */}
-            <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 16, color: "var(--color-content)", lineHeight: 1.6, margin: "0 0 20px" }}>{shortDescription}</p>
+            <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 16, color: "var(--color-content)", lineHeight: 1.6, margin: "0 0 20px" }}>{resolvedShortDescription}</p>
 
             {/* Price + stock */}
             <div style={{ display: "flex", alignItems: "baseline", gap: 12, marginBottom: 8 }}>
-              <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 32, fontWeight: 700, color: "var(--color-title)" }}>{price}</span>
-              <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 14, fontWeight: 600, color: inStock ? "#10b981" : "#ef4444" }}>
-                {inStock ? "In Stock" : "Out of Stock"}
+              <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 32, fontWeight: 700, color: "var(--color-title)" }}>{resolvedPrice}</span>
+              <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 14, fontWeight: 600, color: resolvedInStock ? "#10b981" : "#ef4444" }}>
+                {resolvedInStock ? "In Stock" : "Out of Stock"}
               </span>
             </div>
 
@@ -215,9 +235,13 @@ const ProductHero = forwardRef(function ProductHero(
             </h2>
 
             {/* Long description paragraphs */}
-            {body.split("\n\n").map((para, i) => (
-              <p key={i} style={{ fontFamily: "'Barlow', sans-serif", fontSize: 16, color: "var(--color-content)", lineHeight: 1.7, margin: "0 0 18px" }}>{para}</p>
-            ))}
+            {isHtml ? (
+              <div style={{ fontFamily: "'Barlow', sans-serif", fontSize: 16, color: "var(--color-content)", lineHeight: 1.7 }} dangerouslySetInnerHTML={{ __html: body }} />
+            ) : (
+              body.split("\n\n").map((para, i) => (
+                <p key={i} style={{ fontFamily: "'Barlow', sans-serif", fontSize: 16, color: "var(--color-content)", lineHeight: 1.7, margin: "0 0 18px" }}>{para}</p>
+              ))
+            )}
 
             {/* Bullet points */}
             {bullets.length > 0 && (

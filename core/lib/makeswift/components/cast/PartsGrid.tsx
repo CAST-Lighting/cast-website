@@ -2,6 +2,7 @@
 
 import { forwardRef, useRef, useState, useEffect, type Ref } from "react"
 import { ArrowLeft, ArrowRight } from "lucide-react"
+import { useCmsData } from "~/lib/makeswift/cms-context"
 
 interface Part {
   image?: string
@@ -45,6 +46,9 @@ const PartsGrid = forwardRef(function PartsGrid(
   }: PartsGridProps,
   ref: Ref<HTMLDivElement>
 ) {
+  const cms = useCmsData()
+  const cmsRelated = cms?.type === 'product' ? cms.meta?.relatedProducts : null
+
   const scrollRef = useRef<HTMLDivElement>(null)
   const [canScrollLeft, setCanScrollLeft] = useState(false)
   const [canScrollRight, setCanScrollRight] = useState(true)
@@ -56,7 +60,18 @@ const PartsGrid = forwardRef(function PartsGrid(
     { name: "Lens Cover Assembly", partNumber: "LCA-004", price: "$15.99" },
     { name: "Mounting Bracket", partNumber: "MBK-005", price: "$11.99" },
   ]
-  const list = parts && parts.length > 0 ? parts : DEFAULT_PARTS
+
+  // CMS related products → parts, with fallback to props then defaults
+  const cmsParts: Part[] | null = cmsRelated && cmsRelated.length > 0
+    ? cmsRelated.map((rp) => ({
+        name: rp.name,
+        price: rp.price,
+        image: rp.image,
+        href: rp.href,
+      }))
+    : null
+
+  const list = parts && parts.length > 0 ? parts : (cmsParts ?? DEFAULT_PARTS)
 
   const checkScroll = () => {
     const el = scrollRef.current

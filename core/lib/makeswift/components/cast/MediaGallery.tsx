@@ -2,6 +2,7 @@
 
 import { forwardRef, useState, useRef, useEffect, type Ref } from "react"
 import { ArrowLeft, ArrowRight } from "lucide-react"
+import { useCmsData } from "~/lib/makeswift/cms-context"
 
 interface MediaItem {
   type?: "image" | "video"
@@ -67,10 +68,22 @@ const MediaGallery = forwardRef(function MediaGallery(
   }: MediaGalleryProps,
   ref: Ref<HTMLDivElement>
 ) {
+  const cms = useCmsData()
+  const cmsImages = cms?.type === 'product' ? cms.meta?.images : null
+
   const [lightbox, setLightbox] = useState<number | null>(null)
   const scrollRef = useRef<HTMLDivElement>(null)
   const [canScrollLeft, setCanScrollLeft] = useState(false)
   const [canScrollRight, setCanScrollRight] = useState(true)
+
+  // CMS images → media items, with fallback to props then defaults
+  const cmsMediaItems: MediaItem[] | null = cmsImages && cmsImages.length > 0
+    ? cmsImages.map((img) => ({
+        type: 'image' as const,
+        src: img.src,
+        caption: img.alt,
+      }))
+    : null
 
   const DEFAULT_MEDIA: MediaItem[] = [
     { src: "https://storage.googleapis.com/s.mkswft.com/RmlsZToxYjc5OTY1Mi1hNTE0LTRjMDYtODMwZC1hNThiZTg0ZTIyNTE=/placeholder_picture.webp", type: "image", caption: "Product Photo 1" },
@@ -79,7 +92,7 @@ const MediaGallery = forwardRef(function MediaGallery(
     { src: "https://storage.googleapis.com/s.mkswft.com/RmlsZToxYjc5OTY1Mi1hNTE0LTRjMDYtODMwZC1hNThiZTg0ZTIyNTE=/placeholder_picture.webp", type: "image", caption: "Product Photo 4" },
     { src: "", type: "video", caption: "Installation Video" },
   ]
-  const list = items && items.length > 0 ? items : DEFAULT_MEDIA
+  const list = items && items.length > 0 ? items : (cmsMediaItems ?? DEFAULT_MEDIA)
 
   const checkScroll = () => {
     const el = scrollRef.current
