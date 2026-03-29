@@ -27,13 +27,27 @@ export default async function CatchAllPage({ params }: PageProps) {
 export async function generateMetadata({ params }: PageProps) {
   const { locale, rest } = await params;
   const path = rest ? `/${rest.join('/')}` : '/';
+  const isHomepage = path === '/';
 
   const snapshot = await getPageSnapshot({ path, locale });
 
+  const snapshotTitle = (snapshot as Record<string, unknown>)?.title as string | undefined;
+  const snapshotDesc = (snapshot as Record<string, unknown>)?.description as string | undefined;
+
+  // Homepage gets branded defaults when Makeswift doesn't provide them
+  if (isHomepage) {
+    return {
+      title: snapshotTitle || 'CAST Lighting | Professional Outdoor & Landscape Lighting',
+      description:
+        snapshotDesc ||
+        'Professional-grade landscape lighting built to last. Shop brass & copper fixtures, transformers, and accessories. Trusted by contractors since 2001.',
+    };
+  }
+
   return snapshot
     ? {
-        title: (snapshot as Record<string, unknown>).title as string || 'Page',
-        description: (snapshot as Record<string, unknown>).description as string,
+        title: snapshotTitle || 'Page',
+        description: snapshotDesc,
       }
     : {};
 }
