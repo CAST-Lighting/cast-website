@@ -3,6 +3,80 @@
 @tailwind utilities;
 
 /* ============================================================
+   SEARCH & FACETED PAGES — CAST dark theme overrides
+   Ensures Vibes/Soul components match the CAST brand
+   ============================================================ */
+
+/* Product card theming for dark background */
+:root {
+  --product-card-light-background: hsl(200 16% 20%);
+  --product-card-light-title: hsl(0 0% 96%);
+  --product-card-light-subtitle: hsl(0 0% 80%);
+  --product-card-light-message: hsl(0 0% 65%);
+  --product-card-light-offset: hsl(230 8% 16%);
+  --product-card-font-family: 'Barlow', sans-serif;
+}
+
+/* Search page heading — Essonnes */
+.group\/products-list-section h1 {
+  font-family: 'Essonnes', 'Playfair Display', serif !important;
+  color: #fff !important;
+}
+.group\/products-list-section h1 span {
+  color: rgba(255,255,255,0.4) !important;
+}
+
+/* Filter sidebar — prevent overflow / truncation */
+.group\/products-list-section aside {
+  overflow: visible;
+  min-width: 0;
+}
+.group\/products-list-section aside > div {
+  overflow-y: auto;
+  max-height: calc(100vh - 120px);
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.15) transparent;
+}
+
+/* Toggle group filter pills — dark theme */
+.group\/products-list-section [role="group"] button,
+.group\/products-list-section [data-state] {
+  font-family: 'Barlow', sans-serif;
+  font-size: 13px;
+}
+
+/* Breadcrumbs */
+.group\/products-list-section nav[aria-label="Breadcrumb"] a,
+.group\/products-list-section nav[aria-label="Breadcrumb"] li {
+  font-family: 'Barlow', sans-serif;
+  color: rgba(255,255,255,0.5);
+}
+.group\/products-list-section nav[aria-label="Breadcrumb"] a:hover {
+  color: #007CB0;
+}
+
+/* Product card text */
+.group\/products-list-section article span {
+  font-family: 'Barlow', sans-serif;
+}
+
+/* Sort dropdown */
+.group\/products-list-section select,
+.group\/products-list-section button {
+  font-family: 'Barlow', sans-serif;
+}
+
+/* Accordion labels in filter panel */
+.group\/products-list-section [data-orientation="vertical"] h3 button {
+  font-family: 'Barlow', sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 12px;
+  color: rgba(255,255,255,0.7);
+}
+
+/* ============================================================
    LOVABLE / SHADCN CSS VARIABLES — required for Tailwind color classes
    bg-background, bg-card, text-foreground, text-primary, etc.
    ============================================================ */
@@ -632,11 +706,11 @@
   --error: 0 100% 60%;
   --warning: 40 100% 60%;
   --info: 220 70% 45%;
-  --contrast-100: 0 0% 93%;
-  --contrast-200: 0 0% 82%;
-  --contrast-300: 0 0% 70%;
-  --contrast-400: 0 0% 54%;
-  --contrast-500: 0 0% 34%;
+  --contrast-100: 220 10% 22%;
+  --contrast-200: 210 12% 30%;
+  --contrast-300: 200 15% 50%;
+  --contrast-400: 200 12% 62%;
+  --contrast-500: 200 10% 18%;
   --font-variation-settings-body: 'slnt' 0;
   --font-variation-settings-heading: 'slnt' 0;
   --font-size-xs: 0.75rem;
