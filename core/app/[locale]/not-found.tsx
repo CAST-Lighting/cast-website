@@ -7,7 +7,7 @@ import '~/lib/makeswift/components';
 
 export default async function NotFound() {
   const locale = await getLocale();
-  const snapshot = await getPageSnapshot({ path: '/404', locale });
+  const snapshot = await getPageSnapshot({ path: '/page-not-found', locale });
 
   if (snapshot == null) {
     // Fallback until a /404 page is created in Makeswift
