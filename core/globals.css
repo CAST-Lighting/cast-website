@@ -9,12 +9,54 @@
 
 /* Product card theming for dark background */
 :root {
-  --product-card-light-background: hsl(200 16% 20%);
-  --product-card-light-title: hsl(0 0% 96%);
-  --product-card-light-subtitle: hsl(0 0% 80%);
-  --product-card-light-message: hsl(0 0% 65%);
+  --product-card-light-background: hsl(200 16% 22%);
+  --product-card-light-title: #fff;
+  --product-card-light-subtitle: rgba(255,255,255,0.7);
+  --product-card-light-message: rgba(255,255,255,0.55);
   --product-card-light-offset: hsl(230 8% 16%);
   --product-card-font-family: 'Barlow', sans-serif;
+}
+
+/* Product card image backgrounds — dark surface, not white */
+.group\/products-list-section article .rounded-xl,
+.group\/products-list-section article .rounded-2xl {
+  background-color: hsl(200 16% 22%) !important;
+}
+
+/* Price labels */
+.group\/products-list-section article [data-price],
+.group\/products-list-section article span[class*="price"] {
+  color: #fff !important;
+  font-family: 'Barlow', sans-serif;
+  font-weight: 700;
+}
+
+/* Product titles on cards */
+.group\/products-list-section article .font-semibold {
+  color: #fff !important;
+  font-family: 'Barlow', sans-serif !important;
+}
+
+/* Pagination buttons */
+.group\/products-list-section nav[aria-label*="agination"] a,
+.group\/products-list-section nav[aria-label*="agination"] button,
+.group\/products-list-section [class*="pagination"] a {
+  font-family: 'Barlow', sans-serif !important;
+  font-weight: 600 !important;
+  border: 2px solid rgba(175,229,253,0.4) !important;
+  color: #fff !important;
+  background: transparent !important;
+  border-radius: 0 !important;
+}
+.group\/products-list-section nav[aria-label*="agination"] a:hover,
+.group\/products-list-section nav[aria-label*="agination"] button:hover {
+  background: rgba(175,229,253,0.15) !important;
+  border-color: #fff !important;
+}
+.group\/products-list-section nav[aria-label*="agination"] a[aria-current="page"] {
+  background: #007CB0 !important;
+  border-color: #007CB0 !important;
+  color: #fff !important;
 }
 
 /* Search page heading — Essonnes */
@@ -968,11 +1010,11 @@
   --error: 0 100% 60%;
   --warning: 40 100% 60%;
   --info: 220 70% 45%;
-  --contrast-100: 220 10% 22%;
-  --contrast-200: 210 12% 30%;
-  --contrast-300: 200 15% 50%;
-  --contrast-400: 200 12% 62%;
-  --contrast-500: 200 10% 18%;
+  --contrast-100: 0 0% 93%;
+  --contrast-200: 0 0% 82%;
+  --contrast-300: 0 0% 70%;
+  --contrast-400: 0 0% 54%;
+  --contrast-500: 0 0% 34%;
   --font-variation-settings-body: 'slnt' 0;
   --font-variation-settings-heading: 'slnt' 0;
   --font-size-xs: 0.75rem;
