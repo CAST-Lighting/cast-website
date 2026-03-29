@@ -694,10 +694,28 @@
 
 /* Apply/Go button (price filter) — sg-btn-solid-dark */
 .group\/products-list-section aside button.shrink-0 {
-  --button-secondary-background: #ffffff;
-  --button-secondary-text: var(--color-primary, #007CB0);
-  --button-secondary-border: transparent;
-  --button-secondary-background-hover: #afe5fd;
+  --button-secondary-background: #ffffff !important;
+  --button-secondary-text: var(--color-primary, #007CB0) !important;
+  --button-secondary-border: transparent !important;
+  --button-secondary-background-hover: #afe5fd !important;
+  border-radius: 0 !important;
+}
+
+/* Min/Max price inputs — square corners to match brand */
+.group\/products-list-section aside input[type="number"] {
+  border-radius: 0 !important;
+}
+
+/* Reset filters button — outline-dark, no fill on hover */
+.group\/products-list-section aside .sticky > button:last-of-type {
+  --button-secondary-background: transparent !important;
+  --button-secondary-text: #ffffff !important;
+  --button-secondary-border: #afe5fd !important;
+  --button-secondary-background-hover: transparent !important;
+  border-radius: 0 !important;
+}
+.group\/products-list-section aside .sticky > button:last-of-type::after {
+  display: none !important;
 }
 
 /* Both action buttons in sidebar — brand font + uppercase */
@@ -710,17 +728,4 @@
   border-radius: 0 !important;
 }
 
-/* Reset filters button → sg-btn-outline-dark */
-.group\/products-list-section aside .sticky > button:last-of-type {
-  background: transparent !important;
-  color: #ffffff !important;
-  border: 2px solid #afe5fd !important;
-  --button-secondary-background: transparent;
-  --button-secondary-text: #ffffff;
-  --button-secondary-border: #afe5fd;
-  --button-secondary-background-hover: rgba(175,229,253,0.15);
-}
-.group\/products-list-section aside .sticky > button:last-of-type:hover {
-  background: rgba(175,229,253,0.15) !important;
-  border-color: #ffffff !important;
-}
+
