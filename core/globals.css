@@ -653,10 +653,9 @@
 }
 
 /* ============================================================
-   SEARCH LEFT PANEL ONLY — Brand guide fixes
-   Scoped to aside within products-list-section
+   SEARCH LEFT PANEL — CAST Brand Guide (exact)
+   Scoped to aside within products-list-section ONLY
    Does NOT touch product cards or main grid
-   Kill all Vibes/Soul animation, apply sg-btn styles directly
    ============================================================ */
 
 /* Kill the Vibes ::after slide animation on ALL sidebar buttons */
@@ -665,69 +664,136 @@
   display: none !important;
 }
 
-/* Toggle pills (Brand, Is Featured) — allow text wrap */
+/* ── Section heading "Filters" ── */
+.group\/products-list-section aside h2 {
+  font-family: 'Barlow', sans-serif !important;
+  font-weight: 700 !important;
+  font-size: 14px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.12em !important;
+  color: var(--color-accent, #7ebee8) !important;
+}
+
+/* ── Accordion headers (Brand, Price, Is featured, Origin) ── */
+.group\/products-list-section aside h3,
+.group\/products-list-section aside h3 button {
+  font-family: 'Barlow', sans-serif !important;
+  font-weight: 600 !important;
+  font-size: 13px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.08em !important;
+  color: #ffffff !important;
+}
+
+/* ── Toggle pills (Brand names, Is Featured) — sg-btn-outline-dark-sm ── */
 .group\/products-list-section aside button.rounded-full {
   white-space: normal !important;
   height: auto !important;
-  min-height: 48px;
+  min-height: 40px;
   line-height: 1.3;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 6px 14px !important;
+  font-size: 13px !important;
   background: transparent !important;
   color: #ffffff !important;
-  border: 1px solid rgba(255,255,255,0.3) !important;
-  border-radius: 9999px !important;
-  font-family: 'Barlow', sans-serif !important;
-  transition: background 200ms, border-color 200ms !important;
-}
-.group\/products-list-section aside button.rounded-full:hover {
-  background: rgba(0,124,176,0.2) !important;
-  border-color: #007CB0 !important;
-}
-.group\/products-list-section aside button.rounded-full[data-state="on"],
-.group\/products-list-section aside button.rounded-full[aria-pressed="true"] {
-  background: #007CB0 !important;
-  border-color: #007CB0 !important;
-  color: #fff !important;
-}
-
-/* Price number inputs — visible border, square */
-.group\/products-list-section aside input[type="number"] {
-  border: 1px solid rgba(255,255,255,0.2) !important;
-  border-radius: 0 !important;
-}
-
-/* Apply button (price) — sg-btn-solid-dark-sm exact */
-.group\/products-list-section aside button.shrink-0 {
-  background: #ffffff !important;
-  color: var(--color-primary, #007CB0) !important;
-  border: 2px solid transparent !important;
-  border-radius: 0 !important;
   font-family: 'Barlow', sans-serif !important;
   font-weight: 600 !important;
   text-transform: uppercase !important;
   letter-spacing: 0.05em !important;
-  transition: background 200ms !important;
+  border: 2px solid #afe5fd !important;
+  border-radius: 0 !important;
+  cursor: pointer !important;
+  text-decoration: none !important;
+  transition: background 200ms ease, border-color 200ms ease !important;
+}
+.group\/products-list-section aside button.rounded-full:hover {
+  background: rgba(175,229,253,0.15) !important;
+  border-color: #ffffff !important;
+}
+.group\/products-list-section aside button.rounded-full[data-state="on"],
+.group\/products-list-section aside button.rounded-full[aria-pressed="true"] {
+  background: #ffffff !important;
+  color: var(--color-primary, #007CB0) !important;
+  border-color: transparent !important;
+}
+.group\/products-list-section aside button.rounded-full[data-state="on"]:hover,
+.group\/products-list-section aside button.rounded-full[aria-pressed="true"]:hover {
+  background: #afe5fd !important;
+}
+
+/* ── Price inputs — Barlow, dark bg, square, visible border ── */
+.group\/products-list-section aside input[type="number"] {
+  font-family: 'Barlow', sans-serif !important;
+  font-weight: 400 !important;
+  font-size: 14px !important;
+  background: hsl(200 16% 20%) !important;
+  border: 2px solid rgba(255,255,255,0.2) !important;
+  border-radius: 0 !important;
+  color: #fff !important;
+  padding: 8px 12px !important;
+}
+.group\/products-list-section aside input[type="number"]:focus {
+  border-color: #afe5fd !important;
+  outline: none !important;
+}
+.group\/products-list-section aside input[type="number"]::placeholder {
+  color: rgba(255,255,255,0.4) !important;
+}
+
+/* ── Apply button — sg-btn-solid-dark-sm exact ── */
+.group\/products-list-section aside button.shrink-0 {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 8px 16px !important;
+  font-size: 13px !important;
+  background: #ffffff !important;
+  color: var(--color-primary, #007CB0) !important;
+  font-family: 'Barlow', sans-serif !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  border: 2px solid transparent !important;
+  border-radius: 0 !important;
+  cursor: pointer !important;
+  text-decoration: none !important;
+  transition: background 200ms ease, color 200ms ease !important;
 }
 .group\/products-list-section aside button.shrink-0:hover {
   background: #afe5fd !important;
 }
 
-/* Reset filters — sg-btn-outline-dark-md exact */
+/* ── Reset filters — sg-btn-outline-dark-md exact ── */
 .group\/products-list-section aside .sticky > button:last-of-type {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 10px 22px !important;
+  font-size: 15px !important;
   background: transparent !important;
   color: #ffffff !important;
-  border: 2px solid #afe5fd !important;
-  border-radius: 0 !important;
   font-family: 'Barlow', sans-serif !important;
   font-weight: 600 !important;
-  font-size: 15px !important;
   text-transform: uppercase !important;
   letter-spacing: 0.05em !important;
-  padding: 10px 22px !important;
-  transition: background 200ms, border-color 200ms !important;
+  border: 2px solid #afe5fd !important;
+  border-radius: 0 !important;
+  cursor: pointer !important;
+  text-decoration: none !important;
+  transition: background 200ms ease, border-color 200ms ease !important;
 }
 .group\/products-list-section aside .sticky > button:last-of-type:hover {
   background: rgba(175,229,253,0.15) !important;
   border-color: #ffffff !important;
+}
+
+/* ── Labels and misc text in aside — Barlow ── */
+.group\/products-list-section aside label,
+.group\/products-list-section aside span,
+.group\/products-list-section aside p {
+  font-family: 'Barlow', sans-serif !important;
 }
 
 
