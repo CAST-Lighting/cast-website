@@ -24,9 +24,15 @@
   border-radius: 10px !important;
   overflow: hidden !important;
   padding-bottom: 8px !important;
+  max-width: 100% !important;
 }
 .group\/products-list-section article:hover {
   border-color: rgba(0,124,176,0.4) !important;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.25) !important;
+}
+/* Reduce image area — square instead of 5:6 to leave room for text */
+.group\/products-list-section article [class*="aspect-[5/6]"] {
+  aspect-ratio: 1 / 1 !important;
 }
 .group\/products-list-section article .rounded-xl,
 .group\/products-list-section article .rounded-2xl,
@@ -37,7 +43,15 @@
 /* Text area padding below image */
 .group\/products-list-section article .mt-2,
 .group\/products-list-section article [class*="mt-2"][class*="flex"] {
-  padding: 12px 14px 8px !important;
+  padding: 14px 16px 10px !important;
+  min-height: 100px !important;
+}
+/* Ensure title is visible and sized properly */
+.group\/products-list-section article .font-semibold {
+  font-size: 15px !important;
+  line-height: 1.35 !important;
+  color: #fff !important;
+  -webkit-line-clamp: 2 !important;
 }
 
 /* Price labels */
