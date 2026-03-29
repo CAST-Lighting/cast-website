@@ -125,15 +125,10 @@ const ProductHero = forwardRef(function ProductHero(
       <div className="site-container">
         <div className="ph-layout" style={{ display: "flex", gap: 56, alignItems: "flex-start" }}>
 
-          {/* Left: Image gallery — sticky scroll */}
-          <div className="ph-gallery" style={{ flex: "0 0 480px", maxWidth: 480, position: "sticky", top: 100, alignSelf: "flex-start" }}>
-            <div style={{ marginBottom: 12 }}>
-              {imgList[activeImg]?.src
-                ? <img src={imgList[activeImg].src} alt={imgList[activeImg].alt || productName} style={{ width: "100%", aspectRatio: "1", objectFit: "cover", borderRadius: 8 }} />
-                : <ImagePlaceholder />
-              }
-            </div>
-            <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+          {/* Left: Image gallery — sticky scroll, thumbnails vertical on left */}
+          <div className="ph-gallery" style={{ flex: "0 0 520px", maxWidth: 520, position: "sticky", top: 100, alignSelf: "flex-start", display: "flex", gap: 12 }}>
+            {/* Vertical thumbnail strip */}
+            <div style={{ display: "flex", flexDirection: "column", gap: 8, flexShrink: 0 }}>
               {imgList.map((img, i) => (
                 <button key={i} className={`ph-thumb${activeImg === i ? " active" : ""}`} onClick={() => setActiveImg(i)} aria-label={`Image ${i + 1}`}>
                   {img?.src
@@ -142,6 +137,13 @@ const ProductHero = forwardRef(function ProductHero(
                   }
                 </button>
               ))}
+            </div>
+            {/* Main image */}
+            <div style={{ flex: 1, minWidth: 0 }}>
+              {imgList[activeImg]?.src
+                ? <img src={imgList[activeImg].src} alt={imgList[activeImg].alt || productName} style={{ width: "100%", aspectRatio: "1", objectFit: "cover", borderRadius: 8 }} />
+                : <ImagePlaceholder />
+              }
             </div>
           </div>
 
