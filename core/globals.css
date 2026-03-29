@@ -761,6 +761,9 @@
   text-decoration: none !important;
   transition: background 200ms ease, color 200ms ease !important;
 }
+.group\/products-list-section aside button.shrink-0::after {
+  display: none !important;
+}
 .group\/products-list-section aside button.shrink-0:hover {
   background: #afe5fd !important;
 }
@@ -783,6 +786,9 @@
   cursor: pointer !important;
   text-decoration: none !important;
   transition: background 200ms ease, border-color 200ms ease !important;
+}
+.group\/products-list-section aside .sticky > button:last-of-type::after {
+  display: none !important;
 }
 .group\/products-list-section aside .sticky > button:last-of-type:hover {
   background: rgba(175,229,253,0.15) !important;
