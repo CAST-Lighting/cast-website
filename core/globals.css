@@ -134,51 +134,140 @@
   background: #007CB0 !important;
 }
 
-/* Buttons in filter panel — CAST brand */
-.group\/products-list-section aside button:not([role="group"] button) {
-  font-family: 'Barlow', sans-serif;
-  font-weight: 600;
-  font-size: 13px;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-/* "Apply" / action buttons */
+/* ── ALL BUTTONS on search/faceted pages — CAST Brand Guide (dark bg) ── */
+
+/* Primary action buttons (Apply, Submit, Filter) → sg-btn-solid-dark pattern */
+.group\/products-list-section button[type="submit"],
+.group\/products-list-section form button,
 .group\/products-list-section aside button[type="submit"],
-.group\/products-list-section aside form button {
-  background: #007CB0;
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  padding: 8px 16px;
-  cursor: pointer;
-  transition: background 200ms;
+.group\/products-list-section aside form button,
+.group\/products-list-section button[class*="primary"],
+.group\/products-list-section a[class*="primary"] {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 10px 22px !important;
+  font-family: 'Barlow', sans-serif !important;
+  font-size: 15px !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  background: #ffffff !important;
+  color: var(--color-primary, #007CB0) !important;
+  border: 2px solid transparent !important;
+  border-radius: 0 !important;
+  cursor: pointer !important;
+  text-decoration: none !important;
+  transition: background 200ms ease, color 200ms ease !important;
 }
+.group\/products-list-section button[type="submit"]:hover,
+.group\/products-list-section form button:hover,
 .group\/products-list-section aside button[type="submit"]:hover,
-.group\/products-list-section aside form button:hover {
-  background: #005f8a;
+.group\/products-list-section aside form button:hover,
+.group\/products-list-section button[class*="primary"]:hover,
+.group\/products-list-section a[class*="primary"]:hover {
+  background: #afe5fd !important;
 }
-/* "Reset" / ghost buttons */
-.group\/products-list-section aside a[href*="search"],
-.group\/products-list-section aside button[class*="reset"],
-.group\/products-list-section aside button[class*="ghost"],
-.group\/products-list-section aside button[class*="secondary"] {
-  font-family: 'Barlow', sans-serif;
-  font-weight: 600;
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: #007CB0;
-  border: 1px solid rgba(0,124,176,0.3);
-  border-radius: 6px;
-  padding: 6px 14px;
-  background: transparent;
-  transition: all 200ms;
+
+/* Secondary / outline buttons (Reset Filters, etc.) → sg-btn-outline-dark pattern */
+.group\/products-list-section aside a,
+.group\/products-list-section button[class*="secondary"],
+.group\/products-list-section button[class*="ghost"],
+.group\/products-list-section button[class*="reset"],
+.group\/products-list-section aside > a,
+.group\/products-list-section aside > div > a {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 10px 22px !important;
+  font-family: 'Barlow', sans-serif !important;
+  font-size: 15px !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  background: transparent !important;
+  color: #ffffff !important;
+  border: 2px solid #afe5fd !important;
+  border-radius: 0 !important;
+  cursor: pointer !important;
+  text-decoration: none !important;
+  transition: background 200ms ease, border-color 200ms ease !important;
 }
-.group\/products-list-section aside a[href*="search"]:hover,
-.group\/products-list-section aside button[class*="reset"]:hover,
-.group\/products-list-section aside button[class*="ghost"]:hover {
-  border-color: #007CB0;
-  background: rgba(0,124,176,0.1);
+.group\/products-list-section aside a:hover,
+.group\/products-list-section button[class*="secondary"]:hover,
+.group\/products-list-section button[class*="ghost"]:hover,
+.group\/products-list-section button[class*="reset"]:hover {
+  background: rgba(175,229,253,0.15) !important;
+  border-color: #ffffff !important;
+}
+
+/* Mobile "Filters" button → sg-btn-outline-dark pattern */
+.group\/products-list-section > div > div > div:nth-child(1) > div > div > button[class*="medium"],
+.group\/products-list-section > div > div > div:nth-child(1) > div > div > button {
+  font-family: 'Barlow', sans-serif !important;
+  font-size: 15px !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  background: transparent !important;
+  color: #ffffff !important;
+  border: 2px solid #afe5fd !important;
+  border-radius: 0 !important;
+  transition: background 200ms ease, border-color 200ms ease !important;
+}
+
+/* Sort select → match brand feel */
+.group\/products-list-section select,
+.group\/products-list-section button[role="combobox"] {
+  font-family: 'Barlow', sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.04em !important;
+  background: transparent !important;
+  border: 2px solid rgba(175,229,253,0.4) !important;
+  border-radius: 0 !important;
+  color: #fff !important;
+  padding: 10px 16px !important;
+}
+.group\/products-list-section select:hover,
+.group\/products-list-section button[role="combobox"]:hover {
+  border-color: #afe5fd !important;
+}
+
+/* Exclude toggle-group pills from button overrides */
+.group\/products-list-section [role="group"] button {
+  padding: 6px 12px !important;
+  font-size: 12px !important;
+  text-transform: none !important;
+  letter-spacing: normal !important;
+  border: 1px solid rgba(255,255,255,0.15) !important;
+  border-radius: 6px !important;
+  background: transparent !important;
+  color: rgba(255,255,255,0.75) !important;
+}
+.group\/products-list-section [role="group"] button:hover {
+  border-color: rgba(0,124,176,0.5) !important;
+  color: #007CB0 !important;
+  background: transparent !important;
+}
+.group\/products-list-section [role="group"] button[data-state="on"],
+.group\/products-list-section [role="group"] button[aria-pressed="true"] {
+  background: #007CB0 !important;
+  border-color: #007CB0 !important;
+  color: #fff !important;
+}
+
+/* Exclude accordion expand/collapse triggers from button overrides */
+.group\/products-list-section [data-orientation="vertical"] h3 button {
+  padding: 8px 0 !important;
+  border: none !important;
+  background: transparent !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.06em !important;
+  font-size: 12px !important;
+  color: rgba(255,255,255,0.7) !important;
+  justify-content: space-between !important;
 }
 
 /* Checkbox labels */
