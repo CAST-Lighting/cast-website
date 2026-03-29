@@ -290,6 +290,19 @@ export const withRoutes: MiddlewareFactory = () => {
   return async (request, event) => {
     const locale = request.headers.get('x-bc-locale') ?? '';
 
+    // Blog posts are served from Airtable, not BigCommerce.
+    // Skip BC route resolution so the slug passes through to the [blogId] route.
+    const { pathname } = new URL(request.url);
+    const cleanPath = clearLocaleFromPath(pathname, locale);
+
+    if (/^\/blog\/.+/.test(cleanPath)) {
+      const rewriteUrl = new URL(`/${locale}${cleanPath}`, request.url);
+
+      rewriteUrl.search = request.nextUrl.search;
+
+      return NextResponse.rewrite(rewriteUrl);
+    }
+
     const { route, status } = await getRouteInfo(request, event);
 
     if (status === 'MAINTENANCE') {
