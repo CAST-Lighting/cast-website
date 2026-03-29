@@ -48,5 +48,8 @@ import './components/cast/ContactSection.register';
 import './components/cast/ContractorFinder.register';
 import './components/cast/DistributorFinder.register';
 
+// Error Pages
+import './components/cast/NotFoundHero.register';
+
 // Utility
 import './components/cast/StyleGuide.register';
