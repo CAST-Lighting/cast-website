@@ -17,10 +17,27 @@
   --product-card-font-family: 'Barlow', sans-serif;
 }
 
-/* Product card image backgrounds — dark surface, not white */
+/* Product card — dark card wrapper with visible text area */
+.group\/products-list-section article {
+  background: #2d353c !important;
+  border: 1px solid rgba(255,255,255,0.08) !important;
+  border-radius: 10px !important;
+  overflow: hidden !important;
+  padding-bottom: 8px !important;
+}
+.group\/products-list-section article:hover {
+  border-color: rgba(0,124,176,0.4) !important;
+}
 .group\/products-list-section article .rounded-xl,
-.group\/products-list-section article .rounded-2xl {
-  background-color: hsl(200 16% 22%) !important;
+.group\/products-list-section article .rounded-2xl,
+.group\/products-list-section article [class*="rounded-xl"],
+.group\/products-list-section article [class*="rounded-2xl"] {
+  border-radius: 0 !important;
+}
+/* Text area padding below image */
+.group\/products-list-section article .mt-2,
+.group\/products-list-section article [class*="mt-2"][class*="flex"] {
+  padding: 12px 14px 8px !important;
 }
 
 /* Price labels */
