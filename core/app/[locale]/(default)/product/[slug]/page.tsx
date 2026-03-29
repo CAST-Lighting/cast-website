@@ -4,6 +4,8 @@ import { notFound } from 'next/navigation';
 import { getFormatter, getTranslations, setRequestLocale } from 'next-intl/server';
 import { SearchParams } from 'nuqs/server';
 
+import { CmsPageRenderer } from '~/lib/makeswift/cms-page-renderer';
+
 import { Stream, Streamable } from '@/vibes/soul/lib/streamable';
 import { FeaturedProductCarousel } from '@/vibes/soul/sections/featured-product-carousel';
 import { ProductDetail } from '@/vibes/soul/sections/product-detail';
@@ -94,6 +96,21 @@ export default async function Product({ params, searchParams }: Props) {
   if (!baseProduct) {
     return notFound();
   }
+
+  // Try Makeswift template first — if /product-page/ exists in Makeswift, use it
+  const makeswiftPage = await CmsPageRenderer({
+    templatePath: '/product-page',
+    data: {
+      type: 'product',
+      heading: baseProduct.name,
+      description: baseProduct.description,
+      meta: {
+        brand: baseProduct.brand?.name ?? undefined,
+      },
+    },
+  });
+
+  if (makeswiftPage) return makeswiftPage;
 
   const streamableProduct = Streamable.from(async () => {
     const options = await searchParams;

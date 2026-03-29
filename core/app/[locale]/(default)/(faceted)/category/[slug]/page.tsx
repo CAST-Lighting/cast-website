@@ -1,5 +1,6 @@
 import { setRequestLocale } from 'next-intl/server';
 import { type Metadata } from 'next';
+import { CmsPageRenderer } from '~/lib/makeswift/cms-page-renderer';
 import ShopGrid from '~/lib/makeswift/components/cast/ShopGrid';
 import TradeProSection from '~/lib/makeswift/components/cast/TradeProSection';
 import ReadyCTA from '~/lib/makeswift/components/cast/ReadyCTA';
@@ -79,6 +80,21 @@ export default async function CategoryPage({ params }: Props) {
   const categoryName = CATEGORY_NAMES[categoryId] ?? 'Products';
 
   const bcProducts = await fetchCategoryProducts(categoryId);
+
+  // Try Makeswift template first — if /category-page/ exists in Makeswift, use it
+  const makeswiftPage = await CmsPageRenderer({
+    templatePath: '/category-page/',
+    data: {
+      type: 'category',
+      heading: categoryName,
+      description: `${bcProducts.length} professional-grade fixture${bcProducts.length !== 1 ? 's' : ''} — solid brass and copper, lifetime warranty`,
+      meta: {
+        productCount: bcProducts.length,
+      },
+    },
+  });
+
+  if (makeswiftPage) return makeswiftPage;
 
   const products = bcProducts.map(p => {
     const thumbnail = p.images?.find(img => img.is_thumbnail) ?? p.images?.[0];

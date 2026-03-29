@@ -55,5 +55,10 @@ import './components/cast/SearchResults.register';
 // Error Pages
 import './components/cast/NotFoundHero.register';
 
+// CMS Content Components
+import './components/cast/CmsBlogBody.register';
+import './components/cast/CmsProductContent.register';
+import './components/cast/CmsCategoryGrid.register';
+
 // Utility
 import './components/cast/StyleGuide.register';
