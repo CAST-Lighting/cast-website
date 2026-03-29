@@ -152,7 +152,15 @@ const SiteNavbar = forwardRef(function SiteNavbar(
         {/* Search dropdown */}
         {searchOpen && (
           <div className="absolute left-0 right-0 flex justify-center px-6" style={{ top: '100%', paddingTop: 12, paddingBottom: 12 }}>
-            <div className="w-full max-w-3xl bg-white rounded-full shadow-2xl px-8 py-4 flex items-center gap-3">
+            <form
+              className="w-full max-w-3xl bg-white rounded-full shadow-2xl px-8 py-4 flex items-center gap-3"
+              onSubmit={(e) => {
+                e.preventDefault()
+                const input = e.currentTarget.querySelector('input')
+                const q = input?.value?.trim()
+                if (q) window.location.href = `/search?term=${encodeURIComponent(q)}`
+              }}
+            >
               <Search className="w-5 h-5 text-muted-foreground/60 flex-shrink-0" />
               <input
                 type="text"
@@ -160,7 +168,10 @@ const SiteNavbar = forwardRef(function SiteNavbar(
                 autoFocus
                 className="w-full bg-transparent text-gray-900 placeholder:text-muted-foreground/50 focus:outline-none font-body text-lg"
               />
-            </div>
+              <button type="submit" className="flex-shrink-0 bg-[#007CB0] hover:bg-[#005f8a] text-white rounded-full px-5 py-2 font-semibold text-sm transition-colors" style={{ fontFamily: "'Barlow', sans-serif" }}>
+                Search
+              </button>
+            </form>
           </div>
         )}
 
