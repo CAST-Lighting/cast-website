@@ -162,8 +162,6 @@ export function ProductsListSection({
 
           <div className="group-has-data-pending/products-list-section:animate-pulse flex-1">
             <ProductList
-              aspectRatio="1:1"
-              colorScheme="dark"
               compareHref={compareHref}
               compareLabel={compareLabel}
               compareParamName={compareParamName}
