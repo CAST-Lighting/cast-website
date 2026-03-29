@@ -12,6 +12,7 @@ import './components/cast/BlogHero.register';
 import './components/cast/BlogPostContent.register';
 import './components/cast/SubPageHero.register';
 import './components/cast/SubPageHeroStatic.register';
+import './components/cast/CmsSubPageHero.register';
 import './components/cast/ShopHero.register';
 import './components/cast/SignupHero.register';
 import './components/cast/ProductHero.register';
