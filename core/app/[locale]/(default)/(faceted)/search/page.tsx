@@ -98,7 +98,7 @@ export default async function Search(props: Props) {
       <>
         <style>{castSearchStyles}</style>
         <section className="cast-search-hero-v2">
-          <img src="/images/cast/background-1.jpg" alt="" className="cast-hero-bg-img" />
+          <img src="https://storage.googleapis.com/s.mkswft.com/RmlsZTpmNGU1MTkzMi02Y2JlLTQ0ZjAtOWIwNC03ZmI3MmQwNzYwMDk=/background-1.jpg" alt="" className="cast-hero-bg-img" />
           <div className="cast-hero-overlay" />
           <div className="site-container" style={{ position: 'relative', zIndex: 10 }}>
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: 24, maxWidth: 768, margin: '0 auto' }}>
@@ -407,7 +407,7 @@ export default async function Search(props: Props) {
 
       {/* ─── Hero Section (SubPageHeroStatic pattern) ─── */}
       <section className="cast-search-hero-v2">
-        <img src="/images/cast/background-1.jpg" alt="" className="cast-hero-bg-img" />
+        <img src="https://storage.googleapis.com/s.mkswft.com/RmlsZTpmNGU1MTkzMi02Y2JlLTQ0ZjAtOWIwNC03ZmI3MmQwNzYwMDk=/background-1.jpg" alt="" className="cast-hero-bg-img" />
         <div className="cast-hero-overlay" />
         <div className="site-container" style={{ position: 'relative', zIndex: 10 }}>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: 24, maxWidth: 768, margin: '0 auto' }}>
