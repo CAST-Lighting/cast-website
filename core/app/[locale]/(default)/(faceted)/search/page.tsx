@@ -59,6 +59,7 @@ export default async function Search(props: Props) {
   const searchParams = await props.searchParams;
   const searchTerm = typeof searchParams.term === 'string' ? searchParams.term : '';
   const currentSort = typeof searchParams.sort === 'string' ? searchParams.sort : 'featured';
+  const currentTab = typeof searchParams.tab === 'string' ? searchParams.tab : 'products';
 
   const format = await getFormatter();
   const t = await getTranslations('Faceted');
@@ -79,18 +80,37 @@ export default async function Search(props: Props) {
     { value: 'relevance', label: t('SortBy.relevance') },
   ];
 
+  /* ─── Tab URL builder ─── */
+  function buildTabUrl(tab: string): string {
+    const params = new URLSearchParams();
+    for (const [key, val] of Object.entries(searchParams)) {
+      if (key === 'tab') continue;
+      if (typeof val === 'string') params.append(key, val);
+      if (Array.isArray(val)) val.forEach((v) => params.append(key, v));
+    }
+    if (tab !== 'products') params.set('tab', tab);
+    return `?${params.toString()}`;
+  }
+
   /* ─── No search term ─── */
   if (!searchTerm) {
     return (
       <>
         <style>{castSearchStyles}</style>
-        <div className="cast-search-hero">
-          <div className="site-container">
-            <p className="cast-search-hero-label">Search</p>
-            <h1 className="cast-search-hero-title">Enter a search term</h1>
-            <p className="cast-search-hero-count">Start typing to find products</p>
+        <section className="cast-search-hero-v2">
+          <img src="/images/cast/background-1.jpg" alt="" className="cast-hero-bg-img" />
+          <div className="cast-hero-overlay" />
+          <div className="site-container" style={{ position: 'relative', zIndex: 10 }}>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: 24, maxWidth: 768, margin: '0 auto' }}>
+              <div className="badge-pill" style={{ alignSelf: 'center' }}>
+                <span style={{ width: 8, height: 8, borderRadius: '50%', background: 'var(--color-accent, #007CB0)', flexShrink: 0, display: 'inline-block' }} />
+                <span>Search</span>
+              </div>
+              <h1 className="heading-style-h1" style={{ color: 'var(--color-blue-grey-100, #e2e8f0)' }}>Enter a search term</h1>
+              <p className="section-desc" style={{ color: 'var(--color-blue-grey-300, rgba(255,255,255,0.6))', maxWidth: 576 }}>Start typing to find products</p>
+            </div>
           </div>
-        </div>
+        </section>
         <div style={{ background: '#25262d', minHeight: 400, padding: '64px 0' }}>
           <div className="site-container" style={{ textAlign: 'center' }}>
             <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 18, color: 'rgba(255,255,255,0.6)' }}>
@@ -112,13 +132,13 @@ export default async function Search(props: Props) {
   const totalItems = search.products.collectionInfo?.totalItems ?? 0;
   const pageInfo = pageInfoTransformer(search.products.pageInfo);
 
-  /* ─── Transform products ─── */
+  /* ─── Transform products (Issue 1: replace {:size} with 960w) ─── */
   const products = search.products.items.map((product) => ({
     id: product.entityId.toString(),
     title: product.name,
     href: product.path,
     image: product.defaultImage
-      ? { src: product.defaultImage.url, alt: product.defaultImage.altText }
+      ? { src: product.defaultImage.url.replace('{:size}', '960w'), alt: product.defaultImage.altText }
       : undefined,
     price: pricesTransformer(product.prices, format),
     subtitle: product.brand?.name ?? undefined,
@@ -385,18 +405,62 @@ export default async function Search(props: Props) {
     <>
       <style>{castSearchStyles}</style>
 
-      {/* ─── Hero Section ─── */}
-      <div className="cast-search-hero">
-        <div className="site-container">
-          <p className="cast-search-hero-label">Search Results</p>
-          <h1 className="cast-search-hero-title">&ldquo;{searchTerm}&rdquo;</h1>
-          <p className="cast-search-hero-count">
-            {format.number(totalItems)} {totalItems === 1 ? 'product' : 'products'} found
-          </p>
+      {/* ─── Hero Section (SubPageHeroStatic pattern) ─── */}
+      <section className="cast-search-hero-v2">
+        <img src="/images/cast/background-1.jpg" alt="" className="cast-hero-bg-img" />
+        <div className="cast-hero-overlay" />
+        <div className="site-container" style={{ position: 'relative', zIndex: 10 }}>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: 24, maxWidth: 768, margin: '0 auto' }}>
+            <div className="badge-pill" style={{ alignSelf: 'center' }}>
+              <span style={{ width: 8, height: 8, borderRadius: '50%', background: 'var(--color-accent, #007CB0)', flexShrink: 0, display: 'inline-block' }} />
+              <span>Search Results</span>
+            </div>
+            <h1 className="heading-style-h1" style={{ color: 'var(--color-blue-grey-100, #e2e8f0)' }}>
+              &ldquo;{searchTerm}&rdquo;
+            </h1>
+            <p className="section-desc" style={{ color: 'var(--color-blue-grey-300, rgba(255,255,255,0.6))', maxWidth: 576 }}>
+              {format.number(totalItems)} {totalItems === 1 ? 'product' : 'products'} found
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── Tabs ─── */}
+      <div style={{ background: '#2d353c', borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
+        <div className="site-container" style={{ display: 'flex', gap: 8, paddingTop: 16, paddingBottom: 16 }}>
+          <a
+            href={buildTabUrl('products')}
+            className={currentTab === 'products' ? 'sg-btn-solid-dark-sm' : 'sg-btn-outline-dark-sm'}
+            style={{ textDecoration: 'none' }}
+          >
+            Products
+          </a>
+          <a
+            href={buildTabUrl('articles')}
+            className={currentTab === 'articles' ? 'sg-btn-solid-dark-sm' : 'sg-btn-outline-dark-sm'}
+            style={{ textDecoration: 'none' }}
+          >
+            Articles &amp; Information
+          </a>
         </div>
       </div>
 
-      {/* ─── Main Content ─── */}
+      {/* ─── Articles Tab ─── */}
+      {currentTab === 'articles' && (
+        <div style={{ background: '#25262d', minHeight: 400, padding: '80px 0' }}>
+          <div className="site-container" style={{ textAlign: 'center' }}>
+            <h2 style={{ fontFamily: "'Essonnes', 'Playfair Display', serif", fontSize: 28, color: '#fff', marginBottom: 12 }}>
+              Articles &amp; Information
+            </h2>
+            <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 16, color: 'rgba(255,255,255,0.6)' }}>
+              Search articles coming soon. Check back for helpful guides, tips, and product information.
+            </p>
+          </div>
+        </div>
+      )}
+
+      {/* ─── Main Content (Products Tab) ─── */}
+      {currentTab !== 'articles' && (
       <div style={{ background: '#25262d', minHeight: 600 }} className="cast-search-main">
         <div className="site-container" style={{ paddingTop: 48, paddingBottom: 64 }}>
           <div className="cast-search-layout">
@@ -424,30 +488,25 @@ export default async function Search(props: Props) {
                 </p>
                 <div className="cast-sort-wrapper">
                   <label htmlFor="cast-sort" className="cast-sort-label">Sort by:</label>
-                  {/* Sort is link-based for server component */}
-                  <div className="cast-sort-select-wrapper">
-                    {sortOptions.map((opt) => (
-                      <a
-                        key={opt.value}
-                        href={buildSortUrl(opt.value)}
-                        className={`cast-sort-option ${currentSort === opt.value ? 'active' : ''}`}
-                        style={{ display: currentSort === opt.value ? 'inline-flex' : 'none' }}
-                      >
-                        {opt.label} ▾
-                      </a>
-                    ))}
-                    <div className="cast-sort-dropdown">
+                  <form method="get" style={{ display: 'inline' }}>
+                    {/* Preserve all current params except sort */}
+                    {Object.entries(searchParams).map(([key, val]) => {
+                      if (key === 'sort') return null;
+                      if (typeof val === 'string') return <input key={key} type="hidden" name={key} value={val} />;
+                      if (Array.isArray(val)) return val.map((v, i) => <input key={`${key}-${i}`} type="hidden" name={key} value={v} />);
+                      return null;
+                    })}
+                    <select
+                      name="sort"
+                      defaultValue={currentSort}
+                      className="cast-sort-native"
+                    >
                       {sortOptions.map((opt) => (
-                        <a
-                          key={opt.value}
-                          href={buildSortUrl(opt.value)}
-                          className={`cast-sort-dropdown-item ${currentSort === opt.value ? 'active' : ''}`}
-                        >
-                          {opt.label}
-                        </a>
+                        <option key={opt.value} value={opt.value}>{opt.label}</option>
                       ))}
-                    </div>
-                  </div>
+                    </select>
+                    <script dangerouslySetInnerHTML={{ __html: `document.querySelector('.cast-sort-native')?.addEventListener('change',function(){this.form.submit()})` }} />
+                  </form>
                 </div>
               </div>
 
@@ -546,54 +605,35 @@ export default async function Search(props: Props) {
           </div>
         </div>
       </div>
+      )}
     </>
   );
 }
 
 /* ─── Styles ────────────────────────────────────────────────────── */
 const castSearchStyles = `
-  /* Hero */
-  .cast-search-hero {
-    background: linear-gradient(135deg, #0f1923 0%, #1a2e3a 50%, #0d4a5c 100%);
-    padding: 64px 0 56px;
-    text-align: center;
+  /* Hero v2 (SubPageHeroStatic pattern) */
+  .cast-search-hero-v2 {
     position: relative;
     overflow: hidden;
+    padding-top: 165px;
+    padding-bottom: 64px;
+    z-index: 2;
   }
-  .cast-search-hero::before {
-    content: '';
+  .cast-hero-bg-img {
     position: absolute;
     inset: 0;
-    background-image: linear-gradient(rgba(175,229,253,0.03) 1px, transparent 1px),
-                      linear-gradient(90deg, rgba(175,229,253,0.03) 1px, transparent 1px);
-    background-size: 32px 32px;
-    pointer-events: none;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
   }
-  .cast-search-hero-label {
-    font-family: 'Barlow', sans-serif;
-    font-size: 11px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    color: #007CB0;
-    margin: 0 0 12px;
-    position: relative;
-  }
-  .cast-search-hero-title {
-    font-family: 'Essonnes', 'Playfair Display', serif;
-    font-size: clamp(28px, 4vw, 48px);
-    font-weight: 400;
-    color: #fff;
-    margin: 0 0 12px;
-    line-height: 1.15;
-    position: relative;
-  }
-  .cast-search-hero-count {
-    font-family: 'Barlow', sans-serif;
-    font-size: 16px;
-    color: rgba(255,255,255,0.6);
-    margin: 0;
-    position: relative;
+  .cast-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: #25262d;
+    opacity: 0.6;
+    z-index: 1;
   }
 
   /* Layout */
@@ -736,61 +776,30 @@ const castSearchStyles = `
     font-size: 13px;
     color: rgba(255,255,255,0.5);
   }
-  .cast-sort-select-wrapper {
-    position: relative;
-  }
-  .cast-sort-option {
+  .cast-sort-native {
     font-family: 'Barlow', sans-serif;
     font-size: 13px;
     font-weight: 600;
     color: #fff;
-    text-decoration: none;
     background: #2d353c;
     border: 1px solid rgba(255,255,255,0.12);
     border-radius: 4px;
-    padding: 6px 14px;
+    padding: 8px 14px;
     cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='white' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    padding-right: 32px;
   }
-  .cast-sort-dropdown {
-    display: none;
-    position: absolute;
-    top: 100%;
-    right: 0;
-    margin-top: 4px;
+  .cast-sort-native:focus {
+    border-color: #007CB0;
+  }
+  .cast-sort-native option {
     background: #2d353c;
-    border: 1px solid rgba(255,255,255,0.15);
-    border-radius: 6px;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
-    z-index: 100;
-    min-width: 180px;
-    overflow: hidden;
-  }
-  .cast-sort-select-wrapper:hover .cast-sort-dropdown {
-    display: block;
-  }
-  .cast-sort-select-wrapper:hover .cast-sort-option {
-    display: inline-flex !important;
-    border-color: rgba(255,255,255,0.25);
-  }
-  .cast-sort-dropdown-item {
-    display: block;
-    font-family: 'Barlow', sans-serif;
-    font-size: 13px;
-    color: rgba(255,255,255,0.8);
-    padding: 10px 16px;
-    text-decoration: none;
-    transition: background 150ms, color 150ms;
-  }
-  .cast-sort-dropdown-item:hover {
-    background: rgba(0,124,176,0.15);
     color: #fff;
-  }
-  .cast-sort-dropdown-item.active {
-    color: #7EBEE8;
-    font-weight: 600;
   }
 
   /* Product Grid */
