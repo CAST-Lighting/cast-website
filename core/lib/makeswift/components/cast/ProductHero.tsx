@@ -126,7 +126,7 @@ const ProductHero = forwardRef(function ProductHero(
         <div className="ph-layout" style={{ display: "flex", gap: 56, alignItems: "flex-start" }}>
 
           {/* Left: Image gallery — sticky scroll, thumbnails vertical on left */}
-          <div className="ph-gallery" style={{ flex: "0 0 520px", maxWidth: 520, position: "sticky", top: 100, alignSelf: "flex-start", display: "flex", gap: 12 }}>
+          <div className="ph-gallery" style={{ flex: "0 0 520px", maxWidth: 520, position: "sticky", top: 120, alignSelf: "flex-start", display: "flex", gap: 12 }}>
             {/* Vertical thumbnail strip */}
             <div style={{ display: "flex", flexDirection: "column", gap: 8, flexShrink: 0 }}>
               {imgList.map((img, i) => (
@@ -198,7 +198,6 @@ const ProductHero = forwardRef(function ProductHero(
               </div>
               <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
                 <button className="sg-btn-outline-md" style={{ justifyContent: "center" }}>Add To Quote</button>
-                <button className="sg-btn-outline-md" style={{ justifyContent: "center" }}>Track Price</button>
               </div>
             </div>
 
