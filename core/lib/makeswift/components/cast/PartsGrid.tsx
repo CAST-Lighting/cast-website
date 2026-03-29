@@ -44,8 +44,13 @@ const PartsGrid = forwardRef(function PartsGrid(
   }: PartsGridProps,
   ref: Ref<HTMLDivElement>
 ) {
-  if (!parts || parts.length === 0) return null
-  const list = parts
+  const DEFAULT_PARTS = [
+    { name: "Replacement LED Module", partNumber: "LED-001", price: "$29.99" },
+    { name: "Brass Ground Stake", partNumber: "STK-002", price: "$12.99" },
+    { name: "Wire Connector Kit", partNumber: "WCK-003", price: "$8.99" },
+    { name: "Lens Cover Assembly", partNumber: "LCA-004", price: "$15.99" },
+  ]
+  const list = parts && parts.length > 0 ? parts : DEFAULT_PARTS
   const hasGradient = !!(gradientFrom && gradientTo)
   const overlayOpacity = typeof bgOpacity === 'number' ? bgOpacity / 100 : 0.85
   const sectionBackground = hasGradient

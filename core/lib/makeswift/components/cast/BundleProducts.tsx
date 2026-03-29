@@ -45,8 +45,12 @@ const BundleProducts = forwardRef(function BundleProducts(
   }: BundleProductsProps,
   ref: Ref<HTMLDivElement>
 ) {
-  if (!items || items.length === 0) return null
-  const list = items
+  const DEFAULT_ITEMS: BundleItem[] = [
+    { name: "Accessory #1", price: "$49.99", badge: "Popular" },
+    { name: "Accessory #2", price: "$39.99" },
+    { name: "Accessory #3", price: "$35.35" },
+  ]
+  const list = items && items.length > 0 ? items : DEFAULT_ITEMS
   const totalStr = list.reduce((sum, item) => sum + parseFloat((item.price || "$0").replace("$", "")), 0).toFixed(2)
   const hasGradient = !!(gradientFrom && gradientTo)
   const overlayOpacity = typeof bgOpacity === 'number' ? bgOpacity / 100 : 0.85

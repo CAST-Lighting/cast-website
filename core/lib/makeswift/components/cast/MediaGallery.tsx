@@ -67,8 +67,13 @@ const MediaGallery = forwardRef(function MediaGallery(
   ref: Ref<HTMLDivElement>
 ) {
   const [lightbox, setLightbox] = useState<number | null>(null)
-  if (!items || items.length === 0) return null
-  const list = items
+  const DEFAULT_MEDIA = [
+    { src: "https://storage.googleapis.com/s.mkswft.com/RmlsZToxYjc5OTY1Mi1hNTE0LTRjMDYtODMwZC1hNThiZTg0ZTIyNTE=/placeholder_picture.webp", alt: "Product Photo 1", type: "image" as const, caption: "Product Photo 1" },
+    { src: "https://storage.googleapis.com/s.mkswft.com/RmlsZToxYjc5OTY1Mi1hNTE0LTRjMDYtODMwZC1hNThiZTg0ZTIyNTE=/placeholder_picture.webp", alt: "Product Photo 2", type: "image" as const, caption: "Product Photo 2" },
+    { src: "https://storage.googleapis.com/s.mkswft.com/RmlsZToxYjc5OTY1Mi1hNTE0LTRjMDYtODMwZC1hNThiZTg0ZTIyNTE=/placeholder_picture.webp", alt: "Product Photo 3", type: "image" as const, caption: "Product Photo 3" },
+    { src: "https://storage.googleapis.com/s.mkswft.com/RmlsZToxYjc5OTY1Mi1hNTE0LTRjMDYtODMwZC1hNThiZTg0ZTIyNTE=/placeholder_picture.webp", alt: "Product Photo 4", type: "image" as const, caption: "Product Photo 4" },
+  ]
+  const list = items && items.length > 0 ? items : DEFAULT_MEDIA
   const hasGradient = !!(gradientFrom && gradientTo)
   const overlayOpacity = typeof bgOpacity === 'number' ? bgOpacity / 100 : 0.85
   const sectionBackground = hasGradient
