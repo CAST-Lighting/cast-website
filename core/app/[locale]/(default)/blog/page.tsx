@@ -219,7 +219,7 @@ export default async function Blog(props: Props) {
 
                       {/* Card body */}
                       <div style={{ padding: '22px 20px', display: 'flex', flexDirection: 'column', gap: 10 }}>
-                        <h2 style={{ fontFamily: "'Essonnes', 'Playfair Display', serif", fontSize: 19, fontWeight: 700, color: '#fff', lineHeight: 1.3, margin: 0 }}>
+                        <h3 style={{ fontFamily: "'Essonnes', 'Playfair Display', serif", fontSize: "var(--h3-size)", fontWeight: 700, color: '#fff', lineHeight: 1.3, margin: 0 }}>
                           {post.title}
                         </h2>
                         {excerpt ? (

@@ -261,7 +261,7 @@ const ShopGrid = forwardRef(function ShopGrid(
               Object.entries(grouped).map(([cat, prods]) => (
                 <div key={cat} style={{ marginBottom: 56 }}>
                   <p className="sg-section-heading">Shop Lighting</p>
-                  <h2 className="sg-section-title">{cat}</h2>
+                  <h3 className="sg-section-title">{cat}</h3>
                   <div style={{ display: "flex", justifyContent: "flex-end", marginBottom: 16 }}>
                     <select style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, border: "1px solid rgba(255,255,255,0.12)", borderRadius: 4, padding: "6px 12px", color: "var(--color-title)", background: "#2d353c" }}>
                       <option>Sort Products</option>
