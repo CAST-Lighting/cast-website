@@ -6,7 +6,7 @@ runtime.registerComponent(
   lazy(() => import("./ProductHero")),
   {
     type: "site-product-hero",
-    label: "Hero / Product Hero",
+    label: "Product / Product Details",
     props: {
       className: Style(),
       paddingTop: NumberControl({ label: "📐 Layout — Padding Top", defaultValue: 96, min: 0, max: 400, step: 8, suffix: "px" }),
