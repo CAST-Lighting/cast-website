@@ -15,8 +15,6 @@ export const metadata: Metadata = {
 function FallbackPage() {
   return (
     <>
-
-    <>
       <style>{`
         .reg-container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
         .reg-grid { display: grid; grid-template-columns: 1fr 380px; gap: 48px; align-items: start; }
