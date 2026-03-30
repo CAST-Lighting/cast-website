@@ -173,7 +173,7 @@ const ReviewsCarousel = forwardRef(function ReviewsCarousel(
   const overlayOpacity = typeof bgOpacity === "number" ? bgOpacity / 100 : 0.88
   const sectionBackground = hasGradient
     ? `linear-gradient(${gradientDirection || "to bottom"}, ${gradientFrom}, ${gradientTo})`
-    : bgColor || "#141e27"
+    : bgColor || "#f8f9fa"
 
   return (
     <section
@@ -205,15 +205,15 @@ const ReviewsCarousel = forwardRef(function ReviewsCarousel(
         <div className="site-container mb-10">
           <div className="flex flex-col md:flex-row md:items-end md:justify-between">
             <div style={{ textAlign: "left" }}>
-              <span className="overline">{overline}</span>
-              <h2 className="section-heading" style={{ marginTop: 12, fontSize: "var(--h2-size)" }}>
+              <span className="overline" style={{ color: "#007CB0" }}>{overline}</span>
+              <h2 className="section-heading" style={{ marginTop: 12, fontSize: "var(--h2-size)", color: "#014960" }}>
                 {heading}{" "}
                 <span className="text-gradient-warm">{headingAccent}</span>
               </h2>
               {/* Aggregate rating */}
               <div style={{ display: "flex", alignItems: "center", gap: 12, marginTop: 16 }}>
                 <StarRating rating={5} />
-                <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 15, color: "rgba(255,255,255,0.7)" }}>
+                <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 15, color: "#1a3a4a" }}>
                   4.9 / 5 — based on 200+ verified reviews
                 </span>
               </div>
@@ -241,8 +241,8 @@ const ReviewsCarousel = forwardRef(function ReviewsCarousel(
                 key={i}
                 className="flex-shrink-0 w-[340px]"
                 style={{
-                  background: "rgba(255,255,255,0.05)",
-                  border: "1px solid rgba(255,255,255,0.1)",
+                  background: "#ffffff",
+                  border: "1px solid rgba(0,73,96,0.1)",
                   borderRadius: 14,
                   padding: "32px 28px",
                   display: "flex",
@@ -254,7 +254,7 @@ const ReviewsCarousel = forwardRef(function ReviewsCarousel(
                 <p style={{
                   fontFamily: "'Barlow', sans-serif",
                   fontSize: 15,
-                  color: "rgba(255,255,255,0.82)",
+                  color: "#1a3a4a",
                   lineHeight: 1.7,
                   margin: 0,
                   flex: 1,
@@ -262,7 +262,7 @@ const ReviewsCarousel = forwardRef(function ReviewsCarousel(
                 }}>
                   &ldquo;{review.quote}&rdquo;
                 </p>
-                <div style={{ borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: 16, display: "flex", alignItems: "center", gap: 12 }}>
+                <div style={{ borderTop: "1px solid rgba(0,73,96,0.1)", paddingTop: 16, display: "flex", alignItems: "center", gap: 12 }}>
                   <img
                     src={review.avatar || PLACEHOLDER_PERSON}
                     alt={review.name || "Reviewer"}
@@ -273,7 +273,7 @@ const ReviewsCarousel = forwardRef(function ReviewsCarousel(
                       fontFamily: "'Barlow', sans-serif",
                       fontSize: 14,
                       fontWeight: 700,
-                      color: "#fff",
+                      color: "#014960",
                       margin: "0 0 2px",
                     }}>
                       {review.name}
@@ -281,7 +281,7 @@ const ReviewsCarousel = forwardRef(function ReviewsCarousel(
                     <p style={{
                       fontFamily: "'Barlow', sans-serif",
                       fontSize: 13,
-                      color: "rgba(255,255,255,0.5)",
+                      color: "rgba(1,73,96,0.55)",
                       margin: 0,
                     }}>
                       {review.role}{review.location ? ` · ${review.location}` : ""}

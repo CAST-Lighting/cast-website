@@ -63,7 +63,7 @@ const ProductDocuments = forwardRef(function ProductDocuments(
   const overlayOpacity = typeof bgOpacity === 'number' ? bgOpacity / 100 : 0.85
   const sectionBackground = hasGradient
     ? `linear-gradient(${gradientDirection || 'to bottom'}, ${gradientFrom}, ${gradientTo})`
-    : bgColor || "#25262d"
+    : bgColor || "#f0f2f5"
 
   return (
     <div
@@ -79,16 +79,16 @@ const ProductDocuments = forwardRef(function ProductDocuments(
       )}
       <div className="relative" style={{ zIndex: 10 }}>
       <div className="site-container">
-        <h2 style={{ fontSize: "var(--h2-size)", fontWeight: "var(--heading-weight, 700)", lineHeight: "var(--heading-line-height, 1.1)", fontFamily: "'Essonnes', 'Playfair Display', serif", color: "var(--color-title)", margin: "0 0 32px" }}>
+        <h2 style={{ fontSize: "var(--h2-size)", fontWeight: "var(--heading-weight, 700)", lineHeight: "var(--heading-line-height, 1.1)", fontFamily: "'Essonnes', 'Playfair Display', serif", color: "#014960", margin: "0 0 32px" }}>
           {heading}{headingAccent && <> <span className="text-gradient-warm">{headingAccent}</span></>}
         </h2>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 16 }}>
           {list.map((doc, i) => (
-            <div key={i} style={{ background: "#2d353c", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 8, padding: "20px", display: "flex", gap: 16, alignItems: "flex-start" }}>
+            <div key={i} style={{ background: "#ffffff", border: "1px solid rgba(0,73,96,0.1)", borderRadius: 8, padding: "20px", display: "flex", gap: 16, alignItems: "flex-start" }}>
               <FileIcon type={doc.fileType} />
               <div style={{ flex: 1, minWidth: 0 }}>
-                <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 15, fontWeight: 600, color: "var(--color-title)", margin: "0 0 4px" }}>{doc.title}</p>
-                <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, color: "var(--color-content)", lineHeight: 1.5, margin: "0 0 10px" }}>{doc.description}</p>
+                <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 15, fontWeight: 600, color: "#014960", margin: "0 0 4px" }}>{doc.title}</p>
+                <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, color: "#1a3a4a", lineHeight: 1.5, margin: "0 0 10px" }}>{doc.description}</p>
                 <a href={doc.fileUrl || "#"} style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, fontWeight: 600, color: "#7EBEE8", textDecoration: "none" }}>
                   View &amp; Download →
                 </a>

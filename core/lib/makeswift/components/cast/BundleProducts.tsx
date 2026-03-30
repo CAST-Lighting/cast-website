@@ -72,7 +72,7 @@ const BundleProducts = forwardRef(function BundleProducts(
   const overlayOpacity = typeof bgOpacity === 'number' ? bgOpacity / 100 : 0.85
   const sectionBackground = hasGradient
     ? `linear-gradient(${gradientDirection || 'to bottom'}, ${gradientFrom}, ${gradientTo})`
-    : bgColor || "#25262d"
+    : bgColor || "#f0f2f5"
 
   return (
     <div
@@ -97,9 +97,9 @@ const BundleProducts = forwardRef(function BundleProducts(
 
         <div style={{ display: "flex", alignItems: "stretch", gap: 20, flexWrap: "nowrap", overflowX: "auto", scrollbarWidth: "none", msOverflowStyle: "none" }} className="[&::-webkit-scrollbar]:hidden">
           {list.map((item, i) => (
-            <div key={i} style={{ background: "#2d353c", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 10, overflow: "hidden", width: 220, minWidth: 220, maxWidth: 220, flexShrink: 0, transition: "border-color 200ms, box-shadow 200ms" }}
-              onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(0,124,176,0.4)"; (e.currentTarget as HTMLDivElement).style.boxShadow = "0 4px 24px rgba(0,0,0,0.18)"; }}
-              onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(255,255,255,0.08)"; (e.currentTarget as HTMLDivElement).style.boxShadow = "none"; }}
+            <div key={i} style={{ background: "#ffffff", border: "1px solid rgba(0,73,96,0.1)", borderRadius: 10, overflow: "hidden", width: 220, minWidth: 220, maxWidth: 220, flexShrink: 0, transition: "border-color 200ms, box-shadow 200ms" }}
+              onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(0,124,176,0.4)"; (e.currentTarget as HTMLDivElement).style.boxShadow = "0 4px 24px rgba(0,0,0,0.08)"; }}
+              onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(0,73,96,0.1)"; (e.currentTarget as HTMLDivElement).style.boxShadow = "none"; }}
             >
               <div style={{ aspectRatio: "1/1", position: "relative", overflow: "hidden" }}>
                 {item.image
@@ -120,15 +120,15 @@ const BundleProducts = forwardRef(function BundleProducts(
               </div>
               <div style={{ padding: "14px 14px" }}>
                 <h3 className="heading-card-sm" style={{ margin: "0 0 6px", display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical" as const, overflow: "hidden" }}>{item.name}</h3>
-                <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 16, fontWeight: 700, color: "#fff", margin: 0 }}>{item.price}</p>
+                <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 16, fontWeight: 700, color: "#014960", margin: 0 }}>{item.price}</p>
               </div>
             </div>
           ))}
 
           {/* Total + Add All inline as last item */}
-          <div style={{ background: "#2d353c", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 10, padding: "24px", minWidth: 220, flexShrink: 0, display: "flex", flexDirection: "column", justifyContent: "center" }}>
-            <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 14, color: "var(--color-content)", margin: "0 0 8px" }}>Total Price:</p>
-            <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 24, fontWeight: 700, color: "var(--color-title)", margin: "0 0 20px" }}>${totalStr}</p>
+          <div style={{ background: "#ffffff", border: "1px solid rgba(0,73,96,0.1)", borderRadius: 10, padding: "24px", minWidth: 220, flexShrink: 0, display: "flex", flexDirection: "column", justifyContent: "center" }}>
+            <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 14, color: "#1a3a4a", margin: "0 0 8px" }}>Total Price:</p>
+            <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 24, fontWeight: 700, color: "#014960", margin: "0 0 20px" }}>${totalStr}</p>
             <button className="sg-btn-solid-dark-md" style={{ width: "100%", justifyContent: "center" }}>
               {buttonText} +
             </button>

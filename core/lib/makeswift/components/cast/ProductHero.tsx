@@ -1,6 +1,6 @@
 ﻿"use client"
 
-import { forwardRef, useState, type Ref } from "react"
+import { forwardRef, useState, useEffect, type Ref } from "react"
 import { useCmsData } from "~/lib/makeswift/cms-context"
 
 interface ProductHeroProps {
@@ -83,6 +83,16 @@ const ProductHero = forwardRef(function ProductHero(
 
   const [activeImg, setActiveImg] = useState(0)
   const [qty, setQty] = useState(1)
+  const [isTradeProUser, setIsTradeProUser] = useState(true) // show by default
+
+  useEffect(() => {
+    // Check BC B2B customer group from cookie or localStorage
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const b2bToken = localStorage.getItem('b2b-buyer-portal-jwt') ||
+                     document.cookie.includes('SHOP_TOKEN')
+    // For now keep visible — will connect to BC auth in next sprint
+    setIsTradeProUser(true)
+  }, [])
 
   // CMS data with fallback to Makeswift props
   const resolvedProductName = m ? (cms?.heading ?? productName) : productName
@@ -181,7 +191,7 @@ const ProductHero = forwardRef(function ProductHero(
             </h1>
 
             {/* Model number SECOND */}
-            <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, color: "#1a3a4a", margin: "0 0 12px" }}>Model #: {resolvedModelNumber}</p>
+            <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 15, fontWeight: 700, color: "#014960", letterSpacing: "0.04em", textTransform: "uppercase", margin: "0 0 12px" }}>Model #: {resolvedModelNumber}</p>
 
             {/* Rating */}
             <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 16 }}>
@@ -217,14 +227,18 @@ const ProductHero = forwardRef(function ProductHero(
             <div style={{ display: "flex", flexDirection: "column", gap: 10, alignItems: "flex-start" }}>
               <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
                 <button className="sg-btn-solid-dark-md" style={{ justifyContent: "center", ...(!resolvedInStock ? { opacity: 0.5, pointerEvents: 'none' as const } : {}) }}>{resolvedInStock ? "Add To Cart" : "Out of Stock"}</button>
-                <button style={{ width: 48, height: 48, border: "2px solid rgba(255,255,255,0.12)", borderRadius: 4, background: "rgba(0,73,96,0.08)", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, transition: "border-color 200ms" }} aria-label="Add to wishlist" onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.borderColor = "var(--color-accent)"; }} onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(0,73,96,0.2)"; }}>
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#014960" strokeWidth="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" /></svg>
-                </button>
+                {isTradeProUser && (
+                  <button style={{ width: 48, height: 48, border: "2px solid rgba(0,73,96,0.2)", borderRadius: 4, background: "rgba(0,73,96,0.08)", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, transition: "border-color 200ms" }} aria-label="Add to wishlist" onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.borderColor = "var(--color-accent)"; }} onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(0,73,96,0.2)"; }}>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#014960" strokeWidth="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" /></svg>
+                  </button>
+                )}
                 {tradeProOnly && <span className="ph-tradepro-badge">TradePro Only</span>}
               </div>
-              <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
-                <button className="sg-btn-outline-dark-md" style={{ justifyContent: "center", ...(!resolvedInStock ? { opacity: 0.5, pointerEvents: 'none' as const } : {}) }}>Add To Quote</button>
-              </div>
+              {isTradeProUser && (
+                <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
+                  <button className="sg-btn-outline-dark-md" style={{ justifyContent: "center", ...(!resolvedInStock ? { opacity: 0.5, pointerEvents: 'none' as const } : {}) }}>Add To Quote</button>
+                </div>
+              )}
             </div>
 
             {/* Login prompt */}

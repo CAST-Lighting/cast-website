@@ -116,7 +116,7 @@ const PartsGrid = forwardRef(function PartsGrid(
   const overlayOpacity = typeof bgOpacity === "number" ? bgOpacity / 100 : 0.85
   const sectionBackground = hasGradient
     ? `linear-gradient(${gradientDirection || "to bottom"}, ${gradientFrom}, ${gradientTo})`
-    : bgColor || "#25262d"
+    : bgColor || "#f0f2f5"
 
   return (
     <div
@@ -136,9 +136,9 @@ const PartsGrid = forwardRef(function PartsGrid(
           <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between" }}>
             <div>
               {overline && (
-                <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 12, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.12em", color: "var(--color-content)", margin: "0 0 10px" }}>{overline}</p>
+                <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 12, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.12em", color: "#007CB0", margin: "0 0 10px" }}>{overline}</p>
               )}
-              <h2 style={{ fontSize: "var(--h2-size)", fontWeight: "var(--heading-weight, 700)", lineHeight: "var(--heading-line-height, 1.1)", fontFamily: "'Essonnes', 'Playfair Display', serif", color: "var(--color-title)", margin: 0 }}>
+              <h2 style={{ fontSize: "var(--h2-size)", fontWeight: "var(--heading-weight, 700)", lineHeight: "var(--heading-line-height, 1.1)", fontFamily: "'Essonnes', 'Playfair Display', serif", color: "#014960", margin: 0 }}>
                 {heading}{headingAccent && <> <span className="text-gradient-warm">{headingAccent}</span></>}
               </h2>
             </div>
@@ -163,9 +163,9 @@ const PartsGrid = forwardRef(function PartsGrid(
             {list.map((part, i) => (
               <div
                 key={i}
-                style={{ background: "#2d353c", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 10, overflow: "hidden", width: 220, minWidth: 220, maxWidth: 220, flexShrink: 0, display: "flex", flexDirection: "column", transition: "border-color 200ms, box-shadow 200ms" }}
-                onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(0,124,176,0.4)"; (e.currentTarget as HTMLDivElement).style.boxShadow = "0 4px 24px rgba(0,0,0,0.18)"; }}
-                onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(255,255,255,0.08)"; (e.currentTarget as HTMLDivElement).style.boxShadow = "none"; }}
+                style={{ background: "#ffffff", border: "1px solid rgba(0,73,96,0.1)", borderRadius: 10, overflow: "hidden", width: 220, minWidth: 220, maxWidth: 220, flexShrink: 0, display: "flex", flexDirection: "column", transition: "border-color 200ms, box-shadow 200ms" }}
+                onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(0,124,176,0.4)"; (e.currentTarget as HTMLDivElement).style.boxShadow = "0 4px 24px rgba(0,0,0,0.08)"; }}
+                onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(0,73,96,0.1)"; (e.currentTarget as HTMLDivElement).style.boxShadow = "none"; }}
               >
                 <div style={{ aspectRatio: "1", position: "relative", overflow: "hidden" }}>
                   {part.image
@@ -183,8 +183,8 @@ const PartsGrid = forwardRef(function PartsGrid(
                 </div>
                 <div style={{ padding: "14px", display: "flex", flexDirection: "column", flex: 1 }}>
                   <h3 className="heading-card-sm" style={{ margin: "0 0 4px" }}>{part.name}</h3>
-                  {part.partNumber && <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 11, color: "rgba(255,255,255,0.5)", margin: "0 0 8px" }}>#{part.partNumber}</p>}
-                  <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 15, fontWeight: 700, color: "#fff", margin: "0 0 10px" }}>{part.price}</p>
+                  {part.partNumber && <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 11, color: "rgba(1,73,96,0.5)", margin: "0 0 8px" }}>#{part.partNumber}</p>}
+                  <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 15, fontWeight: 700, color: "#014960", margin: "0 0 10px" }}>{part.price}</p>
                   <a href={part.href || "#"} className="sg-btn-solid-dark-sm" style={{ display: "flex", justifyContent: "center", textDecoration: "none", width: "100%", marginTop: "auto" }}>Add to Cart</a>
                 </div>
               </div>

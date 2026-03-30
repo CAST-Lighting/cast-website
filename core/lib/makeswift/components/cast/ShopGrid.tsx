@@ -10,6 +10,7 @@ interface Product {
   badge?: string
   href?: string
   category?: string
+  sku?: string
 }
 
 interface ShopGridProps {
@@ -96,6 +97,7 @@ const ProductCard = ({ product }: { product: Product }) => (
         </p>
       )}
       <h3 className="heading-card-sm" style={{ margin: 0 }}>{product.name}</h3>
+      {product.sku && <p style={{ fontFamily: "'Barlow',sans-serif", fontSize: 11, color: "rgba(1,73,96,0.6)", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.08em", margin: "2px 0 0" }}>#{product.sku}</p>}
       <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 18, fontWeight: 700, color: "#fff", margin: 0 }}>{product.price}</p>
       <a
         href={product.href || "#"}
@@ -117,7 +119,7 @@ const ShopGrid = forwardRef(function ShopGrid(
 
   const cms = useCmsData()
   const cmsProducts = cms?.type === 'category' && cms.meta?.relatedProducts?.length
-    ? cms.meta.relatedProducts.map(p => ({ name: p.name, price: p.price, image: p.image, href: p.href, badge: '', category: '' }))
+    ? cms.meta.relatedProducts.map(p => ({ name: p.name, price: p.price, image: p.image, href: p.href, badge: '', category: '', sku: (p as { sku?: string }).sku ?? '' }))
     : null
   const list = cmsProducts ?? (products && products.length > 0 ? products : DEFAULT_PRODUCTS)
   const categories = ["All", ...Array.from(new Set(list.map(p => p.category).filter((c): c is string => !!c)))]

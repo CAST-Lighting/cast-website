@@ -137,7 +137,7 @@ const MediaGallery = forwardRef(function MediaGallery(
   const overlayOpacity = typeof bgOpacity === "number" ? bgOpacity / 100 : 0.85
   const sectionBackground = hasGradient
     ? `linear-gradient(${gradientDirection || "to bottom"}, ${gradientFrom}, ${gradientTo})`
-    : bgColor || "#25262d"
+    : bgColor || "#f0f2f5"
 
   return (
     <div
@@ -155,14 +155,14 @@ const MediaGallery = forwardRef(function MediaGallery(
         {/* Header with arrows — aligned to site-container */}
         <div className="site-container" style={{ marginBottom: 32 }}>
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-            <h2 style={{ fontSize: "var(--h2-size)", fontWeight: "var(--heading-weight, 700)", lineHeight: "var(--heading-line-height, 1.1)", fontFamily: "'Essonnes', 'Playfair Display', serif", color: "var(--color-title)", margin: 0 }}>
+            <h2 style={{ fontSize: "var(--h2-size)", fontWeight: "var(--heading-weight, 700)", lineHeight: "var(--heading-line-height, 1.1)", fontFamily: "'Essonnes', 'Playfair Display', serif", color: "#014960", margin: 0 }}>
               {heading}{headingAccent && <> <span className="text-gradient-warm">{headingAccent}</span></>}
             </h2>
             <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-              <button onClick={() => scroll("left")} disabled={!canScrollLeft} style={{ width: 36, height: 36, borderRadius: "50%", border: "1px solid rgba(255,255,255,0.15)", background: "#2d353c", display: "flex", alignItems: "center", justifyContent: "center", cursor: canScrollLeft ? "pointer" : "not-allowed", opacity: canScrollLeft ? 1 : 0.3, transition: "border-color 200ms, background 200ms", color: "#fff" }} onMouseEnter={e => { if (canScrollLeft) { (e.currentTarget as HTMLButtonElement).style.borderColor = "var(--color-primary)"; (e.currentTarget as HTMLButtonElement).style.background = "#37474f"; }}} onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(255,255,255,0.15)"; (e.currentTarget as HTMLButtonElement).style.background = "#2d353c"; }}>
+              <button onClick={() => scroll("left")} disabled={!canScrollLeft} style={{ width: 36, height: 36, borderRadius: "50%", border: "1px solid rgba(0,73,96,0.2)", background: "#ffffff", display: "flex", alignItems: "center", justifyContent: "center", cursor: canScrollLeft ? "pointer" : "not-allowed", opacity: canScrollLeft ? 1 : 0.3, transition: "border-color 200ms, background 200ms", color: "#014960" }} onMouseEnter={e => { if (canScrollLeft) { (e.currentTarget as HTMLButtonElement).style.borderColor = "var(--color-primary)"; (e.currentTarget as HTMLButtonElement).style.background = "#f0f8ff"; }}} onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(0,73,96,0.2)"; (e.currentTarget as HTMLButtonElement).style.background = "#ffffff"; }}>
                 <ArrowLeft style={{ width: 16, height: 16 }} />
               </button>
-              <button onClick={() => scroll("right")} disabled={!canScrollRight} style={{ width: 36, height: 36, borderRadius: "50%", border: "1px solid rgba(255,255,255,0.15)", background: "#2d353c", display: "flex", alignItems: "center", justifyContent: "center", cursor: canScrollRight ? "pointer" : "not-allowed", opacity: canScrollRight ? 1 : 0.3, transition: "border-color 200ms, background 200ms", color: "#fff" }} onMouseEnter={e => { if (canScrollRight) { (e.currentTarget as HTMLButtonElement).style.borderColor = "var(--color-primary)"; (e.currentTarget as HTMLButtonElement).style.background = "#37474f"; }}} onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(255,255,255,0.15)"; (e.currentTarget as HTMLButtonElement).style.background = "#2d353c"; }}>
+              <button onClick={() => scroll("right")} disabled={!canScrollRight} style={{ width: 36, height: 36, borderRadius: "50%", border: "1px solid rgba(0,73,96,0.2)", background: "#ffffff", display: "flex", alignItems: "center", justifyContent: "center", cursor: canScrollRight ? "pointer" : "not-allowed", opacity: canScrollRight ? 1 : 0.3, transition: "border-color 200ms, background 200ms", color: "#014960" }} onMouseEnter={e => { if (canScrollRight) { (e.currentTarget as HTMLButtonElement).style.borderColor = "var(--color-primary)"; (e.currentTarget as HTMLButtonElement).style.background = "#f0f8ff"; }}} onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(0,73,96,0.2)"; (e.currentTarget as HTMLButtonElement).style.background = "#ffffff"; }}>
                 <ArrowRight style={{ width: 16, height: 16 }} />
               </button>
             </div>
@@ -180,9 +180,9 @@ const MediaGallery = forwardRef(function MediaGallery(
               <div
                 key={i}
                 onClick={() => setLightbox(i)}
-                style={{ background: "#2d353c", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 10, overflow: "hidden", width: 320, minWidth: 320, maxWidth: 320, flexShrink: 0, cursor: "pointer", transition: "border-color 200ms, box-shadow 200ms" }}
-                onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(0,124,176,0.4)"; (e.currentTarget as HTMLDivElement).style.boxShadow = "0 4px 24px rgba(0,0,0,0.18)"; }}
-                onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(255,255,255,0.08)"; (e.currentTarget as HTMLDivElement).style.boxShadow = "none"; }}
+                style={{ background: "#ffffff", border: "1px solid rgba(0,73,96,0.1)", borderRadius: 10, overflow: "hidden", width: 320, minWidth: 320, maxWidth: 320, flexShrink: 0, cursor: "pointer", transition: "border-color 200ms, box-shadow 200ms" }}
+                onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(0,124,176,0.4)"; (e.currentTarget as HTMLDivElement).style.boxShadow = "0 4px 24px rgba(0,0,0,0.08)"; }}
+                onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(0,73,96,0.1)"; (e.currentTarget as HTMLDivElement).style.boxShadow = "none"; }}
               >
                 <div style={{ position: "relative", overflow: "hidden" }}>
                   {item.src ? (
@@ -205,7 +205,7 @@ const MediaGallery = forwardRef(function MediaGallery(
                 </div>
                 {item.caption && (
                   <div style={{ padding: "12px 16px" }}>
-                    <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, color: "rgba(255,255,255,0.7)", margin: 0 }}>{item.caption}</p>
+                    <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, color: "#1a3a4a", margin: 0 }}>{item.caption}</p>
                   </div>
                 )}
               </div>

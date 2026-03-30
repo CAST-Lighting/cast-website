@@ -163,9 +163,16 @@ function QuotesList(
                         <p style={{ fontSize: 16, fontWeight: 700, color: "#7EBEE8", margin: 0 }}>{quote.total}</p>
                       )}
                     </div>
-                    <a href={`/account/quotes/${quote.id}`} className="sg-btn-outline-dark-sm" style={{ textDecoration: "none", display: "inline-block" }}>
-                      View Quote →
-                    </a>
+                    <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+                      <a href={`/account/quotes/${quote.id}`} className="sg-btn-outline-dark-sm" style={{ textDecoration: "none", display: "inline-block" }}>
+                        View Quote →
+                      </a>
+                      {quote.status === "Approved" && (
+                        <a href={`/account/quotes/${quote.id}/convert`} className="sg-btn-solid-dark-sm" style={{ textDecoration: "none", display: "inline-block" }}>
+                          Order Now →
+                        </a>
+                      )}
+                    </div>
                   </div>
                 </div>
               )

@@ -324,16 +324,22 @@ export default async function QuoteDetailPage({ params }: Props) {
                     Actions
                   </h3>
                   {quote.status === 'Approved' && (
-                    <button className="sg-btn-solid-dark-md" style={{ width: '100%', cursor: 'pointer', border: 'none', textAlign: 'center' }}>
-                      Convert to Order
-                    </button>
+                    <a
+                      href={`/account/quotes/${quote.id}/convert`}
+                      className="sg-btn-solid-dark-md"
+                      style={{ textDecoration: 'none', display: 'block', textAlign: 'center', width: '100%' }}
+                    >
+                      Convert to Order →
+                    </a>
                   )}
                   <a
                     href={`/api/account/quotes/${quote.id}/pdf`}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="sg-btn-outline-dark-sm"
                     style={{ textDecoration: 'none', display: 'block', textAlign: 'center' }}
                   >
-                    Download PDF
+                    Download / Print PDF
                   </a>
                   <a
                     href={`mailto:sales@cast-lighting.com?subject=Request Changes on Quote ${quote.quoteNumber}`}

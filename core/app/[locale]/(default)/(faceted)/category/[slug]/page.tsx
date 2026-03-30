@@ -35,6 +35,7 @@ const CATEGORY_NAMES: Record<number, string> = {
 interface BCProduct {
   id: number;
   name: string;
+  sku?: string;
   price: number;
   custom_url: { url: string };
   categories: number[];
@@ -44,8 +45,8 @@ interface BCProduct {
 async function fetchCategoryProducts(categoryId: number): Promise<BCProduct[]> {
   try {
     const url = categoryId === 23
-      ? 'https://api.bigcommerce.com/stores/o3r3vyxngd/v3/catalog/products?limit=50&include=images&is_visible=true'
-      : `https://api.bigcommerce.com/stores/o3r3vyxngd/v3/catalog/products?limit=50&include=images&is_visible=true&categories:in=${categoryId}`;
+      ? 'https://api.bigcommerce.com/stores/o3r3vyxngd/v3/catalog/products?limit=50&include=images&is_visible=true&fields=id,name,sku,price,custom_url,categories,images'
+      : `https://api.bigcommerce.com/stores/o3r3vyxngd/v3/catalog/products?limit=50&include=images&is_visible=true&fields=id,name,sku,price,custom_url,categories,images&categories:in=${categoryId}`;
 
     const res = await fetch(url, {
       headers: {
@@ -97,6 +98,7 @@ export default async function CategoryPage({ params }: Props) {
             price: p.price ? `$${Number(p.price).toFixed(2)}` : '',
             image: img?.url_standard?.replace('{:size}', '960w') ?? img?.url_thumbnail?.replace('{:size}', '960w'),
             href: p.custom_url?.url ?? `/product/${p.id}`,
+            sku: p.sku ?? '',
           }
         }),
       },
@@ -113,6 +115,7 @@ export default async function CategoryPage({ params }: Props) {
     return {
       image: thumbnail?.url_standard,
       name: p.name,
+      sku: p.sku ?? '',
       price,
       href: p.custom_url?.url,
       category,
