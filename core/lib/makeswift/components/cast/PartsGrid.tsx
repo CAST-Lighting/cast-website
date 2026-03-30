@@ -180,7 +180,7 @@ const PartsGrid = forwardRef(function PartsGrid(
                   }
                 </div>
                 <div style={{ padding: "14px", display: "flex", flexDirection: "column", flex: 1 }}>
-                  <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, fontWeight: 600, color: "#fff", margin: "0 0 4px", lineHeight: 1.3 }}>{part.name}</p>
+                  <h3 className="heading-card-sm" style={{ margin: "0 0 4px" }}>{part.name}</h3>
                   {part.partNumber && <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 11, color: "rgba(255,255,255,0.5)", margin: "0 0 8px" }}>#{part.partNumber}</p>}
                   <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 15, fontWeight: 700, color: "#fff", margin: "0 0 10px" }}>{part.price}</p>
                   <a href={part.href || "#"} className="sg-btn-solid-dark-sm" style={{ display: "flex", justifyContent: "center", textDecoration: "none", width: "100%", marginTop: "auto" }}>Add to Cart</a>

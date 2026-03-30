@@ -117,7 +117,7 @@ const BundleProducts = forwardRef(function BundleProducts(
                 )}
               </div>
               <div style={{ padding: "14px 14px" }}>
-                <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 14, fontWeight: 600, color: "#fff", margin: "0 0 6px", lineHeight: 1.35, display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical" as const, overflow: "hidden" }}>{item.name}</p>
+                <h3 className="heading-card-sm" style={{ margin: "0 0 6px", display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical" as const, overflow: "hidden" }}>{item.name}</h3>
                 <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 16, fontWeight: 700, color: "#fff", margin: 0 }}>{item.price}</p>
               </div>
             </div>

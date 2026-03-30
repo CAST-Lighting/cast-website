@@ -92,7 +92,7 @@ const ProductCard = ({ product }: { product: Product }) => (
           {product.category}
         </p>
       )}
-      <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 15, fontWeight: 600, color: "var(--color-title)", margin: 0, lineHeight: 1.35 }}>{product.name}</p>
+      <h3 className="heading-card-sm" style={{ margin: 0 }}>{product.name}</h3>
       <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 18, fontWeight: 700, color: "#fff", margin: 0 }}>{product.price}</p>
       <a
         href={product.href || "#"}

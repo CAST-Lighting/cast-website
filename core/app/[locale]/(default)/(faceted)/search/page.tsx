@@ -882,8 +882,8 @@ const castSearchStyles = `
   }
   .cast-product-title {
     font-family: 'Essonnes', 'Playfair Display', serif;
-    font-size: var(--h3-size);
-    font-weight: 700;
+    font-size: 18px;
+    font-weight: 600;
     color: #fff;
     margin: 0;
     line-height: 1.35;

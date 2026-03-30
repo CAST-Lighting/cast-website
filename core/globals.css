@@ -297,6 +297,16 @@
   color: var(--color-title);
 }
 
+/* heading-card-sm: Product card titles in constrained-width carousels
+   Keeps semantic H3 tag for SEO, renders visually compact at 18px */
+.heading-card-sm {
+  font-family: 'Essonnes', 'Playfair Display', serif;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--color-title);
+}
+
 /* --- Text Sizes --- */
 .text-size-xlarge {
   font-family: 'Barlow', sans-serif;

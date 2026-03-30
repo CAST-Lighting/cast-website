@@ -177,7 +177,7 @@ const ProductGallery = forwardRef(function ProductGallery(
                   />
                 </div>
                 <div className="p-5">
-                  <h3 className="heading-style-h3 text-foreground mb-1">{product.name}</h3>
+                  <h3 className="heading-card-sm text-foreground mb-1">{product.name}</h3>
                   {product.price && <p className="text-primary text-size-large font-bold mb-3">{product.price}</p>}
                   <span className="inline-flex items-center gap-1.5 text-size-small text-muted-foreground group-hover:text-primary transition-colors">
                     View Product <ArrowRight className="w-3.5 h-3.5" />
