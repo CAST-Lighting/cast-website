@@ -1,6 +1,7 @@
 "use client"
 
 import { forwardRef, useState, type Ref } from "react"
+import { useCmsData } from "~/lib/makeswift/cms-context"
 
 interface Product {
   image?: string
@@ -114,7 +115,11 @@ const ShopGrid = forwardRef(function ShopGrid(
   const [activeCategory, setActiveCategory] = useState("All")
   const [search, setSearch] = useState("")
 
-  const list = products && products.length > 0 ? products : DEFAULT_PRODUCTS
+  const cms = useCmsData()
+  const cmsProducts = cms?.type === 'category' && cms.meta?.relatedProducts?.length
+    ? cms.meta.relatedProducts.map(p => ({ name: p.name, price: p.price, image: p.image, href: p.href, badge: '', category: '' }))
+    : null
+  const list = cmsProducts ?? (products && products.length > 0 ? products : DEFAULT_PRODUCTS)
   const categories = ["All", ...Array.from(new Set(list.map(p => p.category).filter((c): c is string => !!c)))]
   const filtered = list.filter(p => {
     const matchCat = activeCategory === "All" || p.category === activeCategory

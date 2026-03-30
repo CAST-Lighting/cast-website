@@ -83,13 +83,22 @@ export default async function CategoryPage({ params }: Props) {
 
   // Try Makeswift template first — if /category-page/ exists in Makeswift, use it
   const makeswiftPage = await CmsPageRenderer({
-    templatePath: '/category-page/',
+    templatePath: '/category-page',
     data: {
       type: 'category',
       heading: categoryName,
       description: `${bcProducts.length} professional-grade fixture${bcProducts.length !== 1 ? 's' : ''} — solid brass and copper, lifetime warranty`,
       meta: {
         productCount: bcProducts.length,
+        relatedProducts: bcProducts.slice(0, 50).map(p => {
+          const img = p.images?.find((i: { is_thumbnail?: boolean }) => i.is_thumbnail) ?? p.images?.[0]
+          return {
+            name: p.name,
+            price: p.price ? `$${Number(p.price).toFixed(2)}` : '',
+            image: img?.url_standard?.replace('{:size}', '960w') ?? img?.url_thumbnail?.replace('{:size}', '960w'),
+            href: p.custom_url?.url ?? `/product/${p.id}`,
+          }
+        }),
       },
     },
   });
