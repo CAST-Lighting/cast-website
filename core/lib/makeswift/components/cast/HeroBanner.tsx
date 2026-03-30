@@ -211,12 +211,15 @@ const HeroBanner = forwardRef(function HeroBanner(
   const activePhrases = resolvedPhrases.length > 0 ? resolvedPhrases : ["Built to Last Forever", "Designed for Contractors", "Loved by Homeowners"]
 
   // Resolve buttons: new List prop takes priority over legacy scalars
+  // Build button list — only include buttons that have a label set
+  const legacyButtons = [
+    btn1Label?.trim() ? { label: btn1Label, href: btn1Href || "#" } : null,
+    btn2Label?.trim() ? { label: btn2Label, href: btn2Href || "#" } : null,
+  ].filter(Boolean) as { label: string; href: string }[]
+
   const resolvedButtons = (buttonsProp && buttonsProp.length > 0)
-    ? buttonsProp
-    : [
-        { label: btn1Label || "Shop Products",       href: btn1Href || "#" },
-        { label: btn2Label || "Become a TradePro →", href: btn2Href || "#" },
-      ]
+    ? buttonsProp.filter(b => b?.label?.trim())
+    : legacyButtons
 
   // Form visibility: showForm (new) takes priority; hideForm (legacy) as fallback
   const resolvedShowForm = showForm !== undefined ? showForm : !hideForm
@@ -340,23 +343,27 @@ const HeroBanner = forwardRef(function HeroBanner(
               )}
             </h1>
 
-            {/* Description */}
-            <p className="section-desc max-w-md" style={{ color: 'var(--color-blue-grey-300)' }}>
-              {description || "Professional-grade brass and copper fixtures trusted by contractors nationwide. Lifetime warranty on every product."}
-            </p>
+            {/* Description — only show if populated */}
+            {description?.trim() && (
+              <p className="section-desc max-w-md" style={{ color: 'var(--color-blue-grey-300)' }}>
+                {description}
+              </p>
+            )}
 
-            {/* Buttons */}
-            <div className="flex flex-wrap gap-3" style={isCentered ? { justifyContent: 'center' } : undefined}>
-              {resolvedButtons.map((btn, i) => (
-                <a
-                  key={i}
-                  href={btn.href || "#"}
-                  className={i === 0 ? "sg-btn-solid-md" : "sg-btn-outline-dark-md"}
-                >
-                  {btn.label || "Button"}
-                </a>
-              ))}
-            </div>
+            {/* Buttons — only render if at least one has a label */}
+            {resolvedButtons.length > 0 && (
+              <div className="flex flex-wrap gap-3" style={isCentered ? { justifyContent: 'center' } : undefined}>
+                {resolvedButtons.map((btn, i) => (
+                  <a
+                    key={i}
+                    href={btn.href || "#"}
+                    className={i === 0 ? "sg-btn-solid-md" : "sg-btn-outline-dark-md"}
+                  >
+                    {btn.label}
+                  </a>
+                ))}
+              </div>
+            )}
           </div>
 
           {/* ── Right: form ── */}
