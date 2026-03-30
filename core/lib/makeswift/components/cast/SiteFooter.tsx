@@ -160,7 +160,7 @@ const SiteFooter = forwardRef(function SiteFooter(
               </div>
               <div className="flex items-center gap-3 mt-5">
                 {socialLinks.map(({ icon: Icon, href, label }) => (
-                  <a key={label} href={href} aria-label={label} className="w-9 h-9 rounded-full bg-secondary flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors">
+                  <a key={label} href={href} aria-label={label} className="w-9 h-9 rounded-full bg-secondary flex items-center justify-center hover:bg-primary/10 transition-colors" style={{ color: '#ffffff' }}>
                     <Icon className="w-4 h-4" />
                   </a>
                 ))}
@@ -169,7 +169,7 @@ const SiteFooter = forwardRef(function SiteFooter(
 
             {cols.map((col) => (
               <div key={col.title}>
-                <h4 className="heading-style-h4 tracking-wider text-foreground mb-4 uppercase">{col.title}</h4>
+                <h4 style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: "#fff", marginBottom: 16 }}>{col.title}</h4>
                 <ul className="space-y-2.5">
                   {col.links.map((link, i) => (
                     <li key={i}>
