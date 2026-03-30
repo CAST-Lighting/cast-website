@@ -32,6 +32,14 @@ export interface CmsPageData {
     featuredImage?: string
     /** Blog: HTML body content */
     htmlBody?: string
+    /** Blog: audio file URL for "Prefer to listen" player */
+    audioUrl?: string
+    /** Blog: estimated read time (e.g. "5 min read") */
+    readTime?: string
+    /** Blog: category name */
+    category?: string
+    /** Blog: category URL slug */
+    categorySlug?: string
     /** Product: price display */
     price?: string
     /** Product: brand name */
