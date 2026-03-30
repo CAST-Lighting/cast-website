@@ -1,6 +1,7 @@
 "use client"
 import { forwardRef, type Ref } from "react"
 import { Shield, Award, Wrench, Star, Zap } from "lucide-react"
+import { getTheme } from "~/lib/makeswift/theme"
 
 const FEATURE_ICONS = [Shield, Award, Wrench, Star, Zap]
 
@@ -48,6 +49,7 @@ const ContentMedia = forwardRef(function ContentMedia(
     videoUrl,
     stat,
     statLabel,
+    mode = 'dark',
   }: {
     className?: string
     bgImage?: string
@@ -70,15 +72,17 @@ const ContentMedia = forwardRef(function ContentMedia(
     videoUrl?: string
     stat?: string
     statLabel?: string
+    mode?: 'dark' | 'light'
   },
   ref: Ref<HTMLElement>
 ) {
+  const t = getTheme(mode)
   const bgImageUrl = bgImage
   const hasGradient = !!(gradientFrom && gradientTo)
   const overlayOpacity = typeof bgOpacity === 'number' ? bgOpacity / 100 : 0.85
   const sectionBackground = hasGradient
     ? `linear-gradient(${gradientDirection || 'to bottom'}, ${gradientFrom}, ${gradientTo})`
-    : bgColor || '#1a2332'
+    : bgColor || t.bg
 
   const features = (featuresProp && featuresProp.length > 0) ? featuresProp : FALLBACK_FEATURES
   const embedSrc = toEmbedUrl(videoUrl || '')
@@ -117,8 +121,8 @@ const ContentMedia = forwardRef(function ContentMedia(
                         <Icon className="w-6 h-6 text-primary" />
                       </div>
                       <div>
-                        <h4 className="card-title mb-1" style={{ color: '#ffffff' }}>{item.title}</h4>
-                        <p className="text-size-small" style={{ color: 'rgba(255,255,255,0.85)' }}>{item.desc}</p>
+                        <h4 className="card-title mb-1" style={{ color: t.heading }}>{item.title}</h4>
+                        <p className="text-size-small" style={{ color: t.body }}>{item.desc}</p>
                       </div>
                     </div>
                   )
@@ -126,8 +130,8 @@ const ContentMedia = forwardRef(function ContentMedia(
               </div>
 
               <div className="flex flex-wrap gap-4">
-                <a href={btn1Href || "/shop"} className="sg-btn-solid-md">{btn1Label || "Shop Products"}</a>
-                <a href={btn2Href || "/about"} className="sg-btn-outline-md" style={{ color: '#ffffff', borderColor: 'rgba(255,255,255,0.5)' }}>{btn2Label || "Learn More →"}</a>
+                <a href={btn1Href || "/shop"} className={t.btnPrimary}>{btn1Label || "Shop Products"}</a>
+                <a href={btn2Href || "/about"} className={t.btnOutline}>{btn2Label || "Learn More →"}</a>
               </div>
             </div>
 
@@ -157,7 +161,7 @@ const ContentMedia = forwardRef(function ContentMedia(
                 )}
               </div>
               <div className="absolute -bottom-6 -left-6 rounded-xl p-5 glow-warm-sm" style={{ background: '#ffffff', border: '1px solid rgba(0,0,0,0.08)' }}>
-                <div className="heading-style-h3" style={{ color: '#007CB0' }}>{stat || "25+"}</div>
+                <div className="heading-style-h3" style={{ color: t.accent }}>{stat || "25+"}</div>
                 <div className="text-size-small" style={{ color: '#1a2332', fontWeight: 600 }}>{statLabel || "Years of Excellence"}</div>
               </div>
             </div>

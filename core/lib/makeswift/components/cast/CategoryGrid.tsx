@@ -1,6 +1,7 @@
 "use client"
 import { forwardRef, type Ref, useState, useEffect } from "react"
 import { Lightbulb, Sun, CircleDot, Lamp, SquareAsterisk, Zap, Focus } from "lucide-react"
+import { getTheme } from "~/lib/makeswift/theme"
 
 const defaultBgSrc = "https://storage.googleapis.com/s.mkswft.com/RmlsZTpkZDVmYmU0ZS1hMzE3LTRlYWYtODg0Zi0wY2Q0MWVlOWU2ZTk=/background-6.jpg"
 
@@ -37,6 +38,7 @@ const CategoryGrid = forwardRef(function CategoryGrid(
     sectionTitleAccent,
     sectionDescription,
     categories: propCategories,
+    mode = 'dark',
   }: {
     className?: string
     bgImage?: string
@@ -52,6 +54,7 @@ const CategoryGrid = forwardRef(function CategoryGrid(
     sectionTitleAccent?: string
     sectionDescription?: string
     categories?: CategoryItem[]
+    mode?: 'dark' | 'light'
   },
   ref: Ref<HTMLElement>
 ) {
@@ -64,13 +67,14 @@ const CategoryGrid = forwardRef(function CategoryGrid(
       .catch(() => {})
   }, [])
 
+  const t = getTheme(mode)
   const bgImageUrl = bgImage
   const resolvedImgSrc = bgImageUrl || defaultBgSrc
   const hasGradient = !!(gradientFrom && gradientTo)
   const overlayOpacity = typeof bgOpacity === 'number' ? bgOpacity / 100 : 0.85
   const sectionBackground = hasGradient
     ? `linear-gradient(${gradientDirection || 'to bottom'}, ${gradientFrom}, ${gradientTo})`
-    : bgColor || '#003344'
+    : bgColor || t.bg
 
   // Build display categories: prop list → BC categories → fallback
   const hasPropCategories = propCategories && propCategories.length > 0

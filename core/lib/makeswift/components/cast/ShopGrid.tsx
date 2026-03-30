@@ -2,6 +2,7 @@
 
 import { forwardRef, useState, type Ref } from "react"
 import { useCmsData } from "~/lib/makeswift/cms-context"
+import { getTheme, type Theme } from "~/lib/makeswift/theme"
 
 interface Product {
   image?: string
@@ -27,6 +28,7 @@ interface ShopGridProps {
   gradientDirection?: string
   paddingTop?: number
   paddingBottom?: number
+  mode?: 'dark' | 'light'
 }
 
 const DEFAULT_PRODUCTS: Product[] = [
@@ -52,10 +54,10 @@ const DEFAULT_PRODUCTS: Product[] = [
 
 const PRICE_RANGES = ["$0 – $100", "$101 – $500", "$501 – $1,000", "$1,000+"]
 
-const ProductCard = ({ product }: { product: Product }) => (
-  <div style={{ background: "#2d353c", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 10, overflow: "hidden", display: "flex", flexDirection: "column", transition: "border-color 200ms, box-shadow 200ms" }}
+const ProductCard = ({ product, t }: { product: Product; t: Theme }) => (
+  <div style={{ background: t.cardBg, border: `1px solid ${t.cardBorder}`, borderRadius: 10, overflow: "hidden", display: "flex", flexDirection: "column", transition: "border-color 200ms, box-shadow 200ms" }}
     onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(0,124,176,0.4)"; (e.currentTarget as HTMLDivElement).style.boxShadow = "0 4px 24px rgba(0,0,0,0.18)"; }}
-    onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(255,255,255,0.08)"; (e.currentTarget as HTMLDivElement).style.boxShadow = "none"; }}
+    onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.borderColor = t.cardBorder; (e.currentTarget as HTMLDivElement).style.boxShadow = "none"; }}
   >
     {/* Image / placeholder */}
     <div style={{ aspectRatio: "1/1", position: "relative", overflow: "hidden" }}>
@@ -71,8 +73,8 @@ const ProductCard = ({ product }: { product: Product }) => (
           <div style={{ position: "absolute", inset: 0, backgroundImage: "linear-gradient(rgba(175,229,253,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(175,229,253,0.04) 1px, transparent 1px)", backgroundSize: "24px 24px" }} />
           {/* CAST brass accent icon */}
           <svg width="40" height="40" viewBox="0 0 24 24" fill="none" style={{ opacity: 0.5, position: "relative", zIndex: 1 }}>
-            <circle cx="12" cy="12" r="10" stroke="#007CB0" strokeWidth="1.5" />
-            <path d="M8 12h8M12 8v8" stroke="#007CB0" strokeWidth="1.5" strokeLinecap="round" />
+            <circle cx="12" cy="12" r="10" stroke={t.accent} strokeWidth="1.5" />
+            <path d="M8 12h8M12 8v8" stroke={t.accent} strokeWidth="1.5" strokeLinecap="round" />
           </svg>
           {product.category && (
             <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 10, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.12em", color: "rgba(0,124,176,0.7)", position: "relative", zIndex: 1, textAlign: "center", maxWidth: 120 }}>
@@ -84,7 +86,7 @@ const ProductCard = ({ product }: { product: Product }) => (
       {/* Badges */}
       <div style={{ position: "absolute", top: 10, left: 10, display: "flex", flexDirection: "column", gap: 4 }}>
         {product.badge && (
-          <span style={{ background: "var(--color-accent, #007CB0)", color: "#fff", fontFamily: "'Barlow', sans-serif", fontSize: 10, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", padding: "3px 8px", borderRadius: 4, display: "inline-block" }}>
+          <span style={{ background: t.accent, color: "#fff", fontFamily: "'Barlow', sans-serif", fontSize: 10, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", padding: "3px 8px", borderRadius: 4, display: "inline-block" }}>
             {product.badge}
           </span>
         )}
@@ -92,16 +94,16 @@ const ProductCard = ({ product }: { product: Product }) => (
     </div>
     <div style={{ padding: "18px 16px", flex: 1, display: "flex", flexDirection: "column", gap: 8 }}>
       {product.category && (
-        <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 10, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: "var(--color-accent, #007CB0)", margin: 0 }}>
+        <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 10, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: t.accent, margin: 0 }}>
           {product.category}
         </p>
       )}
       <h3 className="heading-card-sm" style={{ margin: 0 }}>{product.name}</h3>
       {product.sku && <p style={{ fontFamily: "'Barlow',sans-serif", fontSize: 11, color: "rgba(1,73,96,0.6)", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.08em", margin: "2px 0 0" }}>#{product.sku}</p>}
-      <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 18, fontWeight: 700, color: "#fff", margin: 0 }}>{product.price}</p>
+      <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 18, fontWeight: 700, color: t.heading, margin: 0 }}>{product.price}</p>
       <a
         href={product.href || "#"}
-        className="sg-btn-solid-md"
+        className={t.btnPrimary}
         style={{ marginTop: "auto", textAlign: "center", textDecoration: "none", justifyContent: "center" }}
       >
         View Product →
@@ -111,7 +113,7 @@ const ProductCard = ({ product }: { product: Product }) => (
 )
 
 const ShopGrid = forwardRef(function ShopGrid(
-  { className, sectionStyle, heading, headingAccent = "", products, bgColor, bgImage, bgOpacity, gradientFrom, gradientTo, gradientDirection, paddingTop, paddingBottom }: ShopGridProps,
+  { className, sectionStyle, heading, headingAccent = "", products, bgColor, bgImage, bgOpacity, gradientFrom, gradientTo, gradientDirection, paddingTop, paddingBottom, mode = 'dark' }: ShopGridProps,
   ref: Ref<HTMLDivElement>
 ) {
   const [activeCategory, setActiveCategory] = useState("All")
@@ -136,11 +138,12 @@ const ShopGrid = forwardRef(function ShopGrid(
     grouped[cat].push(p)
   })
 
+  const t = getTheme(mode)
   const hasGradient = !!(gradientFrom && gradientTo)
   const overlayOpacity = typeof bgOpacity === 'number' ? bgOpacity / 100 : 0.85
   const sectionBackground = hasGradient
     ? `linear-gradient(${gradientDirection || 'to bottom'}, ${gradientFrom}, ${gradientTo})`
-    : bgColor || "#25262d"
+    : bgColor || t.bg
 
   return (
     <div
@@ -158,8 +161,8 @@ const ShopGrid = forwardRef(function ShopGrid(
         .sg-sidebar {
           width: 300px;
           flex-shrink: 0;
-          background: #2d353c;
-          border: 1px solid rgba(255,255,255,0.1);
+          background: ${t.cardBg};
+          border: 1px solid ${t.cardBorder};
           border-radius: 8px;
           padding: 24px;
           align-self: flex-start;
@@ -185,7 +188,7 @@ const ShopGrid = forwardRef(function ShopGrid(
         .sg-filter-item input { cursor: pointer; accent-color: var(--color-primary); }
         .sg-search-input {
           width: 100%; box-sizing: border-box;
-          border: 1px solid rgba(255,255,255,0.12); border-radius: 4px;
+          border: 1px solid ${t.cardBorder}; border-radius: 4px;
           padding: 8px 12px; font-family: 'Barlow', sans-serif; font-size: 14px;
           outline: none; color: var(--color-title);
           transition: border-color 200ms;
@@ -262,7 +265,7 @@ const ShopGrid = forwardRef(function ShopGrid(
               ))}
             </div>
 
-            <button className="sg-btn-solid-md" style={{ width: "100%", marginTop: 8, justifyContent: "center" }}>
+            <button className={t.btnPrimary} style={{ width: "100%", marginTop: 8, justifyContent: "center" }}>
               Apply Filters
             </button>
           </aside>
@@ -277,7 +280,7 @@ const ShopGrid = forwardRef(function ShopGrid(
                   <p className="sg-section-heading">Shop Lighting</p>
                   <h3 className="sg-section-title">{cat}</h3>
                   <div style={{ display: "flex", justifyContent: "flex-end", marginBottom: 16 }}>
-                    <select style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, border: "1px solid rgba(255,255,255,0.12)", borderRadius: 4, padding: "6px 12px", color: "var(--color-title)", background: "#2d353c" }}>
+                    <select style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, border: `1px solid ${t.cardBorder}`, borderRadius: 4, padding: "6px 12px", color: "var(--color-title)", background: t.cardBg }}>
                       <option>Sort Products</option>
                       <option>Price: Low to High</option>
                       <option>Price: High to Low</option>
@@ -285,7 +288,7 @@ const ShopGrid = forwardRef(function ShopGrid(
                     </select>
                   </div>
                   <div className="sg-product-grid">
-                    {prods.map((p, i) => <ProductCard key={i} product={p} />)}
+                    {prods.map((p, i) => <ProductCard key={i} product={p} t={t} />)}
                   </div>
                 </div>
               ))

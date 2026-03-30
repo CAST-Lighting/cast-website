@@ -1,5 +1,6 @@
 "use client"
 import { forwardRef, type Ref } from "react"
+import { getTheme } from "~/lib/makeswift/theme"
 
 const PLACEHOLDER_LOGO = "https://storage.googleapis.com/s.mkswft.com/RmlsZTphNGQxOTA3OS0xMTNlLTQwNDEtOTIzMy02N2FmN2FjNDJhNmY=/placeholder_logo_horizontal.webp"
 
@@ -30,6 +31,7 @@ interface BrandLogosProps {
   paddingTop?: number
   paddingBottom?: number
   logos?: LogoItem[]
+  mode?: 'dark' | 'light'
 }
 
 const BrandLogos = forwardRef(function BrandLogos(
@@ -47,15 +49,17 @@ const BrandLogos = forwardRef(function BrandLogos(
     paddingTop,
     paddingBottom,
     logos: logosProp,
+    mode = 'dark',
   }: BrandLogosProps,
   ref: Ref<HTMLElement>
 ) {
   const logos = logosProp && logosProp.length > 0 ? logosProp : FALLBACK_LOGOS
+  const t = getTheme(mode)
   const overlayOpacity = typeof bgOpacity === "number" ? bgOpacity / 100 : 0.88
   const hasGradient = !!(gradientFrom && gradientTo)
   const bg = hasGradient
     ? `linear-gradient(${gradientDirection || 'to bottom'}, ${gradientFrom}, ${gradientTo})`
-    : bgColor || "#1a2533"
+    : bgColor || t.bg
 
   return (
     <section
@@ -84,7 +88,7 @@ const BrandLogos = forwardRef(function BrandLogos(
                 fontWeight: 700,
                 textTransform: "uppercase",
                 letterSpacing: "0.14em",
-                color: "rgba(255,255,255,0.5)",
+                color: t.subtle,
                 margin: "0 0 12px",
               }}>
                 {overline}
@@ -95,7 +99,7 @@ const BrandLogos = forwardRef(function BrandLogos(
                 fontFamily: "'Barlow', sans-serif",
                 fontSize: 18,
                 fontWeight: 600,
-                color: "rgba(255,255,255,0.75)",
+                color: t.body,
                 margin: 0,
               }}>
                 {heading}{headingAccent && <> <span className="text-gradient-warm">{headingAccent}</span></>}
@@ -117,7 +121,7 @@ const BrandLogos = forwardRef(function BrandLogos(
                 style={{
                   padding: "14px 28px",
                   background: "rgba(255,255,255,0.05)",
-                  border: "1px solid rgba(255,255,255,0.1)",
+                  border: `1px solid ${t.cardBorder}`,
                   borderRadius: 8,
                   display: "flex",
                   alignItems: "center",
@@ -136,7 +140,7 @@ const BrandLogos = forwardRef(function BrandLogos(
                     fontFamily: "'Barlow', sans-serif",
                     fontSize: 13,
                     fontWeight: 700,
-                    color: "rgba(255,255,255,0.5)",
+                    color: t.subtle,
                     textTransform: "uppercase",
                     letterSpacing: "0.08em",
                     textAlign: "center",

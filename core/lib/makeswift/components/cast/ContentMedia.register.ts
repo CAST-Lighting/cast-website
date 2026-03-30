@@ -39,6 +39,9 @@ runtime.registerComponent(
       headingAccent: TextInput({ label: "✏️ Content — Heading Accent", defaultValue: "Durability" }),
       bodyText: TextInput({ label: "✏️ Content — Body Text", defaultValue: "Every CAST fixture is made from solid brass and copper alloys that will never rust or corrode. Our proprietary LED technology delivers superior color rendering and energy efficiency." }),
 
+      // 🌓 Theme
+      mode: Select({ label: '🌓 Theme', options: [{ value: 'dark', label: 'Dark' }, { value: 'light', label: 'Light' }], defaultValue: 'dark' }),
+
       // 📦 Items — Features
       features: List({
         label: "📦 Items — Features",

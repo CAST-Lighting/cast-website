@@ -37,6 +37,9 @@ runtime.registerComponent(
       heading: TextInput({ label: "✏️ Content — Heading", defaultValue: "" }),
       headingAccent: TextInput({ label: "✏️ Content — Heading Accent (gradient)", defaultValue: "" }),
 
+      // 🌓 Theme
+      mode: Select({ label: '🌓 Theme', options: [{ value: 'dark', label: 'Dark' }, { value: 'light', label: 'Light' }], defaultValue: 'dark' }),
+
       // 📦 Items — Products
       products: List({
         label: "📦 Items — Products",
