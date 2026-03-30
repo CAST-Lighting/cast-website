@@ -1,5 +1,5 @@
 import { lazy } from "react"
-import { Style, Color, TextInput, Checkbox } from "@makeswift/runtime/controls"
+import { Style, Color, TextInput, List, Shape } from "@makeswift/runtime/controls"
 import { runtime } from "~/lib/makeswift/runtime"
 
 runtime.registerComponent(
@@ -14,13 +14,34 @@ runtime.registerComponent(
       bgColor: Color({ label: "🎨 Background — Color" }),
 
       // 🔗 Links
-      leftLink1Text: TextInput({ label: "🔗 Links — Left Link 1 Text", defaultValue: "EASY CONTRACTOR PRICING" }),
-      leftLink1Href: TextInput({ label: "🔗 Links — Left Link 1 URL", defaultValue: "/trade-pro" }),
-      leftLink2Text: TextInput({ label: "🔗 Links — Left Link 2 Text", defaultValue: "BECOME A TRADE PRO" }),
-      leftLink2Href: TextInput({ label: "🔗 Links — Left Link 2 URL", defaultValue: "/trade-pro" }),
-      phone: TextInput({ label: "✏️ Content — Phone Number", defaultValue: "(973) 423-2303" }),
-      rightLinkText: TextInput({ label: "🔗 Links — Right Link Text", defaultValue: "Contact Us" }),
-      rightLinkHref: TextInput({ label: "🔗 Links — Right Link URL", defaultValue: "/contact" }),
+      leftLinks: List({
+        label: "🔗 Left Links",
+        type: Shape({
+          type: {
+            label: TextInput({ label: "Label", defaultValue: "Link" }),
+            href: TextInput({ label: "URL", defaultValue: "/trade-pro" }),
+          },
+        }),
+        getItemLabel: (item) => item?.label || "Link",
+        defaultValue: [
+          { label: "EASY CONTRACTOR PRICING", href: "/trade-pro" },
+          { label: "BECOME A TRADE PRO", href: "/trade-pro" },
+        ],
+      }),
+
+      rightLinks: List({
+        label: "🔗 Right Links",
+        type: Shape({
+          type: {
+            label: TextInput({ label: "Label", defaultValue: "Link" }),
+            href: TextInput({ label: "URL", defaultValue: "/contact" }),
+          },
+        }),
+        getItemLabel: (item) => item?.label || "Link",
+        defaultValue: [{ label: "Contact Us", href: "/contact" }],
+      }),
+
+      phoneNumber: TextInput({ label: "📞 Phone Number", defaultValue: "(973) 423-2303" }),
     },
   }
 )

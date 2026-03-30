@@ -6,26 +6,31 @@ const NavigationTopper = forwardRef(function NavigationTopper(
   {
     className,
     bgColor,
-    leftLink1Text,
-    leftLink1Href,
-    leftLink2Text,
-    leftLink2Href,
-    phone,
-    rightLinkText,
-    rightLinkHref,
+    leftLinks,
+    rightLinks,
+    phoneNumber,
   }: {
     className?: string
     bgColor?: string
-    leftLink1Text?: string
-    leftLink1Href?: string
-    leftLink2Text?: string
-    leftLink2Href?: string
-    phone?: string
-    rightLinkText?: string
-    rightLinkHref?: string
+    leftLinks?: { label?: string; href?: string }[]
+    rightLinks?: { label?: string; href?: string }[]
+    phoneNumber?: string
   },
   ref: Ref<HTMLDivElement>
 ) {
+  const resolvedLeft = leftLinks && leftLinks.length > 0
+    ? leftLinks
+    : [
+        { label: "EASY CONTRACTOR PRICING", href: "/trade-pro" },
+        { label: "BECOME A TRADE PRO", href: "/trade-pro" },
+      ]
+
+  const resolvedRight = rightLinks && rightLinks.length > 0
+    ? rightLinks
+    : [{ label: "Contact Us", href: "/contact" }]
+
+  const resolvedPhone = phoneNumber || "(973) 423-2303"
+
   return (
     <div
       ref={ref}
@@ -34,35 +39,41 @@ const NavigationTopper = forwardRef(function NavigationTopper(
     >
       <div className="container mx-auto flex items-center justify-between px-6 py-2 text-sm font-body">
         <div className="flex items-center gap-4">
-          <a
-            href={leftLink1Href || "/trade-pro"}
-            className="text-primary hover:text-warm-glow transition-colors font-semibold tracking-wide"
-          >
-            {leftLink1Text || "EASY CONTRACTOR PRICING"}
-          </a>
-          <span className="text-muted-foreground hidden sm:inline">|</span>
-          <a
-            href={leftLink2Href || "/trade-pro"}
-            className="text-secondary-foreground hover:text-primary transition-colors hidden sm:inline tracking-wide"
-          >
-            {leftLink2Text || "BECOME A TRADE PRO"}
-          </a>
+          {resolvedLeft.map((link, i) => (
+            <span key={i} className="flex items-center gap-4">
+              {i > 0 && <span className="text-muted-foreground hidden sm:inline">|</span>}
+              <a
+                href={link.href || "/trade-pro"}
+                className={
+                  i === 0
+                    ? "text-primary hover:text-warm-glow transition-colors font-semibold tracking-wide"
+                    : "text-secondary-foreground hover:text-primary transition-colors hidden sm:inline tracking-wide"
+                }
+              >
+                {link.label}
+              </a>
+            </span>
+          ))}
         </div>
         <div className="flex items-center gap-4">
           <a
-            href={`tel:${(phone || "(973) 423-2303").replace(/\D/g, "")}`}
+            href={`tel:${resolvedPhone.replace(/\D/g, "")}`}
             className="flex items-center gap-1.5 text-secondary-foreground hover:text-primary transition-colors"
           >
             <Phone className="w-3.5 h-3.5" />
-            <span className="hidden md:inline">{phone || "(973) 423-2303"}</span>
+            <span className="hidden md:inline">{resolvedPhone}</span>
           </a>
-          <span className="text-muted-foreground">|</span>
-          <a
-            href={rightLinkHref || "/contact"}
-            className="text-secondary-foreground hover:text-primary transition-colors"
-          >
-            {rightLinkText || "Contact Us"}
-          </a>
+          {resolvedRight.map((link, i) => (
+            <span key={i} className="flex items-center gap-4">
+              <span className="text-muted-foreground">|</span>
+              <a
+                href={link.href || "/contact"}
+                className="text-secondary-foreground hover:text-primary transition-colors"
+              >
+                {link.label}
+              </a>
+            </span>
+          ))}
         </div>
       </div>
     </div>
