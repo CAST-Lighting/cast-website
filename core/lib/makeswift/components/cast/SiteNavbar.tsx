@@ -250,11 +250,11 @@ const SiteNavbar = forwardRef(function SiteNavbar(
         <>
           {/* Overlay */}
           <div
-            className="fixed inset-0 bg-black/60 z-[100]"
+            className="fixed inset-0 bg-black/60 z-[199]"
             onClick={() => setCartOpen(false)}
           />
           {/* Slide-in panel */}
-          <div className="fixed top-0 right-0 h-full w-80 max-w-full bg-card border-l border-border z-[101] flex flex-col shadow-2xl">
+          <div className="fixed top-0 right-0 h-full w-80 max-w-full bg-card border-l border-border z-[200] flex flex-col shadow-2xl">
             {/* Header */}
             <div className="flex items-center justify-between px-6 py-5 border-b border-border">
               <h2 className="text-lg font-semibold font-display text-foreground">Your Cart</h2>
