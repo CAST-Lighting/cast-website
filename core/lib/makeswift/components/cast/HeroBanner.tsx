@@ -300,32 +300,43 @@ const HeroBanner = forwardRef(function HeroBanner(
             className="flex flex-col gap-6"
             style={isCentered ? { maxWidth: 800, margin: '0 auto', textAlign: 'center', alignItems: 'center', width: '100%' } : undefined}
           >
-            {/* Badge */}
-            <div className={`badge-pill ${isCentered ? '' : 'self-start'}`}>
-              <span className="w-2 h-2 rounded-full animate-pulse flex-shrink-0" style={{ background: 'var(--color-accent)' }} />
-              <span>{badgeText || "New 2026 Product Catalog Now Available"}</span>
-            </div>
+            {/* Badge — only show if populated */}
+            {badgeText?.trim() && (
+              <div className={`badge-pill ${isCentered ? '' : 'self-start'}`}>
+                <span className="w-2 h-2 rounded-full animate-pulse flex-shrink-0" style={{ background: 'var(--color-accent)' }} />
+                <span>{badgeText}</span>
+              </div>
+            )}
 
             {/* Heading */}
             <h1 className="heading-style-h1" style={{ color: 'var(--color-blue-grey-100)' }}>
               {headingLine1 || "Premium Landscape Lighting"}
-              <br />
               {staticAccentText ? (
-                <span className="text-gradient-warm" style={{ display: 'inline-block' }}>
-                  {headingAccent || activePhrases[0]}
-                </span>
+                headingAccent?.trim() ? (
+                  <>
+                    <br />
+                    <span className="text-gradient-warm" style={{ display: 'inline-block' }}>
+                      {headingAccent}
+                    </span>
+                  </>
+                ) : null
               ) : (
-                <span
-                  className="text-gradient-warm"
-                  style={{
-                    display: 'inline-block',
-                    transition: 'opacity 0.3s ease, transform 0.3s ease',
-                    opacity: isAnimating ? 0 : 1,
-                    transform: isAnimating ? 'translateY(8px)' : 'translateY(0)',
-                  }}
-                >
-                  {activePhrases[phraseIndex]}
-                </span>
+                activePhrases.length > 0 && activePhrases[0]?.trim() ? (
+                  <>
+                    <br />
+                    <span
+                      className="text-gradient-warm"
+                      style={{
+                        display: 'inline-block',
+                        transition: 'opacity 0.3s ease, transform 0.3s ease',
+                        opacity: isAnimating ? 0 : 1,
+                        transform: isAnimating ? 'translateY(8px)' : 'translateY(0)',
+                      }}
+                    >
+                      {activePhrases[phraseIndex]}
+                    </span>
+                  </>
+                ) : null
               )}
             </h1>
 
