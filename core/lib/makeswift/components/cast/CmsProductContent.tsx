@@ -109,7 +109,7 @@ const CmsProductContent = forwardRef(function CmsProductContent(
             {/* Product Name */}
             <h1 style={{
               fontFamily: "'Essonnes', 'Playfair Display', serif",
-              fontSize: "clamp(28px, 3vw, 40px)",
+              fontSize: "var(--h2-size)",
               fontWeight: 700,
               color: "#fff",
               lineHeight: 1.15,

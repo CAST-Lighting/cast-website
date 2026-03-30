@@ -211,7 +211,7 @@ const ShopGrid = forwardRef(function ShopGrid(
 
           {/* Sidebar */}
           <aside className="sg-sidebar">
-            <h2 style={{ fontFamily: "'Barlow', sans-serif", fontSize: 22, fontWeight: 700, color: "var(--color-title)", margin: "0 0 20px" }}>Filters</h2>
+            <h2 style={{ fontFamily: "'Essonnes', 'Playfair Display', serif", fontSize: "var(--h2-size)", fontWeight: 700, color: "var(--color-title)", margin: "0 0 20px" }}>Filters</h2>
 
             <div className="sg-filter-section">
               <p className="sg-filter-label">Quick Search</p>

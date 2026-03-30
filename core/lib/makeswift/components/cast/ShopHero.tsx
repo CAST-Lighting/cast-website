@@ -73,7 +73,7 @@ const ShopHero = forwardRef(function ShopHero(
         </p>
 
         <h1 style={{
-          fontSize: "clamp(36px, 5vw, 64px)",
+          fontSize: "var(--h1-size)",
           fontWeight: 700,
           lineHeight: 1.1,
           fontFamily: "'Essonnes', 'Playfair Display', serif",

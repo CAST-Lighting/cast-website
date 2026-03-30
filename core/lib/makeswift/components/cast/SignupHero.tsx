@@ -92,12 +92,12 @@ const SignupHero = forwardRef(function SignupHero(
                 <circle cx="12" cy="12" r="11" fill="var(--color-accent)" opacity="0.15" />
                 <path d="M7 12l4 4 6-7" stroke="var(--color-accent)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
-              <h3 style={{ fontFamily: "'Barlow', sans-serif", fontSize: 22, fontWeight: 700, color: "var(--color-title)", margin: "0 0 10px" }}>Application Received</h3>
+              <h3 style={{ fontFamily: "'Essonnes', 'Playfair Display', serif", fontSize: "var(--h3-size)", fontWeight: 700, color: "var(--color-title)", margin: "0 0 10px" }}>Application Received</h3>
               <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 15, color: "var(--color-content)", lineHeight: 1.6, margin: 0 }}>Thank you for applying. A CAST account manager will contact you within 1–2 business days.</p>
             </div>
           ) : (
             <>
-              <h3 style={{ fontFamily: "'Barlow', sans-serif", fontSize: 20, fontWeight: 700, color: "var(--color-title)", margin: "0 0 24px" }}>{formHeading}</h3>
+              <h3 style={{ fontFamily: "'Essonnes', 'Playfair Display', serif", fontSize: "var(--h3-size)", fontWeight: 700, color: "var(--color-title)", margin: "0 0 24px" }}>{formHeading}</h3>
               <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 16 }}>
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
                   <div>

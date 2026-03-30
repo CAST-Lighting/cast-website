@@ -48,7 +48,7 @@ const BlogHero = forwardRef(function BlogHero(
             {overline}
           </p>
         )}
-        <h1 style={{ fontFamily: "'Essonnes', 'Playfair Display', serif", fontSize: 'clamp(32px, 5vw, 64px)', fontWeight: 700, color: '#fff', lineHeight: 1.1, margin: '0 0 20px' }}>
+        <h1 style={{ fontFamily: "'Essonnes', 'Playfair Display', serif", fontSize: "var(--h2-size)", fontWeight: 700, color: '#fff', lineHeight: 1.1, margin: '0 0 20px' }}>
           {heading || 'CAST'} <span style={{ background: 'linear-gradient(135deg, #007CB0, #7EBEE8)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>{headingAccent || 'Insights'}</span>
         </h1>
         {description && (

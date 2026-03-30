@@ -59,7 +59,7 @@ const CmsCategoryGrid = forwardRef(function CmsCategoryGrid(
 
           <h2 style={{
             fontFamily: "'Essonnes', 'Playfair Display', serif",
-            fontSize: "clamp(24px, 3vw, 36px)",
+            fontSize: "var(--h3-size)",
             fontWeight: 700,
             color: "#fff",
             margin: "0 0 8px",

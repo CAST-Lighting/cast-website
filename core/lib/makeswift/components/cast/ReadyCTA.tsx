@@ -108,7 +108,7 @@ const ReadyCTA = forwardRef(function ReadyCTA(
 
           <h2 style={{
             fontFamily: "'Essonnes', 'Playfair Display', serif",
-            fontSize: "clamp(32px, 4vw, 52px)",
+            fontSize: "var(--h2-size)",
             fontWeight: 700,
             lineHeight: 1.15,
             color: "#fff",

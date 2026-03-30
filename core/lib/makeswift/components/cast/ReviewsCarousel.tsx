@@ -206,7 +206,7 @@ const ReviewsCarousel = forwardRef(function ReviewsCarousel(
           <div className="flex flex-col md:flex-row md:items-end md:justify-between">
             <div style={{ textAlign: "left" }}>
               <span className="overline">{overline}</span>
-              <h2 className="section-heading" style={{ marginTop: 12, fontSize: "clamp(32px, 4vw, 48px)" }}>
+              <h2 className="section-heading" style={{ marginTop: 12, fontSize: "var(--h2-size)" }}>
                 {heading}{" "}
                 <span className="text-gradient-warm">{headingAccent}</span>
               </h2>

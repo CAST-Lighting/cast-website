@@ -45,7 +45,7 @@ const ContactSection = forwardRef(function ContactSection(
           {/* Left: info */}
           <div>
             {overline && <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.14em', color: '#007CB0', margin: '0 0 16px' }}>{overline}</p>}
-            <h2 style={{ fontFamily: "'Essonnes', 'Playfair Display', serif", fontSize: 'clamp(28px, 4vw, 48px)', fontWeight: 700, color: '#fff', lineHeight: 1.15, margin: '0 0 20px' }}>
+            <h2 style={{ fontFamily: "'Essonnes', 'Playfair Display', serif", fontSize: "var(--h2-size)", fontWeight: 700, color: '#fff', lineHeight: 1.15, margin: '0 0 20px' }}>
               {heading || 'Get In'} <span style={{ background: 'linear-gradient(135deg, #007CB0, #7EBEE8)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>{headingAccent || 'Touch'}</span>
             </h2>
             {description && <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 17, color: 'rgba(255,255,255,0.7)', lineHeight: 1.7, margin: '0 0 40px' }}>{description}</p>}

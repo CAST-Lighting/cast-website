@@ -121,7 +121,7 @@ export default async function Blog(props: Props) {
             <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.16em', color: '#007CB0', margin: '0 0 16px' }}>
               Resources &amp; Insights
             </p>
-            <h1 style={{ fontFamily: "'Essonnes', 'Playfair Display', serif", fontSize: 'clamp(36px, 5vw, 64px)', fontWeight: 700, color: '#fff', lineHeight: 1.1, margin: '0 0 20px' }}>
+            <h1 style={{ fontFamily: "'Essonnes', 'Playfair Display', serif", fontSize: "var(--h1-size)", fontWeight: 700, color: '#fff', lineHeight: 1.1, margin: '0 0 20px' }}>
               CAST Lighting Blog
             </h1>
             <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 18, color: 'rgba(255,255,255,0.6)', maxWidth: 560, margin: '0 auto', lineHeight: 1.7 }}>
@@ -275,7 +275,7 @@ export default async function Blog(props: Props) {
             <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 12, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.14em', color: 'rgba(255,255,255,0.6)', margin: '0 0 16px' }}>
               Get Started Today
             </p>
-            <h2 style={{ fontFamily: "'Essonnes', 'Playfair Display', serif", fontSize: 'clamp(28px, 4vw, 52px)', fontWeight: 700, color: '#fff', lineHeight: 1.15, margin: '0 0 20px' }}>
+            <h2 style={{ fontFamily: "'Essonnes', 'Playfair Display', serif", fontSize: "var(--h2-size)", fontWeight: 700, color: '#fff', lineHeight: 1.15, margin: '0 0 20px' }}>
               Ready to Elevate Your{' '}
               <span style={{ background: 'linear-gradient(135deg, #007CB0, #7EBEE8)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
                 Outdoor Lighting?

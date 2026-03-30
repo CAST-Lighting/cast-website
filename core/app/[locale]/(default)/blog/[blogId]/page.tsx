@@ -184,7 +184,7 @@ export default async function BlogPost(props: Props) {
               </div>
             ) : null}
 
-            <h1 style={{ fontFamily: "'Essonnes', 'Playfair Display', serif", fontSize: 'clamp(28px, 4vw, 56px)', fontWeight: 700, color: '#fff', lineHeight: 1.12, margin: '0 0 28px' }}>
+            <h1 style={{ fontFamily: "'Essonnes', 'Playfair Display', serif", fontSize: "var(--h2-size)", fontWeight: 700, color: '#fff', lineHeight: 1.12, margin: '0 0 28px' }}>
               {blogPost.name}
             </h1>
 
@@ -293,7 +293,7 @@ export default async function BlogPost(props: Props) {
             <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 12, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.14em', color: 'rgba(255,255,255,0.6)', margin: '0 0 16px' }}>
               Get Started Today
             </p>
-            <h2 style={{ fontFamily: "'Essonnes', 'Playfair Display', serif", fontSize: 'clamp(28px, 4vw, 48px)', fontWeight: 700, color: '#fff', lineHeight: 1.15, margin: '0 0 20px' }}>
+            <h2 style={{ fontFamily: "'Essonnes', 'Playfair Display', serif", fontSize: "var(--h2-size)", fontWeight: 700, color: '#fff', lineHeight: 1.15, margin: '0 0 20px' }}>
               Ready to Elevate Your{' '}
               <span style={{ background: 'linear-gradient(135deg, #007CB0, #7EBEE8)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
                 Outdoor Lighting?

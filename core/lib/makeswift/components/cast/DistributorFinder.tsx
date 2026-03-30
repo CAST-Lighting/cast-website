@@ -154,12 +154,12 @@ const DistributorFinder = forwardRef(function DistributorFinder(
                     <circle cx="12" cy="12" r="11" fill="var(--color-accent)" opacity="0.15" />
                     <path d="M7 12l4 4 6-7" stroke="var(--color-accent)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
-                  <h3 style={{ fontFamily: "'Barlow', sans-serif", fontSize: 22, fontWeight: 700, color: "var(--color-title)", margin: "0 0 10px" }}>Application Received</h3>
+                  <h3 style={{ fontFamily: "'Essonnes', 'Playfair Display', serif", fontSize: "var(--h3-size)", fontWeight: 700, color: "var(--color-title)", margin: "0 0 10px" }}>Application Received</h3>
                   <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 15, color: "var(--color-content)", lineHeight: 1.6, margin: 0 }}>Our distribution team will review your application and follow up within 3–5 business days.</p>
                 </div>
               ) : (
                 <>
-                  <h3 style={{ fontFamily: "'Barlow', sans-serif", fontSize: 20, fontWeight: 700, color: "var(--color-title)", margin: "0 0 8px" }}>{formHeading}</h3>
+                  <h3 style={{ fontFamily: "'Essonnes', 'Playfair Display', serif", fontSize: "var(--h3-size)", fontWeight: 700, color: "var(--color-title)", margin: "0 0 8px" }}>{formHeading}</h3>
                   <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 14, color: "var(--color-content)", lineHeight: 1.5, margin: "0 0 24px" }}>Carry the industry's best outdoor lighting brand in your market.</p>
 
                   <div style={{ display: "flex", flexDirection: "column", gap: 14, marginBottom: 20 }}>

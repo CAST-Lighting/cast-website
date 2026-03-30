@@ -35,7 +35,7 @@ export default async function TradeProPage({ params }: Props) {
           <div style={{ position: 'absolute', inset: 0, backgroundImage: 'linear-gradient(rgba(0,124,176,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,124,176,0.03) 1px, transparent 1px)', backgroundSize: '48px 48px' }} />
           <div className="reg-container" style={{ position: 'relative', zIndex: 1 }}>
             <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.16em', color: '#007CB0', margin: '0 0 16px' }}>Account Application</p>
-            <h1 style={{ fontFamily: "'Essonnes', 'Playfair Display', serif", fontSize: 'clamp(32px, 5vw, 56px)', fontWeight: 700, color: '#fff', lineHeight: 1.1, margin: '0 0 20px' }}>Trade Professional Registration</h1>
+            <h1 style={{ fontFamily: "'Essonnes', 'Playfair Display', serif", fontSize: "var(--h2-size)", fontWeight: 700, color: '#fff', lineHeight: 1.1, margin: '0 0 20px' }}>Trade Professional Registration</h1>
             <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 18, color: 'rgba(255,255,255,0.6)', maxWidth: 620, margin: '0 auto', lineHeight: 1.7 }}>Application for an Account</p>
           </div>
         </section>

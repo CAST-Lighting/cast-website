@@ -105,7 +105,7 @@ const NotFoundHero = forwardRef(function NotFoundHero(
         <h1
           style={{
             fontFamily: "'Essonnes', 'Playfair Display', serif",
-            fontSize: "clamp(28px, 4vw, 48px)",
+            fontSize: "var(--h2-size)",
             fontWeight: 700,
             color: "#fff",
             lineHeight: 1.2,
