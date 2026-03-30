@@ -262,11 +262,11 @@ const ProductHero = forwardRef(function ProductHero(
               .ph-body-html a { color: #7EBEE8; text-decoration: underline; text-underline-offset: 2px; }
               .ph-body-html a:hover { color: #007CB0; }
               .ph-body-html p { margin: 0 0 16px; }
-              .ph-body-html ul { padding-left: 20px; margin: 0 0 16px; list-style-type: disc; }
-              .ph-body-html ol { padding-left: 20px; margin: 0 0 16px; list-style-type: decimal; }
-              .ph-body-html li { margin-bottom: 6px; display: list-item; }
-              .ph-body-html ul ul { list-style-type: circle; margin: 4px 0 4px; }
-              .ph-body-html strong, .ph-body-html b { color: #fff; font-weight: 600; }
+              .ph-body-html ul { padding-left: 24px !important; margin: 0 0 16px !important; list-style: disc outside !important; }
+              .ph-body-html ol { padding-left: 24px !important; margin: 0 0 16px !important; list-style: decimal outside !important; }
+              .ph-body-html li { margin-bottom: 6px !important; display: list-item !important; list-style: inherit !important; }
+              .ph-body-html ul ul { list-style: circle outside !important; margin: 4px 0 4px !important; }
+              .ph-body-html strong, .ph-body-html b { color: #014960; font-weight: 600; }
               .ph-body-html h2 { font-family: 'Essonnes', 'Playfair Display', serif; font-size: var(--h3-size); color: #fff; margin: 24px 0 10px; }
               .ph-body-html h3 { font-family: 'Essonnes', 'Playfair Display', serif; font-size: var(--h4-size); color: #fff; margin: 20px 0 8px; }
               .ph-body-html h4 { font-family: 'Essonnes', 'Playfair Display', serif; font-size: var(--h5-size); color: rgba(255,255,255,0.85); margin: 16px 0 6px; }
