@@ -1,8 +1,13 @@
-const BASE_URL = `https://api.airtable.com/v0/${process.env.AIRTABLE_BASE_ID}/${process.env.AIRTABLE_TABLE_ID}`;
+// Use new CAST Airtable if available, fall back to old VAVA Airtable
+const AIRTABLE_BASE = process.env.CAST_AIRTABLE_BASE || process.env.AIRTABLE_BASE_ID;
+const AIRTABLE_TABLE = process.env.CAST_BLOG_TABLE || process.env.AIRTABLE_TABLE_ID;
+const AIRTABLE_AUTH_TOKEN = process.env.CAST_AIRTABLE_TOKEN || process.env.AIRTABLE_TOKEN;
+
+const BASE_URL = `https://api.airtable.com/v0/${AIRTABLE_BASE}/${AIRTABLE_TABLE}`;
 
 function airtableHeaders() {
   return {
-    Authorization: `Bearer ${process.env.AIRTABLE_TOKEN}`,
+    Authorization: `Bearer ${AIRTABLE_AUTH_TOKEN}`,
     'Content-Type': 'application/json',
   };
 }
