@@ -1,3 +1,4 @@
+import { CmsPageRenderer } from '~/lib/makeswift/cms-page-renderer';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
@@ -45,6 +46,9 @@ const CATEGORY_TAGS = [
 ];
 
 export default async function Blog(props: Props) {
+  const makeswiftPage = await CmsPageRenderer({ templatePath: '/blog', data: {} });
+  if (makeswiftPage) return makeswiftPage;
+
   const { locale } = await props.params;
   setRequestLocale(locale);
 

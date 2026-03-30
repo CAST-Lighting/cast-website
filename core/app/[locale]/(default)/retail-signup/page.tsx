@@ -1,3 +1,4 @@
+import { CmsPageRenderer } from '~/lib/makeswift/cms-page-renderer';
 import { setRequestLocale } from 'next-intl/server';
 import { type Metadata } from 'next';
 
@@ -10,9 +11,7 @@ export const metadata: Metadata = {
   description: 'Register for a CAST Lighting retail store account. Access repair parts, lamps, and accessories at 20% off MSRP. Free shipping on orders over $1,000.',
 };
 
-export default async function RetailSignupPage({ params }: Props) {
-  const { locale } = await params;
-  setRequestLocale(locale);
+function FallbackPage() {
 
   return (
     <>
@@ -155,4 +154,11 @@ export default async function RetailSignupPage({ params }: Props) {
       </div>
     </>
   );
+}
+export default async function RetailSignupPage({ params }: Props) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  const makeswiftPage = await CmsPageRenderer({ templatePath: '/retail-signup', data: {} });
+  if (makeswiftPage) return makeswiftPage;
+  return <FallbackPage />;
 }

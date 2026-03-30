@@ -1,3 +1,5 @@
+import { CmsPageRenderer } from '~/lib/makeswift/cms-page-renderer';
+import CastSiteFooter from '~/lib/makeswift/components/cast/SiteFooter';
 import { setRequestLocale } from 'next-intl/server';
 import { type Metadata } from 'next';
 
@@ -10,11 +12,10 @@ export const metadata: Metadata = {
   description: 'Apply for a CAST Lighting landscape account. For contractors and landscape architects without a Distributor in your area. Application takes 2-5 business days.',
 };
 
-export default async function TradeProPage({ params }: Props) {
-  const { locale } = await params;
-  setRequestLocale(locale);
-
+function FallbackPage() {
   return (
+    <>
+
     <>
       <style>{`
         .reg-container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
@@ -161,4 +162,15 @@ export default async function TradeProPage({ params }: Props) {
       </div>
     </>
   );
+}
+    </>
+  );
+}
+
+export default async function TradeProPage({ params }: Props) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  const makeswiftPage = await CmsPageRenderer({ templatePath: '/trade-pro', data: {} });
+  if (makeswiftPage) return makeswiftPage;
+  return <FallbackPage />;
 }

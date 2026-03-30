@@ -6,6 +6,7 @@ import './components/cast/CastSiteTheme.register';
 import './components/cast/SiteFooter.register';
 
 // Hero & Landing sections
+import './components/cast/AboutHero.register';
 import './components/cast/HeroBanner.register';
 import './components/cast/RotatingTextHero.register';
 import './components/cast/BlogHero.register';
@@ -30,6 +31,8 @@ import './components/cast/ProductDocuments.register';
 import './components/cast/ProductFAQ.register';
 
 // Content sections
+import './components/cast/AboutContent.register';
+import './components/cast/BlogGrid.register';
 import './components/cast/ContentMedia.register';
 import './components/cast/MediaGallery.register';
 import './components/cast/BrandLogos.register';
@@ -44,6 +47,8 @@ import './components/cast/NewsletterCtaFull.register';
 
 // Forms & Contact
 import './components/cast/ContactSection.register';
+import './components/cast/TradeProSignup.register';
+import './components/cast/RetailSignup.register';
 
 // Trade & Finder tools
 import './components/cast/ContractorFinder.register';
@@ -59,6 +64,9 @@ import './components/cast/NotFoundHero.register';
 import './components/cast/CmsBlogBody.register';
 import './components/cast/CmsProductContent.register';
 import './components/cast/CmsCategoryGrid.register';
+
+// Blog
+import './components/cast/BlogGrid.register';
 
 // Utility
 import './components/cast/StyleGuide.register';
