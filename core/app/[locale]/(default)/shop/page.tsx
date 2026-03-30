@@ -1,5 +1,6 @@
 import { setRequestLocale } from 'next-intl/server';
 import { type Metadata } from 'next';
+import { CmsPageRenderer } from '~/lib/makeswift/cms-page-renderer';
 import ShopHero from '~/lib/makeswift/components/cast/ShopHero';
 import ShopGrid from '~/lib/makeswift/components/cast/ShopGrid';
 import CategoryGrid from '~/lib/makeswift/components/cast/CategoryGrid';
@@ -81,6 +82,10 @@ export const metadata: Metadata = {
 export default async function ShopPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
+
+  // Try Makeswift /shop template first
+  const makeswiftPage = await CmsPageRenderer({ templatePath: '/shop', data: { type: 'product' } });
+  if (makeswiftPage) return makeswiftPage;
 
   const products = await fetchBCProducts()
 
