@@ -154,7 +154,7 @@ const ShopGrid = forwardRef(function ShopGrid(
       )}
       <style>{`
         .sg-sidebar {
-          width: 220px;
+          width: 300px;
           flex-shrink: 0;
           background: #2d353c;
           border: 1px solid rgba(255,255,255,0.1);
