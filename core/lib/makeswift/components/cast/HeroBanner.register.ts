@@ -1,76 +1,73 @@
 import { lazy } from "react"
-import { Style, Color, Image, Number as NumberControl, Select, TextInput } from "@makeswift/runtime/controls"
+import { Style, Color, Image, Number as NumberControl, Select, TextInput, Checkbox, List, Shape } from "@makeswift/runtime/controls"
 import { runtime } from "~/lib/makeswift/runtime"
 
 runtime.registerComponent(
   lazy(() => import("./HeroBanner")),
   {
     type: "site-hero-banner",
-    label: "Hero / Homepage Hero",
+    label: "Hero / Universal Hero",
     props: {
+
+      // ─── LAYOUT ──────────────────────────────────────────────────────
+      paddingTop:    NumberControl({ label: '📐 Layout — Padding Top',    defaultValue: 136, min: 0, max: 400, step: 8, suffix: 'px' }),
+      paddingBottom: NumberControl({ label: '📐 Layout — Padding Bottom', defaultValue: 112, min: 0, max: 400, step: 8, suffix: 'px' }),
+      lineHeight:    NumberControl({ label: '📐 Layout — Line Height',    defaultValue: 1.6, min: 1, max: 3,   step: 0.05 }),
       className: Style(),
 
-      // ─── SLIDES ──────────────────────────────────────────
-      slide1Image: Image({ label: '📸 Slide 1 — Image' }),
-      slide2Image: Image({ label: '📸 Slide 2 — Image' }),
-      slide3Image: Image({ label: '📸 Slide 3 — Image' }),
-      slide4Image: Image({ label: '📸 Slide 4 — Image' }),
-      slide5Image: Image({ label: '📸 Slide 5 — Image' }),
-
-      // ─── CONTENT ─────────────────────────────────────────
-      badgeText:    TextInput({ label: '✏️ Badge Text', defaultValue: 'New 2026 Product Catalog Now Available' }),
-      headingLine1: TextInput({ label: '✏️ Heading', defaultValue: 'Premium Landscape Lighting' }),
-      phrase1:      TextInput({ label: '✏️ Rotating Phrase 1', defaultValue: 'Built to Last Forever' }),
-      phrase2:      TextInput({ label: '✏️ Rotating Phrase 2', defaultValue: 'Designed for Contractors' }),
-      phrase3:      TextInput({ label: '✏️ Rotating Phrase 3', defaultValue: 'Loved by Homeowners' }),
-      description:  TextInput({ label: '✏️ Description', defaultValue: 'Professional-grade brass and copper fixtures trusted by contractors nationwide. Lifetime warranty on every product.' }),
-
-      // ─── BUTTONS ─────────────────────────────────────────
-      btn1Label: TextInput({ label: '🔘 Button 1 — Label', defaultValue: 'Shop Products' }),
-      btn1Href:  TextInput({ label: '🔘 Button 1 — Link', defaultValue: '#' }),
-      btn2Label: TextInput({ label: '🔘 Button 2 — Label', defaultValue: 'Become a TradePro →' }),
-      btn2Href:  TextInput({ label: '🔘 Button 2 — Link', defaultValue: '#' }),
-
-      // ─── FORM ────────────────────────────────────────────
-      formTitle:       TextInput({ label: '📋 Form — Title', defaultValue: 'Get An Easy, No-Pressure Quote' }),
-      formSubtitle:    TextInput({ label: '📋 Form — Subtitle', defaultValue: "Tell us about your project and we'll get back to you within 24 hours." }),
-      formSubmitLabel: TextInput({ label: '📋 Form — Submit Button', defaultValue: 'Get A Free Quote' }),
-      formWidth:       NumberControl({ label: '📋 Form — Width', defaultValue: 472, min: 280, max: 800, step: 8, suffix: 'px' }),
-      formOffsetBottom: NumberControl({ label: '📋 Form — Overlap Below', defaultValue: 32, min: 0, max: 400, step: 8, suffix: 'px' }),
-      field1Label:       TextInput({ label: '📋 Field 1 — Label', defaultValue: 'Full Name' }),
-      field1Placeholder: TextInput({ label: '📋 Field 1 — Placeholder', defaultValue: 'John Smith' }),
-      field2Label:   TextInput({ label: '📋 Field 2 — Label', defaultValue: 'Project Type' }),
-      field2Option1: TextInput({ label: '📋 Field 2 — Option 1', defaultValue: 'Residential' }),
-      field2Option2: TextInput({ label: '📋 Field 2 — Option 2', defaultValue: 'Commercial' }),
-      field2Option3: TextInput({ label: '📋 Field 2 — Option 3', defaultValue: 'Municipal' }),
-      field2Option4: TextInput({ label: '📋 Field 2 — Option 4', defaultValue: '' }),
-      field3Label:       TextInput({ label: '📋 Field 3 — Label', defaultValue: 'Email' }),
-      field3Placeholder: TextInput({ label: '📋 Field 3 — Placeholder', defaultValue: 'john@company.com' }),
-      field4Label:       TextInput({ label: '📋 Field 4 — Label', defaultValue: 'Phone' }),
-      field4Placeholder: TextInput({ label: '📋 Field 4 — Placeholder', defaultValue: '(555) 123-4567' }),
-
-      // ─── BACKGROUND ──────────────────────────────────────
-      bgColor:    Color({ label: '🎨 Background — Overlay Color', defaultValue: '#25262d' }),
-      bgOpacity:  NumberControl({ label: '🎨 Background — Overlay Opacity', defaultValue: 60, min: 0, max: 100, step: 1, suffix: '%' }),
+      // ─── BACKGROUND ──────────────────────────────────────────────────
+      slides: List({
+        label: '📸 Slides — Background Images',
+        type: Image(),
+        getItemLabel: (_, index) => `Slide ${(index ?? 0) + 1}`,
+      }),
+      staticImage: Checkbox({ label: '📸 Static Image — Use Single Image (Slide 1)', defaultValue: false }),
       gradientFrom: Color({ label: '🎨 Background — Gradient From', defaultValue: '#25262d' }),
-      gradientTo:   Color({ label: '🎨 Background — Gradient To', defaultValue: '#25262d' }),
+      gradientTo:   Color({ label: '🎨 Background — Gradient To',   defaultValue: '#25262d' }),
       gradientDirection: Select({
         label: '🎨 Background — Gradient Direction',
         options: [
           { value: 'to bottom', label: '↓ Top to Bottom' },
-          { value: 'to top', label: '↑ Bottom to Top' },
-          { value: 'to right', label: '→ Left to Right' },
-          { value: 'to left', label: '← Right to Left' },
-          { value: '135deg', label: '↘ Diagonal' },
-          { value: '225deg', label: '↙ Diagonal' },
+          { value: 'to top',    label: '↑ Bottom to Top' },
+          { value: 'to right',  label: '→ Left to Right' },
+          { value: 'to left',   label: '← Right to Left' },
+          { value: '135deg',    label: '↘ Diagonal' },
+          { value: '225deg',    label: '↙ Diagonal' },
         ],
         defaultValue: '135deg',
       }),
 
-      // ─── LAYOUT ──────────────────────────────────────────
-      lineHeight:    NumberControl({ label: '📐 Layout — Line Height', defaultValue: 1.6, min: 1, max: 3, step: 0.05 }),
-      paddingTop:    NumberControl({ label: '📐 Layout — Padding Top', defaultValue: 136, min: 0, max: 400, step: 8, suffix: 'px' }),
-      paddingBottom: NumberControl({ label: '📐 Layout — Padding Bottom', defaultValue: 112, min: 0, max: 400, step: 8, suffix: 'px' }),
+      // ─── CONTENT ─────────────────────────────────────────────────────
+      badgeText:    TextInput({ label: '✏️ Content — Badge Text',    defaultValue: 'New 2026 Product Catalog Now Available' }),
+      headingLine1: TextInput({ label: '✏️ Content — Heading',       defaultValue: 'Premium Landscape Lighting' }),
+      staticAccentText: Checkbox({ label: '✏️ Content — Static Accent Text', defaultValue: false }),
+      headingAccent: TextInput({ label: '✏️ Content — Accent Text (or static phrase)', defaultValue: '' }),
+      phrases: List({
+        label: '✏️ Content — Rotating Phrases',
+        type: Shape({ type: { text: TextInput({ label: 'Phrase', defaultValue: '' }) } }),
+        getItemLabel: (item) => item?.text || 'Phrase',
+      }),
+      description: TextInput({ label: '✏️ Content — Description', defaultValue: 'Professional-grade brass and copper fixtures trusted by contractors nationwide. Lifetime warranty on every product.' }),
+
+      // ─── BUTTONS ─────────────────────────────────────────────────────
+      buttons: List({
+        label: '🔘 Buttons',
+        type: Shape({
+          type: {
+            label: TextInput({ label: 'Label', defaultValue: 'Button' }),
+            href:  TextInput({ label: 'Link',  defaultValue: '#' }),
+          },
+        }),
+        getItemLabel: (item) => item?.label || 'Button',
+      }),
+
+      // ─── FORM ────────────────────────────────────────────────────────
+      showForm:         Checkbox({ label: '📋 Form — Show Form',             defaultValue: false }),
+      formTitle:        TextInput({ label: '📋 Form — Title',                defaultValue: 'Become a TradePro' }),
+      formSubtitle:     TextInput({ label: '📋 Form — Subtitle',             defaultValue: "Apply for exclusive contractor pricing, training, and dedicated support." }),
+      formSubmitLabel:  TextInput({ label: '📋 Form — Submit Button Label',  defaultValue: 'Submit Application' }),
+      formWidth:        NumberControl({ label: '📋 Form — Width (px)',        defaultValue: 472, min: 280, max: 800, step: 8, suffix: 'px' }),
+      formOffsetBottom: NumberControl({ label: '📋 Form — Overlap Below (px)', defaultValue: 32,  min: 0,   max: 400, step: 8, suffix: 'px' }),
     },
   }
 )

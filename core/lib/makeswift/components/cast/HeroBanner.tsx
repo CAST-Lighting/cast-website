@@ -130,6 +130,15 @@ const DEFAULT_SLIDES = [
 
 interface HeroBannerProps {
   className?: string
+  // New List-based props
+  slides?: string[]
+  staticImage?: boolean
+  phrases?: Array<{ text?: string }>
+  staticAccentText?: boolean
+  headingAccent?: string
+  buttons?: Array<{ label?: string; href?: string }>
+  showForm?: boolean
+  // Legacy scalar props (kept for backward compat with saved Makeswift data)
   slide1Image?: string
   slide2Image?: string
   slide3Image?: string
@@ -138,32 +147,22 @@ interface HeroBannerProps {
   phrase1?: string
   phrase2?: string
   phrase3?: string
-  badgeText?: string
-  headingLine1?: string
-  description?: string
   btn1Label?: string
   btn1Href?: string
   btn2Label?: string
   btn2Href?: string
-  formTitle?: string
-  formSubtitle?: string
-  field1Label?: string
-  field1Placeholder?: string
-  field2Label?: string
-  field2Option1?: string
-  field2Option2?: string
-  field2Option3?: string
-  field2Option4?: string
-  field3Label?: string
-  field3Placeholder?: string
-  field4Label?: string
-  field4Placeholder?: string
-  formSubmitLabel?: string
   hideForm?: boolean
-  formWidth?: number
-  formOffsetBottom?: number
   bgColor?: string
   bgOpacity?: number
+  // Shared props
+  badgeText?: string
+  headingLine1?: string
+  description?: string
+  formTitle?: string
+  formSubtitle?: string
+  formSubmitLabel?: string
+  formWidth?: number
+  formOffsetBottom?: number
   gradientFrom?: string
   gradientTo?: string
   gradientDirection?: string
@@ -175,22 +174,19 @@ interface HeroBannerProps {
 const HeroBanner = forwardRef(function HeroBanner(
   {
     className,
+    // New list-based props
+    slides, staticImage, phrases: phrasesProp, staticAccentText, headingAccent,
+    buttons: buttonsProp, showForm,
+    // Legacy scalar props
     slide1Image, slide2Image, slide3Image, slide4Image, slide5Image,
     phrase1, phrase2, phrase3,
-    badgeText,
-    headingLine1,
-    description,
-    btn1Label, btn1Href,
-    btn2Label, btn2Href,
-    formTitle, formSubtitle,
-    field1Label, field1Placeholder,
-    field2Label, field2Option1, field2Option2, field2Option3, field2Option4,
-    field3Label, field3Placeholder,
-    field4Label, field4Placeholder,
-    formSubmitLabel,
+    btn1Label, btn1Href, btn2Label, btn2Href,
     hideForm,
-    formWidth, formOffsetBottom,
     bgColor, bgOpacity, gradientFrom, gradientTo, gradientDirection,
+    // Shared
+    badgeText, headingLine1, description,
+    formTitle, formSubtitle, formSubmitLabel,
+    formWidth, formOffsetBottom,
     lineHeight, paddingTop = 136, paddingBottom = 112,
   }: HeroBannerProps,
   ref: Ref<HTMLElement>
@@ -199,11 +195,30 @@ const HeroBanner = forwardRef(function HeroBanner(
   const [phraseIndex, setPhraseIndex] = useState(0)
   const [isAnimating, setIsAnimating] = useState(false)
 
-  const slideImages = [slide1Image, slide2Image, slide3Image, slide4Image, slide5Image].filter(Boolean) as string[]
-  const images = slideImages.length > 0 ? slideImages : DEFAULT_SLIDES
+  // Resolve slide images: new List prop takes priority over legacy scalars
+  const resolvedSlideImages = (slides && slides.length > 0)
+    ? slides
+    : [slide1Image, slide2Image, slide3Image, slide4Image, slide5Image].filter(Boolean) as string[]
+  const allImages = resolvedSlideImages.length > 0 ? resolvedSlideImages : DEFAULT_SLIDES
+  // staticImage mode: only use first image, no carousel
+  const images = staticImage ? [allImages[0]] : allImages
 
-  const phrases = [phrase1, phrase2, phrase3].filter(Boolean) as string[]
-  const activePhrases = phrases.length > 0 ? phrases : ["Built to Last Forever", "Designed for Contractors", "Loved by Homeowners"]
+  // Resolve phrases: new List prop takes priority over legacy scalars
+  const resolvedPhrases = (phrasesProp && phrasesProp.length > 0)
+    ? phrasesProp.map(p => p.text).filter(Boolean) as string[]
+    : [phrase1, phrase2, phrase3].filter(Boolean) as string[]
+  const activePhrases = resolvedPhrases.length > 0 ? resolvedPhrases : ["Built to Last Forever", "Designed for Contractors", "Loved by Homeowners"]
+
+  // Resolve buttons: new List prop takes priority over legacy scalars
+  const resolvedButtons = (buttonsProp && buttonsProp.length > 0)
+    ? buttonsProp
+    : [
+        { label: btn1Label || "Shop Products",       href: btn1Href || "#" },
+        { label: btn2Label || "Become a TradePro →", href: btn2Href || "#" },
+      ]
+
+  // Form visibility: showForm (new) takes priority; hideForm (legacy) as fallback
+  const formVisible = showForm !== undefined ? showForm : !hideForm
 
   const next = useCallback(() => setCurrent(p => (p + 1) % images.length), [images.length])
 
@@ -272,7 +287,7 @@ const HeroBanner = forwardRef(function HeroBanner(
 
       {/* Content */}
       <div className="site-container w-full relative" style={{ zIndex: 10 }}>
-        <div className={`grid grid-cols-1 gap-10 lg:gap-16 items-start lg:items-center ${hideForm ? '' : 'lg:grid-cols-2'}`}>
+        <div className={`grid grid-cols-1 gap-10 lg:gap-16 items-start lg:items-center ${formVisible ? 'lg:grid-cols-2' : ''}`}>
 
           {/* ── Left: text ── */}
           <div className="flex flex-col gap-6">
@@ -286,17 +301,23 @@ const HeroBanner = forwardRef(function HeroBanner(
             <h1 className="heading-style-h1" style={{ color: 'var(--color-blue-grey-100)' }}>
               {headingLine1 || "Premium Landscape Lighting"}
               <br />
-              <span
-                className="text-gradient-warm"
-                style={{
-                  display: 'inline-block',
-                  transition: 'opacity 0.3s ease, transform 0.3s ease',
-                  opacity: isAnimating ? 0 : 1,
-                  transform: isAnimating ? 'translateY(8px)' : 'translateY(0)',
-                }}
-              >
-                {activePhrases[phraseIndex]}
-              </span>
+              {staticAccentText ? (
+                <span className="text-gradient-warm" style={{ display: 'inline-block' }}>
+                  {headingAccent || activePhrases[0]}
+                </span>
+              ) : (
+                <span
+                  className="text-gradient-warm"
+                  style={{
+                    display: 'inline-block',
+                    transition: 'opacity 0.3s ease, transform 0.3s ease',
+                    opacity: isAnimating ? 0 : 1,
+                    transform: isAnimating ? 'translateY(8px)' : 'translateY(0)',
+                  }}
+                >
+                  {activePhrases[phraseIndex]}
+                </span>
+              )}
             </h1>
 
             {/* Description */}
@@ -306,21 +327,24 @@ const HeroBanner = forwardRef(function HeroBanner(
 
             {/* Buttons */}
             <div className="flex flex-wrap gap-3">
-              <a href={btn1Href || "#"} className="sg-btn-solid-md">
-                {btn1Label || "Shop Products"}
-              </a>
-              <a href={btn2Href || "#"} className="sg-btn-outline-dark-md">
-                {btn2Label || "Become a TradePro →"}
-              </a>
+              {resolvedButtons.map((btn, i) => (
+                <a
+                  key={i}
+                  href={btn.href || "#"}
+                  className={i === 0 ? "sg-btn-solid-md" : "sg-btn-outline-dark-md"}
+                >
+                  {btn.label || "Button"}
+                </a>
+              ))}
             </div>
           </div>
 
           {/* ── Right: form ── */}
-          {!hideForm && <div
+          {formVisible && <div
             style={{
               position: 'relative',
               zIndex: 50,
-              maxWidth: formWidth ? `${formWidth}px` : undefined,
+              maxWidth: formWidth ? `${formWidth}px` : '472px',
               marginLeft: 'auto',
               transform: formOffsetBottom ? `translateY(${formOffsetBottom}px)` : undefined,
             }}
