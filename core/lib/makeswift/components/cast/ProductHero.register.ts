@@ -1,5 +1,14 @@
 import { lazy } from "react"
-import { Style, TextInput, TextArea, List, Shape, Image, Color, Checkbox, Number as NumberControl, Select } from "@makeswift/runtime/controls"
+import {
+  Style,
+  TextInput,
+  TextArea,
+  Image,
+  Color,
+  Checkbox,
+  Number as NumberControl,
+  Select,
+} from "@makeswift/runtime/controls"
 import { runtime } from "~/lib/makeswift/runtime"
 
 runtime.registerComponent(
@@ -9,65 +18,98 @@ runtime.registerComponent(
     label: "CMS Content / Product Details",
     props: {
       className: Style(),
-      paddingTop: NumberControl({ label: "📐 Layout — Padding Top", defaultValue: 96, min: 0, max: 400, step: 8, suffix: "px" }),
-      paddingBottom: NumberControl({ label: "📐 Layout — Padding Bottom", defaultValue: 96, min: 0, max: 400, step: 8, suffix: "px" }),
-      sectionStyle: Style({ properties: [Style.Padding, Style.Margin] }),
 
-      // 🎨 Background
-      bgColor: Color({ label: "🎨 Background — Color", defaultValue: "#25262d" }),
+      // ─── 📐 Layout ────────────────────────────────────────────────
+      paddingTop: NumberControl({
+        label: "📐 Layout — Padding Top",
+        defaultValue: 48,
+        min: 0,
+        max: 400,
+        step: 8,
+        suffix: "px",
+      }),
+      paddingBottom: NumberControl({
+        label: "📐 Layout — Padding Bottom",
+        defaultValue: 48,
+        min: 0,
+        max: 400,
+        step: 8,
+        suffix: "px",
+      }),
+
+      // ─── 🎨 Background ────────────────────────────────────────────
+      bgColor: Color({
+        label: "🎨 Background — Color",
+        defaultValue: "#F5F5F5",
+      }),
       bgImage: Image({ label: "🎨 Background — Image" }),
-      bgOpacity: NumberControl({ label: "🎨 Background — Opacity", defaultValue: 85, min: 0, max: 100, step: 1, suffix: "%" }),
+      bgOpacity: NumberControl({
+        label: "🎨 Background — Opacity (image only)",
+        defaultValue: 100,
+        min: 0,
+        max: 100,
+        step: 1,
+        suffix: "%",
+      }),
       gradientFrom: Color({ label: "🎨 Background — Gradient From" }),
       gradientTo: Color({ label: "🎨 Background — Gradient To" }),
       gradientDirection: Select({
         label: "🎨 Background — Gradient Direction",
         options: [
-          { value: "to bottom", label: "Top to Bottom" },
-          { value: "to top", label: "Bottom to Top" },
-          { value: "to right", label: "Left to Right" },
-          { value: "to left", label: "Right to Left" },
+          { value: "to bottom", label: "Top → Bottom" },
+          { value: "to top", label: "Bottom → Top" },
+          { value: "to right", label: "Left → Right" },
+          { value: "to left", label: "Right → Left" },
           { value: "135deg", label: "Diagonal" },
         ],
         defaultValue: "to bottom",
       }),
 
-      // ✏️ Content — Product Info
-      productName: TextInput({ label: "✏️ Content — Product Name", defaultValue: "Product Name" }),
-      modelNumber: TextInput({ label: "✏️ Content — Model Number", defaultValue: "MODEL-001" }),
-      rating: TextInput({ label: "✏️ Content — Star Rating (1–5)", defaultValue: "4.9" }),
-      reviewCount: TextInput({ label: "✏️ Content — Review Count", defaultValue: "128" }),
-      shortDescription: TextArea({ label: "✏️ Content — Short Description", defaultValue: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor." }),
-      price: TextInput({ label: "✏️ Content — Price", defaultValue: "$0.00" }),
-      inStock: Checkbox({ label: "✏️ Content — In Stock", defaultValue: true }),
-      tradeProOnly: Checkbox({ label: "✏️ Content — TradePro Only", defaultValue: false }),
-
-      // 📸 Media — Product Images
-      images: List({
-        label: "📸 Media — Product Images",
-        type: Shape({
-          type: {
-            src: Image({ label: "Image" }),
-            alt: TextInput({ label: "Alt Text", defaultValue: "Product image" }),
-          },
-        }),
-        getItemLabel(item) { return item?.alt || "Image"; },
+      // ─── 🛒 Commerce ──────────────────────────────────────────────
+      tradeProOnly: Checkbox({
+        label: "🛒 Commerce — TradePro Only badge",
+        defaultValue: false,
+      }),
+      hidePrice: Checkbox({
+        label: "🛒 Commerce — Hide Price",
+        defaultValue: false,
       }),
 
-      // ✏️ Content — Body
-      bodyText: TextArea({
-        label: "✏️ Content — Product Description",
-        defaultValue: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sed enim fringilla, suscipit felis eget, euismod nisi. Vestibulum ac fermentum ex, ac cursus sem. Nam vel bibendum erat. Pellentesque blandit viverra viverra. Nullam vestibulum ex eget gravida volutpat.\n\nPhasellus laoreet gravida libero, at porttitor diam fringilla at. Sed ac orci facilisis, placerat augue a, pulvinar enim. Integer volutpat velit nulla, vel varius purus elementum at. Cras euismod semper mi, at bibendum odio tincidunt vitae.\n\nPellentesque blandit viverra viverra. Nullam vestibulum ex eget gravida volutpat. Phasellus laoreet gravida libero, at porttitor diam fringilla at.",
+      // ─── ⚠️ Override — Editor preview only ───────────────────────
+      // These values are only used in Makeswift editor when no BC product
+      // is loaded. On the live site, BigCommerce data takes over entirely.
+      productName: TextInput({
+        label: "⚠️ Override — Product Name",
+        defaultValue: "Classic Brass Path Light 5.5W",
       }),
-
-      // 📦 Items — Bullet Points
-      bulletPoints: List({
-        label: "📦 Items — Feature Bullet Points",
-        type: Shape({
-          type: {
-            text: TextInput({ label: "Bullet Text", defaultValue: "Feature description goes here" }),
-          },
-        }),
-        getItemLabel(item) { return item?.text || "Bullet"; },
+      modelNumber: TextInput({
+        label: "⚠️ Override — Model Number",
+        defaultValue: "BPL-55-BR",
+      }),
+      shortDescription: TextArea({
+        label: "⚠️ Override — Short Description",
+        defaultValue: "A short product description goes here that is no more than 160 characters to ensure SEO compliance and clarity for the customer.",
+      }),
+      price: TextInput({
+        label: "⚠️ Override — Price",
+        defaultValue: "$89.99",
+      }),
+      inStock: Checkbox({
+        label: "⚠️ Override — In Stock",
+        defaultValue: true,
+      }),
+      rating: NumberControl({
+        label: "⚠️ Override — Star Rating (1–5)",
+        defaultValue: 4.7,
+        min: 0,
+        max: 5,
+        step: 0.1,
+      }),
+      reviewCount: NumberControl({
+        label: "⚠️ Override — Review Count",
+        defaultValue: 520,
+        min: 0,
+        step: 1,
       }),
     },
   }
