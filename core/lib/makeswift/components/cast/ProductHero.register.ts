@@ -5,8 +5,8 @@ import { runtime } from "~/lib/makeswift/runtime"
 runtime.registerComponent(
   lazy(() => import("./ProductHero")),
   {
-    type: "site-product-hero",
-    label: "Product / Product Details",
+    type: "cast-cms-product-content",
+    label: "CMS Content / Product Details",
     props: {
       className: Style(),
       paddingTop: NumberControl({ label: "📐 Layout — Padding Top", defaultValue: 96, min: 0, max: 400, step: 8, suffix: "px" }),

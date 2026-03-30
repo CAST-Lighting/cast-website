@@ -62,7 +62,7 @@ import './components/cast/NotFoundHero.register';
 
 // CMS Content Components
 import './components/cast/CmsBlogBody.register';
-import './components/cast/CmsProductContent.register';
+// CmsProductContent replaced by ProductHero.register (same type ID: cast-cms-product-content)
 import './components/cast/CmsCategoryGrid.register';
 
 // Auth
