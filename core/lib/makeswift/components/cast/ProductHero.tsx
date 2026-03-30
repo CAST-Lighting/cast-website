@@ -146,7 +146,7 @@ const ProductHero = forwardRef(function ProductHero(
         <div className="ph-layout" style={{ display: "flex", gap: 56, alignItems: "flex-start" }}>
 
           {/* Left: Image gallery — sticky scroll, thumbnails vertical on left */}
-          <div className="ph-gallery" style={{ flex: "0 0 520px", maxWidth: 520, position: "sticky", top: 120, alignSelf: "flex-start", display: "flex", gap: 12 }}>
+          <div className="ph-gallery" style={{ flex: "0 0 540px", maxWidth: 540, position: "sticky", top: 120, alignSelf: "flex-start", display: "flex", gap: 12 }}>
             {/* Vertical thumbnail strip */}
             <div style={{ display: "flex", flexDirection: "column", gap: 8, flexShrink: 0 }}>
               {imgList.map((img, i) => (
@@ -180,11 +180,11 @@ const ProductHero = forwardRef(function ProductHero(
             {/* Rating */}
             <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 16 }}>
               <Stars count={resolvedRating} />
-              <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, color: "var(--color-accent)", fontWeight: 600 }}>{resolvedRating} · {resolvedReviewCount} Ratings</span>
+              <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 14, color: "var(--color-accent)", fontWeight: 600 }}>{resolvedRating} · {resolvedReviewCount} Ratings</span>
             </div>
 
             {/* Short description */}
-            <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 16, color: "var(--color-content)", lineHeight: 1.6, margin: "0 0 20px" }}>{resolvedShortDescription}</p>
+            <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 16, color: "var(--color-content)", lineHeight: 1.6, margin: "0 0 28px" }}>{resolvedShortDescription}</p>
 
             {/* Price + stock */}
             <div style={{ display: "flex", alignItems: "baseline", gap: 12, marginBottom: 8 }}>
@@ -230,7 +230,7 @@ const ProductHero = forwardRef(function ProductHero(
             <div style={{ height: 1, background: "rgba(255,255,255,0.08)", margin: "24px 0" }} />
 
             {/* Product Description section */}
-            <h2 style={{ fontSize: "var(--h3-size)", fontWeight: "var(--heading-weight, 700)", lineHeight: "var(--heading-line-height, 1.1)", fontFamily: "'Essonnes', 'Playfair Display', serif", color: "var(--color-title)", margin: "0 0 24px" }}>
+            <h2 style={{ fontSize: "var(--h3-size)", fontWeight: "var(--heading-weight, 700)", lineHeight: "var(--heading-line-height, 1.1)", fontFamily: "'Essonnes', 'Playfair Display', serif", color: "var(--color-title)", marginTop: 32, marginBottom: 24 }}>
               Product Description
             </h2>
 

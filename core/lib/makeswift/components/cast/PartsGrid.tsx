@@ -161,24 +161,29 @@ const PartsGrid = forwardRef(function PartsGrid(
             {list.map((part, i) => (
               <div
                 key={i}
-                className="group flex-shrink-0 w-[220px] bg-card border border-border rounded-xl overflow-hidden hover:border-primary/40 transition-all duration-300 shadow-md shadow-black/20 hover:shadow-lg hover:shadow-black/30"
+                style={{ background: "#2d353c", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 10, overflow: "hidden", minWidth: 200, flexShrink: 0, transition: "border-color 200ms, box-shadow 200ms" }}
+                onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(0,124,176,0.4)"; (e.currentTarget as HTMLDivElement).style.boxShadow = "0 4px 24px rgba(0,0,0,0.18)"; }}
+                onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(255,255,255,0.08)"; (e.currentTarget as HTMLDivElement).style.boxShadow = "none"; }}
               >
-                <div style={{ aspectRatio: "1", background: "#37474f", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
+                <div style={{ aspectRatio: "1", position: "relative", overflow: "hidden" }}>
                   {part.image
-                    ? <img src={part.image} alt={part.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                    : <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#adb5bd" strokeWidth="1.5"><rect x="3" y="3" width="18" height="18" rx="2" /><circle cx="8.5" cy="8.5" r="1.5" /></svg>
+                    ? <img src={part.image} alt={part.name} style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 300ms" }} onMouseEnter={e => { (e.currentTarget as HTMLImageElement).style.transform = "scale(1.05)"; }} onMouseLeave={e => { (e.currentTarget as HTMLImageElement).style.transform = "scale(1)"; }} />
+                    : (
+                      <div style={{ width: "100%", height: "100%", background: "linear-gradient(135deg, #1a2e3a 0%, #0d4a5c 50%, #1a3a4a 100%)", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 10 }}>
+                        <div style={{ position: "absolute", inset: 0, backgroundImage: "linear-gradient(rgba(175,229,253,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(175,229,253,0.04) 1px, transparent 1px)", backgroundSize: "24px 24px" }} />
+                        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" style={{ opacity: 0.5, position: "relative", zIndex: 1 }}>
+                          <circle cx="12" cy="12" r="10" stroke="#007CB0" strokeWidth="1.5" />
+                          <path d="M8 12h8M12 8v8" stroke="#007CB0" strokeWidth="1.5" strokeLinecap="round" />
+                        </svg>
+                      </div>
+                    )
                   }
                 </div>
                 <div style={{ padding: "14px" }}>
-                  <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, fontWeight: 600, color: "var(--color-title)", margin: "0 0 4px", lineHeight: 1.3 }}>{part.name}</p>
-                  {part.partNumber && <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 11, color: "var(--color-content)", margin: "0 0 8px" }}>#{part.partNumber}</p>}
-                  <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 15, fontWeight: 700, color: "var(--color-primary)", margin: "0 0 10px" }}>{part.price}</p>
-                  <div style={{ display: "flex", gap: 6 }}>
-                    <a href={part.href || "#"} className="sg-btn-solid-sm" style={{ flex: 1, justifyContent: "center", textDecoration: "none" }}>Add to Cart</a>
-                    <a href={part.href || "#"} style={{ width: 32, height: 32, border: "1px solid rgba(255,255,255,0.12)", borderRadius: 4, background: "#2d353c", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }} aria-label="View product">
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--color-content)" strokeWidth="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-                    </a>
-                  </div>
+                  <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, fontWeight: 600, color: "#fff", margin: "0 0 4px", lineHeight: 1.3 }}>{part.name}</p>
+                  {part.partNumber && <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 11, color: "rgba(255,255,255,0.5)", margin: "0 0 8px" }}>#{part.partNumber}</p>}
+                  <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 15, fontWeight: 700, color: "#fff", margin: "0 0 10px" }}>{part.price}</p>
+                  <a href={part.href || "#"} className="sg-btn-solid-sm" style={{ display: "flex", justifyContent: "center", textDecoration: "none", width: "100%" }}>Add to Cart</a>
                 </div>
               </div>
             ))}

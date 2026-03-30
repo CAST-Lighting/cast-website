@@ -3,6 +3,7 @@ import { getFormatter, getTranslations, setRequestLocale } from 'next-intl/serve
 import { SearchParams } from 'nuqs/server';
 
 import { getSessionCustomerAccessToken } from '~/auth';
+import CastSiteFooter from '~/lib/makeswift/components/cast/SiteFooter';
 import { pricesTransformer } from '~/data-transformers/prices-transformer';
 import { pageInfoTransformer } from '~/data-transformers/page-info-transformer';
 import { getPreferredCurrencyCode } from '~/lib/currency';
@@ -118,6 +119,7 @@ export default async function Search(props: Props) {
             </p>
           </div>
         </div>
+        <CastSiteFooter />
       </>
     );
   }
@@ -606,6 +608,7 @@ export default async function Search(props: Props) {
         </div>
       </div>
       )}
+      <CastSiteFooter />
     </>
   );
 }

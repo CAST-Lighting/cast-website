@@ -95,25 +95,36 @@ const BundleProducts = forwardRef(function BundleProducts(
 
         <div style={{ display: "flex", alignItems: "stretch", gap: 20, flexWrap: "nowrap", overflowX: "auto", scrollbarWidth: "none", msOverflowStyle: "none" }} className="[&::-webkit-scrollbar]:hidden">
           {list.map((item, i) => (
-            <div key={i} style={{ background: "#2d353c", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 8, overflow: "hidden", width: 180, flexShrink: 0 }}>
-              <div style={{ aspectRatio: "1", background: "#37474f", display: "flex", alignItems: "center", justifyContent: "center", position: "relative" }}>
+            <div key={i} style={{ background: "#2d353c", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 10, overflow: "hidden", minWidth: 220, flexShrink: 0, transition: "border-color 200ms, box-shadow 200ms" }}
+              onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(0,124,176,0.4)"; (e.currentTarget as HTMLDivElement).style.boxShadow = "0 4px 24px rgba(0,0,0,0.18)"; }}
+              onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(255,255,255,0.08)"; (e.currentTarget as HTMLDivElement).style.boxShadow = "none"; }}
+            >
+              <div style={{ aspectRatio: "4/3", position: "relative", overflow: "hidden" }}>
                 {item.image
                   ? <img src={item.image} alt={item.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-                  : <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#ced4da" strokeWidth="1.5"><rect x="3" y="3" width="18" height="18" rx="2" /><circle cx="8.5" cy="8.5" r="1.5" /></svg>
+                  : (
+                    <div style={{ width: "100%", height: "100%", background: "linear-gradient(135deg, #1a2e3a 0%, #0d4a5c 50%, #1a3a4a 100%)", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 10 }}>
+                      <div style={{ position: "absolute", inset: 0, backgroundImage: "linear-gradient(rgba(175,229,253,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(175,229,253,0.04) 1px, transparent 1px)", backgroundSize: "24px 24px" }} />
+                      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" style={{ opacity: 0.5, position: "relative", zIndex: 1 }}>
+                        <circle cx="12" cy="12" r="10" stroke="#007CB0" strokeWidth="1.5" />
+                        <path d="M8 12h8M12 8v8" stroke="#007CB0" strokeWidth="1.5" strokeLinecap="round" />
+                      </svg>
+                    </div>
+                  )
                 }
                 {item.badge && (
-                  <span style={{ position: "absolute", top: 8, left: 8, background: "var(--color-accent)", color: "#fff", fontSize: 9, fontFamily: "'Barlow', sans-serif", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.06em", padding: "2px 6px", borderRadius: 2 }}>{item.badge}</span>
+                  <span style={{ position: "absolute", top: 8, left: 8, background: "var(--color-accent, #007CB0)", color: "#fff", fontSize: 9, fontFamily: "'Barlow', sans-serif", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.06em", padding: "2px 6px", borderRadius: 4 }}>{item.badge}</span>
                 )}
               </div>
-              <div style={{ padding: 12 }}>
-                <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, fontWeight: 600, color: "var(--color-title)", margin: "0 0 4px", lineHeight: 1.3 }}>{item.name}</p>
-                <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 14, fontWeight: 700, color: "var(--color-primary)", margin: 0 }}>{item.price}</p>
+              <div style={{ padding: "14px 14px" }}>
+                <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 14, fontWeight: 600, color: "#fff", margin: "0 0 6px", lineHeight: 1.35, display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical" as const, overflow: "hidden" }}>{item.name}</p>
+                <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 16, fontWeight: 700, color: "#fff", margin: 0 }}>{item.price}</p>
               </div>
             </div>
           ))}
 
           {/* Total + Add All inline as last item */}
-          <div style={{ background: "#2d353c", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 8, padding: "24px", minWidth: 200, flexShrink: 0, display: "flex", flexDirection: "column", justifyContent: "center" }}>
+          <div style={{ background: "#2d353c", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 10, padding: "24px", minWidth: 220, flexShrink: 0, display: "flex", flexDirection: "column", justifyContent: "center" }}>
             <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 14, color: "var(--color-content)", margin: "0 0 8px" }}>Total Price:</p>
             <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 24, fontWeight: 700, color: "var(--color-title)", margin: "0 0 20px" }}>${totalStr}</p>
             <button className="sg-btn-solid-md" style={{ width: "100%", justifyContent: "center" }}>

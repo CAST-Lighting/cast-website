@@ -68,7 +68,6 @@ export default async function DefaultLayout({ params, children }: Props) {
       {/* Spacer that clears both fixed bars: top bar (36px) + main nav (73px) = 109px */}
       <div style={{ height: 109 }} aria-hidden="true" />
       <main>{children}</main>
-      <FooterWithFallback locale={locale} />
     </>
   );
 }

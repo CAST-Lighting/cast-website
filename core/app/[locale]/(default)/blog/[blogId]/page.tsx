@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import { getFormatter, setRequestLocale } from 'next-intl/server';
 
 import { CmsPageRenderer } from '~/lib/makeswift/cms-page-renderer';
+import CastSiteFooter from '~/lib/makeswift/components/cast/SiteFooter';
 import { getBlogPageData } from './page-data';
 
 interface Props {
@@ -312,6 +313,7 @@ export default async function BlogPost(props: Props) {
           </div>
         </section>
 
+        <CastSiteFooter />
       </div>
     </>
   );

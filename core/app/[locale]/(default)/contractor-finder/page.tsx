@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import { CmsPageRenderer } from '~/lib/makeswift/cms-page-renderer';
+import CastSiteFooter from '~/lib/makeswift/components/cast/SiteFooter';
 
 export const metadata: Metadata = {
   title: 'Find a Contractor | CAST Lighting',
@@ -126,6 +127,7 @@ function FallbackPage() {
           </div>
         </div>
       </section>
+      <CastSiteFooter />
     </>
   );
 }

@@ -27,7 +27,7 @@ interface MediaGalleryProps {
 }
 
 const PlaceholderImage = ({ caption, isVideo }: { caption?: string; isVideo?: boolean }) => (
-  <div style={{ width: "100%", aspectRatio: "16/10", background: "#37474f", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", borderRadius: 8, position: "relative", overflow: "hidden" }}>
+  <div style={{ width: "100%", aspectRatio: "16/9", background: "#37474f", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", borderRadius: 8, position: "relative", overflow: "hidden" }}>
     {isVideo ? (
       <>
         <svg width="48" height="48" viewBox="0 0 24 24" fill="none" style={{ marginBottom: 8 }}>
@@ -178,29 +178,32 @@ const MediaGallery = forwardRef(function MediaGallery(
               <div
                 key={i}
                 onClick={() => setLightbox(i)}
-                className="group flex-shrink-0 w-[320px] bg-card border border-border rounded-xl overflow-hidden hover:border-primary/40 transition-all duration-300 shadow-md shadow-black/20 hover:shadow-lg hover:shadow-black/30"
-                style={{ cursor: "pointer" }}
+                style={{ background: "#2d353c", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 10, overflow: "hidden", minWidth: 300, flexShrink: 0, cursor: "pointer", transition: "border-color 200ms, box-shadow 200ms" }}
+                onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(0,124,176,0.4)"; (e.currentTarget as HTMLDivElement).style.boxShadow = "0 4px 24px rgba(0,0,0,0.18)"; }}
+                onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(255,255,255,0.08)"; (e.currentTarget as HTMLDivElement).style.boxShadow = "none"; }}
               >
-                {item.src ? (
-                  item.type === "video" ? (
-                    <div style={{ position: "relative" }}>
-                      <img src={item.thumbnail || item.src} alt={item.caption} style={{ width: "100%", aspectRatio: "16/10", objectFit: "cover", display: "block" }} />
-                      <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", background: "rgba(0,0,0,0.3)" }}>
-                        <svg width="52" height="52" viewBox="0 0 24 24" fill="none">
-                          <circle cx="12" cy="12" r="11" fill="rgba(255,255,255,0.9)" />
-                          <polygon points="10,8 17,12 10,16" fill="var(--color-primary)" />
-                        </svg>
+                <div style={{ position: "relative", overflow: "hidden" }}>
+                  {item.src ? (
+                    item.type === "video" ? (
+                      <div style={{ position: "relative" }}>
+                        <img src={item.thumbnail || item.src} alt={item.caption} style={{ width: "100%", aspectRatio: "16/9", objectFit: "cover", display: "block", borderRadius: "10px 10px 0 0" }} />
+                        <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", background: "rgba(0,0,0,0.3)" }}>
+                          <svg width="52" height="52" viewBox="0 0 24 24" fill="none">
+                            <circle cx="12" cy="12" r="11" fill="rgba(255,255,255,0.9)" />
+                            <polygon points="10,8 17,12 10,16" fill="var(--color-primary)" />
+                          </svg>
+                        </div>
                       </div>
-                    </div>
+                    ) : (
+                      <img src={item.src} alt={item.caption} style={{ width: "100%", aspectRatio: "16/9", objectFit: "cover", display: "block", borderRadius: "10px 10px 0 0", transition: "transform 300ms" }} onMouseEnter={e => { (e.currentTarget as HTMLImageElement).style.transform = "scale(1.03)"; }} onMouseLeave={e => { (e.currentTarget as HTMLImageElement).style.transform = "scale(1)"; }} />
+                    )
                   ) : (
-                    <img src={item.src} alt={item.caption} className="w-full group-hover:scale-105 transition-transform duration-500" style={{ aspectRatio: "16/10", objectFit: "cover", display: "block" }} />
-                  )
-                ) : (
-                  <PlaceholderImage caption={item.caption} isVideo={item.type === "video"} />
-                )}
+                    <PlaceholderImage caption={item.caption} isVideo={item.type === "video"} />
+                  )}
+                </div>
                 {item.caption && (
-                  <div style={{ padding: "10px 14px" }}>
-                    <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, color: "var(--color-content)", margin: 0 }}>{item.caption}</p>
+                  <div style={{ padding: "12px 16px" }}>
+                    <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, color: "rgba(255,255,255,0.7)", margin: 0 }}>{item.caption}</p>
                   </div>
                 )}
               </div>
