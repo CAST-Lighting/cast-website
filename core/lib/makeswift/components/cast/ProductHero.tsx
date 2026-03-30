@@ -210,14 +210,14 @@ const ProductHero = forwardRef(function ProductHero(
             {/* Action buttons — not full width, natural sizing */}
             <div style={{ display: "flex", flexDirection: "column", gap: 10, alignItems: "flex-start" }}>
               <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
-                <button className="sg-btn-solid-md" style={{ justifyContent: "center", ...(!resolvedInStock ? { opacity: 0.5, pointerEvents: 'none' as const } : {}) }}>{resolvedInStock ? "Add To Cart" : "Out of Stock"}</button>
+                <button className="sg-btn-solid-dark-md" style={{ justifyContent: "center", ...(!resolvedInStock ? { opacity: 0.5, pointerEvents: 'none' as const } : {}) }}>{resolvedInStock ? "Add To Cart" : "Out of Stock"}</button>
                 <button style={{ width: 48, height: 48, border: "2px solid rgba(255,255,255,0.12)", borderRadius: 4, background: "#2d353c", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, transition: "border-color 200ms" }} aria-label="Add to wishlist" onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.borderColor = "var(--color-accent)"; }} onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(255,255,255,0.12)"; }}>
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-content)" strokeWidth="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" /></svg>
                 </button>
                 {tradeProOnly && <span className="ph-tradepro-badge">TradePro Only</span>}
               </div>
               <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
-                <button className="sg-btn-outline-md" style={{ justifyContent: "center", ...(!resolvedInStock ? { opacity: 0.5, pointerEvents: 'none' as const } : {}) }}>Add To Quote</button>
+                <button className="sg-btn-outline-dark-md" style={{ justifyContent: "center", ...(!resolvedInStock ? { opacity: 0.5, pointerEvents: 'none' as const } : {}) }}>Add To Quote</button>
               </div>
             </div>
 

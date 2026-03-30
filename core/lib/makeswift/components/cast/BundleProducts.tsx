@@ -127,7 +127,7 @@ const BundleProducts = forwardRef(function BundleProducts(
           <div style={{ background: "#2d353c", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 10, padding: "24px", minWidth: 220, flexShrink: 0, display: "flex", flexDirection: "column", justifyContent: "center" }}>
             <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 14, color: "var(--color-content)", margin: "0 0 8px" }}>Total Price:</p>
             <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 24, fontWeight: 700, color: "var(--color-title)", margin: "0 0 20px" }}>${totalStr}</p>
-            <button className="sg-btn-solid-md" style={{ width: "100%", justifyContent: "center" }}>
+            <button className="sg-btn-solid-dark-md" style={{ width: "100%", justifyContent: "center" }}>
               {buttonText} +
             </button>
           </div>
