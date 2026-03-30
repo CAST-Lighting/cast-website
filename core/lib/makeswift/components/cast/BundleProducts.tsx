@@ -2,6 +2,7 @@
 
 import { forwardRef, type Ref } from "react"
 import { useCmsData } from "~/lib/makeswift/cms-context"
+import { getTheme } from "~/lib/makeswift/theme"
 
 interface BundleItem {
   image?: string
@@ -26,6 +27,7 @@ interface BundleProductsProps {
   gradientDirection?: string
   paddingTop?: number
   paddingBottom?: number
+  mode?: 'dark' | 'light'
 }
 
 const BundleProducts = forwardRef(function BundleProducts(
@@ -45,11 +47,13 @@ const BundleProducts = forwardRef(function BundleProducts(
     gradientDirection,
     paddingTop,
     paddingBottom,
+    mode = 'dark',
   }: BundleProductsProps,
   ref: Ref<HTMLDivElement>
 ) {
   const cms = useCmsData()
   const cmsRelated = cms?.type === 'product' ? cms.meta?.relatedProducts : null
+  const t = getTheme(mode)
 
   const DEFAULT_ITEMS: BundleItem[] = [
     { name: "Accessory #1", price: "$49.99", badge: "Popular" },
@@ -97,9 +101,9 @@ const BundleProducts = forwardRef(function BundleProducts(
 
         <div style={{ display: "flex", alignItems: "stretch", gap: 20, flexWrap: "nowrap", overflowX: "auto", scrollbarWidth: "none", msOverflowStyle: "none" }} className="[&::-webkit-scrollbar]:hidden">
           {list.map((item, i) => (
-            <div key={i} style={{ background: "#ffffff", border: "1px solid rgba(0,73,96,0.1)", borderRadius: 10, overflow: "hidden", width: 220, minWidth: 220, maxWidth: 220, flexShrink: 0, transition: "border-color 200ms, box-shadow 200ms" }}
+            <div key={i} style={{ background: t.cardBg, border: `1px solid ${t.cardBorder}`, borderRadius: 10, overflow: "hidden", width: 220, minWidth: 220, maxWidth: 220, flexShrink: 0, transition: "border-color 200ms, box-shadow 200ms" }}
               onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(0,124,176,0.4)"; (e.currentTarget as HTMLDivElement).style.boxShadow = "0 4px 24px rgba(0,0,0,0.08)"; }}
-              onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(0,73,96,0.1)"; (e.currentTarget as HTMLDivElement).style.boxShadow = "none"; }}
+              onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.borderColor = t.cardBorder; (e.currentTarget as HTMLDivElement).style.boxShadow = "none"; }}
             >
               <div style={{ aspectRatio: "1/1", position: "relative", overflow: "hidden" }}>
                 {item.image
@@ -108,8 +112,8 @@ const BundleProducts = forwardRef(function BundleProducts(
                     <div style={{ width: "100%", height: "100%", background: "linear-gradient(135deg, #1a2e3a 0%, #0d4a5c 50%, #1a3a4a 100%)", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 10 }}>
                       <div style={{ position: "absolute", inset: 0, backgroundImage: "linear-gradient(rgba(175,229,253,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(175,229,253,0.04) 1px, transparent 1px)", backgroundSize: "24px 24px" }} />
                       <svg width="36" height="36" viewBox="0 0 24 24" fill="none" style={{ opacity: 0.5, position: "relative", zIndex: 1 }}>
-                        <circle cx="12" cy="12" r="10" stroke="#007CB0" strokeWidth="1.5" />
-                        <path d="M8 12h8M12 8v8" stroke="#007CB0" strokeWidth="1.5" strokeLinecap="round" />
+                        <circle cx="12" cy="12" r="10" stroke={t.accent} strokeWidth="1.5" />
+                        <path d="M8 12h8M12 8v8" stroke={t.accent} strokeWidth="1.5" strokeLinecap="round" />
                       </svg>
                     </div>
                   )
@@ -120,16 +124,16 @@ const BundleProducts = forwardRef(function BundleProducts(
               </div>
               <div style={{ padding: "14px 14px" }}>
                 <h3 className="heading-card-sm" style={{ margin: "0 0 6px", display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical" as const, overflow: "hidden" }}>{item.name}</h3>
-                <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 16, fontWeight: 700, color: "#014960", margin: 0 }}>{item.price}</p>
+                <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 16, fontWeight: 700, color: t.heading, margin: 0 }}>{item.price}</p>
               </div>
             </div>
           ))}
 
           {/* Total + Add All inline as last item */}
-          <div style={{ background: "#ffffff", border: "1px solid rgba(0,73,96,0.1)", borderRadius: 10, padding: "24px", minWidth: 220, flexShrink: 0, display: "flex", flexDirection: "column", justifyContent: "center" }}>
-            <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 14, color: "#1a3a4a", margin: "0 0 8px" }}>Total Price:</p>
-            <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 24, fontWeight: 700, color: "#014960", margin: "0 0 20px" }}>${totalStr}</p>
-            <button className="sg-btn-solid-dark-md" style={{ width: "100%", justifyContent: "center" }}>
+          <div style={{ background: t.cardBg, border: `1px solid ${t.cardBorder}`, borderRadius: 10, padding: "24px", minWidth: 220, flexShrink: 0, display: "flex", flexDirection: "column", justifyContent: "center" }}>
+            <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 14, color: t.body, margin: "0 0 8px" }}>Total Price:</p>
+            <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 24, fontWeight: 700, color: t.heading, margin: "0 0 20px" }}>${totalStr}</p>
+            <button className={t.btnPrimary} style={{ width: "100%", justifyContent: "center" }}>
               {buttonText} +
             </button>
           </div>

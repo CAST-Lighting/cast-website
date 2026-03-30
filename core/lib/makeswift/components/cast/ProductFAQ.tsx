@@ -1,6 +1,7 @@
 "use client"
 
 import { forwardRef, useState, type Ref } from "react"
+import { getTheme } from "~/lib/makeswift/theme"
 
 interface FAQ {
   question?: string
@@ -21,6 +22,7 @@ interface ProductFAQProps {
   gradientDirection?: string
   paddingTop?: number
   paddingBottom?: number
+  mode?: 'dark' | 'light'
 }
 
 const DEFAULT_FAQS: FAQ[] = [
@@ -44,10 +46,12 @@ const ProductFAQ = forwardRef(function ProductFAQ(
     gradientDirection,
     paddingTop,
     paddingBottom,
+    mode = 'dark',
   }: ProductFAQProps,
   ref: Ref<HTMLDivElement>
 ) {
   const [open, setOpen] = useState<number | null>(null)
+  const t = getTheme(mode)
   const list = faqs && faqs.length > 0 ? faqs : DEFAULT_FAQS
   const hasGradient = !!(gradientFrom && gradientTo)
   const overlayOpacity = typeof bgOpacity === 'number' ? bgOpacity / 100 : 0.85
@@ -69,29 +73,29 @@ const ProductFAQ = forwardRef(function ProductFAQ(
       )}
       <div className="relative" style={{ zIndex: 10 }}>
       <div className="site-container" style={{ maxWidth: 860, textAlign: "left", marginLeft: "max(64px, calc((100vw - 1600px) / 2 + 64px))", marginRight: "auto" }}>
-        <h2 style={{ fontSize: "var(--h2-size)", fontWeight: "var(--heading-weight, 700)", lineHeight: "var(--heading-line-height, 1.1)", fontFamily: "'Essonnes', 'Playfair Display', serif", color: "#014960", margin: "0 0 32px" }}>
+        <h2 style={{ fontSize: "var(--h2-size)", fontWeight: "var(--heading-weight, 700)", lineHeight: "var(--heading-line-height, 1.1)", fontFamily: "'Essonnes', 'Playfair Display', serif", color: t.heading, margin: "0 0 32px" }}>
           {heading}{headingAccent && <> <span className="text-gradient-warm">{headingAccent}</span></>}
         </h2>
         <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
           {list.map((faq, i) => (
-            <div key={i} style={{ borderTop: "1px solid rgba(0,73,96,0.1)" }}>
+            <div key={i} style={{ borderTop: `1px solid ${t.cardBorder}` }}>
               <button
                 onClick={() => setOpen(open === i ? null : i)}
                 style={{ width: "100%", display: "flex", justifyContent: "space-between", alignItems: "center", gap: 16, padding: "20px 0", background: "none", border: "none", cursor: "pointer", textAlign: "left" }}
               >
-                <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 17, fontWeight: 600, color: "#014960", lineHeight: 1.3 }}>{faq.question}</span>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#007CB0" strokeWidth="2.5" style={{ flexShrink: 0, transform: open === i ? "rotate(180deg)" : "none", transition: "transform 200ms" }}>
+                <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 17, fontWeight: 600, color: t.heading, lineHeight: 1.3 }}>{faq.question}</span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={t.accent} strokeWidth="2.5" style={{ flexShrink: 0, transform: open === i ? "rotate(180deg)" : "none", transition: "transform 200ms" }}>
                   <path d="M6 9l6 6 6-6" />
                 </svg>
               </button>
               {open === i && (
-                <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 15, color: "#1a3a4a", lineHeight: 1.7, margin: "0 0 20px", paddingRight: 36 }}>
+                <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 15, color: t.body, lineHeight: 1.7, margin: "0 0 20px", paddingRight: 36 }}>
                   {faq.answer}
                 </p>
               )}
             </div>
           ))}
-          <div style={{ borderTop: "1px solid rgba(0,73,96,0.1)" }} />
+          <div style={{ borderTop: `1px solid ${t.cardBorder}` }} />
         </div>
       </div>
       </div>

@@ -38,6 +38,9 @@ runtime.registerComponent(
       heading: TextInput({ label: "✏️ Content — Heading", defaultValue: "Heading Goes Here" }),
       headingAccent: TextInput({ label: "✏️ Content — Heading Accent (gradient)", defaultValue: "" }),
 
+      // 🌓 Theme
+      mode: Select({ label: "🌓 Theme", options: [{ value: "dark", label: "Dark" }, { value: "light", label: "Light" }], defaultValue: "dark" }),
+
       // 🔘 Buttons
       buttonText: TextInput({ label: "🔘 Buttons — Button Text", defaultValue: "Button Here" }),
 
