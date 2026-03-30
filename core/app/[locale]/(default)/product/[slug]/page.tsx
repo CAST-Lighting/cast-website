@@ -192,7 +192,7 @@ export default async function Product({ params, searchParams }: Props) {
     : [];
 
   const makeswiftPage = await CmsPageRenderer({
-    templatePath: '/product-page',
+    templatePath: '/products',
     data: {
       type: 'product',
       heading: baseProduct.name,
