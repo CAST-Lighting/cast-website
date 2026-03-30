@@ -109,10 +109,10 @@ const ProductHero = forwardRef(function ProductHero(
 
   const imgList = resolvedImages && resolvedImages.length > 0 ? resolvedImages : [{}, {}, {}, {}]
   const hasGradient = !!(gradientFrom && gradientTo)
-  const overlayOpacity = typeof bgOpacity === 'number' ? bgOpacity / 100 : 0.85
+  const overlayOpacity = typeof bgOpacity === 'number' ? bgOpacity / 100 : 1.0
   const sectionBackground = hasGradient
     ? `linear-gradient(${gradientDirection || 'to bottom'}, ${gradientFrom}, ${gradientTo})`
-    : bgColor || "#f0f2f5"
+    : bgColor || "#F5F5F5"
 
   const rawBody = resolvedBodyText || DEFAULT_BODY
   const isHtml = rawBody.includes('<')
@@ -217,7 +217,7 @@ const ProductHero = forwardRef(function ProductHero(
             <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 16 }}>
               <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 14, fontWeight: 600, color: "#014960", width: 36 }}>QTY</span>
               <div className="ph-qty">
-                <button onClick={() => setQty(Math.max(1, qty - 1))}>âˆ’</button>
+                <button onClick={() => setQty(Math.max(1, qty - 1))}>-</button>
                 <input type="number" value={qty} min={1} onChange={e => setQty(Math.max(1, parseInt(e.target.value) || 1))} />
                 <button onClick={() => setQty(qty + 1)}>+</button>
               </div>
