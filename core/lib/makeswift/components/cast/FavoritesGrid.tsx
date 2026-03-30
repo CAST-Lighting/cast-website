@@ -194,60 +194,59 @@ function FavoritesGrid(
                     </div>
                   </a>
 
-                  {/* Card body — mirrors ShopGrid layout */}
-                  <div style={{ padding: "18px 16px", flex: 1, display: "flex", flexDirection: "column", gap: 6 }}>
-                    <a href={item.href} style={{ textDecoration: "none" }}>
-                      <h3 className="heading-card-sm" style={{ margin: 0, color: t.heading }}>{name}</h3>
-                    </a>
-                    {model && (
-                      <p style={{ fontFamily: "'Barlow',sans-serif", fontSize: 11, fontWeight: 600, color: t.subtle, textTransform: "uppercase", letterSpacing: "0.08em", margin: 0 }}>
-                        #{model}
-                      </p>
-                    )}
-                    {item.price && (
-                      <p style={{ fontFamily: "'Barlow',sans-serif", fontSize: 18, fontWeight: 700, color: t.heading, margin: 0 }}>
-                        {item.price}
-                      </p>
-                    )}
+                  {/* Card body */}
+                  <div style={{ padding: "18px 16px", flex: 1, display: "flex", flexDirection: "column" }}>
 
-                    {/* Divider before favorites controls */}
-                    <div style={{ height: 1, background: t.divider, margin: "8px 0 4px" }} />
+                    {/* Top: name/sku/price — grows to fill available space */}
+                    <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: 6 }}>
+                      <a href={item.href} style={{ textDecoration: "none" }}>
+                        <h3 className="heading-card-sm" style={{ margin: 0, color: t.heading }}>{name}</h3>
+                      </a>
+                      {model && (
+                        <p style={{ fontFamily: "'Barlow',sans-serif", fontSize: 11, fontWeight: 600, color: t.subtle, textTransform: "uppercase", letterSpacing: "0.08em", margin: 0 }}>
+                          #{model}
+                        </p>
+                      )}
+                      {item.price && (
+                        <p style={{ fontFamily: "'Barlow',sans-serif", fontSize: 18, fontWeight: 700, color: t.heading, margin: 0 }}>
+                          {item.price}
+                        </p>
+                      )}
+                    </div>
 
-                    {/* QTY stepper */}
-                    <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                      <span style={{ fontSize: 11, fontWeight: 600, color: t.subtle, textTransform: "uppercase", letterSpacing: "0.05em" }}>Qty</span>
-                      <div className="fav-qty">
-                        <button onClick={() => setQty(item.id, qty - 1)} aria-label="Decrease">−</button>
-                        <input type="number" value={qty} min={1} onChange={e => setQty(item.id, parseInt(e.target.value) || 1)} />
-                        <button onClick={() => setQty(item.id, qty + 1)} aria-label="Increase">+</button>
+                    {/* Bottom: controls — always pinned to bottom of card */}
+                    <div style={{ display: "flex", flexDirection: "column", gap: 8, marginTop: 16 }}>
+                      <div style={{ height: 1, background: t.divider }} />
+
+                      {/* QTY stepper */}
+                      <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                        <span style={{ fontSize: 11, fontWeight: 600, color: t.subtle, textTransform: "uppercase", letterSpacing: "0.05em" }}>Qty</span>
+                        <div className="fav-qty">
+                          <button onClick={() => setQty(item.id, qty - 1)} aria-label="Decrease">−</button>
+                          <input type="number" value={qty} min={1} onChange={e => setQty(item.id, parseInt(e.target.value) || 1)} />
+                          <button onClick={() => setQty(item.id, qty + 1)} aria-label="Increase">+</button>
+                        </div>
+                      </div>
+
+                      {/* Add to Cart */}
+                      <button className={t.btnPrimary} style={{ justifyContent: "center" }} onClick={() => handleAddToCart(item)}>
+                        Add to Cart
+                      </button>
+
+                      {/* View + Remove */}
+                      <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
+                        <a href={item.href} className={t.btnOutlineSm} style={{ textDecoration: "none", flex: 1, justifyContent: "center", textAlign: "center", fontSize: 11 }}>
+                          View Product
+                        </a>
+                        <button className="fav-remove-btn" onClick={() => handleUnfavorite(item)} disabled={isRemoving}>
+                          <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                          </svg>
+                          {isRemoving ? "…" : "Remove"}
+                        </button>
                       </div>
                     </div>
 
-                    {/* Add to Cart */}
-                    <button
-                      className={t.btnPrimary}
-                      style={{ marginTop: 4, justifyContent: "center" }}
-                      onClick={() => handleAddToCart(item)}
-                    >
-                      Add to Cart
-                    </button>
-
-                    {/* View + Remove row */}
-                    <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
-                      <a href={item.href} className={t.btnOutlineSm} style={{ textDecoration: "none", flex: 1, justifyContent: "center", textAlign: "center", fontSize: 11 }}>
-                        View Product
-                      </a>
-                      <button
-                        className="fav-remove-btn"
-                        onClick={() => handleUnfavorite(item)}
-                        disabled={isRemoving}
-                      >
-                        <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor">
-                          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-                        </svg>
-                        {isRemoving ? "…" : "Remove"}
-                      </button>
-                    </div>
                   </div>
 
                 </div>
