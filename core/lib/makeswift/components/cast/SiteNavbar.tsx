@@ -47,16 +47,40 @@ const navItems: NavItem[] = [
   { label: "ABOUT", href: "/about" },
 ]
 
+interface DropdownItem { label?: string; href?: string }
+interface NavLinkItem { label?: string; href?: string; dropdown?: DropdownItem[] }
+
 const SiteNavbar = forwardRef(function SiteNavbar(
   {
     className,
     lineHeight,
+    logoSrc,
+    logoHref,
+    navLinks,
+    ctaLabel,
+    ctaHref,
   }: {
     className?: string
     lineHeight?: number
+    logoSrc?: string
+    logoHref?: string
+    navLinks?: NavLinkItem[]
+    ctaLabel?: string
+    ctaHref?: string
   },
   ref: Ref<HTMLElement>
 ) {
+  const resolvedLogo = logoSrc || "https://storage.googleapis.com/s.mkswft.com/RmlsZToxNmVlZWE3MS1iNjRjLTQ0MjctOGI2My1jNWI3ODQxNWFmNGI=/cast__lighting_white.svg"
+  const resolvedCtaLabel = ctaLabel || "LOGIN / SIGNUP"
+  const resolvedCtaHref = ctaHref || "#"
+  const resolvedNavItems: NavItem[] = (navLinks && navLinks.length > 0)
+    ? navLinks.map(n => ({
+        label: n.label || "",
+        href: n.href,
+        dropdown: n.dropdown?.length ? n.dropdown.map(d => ({ label: d.label || "", href: d.href || "#" })) : undefined
+      }))
+    : navItems
+
   const [mobileOpen, setMobileOpen] = useState(false)
   const [openDropdown, setOpenDropdown] = useState<string | null>(null)
   const [mobileExpanded, setMobileExpanded] = useState<string | null>(null)
@@ -88,12 +112,12 @@ const SiteNavbar = forwardRef(function SiteNavbar(
       {/* Main nav */}
       <nav className="backdrop-blur-md border-b border-[#004a61] bg-[#005C7A]/80">
         <div className="container mx-auto flex items-center justify-between px-6 py-4">
-          <a href="/" className="flex items-center">
-            <img src="https://storage.googleapis.com/s.mkswft.com/RmlsZToxNmVlZWE3MS1iNjRjLTQ0MjctOGI2My1jNWI3ODQxNWFmNGI=/cast__lighting_white.svg" alt="CAST Lighting" className="h-10 w-auto" />
+          <a href={logoHref || "/"} className="flex items-center">
+            <img src={resolvedLogo} alt="CAST Lighting" className="h-10 w-auto" />
           </a>
 
           <div className="hidden lg:flex items-center gap-8 font-body font-medium text-sm tracking-wide">
-            {navItems.map((item) => (
+            {resolvedNavItems.map((item) => (
               <div
                 key={item.label}
                 className="relative"
@@ -137,10 +161,10 @@ const SiteNavbar = forwardRef(function SiteNavbar(
               <ShoppingCart className="w-5 h-5" />
             </button>
             <a
-              href="#"
+              href={resolvedCtaHref}
               className="hidden md:inline-flex items-center px-5 py-2 rounded-md bg-primary text-primary-foreground font-semibold text-sm hover:bg-warm-glow transition-colors"
             >
-              LOGIN / SIGNUP
+              {resolvedCtaLabel}
             </a>
             <button
               className="lg:hidden text-secondary-foreground"
@@ -180,7 +204,7 @@ const SiteNavbar = forwardRef(function SiteNavbar(
         {/* Mobile menu */}
         {mobileOpen && (
           <div className="lg:hidden bg-card border-t border-border px-6 py-4 space-y-1 font-body">
-            {navItems.map((item) => (
+            {resolvedNavItems.map((item) => (
               <div key={item.label}>
                 <button
                   onClick={() =>
