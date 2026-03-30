@@ -83,7 +83,7 @@ export default async function CategoryPage({ params }: Props) {
 
   // Try Makeswift template first — if /category-page/ exists in Makeswift, use it
   const makeswiftPage = await CmsPageRenderer({
-    templatePath: '/category-page',
+    templatePath: '/category',
     data: {
       type: 'category',
       heading: categoryName,
