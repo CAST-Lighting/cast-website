@@ -98,12 +98,7 @@ export default async function FavoritesPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
 
-  const customerAccessToken = await getSessionCustomerAccessToken();
-  if (!customerAccessToken) {
-    redirect('/login');
-  }
-
-  // Try CmsPageRenderer first
+  // Try CmsPageRenderer FIRST — before auth check so Makeswift editor can render the template
   const cmsPage = await CmsPageRenderer({ templatePath: '/account/favorites', data: {} });
   if (cmsPage) return cmsPage;
 

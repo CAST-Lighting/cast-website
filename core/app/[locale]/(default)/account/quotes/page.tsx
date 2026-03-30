@@ -96,14 +96,15 @@ export default async function QuotesPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
 
+  // Try CmsPageRenderer FIRST — before auth check so Makeswift editor can render the template
+  const cmsPage = await CmsPageRenderer({ templatePath: '/account/quotes', data: {} });
+  if (cmsPage) return cmsPage;
+
+  // Auth check for code fallback only
   const customerAccessToken = await getSessionCustomerAccessToken();
   if (!customerAccessToken) {
     redirect('/login');
   }
-
-  // Try CmsPageRenderer first
-  const cmsPage = await CmsPageRenderer({ templatePath: '/account/quotes', data: {} });
-  if (cmsPage) return cmsPage;
 
   const quotes = await getQuotes();
 
