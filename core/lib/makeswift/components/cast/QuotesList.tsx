@@ -41,12 +41,22 @@ function QuotesList(
   }: QuotesListProps,
   ref: Ref<HTMLElement>,
 ) {
-  const [quotes, setQuotes] = useState<Quote[]>([])
-  const [loading, setLoading] = useState(true)
+  // DEMO DATA — remove once BC B2B Quotes API is connected
+  const DEMO_QUOTES: Quote[] = [
+    { id: "1", quoteNumber: "Q-2026-0042", status: "Approved", total: "$3,847.50", createdAt: "March 28, 2026", customerName: "Tristan Vava" },
+    { id: "2", quoteNumber: "Q-2026-0039", status: "Pending", total: "$1,250.00", createdAt: "March 24, 2026", customerName: "Tristan Vava" },
+    { id: "3", quoteNumber: "Q-2026-0031", status: "Ordered", total: "$6,120.75", createdAt: "March 10, 2026", customerName: "Tristan Vava" },
+    { id: "4", quoteNumber: "Q-2026-0018", status: "Expired", total: "$890.00", createdAt: "February 14, 2026", customerName: "Tristan Vava" },
+  ]
+
+  const [quotes, setQuotes] = useState<Quote[]>(DEMO_QUOTES)
+  const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    fetch("/api/account/quotes")
+    // Uncomment below to connect live BC B2B Quotes API:
+    // fetch("/api/account/quotes")
+    fetch("/api/account/quotes-disabled-for-demo")
       .then((r) => {
         if (!r.ok) throw new Error("Failed to load quotes")
         return r.json() as Promise<Quote[]>

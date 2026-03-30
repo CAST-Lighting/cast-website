@@ -30,24 +30,24 @@ function FavoritesGrid(
   }: FavoritesGridProps,
   ref: Ref<HTMLElement>,
 ) {
-  const [items, setItems] = useState<FavoriteItem[]>([])
-  const [loading, setLoading] = useState(true)
+  // DEMO DATA — remove once BC wishlists API is connected
+  const DEMO_FAVORITES: FavoriteItem[] = [
+    { id: 1, productId: 119, name: "Classic Brass Path Light 5.5W (CBP55)", price: "$89.99", image: { url: "https://cdn11.bigcommerce.com/s-o3r3vyxngd/images/stencil/960w/products/119/738/caledbt_color-wheel-960x960-3092282884__17955.1762461221.jpg", alt: "Classic Brass Path Light" }, href: "/shop-all/classic-brass-path-light/" },
+    { id: 2, productId: 266, name: "CAST Stainless Thumb Screw (XCHS83250)", price: "$6.48", image: { url: "https://cdn11.bigcommerce.com/s-o3r3vyxngd/images/stencil/960w/products/266/506/xchs83250-parts-960x960-2245893803__53926.1759240869.jpg", alt: "Stainless Thumb Screw" }, href: "/shop-all/stainless-screw/" },
+    { id: 3, productId: 116, name: "CAST Integrated LED 12.5W Bullet Spot (SSPK12)", price: "$228.00", image: { url: "https://cdn11.bigcommerce.com/s-o3r3vyxngd/images/stencil/960w/products/116/700/sspk12_1-960x960-52278476__36183.1762461221.jpg", alt: "LED Bullet Spot Light" }, href: "/shop-all/integrated-led-12-5-watt-bullet-spot-light-sspk12/" },
+    { id: 4, productId: 226, name: "Path Light Set-In-Stake Telescopic Stem", price: "$72.51", image: null, href: "/shop-all/path-light-stem/" },
+  ]
+
+  const [items, setItems] = useState<FavoriteItem[]>(DEMO_FAVORITES)
+  const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    fetch("/api/account/favorites")
-      .then((r) => {
-        if (!r.ok) throw new Error("Failed to load favorites")
-        return r.json() as Promise<FavoriteItem[]>
-      })
-      .then((data) => {
-        setItems(data)
-        setLoading(false)
-      })
-      .catch((err: Error) => {
-        setError(err.message)
-        setLoading(false)
-      })
+    // Uncomment below to connect live BC wishlists API:
+    // fetch("/api/account/favorites")
+    //   .then(r => r.json())
+    //   .then(data => { if (data?.length) setItems(data) })
+    //   .catch(() => {})
   }, [])
 
   return (
