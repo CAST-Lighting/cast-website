@@ -38,8 +38,10 @@ const PROSE_STYLES = `
   .bp-prose img { width: 100%; border-radius: 8px; margin: 1.5em 0; display: block; }
   .bp-prose a { color: #007CB0; text-decoration: underline; }
   .bp-prose a:hover { color: #7EBEE8; }
-  .bp-prose ul, .bp-prose ol { font-family: 'Barlow', sans-serif; font-size: 17px; color: rgba(255,255,255,0.72); padding-left: 1.6em; margin: 0 0 1.3em; line-height: 1.85; }
-  .bp-prose li { margin-bottom: 0.35em; }
+  .bp-prose ul { font-family: 'Barlow', sans-serif; font-size: 17px; color: rgba(255,255,255,0.72); padding-left: 1.6em !important; margin: 0 0 1.3em !important; line-height: 1.85; list-style: disc outside !important; }
+  .bp-prose ol { font-family: 'Barlow', sans-serif; font-size: 17px; color: rgba(255,255,255,0.72); padding-left: 1.6em !important; margin: 0 0 1.3em !important; line-height: 1.85; list-style: decimal outside !important; }
+  .bp-prose li { margin-bottom: 0.35em !important; display: list-item !important; list-style: inherit !important; }
+  .bp-prose ul ul { list-style: circle outside !important; }
   .bp-prose blockquote { border-left: 3px solid #007CB0; margin: 1.5em 0; padding: 0.6em 1.5em; background: rgba(0,124,176,0.07); border-radius: 0 6px 6px 0; }
   .bp-prose blockquote p { color: rgba(255,255,255,0.85); font-style: italic; margin: 0; }
   .bp-prose pre { font-family: 'Courier New', monospace; background: rgba(0,0,0,0.45); border: 1px solid rgba(255,255,255,0.08); border-radius: 6px; font-size: 14px; color: #007CB0; padding: 1.2em 1.4em; overflow-x: auto; margin: 1.4em 0; }
