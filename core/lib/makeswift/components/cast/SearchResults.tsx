@@ -259,7 +259,7 @@ const SearchResults = forwardRef(function SearchResults(
           <div className="sr-product-grid">
             {Array.from({ length: pageSize > 8 ? 8 : pageSize }).map((_, i) => (
               <div key={i} style={{ display: "flex", flexDirection: "column", gap: 0 }}>
-                <div className="sr-skeleton" style={{ aspectRatio: "4/3" }} />
+                <div className="sr-skeleton" style={{ aspectRatio: "1/1" }} />
                 <div style={{ padding: 16 }}>
                   <div className="sr-skeleton" style={{ height: 14, width: "60%", marginBottom: 8 }} />
                   <div className="sr-skeleton" style={{ height: 18, width: "80%", marginBottom: 8 }} />
@@ -294,7 +294,7 @@ const SearchResults = forwardRef(function SearchResults(
             <div className="sr-product-grid">
               {products.map(product => (
                 <a key={product.id} href={product.href} className="sr-card">
-                  <div style={{ aspectRatio: "4/3", position: "relative", overflow: "hidden" }}>
+                  <div style={{ aspectRatio: "1/1", position: "relative", overflow: "hidden" }}>
                     {product.image ? (
                       <img src={product.image} alt={product.name} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
                     ) : (

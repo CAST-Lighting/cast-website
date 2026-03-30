@@ -54,7 +54,7 @@ const ProductCard = ({ product }: { product: Product }) => (
     onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(255,255,255,0.08)"; (e.currentTarget as HTMLDivElement).style.boxShadow = "none"; }}
   >
     {/* Image / placeholder */}
-    <div style={{ aspectRatio: "4/3", position: "relative", overflow: "hidden" }}>
+    <div style={{ aspectRatio: "1/1", position: "relative", overflow: "hidden" }}>
       {product.image ? (
         <img src={product.image} alt={product.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
       ) : (

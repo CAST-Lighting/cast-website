@@ -832,7 +832,7 @@ const castSearchStyles = `
     text-decoration: none;
   }
   .cast-product-image-wrapper {
-    aspect-ratio: 4/3;
+    aspect-ratio: 1/1;
     position: relative;
     overflow: hidden;
     background: #1a2a34;

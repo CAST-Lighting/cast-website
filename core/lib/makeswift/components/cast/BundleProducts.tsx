@@ -99,7 +99,7 @@ const BundleProducts = forwardRef(function BundleProducts(
               onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(0,124,176,0.4)"; (e.currentTarget as HTMLDivElement).style.boxShadow = "0 4px 24px rgba(0,0,0,0.18)"; }}
               onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(255,255,255,0.08)"; (e.currentTarget as HTMLDivElement).style.boxShadow = "none"; }}
             >
-              <div style={{ aspectRatio: "4/3", position: "relative", overflow: "hidden" }}>
+              <div style={{ aspectRatio: "1/1", position: "relative", overflow: "hidden" }}>
                 {item.image
                   ? <img src={item.image} alt={item.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                   : (
