@@ -48,8 +48,8 @@ const FALLBACK_COLS = [
       { label: "My Account", href: "/account/orders" },
       { label: "My Quotes", href: "/quotes" },
       { label: "My Favorites", href: "/favorites" },
-      { label: "Warranty Info", href: "#" },
-      { label: "Returns", href: "#" },
+      { label: "Warranty Info", href: "/warranty" },
+      { label: "Returns", href: "/returns" },
       { label: "About CAST", href: "/about" },
     ],
   },
@@ -203,8 +203,8 @@ const SiteFooter = forwardRef(function SiteFooter(
               {copyright || "© 2026 CAST Lighting. All rights reserved."}
             </p>
             <div className="flex gap-6 text-size-small text-muted-foreground">
-              <a href="#" className="hover:text-primary transition-colors">Privacy Policy</a>
-              <a href="#" className="hover:text-primary transition-colors">Terms of Service</a>
+              <a href="/privacy" className="hover:text-primary transition-colors">Privacy Policy</a>
+              <a href="/returns" className="hover:text-primary transition-colors">Terms of Service</a>
             </div>
           </div>
         </div>
