@@ -1,6 +1,125 @@
 "use client"
 import { forwardRef, type Ref, useState, useEffect, useCallback } from "react"
 
+const STEPS = [
+  {
+    title: "Personal Info",
+    fields: [
+      { id: "firstName", label: "First Name", type: "text", placeholder: "John", required: true },
+      { id: "lastName", label: "Last Name", type: "text", placeholder: "Smith", required: true },
+      { id: "email", label: "Email", type: "email", placeholder: "you@company.com", required: true },
+      { id: "phone", label: "Phone", type: "tel", placeholder: "(555) 000-0000", required: true },
+    ]
+  },
+  {
+    title: "Business Info",
+    fields: [
+      { id: "role", label: "Role / Title", type: "select", required: true, options: ["Landscape Contractor", "Landscape Architect", "Landscape Designer", "Lighting Designer", "Other"] },
+      { id: "company", label: "Company Name", type: "text", placeholder: "Acme Landscaping", required: true },
+      { id: "address", label: "Street Address", type: "text", placeholder: "123 Main St", required: true },
+      { id: "suite", label: "Suite / Unit", type: "text", placeholder: "Suite 100 (optional)", required: false },
+    ]
+  },
+  {
+    title: "Location",
+    fields: [
+      { id: "city", label: "City", type: "text", placeholder: "City", required: true },
+      { id: "state", label: "State / Province", type: "text", placeholder: "State", required: true },
+      { id: "zip", label: "Zip / Postal Code", type: "text", placeholder: "12345", required: true },
+      { id: "country", label: "Country", type: "select", required: true, options: ["United States", "Canada", "Mexico", "Other"] },
+    ]
+  },
+  {
+    title: "Account Details",
+    fields: [
+      { id: "website", label: "Business Website", type: "url", placeholder: "https://yourcompany.com", required: false },
+      { id: "taxExempt", label: "Tax Exempt?", type: "checkbox", required: false },
+      { id: "newsletter", label: "Subscribe to CAST newsletters and updates?", type: "radio", required: false, options: ["Yes", "No"] },
+    ]
+  },
+]
+
+function TradeProMultiStepForm({ formTitle, formSubtitle, formSubmitLabel }: { formTitle?: string; formSubtitle?: string; formSubmitLabel?: string }) {
+  const [step, setStep] = useState(0)
+  const [submitted, setSubmitted] = useState(false)
+  const [values, setValues] = useState<Record<string, string | boolean>>({})
+  const totalSteps = STEPS.length
+  const current = STEPS[step]
+
+  const inputStyle = { border: '1px solid rgba(175,229,253,0.2)', background: 'rgba(255,255,255,0.06)', color: '#fff', width: '100%', padding: '10px 14px', borderRadius: 6, fontFamily: "'Barlow', sans-serif", fontSize: 14, outline: 'none', boxSizing: 'border-box' as const }
+  const labelStyle = { fontFamily: "'Barlow', sans-serif", fontSize: 12, fontWeight: 600, color: 'rgba(175,229,253,0.8)', display: 'block', marginBottom: 4, textTransform: 'uppercase' as const, letterSpacing: '0.06em' }
+
+  if (submitted) return (
+    <div style={{ textAlign: 'center', padding: '32px 0' }}>
+      <div style={{ width: 56, height: 56, borderRadius: '50%', background: 'rgba(0,124,176,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px' }}>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7EBEE8" strokeWidth="2.5" strokeLinecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <h4 style={{ fontFamily: "'Essonnes','Playfair Display',serif", fontSize: 'var(--h4-size)', color: '#fff', margin: '0 0 8px' }}>Application Submitted!</h4>
+      <p style={{ fontFamily: "'Barlow',sans-serif", fontSize: 14, color: 'rgba(255,255,255,0.6)', margin: 0 }}>We'll review your application and follow up within 2–5 business days.</p>
+    </div>
+  )
+
+  return (
+    <div>
+      <h3 className="heading-style-h4 mb-1" style={{ color: '#fff' }}>{formTitle || "Become a TradePro"}</h3>
+      <p style={{ fontFamily: "'Barlow',sans-serif", fontSize: 13, color: 'var(--color-blue-grey-300)', marginBottom: 16 }}>
+        {formSubtitle || "Apply for exclusive contractor pricing, training, and dedicated support."}
+      </p>
+
+      {/* Step indicator */}
+      <div style={{ display: 'flex', gap: 4, marginBottom: 20 }}>
+        {STEPS.map((s, i) => (
+          <div key={i} style={{ flex: 1, height: 3, borderRadius: 2, background: i <= step ? '#007CB0' : 'rgba(255,255,255,0.15)', transition: 'background 200ms' }} />
+        ))}
+      </div>
+      <p style={{ fontFamily: "'Barlow',sans-serif", fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: 'rgba(175,229,253,0.6)', marginBottom: 14 }}>
+        Step {step + 1} of {totalSteps} — {current.title}
+      </p>
+
+      <form onSubmit={e => { e.preventDefault(); if (step < totalSteps - 1) { setStep(s => s + 1) } else { setSubmitted(true) } }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+          {current.fields.map(field => (
+            <div key={field.id}>
+              <label style={labelStyle}>{field.label}{field.required && <span style={{ color: '#7EBEE8' }}> *</span>}</label>
+              {field.type === 'select' ? (
+                <select style={{ ...inputStyle, background: 'rgba(40,90,110,0.8)', appearance: 'none' }} required={field.required} value={String(values[field.id] || '')} onChange={e => setValues(v => ({...v, [field.id]: e.target.value}))}>
+                  <option value="">Select...</option>
+                  {(field.options || []).map(o => <option key={o} value={o}>{o}</option>)}
+                </select>
+              ) : field.type === 'checkbox' ? (
+                <label style={{ display: 'flex', alignItems: 'center', gap: 8, cursor: 'pointer' }}>
+                  <input type="checkbox" checked={Boolean(values[field.id])} onChange={e => setValues(v => ({...v, [field.id]: e.target.checked}))} style={{ accentColor: '#007CB0', width: 16, height: 16 }} />
+                  <span style={{ fontFamily: "'Barlow',sans-serif", fontSize: 13, color: 'rgba(255,255,255,0.7)' }}>Yes, I am tax exempt</span>
+                </label>
+              ) : field.type === 'radio' ? (
+                <div style={{ display: 'flex', gap: 16 }}>
+                  {(field.options || []).map(o => (
+                    <label key={o} style={{ display: 'flex', alignItems: 'center', gap: 6, cursor: 'pointer', fontFamily: "'Barlow',sans-serif", fontSize: 13, color: 'rgba(255,255,255,0.7)' }}>
+                      <input type="radio" name={field.id} value={o} checked={values[field.id] === o} onChange={() => setValues(v => ({...v, [field.id]: o}))} style={{ accentColor: '#007CB0' }} />
+                      {o}
+                    </label>
+                  ))}
+                </div>
+              ) : (
+                <input type={field.type} placeholder={field.placeholder} required={field.required} style={inputStyle} value={String(values[field.id] || '')} onChange={e => setValues(v => ({...v, [field.id]: e.target.value}))} />
+              )}
+            </div>
+          ))}
+        </div>
+
+        <div style={{ display: 'flex', gap: 8, marginTop: 16 }}>
+          {step > 0 && (
+            <button type="button" className="sg-btn-outline-dark-sm" onClick={() => setStep(s => s - 1)} style={{ flex: 1, justifyContent: 'center' }}>← Back</button>
+          )}
+          <button type="submit" className="sg-btn-solid-dark-md" style={{ flex: 2, justifyContent: 'center' }}>
+            {step < totalSteps - 1 ? 'Next →' : (formSubmitLabel || 'Submit Application')}
+          </button>
+        </div>
+      </form>
+    </div>
+  )
+}
+
 const DEFAULT_SLIDES = [
   "https://storage.googleapis.com/s.mkswft.com/RmlsZTpmNGU1MTkzMi02Y2JlLTQ0ZjAtOWIwNC03ZmI3MmQwNzYwMDk=/background-1.jpg",
   "https://storage.googleapis.com/s.mkswft.com/RmlsZTpkZDVmYmU0ZS1hMzE3LTRlYWYtODg0Zi0wY2Q0MWVlOWU2ZTk=/background-6.jpg",
@@ -217,40 +336,11 @@ const HeroBanner = forwardRef(function HeroBanner(
               {/* top accent line */}
               <div className="absolute top-0 left-0 right-0 h-[2px]" style={{ background: 'linear-gradient(90deg, transparent, hsl(204 72% 70% / 0.6), transparent)' }} />
 
-              <h3 className="heading-style-h4 mb-1" style={{ color: '#fff' }}>
-                {formTitle || "Get An Easy, No-Pressure Quote"}
-              </h3>
-              <p className="text-size-small mb-5" style={{ color: 'var(--color-blue-grey-300)' }}>
-                {formSubtitle || "Tell us about your project and we'll get back to you within 24 hours."}
-              </p>
-
-              <form className="space-y-3">
-                <div>
-                  <label className="form-label" style={{ color: 'rgba(175,229,253,0.7)' }}>{field1Label || 'Full Name'}</label>
-                  <input type="text" placeholder={field1Placeholder || 'John Smith'} className="w-full px-4 py-3 rounded-lg text-white text-sm focus:outline-none" style={{ border: '1px solid rgba(175,229,253,0.2)', background: 'rgba(255,255,255,0.06)' }} />
-                </div>
-                <div>
-                  <label className="form-label" style={{ color: 'rgba(175,229,253,0.7)' }}>{field2Label || 'Project Type'}</label>
-                  <select className="w-full px-4 py-3 rounded-lg text-white text-sm focus:outline-none appearance-none" style={{ border: '1px solid rgba(175,229,253,0.2)', background: 'rgba(40,90,110,0.8)' }}>
-                    <option value="">Select...</option>
-                    {[field2Option1, field2Option2, field2Option3, field2Option4]
-                      .filter(Boolean)
-                      .map((opt, i) => <option key={i} value={opt}>{opt}</option>)
-                    }
-                  </select>
-                </div>
-                <div>
-                  <label className="form-label" style={{ color: 'rgba(175,229,253,0.7)' }}>{field3Label || 'Email'}</label>
-                  <input type="email" placeholder={field3Placeholder || 'john@company.com'} className="w-full px-4 py-3 rounded-lg text-white text-sm focus:outline-none" style={{ border: '1px solid rgba(175,229,253,0.2)', background: 'rgba(255,255,255,0.06)' }} />
-                </div>
-                <div>
-                  <label className="form-label" style={{ color: 'rgba(175,229,253,0.7)' }}>{field4Label || 'Phone'}</label>
-                  <input type="tel" placeholder={field4Placeholder || '(555) 123-4567'} className="w-full px-4 py-3 rounded-lg text-white text-sm focus:outline-none" style={{ border: '1px solid rgba(175,229,253,0.2)', background: 'rgba(255,255,255,0.06)' }} />
-                </div>
-                <button type="submit" className="sg-btn-solid-dark-lg w-full justify-center">
-                  {formSubmitLabel || "Get A Free Quote"}
-                </button>
-              </form>
+              <TradeProMultiStepForm
+                formTitle={formTitle}
+                formSubtitle={formSubtitle}
+                formSubmitLabel={formSubmitLabel}
+              />
             </div>
           </div>}
 
