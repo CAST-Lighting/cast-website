@@ -1,4 +1,3 @@
-import { CmsPageRenderer } from '~/lib/makeswift/cms-page-renderer';
 import { setRequestLocale } from 'next-intl/server';
 import { type Metadata } from 'next';
 
@@ -182,7 +181,6 @@ function FallbackPage() {
 export default async function RetailSignupPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
-  const makeswiftPage = await CmsPageRenderer({ templatePath: '/retail-signup', data: {} });
-  if (makeswiftPage) return makeswiftPage;
+  // Always use code layout — Makeswift template has stray placeholder sections
   return <FallbackPage />;
 }
