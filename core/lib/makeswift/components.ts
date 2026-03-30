@@ -64,6 +64,8 @@ import './components/cast/LoginSection.register';
 import './components/cast/FavoritesGrid.register';
 import './components/cast/QuotesList.register';
 import './components/cast/QuoteDetail.register';
+import './components/cast/OrdersGrid.register';
+import './components/cast/OrderDetail.register';
 
 // Utility
 import './components/cast/StyleGuide.register';
