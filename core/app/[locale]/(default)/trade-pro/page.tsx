@@ -163,9 +163,6 @@ function FallbackPage() {
     </>
   );
 }
-    </>
-  );
-}
 
 export default async function TradeProPage({ params }: Props) {
   const { locale } = await params;
