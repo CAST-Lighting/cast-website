@@ -1,5 +1,5 @@
 import { lazy } from "react"
-import { Style, Color, TextInput, Textarea, List, Shape } from "@makeswift/runtime/controls"
+import { Style, Color, TextInput, TextArea, List, Shape } from "@makeswift/runtime/controls"
 import { runtime } from "~/lib/makeswift/runtime"
 
 runtime.registerComponent(
@@ -13,11 +13,11 @@ runtime.registerComponent(
       // ── Hero ────────────────────────────────────────────────
       badgeText: TextInput({ label: "Badge Text", defaultValue: "Account Application" }),
       heading: TextInput({ label: "Heading", defaultValue: "Retail Store Registration" }),
-      description: Textarea({ label: "Description", defaultValue: "First-time users, register for an account below" }),
+      description: TextArea({ label: "Description", defaultValue: "First-time users, register for an account below" }),
 
       // ── Sidebar ─────────────────────────────────────────────
       sidebarHeading: TextInput({ label: "Sidebar Heading", defaultValue: "Retail Store Account" }),
-      sidebarBody: Textarea({
+      sidebarBody: TextArea({
         label: "Sidebar Body",
         defaultValue:
           "The CAST Retail Store is a resource for repair parts, lamps and accessories to help our customers maintain their lighting systems.",

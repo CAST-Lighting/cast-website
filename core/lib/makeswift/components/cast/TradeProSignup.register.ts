@@ -1,5 +1,5 @@
 import { lazy } from "react"
-import { Style, Color, TextInput, Textarea, List, Shape } from "@makeswift/runtime/controls"
+import { Style, Color, TextInput, TextArea, List, Shape } from "@makeswift/runtime/controls"
 import { runtime } from "~/lib/makeswift/runtime"
 
 runtime.registerComponent(
@@ -13,16 +13,16 @@ runtime.registerComponent(
       // ── Hero ────────────────────────────────────────────────
       badgeText: TextInput({ label: "Badge Text", defaultValue: "Account Application" }),
       heading: TextInput({ label: "Heading", defaultValue: "Trade Professional Registration" }),
-      description: Textarea({ label: "Description", defaultValue: "Application for a Landscape Account" }),
+      description: TextArea({ label: "Description", defaultValue: "Application for a Landscape Account" }),
 
       // ── Sidebar ─────────────────────────────────────────────
       sidebarHeading: TextInput({ label: "Sidebar Heading", defaultValue: "Landscape Account" }),
-      sidebarBody: Textarea({
+      sidebarBody: TextArea({
         label: "Sidebar Body",
         defaultValue:
           "If you are a contractor or landscape architect without a Distributor or Specification Sales Agency in your area, you can apply to have your own CAST online ordering account.",
       }),
-      sidebarNote: Textarea({
+      sidebarNote: TextArea({
         label: "Sidebar Note",
         defaultValue:
           "Application may take between 2–5 business days to be approved and we may contact you with questions after an application has been submitted.",

@@ -1,5 +1,5 @@
 import { lazy } from "react"
-import { Style, Color, Image, Number as NumberControl, TextInput, Textarea } from "@makeswift/runtime/controls"
+import { Style, Color, Image, Number as NumberControl, TextInput, TextArea } from "@makeswift/runtime/controls"
 import { runtime } from "~/lib/makeswift/runtime"
 
 runtime.registerComponent(
@@ -19,7 +19,7 @@ runtime.registerComponent(
       badgeText: TextInput({ label: "Badge Text", defaultValue: "Our Story" }),
       heading: TextInput({ label: "Heading", defaultValue: "About CAST Lighting" }),
       headingAccent: TextInput({ label: "Heading Accent (gradient)", defaultValue: "" }),
-      description: Textarea({ label: "Description", defaultValue: "Professional-grade landscape lighting trusted by contractors since 2001." }),
+      description: TextArea({ label: "Description", defaultValue: "Professional-grade landscape lighting trusted by contractors since 2001." }),
 
       // ── Buttons ─────────────────────────────────────────────
       btn1Label: TextInput({ label: "Button 1 Label", defaultValue: "Shop Products" }),

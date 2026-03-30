@@ -1,5 +1,5 @@
 import { lazy } from "react"
-import { Style, Color, Number as NumberControl, TextInput, Textarea, List, Shape } from "@makeswift/runtime/controls"
+import { Style, Color, Number as NumberControl, TextInput, TextArea, List, Shape } from "@makeswift/runtime/controls"
 import { runtime } from "~/lib/makeswift/runtime"
 
 runtime.registerComponent(
@@ -17,7 +17,7 @@ runtime.registerComponent(
 
       // ── Story Intro ──────────────────────────────────────────
       sectionHeading: TextInput({ label: "Section Heading", defaultValue: "Built to Last. Built in America." }),
-      sectionBody: Textarea({
+      sectionBody: TextArea({
         label: "Section Body",
         defaultValue:
           "Since 2001, CAST Lighting has been designing and manufacturing professional-grade landscape lighting fixtures in the USA. Every product is crafted from solid brass or copper — materials chosen for their beauty and ability to withstand decades of outdoor exposure without corroding or deteriorating.",
@@ -29,7 +29,7 @@ runtime.registerComponent(
         type: Shape({
           type: {
             title: TextInput({ label: "Title", defaultValue: "Feature Title" }),
-            desc: Textarea({ label: "Description", defaultValue: "Feature description goes here." }),
+            desc: TextArea({ label: "Description", defaultValue: "Feature description goes here." }),
           },
         }),
         getItemLabel(item) {
@@ -39,7 +39,7 @@ runtime.registerComponent(
 
       // ── Mission ──────────────────────────────────────────────
       missionHeading: TextInput({ label: "Mission Heading", defaultValue: "Our Mission" }),
-      missionBody: Textarea({
+      missionBody: TextArea({
         label: "Mission Body",
         defaultValue:
           "To provide landscape lighting professionals with the highest-quality fixtures available — products that are beautiful, durable, and easy to install. We believe outdoor lighting should enhance properties for a lifetime, and we build every product with that standard in mind.",
