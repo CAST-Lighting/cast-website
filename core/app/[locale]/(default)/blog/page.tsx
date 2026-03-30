@@ -1,4 +1,3 @@
-import { CmsPageRenderer } from '~/lib/makeswift/cms-page-renderer';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
@@ -49,9 +48,8 @@ export default async function Blog(props: Props) {
   const { locale } = await props.params;
   setRequestLocale(locale);
 
-  const makeswiftPage = await CmsPageRenderer({ templatePath: '/blog', data: {} });
-  if (makeswiftPage) return makeswiftPage;
-
+  // Always use code layout — Makeswift /blog template has stray placeholder sections
+  // The code fallback correctly renders all real BigCommerce blog data.
   const searchParamsParsed = searchParamsCache.parse(await props.searchParams);
   const { tag, before, after, limit } = searchParamsParsed;
 
