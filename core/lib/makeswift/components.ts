@@ -65,5 +65,8 @@ import './components/cast/CmsBlogBody.register';
 import './components/cast/CmsProductContent.register';
 import './components/cast/CmsCategoryGrid.register';
 
+// Auth
+import './components/cast/LoginSection.register';
+
 // Utility
 import './components/cast/StyleGuide.register';
