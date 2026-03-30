@@ -1,4 +1,4 @@
-"use client"
+﻿"use client"
 
 import { forwardRef, useState, type Ref } from "react"
 import { useCmsData } from "~/lib/makeswift/cms-context"
@@ -29,9 +29,9 @@ interface ProductHeroProps {
 const DEFAULT_BODY = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sed enim fringilla, suscipit felis eget, euismod nisi. Vestibulum ac fermentum ex, ac cursus sem. Nam vel bibendum erat. Pellentesque blandit viverra viverra. Nullam vestibulum ex eget gravida volutpat.\n\nPhasellus laoreet gravida libero, at porttitor diam fringilla at. Sed ac orci facilisis, placerat augue a, pulvinar enim. Integer volutpat velit nulla, vel varius purus elementum at. Cras euismod semper mi, at bibendum odio tincidunt vitae.\n\nPellentesque blandit viverra viverra. Nullam vestibulum ex eget gravida volutpat. Phasellus laoreet gravida libero, at porttitor diam fringilla at."
 
 const DEFAULT_BULLETS = [
-  { text: "Solid brass construction — will never rust, corrode, or fade" },
-  { text: "5.5W LED module — 400 lumen output, 2700K warm white" },
-  { text: "IP67 waterproof rating — suitable for all weather conditions" },
+  { text: "Solid brass construction â€” will never rust, corrode, or fade" },
+  { text: "5.5W LED module â€” 400 lumen output, 2700K warm white" },
+  { text: "IP67 waterproof rating â€” suitable for all weather conditions" },
   { text: "Compatible with all CAST 12V transformers" },
   { text: "Unique mounting stake with locking collar" },
   { text: "Lifetime warranty against defects and weather damage" },
@@ -48,7 +48,7 @@ const Stars = ({ count = 4.7, total = 5 }: { count?: number; total?: number }) =
 )
 
 const ImagePlaceholder = () => (
-  <div style={{ width: "100%", aspectRatio: "1", background: "#2d353c", borderRadius: 6, display: "flex", alignItems: "center", justifyContent: "center" }}>
+  <div style={{ width: "100%", aspectRatio: "1", background: "rgba(0,73,96,0.08)", borderRadius: 6, display: "flex", alignItems: "center", justifyContent: "center" }}>
     <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#ced4da" strokeWidth="1"><rect x="3" y="3" width="18" height="18" rx="2" /><circle cx="8.5" cy="8.5" r="1.5" /><path d="M21 15l-5-5L5 21" /></svg>
   </div>
 )
@@ -107,7 +107,7 @@ const ProductHero = forwardRef(function ProductHero(
   const rawBody = resolvedBodyText || DEFAULT_BODY
   const isHtml = rawBody.includes('<')
   // Downgrade headings in BC description to preserve SEO hierarchy:
-  // page H1 = product name, page H2 = section headings → BC H1/H2 become H3, BC H3/H4 become H4
+  // page H1 = product name, page H2 = section headings â†’ BC H1/H2 become H3, BC H3/H4 become H4
   const body = isHtml
     ? rawBody
         .replace(/<h1(\s[^>]*)?>/gi, '<h3$1>').replace(/<\/h1>/gi, '</h3>')
@@ -151,7 +151,7 @@ const ProductHero = forwardRef(function ProductHero(
       <div className="site-container">
         <div className="ph-layout" style={{ display: "flex", gap: 56, alignItems: "flex-start" }}>
 
-          {/* Left: Image gallery — sticky scroll, thumbnails vertical on left */}
+          {/* Left: Image gallery â€” sticky scroll, thumbnails vertical on left */}
           <div className="ph-gallery" style={{ flex: "0 0 540px", maxWidth: 540, position: "sticky", top: 120, alignSelf: "flex-start", display: "flex", gap: 12 }}>
             {/* Vertical thumbnail strip */}
             <div style={{ display: "flex", flexDirection: "column", gap: 8, flexShrink: 0 }}>
@@ -176,49 +176,49 @@ const ProductHero = forwardRef(function ProductHero(
           {/* Right: Product info + description (scrolls naturally) */}
           <div style={{ flex: 1, minWidth: 0 }}>
             {/* Product name FIRST */}
-            <h1 style={{ fontSize: "var(--h1-size)", fontWeight: "var(--heading-weight, 700)", lineHeight: "var(--heading-line-height, 1.1)", fontFamily: "'Essonnes', 'Playfair Display', serif", color: "var(--color-title)", margin: "0 0 8px" }}>
+            <h1 style={{ fontSize: "var(--h1-size)", fontWeight: "var(--heading-weight, 700)", lineHeight: "var(--heading-line-height, 1.1)", fontFamily: "'Essonnes', 'Playfair Display', serif", color: "#014960", margin: "0 0 8px" }}>
               {resolvedProductName}
             </h1>
 
             {/* Model number SECOND */}
-            <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, color: "var(--color-content)", margin: "0 0 12px" }}>Model #: {resolvedModelNumber}</p>
+            <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, color: "#1a3a4a", margin: "0 0 12px" }}>Model #: {resolvedModelNumber}</p>
 
             {/* Rating */}
             <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 16 }}>
               <Stars count={resolvedRating} />
-              <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 14, color: "var(--color-accent)", fontWeight: 600 }}>{resolvedRating === 0 || resolvedReviewCount === 0 ? "Be the first to review" : `${resolvedRating} · ${resolvedReviewCount} Ratings`}</span>
+              <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 14, color: "var(--color-accent)", fontWeight: 600 }}>{resolvedRating === 0 || resolvedReviewCount === 0 ? "Be the first to review" : `${resolvedRating} Â· ${resolvedReviewCount} Ratings`}</span>
             </div>
 
             {/* Short description */}
-            <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 16, color: "var(--color-content)", lineHeight: 1.6, margin: "0 0 28px" }}>{resolvedShortDescription}</p>
+            <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 16, color: "#1a3a4a", lineHeight: 1.6, margin: "0 0 28px" }}>{resolvedShortDescription}</p>
 
             {/* Price + stock */}
             <div style={{ display: "flex", alignItems: "baseline", gap: 12, marginBottom: 8 }}>
-              <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 32, fontWeight: 700, color: "var(--color-title)" }}>{resolvedPrice}</span>
+              <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 32, fontWeight: 700, color: "#014960" }}>{resolvedPrice}</span>
               <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 14, fontWeight: 600, color: resolvedInStock ? "#10b981" : "#ef4444" }}>
                 {resolvedInStock ? "In Stock" : "Out of Stock"}
               </span>
             </div>
 
             {/* Divider */}
-            <div style={{ height: 1, background: "#37474f", margin: "20px 0" }} />
+            <div style={{ height: 1, background: "rgba(0,73,96,0.15)", margin: "20px 0" }} />
 
             {/* QTY */}
             <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 16 }}>
-              <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 14, fontWeight: 600, color: "var(--color-title)", width: 36 }}>QTY</span>
+              <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 14, fontWeight: 600, color: "#014960", width: 36 }}>QTY</span>
               <div className="ph-qty">
-                <button onClick={() => setQty(Math.max(1, qty - 1))}>−</button>
+                <button onClick={() => setQty(Math.max(1, qty - 1))}>âˆ’</button>
                 <input type="number" value={qty} min={1} onChange={e => setQty(Math.max(1, parseInt(e.target.value) || 1))} />
                 <button onClick={() => setQty(qty + 1)}>+</button>
               </div>
             </div>
 
-            {/* Action buttons — not full width, natural sizing */}
+            {/* Action buttons â€” not full width, natural sizing */}
             <div style={{ display: "flex", flexDirection: "column", gap: 10, alignItems: "flex-start" }}>
               <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
                 <button className="sg-btn-solid-dark-md" style={{ justifyContent: "center", ...(!resolvedInStock ? { opacity: 0.5, pointerEvents: 'none' as const } : {}) }}>{resolvedInStock ? "Add To Cart" : "Out of Stock"}</button>
-                <button style={{ width: 48, height: 48, border: "2px solid rgba(255,255,255,0.12)", borderRadius: 4, background: "#2d353c", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, transition: "border-color 200ms" }} aria-label="Add to wishlist" onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.borderColor = "var(--color-accent)"; }} onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(255,255,255,0.12)"; }}>
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-content)" strokeWidth="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" /></svg>
+                <button style={{ width: 48, height: 48, border: "2px solid rgba(255,255,255,0.12)", borderRadius: 4, background: "rgba(0,73,96,0.08)", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, transition: "border-color 200ms" }} aria-label="Add to wishlist" onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.borderColor = "var(--color-accent)"; }} onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(0,73,96,0.2)"; }}>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#014960" strokeWidth="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" /></svg>
                 </button>
                 {tradeProOnly && <span className="ph-tradepro-badge">TradePro Only</span>}
               </div>
@@ -228,15 +228,15 @@ const ProductHero = forwardRef(function ProductHero(
             </div>
 
             {/* Login prompt */}
-            <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 14, color: "var(--color-content)", marginTop: 16 }}>
+            <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 14, color: "#1a3a4a", marginTop: 16 }}>
               Already a customer? <a href="#" style={{ color: "#7EBEE8" }}>Please login here</a> to favorite, save, or view order history for later reference.
             </p>
 
             {/* Thin separator between login prompt and description */}
-            <div style={{ height: 1, background: "rgba(255,255,255,0.08)", margin: "24px 0" }} />
+            <div style={{ height: 1, background: "rgba(0,73,96,0.1)", margin: "24px 0" }} />
 
             {/* Product Description section */}
-            <h2 style={{ fontSize: "var(--h2-size)", fontWeight: "var(--heading-weight, 700)", lineHeight: "var(--heading-line-height, 1.1)", fontFamily: "'Essonnes', 'Playfair Display', serif", color: "var(--color-title)", marginTop: 32, marginBottom: 24 }}>
+            <h2 style={{ fontSize: "var(--h2-size)", fontWeight: "var(--heading-weight, 700)", lineHeight: "var(--heading-line-height, 1.1)", fontFamily: "'Essonnes', 'Playfair Display', serif", color: "#014960", marginTop: 32, marginBottom: 24 }}>
               Product Description
             </h2>
 
@@ -255,10 +255,10 @@ const ProductHero = forwardRef(function ProductHero(
               .ph-body-html h4 { font-family: 'Essonnes', 'Playfair Display', serif; font-size: var(--h5-size); color: rgba(255,255,255,0.85); margin: 16px 0 6px; }
             `}</style>
             {isHtml ? (
-              <div className="ph-body-html" style={{ fontFamily: "'Barlow', sans-serif", fontSize: 16, color: "var(--color-content)", lineHeight: 1.7, maxWidth: 640 }} dangerouslySetInnerHTML={{ __html: body }} />
+              <div className="ph-body-html" style={{ fontFamily: "'Barlow', sans-serif", fontSize: 16, color: "#1a3a4a", lineHeight: 1.7, maxWidth: 640 }} dangerouslySetInnerHTML={{ __html: body }} />
             ) : (
               body.split("\n\n").map((para, i) => (
-                <p key={i} style={{ fontFamily: "'Barlow', sans-serif", fontSize: 16, color: "var(--color-content)", lineHeight: 1.7, margin: "0 0 18px", maxWidth: 640 }}>{para}</p>
+                <p key={i} style={{ fontFamily: "'Barlow', sans-serif", fontSize: 16, color: "#1a3a4a", lineHeight: 1.7, margin: "0 0 18px", maxWidth: 640 }}>{para}</p>
               ))
             )}
 
@@ -266,7 +266,7 @@ const ProductHero = forwardRef(function ProductHero(
             {bullets.length > 0 && (
               <ul style={{ margin: "16px 0 0", paddingLeft: 20, display: "flex", flexDirection: "column", gap: 8 }}>
                 {bullets.map((b, i) => (
-                  <li key={i} style={{ fontFamily: "'Barlow', sans-serif", fontSize: 16, color: "var(--color-content)", lineHeight: 1.6 }}>{b.text}</li>
+                  <li key={i} style={{ fontFamily: "'Barlow', sans-serif", fontSize: 16, color: "#1a3a4a", lineHeight: 1.6 }}>{b.text}</li>
                 ))}
               </ul>
             )}
