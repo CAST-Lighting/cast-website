@@ -1,6 +1,7 @@
 "use client"
 import { forwardRef, type Ref } from "react"
 import { Mail } from "lucide-react"
+import { getTheme, type ThemeMode } from "~/lib/makeswift/theme"
 
 const NewsletterCta = forwardRef(function NewsletterCta(
   {
@@ -19,6 +20,7 @@ const NewsletterCta = forwardRef(function NewsletterCta(
     description,
     submitLabel,
     inputPlaceholder,
+    mode = 'dark',
   }: {
     className?: string
     bgImage?: string
@@ -35,9 +37,11 @@ const NewsletterCta = forwardRef(function NewsletterCta(
     description?: string
     submitLabel?: string
     inputPlaceholder?: string
+    mode?: ThemeMode
   },
   ref: Ref<HTMLElement>
 ) {
+  const t = getTheme(mode)
   const bgImageUrl = bgImage
   const hasGradient = !!(gradientFrom && gradientTo)
   const overlayOpacity = typeof bgOpacity === 'number' ? bgOpacity / 100 : 0.85
@@ -81,7 +85,7 @@ const NewsletterCta = forwardRef(function NewsletterCta(
                 placeholder={inputPlaceholder || "Enter your email"}
                 className="form-input flex-1"
               />
-              <button type="submit" className="sg-btn-solid-md">
+              <button type="submit" className={t.btnPrimary}>
                 {submitLabel || "Subscribe"}
               </button>
             </form>

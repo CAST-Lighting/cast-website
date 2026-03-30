@@ -1,5 +1,5 @@
 import { lazy } from "react"
-import { Style, TextInput, TextArea, Image, Color, Number } from "@makeswift/runtime/controls"
+import { Style, TextInput, TextArea, Image, Color, Number, Select } from "@makeswift/runtime/controls"
 import { runtime } from "~/lib/makeswift/runtime"
 
 runtime.registerComponent(
@@ -9,6 +9,9 @@ runtime.registerComponent(
     label: "CTA / Ready CTA",
     props: {
       className: Style(),
+
+      // 🌓 Theme
+      mode: Select({ label: "🌓 Theme", options: [{ value: "dark", label: "Dark" }, { value: "light", label: "Light" }], defaultValue: "dark" }),
 
       // 🎨 Background
       bgColor: Color({ label: "🎨 Background — Color", defaultValue: "#004960" }),

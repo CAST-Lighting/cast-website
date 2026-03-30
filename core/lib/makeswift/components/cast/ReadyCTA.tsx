@@ -1,6 +1,7 @@
 "use client"
 import { forwardRef, type Ref } from "react"
 import { ArrowRight } from "lucide-react"
+import { getTheme, type ThemeMode } from "~/lib/makeswift/theme"
 
 interface ReadyCTAProps {
   className?: string
@@ -20,6 +21,7 @@ interface ReadyCTAProps {
   btn1Href?: string
   btn2Label?: string
   btn2Href?: string
+  mode?: ThemeMode
 }
 
 const ReadyCTA = forwardRef(function ReadyCTA(
@@ -41,9 +43,11 @@ const ReadyCTA = forwardRef(function ReadyCTA(
     btn1Href = "/shop",
     btn2Label = "Join TradePro",
     btn2Href = "/trade-pro",
+    mode = 'dark',
   }: ReadyCTAProps,
   ref: Ref<HTMLElement>
 ) {
+  const t = getTheme(mode)
   const hasGradient = !!(gradientFrom && gradientTo)
   const overlayOpacity = typeof bgOpacity === "number" ? bgOpacity / 100 : 0.88
   const sectionBackground = hasGradient
@@ -99,7 +103,7 @@ const ReadyCTA = forwardRef(function ReadyCTA(
               fontWeight: 700,
               textTransform: "uppercase",
               letterSpacing: "0.14em",
-              color: "rgba(255,255,255,0.6)",
+              color: t.subtle,
               margin: "0 0 16px",
             }}>
               {overline}
@@ -111,7 +115,7 @@ const ReadyCTA = forwardRef(function ReadyCTA(
             fontSize: "var(--h2-size)",
             fontWeight: 700,
             lineHeight: 1.15,
-            color: "#fff",
+            color: t.heading,
             margin: "0 0 20px",
           }}>
             {heading}{" "}
@@ -127,7 +131,7 @@ const ReadyCTA = forwardRef(function ReadyCTA(
           <p style={{
             fontFamily: "'Barlow', sans-serif",
             fontSize: 17,
-            color: "rgba(255,255,255,0.75)",
+            color: t.body,
             lineHeight: 1.7,
             margin: "0 0 40px",
           }}>
@@ -135,11 +139,11 @@ const ReadyCTA = forwardRef(function ReadyCTA(
           </p>
 
           <div style={{ display: "flex", gap: 16, justifyContent: "center", flexWrap: "wrap" }}>
-            <a href={btn1Href} className="sg-btn-solid-md" style={{ textDecoration: "none" }}>
+            <a href={btn1Href} className={t.btnPrimary} style={{ textDecoration: "none" }}>
               {btn1Label} <ArrowRight style={{ width: 16, height: 16 }} />
             </a>
             {btn2Label && (
-              <a href={btn2Href} className="sg-btn-outline-md" style={{ textDecoration: "none" }}>
+              <a href={btn2Href} className={t.btnOutline} style={{ textDecoration: "none" }}>
                 {btn2Label}
               </a>
             )}

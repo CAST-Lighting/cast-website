@@ -1,6 +1,7 @@
 "use client"
 import { forwardRef, type Ref } from "react"
 import { DollarSign, Palette, Clock, Headphones, Star, ArrowRight } from "lucide-react"
+import { getTheme, type ThemeMode } from "~/lib/makeswift/theme"
 
 const BENEFIT_ICONS = [DollarSign, Palette, Clock, Headphones, Star]
 
@@ -32,6 +33,7 @@ const TradeProSection = forwardRef(function TradeProSection(
     benefits: benefitsProp,
     btnLabel,
     btnHref,
+    mode = 'dark',
   }: {
     className?: string
     bgImage?: string
@@ -50,9 +52,11 @@ const TradeProSection = forwardRef(function TradeProSection(
     benefits?: BenefitItem[]
     btnLabel?: string
     btnHref?: string
+    mode?: ThemeMode
   },
   ref: Ref<HTMLElement>
 ) {
+  const t = getTheme(mode)
   const bgImageUrl = bgImage
   const hasGradient = !!(gradientFrom && gradientTo)
   const overlayOpacity = typeof bgOpacity === 'number' ? bgOpacity / 100 : 0.85
@@ -105,7 +109,7 @@ const TradeProSection = forwardRef(function TradeProSection(
           </div>
 
           <div className="text-center">
-            <a href={btnHref || "/trade-pro"} className="sg-btn-solid-md">
+            <a href={btnHref || "/trade-pro"} className={t.btnPrimary}>
               {btnLabel || "Learn More About TradePro"} <ArrowRight className="w-4 h-4" />
             </a>
           </div>

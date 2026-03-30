@@ -1,5 +1,5 @@
 import { lazy } from "react"
-import { Style, TextInput, List, Shape, Color, Number, Image } from "@makeswift/runtime/controls"
+import { Style, TextInput, List, Shape, Color, Number, Image, Select } from "@makeswift/runtime/controls"
 import { runtime } from "~/lib/makeswift/runtime"
 
 runtime.registerComponent(
@@ -9,6 +9,9 @@ runtime.registerComponent(
     label: "Sections / Reviews Carousel",
     props: {
       className: Style(),
+
+      // 🌓 Theme
+      mode: Select({ label: "🌓 Theme", options: [{ value: "dark", label: "Dark" }, { value: "light", label: "Light" }], defaultValue: "dark" }),
 
       // 🎨 Background
       bgColor: Color({ label: "🎨 Background — Color", defaultValue: "#141e27" }),

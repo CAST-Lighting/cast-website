@@ -10,6 +10,9 @@ runtime.registerComponent(
     props: {
       className: Style(),
 
+      // 🌓 Theme
+      mode: Select({ label: "🌓 Theme", options: [{ value: "dark", label: "Dark" }, { value: "light", label: "Light" }], defaultValue: "dark" }),
+
       // 🎨 Background
       bgImage: Image({ label: "🎨 Background — Image" }),
       bgColor: Color({ label: "🎨 Background — Color" }),

@@ -2,6 +2,7 @@
 import { forwardRef, useState, useRef, useEffect, type Ref } from "react"
 import { Star, ArrowLeft, ArrowRight } from "lucide-react"
 import { useCmsData } from "~/lib/makeswift/cms-context"
+import { getTheme, type ThemeMode } from "~/lib/makeswift/theme"
 
 const PLACEHOLDER_PERSON = "https://storage.googleapis.com/s.mkswft.com/RmlsZTo0MzUyZTgwOS1jZDk2LTQ3YWQtOGM0ZC1kZDdhYmRlODhkMDY=/placeholder_person.webp"
 
@@ -28,6 +29,7 @@ interface ReviewsCarouselProps {
   heading?: string
   headingAccent?: string
   reviews?: Review[]
+  mode?: ThemeMode
 }
 
 const DEFAULT_REVIEWS: Review[] = [
@@ -108,9 +110,11 @@ const ReviewsCarousel = forwardRef(function ReviewsCarousel(
     heading = "Trusted by Contractors",
     headingAccent = "Nationwide",
     reviews: reviewsProp,
+    mode = 'dark',
   }: ReviewsCarouselProps,
   ref: Ref<HTMLElement>
 ) {
+  const t = getTheme(mode)
   const cms = useCmsData()
   const cmsReviews = cms?.type === 'product' ? cms.meta?.reviews : null
 
@@ -205,15 +209,15 @@ const ReviewsCarousel = forwardRef(function ReviewsCarousel(
         <div className="site-container mb-10">
           <div className="flex flex-col md:flex-row md:items-end md:justify-between">
             <div style={{ textAlign: "left" }}>
-              <span className="overline" style={{ color: "#007CB0" }}>{overline}</span>
-              <h2 className="section-heading" style={{ marginTop: 12, fontSize: "var(--h2-size)", color: "#014960" }}>
+              <span className="overline" style={{ color: t.accent }}>{overline}</span>
+              <h2 className="section-heading" style={{ marginTop: 12, fontSize: "var(--h2-size)", color: t.heading }}>
                 {heading}{" "}
                 <span className="text-gradient-warm">{headingAccent}</span>
               </h2>
               {/* Aggregate rating */}
               <div style={{ display: "flex", alignItems: "center", gap: 12, marginTop: 16 }}>
                 <StarRating rating={5} />
-                <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 15, color: "#1a3a4a" }}>
+                <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 15, color: t.body }}>
                   4.9 / 5 — based on 200+ verified reviews
                 </span>
               </div>
@@ -241,8 +245,8 @@ const ReviewsCarousel = forwardRef(function ReviewsCarousel(
                 key={i}
                 className="flex-shrink-0 w-[340px]"
                 style={{
-                  background: "#ffffff",
-                  border: "1px solid rgba(0,73,96,0.1)",
+                  background: t.cardBg,
+                  border: `1px solid ${t.cardBorder}`,
                   borderRadius: 14,
                   padding: "32px 28px",
                   display: "flex",
@@ -254,7 +258,7 @@ const ReviewsCarousel = forwardRef(function ReviewsCarousel(
                 <p style={{
                   fontFamily: "'Barlow', sans-serif",
                   fontSize: 15,
-                  color: "#1a3a4a",
+                  color: t.body,
                   lineHeight: 1.7,
                   margin: 0,
                   flex: 1,
@@ -262,7 +266,7 @@ const ReviewsCarousel = forwardRef(function ReviewsCarousel(
                 }}>
                   &ldquo;{review.quote}&rdquo;
                 </p>
-                <div style={{ borderTop: "1px solid rgba(0,73,96,0.1)", paddingTop: 16, display: "flex", alignItems: "center", gap: 12 }}>
+                <div style={{ borderTop: `1px solid ${t.divider}`, paddingTop: 16, display: "flex", alignItems: "center", gap: 12 }}>
                   <img
                     src={review.avatar || PLACEHOLDER_PERSON}
                     alt={review.name || "Reviewer"}
@@ -273,7 +277,7 @@ const ReviewsCarousel = forwardRef(function ReviewsCarousel(
                       fontFamily: "'Barlow', sans-serif",
                       fontSize: 14,
                       fontWeight: 700,
-                      color: "#014960",
+                      color: t.heading,
                       margin: "0 0 2px",
                     }}>
                       {review.name}
@@ -281,7 +285,7 @@ const ReviewsCarousel = forwardRef(function ReviewsCarousel(
                     <p style={{
                       fontFamily: "'Barlow', sans-serif",
                       fontSize: 13,
-                      color: "rgba(1,73,96,0.55)",
+                      color: t.subtle,
                       margin: 0,
                     }}>
                       {review.role}{review.location ? ` · ${review.location}` : ""}

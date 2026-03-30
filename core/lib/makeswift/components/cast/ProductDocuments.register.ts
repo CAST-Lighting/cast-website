@@ -11,6 +11,9 @@ runtime.registerComponent(
       className: Style(),
       sectionStyle: Style({ properties: [Style.Padding, Style.Margin] }),
 
+      // 🌓 Theme
+      mode: Select({ label: "🌓 Theme", options: [{ value: "dark", label: "Dark" }, { value: "light", label: "Light" }], defaultValue: "dark" }),
+
       // 🎨 Background
       bgColor: Color({ label: "🎨 Background — Color", defaultValue: "#2d353c" }),
       bgImage: Image({ label: "🎨 Background — Image" }),

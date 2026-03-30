@@ -1,6 +1,7 @@
 "use client"
 
 import { forwardRef, type Ref } from "react"
+import { getTheme, type ThemeMode } from "~/lib/makeswift/theme"
 
 interface Doc {
   title?: string
@@ -23,6 +24,7 @@ interface ProductDocumentsProps {
   gradientDirection?: string
   paddingTop?: number
   paddingBottom?: number
+  mode?: ThemeMode
 }
 
 const DEFAULT_DOCS: Doc[] = [
@@ -34,8 +36,8 @@ const DEFAULT_DOCS: Doc[] = [
   { title: "Cut Sheet", description: "Single-page summary of features, finishes, and ordering information. Ideal for client proposals and contractor bid packages.", fileType: "PDF" },
 ]
 
-const FileIcon = ({ type }: { type?: string }) => (
-  <div style={{ background: "#007CB0", borderRadius: 3, display: "inline-flex", alignItems: "center", justifyContent: "center", flexShrink: 0, padding: "3px 8px" }}>
+const FileIcon = ({ type, accentColor }: { type?: string; accentColor?: string }) => (
+  <div style={{ background: accentColor || "#007CB0", borderRadius: 3, display: "inline-flex", alignItems: "center", justifyContent: "center", flexShrink: 0, padding: "3px 8px" }}>
     <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 10, fontWeight: 700, color: "#fff", textTransform: "uppercase", letterSpacing: "0.04em" }}>{type || "PDF"}</span>
   </div>
 )
@@ -55,9 +57,11 @@ const ProductDocuments = forwardRef(function ProductDocuments(
     gradientDirection,
     paddingTop,
     paddingBottom,
+    mode = 'dark',
   }: ProductDocumentsProps,
   ref: Ref<HTMLDivElement>
 ) {
+  const t = getTheme(mode)
   const list = documents && documents.length > 0 ? documents : DEFAULT_DOCS
   const hasGradient = !!(gradientFrom && gradientTo)
   const overlayOpacity = typeof bgOpacity === 'number' ? bgOpacity / 100 : 0.85
@@ -79,17 +83,17 @@ const ProductDocuments = forwardRef(function ProductDocuments(
       )}
       <div className="relative" style={{ zIndex: 10 }}>
       <div className="site-container">
-        <h2 style={{ fontSize: "var(--h2-size)", fontWeight: "var(--heading-weight, 700)", lineHeight: "var(--heading-line-height, 1.1)", fontFamily: "'Essonnes', 'Playfair Display', serif", color: "#014960", margin: "0 0 32px" }}>
+        <h2 style={{ fontSize: "var(--h2-size)", fontWeight: "var(--heading-weight, 700)", lineHeight: "var(--heading-line-height, 1.1)", fontFamily: "'Essonnes', 'Playfair Display', serif", color: t.heading, margin: "0 0 32px" }}>
           {heading}{headingAccent && <> <span className="text-gradient-warm">{headingAccent}</span></>}
         </h2>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 16 }}>
           {list.map((doc, i) => (
-            <div key={i} style={{ background: "#ffffff", border: "1px solid rgba(0,73,96,0.1)", borderRadius: 8, padding: "20px", display: "flex", gap: 16, alignItems: "flex-start" }}>
-              <FileIcon type={doc.fileType} />
+            <div key={i} style={{ background: t.cardBg, border: `1px solid ${t.cardBorder}`, borderRadius: 8, padding: "20px", display: "flex", gap: 16, alignItems: "flex-start" }}>
+              <FileIcon type={doc.fileType} accentColor={t.accent} />
               <div style={{ flex: 1, minWidth: 0 }}>
-                <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 15, fontWeight: 600, color: "#014960", margin: "0 0 4px" }}>{doc.title}</p>
-                <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, color: "#1a3a4a", lineHeight: 1.5, margin: "0 0 10px" }}>{doc.description}</p>
-                <a href={doc.fileUrl || "#"} style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, fontWeight: 600, color: "#7EBEE8", textDecoration: "none" }}>
+                <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 15, fontWeight: 600, color: t.heading, margin: "0 0 4px" }}>{doc.title}</p>
+                <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, color: t.body, lineHeight: 1.5, margin: "0 0 10px" }}>{doc.description}</p>
+                <a href={doc.fileUrl || "#"} style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, fontWeight: 600, color: t.accent, textDecoration: "none" }}>
                   View &amp; Download →
                 </a>
               </div>
