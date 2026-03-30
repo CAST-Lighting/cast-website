@@ -104,8 +104,8 @@ function FavoritesGrid(
         @media (max-width: 480px)  { .fav-grid { grid-template-columns: 1fr; } }
 
         .fav-card {
-          background: #fff;
-          border: 1px solid rgba(0,73,96,0.1);
+          background: #1e2a33;
+          border: 1px solid rgba(255,255,255,0.07);
           border-radius: 8px;
           overflow: hidden;
           display: flex;
@@ -114,31 +114,31 @@ function FavoritesGrid(
         }
         .fav-card:hover {
           border-color: rgba(0,124,176,0.4);
-          box-shadow: 0 6px 24px rgba(0,0,0,0.1);
+          box-shadow: 0 6px 24px rgba(0,0,0,0.25);
           transform: translateY(-2px);
         }
 
         .fav-qty {
           display: flex;
           align-items: center;
-          border: 1px solid rgba(0,73,96,0.2);
+          border: 1px solid rgba(255,255,255,0.15);
           border-radius: 4px;
           overflow: hidden;
-          background: #f8f9fa;
+          background: rgba(255,255,255,0.05);
           width: fit-content;
         }
         .fav-qty button {
           width: 28px; height: 28px;
           border: none; background: transparent;
-          color: #007CB0; cursor: pointer; font-size: 16px;
+          color: #7EBEE8; cursor: pointer; font-size: 16px;
           display: flex; align-items: center; justify-content: center;
           transition: background 150ms;
         }
-        .fav-qty button:hover { background: rgba(0,124,176,0.08); }
+        .fav-qty button:hover { background: rgba(0,124,176,0.15); }
         .fav-qty input {
           width: 36px; border: none; background: transparent;
           text-align: center; font-family: 'Barlow', sans-serif;
-          font-size: 13px; font-weight: 700; color: #25262d; outline: none;
+          font-size: 13px; font-weight: 700; color: #fff; outline: none;
         }
         /* hide number input arrows */
         .fav-qty input::-webkit-outer-spin-button,
@@ -147,8 +147,8 @@ function FavoritesGrid(
 
         .fav-unfav-btn {
           display: inline-flex; align-items: center; gap: 4px;
-          background: none; border: 1px solid rgba(0,73,96,0.15);
-          border-radius: 4px; color: rgba(0,73,96,0.45);
+          background: none; border: 1px solid rgba(255,255,255,0.12);
+          border-radius: 4px; color: rgba(255,255,255,0.4);
           font-family: 'Barlow', sans-serif; font-size: 11px; font-weight: 600;
           padding: 5px 9px; cursor: pointer;
           transition: border-color 150ms, color 150ms;
@@ -221,7 +221,7 @@ function FavoritesGrid(
 
                     {/* Name */}
                     <a href={item.href} style={{ textDecoration: "none" }}>
-                      <h3 style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, fontWeight: 700, color: "#014960", lineHeight: 1.35, margin: 0 }}>
+                      <h3 style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, fontWeight: 700, color: "#fff", lineHeight: 1.35, margin: 0 }}>
                         {name}
                       </h3>
                     </a>
@@ -242,7 +242,7 @@ function FavoritesGrid(
 
                     {/* QTY stepper */}
                     <div style={{ display: "flex", alignItems: "center", gap: 8, marginTop: 4 }}>
-                      <span style={{ fontSize: 11, fontWeight: 600, color: "rgba(0,73,96,0.5)", textTransform: "uppercase", letterSpacing: "0.05em" }}>Qty</span>
+                      <span style={{ fontSize: 11, fontWeight: 600, color: "rgba(255,255,255,0.45)", textTransform: "uppercase", letterSpacing: "0.05em" }}>Qty</span>
                       <div className="fav-qty">
                         <button onClick={() => setQty(item.id, qty - 1)} aria-label="Decrease quantity">−</button>
                         <input
