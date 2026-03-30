@@ -23,14 +23,15 @@ const navItems: NavItem[] = [
       { label: "Accessories", href: "/category/19" },
     ],
   },
-  { label: "DEALS", href: "/shop" },
   {
     label: "RESOURCES",
     dropdown: [
-      { label: "Installation Guides", href: "/shop" },
-      { label: "Technical Support", href: "/shop" },
-      { label: "Trainings & Events", href: "/shop" },
-      { label: "Downloads", href: "/shop" },
+      { label: "Blog", href: "/blog" },
+      { label: "Events", href: "/events" },
+      { label: "Installation Guides", href: "#" },
+      { label: "Technical Support", href: "/contact" },
+      { label: "Downloads", href: "#" },
+      { label: "Patents", href: "/patents" },
     ],
   },
   {
@@ -42,6 +43,7 @@ const navItems: NavItem[] = [
       { label: "Become a Retailer", href: "/retail-signup" },
     ],
   },
+  { label: "SUPPORT", href: "/contact" },
   { label: "ABOUT", href: "/about" },
 ]
 
