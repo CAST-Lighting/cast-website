@@ -63,6 +63,7 @@ import './components/cast/LoginSection.register';
 // Account
 import './components/cast/FavoritesGrid.register';
 import './components/cast/QuotesList.register';
+import './components/cast/QuoteDetail.register';
 
 // Utility
 import './components/cast/StyleGuide.register';

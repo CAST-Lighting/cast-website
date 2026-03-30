@@ -4,10 +4,11 @@ import { forwardRef, useEffect, useState, type Ref } from "react"
 interface Quote {
   id: string
   quoteNumber: string
+  quoteName: string
   status: string
   total: string
   createdAt: string
-  customerName: string
+  itemCount: number
 }
 
 interface QuotesListProps {
@@ -20,20 +21,24 @@ interface QuotesListProps {
 }
 
 const STATUS_COLORS: Record<string, { bg: string; color: string }> = {
-  Pending: { bg: "rgba(234,179,8,0.15)", color: "#f5c518" },
-  Approved: { bg: "rgba(34,197,94,0.15)", color: "#4ade80" },
-  Ordered: { bg: "rgba(0,124,176,0.2)", color: "#7EBEE8" },
-  Expired: { bg: "rgba(255,255,255,0.08)", color: "rgba(255,255,255,0.4)" },
+  Pending:  { bg: "rgba(234,179,8,0.15)",   color: "#f5c518" },
+  Approved: { bg: "rgba(34,197,94,0.15)",    color: "#4ade80" },
+  Ordered:  { bg: "rgba(0,124,176,0.2)",     color: "#7EBEE8" },
+  Expired:  { bg: "rgba(255,255,255,0.08)",  color: "rgba(255,255,255,0.4)" },
 }
+const statusStyle = (s: string) => STATUS_COLORS[s] ?? STATUS_COLORS["Pending"]!
 
-function statusStyle(status: string): { bg: string; color: string } {
-  return STATUS_COLORS[status] ?? STATUS_COLORS["Pending"] ?? { bg: "rgba(234,179,8,0.15)", color: "#f5c518" }
-}
+const DEMO: Quote[] = [
+  { id: "1", quoteNumber: "Q-2026-0042", quoteName: "Front Yard Renovation",    status: "Approved", total: "$3,847.50", createdAt: "March 28, 2026", itemCount: 12 },
+  { id: "2", quoteNumber: "Q-2026-0039", quoteName: "Back Patio Lighting",      status: "Pending",  total: "$1,250.00", createdAt: "March 24, 2026", itemCount: 6  },
+  { id: "3", quoteNumber: "Q-2026-0031", quoteName: "Commercial Walkway",       status: "Ordered",  total: "$6,120.75", createdAt: "March 10, 2026", itemCount: 24 },
+  { id: "4", quoteNumber: "Q-2026-0018", quoteName: "Pool Area Phase 1",        status: "Expired",  total: "$890.00",   createdAt: "February 14, 2026", itemCount: 4 },
+]
 
 function QuotesList(
   {
     className,
-    bgColor = "#0f1923",
+    bgColor = "#F5F5F5",
     paddingTop = 64,
     paddingBottom = 64,
     heading = "My Quotes",
@@ -41,138 +46,157 @@ function QuotesList(
   }: QuotesListProps,
   ref: Ref<HTMLElement>,
 ) {
-  // DEMO DATA — remove once BC B2B Quotes API is connected
-  const DEMO_QUOTES: Quote[] = [
-    { id: "1", quoteNumber: "Q-2026-0042", status: "Approved", total: "$3,847.50", createdAt: "March 28, 2026", customerName: "Tristan Vava" },
-    { id: "2", quoteNumber: "Q-2026-0039", status: "Pending", total: "$1,250.00", createdAt: "March 24, 2026", customerName: "Tristan Vava" },
-    { id: "3", quoteNumber: "Q-2026-0031", status: "Ordered", total: "$6,120.75", createdAt: "March 10, 2026", customerName: "Tristan Vava" },
-    { id: "4", quoteNumber: "Q-2026-0018", status: "Expired", total: "$890.00", createdAt: "February 14, 2026", customerName: "Tristan Vava" },
-  ]
-
-  const [quotes, setQuotes] = useState<Quote[]>(DEMO_QUOTES)
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState<string | null>(null)
+  const [quotes, setQuotes]     = useState<Quote[]>(DEMO)
+  const [editingId, setEditingId] = useState<string | null>(null)
+  const [editValue, setEditValue] = useState("")
 
   useEffect(() => {
-    // Uncomment below to connect live BC B2B Quotes API:
-    // fetch("/api/account/quotes")
-    fetch("/api/account/quotes-disabled-for-demo")
-      .then((r) => {
-        if (!r.ok) throw new Error("Failed to load quotes")
-        return r.json() as Promise<Quote[]>
-      })
-      .then((data) => {
-        setQuotes(data)
-        setLoading(false)
-      })
-      .catch((err: Error) => {
-        setError(err.message)
-        setLoading(false)
-      })
+    // TODO: fetch("/api/account/quotes").then(...)
   }, [])
+
+  const startEdit = (quote: Quote) => {
+    setEditingId(quote.id)
+    setEditValue(quote.quoteName)
+  }
+
+  const commitEdit = (id: string) => {
+    const trimmed = editValue.trim()
+    if (trimmed) {
+      setQuotes(prev => prev.map(q => q.id === id ? { ...q, quoteName: trimmed } : q))
+      // TODO: PATCH /api/account/quotes/:id { name: trimmed }
+    }
+    setEditingId(null)
+  }
 
   return (
     <div
       ref={ref as Ref<HTMLDivElement>}
       className={className}
-      style={{
-        background: bgColor,
-        paddingTop,
-        paddingBottom,
-        fontFamily: "'Barlow', sans-serif",
-      }}
+      style={{ background: bgColor, paddingTop, paddingBottom, fontFamily: "'Barlow', sans-serif" }}
     >
       <style>{`
-        .ql-ms-grid {
+        .ql-grid {
           display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 24px;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 16px;
         }
-        @media (max-width: 1100px) { .ql-ms-grid { grid-template-columns: repeat(2, 1fr); } }
-        @media (max-width: 680px) { .ql-ms-grid { grid-template-columns: 1fr; } }
-        .ql-ms-card {
-          background: #2d353c;
-          border: 1px solid rgba(255,255,255,0.08);
-          border-radius: 10px;
+        @media (max-width: 1200px) { .ql-grid { grid-template-columns: repeat(3, 1fr); } }
+        @media (max-width: 768px)  { .ql-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 480px)  { .ql-grid { grid-template-columns: 1fr; } }
+        .ql-card {
+          background: #1e2a33;
+          border: 1px solid rgba(255,255,255,0.07);
+          border-radius: 8px;
           overflow: hidden;
+          display: flex;
+          flex-direction: column;
           transition: border-color 200ms, box-shadow 200ms, transform 200ms;
         }
-        .ql-ms-card:hover {
-          border-color: rgba(0,124,176,0.45);
-          box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+        .ql-card:hover {
+          border-color: rgba(0,124,176,0.4);
+          box-shadow: 0 6px 24px rgba(0,0,0,0.25);
           transform: translateY(-2px);
         }
+        .ql-name-input {
+          background: rgba(255,255,255,0.07);
+          border: 1px solid rgba(0,124,176,0.5);
+          border-radius: 4px;
+          color: #fff;
+          font-family: 'Barlow', sans-serif;
+          font-size: 13px;
+          font-weight: 700;
+          padding: 4px 8px;
+          width: 100%;
+          outline: none;
+        }
+        .ql-rename-btn {
+          background: none; border: none; cursor: pointer;
+          color: rgba(255,255,255,0.3); padding: 0; display: inline-flex;
+          align-items: center; transition: color 150ms;
+        }
+        .ql-rename-btn:hover { color: #7EBEE8; }
       `}</style>
 
       <div className="site-container">
-        {/* Heading */}
-        <div style={{ marginBottom: 48 }}>
-          <h2 style={{ fontFamily: "'Essonnes', 'Playfair Display', serif", fontSize: "var(--h2-size)", fontWeight: 700, color: "#fff", margin: 0 }}>
+
+        {/* Header */}
+        <div style={{ marginBottom: 32 }}>
+          <h2 style={{ fontFamily: "'Essonnes', 'Playfair Display', serif", fontSize: "var(--h2-size)", fontWeight: 700, color: "#014960", margin: 0 }}>
             {heading}
           </h2>
         </div>
 
-        {loading && (
-          <div style={{ textAlign: "center", padding: "60px 0" }}>
-            <div style={{ display: "inline-block", width: 36, height: 36, border: "3px solid rgba(0,124,176,0.3)", borderTopColor: "#007CB0", borderRadius: "50%", animation: "spin 0.8s linear infinite" }} />
-            <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
-          </div>
-        )}
-
-        {!loading && error && (
-          <div style={{ textAlign: "center", padding: "60px 0", color: "rgba(255,255,255,0.5)" }}>
-            <p style={{ fontSize: 16 }}>{error}</p>
-          </div>
-        )}
-
-        {!loading && !error && quotes.length === 0 && (
+        {/* Empty */}
+        {quotes.length === 0 && (
           <div style={{ textAlign: "center", padding: "80px 0" }}>
-            <div style={{ fontSize: 48, marginBottom: 20, opacity: 0.3 }}>📄</div>
-            <p style={{ fontSize: 18, color: "rgba(255,255,255,0.5)", margin: "0 0 24px" }}>
-              {emptyMessage}
-            </p>
-            <a href="/shop" className="sg-btn-solid-md" style={{ textDecoration: "none" }}>
-              Browse Products →
-            </a>
+            <div style={{ fontSize: 48, marginBottom: 20, opacity: 0.25 }}>📄</div>
+            <p style={{ fontSize: 18, color: "rgba(0,73,96,0.5)", margin: "0 0 24px" }}>{emptyMessage}</p>
+            <a href="/shop" className="sg-btn-solid-md" style={{ textDecoration: "none" }}>Browse Products →</a>
           </div>
         )}
 
-        {!loading && !error && quotes.length > 0 && (
-          <div className="ql-ms-grid">
+        {/* Grid */}
+        {quotes.length > 0 && (
+          <div className="ql-grid">
             {quotes.map((quote) => {
               const { bg, color } = statusStyle(quote.status)
+              const isEditing = editingId === quote.id
               return (
-                <div key={quote.id} className="ql-ms-card">
-                  <div style={{ padding: "24px" }}>
-                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 16 }}>
-                      <h3 style={{ fontFamily: "'Essonnes', 'Playfair Display', serif", fontSize: "var(--h4-size)", fontWeight: 700, color: "#fff", margin: 0 }}>
-                        #{quote.quoteNumber}
-                      </h3>
-                      <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", background: bg, color, padding: "4px 12px", borderRadius: 100, whiteSpace: "nowrap" }}>
-                        {quote.status}
-                      </span>
+                <div key={quote.id} className="ql-card">
+                  <div style={{ padding: "16px", display: "flex", flexDirection: "column", flex: 1, gap: 8 }}>
+
+                    {/* Status badge */}
+                    <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", background: bg, color, padding: "3px 10px", borderRadius: 100, alignSelf: "flex-start" }}>
+                      {quote.status}
+                    </span>
+
+                    {/* Quote name — editable */}
+                    {isEditing ? (
+                      <input
+                        className="ql-name-input"
+                        value={editValue}
+                        autoFocus
+                        onChange={e => setEditValue(e.target.value)}
+                        onBlur={() => commitEdit(quote.id)}
+                        onKeyDown={e => { if (e.key === "Enter") commitEdit(quote.id); if (e.key === "Escape") setEditingId(null) }}
+                      />
+                    ) : (
+                      <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+                        <h3 style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, fontWeight: 700, color: "#fff", lineHeight: 1.3, margin: 0, flex: 1 }}>
+                          {quote.quoteName}
+                        </h3>
+                        <button className="ql-rename-btn" onClick={() => startEdit(quote)} aria-label="Rename quote" title="Rename">
+                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                        </button>
+                      </div>
+                    )}
+
+                    {/* Quote # */}
+                    <p style={{ fontSize: 11, fontWeight: 700, color: "#7EBEE8", letterSpacing: "0.05em", textTransform: "uppercase", margin: 0 }}>
+                      #{quote.quoteNumber}
+                    </p>
+
+                    {/* Meta */}
+                    <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
+                      <p style={{ fontSize: 12, color: "rgba(255,255,255,0.4)", margin: 0 }}>{quote.createdAt}</p>
+                      <p style={{ fontSize: 12, color: "rgba(255,255,255,0.4)", margin: 0 }}>{quote.itemCount} {quote.itemCount === 1 ? "item" : "items"}</p>
                     </div>
-                    <div style={{ display: "flex", flexDirection: "column", gap: 6, marginBottom: 20 }}>
-                      {quote.createdAt && (
-                        <p style={{ fontSize: 13, color: "rgba(255,255,255,0.5)", margin: 0 }}>{quote.createdAt}</p>
-                      )}
-                      {quote.customerName && (
-                        <p style={{ fontSize: 13, color: "rgba(255,255,255,0.5)", margin: 0 }}>{quote.customerName}</p>
-                      )}
-                      {quote.total && (
-                        <p style={{ fontSize: 16, fontWeight: 700, color: "#7EBEE8", margin: 0 }}>{quote.total}</p>
-                      )}
-                    </div>
-                    <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-                      <a href={`/account/quotes/${quote.id}`} className="sg-btn-outline-dark-sm" style={{ textDecoration: "none", display: "inline-block" }}>
-                        View Quote →
+
+                    {/* Total */}
+                    <p style={{ fontSize: 16, fontWeight: 700, color: "#007CB0", margin: 0 }}>{quote.total}</p>
+
+                    {/* Actions */}
+                    <div style={{ display: "flex", gap: 6, marginTop: "auto", paddingTop: 8, flexWrap: "wrap" }}>
+                      <a href={`/account/quotes/${quote.id}`} className="sg-btn-outline-dark-sm" style={{ textDecoration: "none", fontSize: 11, flex: 1, justifyContent: "center", textAlign: "center" }}>
+                        View Quote
                       </a>
                       {quote.status === "Approved" && (
-                        <a href={`/account/quotes/${quote.id}/convert`} className="sg-btn-solid-dark-sm" style={{ textDecoration: "none", display: "inline-block" }}>
-                          Order Now →
+                        <a href={`/account/quotes/${quote.id}/convert`} className="sg-btn-solid-dark-sm" style={{ textDecoration: "none", fontSize: 11 }}>
+                          Order Now
                         </a>
                       )}
                     </div>
+
                   </div>
                 </div>
               )
