@@ -12,8 +12,8 @@ runtime.registerComponent(
       bgColor: Color({ label: "Background Color", defaultValue: "#141e27" }),
       paddingTop: Number({ label: "Padding Top (px)", defaultValue: 96 }),
       paddingBottom: Number({ label: "Padding Bottom (px)", defaultValue: 96 }),
-      overline: TextInput({ label: "Overline", defaultValue: "Section Label" }),
-      heading: TextInput({ label: "Heading", defaultValue: "Heading Goes Here" }),
+      overline: TextInput({ label: "Overline", defaultValue: "Testimonials" }),
+      heading: TextInput({ label: "Heading", defaultValue: "Our Raving Reviews" }),
       headingAccent: TextInput({ label: "Heading Accent (gold)", defaultValue: "Accent" }),
       reviews: List({
         label: "Reviews",
