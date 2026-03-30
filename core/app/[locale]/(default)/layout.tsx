@@ -64,9 +64,8 @@ export default async function DefaultLayout({ params, children }: Props) {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }} />
+      {/* Nav is position: fixed/sticky — no spacer needed. Heroes use paddingTop to clear the nav. */}
       <NavWithFallback locale={locale} />
-      {/* Spacer that clears both fixed bars: top bar (36px) + main nav (73px) = 109px */}
-      <div style={{ height: 109 }} aria-hidden="true" />
       <main>{children}</main>
     </>
   );
