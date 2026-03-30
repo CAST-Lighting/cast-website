@@ -30,6 +30,7 @@ runtime.registerComponent(
       paddingTop: NumberControl({ label: 'Padding Top', defaultValue: 80, min: 0, max: 400, step: 8, suffix: 'px' }),
       paddingBottom: NumberControl({ label: 'Padding Bottom', defaultValue: 80, min: 0, max: 400, step: 8, suffix: 'px' }),
       heading: TextInput({ label: 'Heading', defaultValue: 'Heading Goes Here' }),
+      headingAccent: TextInput({ label: "Heading Accent (gradient)", defaultValue: "" }),
       description: TextInput({ label: 'Description', defaultValue: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' }),
       submitLabel: TextInput({ label: 'Submit Button Label', defaultValue: 'Submit' }),
       inputPlaceholder: TextInput({ label: 'Input Placeholder', defaultValue: 'Enter your email' }),

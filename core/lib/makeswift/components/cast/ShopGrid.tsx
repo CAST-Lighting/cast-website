@@ -14,6 +14,8 @@ interface Product {
 interface ShopGridProps {
   className?: string
   sectionStyle?: string
+  heading?: string
+  headingAccent?: string
   products?: Product[]
   bgColor?: string
   bgImage?: string
@@ -106,7 +108,7 @@ const ProductCard = ({ product }: { product: Product }) => (
 )
 
 const ShopGrid = forwardRef(function ShopGrid(
-  { className, sectionStyle, products, bgColor, bgImage, bgOpacity, gradientFrom, gradientTo, gradientDirection, paddingTop, paddingBottom }: ShopGridProps,
+  { className, sectionStyle, heading, headingAccent = "", products, bgColor, bgImage, bgOpacity, gradientFrom, gradientTo, gradientDirection, paddingTop, paddingBottom }: ShopGridProps,
   ref: Ref<HTMLDivElement>
 ) {
   const [activeCategory, setActiveCategory] = useState("All")
@@ -207,6 +209,11 @@ const ShopGrid = forwardRef(function ShopGrid(
 
       <div className="relative" style={{ zIndex: 10 }}>
       <div className="site-container">
+        {heading && (
+          <h2 style={{ fontSize: "var(--h2-size)", fontWeight: "var(--heading-weight, 700)", lineHeight: "var(--heading-line-height, 1.1)", fontFamily: "'Essonnes', 'Playfair Display', serif", color: "var(--color-title)", margin: "0 0 32px" }}>
+            {heading}{headingAccent && <> <span className="text-gradient-warm">{headingAccent}</span></>}
+          </h2>
+        )}
         <div className="sg-layout" style={{ display: "flex", gap: 32, alignItems: "flex-start" }}>
 
           {/* Sidebar */}

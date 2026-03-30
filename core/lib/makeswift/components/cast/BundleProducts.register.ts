@@ -30,6 +30,7 @@ runtime.registerComponent(
       paddingBottom: NumberControl({ label: 'Padding Bottom', defaultValue: 96, min: 0, max: 400, step: 8, suffix: 'px' }),
       overline: TextInput({ label: "Overline", defaultValue: "Section Label" }),
       heading: TextInput({ label: "Heading", defaultValue: "Heading Goes Here" }),
+      headingAccent: TextInput({ label: "Heading Accent (gradient)", defaultValue: "" }),
       buttonText: TextInput({ label: "Button Text", defaultValue: "Button Here" }),
       items: List({
         label: "Bundle Items",

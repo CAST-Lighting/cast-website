@@ -20,6 +20,7 @@ interface BrandLogosProps {
   className?: string
   overline?: string
   heading?: string
+  headingAccent?: string
   bgColor?: string
   bgImage?: string
   bgOpacity?: number
@@ -36,6 +37,7 @@ const BrandLogos = forwardRef(function BrandLogos(
     className,
     overline = "Trusted by Industry Leaders",
     heading = "10,000+ Landscape Professionals Choose CAST",
+    headingAccent = "",
     bgColor,
     bgImage,
     bgOpacity,
@@ -96,7 +98,7 @@ const BrandLogos = forwardRef(function BrandLogos(
                 color: "rgba(255,255,255,0.75)",
                 margin: 0,
               }}>
-                {heading}
+                {heading}{headingAccent && <> <span className="text-gradient-warm">{headingAccent}</span></>}
               </h2>
             )}
           </div>

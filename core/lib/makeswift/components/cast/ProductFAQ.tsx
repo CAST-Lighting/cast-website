@@ -11,6 +11,7 @@ interface ProductFAQProps {
   className?: string
   sectionStyle?: string
   heading?: string
+  headingAccent?: string
   faqs?: FAQ[]
   bgColor?: string
   bgImage?: string
@@ -33,6 +34,7 @@ const ProductFAQ = forwardRef(function ProductFAQ(
     className,
     sectionStyle,
     heading = "Frequently Asked Questions",
+    headingAccent = "",
     faqs,
     bgColor,
     bgImage,
@@ -68,7 +70,7 @@ const ProductFAQ = forwardRef(function ProductFAQ(
       <div className="relative" style={{ zIndex: 10 }}>
       <div className="site-container" style={{ maxWidth: 860, textAlign: "left", marginLeft: "max(64px, calc((100vw - 1600px) / 2 + 64px))", marginRight: "auto" }}>
         <h2 style={{ fontSize: "var(--h2-size)", fontWeight: "var(--heading-weight, 700)", lineHeight: "var(--heading-line-height, 1.1)", fontFamily: "'Essonnes', 'Playfair Display', serif", color: "var(--color-title)", margin: "0 0 32px" }}>
-          {heading}
+          {heading}{headingAccent && <> <span className="text-gradient-warm">{headingAccent}</span></>}
         </h2>
         <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
           {list.map((faq, i) => (

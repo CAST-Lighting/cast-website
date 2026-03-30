@@ -15,6 +15,7 @@ interface BundleProductsProps {
   sectionStyle?: string
   overline?: string
   heading?: string
+  headingAccent?: string
   items?: BundleItem[]
   buttonText?: string
   bgColor?: string
@@ -33,6 +34,7 @@ const BundleProducts = forwardRef(function BundleProducts(
     sectionStyle,
     overline = "Frequently Bought Together",
     heading = "Bundle These Products",
+    headingAccent = "",
     items,
     buttonText = "Add All To Cart",
     bgColor,
@@ -90,7 +92,7 @@ const BundleProducts = forwardRef(function BundleProducts(
           <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 12, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.12em", color: "var(--color-content)", margin: "0 0 10px" }}>{overline}</p>
         )}
         <h2 style={{ fontSize: "var(--h2-size)", fontWeight: "var(--heading-weight, 700)", lineHeight: "var(--heading-line-height, 1.1)", fontFamily: "'Essonnes', 'Playfair Display', serif", color: "var(--color-title)", margin: "0 0 32px" }}>
-          {heading}
+          {heading}{headingAccent && <> <span className="text-gradient-warm">{headingAccent}</span></>}
         </h2>
 
         <div style={{ display: "flex", alignItems: "stretch", gap: 20, flexWrap: "nowrap", overflowX: "auto", scrollbarWidth: "none", msOverflowStyle: "none" }} className="[&::-webkit-scrollbar]:hidden">

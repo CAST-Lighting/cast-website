@@ -15,6 +15,7 @@ interface MediaGalleryProps {
   className?: string
   sectionStyle?: string
   heading?: string
+  headingAccent?: string
   items?: MediaItem[]
   bgColor?: string
   bgImage?: string
@@ -56,6 +57,7 @@ const MediaGallery = forwardRef(function MediaGallery(
     className,
     sectionStyle,
     heading = "Photos & Videos",
+    headingAccent = "",
     items,
     bgColor,
     bgImage,
@@ -154,7 +156,7 @@ const MediaGallery = forwardRef(function MediaGallery(
         <div className="site-container" style={{ marginBottom: 32 }}>
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
             <h2 style={{ fontSize: "var(--h2-size)", fontWeight: "var(--heading-weight, 700)", lineHeight: "var(--heading-line-height, 1.1)", fontFamily: "'Essonnes', 'Playfair Display', serif", color: "var(--color-title)", margin: 0 }}>
-              {heading}
+              {heading}{headingAccent && <> <span className="text-gradient-warm">{headingAccent}</span></>}
             </h2>
             <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
               <button onClick={() => scroll("left")} disabled={!canScrollLeft} style={{ width: 36, height: 36, borderRadius: "50%", border: "1px solid rgba(255,255,255,0.15)", background: "#2d353c", display: "flex", alignItems: "center", justifyContent: "center", cursor: canScrollLeft ? "pointer" : "not-allowed", opacity: canScrollLeft ? 1 : 0.3, transition: "border-color 200ms, background 200ms", color: "#fff" }} onMouseEnter={e => { if (canScrollLeft) { (e.currentTarget as HTMLButtonElement).style.borderColor = "var(--color-primary)"; (e.currentTarget as HTMLButtonElement).style.background = "#37474f"; }}} onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(255,255,255,0.15)"; (e.currentTarget as HTMLButtonElement).style.background = "#2d353c"; }}>

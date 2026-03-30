@@ -15,6 +15,7 @@ const NewsletterCta = forwardRef(function NewsletterCta(
     paddingTop,
     paddingBottom,
     heading,
+    headingAccent,
     description,
     submitLabel,
     inputPlaceholder,
@@ -30,6 +31,7 @@ const NewsletterCta = forwardRef(function NewsletterCta(
     paddingTop?: number
     paddingBottom?: number
     heading?: string
+    headingAccent?: string
     description?: string
     submitLabel?: string
     inputPlaceholder?: string
@@ -69,7 +71,7 @@ const NewsletterCta = forwardRef(function NewsletterCta(
             <div className="icon-box icon-box-lg mx-auto mb-6">
               <Mail className="w-7 h-7 text-primary" />
             </div>
-            <h2 className="heading-style-h2 text-foreground mb-3">{heading || "Stay in the Loop"}</h2>
+            <h2 className="heading-style-h2 text-foreground mb-3">{heading || "Stay in the Loop"}{headingAccent && <> <span className="text-gradient-warm">{headingAccent}</span></>}</h2>
             <p className="section-desc mb-8">
               {description || "Get the latest on new products, contractor resources, and exclusive offers delivered straight to your inbox."}
             </p>

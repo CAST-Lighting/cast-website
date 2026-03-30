@@ -29,6 +29,7 @@ runtime.registerComponent(
       paddingTop: NumberControl({ label: 'Padding Top', defaultValue: 96, min: 0, max: 400, step: 8, suffix: 'px' }),
       paddingBottom: NumberControl({ label: 'Padding Bottom', defaultValue: 96, min: 0, max: 400, step: 8, suffix: 'px' }),
       heading: TextInput({ label: "Heading", defaultValue: "Heading Goes Here" }),
+      headingAccent: TextInput({ label: "Heading Accent (gradient)", defaultValue: "" }),
       items: List({
         label: "Media Items",
         type: Shape({

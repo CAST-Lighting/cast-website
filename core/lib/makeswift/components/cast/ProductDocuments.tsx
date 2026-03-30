@@ -13,6 +13,7 @@ interface ProductDocumentsProps {
   className?: string
   sectionStyle?: string
   heading?: string
+  headingAccent?: string
   documents?: Doc[]
   bgColor?: string
   bgImage?: string
@@ -44,6 +45,7 @@ const ProductDocuments = forwardRef(function ProductDocuments(
     className,
     sectionStyle,
     heading = "Documents",
+    headingAccent = "",
     documents,
     bgColor,
     bgImage,
@@ -78,7 +80,7 @@ const ProductDocuments = forwardRef(function ProductDocuments(
       <div className="relative" style={{ zIndex: 10 }}>
       <div className="site-container">
         <h2 style={{ fontSize: "var(--h2-size)", fontWeight: "var(--heading-weight, 700)", lineHeight: "var(--heading-line-height, 1.1)", fontFamily: "'Essonnes', 'Playfair Display', serif", color: "var(--color-title)", margin: "0 0 32px" }}>
-          {heading}
+          {heading}{headingAccent && <> <span className="text-gradient-warm">{headingAccent}</span></>}
         </h2>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 16 }}>
           {list.map((doc, i) => (
