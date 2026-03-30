@@ -37,6 +37,8 @@ runtime.registerComponent(
       instagramHref: TextInput({ label: 'Instagram URL', defaultValue: '#' }),
       youtubeHref: TextInput({ label: 'YouTube URL', defaultValue: '#' }),
       linkedinHref: TextInput({ label: 'LinkedIn URL', defaultValue: '#' }),
+      xHref: TextInput({ label: 'X (Twitter) URL', defaultValue: '#' }),
+      pinterestHref: TextInput({ label: 'Pinterest URL', defaultValue: '#' }),
       col1Title: TextInput({ label: 'Column 1 Title', defaultValue: 'Products' }),
       col1Links: List({
         label: 'Column 1 Links',
