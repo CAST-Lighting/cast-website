@@ -106,7 +106,13 @@ const ProductHero = forwardRef(function ProductHero(
 
   const rawBody = resolvedBodyText || DEFAULT_BODY
   const isHtml = rawBody.includes('<')
-  const body = rawBody
+  // Downgrade headings in BC description to preserve SEO hierarchy:
+  // page H1 = product name, page H2 = section headings → BC H1/H2 become H3, BC H3/H4 become H4
+  const body = isHtml
+    ? rawBody
+        .replace(/<h1(\s[^>]*)?>/gi, '<h3$1>').replace(/<\/h1>/gi, '</h3>')
+        .replace(/<h2(\s[^>]*)?>/gi, '<h3$1>').replace(/<\/h2>/gi, '</h3>')
+    : rawBody
   const bullets = bulletPoints && bulletPoints.length > 0 ? bulletPoints : DEFAULT_BULLETS
 
   return (
@@ -244,7 +250,9 @@ const ProductHero = forwardRef(function ProductHero(
               .ph-body-html li { margin-bottom: 6px; display: list-item; }
               .ph-body-html ul ul { list-style-type: circle; margin: 4px 0 4px; }
               .ph-body-html strong, .ph-body-html b { color: #fff; font-weight: 600; }
-              .ph-body-html h2, .ph-body-html h3, .ph-body-html h4 { font-family: 'Essonnes', 'Playfair Display', serif; color: #fff; margin: 24px 0 12px; }
+              .ph-body-html h2 { font-family: 'Essonnes', 'Playfair Display', serif; font-size: 20px; color: #fff; margin: 24px 0 10px; }
+              .ph-body-html h3 { font-family: 'Essonnes', 'Playfair Display', serif; font-size: 17px; color: #fff; margin: 20px 0 8px; }
+              .ph-body-html h4 { font-family: 'Barlow', sans-serif; font-size: 15px; font-weight: 700; color: rgba(255,255,255,0.85); margin: 16px 0 6px; text-transform: uppercase; letter-spacing: 0.04em; }
             `}</style>
             {isHtml ? (
               <div className="ph-body-html" style={{ fontFamily: "'Barlow', sans-serif", fontSize: 16, color: "var(--color-content)", lineHeight: 1.7, maxWidth: 640 }} dangerouslySetInnerHTML={{ __html: body }} />
