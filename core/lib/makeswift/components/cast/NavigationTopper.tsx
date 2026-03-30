@@ -37,8 +37,8 @@ const NavigationTopper = forwardRef(function NavigationTopper(
       className={`fixed top-0 left-0 right-0 z-[51] border-b backdrop-blur-md border-[#004a61] ${className || ""}`}
       style={{ background: bgColor || "rgba(0,51,68,0.85)" }}
     >
-      <div className="container mx-auto flex items-center justify-between px-6 py-2 text-sm font-body">
-        <div className="flex items-center gap-4">
+      <div className="container mx-auto flex items-center justify-center lg:justify-between px-6 py-2 text-sm font-body">
+        <div className="hidden lg:flex items-center gap-4">
           {resolvedLeft.map((link, i) => (
             <span key={i} className="flex items-center gap-4">
               {i > 0 && <span className="text-muted-foreground hidden sm:inline">|</span>}
@@ -61,7 +61,7 @@ const NavigationTopper = forwardRef(function NavigationTopper(
             className="flex items-center gap-1.5 text-secondary-foreground hover:text-primary transition-colors"
           >
             <Phone className="w-3.5 h-3.5" />
-            <span className="hidden md:inline">{resolvedPhone}</span>
+            <span>{resolvedPhone}</span>
           </a>
           {resolvedRight.map((link, i) => (
             <span key={i} className="flex items-center gap-4">
