@@ -1,3 +1,4 @@
+import { CmsPageRenderer } from '~/lib/makeswift/cms-page-renderer';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getFormatter, getTranslations, setRequestLocale } from 'next-intl/server';
@@ -102,6 +103,9 @@ export default async function Brand(props: Props) {
   if (!brand) {
     return notFound();
   }
+
+  const makeswiftPage = await CmsPageRenderer({ templatePath: '/brand-page', data: { type: 'category', heading: brand.name, description: brand.description ?? '' } });
+  if (makeswiftPage) return makeswiftPage;
 
   const showRating = Boolean(settings?.reviews.enabled && settings.display.showProductRating);
 
