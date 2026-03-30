@@ -236,7 +236,7 @@ const ProductHero = forwardRef(function ProductHero(
             <div style={{ height: 1, background: "rgba(255,255,255,0.08)", margin: "24px 0" }} />
 
             {/* Product Description section */}
-            <h2 style={{ fontSize: "var(--h3-size)", fontWeight: "var(--heading-weight, 700)", lineHeight: "var(--heading-line-height, 1.1)", fontFamily: "'Essonnes', 'Playfair Display', serif", color: "var(--color-title)", marginTop: 32, marginBottom: 24 }}>
+            <h2 style={{ fontSize: "var(--h2-size)", fontWeight: "var(--heading-weight, 700)", lineHeight: "var(--heading-line-height, 1.1)", fontFamily: "'Essonnes', 'Playfair Display', serif", color: "var(--color-title)", marginTop: 32, marginBottom: 24 }}>
               Product Description
             </h2>
 

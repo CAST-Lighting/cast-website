@@ -153,7 +153,7 @@ const MediaGallery = forwardRef(function MediaGallery(
         {/* Header with arrows — aligned to site-container */}
         <div className="site-container" style={{ marginBottom: 32 }}>
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-            <h2 style={{ fontSize: "var(--h3-size)", fontWeight: "var(--heading-weight, 700)", lineHeight: "var(--heading-line-height, 1.1)", fontFamily: "'Essonnes', 'Playfair Display', serif", color: "var(--color-title)", margin: 0 }}>
+            <h2 style={{ fontSize: "var(--h2-size)", fontWeight: "var(--heading-weight, 700)", lineHeight: "var(--heading-line-height, 1.1)", fontFamily: "'Essonnes', 'Playfair Display', serif", color: "var(--color-title)", margin: 0 }}>
               {heading}
             </h2>
             <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
