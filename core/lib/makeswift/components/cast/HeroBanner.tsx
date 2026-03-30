@@ -132,7 +132,8 @@ interface HeroBannerProps {
   className?: string
   // New List-based props
   slides?: string[]
-  staticImage?: boolean
+  staticImageSrc?: string
+  centerContent?: boolean
   phrases?: Array<{ text?: string }>
   staticAccentText?: boolean
   headingAccent?: string
@@ -175,7 +176,7 @@ const HeroBanner = forwardRef(function HeroBanner(
   {
     className,
     // New list-based props
-    slides, staticImage, phrases: phrasesProp, staticAccentText, headingAccent,
+    slides, staticImageSrc, centerContent, phrases: phrasesProp, staticAccentText, headingAccent,
     buttons: buttonsProp, showForm,
     // Legacy scalar props
     slide1Image, slide2Image, slide3Image, slide4Image, slide5Image,
@@ -199,9 +200,9 @@ const HeroBanner = forwardRef(function HeroBanner(
   const resolvedSlideImages = (slides && slides.length > 0)
     ? slides
     : [slide1Image, slide2Image, slide3Image, slide4Image, slide5Image].filter(Boolean) as string[]
-  const allImages = resolvedSlideImages.length > 0 ? resolvedSlideImages : DEFAULT_SLIDES
-  // staticImage mode: only use first image, no carousel
-  const images = staticImage ? [allImages[0]] : allImages
+  const resolvedImages = resolvedSlideImages.length > 0 ? resolvedSlideImages : DEFAULT_SLIDES
+  // staticImageSrc mode: dedicated image picker overrides carousel entirely
+  const images = staticImageSrc ? [staticImageSrc] : resolvedImages
 
   // Resolve phrases: new List prop takes priority over legacy scalars
   const resolvedPhrases = (phrasesProp && phrasesProp.length > 0)
@@ -218,14 +219,16 @@ const HeroBanner = forwardRef(function HeroBanner(
       ]
 
   // Form visibility: showForm (new) takes priority; hideForm (legacy) as fallback
-  const formVisible = showForm !== undefined ? showForm : !hideForm
+  const resolvedShowForm = showForm !== undefined ? showForm : !hideForm
+  const isCentered = !!(centerContent && !resolvedShowForm)
 
   const next = useCallback(() => setCurrent(p => (p + 1) % images.length), [images.length])
 
   useEffect(() => {
+    if (images.length <= 1) return
     const t = setInterval(next, 5000)
     return () => clearInterval(t)
-  }, [next])
+  }, [next, images.length])
 
   useEffect(() => {
     const t = setInterval(() => {
@@ -287,12 +290,18 @@ const HeroBanner = forwardRef(function HeroBanner(
 
       {/* Content */}
       <div className="site-container w-full relative" style={{ zIndex: 10 }}>
-        <div className={`grid grid-cols-1 gap-10 lg:gap-16 items-start lg:items-center ${formVisible ? 'lg:grid-cols-2' : ''}`}>
+        <div
+          className={`grid grid-cols-1 gap-10 lg:gap-16 items-start lg:items-center ${resolvedShowForm ? 'lg:grid-cols-2' : ''}`}
+          style={isCentered ? { display: 'flex', flexDirection: 'column', alignItems: 'center' } : undefined}
+        >
 
           {/* ── Left: text ── */}
-          <div className="flex flex-col gap-6">
+          <div
+            className="flex flex-col gap-6"
+            style={isCentered ? { maxWidth: 800, margin: '0 auto', textAlign: 'center', alignItems: 'center', width: '100%' } : undefined}
+          >
             {/* Badge */}
-            <div className="badge-pill self-start">
+            <div className={`badge-pill ${isCentered ? '' : 'self-start'}`}>
               <span className="w-2 h-2 rounded-full animate-pulse flex-shrink-0" style={{ background: 'var(--color-accent)' }} />
               <span>{badgeText || "New 2026 Product Catalog Now Available"}</span>
             </div>
@@ -326,7 +335,7 @@ const HeroBanner = forwardRef(function HeroBanner(
             </p>
 
             {/* Buttons */}
-            <div className="flex flex-wrap gap-3">
+            <div className="flex flex-wrap gap-3" style={isCentered ? { justifyContent: 'center' } : undefined}>
               {resolvedButtons.map((btn, i) => (
                 <a
                   key={i}
@@ -340,7 +349,7 @@ const HeroBanner = forwardRef(function HeroBanner(
           </div>
 
           {/* ── Right: form ── */}
-          {formVisible && <div
+          {resolvedShowForm && <div
             style={{
               position: 'relative',
               zIndex: 50,

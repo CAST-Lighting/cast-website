@@ -21,7 +21,7 @@ runtime.registerComponent(
         type: Image(),
         getItemLabel: (_, index) => `Slide ${(index ?? 0) + 1}`,
       }),
-      staticImage: Checkbox({ label: '📸 Static Image — Use Single Image (Slide 1)', defaultValue: false }),
+      staticImageSrc: Image({ label: '📸 Static Image — Background Image' }),
       gradientFrom: Color({ label: '🎨 Background — Gradient From', defaultValue: '#25262d' }),
       gradientTo:   Color({ label: '🎨 Background — Gradient To',   defaultValue: '#25262d' }),
       gradientDirection: Select({
@@ -48,6 +48,7 @@ runtime.registerComponent(
         getItemLabel: (item) => item?.text || 'Phrase',
       }),
       description: TextInput({ label: '✏️ Content — Description', defaultValue: 'Professional-grade brass and copper fixtures trusted by contractors nationwide. Lifetime warranty on every product.' }),
+      centerContent: Checkbox({ label: '↔️ Center Content (no form)', defaultValue: false }),
 
       // ─── BUTTONS ─────────────────────────────────────────────────────
       buttons: List({
