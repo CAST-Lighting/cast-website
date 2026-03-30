@@ -1,4 +1,4 @@
-"use client"
+﻿"use client"
 import { forwardRef, type Ref, useState, useRef, useEffect } from "react"
 import { ShoppingCart, Search, Menu, X, ChevronDown } from "lucide-react"
 
@@ -43,6 +43,7 @@ const navItems: NavItem[] = [
       { label: "Become a Retailer", href: "/retail-signup" },
     ],
   },
+  { label: "EVENTS", href: "/events" },
   { label: "SUPPORT", href: "/contact" },
   { label: "ABOUT", href: "/about" },
 ]

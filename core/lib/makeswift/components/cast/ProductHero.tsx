@@ -102,7 +102,7 @@ const ProductHero = forwardRef(function ProductHero(
   const overlayOpacity = typeof bgOpacity === 'number' ? bgOpacity / 100 : 0.85
   const sectionBackground = hasGradient
     ? `linear-gradient(${gradientDirection || 'to bottom'}, ${gradientFrom}, ${gradientTo})`
-    : bgColor || "#25262d"
+    : bgColor || "#f0f2f5"
 
   const rawBody = resolvedBodyText || DEFAULT_BODY
   const isHtml = rawBody.includes('<')
