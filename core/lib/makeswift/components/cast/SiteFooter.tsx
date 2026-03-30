@@ -160,7 +160,7 @@ const SiteFooter = forwardRef(function SiteFooter(
               </div>
               <div className="flex items-center gap-3 mt-5">
                 {socialLinks.map(({ icon: Icon, href, label }) => (
-                  <a key={label} href={href} aria-label={label} className="w-9 h-9 rounded-full bg-secondary flex items-center justify-center hover:bg-primary/10 transition-colors" style={{ color: '#ffffff' }}>
+                  <a key={label} href={href} aria-label={label} className="w-9 h-9 rounded-full flex items-center justify-center transition-colors" style={{ background: '#ffffff', color: '#014960' }}>
                     <Icon className="w-4 h-4" />
                   </a>
                 ))}
