@@ -158,7 +158,7 @@ const SiteFooter = forwardRef(function SiteFooter(
           <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-10 mb-12">
             <div className="lg:col-span-1">
               <a href="/" className="heading-style-h5 tracking-wider text-foreground">
-                <img src="https://storage.googleapis.com/s.mkswft.com/RmlsZToxNmVlZWE3MS1iNjRjLTQ0MjctOGI2My1jNWI3ODQxNWFmNGI=/cast__lighting_white.svg" alt="CAST Lighting" style={{ height: 36, width: 'auto' }} />
+                <img src="https://storage.googleapis.com/s.mkswft.com/RmlsZToxNmVlZWE3MS1iNjRjLTQ0MjctOGI2My1jNWI3ODQxNWFmNGI=/cast__lighting_white.svg" alt="CAST Lighting" style={{ height: 48, width: 'auto' }} />
               </a>
               <p className="text-size-small text-muted-foreground mt-4 leading-relaxed">
                 {tagline || "Professional-grade landscape lighting trusted by contractors since 2001."}
