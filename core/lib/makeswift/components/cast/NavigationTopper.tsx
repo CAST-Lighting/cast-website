@@ -9,12 +9,14 @@ const NavigationTopper = forwardRef(function NavigationTopper(
     leftLinks,
     rightLinks,
     phoneNumber,
+    hidePhone,
   }: {
     className?: string
     bgColor?: string
     leftLinks?: { label?: string; href?: string }[]
     rightLinks?: { label?: string; href?: string }[]
     phoneNumber?: string
+    hidePhone?: boolean
   },
   ref: Ref<HTMLDivElement>
 ) {
@@ -56,13 +58,15 @@ const NavigationTopper = forwardRef(function NavigationTopper(
           ))}
         </div>
         <div className="flex items-center gap-4">
-          <a
-            href={`tel:${resolvedPhone.replace(/\D/g, "")}`}
-            className="flex items-center gap-1.5 text-secondary-foreground hover:text-primary transition-colors"
-          >
-            <Phone className="w-3.5 h-3.5" />
-            <span>{resolvedPhone}</span>
-          </a>
+          {!hidePhone && (
+            <a
+              href={`tel:${resolvedPhone.replace(/\D/g, "")}`}
+              className="flex items-center gap-1.5 text-secondary-foreground hover:text-primary transition-colors"
+            >
+              <Phone className="w-3.5 h-3.5" />
+              <span>{resolvedPhone}</span>
+            </a>
+          )}
           {resolvedRight.map((link, i) => (
             <span key={i} className="flex items-center gap-4">
               <span className="text-muted-foreground">|</span>

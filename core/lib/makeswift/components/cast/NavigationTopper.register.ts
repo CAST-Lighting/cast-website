@@ -1,5 +1,5 @@
 import { lazy } from "react"
-import { Style, Color, TextInput, List, Shape } from "@makeswift/runtime/controls"
+import { Style, Color, TextInput, List, Shape, Checkbox } from "@makeswift/runtime/controls"
 import { runtime } from "~/lib/makeswift/runtime"
 
 runtime.registerComponent(
@@ -42,6 +42,7 @@ runtime.registerComponent(
       }),
 
       phoneNumber: TextInput({ label: "📞 Phone Number", defaultValue: "(973) 423-2303" }),
+      hidePhone: Checkbox({ label: "📵 Hide Phone Number", defaultValue: false }),
     },
   }
 )
