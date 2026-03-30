@@ -221,7 +221,7 @@ export default async function Blog(props: Props) {
                       <div style={{ padding: '22px 20px', display: 'flex', flexDirection: 'column', gap: 10 }}>
                         <h3 style={{ fontFamily: "'Essonnes', 'Playfair Display', serif", fontSize: "var(--h3-size)", fontWeight: 700, color: '#fff', lineHeight: 1.3, margin: 0 }}>
                           {post.title}
-                        </h2>
+                        </h3>
                         {excerpt ? (
                           <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 14, color: 'rgba(255,255,255,0.52)', lineHeight: 1.65, margin: 0 }}>
                             {excerpt}
