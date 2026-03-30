@@ -122,6 +122,22 @@ function QuoteDetail(
           border: 1px solid ${t.cardBorder};
           border-radius: 8px;
         }
+        .qd-bottom-grid {
+          display: grid;
+          grid-template-columns: 1fr auto;
+          gap: 24px;
+          align-items: start;
+        }
+        .qd-action-bar {
+          display: flex; gap: 12px; flex-wrap: wrap;
+          margin-top: 32px; padding-top: 24px;
+          border-top: 1px solid ${t.divider};
+          justify-content: flex-end;
+        }
+        @media (max-width: 640px) {
+          .qd-bottom-grid { grid-template-columns: 1fr; }
+          .qd-action-bar { justify-content: flex-start; }
+        }
         .qd-name-input {
           background: ${t.inputBg}; border: 1px solid rgba(0,124,176,0.4);
           border-radius: 4px; color: ${t.heading};
@@ -239,7 +255,7 @@ function QuoteDetail(
         </div>
 
         {/* Notes + Totals */}
-        <div style={{ display: "grid", gridTemplateColumns: "1fr auto", gap: 24, alignItems: "start" }}>
+        <div className="qd-bottom-grid">
           {quote.notes ? (
             <div className="qd-panel" style={{ padding: "16px 20px" }}>
               <p style={{ fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.07em", color: t.subtle, margin: "0 0 8px" }}>Notes</p>
@@ -265,7 +281,7 @@ function QuoteDetail(
         </div>
 
         {/* Action bar */}
-        <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginTop: 32, paddingTop: 24, borderTop: `1px solid ${t.divider}`, justifyContent: "flex-end" }}>
+        <div className="qd-action-bar">
           <a href="/account/quotes" className={t.btnOutline} style={{ textDecoration: "none" }}>← All Quotes</a>
           {quote.status === "Approved" && (
             <button className={t.btnPrimary} onClick={handleConvertToOrder} disabled={converting} style={{ opacity: converting ? 0.6 : 1 }}>

@@ -121,6 +121,29 @@ function OrderDetail(
           border: 1px solid ${t.cardBorder};
           border-radius: 8px;
         }
+        .od-bottom-grid {
+          display: grid;
+          grid-template-columns: 1fr auto;
+          gap: 24px;
+          align-items: start;
+        }
+        .od-info-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 16px;
+          margin-bottom: 24px;
+        }
+        .od-action-bar {
+          display: flex; gap: 12px; flex-wrap: wrap;
+          margin-top: 32px; padding-top: 24px;
+          border-top: 1px solid ${t.divider};
+          justify-content: flex-end;
+        }
+        @media (max-width: 640px) {
+          .od-bottom-grid { grid-template-columns: 1fr; }
+          .od-info-grid   { grid-template-columns: 1fr; }
+          .od-action-bar  { justify-content: flex-start; }
+        }
       `}</style>
 
       <div className="site-container">
@@ -171,7 +194,7 @@ function OrderDetail(
         )}
 
         {/* Info row — shipping + tracking */}
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, marginBottom: 24 }}>
+        <div className="od-info-grid">
           <div className="od-panel" style={{ padding: "16px 20px" }}>
             <p style={{ fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.07em", color: t.subtle, margin: "0 0 10px" }}>Shipping Address</p>
             <p style={{ fontSize: 14, color: t.heading, fontWeight: 600, margin: "0 0 2px" }}>{order.shippingAddress.name}</p>
@@ -247,7 +270,7 @@ function OrderDetail(
         </div>
 
         {/* Notes + Totals */}
-        <div style={{ display: "grid", gridTemplateColumns: "1fr auto", gap: 24, alignItems: "start" }}>
+        <div className="od-bottom-grid">
           {order.notes ? (
             <div className="od-panel" style={{ padding: "16px 20px" }}>
               <p style={{ fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.07em", color: t.subtle, margin: "0 0 8px" }}>Notes</p>
@@ -274,7 +297,7 @@ function OrderDetail(
         </div>
 
         {/* Action bar */}
-        <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginTop: 32, paddingTop: 24, borderTop: `1px solid ${t.divider}`, justifyContent: "flex-end" }}>
+        <div className="od-action-bar">
           <a href="/account/orders" className={t.btnOutline} style={{ textDecoration: "none" }}>← All Orders</a>
           <a href="/shop" className={t.btnPrimary} style={{ textDecoration: "none" }}>Reorder Items →</a>
         </div>
