@@ -26,6 +26,11 @@ function parseNameAndModel(fullName: string): { name: string; model: string } {
   return { name: fullName, model: "" }
 }
 
+// Strip "$" and commas, return float (0 if unparseable)
+function parsePrice(price: string): number {
+  return parseFloat(price.replace(/[^0-9.]/g, "")) || 0
+}
+
 function FavoritesGrid(
   {
     className,
@@ -48,6 +53,11 @@ function FavoritesGrid(
   const [qtys, setQtys]         = useState<Record<number, number>>(() => Object.fromEntries(DEMO.map(i => [i.id, 1])))
   const [removing, setRemoving] = useState<number | null>(null)
   const [addingAll, setAddingAll] = useState(false)
+
+  const orderTotal = items.reduce((sum, item) => {
+    return sum + parsePrice(item.price) * (qtys[item.id] ?? 1)
+  }, 0)
+  const formattedTotal = `$${orderTotal.toFixed(2)}`
 
   useEffect(() => {
     // TODO: fetch("/api/account/favorites").then(...)
@@ -280,20 +290,31 @@ function FavoritesGrid(
           </div>
         )}
 
-        {/* Footer row */}
+        {/* Footer summary bar */}
         {items.length > 0 && (
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: 32, flexWrap: "wrap", gap: 12 }}>
+          <div style={{ marginTop: 32, borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: 24, display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 16 }}>
             <a href="/shop" style={{ fontFamily: "'Barlow', sans-serif", fontSize: 14, color: "#7EBEE8", textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 6 }}>
               ← Back to Products
             </a>
-            <button
-              className="sg-btn-solid-md"
-              onClick={handleAddAllToCart}
-              disabled={addingAll}
-              style={{ opacity: addingAll ? 0.6 : 1 }}
-            >
-              {addingAll ? "Adding…" : `Add All to Cart (${items.length})`}
-            </button>
+            <div style={{ display: "flex", alignItems: "center", gap: 24, flexWrap: "wrap" }}>
+              {/* Item count + total */}
+              <div style={{ textAlign: "right" }}>
+                <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 12, color: "rgba(255,255,255,0.45)", margin: "0 0 2px", textTransform: "uppercase", letterSpacing: "0.06em" }}>
+                  {items.length} {items.length === 1 ? "item" : "items"} · Estimated Total
+                </p>
+                <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 24, fontWeight: 700, color: "#fff", margin: 0 }}>
+                  {formattedTotal}
+                </p>
+              </div>
+              <button
+                className="sg-btn-solid-md"
+                onClick={handleAddAllToCart}
+                disabled={addingAll}
+                style={{ opacity: addingAll ? 0.6 : 1 }}
+              >
+                {addingAll ? "Adding…" : "Add All to Cart"}
+              </button>
+            </div>
           </div>
         )}
 
