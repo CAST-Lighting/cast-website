@@ -9,6 +9,8 @@ runtime.registerComponent(
     label: "Hero / Shop Hero",
     props: {
       className: Style(),
+      paddingTop: NumberControl({ label: "📐 Layout — Padding Top", defaultValue: 96, min: 0, max: 400, step: 8, suffix: "px" }),
+      paddingBottom: NumberControl({ label: "📐 Layout — Padding Bottom", defaultValue: 96, min: 0, max: 400, step: 8, suffix: "px" }),
 
       // ✏️ Content
       headline: TextInput({ label: "✏️ Content — Headline", defaultValue: "Shop CAST Lighting Products" }),
@@ -31,10 +33,6 @@ runtime.registerComponent(
         ],
         defaultValue: "to bottom",
       }),
-
-      // 📐 Layout
-      paddingTop: NumberControl({ label: "📐 Layout — Padding Top", defaultValue: 96, min: 0, max: 400, step: 8, suffix: "px" }),
-      paddingBottom: NumberControl({ label: "📐 Layout — Padding Bottom", defaultValue: 96, min: 0, max: 400, step: 8, suffix: "px" }),
 
       // 🔘 Buttons
       ctaLabel: TextInput({ label: "🔘 Buttons — CTA Button Label", defaultValue: "Browse All Products" }),

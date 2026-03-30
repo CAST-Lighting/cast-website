@@ -9,6 +9,8 @@ runtime.registerComponent(
     label: "Hero / About Hero",
     props: {
       className: Style(),
+      paddingTop: NumberControl({ label: "📐 Layout — Padding Top", defaultValue: 165, min: 0, max: 400, step: 1, suffix: "px" }),
+      paddingBottom: NumberControl({ label: "📐 Layout — Padding Bottom", defaultValue: 64, min: 0, max: 400, step: 8, suffix: "px" }),
 
       // 🎨 Background
       bgImage: Image({ label: "🎨 Background — Image" }),
@@ -27,9 +29,6 @@ runtime.registerComponent(
       btn2Label: TextInput({ label: "🔘 Buttons — Button 2 Label", defaultValue: "Contact Us" }),
       btn2Href: TextInput({ label: "🔘 Buttons — Button 2 Link", defaultValue: "/contact" }),
 
-      // 📐 Layout
-      paddingTop: NumberControl({ label: "📐 Layout — Padding Top", defaultValue: 165, min: 0, max: 400, step: 1, suffix: "px" }),
-      paddingBottom: NumberControl({ label: "📐 Layout — Padding Bottom", defaultValue: 64, min: 0, max: 400, step: 8, suffix: "px" }),
     },
   }
 )

@@ -9,14 +9,14 @@ runtime.registerComponent(
     label: "Sections / Reviews Carousel",
     props: {
       className: Style(),
+      paddingTop: Number({ label: "📐 Layout — Padding Top (px)", defaultValue: 96 }),
+      paddingBottom: Number({ label: "📐 Layout — Padding Bottom (px)", defaultValue: 96 }),
 
       // 🌓 Theme
       mode: Select({ label: "🌓 Theme", options: [{ value: "dark", label: "Dark" }, { value: "light", label: "Light" }], defaultValue: "dark" }),
 
       // 🎨 Background
       bgColor: Color({ label: "🎨 Background — Color", defaultValue: "#141e27" }),
-      paddingTop: Number({ label: "📐 Layout — Padding Top (px)", defaultValue: 96 }),
-      paddingBottom: Number({ label: "📐 Layout — Padding Bottom (px)", defaultValue: 96 }),
 
       // ✏️ Content
       overline: TextInput({ label: "✏️ Content — Overline", defaultValue: "Testimonials" }),

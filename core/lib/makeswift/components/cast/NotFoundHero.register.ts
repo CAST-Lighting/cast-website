@@ -9,11 +9,11 @@ runtime.registerComponent(
     label: "404 / Not Found Hero",
     props: {
       className: Style(),
+      paddingTop: Number({ label: "📐 Layout — Padding Top (px)", defaultValue: 80 }),
+      paddingBottom: Number({ label: "📐 Layout — Padding Bottom (px)", defaultValue: 80 }),
 
       // 🎨 Background
       bgColor: Color({ label: "🎨 Background — Color", defaultValue: "#0f1923" }),
-      paddingTop: Number({ label: "📐 Layout — Padding Top (px)", defaultValue: 80 }),
-      paddingBottom: Number({ label: "📐 Layout — Padding Bottom (px)", defaultValue: 80 }),
 
       // ✏️ Content
       errorCode: TextInput({ label: "✏️ Content — Error Code", defaultValue: "404" }),

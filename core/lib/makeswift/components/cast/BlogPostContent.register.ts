@@ -9,11 +9,11 @@ runtime.registerComponent(
     label: "Sections / Blog Post Content",
     props: {
       className: Style(),
+      paddingTop: NumberControl({ label: "📐 Layout — Padding Top", defaultValue: 64, min: 0, max: 400, step: 8, suffix: "px" }),
+      paddingBottom: NumberControl({ label: "📐 Layout — Padding Bottom", defaultValue: 96, min: 0, max: 400, step: 8, suffix: "px" }),
 
       // 🎨 Background
       bgColor: Color({ label: "🎨 Background — Color", defaultValue: "#0f1923" }),
-      paddingTop: NumberControl({ label: "📐 Layout — Padding Top", defaultValue: 64, min: 0, max: 400, step: 8, suffix: "px" }),
-      paddingBottom: NumberControl({ label: "📐 Layout — Padding Bottom", defaultValue: 96, min: 0, max: 400, step: 8, suffix: "px" }),
 
       // ✏️ Content — Post Meta
       postTitle: TextInput({ label: "✏️ Content — Post Title", defaultValue: "Heading Goes Here" }),

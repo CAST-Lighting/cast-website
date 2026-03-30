@@ -10,9 +10,9 @@ runtime.registerComponent(
     label: "CMS Content / Blog Body",
     props: {
       className: Style(),
-      bgColor: Color({ label: "🎨 Background Color", defaultValue: "#0f1923" }),
       paddingTop: Number({ label: "📐 Padding Top (px)", defaultValue: 56, min: 0, step: 4 }),
       paddingBottom: Number({ label: "📐 Padding Bottom (px)", defaultValue: 80, min: 0, step: 4 }),
+      bgColor: Color({ label: "🎨 Background Color", defaultValue: "#0f1923" }),
     },
   }
 )

@@ -9,6 +9,8 @@ runtime.registerComponent(
     label: "CTA / Ready CTA",
     props: {
       className: Style(),
+      paddingTop: Number({ label: "📐 Layout — Padding Top (px)", defaultValue: 96 }),
+      paddingBottom: Number({ label: "📐 Layout — Padding Bottom (px)", defaultValue: 96 }),
 
       // 🌓 Theme
       mode: Select({ label: "🌓 Theme", options: [{ value: "dark", label: "Dark" }, { value: "light", label: "Light" }], defaultValue: "dark" }),
@@ -17,10 +19,6 @@ runtime.registerComponent(
       bgColor: Color({ label: "🎨 Background — Color", defaultValue: "#004960" }),
       bgImage: Image({ label: "🎨 Background — Image" }),
       bgOpacity: Number({ label: "🎨 Background — Overlay Opacity %", defaultValue: 88, min: 0, max: 100, step: 5 }),
-
-      // 📐 Layout
-      paddingTop: Number({ label: "📐 Layout — Padding Top (px)", defaultValue: 96 }),
-      paddingBottom: Number({ label: "📐 Layout — Padding Bottom (px)", defaultValue: 96 }),
 
       // ✏️ Content
       overline: TextInput({ label: "✏️ Content — Overline", defaultValue: "Section Label" }),

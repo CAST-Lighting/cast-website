@@ -9,6 +9,9 @@ runtime.registerComponent(
     label: "Hero / Sub Page Hero (Static)",
     props: {
       className: Style(),
+      lineHeight: NumberControl({ label: "📐 Layout — Line Height", defaultValue: 1.6, min: 1, max: 3, step: 0.05 }),
+      paddingTop: NumberControl({ label: "📐 Layout — Padding Top", defaultValue: 165, min: 0, max: 400, step: 1, suffix: "px" }),
+      paddingBottom: NumberControl({ label: "📐 Layout — Padding Bottom", defaultValue: 64, min: 0, max: 400, step: 8, suffix: "px" }),
 
       // 🎨 Background
       bgImage: Image({ label: "🎨 Background — Image" }),
@@ -41,10 +44,6 @@ runtime.registerComponent(
       btn2Label: TextInput({ label: "🔘 Buttons — Button 2 Label", defaultValue: "" }),
       btn2Href: TextInput({ label: "🔘 Buttons — Button 2 Link", defaultValue: "#" }),
 
-      // 📐 Layout
-      lineHeight: NumberControl({ label: "📐 Layout — Line Height", defaultValue: 1.6, min: 1, max: 3, step: 0.05 }),
-      paddingTop: NumberControl({ label: "📐 Layout — Padding Top", defaultValue: 165, min: 0, max: 400, step: 1, suffix: "px" }),
-      paddingBottom: NumberControl({ label: "📐 Layout — Padding Bottom", defaultValue: 64, min: 0, max: 400, step: 8, suffix: "px" }),
     },
   }
 )

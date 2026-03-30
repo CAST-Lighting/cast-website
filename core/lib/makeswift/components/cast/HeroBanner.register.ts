@@ -9,11 +9,11 @@ runtime.registerComponent(
     label: "Hero / Universal Hero",
     props: {
 
+      className: Style(),
       // ─── LAYOUT ──────────────────────────────────────────────────────
       paddingTop:    NumberControl({ label: '📐 Layout — Padding Top',    defaultValue: 136, min: 0, max: 400, step: 8, suffix: 'px' }),
       paddingBottom: NumberControl({ label: '📐 Layout — Padding Bottom', defaultValue: 112, min: 0, max: 400, step: 8, suffix: 'px' }),
       lineHeight:    NumberControl({ label: '📐 Layout — Line Height',    defaultValue: 1.6, min: 1, max: 3,   step: 0.05 }),
-      className: Style(),
 
       // ─── BACKGROUND ──────────────────────────────────────────────────
       slides: List({

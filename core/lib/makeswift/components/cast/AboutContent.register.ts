@@ -9,11 +9,11 @@ runtime.registerComponent(
     label: "Sections / About Content",
     props: {
       className: Style(),
+      paddingTop: NumberControl({ label: "📐 Layout — Padding Top", defaultValue: 80, min: 0, max: 400, step: 8, suffix: "px" }),
+      paddingBottom: NumberControl({ label: "📐 Layout — Padding Bottom", defaultValue: 80, min: 0, max: 400, step: 8, suffix: "px" }),
 
       // 🎨 Background
       bgColor: Color({ label: "🎨 Background — Color", defaultValue: "#0f1923" }),
-      paddingTop: NumberControl({ label: "📐 Layout — Padding Top", defaultValue: 80, min: 0, max: 400, step: 8, suffix: "px" }),
-      paddingBottom: NumberControl({ label: "📐 Layout — Padding Bottom", defaultValue: 80, min: 0, max: 400, step: 8, suffix: "px" }),
 
       // ✏️ Content
       sectionHeading: TextInput({ label: "✏️ Content — Section Heading", defaultValue: "Built to Last. Built in America." }),

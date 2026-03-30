@@ -9,11 +9,11 @@ runtime.registerComponent(
     label: "Sections / Blog Grid",
     props: {
       className: Style(),
+      paddingTop: NumberControl({ label: "📐 Layout — Padding Top", defaultValue: 72, min: 0, max: 400, step: 8, suffix: "px" }),
+      paddingBottom: NumberControl({ label: "📐 Layout — Padding Bottom", defaultValue: 72, min: 0, max: 400, step: 8, suffix: "px" }),
 
       // 🎨 Background
       bgColor: Color({ label: "🎨 Background — Color", defaultValue: "#0f1923" }),
-      paddingTop: NumberControl({ label: "📐 Layout — Padding Top", defaultValue: 72, min: 0, max: 400, step: 8, suffix: "px" }),
-      paddingBottom: NumberControl({ label: "📐 Layout — Padding Bottom", defaultValue: 72, min: 0, max: 400, step: 8, suffix: "px" }),
 
       // 📐 Layout
       postsPerPage: NumberControl({ label: "📐 Layout — Posts Per Page", defaultValue: 9, min: 3, max: 24, step: 3 }),

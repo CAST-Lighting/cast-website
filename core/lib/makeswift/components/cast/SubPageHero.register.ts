@@ -9,6 +9,9 @@ runtime.registerComponent(
     label: "Hero / Sub Page Hero (Carousel)",
     props: {
       className: Style(),
+      lineHeight: NumberControl({ label: "📐 Layout — Line Height", defaultValue: 1.6, min: 1, max: 3, step: 0.05 }),
+      paddingTop: NumberControl({ label: "📐 Layout — Padding Top", defaultValue: 175, min: 0, max: 400, step: 1, suffix: "px" }),
+      paddingBottom: NumberControl({ label: "📐 Layout — Padding Bottom", defaultValue: 112, min: 0, max: 400, step: 8, suffix: "px" }),
 
       // 📸 Media — Slides
       slide1Image: Image({ label: "📸 Media — Slide 1 Image" }),
@@ -52,10 +55,6 @@ runtime.registerComponent(
         defaultValue: "135deg",
       }),
 
-      // 📐 Layout
-      lineHeight: NumberControl({ label: "📐 Layout — Line Height", defaultValue: 1.6, min: 1, max: 3, step: 0.05 }),
-      paddingTop: NumberControl({ label: "📐 Layout — Padding Top", defaultValue: 175, min: 0, max: 400, step: 1, suffix: "px" }),
-      paddingBottom: NumberControl({ label: "📐 Layout — Padding Bottom", defaultValue: 112, min: 0, max: 400, step: 8, suffix: "px" }),
     },
   }
 )

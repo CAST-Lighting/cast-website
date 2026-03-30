@@ -4,15 +4,13 @@ import { runtime } from "~/lib/makeswift/runtime"
 
 const heroControls = {
   className: Style(),
+  paddingTop: Number({ label: "📐 Layout — Padding Top (px)", defaultValue: 165 }),
+  paddingBottom: Number({ label: "📐 Layout — Padding Bottom (px)", defaultValue: 64 }),
 
   // 🎨 Background
   bgImage: Image({ label: "🎨 Background — Image" }),
   bgColor: Color({ label: "🎨 Background — Overlay Color", defaultValue: "#25262d" }),
   bgOpacity: Number({ label: "🎨 Background — Overlay Opacity %", defaultValue: 60, min: 0, max: 100, step: 5 }),
-
-  // 📐 Layout
-  paddingTop: Number({ label: "📐 Layout — Padding Top (px)", defaultValue: 165 }),
-  paddingBottom: Number({ label: "📐 Layout — Padding Bottom (px)", defaultValue: 64 }),
 
   // ✏️ Content
   badgeText: TextInput({ label: "✏️ Content — Badge Text", defaultValue: "Badge Text" }),

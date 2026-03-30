@@ -9,6 +9,9 @@ runtime.registerComponent(
     label: "Sections / Category Grid",
     props: {
       className: Style(),
+      lineHeight: NumberControl({ label: "📐 Layout — Line Height", defaultValue: 1.6, min: 1, max: 3, step: 0.05 }),
+      paddingTop: NumberControl({ label: "📐 Layout — Padding Top", defaultValue: 96, min: 0, max: 400, step: 8, suffix: "px" }),
+      paddingBottom: NumberControl({ label: "📐 Layout — Padding Bottom", defaultValue: 96, min: 0, max: 400, step: 8, suffix: "px" }),
 
       // 🎨 Background
       bgImage: Image({ label: "🎨 Background — Image" }),
@@ -28,11 +31,6 @@ runtime.registerComponent(
         ],
         defaultValue: "to bottom",
       }),
-
-      // 📐 Layout
-      lineHeight: NumberControl({ label: "📐 Layout — Line Height", defaultValue: 1.6, min: 1, max: 3, step: 0.05 }),
-      paddingTop: NumberControl({ label: "📐 Layout — Padding Top", defaultValue: 96, min: 0, max: 400, step: 8, suffix: "px" }),
-      paddingBottom: NumberControl({ label: "📐 Layout — Padding Bottom", defaultValue: 96, min: 0, max: 400, step: 8, suffix: "px" }),
 
       // ✏️ Content
       sectionTitle: TextInput({ label: "✏️ Content — Section Title", defaultValue: "Product" }),
