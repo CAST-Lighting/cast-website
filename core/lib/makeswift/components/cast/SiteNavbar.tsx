@@ -60,6 +60,7 @@ const SiteNavbar = forwardRef(function SiteNavbar(
     navLinks,
     ctaLabel,
     ctaHref,
+    landingPageMode = false,
   }: {
     className?: string
     lineHeight?: number
@@ -68,6 +69,7 @@ const SiteNavbar = forwardRef(function SiteNavbar(
     navLinks?: NavLinkItem[]
     ctaLabel?: string
     ctaHref?: string
+    landingPageMode?: boolean
   },
   ref: Ref<HTMLElement>
 ) {
@@ -117,7 +119,7 @@ const SiteNavbar = forwardRef(function SiteNavbar(
             <img src={resolvedLogo} alt="CAST Lighting" className="h-10 w-auto" />
           </a>
 
-          <div className="hidden lg:flex items-center gap-8 font-body font-medium text-sm tracking-wide">
+          {!landingPageMode && <div className="hidden lg:flex items-center gap-8 font-body font-medium text-sm tracking-wide">
             {resolvedNavItems.map((item) => (
               <div
                 key={item.label}
@@ -149,15 +151,15 @@ const SiteNavbar = forwardRef(function SiteNavbar(
                 )}
               </div>
             ))}
-          </div>
+          </div>}
 
           <div className="flex items-center gap-4">
-            <button
+            {!landingPageMode && <button
               className="text-secondary-foreground hover:text-primary transition-colors"
               onClick={() => setSearchOpen(!searchOpen)}
             >
               <Search className="w-5 h-5" />
-            </button>
+            </button>}
             <button className="text-secondary-foreground hover:text-primary transition-colors" onClick={() => setCartOpen(true)}>
               <ShoppingCart className="w-5 h-5" />
             </button>
@@ -167,12 +169,12 @@ const SiteNavbar = forwardRef(function SiteNavbar(
             >
               {resolvedCtaLabel}
             </a>
-            <button
+            {!landingPageMode && <button
               className="lg:hidden text-secondary-foreground"
               onClick={() => setMobileOpen(!mobileOpen)}
             >
               {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
+            </button>}
           </div>
         </div>
 

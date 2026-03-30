@@ -1,5 +1,5 @@
 import { lazy } from "react"
-import { Style, Number as NumberControl, TextInput, Image, List, Shape } from "@makeswift/runtime/controls"
+import { Style, Number as NumberControl, TextInput, Image, List, Shape, Checkbox } from "@makeswift/runtime/controls"
 import { runtime } from "~/lib/makeswift/runtime"
 
 runtime.registerComponent(
@@ -40,6 +40,8 @@ runtime.registerComponent(
         }),
         getItemLabel(item) { return item?.label || "Link" },
       }),
+
+      landingPageMode: Checkbox({ label: '🚀 Landing Page Nav (hide links & search)', defaultValue: false }),
     },
   }
 )
