@@ -350,14 +350,14 @@ const HeroBanner = forwardRef(function HeroBanner(
 
           {/* ── Right: form ── */}
           {resolvedShowForm && <div
+            className="lg:ml-auto hero-form-wrapper"
             style={{
               position: 'relative',
               zIndex: 50,
               maxWidth: formWidth ? `${formWidth}px` : '472px',
-              marginLeft: 'auto',
-              transform: formOffsetBottom ? `translateY(${formOffsetBottom}px)` : undefined,
             }}
           >
+            {formOffsetBottom && <style>{`.hero-form-wrapper { transform: translateY(${formOffsetBottom}px); } @media (max-width: 1023px) { .hero-form-wrapper { transform: none; } }`}</style>}
             <div
               className="rounded-2xl p-6 lg:p-8 border border-white/10 relative overflow-hidden"
               style={{
