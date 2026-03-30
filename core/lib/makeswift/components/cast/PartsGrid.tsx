@@ -161,7 +161,7 @@ const PartsGrid = forwardRef(function PartsGrid(
             {list.map((part, i) => (
               <div
                 key={i}
-                style={{ background: "#2d353c", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 10, overflow: "hidden", minWidth: 200, flexShrink: 0, transition: "border-color 200ms, box-shadow 200ms" }}
+                style={{ background: "#2d353c", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 10, overflow: "hidden", width: 220, minWidth: 220, maxWidth: 220, flexShrink: 0, transition: "border-color 200ms, box-shadow 200ms" }}
                 onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(0,124,176,0.4)"; (e.currentTarget as HTMLDivElement).style.boxShadow = "0 4px 24px rgba(0,0,0,0.18)"; }}
                 onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(255,255,255,0.08)"; (e.currentTarget as HTMLDivElement).style.boxShadow = "none"; }}
               >
