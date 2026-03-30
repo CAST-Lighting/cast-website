@@ -70,3 +70,7 @@ import './components/cast/LoginSection.register';
 
 // Utility
 import './components/cast/StyleGuide.register';
+import './components/cast/PatentsList.register';
+import './components/cast/RichTextSection.register';
+import './components/cast/GDPRPopup.register';
+import './components/cast/EventsGrid.register';
