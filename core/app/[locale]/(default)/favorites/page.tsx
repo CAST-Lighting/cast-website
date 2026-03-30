@@ -5,7 +5,6 @@ import { getSessionCustomerAccessToken } from '~/auth';
 import { client } from '~/client';
 import { graphql } from '~/client/graphql';
 import { TAGS } from '~/client/tags';
-import { CmsPageRenderer } from '~/lib/makeswift/cms-page-renderer';
 import { getPreferredCurrencyCode } from '~/lib/currency';
 
 interface Props {
@@ -98,11 +97,7 @@ export default async function FavoritesPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
 
-  // Try CmsPageRenderer FIRST — before auth check so Makeswift editor can render the template
-  const cmsPage = await CmsPageRenderer({ templatePath: '/favorites', data: {} });
-  if (cmsPage) return cmsPage;
-
-  // Fallback: code layout
+  // Auth-gated page — always use code layout (no Makeswift override)
   const items = await getFavoriteItems();
 
   return (
@@ -130,19 +125,37 @@ export default async function FavoritesPage({ params }: Props) {
       `}</style>
 
       <div style={{ background: '#0f1923', minHeight: '100vh', paddingBottom: 80 }}>
-        {/* Hero */}
-        <section style={{ background: '#1a2332', paddingTop: 72, paddingBottom: 72, textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
-          <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: 600, height: 300, background: 'radial-gradient(ellipse, rgba(0,124,176,0.1), transparent 70%)', pointerEvents: 'none' }} />
-          <div className="site-container" style={{ position: 'relative', zIndex: 1 }}>
-            <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.16em', color: '#007CB0', margin: '0 0 12px' }}>
-              My Account
-            </p>
-            <h1 style={{ fontFamily: "'Essonnes', 'Playfair Display', serif", fontSize: 'var(--h1-size)', fontWeight: 700, color: '#fff', lineHeight: 1.1, margin: '0 0 16px' }}>
-              My Favorites
-            </h1>
-            <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 17, color: 'rgba(255,255,255,0.6)', margin: 0 }}>
-              {items.length} {items.length === 1 ? 'item' : 'items'} saved
-            </p>
+        {/* Hero — SubPageHeroStatic pattern */}
+        <section
+          className="relative overflow-hidden"
+          style={{ paddingTop: 165, paddingBottom: 64, zIndex: 2 }}
+        >
+          <img
+            src="https://storage.googleapis.com/s.mkswft.com/RmlsZTpmNGU1MTkzMi02Y2JlLTQ0ZjAtOWIwNC03ZmI3MmQwNzYwMDk=/background-1.jpg"
+            alt=""
+            className="absolute inset-0 w-full h-full object-cover"
+            style={{ zIndex: 0 }}
+          />
+          <div
+            className="absolute inset-0"
+            style={{ background: '#25262d', opacity: 0.6, zIndex: 1 }}
+          />
+          <div className="site-container w-full relative" style={{ zIndex: 10 }}>
+            <div className="flex flex-col items-center text-center gap-6 max-w-3xl mx-auto">
+              <div className="badge-pill self-center">
+                <span
+                  className="w-2 h-2 rounded-full animate-pulse flex-shrink-0"
+                  style={{ background: 'var(--color-accent)' }}
+                />
+                <span>My Account</span>
+              </div>
+              <h1 className="heading-style-h1" style={{ color: 'var(--color-blue-grey-100)' }}>
+                My Favorites
+              </h1>
+              <p className="section-desc max-w-xl" style={{ color: 'var(--color-blue-grey-300)' }}>
+                {items.length} {items.length === 1 ? 'item' : 'items'} saved to your list
+              </p>
+            </div>
           </div>
         </section>
 

@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getFormatter, setRequestLocale } from 'next-intl/server';
 
-import { CmsPageRenderer } from '~/lib/makeswift/cms-page-renderer';
 import CastSiteFooter from '~/lib/makeswift/components/cast/SiteFooter';
 import { getBlogPageData } from './page-data';
 
@@ -44,26 +43,9 @@ export default async function BlogPost(props: Props) {
   const thumbAlt = blogPost.thumbnailImage?.altText ?? blogPost.name;
   const authorName = blogPost.author ?? 'CAST Lighting Team';
 
-  // Try Makeswift template first — if /blog-post/ exists in Makeswift, use it
-  const makeswiftPage = await CmsPageRenderer({
-    templatePath: '/blog-post',
-    data: {
-      type: 'blog',
-      heading: blogPost.name,
-      description: `By ${authorName} · ${formattedDate}`,
-      meta: {
-        author: authorName,
-        date: formattedDate,
-        tags: blogPost.tags,
-        featuredImage: thumbSrc ?? undefined,
-        htmlBody: blogPost.htmlBody,
-      },
-    },
-  });
-
-  if (makeswiftPage) return makeswiftPage;
-
-  // Fallback: hardcoded blog post layout
+  // Always use the code layout — Makeswift /blog-post template only shows placeholder
+  // text since Makeswift components cannot consume the dynamic data props.
+  // Real post content from BigCommerce CMS is rendered below.
   return (
     <>
       <style>{`
@@ -137,91 +119,68 @@ export default async function BlogPost(props: Props) {
 
       <div style={{ background: '#0f1923', minHeight: '100vh' }}>
 
-        {/* ── Hero ── */}
-        <section style={{ background: '#1a2332', paddingTop: 72, paddingBottom: 64, position: 'relative', overflow: 'hidden' }}>
-          {thumbSrc ? (
-            <div style={{ position: 'absolute', inset: 0, backgroundImage: `url(${thumbSrc})`, backgroundSize: 'cover', backgroundPosition: 'center', opacity: 0.12 }} />
-          ) : null}
-          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(26,35,50,0.6) 0%, #1a2332 100%)' }} />
-          <div style={{ position: 'absolute', inset: 0, backgroundImage: 'linear-gradient(rgba(0,124,176,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,124,176,0.03) 1px, transparent 1px)', backgroundSize: '48px 48px' }} />
+        {/* ── Hero — SubPageHeroStatic pattern ── */}
+        <section
+          className="relative overflow-hidden"
+          style={{ paddingTop: 165, paddingBottom: 64, zIndex: 2 }}
+        >
+          <img
+            src={thumbSrc || 'https://storage.googleapis.com/s.mkswft.com/RmlsZTpmNGU1MTkzMi02Y2JlLTQ0ZjAtOWIwNC03ZmI3MmQwNzYwMDk=/background-1.jpg'}
+            alt=""
+            className="absolute inset-0 w-full h-full object-cover"
+            style={{ zIndex: 0 }}
+          />
+          <div
+            className="absolute inset-0"
+            style={{ background: '#25262d', opacity: 0.7, zIndex: 1 }}
+          />
+          <div className="site-container w-full relative" style={{ zIndex: 10 }}>
+            <div className="flex flex-col items-center text-center gap-5 max-w-3xl mx-auto">
+              {/* Back link */}
+              <a
+                href={blog.path}
+                style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, fontWeight: 600, color: 'rgba(255,255,255,0.55)', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 6 }}
+              >
+                &larr; Blog
+              </a>
 
-          <div className="site-container" style={{ position: 'relative', zIndex: 1, maxWidth: 860 }}>
-            {/* Back link */}
-            <a
-              href={blog.path}
-              className="bp-tag"
-              style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, fontWeight: 600, color: 'rgba(255,255,255,0.5)', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 6, marginBottom: 36, transition: 'color 200ms' }}
-            >
-              &larr; Back to Blog
-            </a>
-
-            {/* Tag pills */}
-            {blogPost.tags.length > 0 ? (
-              <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 22 }}>
-                {blogPost.tags.map((tagLabel) => (
-                  <a
-                    key={tagLabel}
-                    href={`${blog.path}?tag=${encodeURIComponent(tagLabel)}`}
-                    className="bp-tag"
-                    style={{
-                      fontFamily: "'Barlow', sans-serif",
-                      fontSize: 11,
-                      fontWeight: 700,
-                      textTransform: 'uppercase',
-                      letterSpacing: '0.1em',
-                      color: '#007CB0',
-                      background: 'rgba(0,124,176,0.12)',
-                      border: '1px solid rgba(0,124,176,0.25)',
-                      borderRadius: 100,
-                      padding: '4px 13px',
-                      textDecoration: 'none',
-                      transition: 'all 200ms',
-                    }}
-                  >
-                    {tagLabel}
-                  </a>
-                ))}
-              </div>
-            ) : null}
-
-            <h1 style={{ fontFamily: "'Essonnes', 'Playfair Display', serif", fontSize: "var(--h2-size)", fontWeight: 700, color: '#fff', lineHeight: 1.12, margin: '0 0 28px' }}>
-              {blogPost.name}
-            </h1>
-
-            <div style={{ display: 'flex', gap: 20, alignItems: 'center', flexWrap: 'wrap' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                <div style={{ width: 32, height: 32, borderRadius: '50%', background: 'linear-gradient(135deg, #007CB0, #7EBEE8)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                    <circle cx="12" cy="8" r="4" stroke="#fff" strokeWidth="1.5" />
-                    <path d="M4 20c0-3.314 3.582-6 8-6s8 2.686 8 6" stroke="#fff" strokeWidth="1.5" strokeLinecap="round" />
-                  </svg>
+              {/* Tag pills */}
+              {blogPost.tags.length > 0 ? (
+                <div className="badge-pill self-center">
+                  <span
+                    className="w-2 h-2 rounded-full animate-pulse flex-shrink-0"
+                    style={{ background: 'var(--color-accent)' }}
+                  />
+                  <span>{blogPost.tags[0]}</span>
                 </div>
-                <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 14, fontWeight: 600, color: 'rgba(255,255,255,0.75)' }}>
-                  {authorName}
+              ) : (
+                <div className="badge-pill self-center">
+                  <span
+                    className="w-2 h-2 rounded-full animate-pulse flex-shrink-0"
+                    style={{ background: 'var(--color-accent)' }}
+                  />
+                  <span>Resources &amp; Insights</span>
+                </div>
+              )}
+
+              <h1 className="heading-style-h1" style={{ color: 'var(--color-blue-grey-100)' }}>
+                {blogPost.name}
+              </h1>
+
+              <div style={{ display: 'flex', gap: 16, alignItems: 'center', flexWrap: 'wrap', justifyContent: 'center' }}>
+                <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 14, fontWeight: 600, color: 'rgba(255,255,255,0.7)' }}>
+                  By {authorName}
+                </span>
+                <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 14, color: 'rgba(255,255,255,0.4)' }}>
+                  {formattedDate}
                 </span>
               </div>
-              <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 14, color: 'rgba(255,255,255,0.38)' }}>
-                {formattedDate}
-              </span>
             </div>
           </div>
         </section>
 
-        {/* ── Featured thumbnail (pulls out of hero) ── */}
-        {thumbSrc ? (
-          <div style={{ maxWidth: 860, margin: '0 auto', padding: '0 24px' }}>
-            <div style={{ marginTop: -32, borderRadius: 10, overflow: 'hidden', boxShadow: '0 12px 48px rgba(0,0,0,0.35)' }}>
-              <img
-                src={thumbSrc}
-                alt={thumbAlt}
-                style={{ width: '100%', display: 'block', maxHeight: 480, objectFit: 'cover' }}
-              />
-            </div>
-          </div>
-        ) : null}
-
         {/* ── Post Content ── */}
-        <div style={{ maxWidth: 860, margin: '0 auto', padding: thumbSrc ? '56px 24px 80px' : '64px 24px 80px' }}>
+        <div style={{ maxWidth: 860, margin: '0 auto', padding: '64px 24px 80px' }}>
           <div
             className="bp-prose"
             dangerouslySetInnerHTML={{ __html: blogPost.htmlBody }}
@@ -233,7 +192,7 @@ export default async function BlogPost(props: Props) {
               <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 12, fontWeight: 700, color: 'rgba(255,255,255,0.38)', textTransform: 'uppercase', letterSpacing: '0.1em', flexShrink: 0 }}>
                 Tagged:
               </span>
-              {blogPost.tags.map((tagLabel) => (
+              {blogPost.tags.map((tagLabel: string) => (
                 <a
                   key={tagLabel}
                   href={`${blog.path}?tag=${encodeURIComponent(tagLabel)}`}
@@ -293,7 +252,7 @@ export default async function BlogPost(props: Props) {
             <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 12, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.14em', color: 'rgba(255,255,255,0.6)', margin: '0 0 16px' }}>
               Get Started Today
             </p>
-            <h2 style={{ fontFamily: "'Essonnes', 'Playfair Display', serif", fontSize: "var(--h2-size)", fontWeight: 700, color: '#fff', lineHeight: 1.15, margin: '0 0 20px' }}>
+            <h2 style={{ fontFamily: "'Essonnes', 'Playfair Display', serif", fontSize: 'var(--h2-size)', fontWeight: 700, color: '#fff', lineHeight: 1.15, margin: '0 0 20px' }}>
               Ready to Elevate Your{' '}
               <span style={{ background: 'linear-gradient(135deg, #007CB0, #7EBEE8)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
                 Outdoor Lighting?

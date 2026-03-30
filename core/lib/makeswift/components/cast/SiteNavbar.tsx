@@ -38,7 +38,7 @@ const navItems: NavItem[] = [
     label: "CONTRACTORS",
     dropdown: [
       { label: "TradePro Program", href: "/trade-pro" },
-      { label: "Find a Contractor", href: "/contractor-finder" },
+      { label: "Apply for an Account", href: "/trade-pro" },
       { label: "Find a Distributor", href: "/distributor-finder" },
       { label: "Become a Retailer", href: "/retail-signup" },
     ],

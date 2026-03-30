@@ -30,13 +30,13 @@ runtime.registerComponent(
       }),
 
       // ✏️ Content
-      badgeText: TextInput({ label: "✏️ Content — Badge Text", defaultValue: "Section Label" }),
-      headingLine1: TextInput({ label: "✏️ Content — Heading", defaultValue: "Heading Goes Here" }),
-      headingAccent: TextInput({ label: "✏️ Content — Heading Accent (blue)", defaultValue: "Accent" }),
-      description: TextInput({ label: "✏️ Content — Description", defaultValue: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." }),
+      badgeText: TextInput({ label: "✏️ Content — Badge Text", defaultValue: "CAST Lighting" }),
+      headingLine1: TextInput({ label: "✏️ Content — Heading", defaultValue: "Professional Landscape Lighting" }),
+      headingAccent: TextInput({ label: "✏️ Content — Heading Accent (blue)", defaultValue: "" }),
+      description: TextInput({ label: "✏️ Content — Description", defaultValue: "Professional-grade outdoor lighting trusted by contractors since 2001." }),
 
       // 🔘 Buttons
-      btn1Label: TextInput({ label: "🔘 Buttons — Button 1 Label", defaultValue: "Button Here" }),
+      btn1Label: TextInput({ label: "🔘 Buttons — Button 1 Label", defaultValue: "Shop Products" }),
       btn1Href: TextInput({ label: "🔘 Buttons — Button 1 Link", defaultValue: "#" }),
       btn2Label: TextInput({ label: "🔘 Buttons — Button 2 Label", defaultValue: "" }),
       btn2Href: TextInput({ label: "🔘 Buttons — Button 2 Link", defaultValue: "#" }),

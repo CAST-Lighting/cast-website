@@ -11,8 +11,8 @@ runtime.registerComponent(
       className: Style(),
 
       // ✏️ Content
-      headline: TextInput({ label: "✏️ Content — Headline", defaultValue: "Heading Goes Here" }),
-      subheadline: TextInput({ label: "✏️ Content — Subheadline", defaultValue: "Lorem ipsum dolor sit amet, consectetur adipiscing elit." }),
+      headline: TextInput({ label: "✏️ Content — Headline", defaultValue: "Shop CAST Lighting Products" }),
+      subheadline: TextInput({ label: "✏️ Content — Subheadline", defaultValue: "Professional outdoor lighting fixtures built to last a lifetime. Solid brass, copper, and bronze construction with lifetime warranties." }),
 
       // 🎨 Background
       bgImage: Image({ label: "🎨 Background — Image" }),
@@ -37,8 +37,8 @@ runtime.registerComponent(
       paddingBottom: NumberControl({ label: "📐 Layout — Padding Bottom", defaultValue: 96, min: 0, max: 400, step: 8, suffix: "px" }),
 
       // 🔘 Buttons
-      ctaLabel: TextInput({ label: "🔘 Buttons — CTA Button Label", defaultValue: "Button Here" }),
-      ctaHref: TextInput({ label: "🔘 Buttons — CTA Button URL", defaultValue: "#" }),
+      ctaLabel: TextInput({ label: "🔘 Buttons — CTA Button Label", defaultValue: "Browse All Products" }),
+      ctaHref: TextInput({ label: "🔘 Buttons — CTA Button URL", defaultValue: "/category/23" }),
       showSearch: Checkbox({ label: "📐 Layout — Show Search Bar", defaultValue: true }),
     },
   }
