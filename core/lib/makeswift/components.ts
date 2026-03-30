@@ -6,17 +6,9 @@ import './components/cast/CastSiteTheme.register';
 import './components/cast/SiteFooter.register';
 
 // Hero & Landing sections
-import './components/cast/AboutHero.register';
-import './components/cast/HeroBanner.register';
-import './components/cast/RotatingTextHero.register';
-import './components/cast/BlogHero.register';
+import './components/cast/HeroBanner.register';   // Universal Hero — keep
 import './components/cast/BlogPostContent.register';
-import './components/cast/SubPageHero.register';
-import './components/cast/SubPageHeroStatic.register';
-import './components/cast/CmsSubPageHero.register';
-import './components/cast/ShopHero.register';
-import './components/cast/SignupHero.register';
-import './components/cast/ProductHero.register';
+import './components/cast/ProductHero.register';   // CMS Content / Product Details
 
 // Product & Shop
 import './components/cast/CategoryGrid.register';
