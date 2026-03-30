@@ -49,9 +49,8 @@ export default async function Blog(props: Props) {
   const { locale } = await props.params;
   setRequestLocale(locale);
 
-  // Uncomment when /blog page is created in Makeswift:
-  // const makeswiftPage = await CmsPageRenderer({ templatePath: '/blog', data: {} });
-  // if (makeswiftPage) return makeswiftPage;
+  const makeswiftPage = await CmsPageRenderer({ templatePath: '/blog', data: {} });
+  if (makeswiftPage) return makeswiftPage;
 
   const searchParamsParsed = searchParamsCache.parse(await props.searchParams);
   const { tag, before, after, limit } = searchParamsParsed;
