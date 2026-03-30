@@ -141,7 +141,7 @@ const MediaGallery = forwardRef(function MediaGallery(
     <div
       ref={ref}
       className={`${className || ""} ${sectionStyle || ""}`}
-      style={{ position: "relative", width: "100%", boxSizing: "border-box", ...(!bgImage ? { background: sectionBackground } : {}), paddingTop: paddingTop ?? 96, paddingBottom: paddingBottom ?? 96, borderTop: "1px solid rgba(255,255,255,0.08)" }}
+      style={{ position: "relative", width: "100%", boxSizing: "border-box", ...(!bgImage ? { background: sectionBackground } : {}), paddingTop: paddingTop ?? 48, paddingBottom: paddingBottom ?? 48, borderTop: "1px solid rgba(255,255,255,0.08)" }}
     >
       {bgImage && (
         <img src={bgImage} alt="" className="absolute inset-0 w-full h-full object-cover" style={{ zIndex: 0 }} />
@@ -157,11 +157,11 @@ const MediaGallery = forwardRef(function MediaGallery(
               {heading}
             </h2>
             <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-              <button onClick={() => scroll("left")} disabled={!canScrollLeft} className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-foreground hover:border-primary hover:text-primary transition-colors disabled:opacity-30 disabled:cursor-not-allowed">
-                <ArrowLeft className="w-4 h-4" />
+              <button onClick={() => scroll("left")} disabled={!canScrollLeft} style={{ width: 36, height: 36, borderRadius: "50%", border: "1px solid rgba(255,255,255,0.15)", background: "#2d353c", display: "flex", alignItems: "center", justifyContent: "center", cursor: canScrollLeft ? "pointer" : "not-allowed", opacity: canScrollLeft ? 1 : 0.3, transition: "border-color 200ms, background 200ms", color: "#fff" }} onMouseEnter={e => { if (canScrollLeft) { (e.currentTarget as HTMLButtonElement).style.borderColor = "var(--color-primary)"; (e.currentTarget as HTMLButtonElement).style.background = "#37474f"; }}} onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(255,255,255,0.15)"; (e.currentTarget as HTMLButtonElement).style.background = "#2d353c"; }}>
+                <ArrowLeft style={{ width: 16, height: 16 }} />
               </button>
-              <button onClick={() => scroll("right")} disabled={!canScrollRight} className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-foreground hover:border-primary hover:text-primary transition-colors disabled:opacity-30 disabled:cursor-not-allowed">
-                <ArrowRight className="w-4 h-4" />
+              <button onClick={() => scroll("right")} disabled={!canScrollRight} style={{ width: 36, height: 36, borderRadius: "50%", border: "1px solid rgba(255,255,255,0.15)", background: "#2d353c", display: "flex", alignItems: "center", justifyContent: "center", cursor: canScrollRight ? "pointer" : "not-allowed", opacity: canScrollRight ? 1 : 0.3, transition: "border-color 200ms, background 200ms", color: "#fff" }} onMouseEnter={e => { if (canScrollRight) { (e.currentTarget as HTMLButtonElement).style.borderColor = "var(--color-primary)"; (e.currentTarget as HTMLButtonElement).style.background = "#37474f"; }}} onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(255,255,255,0.15)"; (e.currentTarget as HTMLButtonElement).style.background = "#2d353c"; }}>
+                <ArrowRight style={{ width: 16, height: 16 }} />
               </button>
             </div>
           </div>

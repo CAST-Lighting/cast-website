@@ -113,7 +113,7 @@ const ProductHero = forwardRef(function ProductHero(
     <div
       ref={ref}
       className={className || ""}
-      style={{ position: "relative", width: "100%", boxSizing: "border-box", ...(!bgImage ? { background: sectionBackground } : {}), paddingTop: paddingTop ?? 96, paddingBottom: paddingBottom ?? 96 }}
+      style={{ position: "relative", width: "100%", boxSizing: "border-box", ...(!bgImage ? { background: sectionBackground } : {}), paddingTop: paddingTop ?? 48, paddingBottom: paddingBottom ?? 48 }}
     >
       {bgImage && (
         <img src={bgImage} alt="" className="absolute inset-0 w-full h-full object-cover" style={{ zIndex: 0 }} />
@@ -133,7 +133,7 @@ const ProductHero = forwardRef(function ProductHero(
         .ph-qty { display: flex; align-items: center; border: 1px solid rgba(255,255,255,0.12); border-radius: 4px; overflow: hidden; width: fit-content; }
         .ph-qty button { width: 36px; height: 36px; border: none; background: #2d353c; cursor: pointer; font-size: 18px; color: var(--color-primary); display: flex; align-items: center; justify-content: center; transition: background 200ms; }
         .ph-qty button:hover { background: #37474f; }
-        .ph-qty input { width: 48px; border: none; text-align: center; font-family: 'Barlow', sans-serif; font-size: 16px; font-weight: 600; color: var(--color-title); outline: none; }
+        .ph-qty input { width: 48px; border: none; text-align: center; font-family: 'Barlow', sans-serif; font-size: 16px; font-weight: 600; color: var(--color-title); outline: none; background: #2d353c; }
         .ph-tradepro-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(0,73,96,0.08); color: var(--color-primary); font-family: 'Barlow', sans-serif; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; padding: 4px 10px; border-radius: 3px; }
         @media (max-width: 900px) {
           .ph-layout { flex-direction: column !important; }
@@ -180,7 +180,7 @@ const ProductHero = forwardRef(function ProductHero(
             {/* Rating */}
             <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 16 }}>
               <Stars count={resolvedRating} />
-              <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 14, color: "var(--color-accent)", fontWeight: 600 }}>{resolvedRating} · {resolvedReviewCount} Ratings</span>
+              <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 14, color: "var(--color-accent)", fontWeight: 600 }}>{resolvedRating === 0 || resolvedReviewCount === 0 ? "Be the first to review" : `${resolvedRating} · ${resolvedReviewCount} Ratings`}</span>
             </div>
 
             {/* Short description */}
@@ -210,20 +210,20 @@ const ProductHero = forwardRef(function ProductHero(
             {/* Action buttons — not full width, natural sizing */}
             <div style={{ display: "flex", flexDirection: "column", gap: 10, alignItems: "flex-start" }}>
               <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
-                <button className="sg-btn-solid-md" style={{ justifyContent: "center" }}>Add To Cart</button>
-                <button style={{ width: 44, height: 44, border: "1.5px solid rgba(255,255,255,0.12)", borderRadius: 4, background: "#2d353c", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, transition: "border-color 200ms" }} aria-label="Add to wishlist">
+                <button className="sg-btn-solid-md" style={{ justifyContent: "center", ...(!resolvedInStock ? { opacity: 0.5, pointerEvents: 'none' as const } : {}) }}>{resolvedInStock ? "Add To Cart" : "Out of Stock"}</button>
+                <button style={{ width: 48, height: 48, border: "2px solid rgba(255,255,255,0.12)", borderRadius: 4, background: "#2d353c", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, transition: "border-color 200ms" }} aria-label="Add to wishlist" onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.borderColor = "var(--color-accent)"; }} onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(255,255,255,0.12)"; }}>
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-content)" strokeWidth="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" /></svg>
                 </button>
                 {tradeProOnly && <span className="ph-tradepro-badge">TradePro Only</span>}
               </div>
               <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
-                <button className="sg-btn-outline-md" style={{ justifyContent: "center" }}>Add To Quote</button>
+                <button className="sg-btn-outline-md" style={{ justifyContent: "center", ...(!resolvedInStock ? { opacity: 0.5, pointerEvents: 'none' as const } : {}) }}>Add To Quote</button>
               </div>
             </div>
 
             {/* Login prompt */}
-            <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, color: "var(--color-content)", marginTop: 16 }}>
-              Already a customer? <a href="#" style={{ color: "var(--color-accent)" }}>Please login here</a> to favorite, save, or view order history for later reference.
+            <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 14, color: "var(--color-content)", marginTop: 16 }}>
+              Already a customer? <a href="#" style={{ color: "#7EBEE8" }}>Please login here</a> to favorite, save, or view order history for later reference.
             </p>
 
             {/* Thin separator between login prompt and description */}
@@ -245,10 +245,10 @@ const ProductHero = forwardRef(function ProductHero(
               .ph-body-html h2, .ph-body-html h3, .ph-body-html h4 { font-family: 'Essonnes', 'Playfair Display', serif; color: #fff; margin: 24px 0 12px; }
             `}</style>
             {isHtml ? (
-              <div className="ph-body-html" style={{ fontFamily: "'Barlow', sans-serif", fontSize: 16, color: "var(--color-content)", lineHeight: 1.7 }} dangerouslySetInnerHTML={{ __html: body }} />
+              <div className="ph-body-html" style={{ fontFamily: "'Barlow', sans-serif", fontSize: 16, color: "var(--color-content)", lineHeight: 1.7, maxWidth: 640 }} dangerouslySetInnerHTML={{ __html: body }} />
             ) : (
               body.split("\n\n").map((para, i) => (
-                <p key={i} style={{ fontFamily: "'Barlow', sans-serif", fontSize: 16, color: "var(--color-content)", lineHeight: 1.7, margin: "0 0 18px" }}>{para}</p>
+                <p key={i} style={{ fontFamily: "'Barlow', sans-serif", fontSize: 16, color: "var(--color-content)", lineHeight: 1.7, margin: "0 0 18px", maxWidth: 640 }}>{para}</p>
               ))
             )}
 

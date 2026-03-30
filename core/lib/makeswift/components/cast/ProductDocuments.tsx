@@ -34,8 +34,8 @@ const DEFAULT_DOCS: Doc[] = [
 ]
 
 const FileIcon = ({ type }: { type?: string }) => (
-  <div style={{ width: 40, height: 48, background: "var(--color-primary)", borderRadius: 4, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-    <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 9, fontWeight: 700, color: "#fff", textTransform: "uppercase", letterSpacing: "0.04em" }}>{type || "PDF"}</span>
+  <div style={{ background: "#007CB0", borderRadius: 3, display: "inline-flex", alignItems: "center", justifyContent: "center", flexShrink: 0, padding: "3px 8px" }}>
+    <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 10, fontWeight: 700, color: "#fff", textTransform: "uppercase", letterSpacing: "0.04em" }}>{type || "PDF"}</span>
   </div>
 )
 
@@ -67,7 +67,7 @@ const ProductDocuments = forwardRef(function ProductDocuments(
     <div
       ref={ref}
       className={`${className || ""} ${sectionStyle || ""}`}
-      style={{ position: "relative", width: "100%", boxSizing: "border-box", ...(!bgImage ? { background: sectionBackground } : {}), paddingTop: paddingTop ?? 96, paddingBottom: paddingBottom ?? 96, borderTop: "1px solid rgba(255,255,255,0.08)" }}
+      style={{ position: "relative", width: "100%", boxSizing: "border-box", ...(!bgImage ? { background: sectionBackground } : {}), paddingTop: paddingTop ?? 48, paddingBottom: paddingBottom ?? 48, borderTop: "1px solid rgba(255,255,255,0.08)" }}
     >
       {bgImage && (
         <img src={bgImage} alt="" className="absolute inset-0 w-full h-full object-cover" style={{ zIndex: 0 }} />
@@ -87,7 +87,7 @@ const ProductDocuments = forwardRef(function ProductDocuments(
               <div style={{ flex: 1, minWidth: 0 }}>
                 <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 15, fontWeight: 600, color: "var(--color-title)", margin: "0 0 4px" }}>{doc.title}</p>
                 <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, color: "var(--color-content)", lineHeight: 1.5, margin: "0 0 10px" }}>{doc.description}</p>
-                <a href={doc.fileUrl || "#"} style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, fontWeight: 600, color: "var(--color-accent)", textDecoration: "none" }}>
+                <a href={doc.fileUrl || "#"} style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, fontWeight: 600, color: "#7EBEE8", textDecoration: "none" }}>
                   View &amp; Download →
                 </a>
               </div>

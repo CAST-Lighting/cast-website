@@ -181,8 +181,8 @@ const ReviewsCarousel = forwardRef(function ReviewsCarousel(
       className={`relative overflow-hidden ${className || ""}`}
       style={{
         ...(!bgImage ? { background: sectionBackground } : {}),
-        paddingTop: paddingTop ?? 96,
-        paddingBottom: paddingBottom ?? 96,
+        paddingTop: paddingTop ?? 48,
+        paddingBottom: paddingBottom ?? 48,
       }}
     >
       {bgImage && (
