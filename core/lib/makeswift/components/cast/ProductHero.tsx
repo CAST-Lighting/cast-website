@@ -151,6 +151,9 @@ const ProductHero = forwardRef(function ProductHero(
         .ph-qty button:hover { background: #f0f8ff; }
         .ph-qty input { width: 48px; border: none; text-align: center; font-family: 'Barlow', sans-serif; font-size: 16px; font-weight: 700; color: #25262d; outline: none; background: #ffffff; }
         .ph-tradepro-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(0,73,96,0.08); color: var(--color-primary); font-family: 'Barlow', sans-serif; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; padding: 4px 10px; border-radius: 3px; }
+        @media (max-width: 1279px) {
+          .ph-gallery { flex: 0 0 400px !important; max-width: 400px !important; }
+        }
         @media (max-width: 900px) {
           .ph-layout { flex-direction: column !important; }
           .ph-gallery { max-width: 100% !important; flex: unset !important; position: relative !important; top: auto !important; align-self: stretch !important; }
