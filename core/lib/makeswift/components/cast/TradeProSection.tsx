@@ -97,7 +97,7 @@ const TradeProSection = forwardRef(function TradeProSection(
                   <div className="icon-box mb-5 group-hover:bg-primary/20 transition-colors">
                     <Icon className="w-6 h-6 text-primary" />
                   </div>
-                  <h4 className="heading-style-h4 text-foreground mb-2">{b.title}</h4>
+                  <h3 className="heading-style-h3 text-foreground mb-2">{b.title}</h3>
                   <p className="text-size-small text-muted-foreground leading-relaxed">{b.desc}</p>
                 </div>
               )

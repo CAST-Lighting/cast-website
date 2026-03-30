@@ -255,6 +255,48 @@
   color: var(--color-title);
 }
 
+/* ============================================================
+   SEMANTIC HEADING VARIANTS — Named roles, not px values
+   Use these class names when building/editing components.
+   The HTML tag determines SEO; the class determines visual size.
+   ============================================================ */
+
+/* heading-display: Hero moments — largest, most impactful */
+.heading-display {
+  font-family: 'Essonnes', 'Playfair Display', serif;
+  font-size: var(--h1-size);
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--color-title);
+}
+
+/* heading-section: Section titles — primary content dividers */
+.heading-section {
+  font-family: 'Essonnes', 'Playfair Display', serif;
+  font-size: var(--h2-size);
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--color-title);
+}
+
+/* heading-card: Card titles, sub-section headings */
+.heading-card {
+  font-family: 'Essonnes', 'Playfair Display', serif;
+  font-size: var(--h3-size);
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--color-title);
+}
+
+/* heading-label: Labels, card subtitles, small callouts */
+.heading-label {
+  font-family: 'Essonnes', 'Playfair Display', serif;
+  font-size: var(--h4-size);
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--color-title);
+}
+
 /* --- Text Sizes --- */
 .text-size-xlarge {
   font-family: 'Barlow', sans-serif;
