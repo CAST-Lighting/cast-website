@@ -140,6 +140,30 @@ function FavoritesGrid(
         }
         .fav-remove-btn:hover { border-color: #ef4444; color: #ef4444; }
         .fav-remove-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+        .fav-footer {
+          margin-top: 32px;
+          border-top: 1px solid ${t.divider};
+          padding-top: 24px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          flex-wrap: wrap;
+          gap: 16px;
+        }
+        .fav-footer-right {
+          display: flex;
+          align-items: center;
+          gap: 24px;
+          flex-wrap: wrap;
+        }
+        .fav-total-label {
+          text-align: right;
+        }
+        @media (max-width: 640px) {
+          .fav-footer { flex-direction: column; align-items: flex-start; }
+          .fav-footer-right { flex-direction: column; align-items: flex-start; gap: 12px; width: 100%; }
+          .fav-total-label { text-align: left; }
+        }
         @keyframes fav-spin { to { transform: rotate(360deg); } }
       `}</style>
 
@@ -257,10 +281,10 @@ function FavoritesGrid(
 
         {/* Footer summary */}
         {items.length > 0 && (
-          <div style={{ marginTop: 32, borderTop: `1px solid ${t.divider}`, paddingTop: 24, display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 16 }}>
+          <div className="fav-footer">
             <a href="/shop" style={{ fontFamily: "'Barlow',sans-serif", fontSize: 14, color: t.accent, textDecoration: "none" }}>← Back to Products</a>
-            <div style={{ display: "flex", alignItems: "center", gap: 24, flexWrap: "wrap" }}>
-              <div style={{ textAlign: "right" }}>
+            <div className="fav-footer-right">
+              <div className="fav-total-label">
                 <p style={{ fontFamily: "'Barlow',sans-serif", fontSize: 12, color: t.subtle, margin: "0 0 2px", textTransform: "uppercase", letterSpacing: "0.06em" }}>
                   {items.length} {items.length === 1 ? "item" : "items"} · Estimated Total
                 </p>
