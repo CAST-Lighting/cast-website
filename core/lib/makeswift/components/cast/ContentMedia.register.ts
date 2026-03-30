@@ -9,46 +9,60 @@ runtime.registerComponent(
     label: "Sections / Content + Video",
     props: {
       className: Style(),
-      bgImage: Image({ label: 'Background Image' }),
-      bgColor: Color({ label: 'Background Color', defaultValue: '#014960' }),
-      bgOpacity: NumberControl({ label: 'Background Opacity', defaultValue: 100, min: 0, max: 100, step: 1, suffix: '%' }),
-      gradientFrom: Color({ label: 'Gradient From', defaultValue: '#014960' }),
-      gradientTo: Color({ label: 'Gradient To', defaultValue: '#25262d' }),
+
+      // 🎨 Background
+      bgImage: Image({ label: "🎨 Background — Image" }),
+      bgColor: Color({ label: "🎨 Background — Color", defaultValue: "#014960" }),
+      bgOpacity: NumberControl({ label: "🎨 Background — Opacity", defaultValue: 100, min: 0, max: 100, step: 1, suffix: "%" }),
+      gradientFrom: Color({ label: "🎨 Background — Gradient From", defaultValue: "#014960" }),
+      gradientTo: Color({ label: "🎨 Background — Gradient To", defaultValue: "#25262d" }),
       gradientDirection: Select({
-        label: 'Gradient Direction',
+        label: "🎨 Background — Gradient Direction",
         options: [
-          { value: 'to bottom', label: '↓ Top to Bottom' },
-          { value: 'to top', label: '↑ Bottom to Top' },
-          { value: 'to right', label: '→ Left to Right' },
-          { value: 'to left', label: '← Right to Left' },
-          { value: '135deg', label: '↘ Diagonal ↘' },
-          { value: '225deg', label: '↙ Diagonal ↙' },
+          { value: "to bottom", label: "↓ Top to Bottom" },
+          { value: "to top", label: "↑ Bottom to Top" },
+          { value: "to right", label: "→ Left to Right" },
+          { value: "to left", label: "← Right to Left" },
+          { value: "135deg", label: "↘ Diagonal ↘" },
+          { value: "225deg", label: "↙ Diagonal ↙" },
         ],
-        defaultValue: '135deg',
+        defaultValue: "135deg",
       }),
-      lineHeight: NumberControl({ label: 'Text Line Height', defaultValue: 1.6, min: 1, max: 3, step: 0.05 }),
-      paddingTop: NumberControl({ label: 'Padding Top', defaultValue: 96, min: 0, max: 400, step: 8, suffix: 'px' }),
-      paddingBottom: NumberControl({ label: 'Padding Bottom', defaultValue: 96, min: 0, max: 400, step: 8, suffix: 'px' }),
-      heading: TextInput({ label: 'Heading', defaultValue: 'Unmatched Quality, Technology &' }),
-      headingAccent: TextInput({ label: 'Heading Accent', defaultValue: 'Durability' }),
-      bodyText: TextInput({ label: 'Body Text', defaultValue: 'Every CAST fixture is made from solid brass and copper alloys that will never rust or corrode. Our proprietary LED technology delivers superior color rendering and energy efficiency.' }),
+
+      // 📐 Layout
+      lineHeight: NumberControl({ label: "📐 Layout — Line Height", defaultValue: 1.6, min: 1, max: 3, step: 0.05 }),
+      paddingTop: NumberControl({ label: "📐 Layout — Padding Top", defaultValue: 96, min: 0, max: 400, step: 8, suffix: "px" }),
+      paddingBottom: NumberControl({ label: "📐 Layout — Padding Bottom", defaultValue: 96, min: 0, max: 400, step: 8, suffix: "px" }),
+
+      // ✏️ Content
+      heading: TextInput({ label: "✏️ Content — Heading", defaultValue: "Unmatched Quality, Technology &" }),
+      headingAccent: TextInput({ label: "✏️ Content — Heading Accent", defaultValue: "Durability" }),
+      bodyText: TextInput({ label: "✏️ Content — Body Text", defaultValue: "Every CAST fixture is made from solid brass and copper alloys that will never rust or corrode. Our proprietary LED technology delivers superior color rendering and energy efficiency." }),
+
+      // 📦 Items — Features
       features: List({
-        label: 'Features',
+        label: "📦 Items — Features",
         type: Shape({
           type: {
-            title: TextInput({ label: 'Title', defaultValue: '' }),
-            desc: TextInput({ label: 'Description', defaultValue: '' }),
+            title: TextInput({ label: "Title", defaultValue: "" }),
+            desc: TextInput({ label: "Description", defaultValue: "" }),
           },
         }),
-        getItemLabel(item) { return item?.title || 'Feature' },
+        getItemLabel(item) { return item?.title || "Feature" },
       }),
-      btn1Label: TextInput({ label: 'Button 1 Label', defaultValue: 'Shop Products' }),
-      btn1Href: TextInput({ label: 'Button 1 Href', defaultValue: '/shop' }),
-      btn2Label: TextInput({ label: 'Button 2 Label', defaultValue: 'Learn More →' }),
-      btn2Href: TextInput({ label: 'Button 2 Href', defaultValue: '/about' }),
-      videoUrl: TextInput({ label: 'Video URL (YouTube embed)', defaultValue: 'www.youtube.com/watch?v=kVI5XNyKFvw' }),
-      stat: TextInput({ label: 'Stat Number', defaultValue: '25+' }),
-      statLabel: TextInput({ label: 'Stat Label', defaultValue: 'Years of Excellence' }),
+
+      // 🔘 Buttons
+      btn1Label: TextInput({ label: "🔘 Buttons — Button 1 Label", defaultValue: "Shop Products" }),
+      btn1Href: TextInput({ label: "🔘 Buttons — Button 1 Href", defaultValue: "/shop" }),
+      btn2Label: TextInput({ label: "🔘 Buttons — Button 2 Label", defaultValue: "Learn More →" }),
+      btn2Href: TextInput({ label: "🔘 Buttons — Button 2 Href", defaultValue: "/about" }),
+
+      // 📸 Media
+      videoUrl: TextInput({ label: "📸 Media — Video URL (YouTube embed)", defaultValue: "www.youtube.com/watch?v=kVI5XNyKFvw" }),
+
+      // ✏️ Content — Stat
+      stat: TextInput({ label: "✏️ Content — Stat Number", defaultValue: "25+" }),
+      statLabel: TextInput({ label: "✏️ Content — Stat Label", defaultValue: "Years of Excellence" }),
     },
   }
 )

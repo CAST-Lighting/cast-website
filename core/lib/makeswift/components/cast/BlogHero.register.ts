@@ -9,15 +9,21 @@ runtime.registerComponent(
     label: "Hero / Blog Hero",
     props: {
       className: Style(),
-      bgColor: Color({ label: "Background Color", defaultValue: "#0d1620" }),
-      bgImage: Image({ label: "Background Image" }),
-      bgOpacity: NumberControl({ label: "Overlay Opacity %", defaultValue: 92, min: 0, max: 100, step: 1 }),
-      paddingTop: NumberControl({ label: "Padding Top", defaultValue: 80, min: 0, max: 400, step: 8, suffix: "px" }),
-      paddingBottom: NumberControl({ label: "Padding Bottom", defaultValue: 64, min: 0, max: 400, step: 8, suffix: "px" }),
-      overline: TextInput({ label: "Overline", defaultValue: "Section Label" }),
-      heading: TextInput({ label: "Heading", defaultValue: "Heading Goes Here" }),
-      headingAccent: TextInput({ label: "Heading Accent (gold)", defaultValue: "Accent" }),
-      description: TextInput({ label: "Description", defaultValue: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." }),
+
+      // 🎨 Background
+      bgColor: Color({ label: "🎨 Background — Color", defaultValue: "#0d1620" }),
+      bgImage: Image({ label: "🎨 Background — Image" }),
+      bgOpacity: NumberControl({ label: "🎨 Background — Overlay Opacity %", defaultValue: 92, min: 0, max: 100, step: 1 }),
+
+      // 📐 Layout
+      paddingTop: NumberControl({ label: "📐 Layout — Padding Top", defaultValue: 80, min: 0, max: 400, step: 8, suffix: "px" }),
+      paddingBottom: NumberControl({ label: "📐 Layout — Padding Bottom", defaultValue: 64, min: 0, max: 400, step: 8, suffix: "px" }),
+
+      // ✏️ Content
+      overline: TextInput({ label: "✏️ Content — Overline", defaultValue: "Section Label" }),
+      heading: TextInput({ label: "✏️ Content — Heading", defaultValue: "Heading Goes Here" }),
+      headingAccent: TextInput({ label: "✏️ Content — Heading Accent (gold)", defaultValue: "Accent" }),
+      description: TextInput({ label: "✏️ Content — Description", defaultValue: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." }),
     },
   }
 )

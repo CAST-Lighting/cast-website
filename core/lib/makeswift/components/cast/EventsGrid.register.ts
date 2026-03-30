@@ -9,13 +9,17 @@ runtime.registerComponent(
     label: "Sections / Events Grid",
     props: {
       className: Style(),
-      bgColor: Color({ label: "Background Color", defaultValue: "#0f1923" }),
-      paddingTop: NumberControl({ label: "Padding Top (px)", defaultValue: 72, min: 0, max: 400, step: 8 }),
-      paddingBottom: NumberControl({ label: "Padding Bottom (px)", defaultValue: 96, min: 0, max: 400, step: 8 }),
-      heading: TextInput({ label: "Heading", defaultValue: "Upcoming" }),
-      headingAccent: TextInput({ label: "Heading Accent", defaultValue: "Events" }),
-      overline: TextInput({ label: "Overline", defaultValue: "Training & Community" }),
-      emptyMessage: TextInput({ label: "Empty State Message", defaultValue: "No upcoming events at this time." }),
+
+      // 🎨 Background
+      bgColor: Color({ label: "🎨 Background — Color", defaultValue: "#0f1923" }),
+      paddingTop: NumberControl({ label: "📐 Layout — Padding Top (px)", defaultValue: 72, min: 0, max: 400, step: 8 }),
+      paddingBottom: NumberControl({ label: "📐 Layout — Padding Bottom (px)", defaultValue: 96, min: 0, max: 400, step: 8 }),
+
+      // ✏️ Content
+      heading: TextInput({ label: "✏️ Content — Heading", defaultValue: "Upcoming" }),
+      headingAccent: TextInput({ label: "✏️ Content — Heading Accent", defaultValue: "Events" }),
+      overline: TextInput({ label: "✏️ Content — Overline", defaultValue: "Training & Community" }),
+      emptyMessage: TextInput({ label: "✏️ Content — Empty State Message", defaultValue: "No upcoming events at this time." }),
     },
   }
 )

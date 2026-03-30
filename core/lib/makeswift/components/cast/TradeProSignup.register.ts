@@ -10,25 +10,27 @@ runtime.registerComponent(
     props: {
       className: Style(),
 
-      // ── Hero ────────────────────────────────────────────────
-      badgeText: TextInput({ label: "Badge Text", defaultValue: "Account Application" }),
-      heading: TextInput({ label: "Heading", defaultValue: "Trade Professional Registration" }),
-      description: TextArea({ label: "Description", defaultValue: "Application for a Landscape Account" }),
+      // ✏️ Content — Hero
+      badgeText: TextInput({ label: "✏️ Content — Badge Text", defaultValue: "Account Application" }),
+      heading: TextInput({ label: "✏️ Content — Heading", defaultValue: "Trade Professional Registration" }),
+      description: TextArea({ label: "✏️ Content — Description", defaultValue: "Application for a Landscape Account" }),
 
-      // ── Sidebar ─────────────────────────────────────────────
-      sidebarHeading: TextInput({ label: "Sidebar Heading", defaultValue: "Landscape Account" }),
+      // ✏️ Content — Sidebar
+      sidebarHeading: TextInput({ label: "✏️ Content — Sidebar Heading", defaultValue: "Landscape Account" }),
       sidebarBody: TextArea({
-        label: "Sidebar Body",
+        label: "✏️ Content — Sidebar Body",
         defaultValue:
           "If you are a contractor or landscape architect without a Distributor or Specification Sales Agency in your area, you can apply to have your own CAST online ordering account.",
       }),
       sidebarNote: TextArea({
-        label: "Sidebar Note",
+        label: "✏️ Content — Sidebar Note",
         defaultValue:
           "Application may take between 2–5 business days to be approved and we may contact you with questions after an application has been submitted.",
       }),
+
+      // 📦 Items — Benefits
       benefits: List({
-        label: "Benefits / Highlights",
+        label: "📦 Items — Benefits",
         type: Shape({
           type: {
             text: TextInput({ label: "Benefit Text", defaultValue: "Benefit goes here." }),
@@ -38,13 +40,15 @@ runtime.registerComponent(
           return item?.text || "Benefit"
         },
       }),
-      loginHref: TextInput({ label: "Login Page Link", defaultValue: "/login" }),
 
-      // ── Form ─────────────────────────────────────────────────
-      submitLabel: TextInput({ label: "Submit Button Label", defaultValue: "Submit Application →" }),
+      // 🔗 Links
+      loginHref: TextInput({ label: "🔗 Links — Login Page Link", defaultValue: "/login" }),
 
-      // ── Layout ──────────────────────────────────────────────
-      bgColor: Color({ label: "Background Color", defaultValue: "#0f1923" }),
+      // 📋 Form
+      submitLabel: TextInput({ label: "📋 Form — Submit Button Label", defaultValue: "Submit Application →" }),
+
+      // 🎨 Background
+      bgColor: Color({ label: "🎨 Background — Color", defaultValue: "#0f1923" }),
     },
   }
 )

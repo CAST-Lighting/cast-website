@@ -10,17 +10,17 @@ runtime.registerComponent(
     props: {
       className: Style(),
 
-      // ── Layout ──────────────────────────────────────────────
-      bgColor: Color({ label: "Background Color", defaultValue: "#0f1923" }),
-      paddingTop: NumberControl({ label: "Padding Top", defaultValue: 72, min: 0, max: 400, step: 8, suffix: "px" }),
-      paddingBottom: NumberControl({ label: "Padding Bottom", defaultValue: 72, min: 0, max: 400, step: 8, suffix: "px" }),
+      // 🎨 Background
+      bgColor: Color({ label: "🎨 Background — Color", defaultValue: "#0f1923" }),
+      paddingTop: NumberControl({ label: "📐 Layout — Padding Top", defaultValue: 72, min: 0, max: 400, step: 8, suffix: "px" }),
+      paddingBottom: NumberControl({ label: "📐 Layout — Padding Bottom", defaultValue: 72, min: 0, max: 400, step: 8, suffix: "px" }),
 
-      // ── Pagination ───────────────────────────────────────────
-      postsPerPage: NumberControl({ label: "Posts Per Page", defaultValue: 9, min: 3, max: 24, step: 3 }),
+      // 📐 Layout
+      postsPerPage: NumberControl({ label: "📐 Layout — Posts Per Page", defaultValue: 9, min: 3, max: 24, step: 3 }),
 
-      // ── Category Filter ──────────────────────────────────────
+      // 📦 Items — Category Filter
       categoryTags: List({
-        label: "Category Tags",
+        label: "📦 Items — Category Tags",
         type: Shape({
           type: {
             label: TextInput({ label: "Label", defaultValue: "Category" }),
@@ -32,8 +32,8 @@ runtime.registerComponent(
         },
       }),
 
-      // ── Empty State ──────────────────────────────────────────
-      emptyMessage: TextInput({ label: "Empty State Message", defaultValue: "No posts found." }),
+      // ✏️ Content
+      emptyMessage: TextInput({ label: "✏️ Content — Empty State Message", defaultValue: "No posts found." }),
     },
   }
 )

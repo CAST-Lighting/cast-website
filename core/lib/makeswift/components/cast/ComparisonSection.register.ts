@@ -9,49 +9,57 @@ runtime.registerComponent(
     label: "Sections / Brand Comparison",
     props: {
       className: Style(),
-      bgImage: Image({ label: 'Background Image' }),
-      bgColor: Color({ label: 'Background Color' }),
-      bgOpacity: NumberControl({ label: 'Background Opacity', defaultValue: 85, min: 0, max: 100, step: 1, suffix: '%' }),
-      gradientFrom: Color({ label: 'Gradient From' }),
-      gradientTo: Color({ label: 'Gradient To' }),
+
+      // 🎨 Background
+      bgImage: Image({ label: "🎨 Background — Image" }),
+      bgColor: Color({ label: "🎨 Background — Color" }),
+      bgOpacity: NumberControl({ label: "🎨 Background — Opacity", defaultValue: 85, min: 0, max: 100, step: 1, suffix: "%" }),
+      gradientFrom: Color({ label: "🎨 Background — Gradient From" }),
+      gradientTo: Color({ label: "🎨 Background — Gradient To" }),
       gradientDirection: Select({
-        label: 'Gradient Direction',
+        label: "🎨 Background — Gradient Direction",
         options: [
-          { value: 'to bottom', label: '↓ Top to Bottom' },
-          { value: 'to top', label: '↑ Bottom to Top' },
-          { value: 'to right', label: '→ Left to Right' },
-          { value: 'to left', label: '← Right to Left' },
-          { value: '135deg', label: '↘ Diagonal ↘' },
-          { value: '225deg', label: '↙ Diagonal ↙' },
+          { value: "to bottom", label: "↓ Top to Bottom" },
+          { value: "to top", label: "↑ Bottom to Top" },
+          { value: "to right", label: "→ Left to Right" },
+          { value: "to left", label: "← Right to Left" },
+          { value: "135deg", label: "↘ Diagonal ↘" },
+          { value: "225deg", label: "↙ Diagonal ↙" },
         ],
-        defaultValue: 'to bottom',
+        defaultValue: "to bottom",
       }),
-      lineHeight: NumberControl({ label: 'Text Line Height', defaultValue: 1.6, min: 1, max: 3, step: 0.05 }),
-      paddingTop: NumberControl({ label: 'Padding Top', defaultValue: 96, min: 0, max: 400, step: 8, suffix: 'px' }),
-      paddingBottom: NumberControl({ label: 'Padding Bottom', defaultValue: 96, min: 0, max: 400, step: 8, suffix: 'px' }),
-      overline: TextInput({ label: 'Overline', defaultValue: 'CAST vs Other Brands' }),
-      heading: TextInput({ label: 'Heading', defaultValue: 'Why Contractors Choose' }),
-      headingAccent: TextInput({ label: 'Heading Accent', defaultValue: 'CAST' }),
-      description: TextInput({ label: 'Description', defaultValue: 'See how CAST Lighting compares to other landscape lighting brands.' }),
-      castTitle: TextInput({ label: 'CAST Column Title', defaultValue: 'CAST Advantages' }),
-      othersTitle: TextInput({ label: 'Others Column Title', defaultValue: 'Other Lighting Brands' }),
+
+      // 📐 Layout
+      lineHeight: NumberControl({ label: "📐 Layout — Line Height", defaultValue: 1.6, min: 1, max: 3, step: 0.05 }),
+      paddingTop: NumberControl({ label: "📐 Layout — Padding Top", defaultValue: 96, min: 0, max: 400, step: 8, suffix: "px" }),
+      paddingBottom: NumberControl({ label: "📐 Layout — Padding Bottom", defaultValue: 96, min: 0, max: 400, step: 8, suffix: "px" }),
+
+      // ✏️ Content
+      overline: TextInput({ label: "✏️ Content — Overline", defaultValue: "CAST vs Other Brands" }),
+      heading: TextInput({ label: "✏️ Content — Heading", defaultValue: "Why Contractors Choose" }),
+      headingAccent: TextInput({ label: "✏️ Content — Heading Accent", defaultValue: "CAST" }),
+      description: TextInput({ label: "✏️ Content — Description", defaultValue: "See how CAST Lighting compares to other landscape lighting brands." }),
+      castTitle: TextInput({ label: "✏️ Content — CAST Column Title", defaultValue: "CAST Advantages" }),
+      othersTitle: TextInput({ label: "✏️ Content — Others Column Title", defaultValue: "Other Lighting Brands" }),
+
+      // 🃏 Cards — Comparison Points
       castPoints: List({
-        label: 'CAST Points',
+        label: "🃏 Cards — CAST Points",
         type: Shape({
           type: {
-            text: TextInput({ label: 'Point', defaultValue: '' }),
+            text: TextInput({ label: "Point", defaultValue: "" }),
           },
         }),
-        getItemLabel(item) { return item?.text || 'Point' },
+        getItemLabel(item) { return item?.text || "Point" },
       }),
       otherPoints: List({
-        label: 'Other Brand Points',
+        label: "🃏 Cards — Other Brand Points",
         type: Shape({
           type: {
-            text: TextInput({ label: 'Point', defaultValue: '' }),
+            text: TextInput({ label: "Point", defaultValue: "" }),
           },
         }),
-        getItemLabel(item) { return item?.text || 'Point' },
+        getItemLabel(item) { return item?.text || "Point" },
       }),
     },
   }

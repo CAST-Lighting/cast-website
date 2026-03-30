@@ -9,19 +9,27 @@ runtime.registerComponent(
     label: "CTA / Ready CTA",
     props: {
       className: Style(),
-      bgColor: Color({ label: "Background Color", defaultValue: "#004960" }),
-      bgImage: Image({ label: "Background Image" }),
-      bgOpacity: Number({ label: "Overlay Opacity %", defaultValue: 88, min: 0, max: 100, step: 5 }),
-      paddingTop: Number({ label: "Padding Top (px)", defaultValue: 96 }),
-      paddingBottom: Number({ label: "Padding Bottom (px)", defaultValue: 96 }),
-      overline: TextInput({ label: "Overline", defaultValue: "Section Label" }),
-      heading: TextInput({ label: "Heading", defaultValue: "Heading Goes Here" }),
-      headingAccent: TextInput({ label: "Heading Accent (gold)", defaultValue: "Accent" }),
-      body: TextArea({ label: "Body Text", defaultValue: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." }),
-      btn1Label: TextInput({ label: "Button 1 Label", defaultValue: "Button Here" }),
-      btn1Href: TextInput({ label: "Button 1 URL", defaultValue: "#" }),
-      btn2Label: TextInput({ label: "Button 2 Label", defaultValue: "Button Here" }),
-      btn2Href: TextInput({ label: "Button 2 URL", defaultValue: "#" }),
+
+      // 🎨 Background
+      bgColor: Color({ label: "🎨 Background — Color", defaultValue: "#004960" }),
+      bgImage: Image({ label: "🎨 Background — Image" }),
+      bgOpacity: Number({ label: "🎨 Background — Overlay Opacity %", defaultValue: 88, min: 0, max: 100, step: 5 }),
+
+      // 📐 Layout
+      paddingTop: Number({ label: "📐 Layout — Padding Top (px)", defaultValue: 96 }),
+      paddingBottom: Number({ label: "📐 Layout — Padding Bottom (px)", defaultValue: 96 }),
+
+      // ✏️ Content
+      overline: TextInput({ label: "✏️ Content — Overline", defaultValue: "Section Label" }),
+      heading: TextInput({ label: "✏️ Content — Heading", defaultValue: "Heading Goes Here" }),
+      headingAccent: TextInput({ label: "✏️ Content — Heading Accent (gold)", defaultValue: "Accent" }),
+      body: TextArea({ label: "✏️ Content — Body Text", defaultValue: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." }),
+
+      // 🔘 Buttons
+      btn1Label: TextInput({ label: "🔘 Buttons — Button 1 Label", defaultValue: "Button Here" }),
+      btn1Href: TextInput({ label: "🔘 Buttons — Button 1 URL", defaultValue: "#" }),
+      btn2Label: TextInput({ label: "🔘 Buttons — Button 2 Label", defaultValue: "Button Here" }),
+      btn2Href: TextInput({ label: "🔘 Buttons — Button 2 URL", defaultValue: "#" }),
     },
   }
 )

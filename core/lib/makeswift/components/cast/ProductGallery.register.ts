@@ -10,34 +10,38 @@ runtime.registerComponent(
     props: {
       className: Style(),
 
-      // ── Content ─────────────────────────────────────────────
-      sectionTitle: TextInput({ label: 'Section Title', defaultValue: 'Our Favorite' }),
-      sectionTitleAccent: TextInput({ label: 'Title Accent Word', defaultValue: 'Picks' }),
-      sectionDescription: TextInput({ label: 'Description', defaultValue: 'Explore our most popular landscape lighting fixtures trusted by contractors nationwide.' }),
-      viewAllLabel: TextInput({ label: 'View All Label', defaultValue: 'View All' }),
-      viewAllHref: TextInput({ label: 'View All Link', defaultValue: '/shop' }),
+      // ✏️ Content
+      sectionTitle: TextInput({ label: "✏️ Content — Section Title", defaultValue: "Our Favorite" }),
+      sectionTitleAccent: TextInput({ label: "✏️ Content — Title Accent Word", defaultValue: "Picks" }),
+      sectionDescription: TextInput({ label: "✏️ Content — Description", defaultValue: "Explore our most popular landscape lighting fixtures trusted by contractors nationwide." }),
 
-      // ── Background ──────────────────────────────────────────
-      bgImage: Image({ label: 'Background Image' }),
-      bgColor: Color({ label: 'Background Color' }),
-      bgOpacity: NumberControl({ label: 'Background Opacity', defaultValue: 85, min: 0, max: 100, step: 1, suffix: '%' }),
-      gradientFrom: Color({ label: 'Gradient From' }),
-      gradientTo: Color({ label: 'Gradient To' }),
+      // 🔗 Links
+      viewAllLabel: TextInput({ label: "🔗 Links — View All Label", defaultValue: "View All" }),
+      viewAllHref: TextInput({ label: "🔗 Links — View All Link", defaultValue: "/shop" }),
+
+      // 🎨 Background
+      bgImage: Image({ label: "🎨 Background — Image" }),
+      bgColor: Color({ label: "🎨 Background — Color" }),
+      bgOpacity: NumberControl({ label: "🎨 Background — Opacity", defaultValue: 85, min: 0, max: 100, step: 1, suffix: "%" }),
+      gradientFrom: Color({ label: "🎨 Background — Gradient From" }),
+      gradientTo: Color({ label: "🎨 Background — Gradient To" }),
       gradientDirection: Select({
-        label: 'Gradient Direction',
+        label: "🎨 Background — Gradient Direction",
         options: [
-          { value: 'to bottom', label: '↓ Top to Bottom' },
-          { value: 'to top', label: '↑ Bottom to Top' },
-          { value: 'to right', label: '→ Left to Right' },
-          { value: 'to left', label: '← Right to Left' },
-          { value: '135deg', label: '↘ Diagonal ↘' },
-          { value: '225deg', label: '↙ Diagonal ↙' },
+          { value: "to bottom", label: "↓ Top to Bottom" },
+          { value: "to top", label: "↑ Bottom to Top" },
+          { value: "to right", label: "→ Left to Right" },
+          { value: "to left", label: "← Right to Left" },
+          { value: "135deg", label: "↘ Diagonal ↘" },
+          { value: "225deg", label: "↙ Diagonal ↙" },
         ],
-        defaultValue: 'to bottom',
+        defaultValue: "to bottom",
       }),
-      lineHeight: NumberControl({ label: 'Text Line Height', defaultValue: 1.6, min: 1, max: 3, step: 0.05 }),
-      paddingTop: NumberControl({ label: 'Padding Top', defaultValue: 96, min: 0, max: 400, step: 8, suffix: 'px' }),
-      paddingBottom: NumberControl({ label: 'Padding Bottom', defaultValue: 96, min: 0, max: 400, step: 8, suffix: 'px' }),
+
+      // 📐 Layout
+      lineHeight: NumberControl({ label: "📐 Layout — Line Height", defaultValue: 1.6, min: 1, max: 3, step: 0.05 }),
+      paddingTop: NumberControl({ label: "📐 Layout — Padding Top", defaultValue: 96, min: 0, max: 400, step: 8, suffix: "px" }),
+      paddingBottom: NumberControl({ label: "📐 Layout — Padding Bottom", defaultValue: 96, min: 0, max: 400, step: 8, suffix: "px" }),
     },
   }
 )

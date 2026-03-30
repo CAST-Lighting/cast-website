@@ -9,18 +9,24 @@ runtime.registerComponent(
     label: "Forms / Contact Section",
     props: {
       className: Style(),
-      bgColor: Color({ label: "Background Color", defaultValue: "#0d1620" }),
-      paddingTop: NumberControl({ label: "Padding Top", defaultValue: 96, min: 0, max: 400, step: 8, suffix: "px" }),
-      paddingBottom: NumberControl({ label: "Padding Bottom", defaultValue: 96, min: 0, max: 400, step: 8, suffix: "px" }),
-      overline: TextInput({ label: "Overline", defaultValue: "Section Label" }),
-      heading: TextInput({ label: "Heading", defaultValue: "Heading Goes Here" }),
-      headingAccent: TextInput({ label: "Heading Accent (gold)", defaultValue: "Accent" }),
-      description: TextInput({ label: "Description", defaultValue: "Lorem ipsum dolor sit amet, consectetur adipiscing elit." }),
-      phone: TextInput({ label: "Phone", defaultValue: "(973) 423-2303" }),
-      email: TextInput({ label: "Email", defaultValue: "info@castlighting.com" }),
-      address: TextInput({ label: "Address", defaultValue: "Pine Brook, NJ 07058" }),
-      formHeading: TextInput({ label: "Form Heading", defaultValue: "Form Heading Here" }),
-      submitLabel: TextInput({ label: "Submit Button Label", defaultValue: "Submit" }),
+
+      // 🎨 Background
+      bgColor: Color({ label: "🎨 Background — Color", defaultValue: "#0d1620" }),
+      paddingTop: NumberControl({ label: "📐 Layout — Padding Top", defaultValue: 96, min: 0, max: 400, step: 8, suffix: "px" }),
+      paddingBottom: NumberControl({ label: "📐 Layout — Padding Bottom", defaultValue: 96, min: 0, max: 400, step: 8, suffix: "px" }),
+
+      // ✏️ Content
+      overline: TextInput({ label: "✏️ Content — Overline", defaultValue: "Section Label" }),
+      heading: TextInput({ label: "✏️ Content — Heading", defaultValue: "Heading Goes Here" }),
+      headingAccent: TextInput({ label: "✏️ Content — Heading Accent (gold)", defaultValue: "Accent" }),
+      description: TextInput({ label: "✏️ Content — Description", defaultValue: "Lorem ipsum dolor sit amet, consectetur adipiscing elit." }),
+      phone: TextInput({ label: "✏️ Content — Phone", defaultValue: "(973) 423-2303" }),
+      email: TextInput({ label: "✏️ Content — Email", defaultValue: "info@castlighting.com" }),
+      address: TextInput({ label: "✏️ Content — Address", defaultValue: "Pine Brook, NJ 07058" }),
+
+      // 📋 Form
+      formHeading: TextInput({ label: "📋 Form — Heading", defaultValue: "Form Heading Here" }),
+      submitLabel: TextInput({ label: "📋 Form — Submit Button Label", defaultValue: "Submit" }),
     },
   }
 )

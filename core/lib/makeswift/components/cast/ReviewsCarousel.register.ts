@@ -9,14 +9,20 @@ runtime.registerComponent(
     label: "Sections / Reviews Carousel",
     props: {
       className: Style(),
-      bgColor: Color({ label: "Background Color", defaultValue: "#141e27" }),
-      paddingTop: Number({ label: "Padding Top (px)", defaultValue: 96 }),
-      paddingBottom: Number({ label: "Padding Bottom (px)", defaultValue: 96 }),
-      overline: TextInput({ label: "Overline", defaultValue: "Testimonials" }),
-      heading: TextInput({ label: "Heading", defaultValue: "Our Raving Reviews" }),
-      headingAccent: TextInput({ label: "Heading Accent (gold)", defaultValue: "Accent" }),
+
+      // 🎨 Background
+      bgColor: Color({ label: "🎨 Background — Color", defaultValue: "#141e27" }),
+      paddingTop: Number({ label: "📐 Layout — Padding Top (px)", defaultValue: 96 }),
+      paddingBottom: Number({ label: "📐 Layout — Padding Bottom (px)", defaultValue: 96 }),
+
+      // ✏️ Content
+      overline: TextInput({ label: "✏️ Content — Overline", defaultValue: "Testimonials" }),
+      heading: TextInput({ label: "✏️ Content — Heading", defaultValue: "Our Raving Reviews" }),
+      headingAccent: TextInput({ label: "✏️ Content — Heading Accent (gold)", defaultValue: "Accent" }),
+
+      // 🃏 Cards — Reviews
       reviews: List({
-        label: "Reviews",
+        label: "🃏 Cards — Reviews",
         type: Shape({
           type: {
             name: TextInput({ label: "Reviewer Name", defaultValue: "Reviewer Name" }),

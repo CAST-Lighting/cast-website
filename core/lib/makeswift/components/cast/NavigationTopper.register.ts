@@ -9,14 +9,18 @@ runtime.registerComponent(
     label: "Navigation / Top Bar",
     props: {
       className: Style(),
-      bgColor: Color({ label: "Background Color" }),
-      leftLink1Text: TextInput({ label: "Left Link 1 Text", defaultValue: "EASY CONTRACTOR PRICING" }),
-      leftLink1Href: TextInput({ label: "Left Link 1 URL", defaultValue: "/trade-pro" }),
-      leftLink2Text: TextInput({ label: "Left Link 2 Text", defaultValue: "BECOME A TRADE PRO" }),
-      leftLink2Href: TextInput({ label: "Left Link 2 URL", defaultValue: "/trade-pro" }),
-      phone: TextInput({ label: "Phone Number", defaultValue: "(973) 423-2303" }),
-      rightLinkText: TextInput({ label: "Right Link Text", defaultValue: "Contact Us" }),
-      rightLinkHref: TextInput({ label: "Right Link URL", defaultValue: "/contact" }),
+
+      // 🎨 Background
+      bgColor: Color({ label: "🎨 Background — Color" }),
+
+      // 🔗 Links
+      leftLink1Text: TextInput({ label: "🔗 Links — Left Link 1 Text", defaultValue: "EASY CONTRACTOR PRICING" }),
+      leftLink1Href: TextInput({ label: "🔗 Links — Left Link 1 URL", defaultValue: "/trade-pro" }),
+      leftLink2Text: TextInput({ label: "🔗 Links — Left Link 2 Text", defaultValue: "BECOME A TRADE PRO" }),
+      leftLink2Href: TextInput({ label: "🔗 Links — Left Link 2 URL", defaultValue: "/trade-pro" }),
+      phone: TextInput({ label: "✏️ Content — Phone Number", defaultValue: "(973) 423-2303" }),
+      rightLinkText: TextInput({ label: "🔗 Links — Right Link Text", defaultValue: "Contact Us" }),
+      rightLinkHref: TextInput({ label: "🔗 Links — Right Link URL", defaultValue: "/contact" }),
     },
   }
 )

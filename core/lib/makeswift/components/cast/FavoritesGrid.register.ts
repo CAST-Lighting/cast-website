@@ -9,11 +9,15 @@ runtime.registerComponent(
     label: "Account / Favorites Grid",
     props: {
       className: Style(),
-      bgColor: Color({ label: "Background Color", defaultValue: "#0f1923" }),
-      paddingTop: NumberControl({ label: "Padding Top (px)", defaultValue: 64, min: 0, max: 400, step: 8 }),
-      paddingBottom: NumberControl({ label: "Padding Bottom (px)", defaultValue: 64, min: 0, max: 400, step: 8 }),
-      heading: TextInput({ label: "Heading", defaultValue: "My Favorites" }),
-      emptyMessage: TextInput({ label: "Empty State Message", defaultValue: "Your favorites list is empty." }),
+
+      // 🎨 Background
+      bgColor: Color({ label: "🎨 Background — Color", defaultValue: "#0f1923" }),
+      paddingTop: NumberControl({ label: "📐 Layout — Padding Top (px)", defaultValue: 64, min: 0, max: 400, step: 8 }),
+      paddingBottom: NumberControl({ label: "📐 Layout — Padding Bottom (px)", defaultValue: 64, min: 0, max: 400, step: 8 }),
+
+      // ✏️ Content
+      heading: TextInput({ label: "✏️ Content — Heading", defaultValue: "My Favorites" }),
+      emptyMessage: TextInput({ label: "✏️ Content — Empty State Message", defaultValue: "Your favorites list is empty." }),
     },
   }
 )

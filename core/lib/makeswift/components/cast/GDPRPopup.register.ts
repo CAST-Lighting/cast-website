@@ -9,13 +9,21 @@ runtime.registerComponent(
     label: "Utilities / GDPR Cookie Popup",
     props: {
       className: Style(),
-      heading: TextInput({ label: "Heading", defaultValue: "We Value Your Privacy" }),
-      body: TextArea({ label: "Body Text", defaultValue: "We use cookies to enhance your browsing experience, analyze site traffic, and personalize content. By clicking \"Accept All\", you consent to our use of cookies." }),
-      acceptLabel: TextInput({ label: "Accept Button Label", defaultValue: "Accept All" }),
-      declineLabel: TextInput({ label: "Decline Button Label", defaultValue: "Decline" }),
-      privacyLabel: TextInput({ label: "Privacy Link Label", defaultValue: "Privacy Policy" }),
-      privacyHref: TextInput({ label: "Privacy Link URL", defaultValue: "/privacy" }),
-      bgColor: Color({ label: "Card Background Color", defaultValue: "#2d353c" }),
+
+      // ✏️ Content
+      heading: TextInput({ label: "✏️ Content — Heading", defaultValue: "We Value Your Privacy" }),
+      body: TextArea({ label: "✏️ Content — Body Text", defaultValue: "We use cookies to enhance your browsing experience, analyze site traffic, and personalize content. By clicking \"Accept All\", you consent to our use of cookies." }),
+
+      // 🔘 Buttons
+      acceptLabel: TextInput({ label: "🔘 Buttons — Accept Label", defaultValue: "Accept All" }),
+      declineLabel: TextInput({ label: "🔘 Buttons — Decline Label", defaultValue: "Decline" }),
+
+      // 🔗 Links
+      privacyLabel: TextInput({ label: "🔗 Links — Privacy Link Label", defaultValue: "Privacy Policy" }),
+      privacyHref: TextInput({ label: "🔗 Links — Privacy Link URL", defaultValue: "/privacy" }),
+
+      // 🎨 Background
+      bgColor: Color({ label: "🎨 Background — Card Color", defaultValue: "#2d353c" }),
     },
   }
 )

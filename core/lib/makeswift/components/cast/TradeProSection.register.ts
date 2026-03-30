@@ -9,42 +9,52 @@ runtime.registerComponent(
     label: "CTA / TradePro Benefits",
     props: {
       className: Style(),
-      bgImage: Image({ label: 'Background Image' }),
-      bgColor: Color({ label: 'Background Color' }),
-      bgOpacity: NumberControl({ label: 'Background Opacity', defaultValue: 85, min: 0, max: 100, step: 1, suffix: '%' }),
-      gradientFrom: Color({ label: 'Gradient From' }),
-      gradientTo: Color({ label: 'Gradient To' }),
+
+      // 🎨 Background
+      bgImage: Image({ label: "🎨 Background — Image" }),
+      bgColor: Color({ label: "🎨 Background — Color" }),
+      bgOpacity: NumberControl({ label: "🎨 Background — Opacity", defaultValue: 85, min: 0, max: 100, step: 1, suffix: "%" }),
+      gradientFrom: Color({ label: "🎨 Background — Gradient From" }),
+      gradientTo: Color({ label: "🎨 Background — Gradient To" }),
       gradientDirection: Select({
-        label: 'Gradient Direction',
+        label: "🎨 Background — Gradient Direction",
         options: [
-          { value: 'to bottom', label: '↓ Top to Bottom' },
-          { value: 'to top', label: '↑ Bottom to Top' },
-          { value: 'to right', label: '→ Left to Right' },
-          { value: 'to left', label: '← Right to Left' },
-          { value: '135deg', label: '↘ Diagonal ↘' },
-          { value: '225deg', label: '↙ Diagonal ↙' },
+          { value: "to bottom", label: "↓ Top to Bottom" },
+          { value: "to top", label: "↑ Bottom to Top" },
+          { value: "to right", label: "→ Left to Right" },
+          { value: "to left", label: "← Right to Left" },
+          { value: "135deg", label: "↘ Diagonal ↘" },
+          { value: "225deg", label: "↙ Diagonal ↙" },
         ],
-        defaultValue: 'to bottom',
+        defaultValue: "to bottom",
       }),
-      lineHeight: NumberControl({ label: 'Text Line Height', defaultValue: 1.6, min: 1, max: 3, step: 0.05 }),
-      paddingTop: NumberControl({ label: 'Padding Top', defaultValue: 96, min: 0, max: 400, step: 8, suffix: 'px' }),
-      paddingBottom: NumberControl({ label: 'Padding Bottom', defaultValue: 96, min: 0, max: 400, step: 8, suffix: 'px' }),
-      overline: TextInput({ label: 'Overline', defaultValue: 'For Contractors & Installers' }),
-      heading: TextInput({ label: 'Heading', defaultValue: 'The TradePro' }),
-      headingAccent: TextInput({ label: 'Heading Accent', defaultValue: 'Advantage' }),
-      description: TextInput({ label: 'Description', defaultValue: 'Access professional products with lifetime warranties that give you design control in the field.' }),
+
+      // 📐 Layout
+      lineHeight: NumberControl({ label: "📐 Layout — Line Height", defaultValue: 1.6, min: 1, max: 3, step: 0.05 }),
+      paddingTop: NumberControl({ label: "📐 Layout — Padding Top", defaultValue: 96, min: 0, max: 400, step: 8, suffix: "px" }),
+      paddingBottom: NumberControl({ label: "📐 Layout — Padding Bottom", defaultValue: 96, min: 0, max: 400, step: 8, suffix: "px" }),
+
+      // ✏️ Content
+      overline: TextInput({ label: "✏️ Content — Overline", defaultValue: "For Contractors & Installers" }),
+      heading: TextInput({ label: "✏️ Content — Heading", defaultValue: "The TradePro" }),
+      headingAccent: TextInput({ label: "✏️ Content — Heading Accent", defaultValue: "Advantage" }),
+      description: TextInput({ label: "✏️ Content — Description", defaultValue: "Access professional products with lifetime warranties that give you design control in the field." }),
+
+      // 📦 Items — Benefits
       benefits: List({
-        label: 'Benefits',
+        label: "📦 Items — Benefits",
         type: Shape({
           type: {
-            title: TextInput({ label: 'Title', defaultValue: '' }),
-            desc: TextInput({ label: 'Description', defaultValue: '' }),
+            title: TextInput({ label: "Title", defaultValue: "" }),
+            desc: TextInput({ label: "Description", defaultValue: "" }),
           },
         }),
-        getItemLabel(item) { return item?.title || 'Benefit' },
+        getItemLabel(item) { return item?.title || "Benefit" },
       }),
-      btnLabel: TextInput({ label: 'Button Label', defaultValue: 'Join The TradePro Program' }),
-      btnHref: TextInput({ label: 'Button Href', defaultValue: '/trade-pro' }),
+
+      // 🔘 Buttons
+      btnLabel: TextInput({ label: "🔘 Buttons — Button Label", defaultValue: "Join The TradePro Program" }),
+      btnHref: TextInput({ label: "🔘 Buttons — Button Href", defaultValue: "/trade-pro" }),
     },
   }
 )

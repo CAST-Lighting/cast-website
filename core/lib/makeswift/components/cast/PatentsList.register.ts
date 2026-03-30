@@ -9,15 +9,21 @@ runtime.registerComponent(
     label: "Sections / Patents List",
     props: {
       className: Style(),
-      bgColor: Color({ label: "Background Color", defaultValue: "#0f1923" }),
-      paddingTop: NumberControl({ label: "Padding Top (px)", defaultValue: 64, min: 0, max: 400, step: 8 }),
-      paddingBottom: NumberControl({ label: "Padding Bottom (px)", defaultValue: 64, min: 0, max: 400, step: 8 }),
-      heading: TextInput({ label: "Heading", defaultValue: "CAST Lighting Patents" }),
-      headingAccent: TextInput({ label: "Heading Accent", defaultValue: "" }),
-      overline: TextInput({ label: "Overline", defaultValue: "Intellectual Property" }),
-      description: TextArea({ label: "Description", defaultValue: "Our portfolio of patents reflects decades of innovation in outdoor lighting technology, materials science, and intelligent control systems." }),
+
+      // 🎨 Background
+      bgColor: Color({ label: "🎨 Background — Color", defaultValue: "#0f1923" }),
+      paddingTop: NumberControl({ label: "📐 Layout — Padding Top (px)", defaultValue: 64, min: 0, max: 400, step: 8 }),
+      paddingBottom: NumberControl({ label: "📐 Layout — Padding Bottom (px)", defaultValue: 64, min: 0, max: 400, step: 8 }),
+
+      // ✏️ Content
+      heading: TextInput({ label: "✏️ Content — Heading", defaultValue: "CAST Lighting Patents" }),
+      headingAccent: TextInput({ label: "✏️ Content — Heading Accent", defaultValue: "" }),
+      overline: TextInput({ label: "✏️ Content — Overline", defaultValue: "Intellectual Property" }),
+      description: TextArea({ label: "✏️ Content — Description", defaultValue: "Our portfolio of patents reflects decades of innovation in outdoor lighting technology, materials science, and intelligent control systems." }),
+
+      // 📦 Items — Patents
       patents: List({
-        label: "Patents",
+        label: "📦 Items — Patents",
         type: Shape({
           type: {
             patentNumber: TextInput({ label: "Patent Number", defaultValue: "US 10,000,000 B2" }),

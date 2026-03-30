@@ -10,20 +10,22 @@ runtime.registerComponent(
     props: {
       className: Style(),
 
-      // ── Hero ────────────────────────────────────────────────
-      badgeText: TextInput({ label: "Badge Text", defaultValue: "Account Application" }),
-      heading: TextInput({ label: "Heading", defaultValue: "Retail Store Registration" }),
-      description: TextArea({ label: "Description", defaultValue: "First-time users, register for an account below" }),
+      // ✏️ Content — Hero
+      badgeText: TextInput({ label: "✏️ Content — Badge Text", defaultValue: "Account Application" }),
+      heading: TextInput({ label: "✏️ Content — Heading", defaultValue: "Retail Store Registration" }),
+      description: TextArea({ label: "✏️ Content — Description", defaultValue: "First-time users, register for an account below" }),
 
-      // ── Sidebar ─────────────────────────────────────────────
-      sidebarHeading: TextInput({ label: "Sidebar Heading", defaultValue: "Retail Store Account" }),
+      // ✏️ Content — Sidebar
+      sidebarHeading: TextInput({ label: "✏️ Content — Sidebar Heading", defaultValue: "Retail Store Account" }),
       sidebarBody: TextArea({
-        label: "Sidebar Body",
+        label: "✏️ Content — Sidebar Body",
         defaultValue:
           "The CAST Retail Store is a resource for repair parts, lamps and accessories to help our customers maintain their lighting systems.",
       }),
+
+      // 📦 Items — Benefits
       benefits: List({
-        label: "Benefits / Highlights",
+        label: "📦 Items — Benefits",
         type: Shape({
           type: {
             text: TextInput({ label: "Benefit Text", defaultValue: "Benefit goes here." }),
@@ -33,13 +35,15 @@ runtime.registerComponent(
           return item?.text || "Benefit"
         },
       }),
-      loginHref: TextInput({ label: "Login Page Link", defaultValue: "/login" }),
 
-      // ── Form ─────────────────────────────────────────────────
-      submitLabel: TextInput({ label: "Submit Button Label", defaultValue: "Register & Continue to Checkout →" }),
+      // 🔗 Links
+      loginHref: TextInput({ label: "🔗 Links — Login Page Link", defaultValue: "/login" }),
 
-      // ── Layout ──────────────────────────────────────────────
-      bgColor: Color({ label: "Background Color", defaultValue: "#0f1923" }),
+      // 📋 Form
+      submitLabel: TextInput({ label: "📋 Form — Submit Button Label", defaultValue: "Register & Continue to Checkout →" }),
+
+      // 🎨 Background
+      bgColor: Color({ label: "🎨 Background — Color", defaultValue: "#0f1923" }),
     },
   }
 )
