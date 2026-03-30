@@ -87,7 +87,7 @@ const SiteNavbar = forwardRef(function SiteNavbar(
       <nav className="backdrop-blur-md border-b border-[#004a61] bg-[#005C7A]/80">
         <div className="container mx-auto flex items-center justify-between px-6 py-4">
           <a href="/" className="flex items-center">
-            <img src="/images/logos/cast__lighting_white.svg" alt="CAST Lighting" className="h-10 w-auto" />
+            <img src="https://storage.googleapis.com/s.mkswft.com/RmlsZToxNmVlZWE3MS1iNjRjLTQ0MjctOGI2My1jNWI3ODQxNWFmNGI=/cast__lighting_white.svg" alt="CAST Lighting" className="h-10 w-auto" />
           </a>
 
           <div className="hidden lg:flex items-center gap-8 font-body font-medium text-sm tracking-wide">
