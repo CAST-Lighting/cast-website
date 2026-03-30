@@ -239,8 +239,10 @@ const ProductHero = forwardRef(function ProductHero(
               .ph-body-html a { color: #7EBEE8; text-decoration: underline; text-underline-offset: 2px; }
               .ph-body-html a:hover { color: #007CB0; }
               .ph-body-html p { margin: 0 0 16px; }
-              .ph-body-html ul, .ph-body-html ol { padding-left: 20px; margin: 0 0 16px; }
-              .ph-body-html li { margin-bottom: 6px; }
+              .ph-body-html ul { padding-left: 20px; margin: 0 0 16px; list-style-type: disc; }
+              .ph-body-html ol { padding-left: 20px; margin: 0 0 16px; list-style-type: decimal; }
+              .ph-body-html li { margin-bottom: 6px; display: list-item; }
+              .ph-body-html ul ul { list-style-type: circle; margin: 4px 0 4px; }
               .ph-body-html strong, .ph-body-html b { color: #fff; font-weight: 600; }
               .ph-body-html h2, .ph-body-html h3, .ph-body-html h4 { font-family: 'Essonnes', 'Playfair Display', serif; color: #fff; margin: 24px 0 12px; }
             `}</style>
