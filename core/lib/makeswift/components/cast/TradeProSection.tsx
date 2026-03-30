@@ -81,7 +81,7 @@ const TradeProSection = forwardRef(function TradeProSection(
             <span className="overline">{overline || "Benefits for Contractors & Installers"}</span>
           </div>
           <div className="text-center mb-14">
-            <h2 className="section-heading text-4xl md:text-5xl text-foreground mb-3">
+            <h2 className="heading-style-h2 text-foreground mb-3">
               {heading || "The TradePro"} <span className="text-gradient-warm">{headingAccent || "Advantage"}</span>
             </h2>
             <p className="section-desc max-w-xl mx-auto">
@@ -97,7 +97,7 @@ const TradeProSection = forwardRef(function TradeProSection(
                   <div className="icon-box mb-5 group-hover:bg-primary/20 transition-colors">
                     <Icon className="w-6 h-6 text-primary" />
                   </div>
-                  <h3 className="card-title text-foreground mb-2">{b.title}</h3>
+                  <h3 className="heading-style-h3 text-foreground mb-2">{b.title}</h3>
                   <p className="text-size-small text-muted-foreground leading-relaxed">{b.desc}</p>
                 </div>
               )

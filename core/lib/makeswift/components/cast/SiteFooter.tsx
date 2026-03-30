@@ -169,7 +169,7 @@ const SiteFooter = forwardRef(function SiteFooter(
 
             {cols.map((col) => (
               <div key={col.title}>
-                <h4 className="heading-style-h6 tracking-wider text-foreground mb-4 uppercase" style={{ fontSize: '14px' }}>{col.title}</h4>
+                <h4 className="heading-style-h4 tracking-wider text-foreground mb-4 uppercase">{col.title}</h4>
                 <ul className="space-y-2.5">
                   {col.links.map((link, i) => (
                     <li key={i}>

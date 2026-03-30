@@ -96,7 +96,7 @@ const ComparisonSection = forwardRef(function ComparisonSection(
             <span className="overline">{overline || "CAST vs Other Brands"}</span>
           </div>
           <div className="text-center mb-14">
-            <h2 className="section-heading text-4xl md:text-5xl text-foreground mb-3">
+            <h2 className="heading-style-h2 text-foreground mb-3">
               {heading || "Why Contractors Choose"} <span className="text-gradient-warm">{headingAccent || "CAST"}</span>
             </h2>
             <p className="section-desc max-w-xl mx-auto">

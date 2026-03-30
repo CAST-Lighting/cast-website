@@ -176,7 +176,7 @@ const ProductHero = forwardRef(function ProductHero(
           {/* Right: Product info + description (scrolls naturally) */}
           <div style={{ flex: 1, minWidth: 0 }}>
             {/* Product name FIRST */}
-            <h1 style={{ fontSize: "var(--h2-size)", fontWeight: "var(--heading-weight, 700)", lineHeight: "var(--heading-line-height, 1.1)", fontFamily: "'Essonnes', 'Playfair Display', serif", color: "var(--color-title)", margin: "0 0 8px" }}>
+            <h1 style={{ fontSize: "var(--h1-size)", fontWeight: "var(--heading-weight, 700)", lineHeight: "var(--heading-line-height, 1.1)", fontFamily: "'Essonnes', 'Playfair Display', serif", color: "var(--color-title)", margin: "0 0 8px" }}>
               {resolvedProductName}
             </h1>
 

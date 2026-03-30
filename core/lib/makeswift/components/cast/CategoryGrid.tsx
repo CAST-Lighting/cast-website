@@ -107,7 +107,7 @@ const CategoryGrid = forwardRef(function CategoryGrid(
       <div className="relative" style={{ zIndex: 10 }}>
         <div className="site-container">
           <div className="text-center mb-14">
-            <h2 className="section-heading text-4xl md:text-5xl text-foreground mb-3 opacity-100">
+            <h2 className="heading-style-h2 text-foreground mb-3 opacity-100">
               {sectionTitle || "Product"} <span className="text-gradient-warm">{sectionTitleAccent || "Categories"}</span>
             </h2>
             <p className="section-desc">

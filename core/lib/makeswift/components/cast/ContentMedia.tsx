@@ -100,7 +100,7 @@ const ContentMedia = forwardRef(function ContentMedia(
         <div className="site-container">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
-              <h2 className="section-heading text-4xl md:text-5xl text-foreground mb-6 leading-tight">
+              <h2 className="heading-style-h2 text-foreground mb-6 leading-tight">
                 {heading || "Unmatched Quality, Technology &"}{" "}
                 <span className="text-gradient-warm">{headingAccent || "Durability"}</span>
               </h2>

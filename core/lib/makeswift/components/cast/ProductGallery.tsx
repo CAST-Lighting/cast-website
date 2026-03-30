@@ -134,7 +134,7 @@ const ProductGallery = forwardRef(function ProductGallery(
         <div className="site-container mb-10">
           <div className="flex flex-col md:flex-row md:items-end md:justify-between">
             <div>
-              <h2 className="section-heading text-4xl md:text-5xl text-foreground mb-3">
+              <h2 className="heading-style-h2 text-foreground mb-3">
                 {sectionTitle || 'Our Favorite'}{' '}
                 <span className="text-gradient-warm">{sectionTitleAccent || 'Picks'}</span>
               </h2>
@@ -177,7 +177,7 @@ const ProductGallery = forwardRef(function ProductGallery(
                   />
                 </div>
                 <div className="p-5">
-                  <h3 className="card-title text-foreground mb-1">{product.name}</h3>
+                  <h3 className="heading-style-h3 text-foreground mb-1">{product.name}</h3>
                   {product.price && <p className="text-primary text-size-large font-bold mb-3">{product.price}</p>}
                   <span className="inline-flex items-center gap-1.5 text-size-small text-muted-foreground group-hover:text-primary transition-colors">
                     View Product <ArrowRight className="w-3.5 h-3.5" />
