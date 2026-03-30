@@ -13,7 +13,7 @@ runtime.registerComponent(
       paddingBottom: NumberControl({ label: "📐 Layout — Padding Bottom (px)", defaultValue: 64, min: 0, max: 400, step: 8 }),
 
       // 🎨 Background
-      bgColor: Color({ label: "🎨 Background — Color", defaultValue: "#0f1923" }),
+      bgColor: Color({ label: "🎨 Background — Color", defaultValue: "#F5F5F5" }),
 
       // ✏️ Content
       heading: TextInput({ label: "✏️ Content — Heading", defaultValue: "My Favorites" }),
