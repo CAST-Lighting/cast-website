@@ -130,10 +130,10 @@ const ProductHero = forwardRef(function ProductHero(
         }
         .ph-thumb.active { border-color: var(--color-primary); }
         .ph-thumb:hover { border-color: var(--color-accent); }
-        .ph-qty { display: flex; align-items: center; border: 1px solid rgba(255,255,255,0.12); border-radius: 4px; overflow: hidden; width: fit-content; }
-        .ph-qty button { width: 36px; height: 36px; border: none; background: #2d353c; cursor: pointer; font-size: 18px; color: var(--color-primary); display: flex; align-items: center; justify-content: center; transition: background 200ms; }
-        .ph-qty button:hover { background: #37474f; }
-        .ph-qty input { width: 48px; border: none; text-align: center; font-family: 'Barlow', sans-serif; font-size: 16px; font-weight: 600; color: var(--color-title); outline: none; background: #2d353c; }
+        .ph-qty { display: flex; align-items: center; border: 2px solid rgba(255,255,255,0.25); border-radius: 4px; overflow: hidden; width: fit-content; background: #ffffff; }
+        .ph-qty button { width: 38px; height: 38px; border: none; background: #ffffff; cursor: pointer; font-size: 20px; color: #007CB0; display: flex; align-items: center; justify-content: center; transition: background 200ms; }
+        .ph-qty button:hover { background: #f0f8ff; }
+        .ph-qty input { width: 48px; border: none; text-align: center; font-family: 'Barlow', sans-serif; font-size: 16px; font-weight: 700; color: #25262d; outline: none; background: #ffffff; }
         .ph-tradepro-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(0,73,96,0.08); color: var(--color-primary); font-family: 'Barlow', sans-serif; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; padding: 4px 10px; border-radius: 3px; }
         @media (max-width: 900px) {
           .ph-layout { flex-direction: column !important; }
