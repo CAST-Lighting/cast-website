@@ -73,10 +73,10 @@ export default async function BlogPost(props: Props) {
           line-height: 1.3;
           margin: 1.6em 0 0.6em;
         }
-        .bp-prose h1 { font-size: 2em; }
-        .bp-prose h2 { font-size: 1.55em; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 0.4em; }
-        .bp-prose h3 { font-size: 1.25em; }
-        .bp-prose h4 { font-size: 1.05em; color: rgba(255,255,255,0.85); }
+        .bp-prose h1 { font-size: var(--h1-size); }
+        .bp-prose h2 { font-size: var(--h2-size); border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 0.4em; }
+        .bp-prose h3 { font-size: var(--h3-size); }
+        .bp-prose h4 { font-size: var(--h4-size); color: rgba(255,255,255,0.85); }
         .bp-prose p {
           font-family: 'Barlow', sans-serif;
           font-size: 17px;

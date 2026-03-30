@@ -561,7 +561,7 @@ export default async function Search(props: Props) {
                           <p className="cast-product-category">{product.subtitle}</p>
                         )}
                         <a href={product.href} style={{ textDecoration: 'none' }}>
-                          <p className="cast-product-title">{product.title}</p>
+                          <h3 className="cast-product-title">{product.title}</h3>
                         </a>
                         <PriceDisplay price={product.price as any} />
                         <a
@@ -659,8 +659,8 @@ const castSearchStyles = `
     align-self: flex-start;
   }
   .cast-sidebar-title {
-    font-family: 'Barlow', sans-serif;
-    font-size: 20px;
+    font-family: 'Essonnes', 'Playfair Display', serif;
+    font-size: var(--h2-size);
     font-weight: 700;
     color: #fff;
     margin: 0;
@@ -881,9 +881,9 @@ const castSearchStyles = `
     margin: 0;
   }
   .cast-product-title {
-    font-family: 'Barlow', sans-serif;
-    font-size: 15px;
-    font-weight: 600;
+    font-family: 'Essonnes', 'Playfair Display', serif;
+    font-size: var(--h3-size);
+    font-weight: 700;
     color: #fff;
     margin: 0;
     line-height: 1.35;

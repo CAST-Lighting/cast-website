@@ -250,9 +250,9 @@ const ProductHero = forwardRef(function ProductHero(
               .ph-body-html li { margin-bottom: 6px; display: list-item; }
               .ph-body-html ul ul { list-style-type: circle; margin: 4px 0 4px; }
               .ph-body-html strong, .ph-body-html b { color: #fff; font-weight: 600; }
-              .ph-body-html h2 { font-family: 'Essonnes', 'Playfair Display', serif; font-size: 20px; color: #fff; margin: 24px 0 10px; }
-              .ph-body-html h3 { font-family: 'Essonnes', 'Playfair Display', serif; font-size: 17px; color: #fff; margin: 20px 0 8px; }
-              .ph-body-html h4 { font-family: 'Barlow', sans-serif; font-size: 15px; font-weight: 700; color: rgba(255,255,255,0.85); margin: 16px 0 6px; text-transform: uppercase; letter-spacing: 0.04em; }
+              .ph-body-html h2 { font-family: 'Essonnes', 'Playfair Display', serif; font-size: var(--h3-size); color: #fff; margin: 24px 0 10px; }
+              .ph-body-html h3 { font-family: 'Essonnes', 'Playfair Display', serif; font-size: var(--h4-size); color: #fff; margin: 20px 0 8px; }
+              .ph-body-html h4 { font-family: 'Essonnes', 'Playfair Display', serif; font-size: var(--h5-size); color: rgba(255,255,255,0.85); margin: 16px 0 6px; }
             `}</style>
             {isHtml ? (
               <div className="ph-body-html" style={{ fontFamily: "'Barlow', sans-serif", fontSize: 16, color: "var(--color-content)", lineHeight: 1.7, maxWidth: 640 }} dangerouslySetInnerHTML={{ __html: body }} />
