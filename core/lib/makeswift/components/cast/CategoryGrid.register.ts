@@ -38,7 +38,7 @@ runtime.registerComponent(
       sectionDescription: TextInput({ label: "✏️ Content — Section Description", defaultValue: "Explore our full range of professional landscape lighting solutions." }),
 
       // 🌓 Theme
-      mode: Select({ label: '🌓 Theme', options: [{ value: 'dark', label: 'Dark' }, { value: 'light', label: 'Light' }], defaultValue: 'dark' }),
+      mode: Select({ label: '🌓 Theme', options: [{ value: 'dark', label: 'Dark' }, { value: 'light', label: 'Light' }], defaultValue: 'light' }),
 
       // 📦 Items — Categories
       categories: List({

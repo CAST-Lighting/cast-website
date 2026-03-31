@@ -38,7 +38,7 @@ const CategoryGrid = forwardRef(function CategoryGrid(
     sectionTitleAccent,
     sectionDescription,
     categories: propCategories,
-    mode = 'dark',
+    mode = 'light',
   }: {
     className?: string
     bgImage?: string
@@ -87,52 +87,71 @@ const CategoryGrid = forwardRef(function CategoryGrid(
       ? bcCategories.slice(0, 8).map((cat) => ({ name: cat.name, href: cat.path }))
       : FALLBACK_CATEGORIES
 
+  const isLight = mode === 'light'
+
   return (
     <section
       ref={ref}
       className={`relative overflow-hidden ${className || ""}`}
-      style={{ '--section-line-height': lineHeight, paddingTop: paddingTop ?? 96, paddingBottom: paddingBottom ?? 96 } as React.CSSProperties}
+      style={{ fontFamily: "'Barlow', sans-serif", background: isLight ? sectionBackground : undefined, paddingTop: paddingTop ?? 96, paddingBottom: paddingBottom ?? 96 } as React.CSSProperties}
     >
-      {/* bg image layer */}
-      <img
-        src={resolvedImgSrc}
-        alt=""
-        className="absolute inset-0 w-full h-full object-cover"
-        style={{ zIndex: 0 }}
-      />
-      {/* overlay layer */}
-      <div className="absolute inset-0" style={{
-        zIndex: 1,
-        background: sectionBackground,
-        opacity: overlayOpacity
-      }} />
+      {/* bg image + overlay — dark mode only */}
+      {!isLight && (
+        <>
+          <img
+            src={resolvedImgSrc}
+            alt=""
+            className="absolute inset-0 w-full h-full object-cover"
+            style={{ zIndex: 0 }}
+          />
+          <div className="absolute inset-0" style={{ zIndex: 1, background: sectionBackground, opacity: overlayOpacity }} />
+        </>
+      )}
 
       {/* content */}
       <div className="relative" style={{ zIndex: 10 }}>
         <div className="site-container">
-          <div className="text-center mb-14">
-            <h2 className="heading-style-h2 text-foreground mb-3 opacity-100">
-              {sectionTitle || "Product"} <span className="text-gradient-warm">{sectionTitleAccent || "Categories"}</span>
+          <div style={{ textAlign: 'center', marginBottom: 56 }}>
+            <h2 style={{ fontFamily: "'Essonnes','Playfair Display',serif", fontSize: "var(--h2-size)", fontWeight: 700, color: t.heading, margin: "0 0 12px" }}>
+              {sectionTitle || "Product"}{" "}
+              <span className="text-gradient-warm">{sectionTitleAccent || "Categories"}</span>
             </h2>
-            <p className="section-desc">
+            <p style={{ fontFamily: "'Barlow',sans-serif", fontSize: 16, color: t.body, margin: 0 }}>
               {sectionDescription || "Explore our full range of professional landscape lighting solutions."}
             </p>
           </div>
+
+          <style>{`
+            .cat-card {
+              display: flex; flex-direction: column; align-items: center; gap: 12px;
+              background: ${t.cardBg};
+              border: 1px solid ${t.cardBorder};
+              border-radius: 12px;
+              width: 112px; flex-shrink: 0; padding: 20px 8px;
+              text-decoration: none;
+              transition: border-color 200ms, box-shadow 200ms;
+            }
+            .cat-card:hover {
+              border-color: rgba(0,124,176,0.4);
+              box-shadow: 0 4px 24px ${isLight ? 'rgba(0,73,96,0.12)' : 'rgba(0,0,0,0.25)'};
+            }
+            .cat-card svg, .cat-card .cat-icon { color: ${t.subtle}; transition: color 200ms; }
+            .cat-card:hover svg, .cat-card:hover .cat-icon { color: ${t.accent}; }
+            .cat-label {
+              font-family: 'Barlow', sans-serif; font-size: 12px; font-weight: 600;
+              color: ${t.body}; text-align: center; line-height: 1.3;
+              transition: color 200ms;
+            }
+            .cat-card:hover .cat-label { color: ${t.accent}; }
+          `}</style>
 
           <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 16 }}>
             {displayCategories.map((cat, i) => {
               const Icon = categoryIcons[i % categoryIcons.length] as React.ElementType
               return (
-                <a
-                  key={i}
-                  href={cat.href}
-                  className="group flex flex-col items-center gap-3 rounded-xl border border-border bg-secondary hover:border-primary/40 hover:bg-secondary/80 transition-all duration-300"
-                  style={{ width: 112, flexShrink: 0, padding: '20px 8px' }}
-                >
-                  <Icon className="w-8 h-8 text-muted-foreground group-hover:text-primary transition-colors" />
-                  <span className="text-size-small font-medium text-secondary-foreground group-hover:text-primary text-center transition-colors" style={{ lineHeight: 1.3 }}>
-                    {cat.name}
-                  </span>
+                <a key={i} href={cat.href} className="cat-card">
+                  <Icon className="cat-icon" style={{ width: 32, height: 32 }} />
+                  <span className="cat-label">{cat.name}</span>
                 </a>
               )
             })}
