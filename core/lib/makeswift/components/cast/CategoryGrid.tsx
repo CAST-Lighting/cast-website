@@ -1,4 +1,4 @@
-﻿"use client"
+"use client"
 import { forwardRef, type Ref, useState, useEffect } from "react"
 import { Lightbulb, Sun, CircleDot, Lamp, SquareAsterisk, Zap, Focus } from "lucide-react"
 import { getTheme } from "~/lib/makeswift/theme"
@@ -76,7 +76,7 @@ const CategoryGrid = forwardRef(function CategoryGrid(
     ? `linear-gradient(${gradientDirection || 'to bottom'}, ${gradientFrom}, ${gradientTo})`
     : bgColor || t.bg
 
-  // Build display categories: prop list ΓåÆ BC categories ΓåÆ fallback
+  // Build display categories: prop list → BC categories → fallback
   const hasPropCategories = propCategories && propCategories.length > 0
   const displayCategories = hasPropCategories
     ? propCategories.map((cat, i) => ({
