@@ -34,7 +34,6 @@ import './components/cast/TradeProSection.register';
 
 // CTA & Conversion
 import './components/cast/ReadyCTA.register';
-import './components/cast/NewsletterCta.register';
 import './components/cast/NewsletterCtaFull.register';
 
 // Forms & Contact
