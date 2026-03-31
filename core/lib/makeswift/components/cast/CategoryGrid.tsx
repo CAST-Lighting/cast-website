@@ -1,26 +1,34 @@
 "use client"
 import { forwardRef, type Ref, useState, useEffect } from "react"
-import { Lightbulb, Sun, CircleDot, Lamp, SquareAsterisk, Zap, Focus } from "lucide-react"
 import { getTheme } from "~/lib/makeswift/theme"
 
-const defaultBgSrc = "https://storage.googleapis.com/s.mkswft.com/RmlsZTpkZDVmYmU0ZS1hMzE3LTRlYWYtODg0Zi0wY2Q0MWVlOWU2ZTk=/background-6.jpg"
+interface BCCategory { name: string; path: string; imageUrl?: string; productCount?: number }
+interface CategoryItem { name?: string; href?: string; image?: string; productCount?: number }
 
-const categoryIcons = [Lamp, Zap, Sun, CircleDot, SquareAsterisk, Zap, Focus, Lightbulb]
-
-interface BCCategory { name: string; path: string }
-
-interface CategoryItem { name?: string; href?: string }
-
-const FALLBACK_CATEGORIES = [
-  { name: "Path & Area Lights", href: "/category/26" },
-  { name: "Spot & Accent", href: "/category/31" },
-  { name: "Well & Ground", href: "/category/35" },
-  { name: "Deck & Wall", href: "/category/30" },
-  { name: "Down Lights", href: "/category/32" },
-  { name: "Transformers", href: "/category/45" },
-  { name: "Accessories", href: "/category/19" },
-  { name: "All Products", href: "/category/23" },
+const FALLBACK_CATEGORIES: CategoryItem[] = [
+  { name: "Path & Area Lights",  href: "/category/path-lights" },
+  { name: "Spot & Accent",       href: "/category/spot-accent" },
+  { name: "Well & Ground",       href: "/category/well-ground" },
+  { name: "Deck & Wall",         href: "/category/deck-wall" },
+  { name: "Down Lights",         href: "/category/down-lights" },
+  { name: "Transformers",        href: "/category/transformers" },
+  { name: "Accessories",         href: "/category/accessories" },
+  { name: "All Products",        href: "/category/all" },
 ]
+
+// Category placeholder — decorative grid pattern matching ShopGrid
+const CategoryPlaceholder = ({ name }: { name: string }) => (
+  <div style={{ width: "100%", height: "100%", background: "linear-gradient(135deg, #1a2e3a 0%, #0d4a5c 50%, #1a3a4a 100%)", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 10, position: "relative" }}>
+    <div style={{ position: "absolute", inset: 0, backgroundImage: "linear-gradient(rgba(175,229,253,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(175,229,253,0.04) 1px, transparent 1px)", backgroundSize: "24px 24px" }} />
+    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" style={{ opacity: 0.45, position: "relative", zIndex: 1 }}>
+      <circle cx="12" cy="12" r="10" stroke="#7EBEE8" strokeWidth="1.5" />
+      <path d="M8 12h8M12 8v8" stroke="#7EBEE8" strokeWidth="1.5" strokeLinecap="round" />
+    </svg>
+    <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 10, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.12em", color: "rgba(0,124,176,0.7)", position: "relative", zIndex: 1, textAlign: "center", maxWidth: 100, padding: "0 8px" }}>
+      {name}
+    </span>
+  </div>
+)
 
 const CategoryGrid = forwardRef(function CategoryGrid(
   {
@@ -31,7 +39,6 @@ const CategoryGrid = forwardRef(function CategoryGrid(
     gradientFrom,
     gradientTo,
     gradientDirection,
-    lineHeight,
     paddingTop,
     paddingBottom,
     sectionTitle,
@@ -47,7 +54,6 @@ const CategoryGrid = forwardRef(function CategoryGrid(
     gradientFrom?: string
     gradientTo?: string
     gradientDirection?: string
-    lineHeight?: number
     paddingTop?: number
     paddingBottom?: number
     sectionTitle?: string
@@ -62,81 +68,124 @@ const CategoryGrid = forwardRef(function CategoryGrid(
 
   useEffect(() => {
     fetch('/api/cast/categories')
-      .then((r) => r.json())
-      .then((data: BCCategory[]) => { if (data.length > 0) setBcCategories(data) })
+      .then(r => r.json())
+      .then((data: BCCategory[]) => { if (data?.length > 0) setBcCategories(data) })
       .catch(() => {})
   }, [])
 
   const t = getTheme(mode)
-  const bgImageUrl = bgImage
-  const resolvedImgSrc = bgImageUrl || defaultBgSrc
   const hasGradient = !!(gradientFrom && gradientTo)
   const overlayOpacity = typeof bgOpacity === 'number' ? bgOpacity / 100 : 0.85
   const sectionBackground = hasGradient
     ? `linear-gradient(${gradientDirection || 'to bottom'}, ${gradientFrom}, ${gradientTo})`
     : bgColor || t.bg
 
-  // Build display categories: prop list → BC categories → fallback
   const hasPropCategories = propCategories && propCategories.length > 0
-  const displayCategories = hasPropCategories
+  const displayCategories: CategoryItem[] = hasPropCategories
     ? propCategories.map((cat, i) => ({
-        name: cat.name || bcCategories[i]?.name || FALLBACK_CATEGORIES[i]?.name || `Category ${i + 1}`,
-        href: cat.href || bcCategories[i]?.path || '#',
+        name:         cat.name  || bcCategories[i]?.name  || FALLBACK_CATEGORIES[i]?.name  || `Category ${i + 1}`,
+        href:         cat.href  || bcCategories[i]?.path  || '#',
+        image:        cat.image || bcCategories[i]?.imageUrl,
+        productCount: cat.productCount ?? bcCategories[i]?.productCount,
       }))
     : bcCategories.length > 0
-      ? bcCategories.slice(0, 8).map((cat) => ({ name: cat.name, href: cat.path }))
+      ? bcCategories.slice(0, 8).map(c => ({ name: c.name, href: c.path, image: c.imageUrl, productCount: c.productCount }))
       : FALLBACK_CATEGORIES
 
   return (
     <section
       ref={ref}
       className={`relative overflow-hidden ${className || ""}`}
-      style={{ '--section-line-height': lineHeight, paddingTop: paddingTop ?? 96, paddingBottom: paddingBottom ?? 96 } as React.CSSProperties}
+      style={{ paddingTop: paddingTop ?? 96, paddingBottom: paddingBottom ?? 96, position: "relative" } as React.CSSProperties}
     >
-      {/* bg image layer */}
-      <img
-        src={resolvedImgSrc}
-        alt=""
-        className="absolute inset-0 w-full h-full object-cover"
-        style={{ zIndex: 0 }}
-      />
-      {/* overlay layer */}
-      <div className="absolute inset-0" style={{
-        zIndex: 1,
-        background: sectionBackground,
-        opacity: overlayOpacity
-      }} />
+      {/* Background */}
+      {bgImage && <img src={bgImage} alt="" className="absolute inset-0 w-full h-full object-cover" style={{ zIndex: 0 }} />}
+      <div className="absolute inset-0" style={{ zIndex: 1, background: sectionBackground, opacity: bgImage ? overlayOpacity : 1 }} />
 
-      {/* content */}
+      <style>{`
+        .cg-grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 20px;
+        }
+        @media (max-width: 1200px) { .cg-grid { grid-template-columns: repeat(3, 1fr); } }
+        @media (max-width: 768px)  { .cg-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 480px)  { .cg-grid { grid-template-columns: 1fr; } }
+        .cg-card {
+          background: ${t.cardBg};
+          border: 1px solid ${t.cardBorder};
+          border-radius: 10px;
+          overflow: hidden;
+          display: flex;
+          flex-direction: column;
+          text-decoration: none;
+          transition: border-color 200ms, box-shadow 200ms, transform 200ms;
+        }
+        .cg-card:hover {
+          border-color: rgba(0,124,176,0.45);
+          box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+          transform: translateY(-2px);
+        }
+        .cg-card:hover .cg-btn { background: #005f8a; }
+      `}</style>
+
+      {/* Content */}
       <div className="relative" style={{ zIndex: 10 }}>
         <div className="site-container">
-          <div className="text-center mb-14">
+
+          {/* Section heading */}
+          <div style={{ textAlign: "center", marginBottom: 48 }}>
             <h2 className="heading-style-h2 text-foreground mb-3 opacity-100">
-              {sectionTitle || "Product"} <span className="text-gradient-warm">{sectionTitleAccent || "Categories"}</span>
+              {sectionTitle?.trim() || "Product"}{" "}
+              {sectionTitleAccent?.trim() && (
+                <span className="text-gradient-warm">{sectionTitleAccent}</span>
+              )}
             </h2>
-            <p className="section-desc">
-              {sectionDescription || "Explore our full range of professional landscape lighting solutions."}
-            </p>
+            {sectionDescription?.trim() && (
+              <p className="section-desc">{sectionDescription}</p>
+            )}
           </div>
 
-          <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 16 }}>
-            {displayCategories.map((cat, i) => {
-              const Icon = categoryIcons[i % categoryIcons.length] as React.ElementType
-              return (
-                <a
-                  key={i}
-                  href={cat.href}
-                  className="group flex flex-col items-center gap-3 rounded-xl border border-border bg-secondary hover:border-primary/40 hover:bg-secondary/80 transition-all duration-300"
-                  style={{ width: 112, flexShrink: 0, padding: '20px 8px' }}
-                >
-                  <Icon className="w-8 h-8 text-muted-foreground group-hover:text-primary transition-colors" />
-                  <span className="text-size-small font-medium text-secondary-foreground group-hover:text-primary text-center transition-colors" style={{ lineHeight: 1.3 }}>
-                    {cat.name}
-                  </span>
-                </a>
-              )
-            })}
+          {/* Cards */}
+          <div className="cg-grid">
+            {displayCategories.map((cat, i) => (
+              <a key={i} href={cat.href || "#"} className="cg-card">
+
+                {/* Image */}
+                <div style={{ aspectRatio: "4/3", overflow: "hidden", position: "relative", flexShrink: 0 }}>
+                  {cat.image ? (
+                    <img src={cat.image} alt={cat.name || ""} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+                  ) : (
+                    <CategoryPlaceholder name={cat.name || ""} />
+                  )}
+                </div>
+
+                {/* Info + CTA — pinned bottom */}
+                <div style={{ padding: "16px", flex: 1, display: "flex", flexDirection: "column" }}>
+                  <div style={{ flex: 1 }}>
+                    <h3 className="heading-card-sm" style={{ margin: "0 0 4px", color: t.heading }}>
+                      {cat.name || "Category"}
+                    </h3>
+                    {cat.productCount != null && (
+                      <p style={{ fontFamily: "'Barlow',sans-serif", fontSize: 12, color: t.subtle, margin: 0, fontWeight: 600 }}>
+                        {cat.productCount} {cat.productCount === 1 ? "product" : "products"}
+                      </p>
+                    )}
+                  </div>
+                  <div style={{ marginTop: 14 }}>
+                    <span
+                      className={`cg-btn ${t.btnPrimary}`}
+                      style={{ display: "block", textAlign: "center", justifyContent: "center" }}
+                    >
+                      Shop Now →
+                    </span>
+                  </div>
+                </div>
+
+              </a>
+            ))}
           </div>
+
         </div>
       </div>
     </section>
