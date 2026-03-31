@@ -70,6 +70,8 @@ export interface CmsPageData {
     customFields?: { name: string; value: string }[]
     /** Category: product count */
     productCount?: number
+    /** Category: subcategories for CmsCategoryGrid */
+    subcategories?: { name: string; href: string; image?: string }[]
     /** Search: result count */
     resultCount?: number
     /** Search: search term */

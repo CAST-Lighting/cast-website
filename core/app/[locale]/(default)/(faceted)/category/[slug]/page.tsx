@@ -32,6 +32,35 @@ const CATEGORY_NAMES: Record<number, string> = {
   63: 'In-Ground Lights',
 };
 
+interface BCCategory {
+  id: number;
+  name: string;
+  parent_id: number;
+  image_url: string | null;
+  custom_url: { url: string };
+}
+
+async function fetchSubcategories(parentId: number): Promise<{ name: string; href: string; image?: string }[]> {
+  try {
+    const res = await fetch(
+      `https://api.bigcommerce.com/stores/o3r3vyxngd/v3/catalog/categories?parent_id=${parentId}&is_visible=true&limit=50`,
+      {
+        headers: { 'X-Auth-Token': 'kwgxvplive3amj9olhkoqokxrn1hbxm', 'Content-Type': 'application/json' },
+        next: { revalidate: 3600 },
+      }
+    )
+    if (!res.ok) return []
+    const data = await res.json() as { data: BCCategory[] }
+    return (data.data ?? []).map(cat => ({
+      name: cat.name,
+      href: cat.custom_url?.url ?? `/category/${cat.id}`,
+      image: cat.image_url ?? undefined,
+    }))
+  } catch {
+    return []
+  }
+}
+
 interface BCProduct {
   id: number;
   name: string;
@@ -80,7 +109,10 @@ export default async function CategoryPage({ params }: Props) {
   const categoryId = Number(slug);
   const categoryName = CATEGORY_NAMES[categoryId] ?? 'Products';
 
-  const bcProducts = await fetchCategoryProducts(categoryId);
+  const [bcProducts, subcategories] = await Promise.all([
+    fetchCategoryProducts(categoryId),
+    fetchSubcategories(categoryId),
+  ]);
 
   // Try Makeswift template first — if /category-page/ exists in Makeswift, use it
   const makeswiftPage = await CmsPageRenderer({
@@ -91,6 +123,7 @@ export default async function CategoryPage({ params }: Props) {
       description: `${bcProducts.length} professional-grade fixture${bcProducts.length !== 1 ? 's' : ''} — solid brass and copper, lifetime warranty`,
       meta: {
         productCount: bcProducts.length,
+        subcategories,
         relatedProducts: bcProducts.slice(0, 50).map(p => {
           const img = p.images?.find((i: { is_thumbnail?: boolean }) => i.is_thumbnail) ?? p.images?.[0]
           return {

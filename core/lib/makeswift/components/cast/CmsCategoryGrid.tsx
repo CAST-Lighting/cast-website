@@ -8,15 +8,19 @@ export interface CmsCategoryGridProps {
   bgColor?: string
   paddingTop?: number
   paddingBottom?: number
+  columns?: number
 }
 
-const PLACEHOLDER_PRODUCTS = Array.from({ length: 8 }, (_, i) => ({
-  name: `Product Name Goes Here ${i + 1}`,
-  price: `$${(89 + i * 40).toFixed(2)}`,
-  sku: `SKU-${String(i + 1).padStart(4, "0")}`,
-  image: null as string | null,
-  href: "#",
-}))
+const PLACEHOLDER_CATEGORIES = [
+  { name: "Path & Area Lights",  href: "/category/26",  image: "https://cdn11.bigcommerce.com/s-o3r3vyxngd/images/stencil/960w/products/119/738/caledbt_color-wheel-960x960-3092282884__17955.1762461221.jpg" },
+  { name: "Spot & Accent",       href: "/category/31",  image: "https://cdn11.bigcommerce.com/s-o3r3vyxngd/images/stencil/960w/products/116/700/sspk12_1-960x960-52278476__36183.1762461221.jpg" },
+  { name: "Well & Ground",       href: "/category/35",  image: null },
+  { name: "Deck & Wall",         href: "/category/30",  image: null },
+  { name: "Down Lights",         href: "/category/32",  image: null },
+  { name: "Transformers",        href: "/category/45",  image: null },
+  { name: "Accessories",         href: "/category/19",  image: null },
+  { name: "All Products",        href: "/category/23",  image: null },
+]
 
 const CmsCategoryGrid = forwardRef(function CmsCategoryGrid(
   {
@@ -24,41 +28,39 @@ const CmsCategoryGrid = forwardRef(function CmsCategoryGrid(
     bgColor = "#F5F5F5",
     paddingTop = 48,
     paddingBottom = 64,
+    columns = 4,
   }: CmsCategoryGridProps,
   ref: Ref<HTMLElement>
 ) {
   const cms = useCmsData()
   const t = getTheme("light")
 
-  const categoryName  = cms?.heading      || "Category Name"
-  const description   = cms?.description  || "Professional-grade outdoor fixtures — solid brass and copper, lifetime warranty"
-  const productCount  = cms?.meta?.productCount ?? PLACEHOLDER_PRODUCTS.length
+  // On live pages, use subcategories from CMS context; fall back to placeholders in editor
+  const subcategories: { name: string; href: string; image?: string | null }[] =
+    (cms?.meta?.subcategories && cms.meta.subcategories.length > 0)
+      ? cms.meta.subcategories
+      : PLACEHOLDER_CATEGORIES
 
-  // On live site, CmsCategoryGrid pulls real products via ShopGrid's CMS context.
-  // For editor preview, we show styled placeholder cards.
-  const products = (cms?.type === "category" && cms.meta?.relatedProducts && cms.meta.relatedProducts.length > 0)
-    ? cms.meta.relatedProducts.map(p => ({
-        name:  p.name,
-        price: p.price,
-        sku:   (p as { sku?: string }).sku ?? "",
-        image: p.image ?? null,
-        href:  p.href,
-      }))
-    : PLACEHOLDER_PRODUCTS
+  // If live page has no subcategories at all, render nothing
+  if (cms && (!cms.meta?.subcategories || cms.meta.subcategories.length === 0)) {
+    return null
+  }
+
+  const cols = Math.min(Math.max(columns ?? 4, 1), 6)
 
   return (
     <div
       ref={ref as Ref<HTMLDivElement>}
       className={className || ""}
-      style={{ background: bgColor, minHeight: 200 }}
+      style={{ background: bgColor, fontFamily: "'Barlow', sans-serif" }}
     >
       <style>{`
         .ccg-grid {
           display: grid;
-          grid-template-columns: repeat(4, 1fr);
+          grid-template-columns: repeat(${cols}, 1fr);
           gap: 20px;
         }
-        @media (max-width: 1200px) { .ccg-grid { grid-template-columns: repeat(3, 1fr); } }
+        @media (max-width: 1200px) { .ccg-grid { grid-template-columns: repeat(${Math.min(cols, 3)}, 1fr); } }
         @media (max-width: 768px)  { .ccg-grid { grid-template-columns: repeat(2, 1fr); } }
         @media (max-width: 480px)  { .ccg-grid { grid-template-columns: 1fr; } }
         .ccg-card {
@@ -73,63 +75,63 @@ const CmsCategoryGrid = forwardRef(function CmsCategoryGrid(
         }
         .ccg-card:hover {
           border-color: rgba(0,124,176,0.4);
-          box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+          box-shadow: 0 4px 24px rgba(0,73,96,0.12);
+        }
+        .ccg-card-name {
+          font-family: 'Essonnes','Playfair Display',serif;
+          font-size: 17px;
+          font-weight: 700;
+          color: ${t.heading};
+          margin: 0 0 6px;
+          line-height: 1.25;
+          transition: color 200ms;
+        }
+        .ccg-card:hover .ccg-card-name { color: ${t.accent}; }
+        .ccg-cta {
+          font-family: 'Barlow', sans-serif;
+          font-size: 12px;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 0.08em;
+          color: ${t.accent};
         }
       `}</style>
 
       <div className="site-container" style={{ paddingTop, paddingBottom }}>
-
-        {/* Category header */}
-        <div style={{ marginBottom: 36 }}>
-          <p style={{ fontFamily: "'Barlow',sans-serif", fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: t.accent, margin: "0 0 10px" }}>
-            <span style={{ color: t.subtle }}>Home / Shop / </span>{categoryName}
-          </p>
-          <h2 style={{ fontFamily: "'Essonnes','Playfair Display',serif", fontSize: "var(--h2-size)", fontWeight: 700, color: t.heading, margin: "0 0 6px", lineHeight: 1.15 }}>
-            {categoryName}
-          </h2>
-          <p style={{ fontFamily: "'Barlow',sans-serif", fontSize: 15, color: t.subtle, margin: 0 }}>
-            {cms ? `${productCount} product${productCount !== 1 ? "s" : ""}` : description}
-          </p>
-        </div>
-
-        {/* Product cards */}
         <div className="ccg-grid">
-          {products.map((product, i) => (
-            <a key={i} href={product.href} className="ccg-card">
+          {subcategories.map((cat, i) => (
+            <a key={i} href={cat.href} className="ccg-card">
 
               {/* Image */}
-              <div style={{ aspectRatio: "1/1", overflow: "hidden", position: "relative", flexShrink: 0 }}>
-                {product.image ? (
-                  <img src={product.image} alt={product.name} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+              <div style={{ aspectRatio: "4/3", overflow: "hidden", position: "relative", flexShrink: 0 }}>
+                {cat.image ? (
+                  <img
+                    src={cat.image}
+                    alt={cat.name}
+                    style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", transition: "transform 300ms" }}
+                    onMouseEnter={e => (e.currentTarget.style.transform = "scale(1.04)")}
+                    onMouseLeave={e => (e.currentTarget.style.transform = "scale(1)")}
+                  />
                 ) : (
-                  <div style={{ width: "100%", height: "100%", background: "linear-gradient(135deg, #1a2e3a 0%, #0d4a5c 50%, #1a3a4a 100%)", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 10, position: "relative" }}>
-                    <div style={{ position: "absolute", inset: 0, backgroundImage: "linear-gradient(rgba(175,229,253,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(175,229,253,0.04) 1px, transparent 1px)", backgroundSize: "24px 24px" }} />
-                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" style={{ opacity: 0.4, position: "relative", zIndex: 1 }}>
-                      <circle cx="12" cy="12" r="10" stroke="#7EBEE8" strokeWidth="1.5" />
-                      <path d="M8 12h8M12 8v8" stroke="#7EBEE8" strokeWidth="1.5" strokeLinecap="round" />
+                  <div style={{
+                    width: "100%", height: "100%",
+                    background: "linear-gradient(135deg, #014960 0%, #007CB0 60%, #7EBEE8 100%)",
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                    position: "relative",
+                  }}>
+                    <div style={{ position: "absolute", inset: 0, backgroundImage: "linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px)", backgroundSize: "24px 24px" }} />
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" style={{ opacity: 0.6, position: "relative", zIndex: 1 }}>
+                      <circle cx="12" cy="12" r="9" stroke="#fff" strokeWidth="1.5" />
+                      <path d="M12 7v5l3 3" stroke="#fff" strokeWidth="1.5" strokeLinecap="round" />
                     </svg>
                   </div>
                 )}
               </div>
 
-              {/* Info + CTA — pinned bottom */}
-              <div style={{ padding: "16px", flex: 1, display: "flex", flexDirection: "column" }}>
-                <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: 4 }}>
-                  <h3 className="heading-card-sm" style={{ margin: 0, color: t.heading }}>{product.name}</h3>
-                  {product.sku && (
-                    <p style={{ fontFamily: "'Barlow',sans-serif", fontSize: 11, fontWeight: 600, color: t.subtle, textTransform: "uppercase", letterSpacing: "0.08em", margin: 0 }}>
-                      #{product.sku}
-                    </p>
-                  )}
-                  <p style={{ fontFamily: "'Barlow',sans-serif", fontSize: 18, fontWeight: 700, color: t.heading, margin: 0 }}>
-                    {product.price}
-                  </p>
-                </div>
-                <div style={{ marginTop: 14 }}>
-                  <span className={t.btnPrimary} style={{ display: "block", textAlign: "center", justifyContent: "center" }}>
-                    View Product →
-                  </span>
-                </div>
+              {/* Info */}
+              <div style={{ padding: "16px 18px", flex: 1, display: "flex", flexDirection: "column", justifyContent: "space-between", gap: 8 }}>
+                <h3 className="ccg-card-name">{cat.name}</h3>
+                <span className="ccg-cta">Shop {cat.name} →</span>
               </div>
 
             </a>
@@ -139,10 +141,9 @@ const CmsCategoryGrid = forwardRef(function CmsCategoryGrid(
         {/* Editor note */}
         {!cms && (
           <p style={{ fontFamily: "'Barlow',sans-serif", fontSize: 13, color: t.subtle, textAlign: "center", marginTop: 32, fontStyle: "italic", opacity: 0.6 }}>
-            Live category pages will show real BigCommerce products here.
+            Live category pages will show real BigCommerce subcategories here.
           </p>
         )}
-
       </div>
     </div>
   )
