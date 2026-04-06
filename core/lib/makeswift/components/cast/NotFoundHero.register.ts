@@ -9,8 +9,8 @@ runtime.registerComponent(
     label: "404 / Not Found Hero",
     props: {
       className: Style(),
-      paddingTop: Number({ label: "📐 Layout — Padding Top (px)", defaultValue: 80 }),
-      paddingBottom: Number({ label: "📐 Layout — Padding Bottom (px)", defaultValue: 80 }),
+      paddingTop:    Number({ label: "📐 Layout — Padding Top",    defaultValue: 80, min: 0, max: 400, step: 8, suffix: "px" }),
+      paddingBottom: Number({ label: "📐 Layout — Padding Bottom", defaultValue: 80, min: 0, max: 400, step: 8, suffix: "px" }),
 
       // 🎨 Background
       bgColor: Color({ label: "🎨 Background — Color", defaultValue: "#0f1923" }),

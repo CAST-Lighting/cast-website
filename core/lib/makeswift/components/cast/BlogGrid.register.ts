@@ -15,8 +15,8 @@ runtime.registerComponent(
       // 🎨 Background
       bgColor: Color({ label: "🎨 Background — Color", defaultValue: "#0f1923" }),
 
-      // 📐 Layout
-      postsPerPage: NumberControl({ label: "📐 Layout — Posts Per Page", defaultValue: 9, min: 3, max: 24, step: 3 }),
+      // ✏️ Content
+      emptyMessage: TextInput({ label: "✏️ Content — Empty State Message", defaultValue: "No posts found." }),
 
       // 📦 Items — Category Filter
       categoryTags: List({
@@ -32,8 +32,8 @@ runtime.registerComponent(
         },
       }),
 
-      // ✏️ Content
-      emptyMessage: TextInput({ label: "✏️ Content — Empty State Message", defaultValue: "No posts found." }),
+      // 📐 Layout
+      postsPerPage: NumberControl({ label: "📐 Layout — Posts Per Page", defaultValue: 9, min: 3, max: 24, step: 3 }),
     },
   }
 )

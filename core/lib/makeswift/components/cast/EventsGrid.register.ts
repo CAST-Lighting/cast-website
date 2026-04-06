@@ -9,8 +9,8 @@ runtime.registerComponent(
     label: "Sections / Events Grid",
     props: {
       className: Style(),
-      paddingTop: NumberControl({ label: "📐 Layout — Padding Top (px)", defaultValue: 72, min: 0, max: 400, step: 8 }),
-      paddingBottom: NumberControl({ label: "📐 Layout — Padding Bottom (px)", defaultValue: 96, min: 0, max: 400, step: 8 }),
+      paddingTop:    NumberControl({ label: "📐 Layout — Padding Top",    defaultValue: 72, min: 0, max: 400, step: 8, suffix: "px" }),
+      paddingBottom: NumberControl({ label: "📐 Layout — Padding Bottom", defaultValue: 96, min: 0, max: 400, step: 8, suffix: "px" }),
 
       // 🎨 Background
       bgColor: Color({ label: "🎨 Background — Color", defaultValue: "#0f1923" }),
