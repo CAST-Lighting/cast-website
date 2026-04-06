@@ -26,6 +26,7 @@ interface ProductDetailProduct {
   price?: Streamable<Price | null>;
   subtitle?: string;
   badge?: string;
+  sku?: string;
   rating?: Streamable<number | null>;
   reviewsEnabled?: boolean;
   showRating?: boolean;
@@ -137,6 +138,9 @@ export function ProductDetail<F extends Field>({
                   <h1 className="mb-3 mt-2 font-[family-name:var(--product-detail-title-font-family,var(--font-family-heading))] text-2xl font-medium leading-none @xl:mb-4 @xl:text-3xl @4xl:text-4xl">
                     {product.title}
                   </h1>
+                  {Boolean(product.sku) && (
+                    <p className="mb-3 text-xs text-gray-500">Model: {product.sku}</p>
+                  )}
                   {product.reviewsEnabled && (
                     <div className="group/product-rating">
                       <ReviewForm

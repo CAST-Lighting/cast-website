@@ -688,6 +688,7 @@ export default async function Product({ params, searchParams }: Props) {
             showRating,
             numberOfReviews: baseProduct.reviewSummary.numberOfReviews,
             subtitle: baseProduct.brand?.name,
+            sku: baseProduct.sku,
             rating: baseProduct.reviewSummary.averageRating,
             accordions: streameableAccordions,
             minQuantity: streamableMinQuantity,
