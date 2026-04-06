@@ -1,5 +1,6 @@
 "use client"
 import { forwardRef, useEffect, useState, type Ref } from "react"
+import { useParams } from "next/navigation"
 import { getTheme } from "~/lib/makeswift/theme"
 
 interface QuoteLineItem {
@@ -73,6 +74,8 @@ function QuoteDetail(
   ref: Ref<HTMLElement>,
 ) {
   const t = getTheme("light")
+  const params = useParams()
+  const quoteId = params?.id as string | undefined
 
   const [quote, setQuote]             = useState<QuoteData>(DEMO_QUOTE)
   const [editingName, setEditingName] = useState(false)
@@ -80,21 +83,39 @@ function QuoteDetail(
   const [converting, setConverting]   = useState(false)
 
   useEffect(() => {
-    // TODO: get quote id from URL params, fetch /api/account/quotes/:id
-  }, [])
+    if (!quoteId) return
+    fetch(`/api/account/quotes/${quoteId}`)
+      .then(res => res.ok ? res.json() : Promise.reject(res.status))
+      .then((data: QuoteData) => {
+        setQuote(data)
+        setNameValue(data.quoteName)
+      })
+      .catch(err => console.error("[QuoteDetail] fetch error", err))
+  }, [quoteId])
 
   const commitName = () => {
     const trimmed = nameValue.trim()
     if (trimmed) {
       setQuote(prev => ({ ...prev, quoteName: trimmed }))
-      // TODO: PATCH /api/account/quotes/:id { name: trimmed }
+      if (quoteId) {
+        fetch("/api/account/quotes", {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ id: quoteId, name: trimmed }),
+        }).catch(err => console.error("[QuoteDetail] rename error", err))
+      }
     }
     setEditingName(false)
   }
 
   const handleConvertToOrder = async () => {
+    if (!quoteId) return
     setConverting(true)
-    // TODO: POST /api/account/quotes/:id/convert-to-order
+    try {
+      await fetch(`/api/account/quotes/${quoteId}/convert-to-order`, { method: "POST" })
+    } catch (err) {
+      console.error("[QuoteDetail] convert error", err)
+    }
     setConverting(false)
   }
 

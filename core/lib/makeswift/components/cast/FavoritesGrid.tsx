@@ -56,7 +56,13 @@ function FavoritesGrid(
   const [addingAll, setAddingAll] = useState(false)
 
   useEffect(() => {
-    // TODO: fetch("/api/account/favorites").then(...)
+    fetch("/api/account/favorites")
+      .then(res => res.ok ? res.json() : Promise.reject(res.status))
+      .then((data: FavoriteItem[]) => {
+        setItems(data)
+        setQtys(Object.fromEntries(data.map(i => [i.id, 1])))
+      })
+      .catch(err => console.error("[FavoritesGrid] fetch error", err))
   }, [])
 
   const setQty = (id: number, val: number) =>
@@ -64,14 +70,29 @@ function FavoritesGrid(
 
   const handleUnfavorite = async (item: FavoriteItem) => {
     setRemoving(item.id)
-    // TODO: DELETE /api/account/favorites/:productId
+    try {
+      await fetch("/api/account/favorites", {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ itemId: item.id, productId: item.productId }),
+      })
+    } catch (err) {
+      console.error("[FavoritesGrid] remove error", err)
+    }
     setItems(prev => prev.filter(i => i.id !== item.id))
     setRemoving(null)
   }
 
   const handleAddToCart = async (item: FavoriteItem) => {
-    // TODO: POST /api/cart/add { productId, quantity }
-    console.log("Add to cart", item.productId, "qty", qtys[item.id])
+    try {
+      await fetch("/api/cart/add", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ productId: item.productId, quantity: qtys[item.id] ?? 1 }),
+      })
+    } catch (err) {
+      console.error("[FavoritesGrid] add to cart error", err)
+    }
   }
 
   const handleAddAllToCart = async () => {

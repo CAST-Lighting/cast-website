@@ -48,6 +48,7 @@ const NewsletterCtaFull = forwardRef(function NewsletterCtaFull(
 ) {
   const t = getTheme("dark")
   const [email, setEmail] = useState("")
+  const [firstName, setFirstName] = useState("")
   const [submitted, setSubmitted] = useState(false)
 
   const hasGradient = !!(gradientFrom && gradientTo)
@@ -66,7 +67,11 @@ const NewsletterCtaFull = forwardRef(function NewsletterCtaFull(
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     if (!email) return
-    // TODO: wire to real email service
+    fetch("/api/cast/newsletter", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, firstName }),
+    }).catch(err => console.error("[NewsletterCtaFull] submit error", err))
     setSubmitted(true)
   }
 
@@ -176,6 +181,8 @@ const NewsletterCtaFull = forwardRef(function NewsletterCtaFull(
                   </label>
                   <input
                     type="text"
+                    value={firstName}
+                    onChange={e => setFirstName(e.target.value)}
                     placeholder="John"
                     style={{
                       width: "100%", padding: "10px 14px", borderRadius: 6,

@@ -54,7 +54,21 @@ function QuotesList(
   const [editValue, setEditValue] = useState("")
 
   useEffect(() => {
-    // TODO: fetch("/api/account/quotes").then(...)
+    fetch("/api/account/quotes")
+      .then(res => res.ok ? res.json() : Promise.reject(res.status))
+      .then((data: Array<{ id: string; quoteNumber: string; status: string; total: string; createdAt: string; customerName?: string }>) => {
+        const mapped: Quote[] = data.map(q => ({
+          id: q.id,
+          quoteNumber: q.quoteNumber,
+          quoteName: q.quoteNumber,
+          status: q.status,
+          total: q.total,
+          createdAt: q.createdAt,
+          itemCount: 0,
+        }))
+        setQuotes(mapped)
+      })
+      .catch(err => console.error("[QuotesList] fetch error", err))
   }, [])
 
   const startEdit = (quote: Quote) => { setEditingId(quote.id); setEditValue(quote.quoteName) }
@@ -62,7 +76,11 @@ function QuotesList(
     const trimmed = editValue.trim()
     if (trimmed) {
       setQuotes(prev => prev.map(q => q.id === id ? { ...q, quoteName: trimmed } : q))
-      // TODO: PATCH /api/account/quotes/:id { name: trimmed }
+      fetch("/api/account/quotes", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id, name: trimmed }),
+      }).catch(err => console.error("[QuotesList] rename error", err))
     }
     setEditingId(null)
   }

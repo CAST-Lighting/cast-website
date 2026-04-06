@@ -100,3 +100,64 @@ export async function GET(_req: NextRequest) {
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }
+
+export async function DELETE(req: NextRequest) {
+  const customerAccessToken = await getSessionCustomerAccessToken();
+  if (!customerAccessToken) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  }
+
+  try {
+    const body = (await req.json()) as { itemId?: number; productId?: number };
+    const itemId = body.itemId;
+
+    if (!itemId) {
+      return NextResponse.json({ error: 'itemId is required' }, { status: 400 });
+    }
+
+    // Fetch wishlists to get the wishlist id
+    const wishlistsRes = await fetch(
+      `https://api.bigcommerce.com/stores/${STORE_HASH}/v3/wishlists?limit=1`,
+      {
+        headers: {
+          'X-Auth-Token': IMPERSONATION_TOKEN,
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        cache: 'no-store',
+      },
+    );
+
+    if (!wishlistsRes.ok) {
+      return NextResponse.json({ error: 'Failed to fetch wishlists' }, { status: 500 });
+    }
+
+    const wishlistsData = (await wishlistsRes.json()) as WishlistResponse;
+    const firstWishlist = wishlistsData.data?.[0];
+
+    if (!firstWishlist) {
+      return NextResponse.json({ error: 'No wishlist found' }, { status: 404 });
+    }
+
+    const deleteRes = await fetch(
+      `https://api.bigcommerce.com/stores/${STORE_HASH}/v3/wishlists/${firstWishlist.id}/items/${itemId}`,
+      {
+        method: 'DELETE',
+        headers: {
+          'X-Auth-Token': IMPERSONATION_TOKEN,
+          Accept: 'application/json',
+        },
+        cache: 'no-store',
+      },
+    );
+
+    if (!deleteRes.ok && deleteRes.status !== 204) {
+      return NextResponse.json({ error: 'Failed to remove favorite' }, { status: 500 });
+    }
+
+    return NextResponse.json({ success: true });
+  } catch (err) {
+    console.error('[favorites DELETE]', err);
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
+  }
+}

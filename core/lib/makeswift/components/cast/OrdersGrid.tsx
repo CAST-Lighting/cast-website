@@ -52,7 +52,10 @@ function OrdersGrid(
   const [orders, setOrders] = useState<Order[]>(DEMO)
 
   useEffect(() => {
-    // TODO: fetch("/api/account/orders").then(...)
+    fetch("/api/account/orders")
+      .then(res => res.ok ? res.json() : Promise.reject(res.status))
+      .then((data: Order[]) => setOrders(data))
+      .catch(err => console.error("[OrdersGrid] fetch error", err))
   }, [])
 
   return (

@@ -93,3 +93,44 @@ export async function GET(_req: NextRequest) {
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }
+
+export async function PATCH(req: NextRequest) {
+  const customerAccessToken = await getSessionCustomerAccessToken();
+  if (!customerAccessToken) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  }
+
+  try {
+    const body = (await req.json()) as { id?: string; name?: string };
+    const { id, name } = body;
+
+    if (!id || !name) {
+      return NextResponse.json({ error: 'id and name are required' }, { status: 400 });
+    }
+
+    const res = await fetch(
+      `https://api.bigcommerce.com/stores/${STORE_HASH}/v3/b2b/quotes/${id}`,
+      {
+        method: 'PUT',
+        headers: {
+          'X-Auth-Token': ACCESS_TOKEN,
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({ quoteName: name }),
+        cache: 'no-store',
+      },
+    );
+
+    if (!res.ok) {
+      const errBody = await res.text();
+      console.error('[quotes PATCH] BC error:', res.status, errBody);
+      return NextResponse.json({ error: 'Failed to rename quote' }, { status: 500 });
+    }
+
+    return NextResponse.json({ success: true });
+  } catch (err) {
+    console.error('[quotes PATCH]', err);
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
+  }
+}

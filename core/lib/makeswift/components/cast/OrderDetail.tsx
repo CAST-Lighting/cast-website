@@ -1,5 +1,6 @@
 "use client"
 import { forwardRef, useEffect, useState, type Ref } from "react"
+import { useParams } from "next/navigation"
 import { getTheme } from "~/lib/makeswift/theme"
 
 interface OrderLineItem {
@@ -88,11 +89,18 @@ function OrderDetail(
   ref: Ref<HTMLElement>,
 ) {
   const t = getTheme("light")
-  const [order] = useState<OrderData>(DEMO_ORDER)
+  const params = useParams()
+  const orderId = params?.id as string | undefined
+
+  const [order, setOrder] = useState<OrderData>(DEMO_ORDER)
 
   useEffect(() => {
-    // TODO: get order id from URL, fetch /api/account/orders/:id
-  }, [])
+    if (!orderId) return
+    fetch(`/api/account/orders/${orderId}`)
+      .then(res => res.ok ? res.json() : Promise.reject(res.status))
+      .then((data: OrderData) => setOrder(data))
+      .catch(err => console.error("[OrderDetail] fetch error", err))
+  }, [orderId])
 
   const { bg, color } = statusStyle(order.status)
 
