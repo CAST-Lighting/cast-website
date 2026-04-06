@@ -127,11 +127,11 @@ const SiteFooter = forwardRef(function SiteFooter(
     : bgColor || '#004a61'
 
   const socialLinks = [
-    { icon: FilledFacebook, href: facebookHref || "#", label: "Facebook" },
-    { icon: FilledInstagram, href: instagramHref || "#", label: "Instagram" },
-    { icon: FilledYoutube, href: youtubeHref || "#", label: "YouTube" },
-    { icon: FilledLinkedin, href: linkedinHref || "#", label: "LinkedIn" },
-    { icon: FilledX, href: xHref || "#", label: "X" },
+    { icon: FilledFacebook, href: facebookHref || "https://www.facebook.com/CASTLighting", label: "Facebook" },
+    { icon: FilledInstagram, href: instagramHref || "https://www.instagram.com/castlighting/", label: "Instagram" },
+    { icon: FilledYoutube, href: youtubeHref || "https://www.youtube.com/channel/UCdrFCItpEFh6pwrLS0cJH8w", label: "YouTube" },
+    { icon: FilledLinkedin, href: linkedinHref || "https://www.linkedin.com/company/cast-lighting-llc", label: "LinkedIn" },
+    { icon: FilledX, href: xHref || "https://twitter.com/CAST_Lighting", label: "X" },
     { icon: FilledPinterest, href: pinterestHref || "#", label: "Pinterest" },
   ]
 
@@ -175,7 +175,7 @@ const SiteFooter = forwardRef(function SiteFooter(
               </div>
               <div className="flex items-center gap-3 mt-5">
                 {socialLinks.map(({ icon: Icon, href, label }) => (
-                  <a key={label} href={href} aria-label={label} className="w-9 h-9 rounded-full flex items-center justify-center transition-colors" style={{ background: '#ffffff', color: '#014960' }}>
+                  <a key={label} href={href} aria-label={label} target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full flex items-center justify-center transition-colors" style={{ background: '#ffffff', color: '#014960' }}>
                     <Icon />
                   </a>
                 ))}
