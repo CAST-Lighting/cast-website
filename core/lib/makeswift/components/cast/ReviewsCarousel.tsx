@@ -234,7 +234,7 @@ const ReviewsCarousel = forwardRef(function ReviewsCarousel(
         </div>
 
         {/* Carousel — left edge aligns with site-container, bleeds right */}
-        <div style={{ paddingLeft: "max(64px, calc((100vw - 1600px) / 2 + 64px))" }}>
+        <div style={{ paddingLeft: "max(16px, calc((100vw - 1600px) / 2 + 64px))" }}>
           <div
             ref={scrollRef}
             className="flex gap-6 overflow-x-auto pr-16 [&::-webkit-scrollbar]:hidden"

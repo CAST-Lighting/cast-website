@@ -227,8 +227,8 @@ function QuoteDetail(
         </div>
 
         {/* Line items */}
-        <div className="qd-panel" style={{ overflow: "hidden", marginBottom: 24 }}>
-          <table className="qd-table">
+        <div className="qd-panel" style={{ overflowX: "auto", marginBottom: 24 }}>
+          <table className="qd-table" style={{ minWidth: 560 }}>
             <thead>
               <tr>
                 <th style={{ width: 56 }}></th>
@@ -284,7 +284,7 @@ function QuoteDetail(
             </div>
           ) : <div />}
 
-          <div className="qd-panel" style={{ padding: "16px 24px", minWidth: 260 }}>
+          <div className="qd-panel" style={{ padding: "16px 24px" }}>
             {[
               { label: "Subtotal", value: quote.subtotal },
               { label: "Tax",      value: quote.tax },

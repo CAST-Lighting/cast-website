@@ -218,11 +218,13 @@ const EventsGrid = forwardRef(function EventsGrid(
 
         {/* Events Grid */}
         {!loading && !error && displayEvents.length > 0 && (
-          <div style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(3, 1fr)",
-            gap: 28,
-          }}>
+          <>
+          <style>{`
+            .events-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+            @media (max-width: 900px) { .events-grid { grid-template-columns: repeat(2, 1fr); } }
+            @media (max-width: 575px) { .events-grid { grid-template-columns: 1fr; } }
+          `}</style>
+          <div className="events-grid">
             {displayEvents.map((event) => {
               const { month, day, year } = formatEventDate(event.date)
               const excerpt = getExcerpt(event.description)
@@ -362,6 +364,7 @@ const EventsGrid = forwardRef(function EventsGrid(
               )
             })}
           </div>
+          </>
         )}
       </div>
     </section>

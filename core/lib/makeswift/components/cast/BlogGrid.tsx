@@ -249,13 +249,13 @@ const BlogGrid = forwardRef(function BlogGrid(
               )}
             </div>
           ) : (
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(3, 1fr)",
-                gap: 28,
-              }}
-            >
+            <>
+            <style>{`
+              .blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+              @media (max-width: 900px) { .blog-grid { grid-template-columns: repeat(2, 1fr); } }
+              @media (max-width: 575px) { .blog-grid { grid-template-columns: 1fr; } }
+            `}</style>
+            <div className="blog-grid">
               {visiblePosts.map((post) => {
                 const excerpt = getExcerpt(post.body)
                 const displayTag = activeTag || post.tags?.split(",")?.[0]?.trim() || "Insights"
@@ -424,6 +424,7 @@ const BlogGrid = forwardRef(function BlogGrid(
                 )
               })}
             </div>
+            </>
           )}
 
           {/* ── Pagination ── */}

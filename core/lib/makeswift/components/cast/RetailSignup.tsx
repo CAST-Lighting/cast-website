@@ -122,16 +122,21 @@ const RetailSignup = forwardRef(function RetailSignup(
       </section>
 
       {/* ── Form + Sidebar ── */}
+      <style>{`
+        .rs-layout { display: grid; grid-template-columns: 1fr 380px; gap: 48px; align-items: start; }
+        .rs-name-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .rs-city-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+        .rs-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        @media (max-width: 900px) { .rs-layout { grid-template-columns: 1fr; } }
+        @media (max-width: 480px) {
+          .rs-name-row { grid-template-columns: 1fr; }
+          .rs-city-row { grid-template-columns: 1fr; }
+          .rs-two-col { grid-template-columns: 1fr; }
+        }
+      `}</style>
       <div style={{ padding: "64px 0 96px" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 24px" }}>
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "1fr 380px",
-              gap: 48,
-              alignItems: "start",
-            }}
-          >
+          <div className="rs-layout">
             {/* ── Form ── */}
             <div
               style={{
@@ -172,7 +177,7 @@ const RetailSignup = forwardRef(function RetailSignup(
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 18 }}>
-                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
+                  <div className="rs-name-row">
                     <div>
                       <label style={labelStyle}>First Name *</label>
                       <input style={inputStyle} type="text" required placeholder="First Name" />
@@ -202,7 +207,7 @@ const RetailSignup = forwardRef(function RetailSignup(
                     <label style={labelStyle}>Address Line 2</label>
                     <input style={inputStyle} type="text" placeholder="Suite, Unit, etc. (optional)" />
                   </div>
-                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 12 }}>
+                  <div className="rs-city-row">
                     <div>
                       <label style={labelStyle}>City *</label>
                       <input style={inputStyle} type="text" required placeholder="City" />
@@ -223,7 +228,7 @@ const RetailSignup = forwardRef(function RetailSignup(
                       <option value="CA">Canada</option>
                     </select>
                   </div>
-                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
+                  <div className="rs-two-col">
                     <div>
                       <label style={labelStyle}>Password *</label>
                       <input style={inputStyle} type="password" required placeholder="Create a password" />

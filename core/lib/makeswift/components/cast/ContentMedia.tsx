@@ -141,12 +141,12 @@ const ContentMedia = forwardRef(function ContentMedia(
                   <iframe
                     src={embedSrc}
                     title="Quality landscape lighting showcase"
-                    className="w-full h-[500px]"
+                    className="w-full h-[280px] md:h-[500px]"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
                   />
                 ) : (
-                  <div className="w-full h-[500px] relative">
+                  <div className="w-full h-[280px] md:h-[500px] relative">
                     <img
                       src="https://storage.googleapis.com/s.mkswft.com/RmlsZToyYWIwMGYxYS1hZDc1LTRmMjgtOGQ0YS0yODNkMjExZmQ1ODg=/placeholder_video.webp"
                       alt="Add a YouTube URL in the panel to display a video"
