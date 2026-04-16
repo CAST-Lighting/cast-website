@@ -4,7 +4,6 @@ import { CmsPageRenderer } from '~/lib/makeswift/cms-page-renderer';
 import DistributorFinder from '~/lib/makeswift/components/cast/DistributorFinder';
 import ContentMedia from '~/lib/makeswift/components/cast/ContentMedia';
 import BrandLogos from '~/lib/makeswift/components/cast/BrandLogos';
-import CastSiteFooter from '~/lib/makeswift/components/cast/SiteFooter';
 
 interface Props {
   params: Promise<{ locale: string }>;
@@ -38,7 +37,6 @@ function FallbackPage() {
         btn2Href="/contact"
       />
       <BrandLogos />
-      <CastSiteFooter />
     </>
   );
 }

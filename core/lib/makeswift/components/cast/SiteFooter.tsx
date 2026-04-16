@@ -182,8 +182,8 @@ const SiteFooter = forwardRef(function SiteFooter(
               </div>
             </div>
 
-            {cols.map((col) => (
-              <div key={col.title}>
+            {cols.map((col, i) => (
+              <div key={i}>
                 <h4 style={{ fontFamily: "'Essonnes', 'Playfair Display', serif", fontSize: 14, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", color: "#fff", marginBottom: 16 }}>{col.title}</h4>
                 <ul className="space-y-2.5">
                   {col.links.map((link, i) => (

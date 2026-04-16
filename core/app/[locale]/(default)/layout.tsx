@@ -68,6 +68,7 @@ export default async function DefaultLayout({ params, children }: Props) {
       {/* Nav is position: fixed/sticky — no spacer needed. Heroes use paddingTop to clear the nav. */}
       <NavWithFallback locale={locale} />
       <main>{children}</main>
+      <FooterWithFallback locale={locale} />
       <GDPRPopup />
     </>
   );
