@@ -1,19 +1,9 @@
-import { PropsWithChildren } from 'react';
-import { GlobalFooterLoader } from '~/lib/makeswift/components/cast/GlobalFooterLoader';
+import { type PropsWithChildren } from 'react';
 
 interface Props extends PropsWithChildren {
   params: Promise<{ locale: string }>;
 }
 
-// Footer is managed on the /global-elements/footer Makeswift page.
-// Edit that page once — changes apply to every Makeswift page automatically.
-export default async function MakeswiftLayout({ params, children }: Props) {
-  const { locale } = await params;
-
-  return (
-    <>
-      {children}
-      <GlobalFooterLoader locale={locale} />
-    </>
-  );
+export default async function MakeswiftLayout({ children }: Props) {
+  return <>{children}</>;
 }
