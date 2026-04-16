@@ -11,8 +11,8 @@ interface Props extends PropsWithChildren {
 export default async function MakeswiftLayout({ params, children }: Props) {
   const { locale } = await params;
   const headersList = await headers();
-  const pathname = headersList.get('x-pathname') ?? '';
-  const isGlobalElements = pathname.includes('/global-elements');
+  const nextUrl = headersList.get('next-url') ?? headersList.get('x-url') ?? headersList.get('x-invoke-path') ?? '';
+  const isGlobalElements = nextUrl.includes('/global-elements');
 
   return (
     <>

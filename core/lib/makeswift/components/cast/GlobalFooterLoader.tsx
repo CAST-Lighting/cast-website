@@ -12,22 +12,11 @@ export async function GlobalFooterLoader({ locale }: { locale: string }) {
   try {
     const headersList = await headers();
 
-    // Temporary diagnostics — log all headers to find which one carries the current path
-    const allHeaders = Object.fromEntries(headersList.entries());
-    console.log('[GlobalFooterLoader] headers:', JSON.stringify(allHeaders));
-
-    // Try every candidate header in priority order
     const pathname =
-      headersList.get('x-invoke-path') ??
-      headersList.get('x-invoke-output') ??
-      headersList.get('x-pathname') ??
+      headersList.get('next-url') ??
       headersList.get('x-url') ??
-      headersList.get('x-forwarded-uri') ??
-      headersList.get('x-original-url') ??
-      headersList.get('x-rewrite-url') ??
+      headersList.get('x-invoke-path') ??
       '';
-
-    console.log('[GlobalFooterLoader] resolved pathname:', pathname);
 
     if (pathname === SOURCE_PATH || pathname.startsWith(SOURCE_PATH + '/')) return null;
 
