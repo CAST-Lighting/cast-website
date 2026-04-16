@@ -19,6 +19,7 @@ export const withIntl: MiddlewareFactory = (next) => {
     const locale = intlResponse.headers.get('x-middleware-request-x-next-intl-locale') ?? '';
 
     request.headers.set('x-bc-locale', locale);
+    request.headers.set('x-pathname', request.nextUrl.pathname);
 
     // Continue the middleware chain
     const response = await next(request, event);
