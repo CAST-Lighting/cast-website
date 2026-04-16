@@ -18,6 +18,8 @@ export const withIntl: MiddlewareFactory = (next) => {
     // Extract locale from intlMiddleware response
     const locale = intlResponse.headers.get('x-middleware-request-x-next-intl-locale') ?? '';
 
+    request.headers.set('x-bc-locale', locale);
+
     // Continue the middleware chain
     const response = await next(request, event);
 
@@ -27,9 +29,6 @@ export const withIntl: MiddlewareFactory = (next) => {
         response?.headers.set(k, v);
       }
     });
-
-    // Propagate x-bc-locale to server components
-    response?.headers.set('x-middleware-request-x-bc-locale', locale);
 
     return response;
   };
