@@ -1,3 +1,4 @@
+import { headers } from 'next/headers';
 import { PropsWithChildren } from 'react';
 import { GlobalNavLoader } from '~/lib/makeswift/components/cast/GlobalNavLoader';
 import { GlobalFooterLoader } from '~/lib/makeswift/components/cast/GlobalFooterLoader';
@@ -10,12 +11,15 @@ interface Props extends PropsWithChildren {
 // Edit those pages once — changes apply to every Makeswift page automatically.
 export default async function MakeswiftLayout({ params, children }: Props) {
   const { locale } = await params;
+  const headersList = await headers();
+  const pathname = headersList.get('x-pathname') ?? '';
+  const isGlobalElements = pathname.includes('/global-elements');
 
   return (
     <>
-      <GlobalNavLoader locale={locale} />
+      {!isGlobalElements && <GlobalNavLoader locale={locale} />}
       {children}
-      <GlobalFooterLoader locale={locale} />
+      {!isGlobalElements && <GlobalFooterLoader locale={locale} />}
     </>
   );
 }
