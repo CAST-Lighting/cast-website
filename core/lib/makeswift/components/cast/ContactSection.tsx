@@ -40,8 +40,14 @@ const ContactSection = forwardRef(function ContactSection(
       className={`relative overflow-hidden ${className || ''}`}
       style={{ background: bgColor || '#0d1620', paddingTop: paddingTop ?? 96, paddingBottom: paddingBottom ?? 96 }}
     >
+      <style>{`
+        .cs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+        .cs-name-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        @media (max-width: 768px) { .cs-grid { grid-template-columns: 1fr; gap: 40px; } }
+        @media (max-width: 480px) { .cs-name-row { grid-template-columns: 1fr; } }
+      `}</style>
       <div className="site-container">
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 64, alignItems: 'start' }}>
+        <div className="cs-grid">
           {/* Left: info */}
           <div>
             {overline && <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.14em', color: '#007CB0', margin: '0 0 16px' }}>{overline}</p>}
@@ -75,7 +81,7 @@ const ContactSection = forwardRef(function ContactSection(
           <div style={{ background: '#1a2332', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 16, padding: '40px 36px' }}>
             {formHeading && <h3 style={{ fontFamily: "'Essonnes', 'Playfair Display', serif", fontSize: 24, fontWeight: 700, color: '#fff', margin: '0 0 28px' }}>{formHeading}</h3>}
             <form style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+              <div className="cs-name-row">
                 <div>
                   <label style={{ fontFamily: "'Barlow', sans-serif", fontSize: 12, fontWeight: 600, color: 'rgba(255,255,255,0.5)', display: 'block', marginBottom: 6 }}>First Name</label>
                   <input type="text" placeholder="John" style={{ width: '100%', padding: '10px 14px', background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.12)', borderRadius: 8, color: '#fff', fontFamily: "'Barlow', sans-serif", fontSize: 15, boxSizing: 'border-box' }} />

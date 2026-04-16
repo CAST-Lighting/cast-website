@@ -1,13 +1,13 @@
-// Use new CAST Airtable if available, fall back to old VAVA Airtable
-const AIRTABLE_BASE = process.env.CAST_AIRTABLE_BASE || process.env.AIRTABLE_BASE_ID;
-const AIRTABLE_TABLE = process.env.CAST_BLOG_TABLE || process.env.AIRTABLE_TABLE_ID;
-const AIRTABLE_AUTH_TOKEN = process.env.CAST_AIRTABLE_TOKEN || process.env.AIRTABLE_TOKEN;
+import { CAST_AIRTABLE_PAT, CAST_AIRTABLE_BASE } from '~/lib/airtable';
 
-const BASE_URL = `https://api.airtable.com/v0/${AIRTABLE_BASE}/${AIRTABLE_TABLE}`;
+// CAST Blog table
+const AIRTABLE_TABLE = 'tbljljCNCPjsVwU4w';
+
+const BASE_URL = `https://api.airtable.com/v0/${CAST_AIRTABLE_BASE}/${AIRTABLE_TABLE}`;
 
 function airtableHeaders() {
   return {
-    Authorization: `Bearer ${AIRTABLE_AUTH_TOKEN}`,
+    Authorization: `Bearer ${CAST_AIRTABLE_PAT}`,
     'Content-Type': 'application/json',
   };
 }

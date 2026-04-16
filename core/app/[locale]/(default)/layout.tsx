@@ -2,6 +2,7 @@ import { setRequestLocale } from 'next-intl/server';
 import { PropsWithChildren } from 'react';
 import { GlobalNavLoader } from '~/lib/makeswift/components/cast/GlobalNavLoader';
 import { GlobalFooterLoader } from '~/lib/makeswift/components/cast/GlobalFooterLoader';
+import GDPRPopup from '~/lib/makeswift/components/cast/GDPRPopup';
 import CastSiteNavbar from '~/lib/makeswift/components/cast/SiteNavbar';
 import CastNavigationTopper from '~/lib/makeswift/components/cast/NavigationTopper';
 import CastSiteFooter from '~/lib/makeswift/components/cast/SiteFooter';
@@ -67,6 +68,8 @@ export default async function DefaultLayout({ params, children }: Props) {
       {/* Nav is position: fixed/sticky — no spacer needed. Heroes use paddingTop to clear the nav. */}
       <NavWithFallback locale={locale} />
       <main>{children}</main>
+      <FooterWithFallback locale={locale} />
+      <GDPRPopup />
     </>
   );
 }

@@ -231,8 +231,8 @@ function OrderDetail(
         </div>
 
         {/* Line items */}
-        <div className="od-panel" style={{ overflow: "hidden", marginBottom: 24 }}>
-          <table className="od-table">
+        <div className="od-panel" style={{ overflowX: "auto", marginBottom: 24 }}>
+          <table className="od-table" style={{ minWidth: 560 }}>
             <thead>
               <tr>
                 <th style={{ width: 56 }}></th>
@@ -286,7 +286,7 @@ function OrderDetail(
             </div>
           ) : <div />}
 
-          <div className="od-panel" style={{ padding: "16px 24px", minWidth: 260 }}>
+          <div className="od-panel" style={{ padding: "16px 24px" }}>
             {[
               { label: "Subtotal", value: order.subtotal },
               { label: "Shipping", value: order.shipping },

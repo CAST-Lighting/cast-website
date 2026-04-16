@@ -39,11 +39,11 @@ runtime.registerComponent(
       copyright: TextInput({ label: "✏️ Content — Copyright", defaultValue: "© 2026 CAST Lighting. All rights reserved." }),
 
       // 👤 Social
-      facebookHref: TextInput({ label: "👤 Social — Facebook URL", defaultValue: "#" }),
-      instagramHref: TextInput({ label: "👤 Social — Instagram URL", defaultValue: "#" }),
-      youtubeHref: TextInput({ label: "👤 Social — YouTube URL", defaultValue: "#" }),
-      linkedinHref: TextInput({ label: "👤 Social — LinkedIn URL", defaultValue: "#" }),
-      xHref: TextInput({ label: "👤 Social — X (Twitter) URL", defaultValue: "#" }),
+      facebookHref: TextInput({ label: "👤 Social — Facebook URL", defaultValue: "https://www.facebook.com/CASTLighting" }),
+      instagramHref: TextInput({ label: "👤 Social — Instagram URL", defaultValue: "https://www.instagram.com/castlighting/" }),
+      youtubeHref: TextInput({ label: "👤 Social — YouTube URL", defaultValue: "https://www.youtube.com/channel/UCdrFCItpEFh6pwrLS0cJH8w" }),
+      linkedinHref: TextInput({ label: "👤 Social — LinkedIn URL", defaultValue: "https://www.linkedin.com/company/cast-lighting-llc" }),
+      xHref: TextInput({ label: "👤 Social — X (Twitter) URL", defaultValue: "https://twitter.com/CAST_Lighting" }),
       pinterestHref: TextInput({ label: "👤 Social — Pinterest URL", defaultValue: "#" }),
 
       // 🔗 Links — Navigation Columns

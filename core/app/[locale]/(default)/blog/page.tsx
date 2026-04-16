@@ -4,7 +4,6 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import type { SearchParams } from 'nuqs';
 import { createSearchParamsCache, parseAsInteger, parseAsString } from 'nuqs/server';
 
-import CastSiteFooter from '~/lib/makeswift/components/cast/SiteFooter';
 import { getBlog, getBlogPosts } from './page-data';
 
 interface Props {
@@ -314,7 +313,6 @@ export default async function Blog(props: Props) {
           </div>
         </section>
 
-        <CastSiteFooter />
       </div>
     </>
   );

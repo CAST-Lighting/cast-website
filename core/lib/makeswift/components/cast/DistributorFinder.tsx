@@ -92,7 +92,7 @@ const DistributorFinder = forwardRef(function DistributorFinder(
           <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 17, color: "rgba(255,255,255,0.82)", lineHeight: 1.6, maxWidth: 540, margin: "0 0 36px" }}>
             {subheading}
           </p>
-          <form onSubmit={handleSearch} style={{ display: "flex", gap: 0, maxWidth: 480, background: "#2d353c", borderRadius: 8, overflow: "hidden", boxShadow: "0 4px 16px rgba(0,0,0,0.15)" }}>
+          <form onSubmit={handleSearch} style={{ display: "flex", gap: 0, maxWidth: 480, width: "100%", background: "#2d353c", borderRadius: 8, overflow: "hidden", boxShadow: "0 4px 16px rgba(0,0,0,0.15)" }}>
             <input
               type="text"
               value={zip}
@@ -108,8 +108,12 @@ const DistributorFinder = forwardRef(function DistributorFinder(
       </div>
 
       {/* Main content */}
+      <style>{`
+        .df-main-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: flex-start; }
+        @media (max-width: 768px) { .df-main-grid { grid-template-columns: 1fr; } }
+      `}</style>
       <div className="site-container" style={{ paddingTop: 64, paddingBottom: 72 }}>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 48, alignItems: "flex-start" }}>
+        <div className="df-main-grid">
 
           {/* Distributor results + map */}
           <div>

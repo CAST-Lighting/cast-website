@@ -126,6 +126,16 @@ const TradeProSignup = forwardRef(function TradeProSignup(
       </section>
 
       {/* ── Form + Sidebar ── */}
+      <style>{`
+        .tps-layout { display: grid; grid-template-columns: 1fr 380px; gap: 48px; align-items: start; }
+        .tps-name-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .tps-city-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+        @media (max-width: 900px) { .tps-layout { grid-template-columns: 1fr; } }
+        @media (max-width: 480px) {
+          .tps-name-row { grid-template-columns: 1fr; }
+          .tps-city-row { grid-template-columns: 1fr; }
+        }
+      `}</style>
       <div style={{ padding: "64px 0 96px" }}>
         <div
           style={{
@@ -134,14 +144,7 @@ const TradeProSignup = forwardRef(function TradeProSignup(
             padding: "0 24px",
           }}
         >
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "1fr 380px",
-              gap: 48,
-              alignItems: "start",
-            }}
-          >
+          <div className="tps-layout">
             {/* ── Form ── */}
             <div
               style={{
@@ -182,7 +185,7 @@ const TradeProSignup = forwardRef(function TradeProSignup(
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 18 }}>
-                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
+                  <div className="tps-name-row">
                     <div>
                       <label style={labelStyle}>First Name *</label>
                       <input style={inputStyle} type="text" required placeholder="First Name" />
@@ -224,7 +227,7 @@ const TradeProSignup = forwardRef(function TradeProSignup(
                     <label style={labelStyle}>Address Line 2</label>
                     <input style={inputStyle} type="text" placeholder="Suite, Unit, etc. (optional)" />
                   </div>
-                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 12 }}>
+                  <div className="tps-city-row">
                     <div>
                       <label style={labelStyle}>City *</label>
                       <input style={inputStyle} type="text" required placeholder="City" />

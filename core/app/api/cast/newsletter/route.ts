@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { createContact } from '~/lib/airtable';
 
 export async function POST(req: NextRequest) {
   try {
@@ -9,8 +10,12 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'email is required' }, { status: 400 });
     }
 
-    // Log the subscription (extend this to store in Airtable or send to an ESP as needed)
-    console.log('[newsletter] New subscriber:', { email, firstName: firstName ?? '' });
+    await createContact({
+      Email: email,
+      Name: firstName ?? '',
+      Source: 'Newsletter',
+      'Subscribed At': new Date().toISOString(),
+    });
 
     return NextResponse.json({ success: true });
   } catch (err) {

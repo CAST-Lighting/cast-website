@@ -1,6 +1,8 @@
-import { forwardRef, type Ref } from "react"
+"use client"
+import { forwardRef, useEffect, useState, type Ref } from "react"
 
 interface Patent {
+  id?: string
   patentNumber?: string
   title?: string
   description?: string
@@ -75,11 +77,25 @@ const PatentsList = forwardRef(function PatentsList(
     headingAccent = "",
     overline = "Intellectual Property",
     description,
-    patents,
+    patents: propPatents,
   }: PatentsListProps,
   ref: Ref<HTMLElement>
 ) {
-  const items = patents && patents.length > 0 ? patents : DEFAULT_PATENTS
+  const [livePatents, setLivePatents] = useState<Patent[]>([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    fetch('/api/cast/patents')
+      .then((r) => r.json())
+      .then((data: { patents: Patent[] }) => {
+        if (data.patents && data.patents.length > 0) setLivePatents(data.patents)
+      })
+      .catch(() => {})
+      .finally(() => setLoading(false))
+  }, [])
+
+  const hasPropPatents = propPatents && propPatents.length > 0
+  const items = hasPropPatents ? propPatents : (livePatents.length > 0 ? livePatents : DEFAULT_PATENTS)
 
   return (
     <section
@@ -138,17 +154,40 @@ const PatentsList = forwardRef(function PatentsList(
           )}
         </div>
 
+        {loading && !hasPropPatents && (
+          <div style={{ opacity: 0.4, borderRadius: 10, overflow: "hidden", border: "1px solid rgba(255,255,255,0.08)" }}>
+            {[1, 2, 3].map((i) => (
+              <div key={i} style={{
+                height: 72,
+                background: i % 2 === 0 ? "rgba(255,255,255,0.02)" : "transparent",
+                borderBottom: i < 3 ? "1px solid rgba(255,255,255,0.06)" : "none",
+              }} />
+            ))}
+          </div>
+        )}
+
+        {!loading && items.length === 0 && (
+          <div style={{ textAlign: "center", padding: "80px 0" }}>
+            <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 20, color: "rgba(255,255,255,0.4)", margin: 0 }}>
+              No patents to display.
+            </p>
+          </div>
+        )}
+
         {/* Patents Table */}
+        <style>{`
+          .pl-table-header { display: grid; grid-template-columns: 200px 1fr auto; gap: 0 24px; padding: 14px 24px; background: #25262d; border-bottom: 1px solid rgba(255,255,255,0.10); }
+          .pl-table-row { display: grid; grid-template-columns: 200px 1fr auto; gap: 0 24px; padding: 20px 24px; align-items: start; }
+          .pl-date-col { text-align: right; min-width: 130px; }
+          @media (max-width: 640px) {
+            .pl-table-header { display: none; }
+            .pl-table-row { grid-template-columns: 1fr; gap: 10px; }
+            .pl-date-col { text-align: left; min-width: 0; }
+          }
+        `}</style>
         <div style={{ borderRadius: 10, overflow: "hidden", border: "1px solid rgba(255,255,255,0.08)" }}>
           {/* Table Header */}
-          <div style={{
-            display: "grid",
-            gridTemplateColumns: "200px 1fr auto",
-            gap: "0 24px",
-            padding: "14px 24px",
-            background: "#25262d",
-            borderBottom: "1px solid rgba(255,255,255,0.10)",
-          }}>
+          <div className="pl-table-header">
             <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: "rgba(255,255,255,0.4)" }}>Patent No.</span>
             <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: "rgba(255,255,255,0.4)" }}>Title &amp; Description</span>
             <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: "rgba(255,255,255,0.4)", textAlign: "right" }}>Date / Category</span>
@@ -157,15 +196,17 @@ const PatentsList = forwardRef(function PatentsList(
           {/* Patent Rows */}
           {items.map((patent, i) => {
             const isEven = i % 2 === 0
+            let displayDate = patent.date ?? ''
+            if (displayDate && /^\d{4}-\d{2}-\d{2}$/.test(displayDate)) {
+              try {
+                displayDate = new Date(displayDate + 'T12:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+              } catch { /* keep raw */ }
+            }
             return (
               <div
                 key={i}
+                className="pl-table-row"
                 style={{
-                  display: "grid",
-                  gridTemplateColumns: "200px 1fr auto",
-                  gap: "0 24px",
-                  padding: "20px 24px",
-                  alignItems: "start",
                   background: isEven ? "rgba(255,255,255,0.02)" : "transparent",
                   borderBottom: i < items.length - 1 ? "1px solid rgba(255,255,255,0.06)" : "none",
                 }}
@@ -210,7 +251,7 @@ const PatentsList = forwardRef(function PatentsList(
                 </div>
 
                 {/* Date + Category */}
-                <div style={{ textAlign: "right", minWidth: 130 }}>
+                <div className="pl-date-col">
                   {patent.date && (
                     <p style={{
                       fontFamily: "'Barlow', sans-serif",
@@ -219,7 +260,7 @@ const PatentsList = forwardRef(function PatentsList(
                       margin: "0 0 4px",
                       whiteSpace: "nowrap",
                     }}>
-                      {patent.date}
+                      {displayDate}
                     </p>
                   )}
                   {patent.category && (

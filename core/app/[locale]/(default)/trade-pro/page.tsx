@@ -1,5 +1,4 @@
 import { CmsPageRenderer } from '~/lib/makeswift/cms-page-renderer';
-import CastSiteFooter from '~/lib/makeswift/components/cast/SiteFooter';
 import { setRequestLocale } from 'next-intl/server';
 import { type Metadata } from 'next';
 
