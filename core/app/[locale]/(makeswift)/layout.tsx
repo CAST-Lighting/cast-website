@@ -6,7 +6,7 @@ interface Props extends PropsWithChildren {
   params: Promise<{ locale: string }>;
 }
 
-// Nav and footer are managed on the /global-nav and /global-footer Makeswift pages.
+// Nav and footer are managed on the /global-nav and /global-elements/footer Makeswift pages.
 // Edit those pages once — changes apply to every Makeswift page automatically.
 export default async function MakeswiftLayout({ params, children }: Props) {
   const { locale } = await params;
