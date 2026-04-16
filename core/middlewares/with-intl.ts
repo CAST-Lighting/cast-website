@@ -18,9 +18,6 @@ export const withIntl: MiddlewareFactory = (next) => {
     // Extract locale from intlMiddleware response
     const locale = intlResponse.headers.get('x-middleware-request-x-next-intl-locale') ?? '';
 
-    request.headers.set('x-bc-locale', locale);
-    request.headers.set('x-pathname', request.nextUrl.pathname);
-
     // Continue the middleware chain
     const response = await next(request, event);
 
@@ -30,6 +27,11 @@ export const withIntl: MiddlewareFactory = (next) => {
         response?.headers.set(k, v);
       }
     });
+
+    // Propagate x-bc-locale and x-pathname to server components via the
+    // x-middleware-request-* convention that Next.js strips and forwards as request headers.
+    response?.headers.set('x-middleware-request-x-bc-locale', locale);
+    response?.headers.set('x-middleware-request-x-pathname', request.nextUrl.pathname);
 
     return response;
   };
