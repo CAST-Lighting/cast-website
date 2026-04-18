@@ -114,40 +114,6 @@ export default async function Blog(props: Props) {
 
       <div style={{ background: '#0f1923', minHeight: '100vh' }}>
 
-        {/* ── Hero — SubPageHeroStatic pattern ── */}
-        <section
-          className="relative overflow-hidden"
-          style={{ paddingTop: 165, paddingBottom: 64, zIndex: 2 }}
-        >
-          <img
-            src="https://storage.googleapis.com/s.mkswft.com/RmlsZTpmNGU1MTkzMi02Y2JlLTQ0ZjAtOWIwNC03ZmI3MmQwNzYwMDk=/background-1.jpg"
-            alt=""
-            className="absolute inset-0 w-full h-full object-cover"
-            style={{ zIndex: 0 }}
-          />
-          <div
-            className="absolute inset-0"
-            style={{ background: '#25262d', opacity: 0.6, zIndex: 1 }}
-          />
-          <div className="site-container w-full relative" style={{ zIndex: 10 }}>
-            <div className="flex flex-col items-center text-center gap-6 max-w-3xl mx-auto">
-              <div className="badge-pill self-center">
-                <span
-                  className="w-2 h-2 rounded-full animate-pulse flex-shrink-0"
-                  style={{ background: 'var(--color-accent)' }}
-                />
-                <span>Resources &amp; Insights</span>
-              </div>
-              <h1 className="heading-style-h1" style={{ color: 'var(--color-blue-grey-100)' }}>
-                CAST Lighting Blog
-              </h1>
-              <p className="section-desc max-w-xl" style={{ color: 'var(--color-blue-grey-300)' }}>
-                Lighting tips, installation guides, and industry insights for landscape professionals.
-              </p>
-            </div>
-          </div>
-        </section>
-
         {/* ── Category Filter Pills ── */}
         <div style={{ background: '#141e2a', borderBottom: '1px solid rgba(255,255,255,0.08)', padding: '18px 0' }}>
           <div className="site-container">
@@ -285,33 +251,6 @@ export default async function Blog(props: Props) {
             ) : null}
           </div>
         </div>
-
-        {/* ── Bottom CTA ── */}
-        <section style={{ background: 'var(--color-primary, #004960)', padding: '96px 0', position: 'relative', overflow: 'hidden', textAlign: 'center' }}>
-          <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: 600, height: 300, background: 'radial-gradient(ellipse, rgba(0,124,176,0.15), transparent 70%)', pointerEvents: 'none' }} />
-          <div className="site-container" style={{ position: 'relative', zIndex: 1, maxWidth: 720 }}>
-            <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 12, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.14em', color: 'rgba(255,255,255,0.6)', margin: '0 0 16px' }}>
-              Get Started Today
-            </p>
-            <h2 style={{ fontFamily: "'Essonnes', 'Playfair Display', serif", fontSize: "var(--h2-size)", fontWeight: 700, color: '#fff', lineHeight: 1.15, margin: '0 0 20px' }}>
-              Ready to Elevate Your{' '}
-              <span style={{ background: 'linear-gradient(135deg, #007CB0, #7EBEE8)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
-                Outdoor Lighting?
-              </span>
-            </h2>
-            <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 17, color: 'rgba(255,255,255,0.75)', lineHeight: 1.7, margin: '0 0 40px' }}>
-              Join thousands of contractors and homeowners who trust CAST Lighting for professional-grade outdoor fixtures.
-            </p>
-            <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap' }}>
-              <a href="/shop" className="sg-btn-solid-md" style={{ textDecoration: 'none' }}>
-                Shop Products &rarr;
-              </a>
-              <a href="/trade-pro" className="sg-btn-outline-md" style={{ textDecoration: 'none' }}>
-                Join TradePro
-              </a>
-            </div>
-          </div>
-        </section>
 
       </div>
     </>
