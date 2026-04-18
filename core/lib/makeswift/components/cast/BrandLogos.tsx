@@ -66,7 +66,7 @@ const BrandLogos = forwardRef(function BrandLogos(
       ref={ref}
       className={`relative overflow-hidden ${className || ""}`}
       style={{
-        paddingTop, paddingBottom,
+        width: '100%', paddingTop, paddingBottom,
         ...(!bgImage ? { background: bg } : {}),
       }}
     >

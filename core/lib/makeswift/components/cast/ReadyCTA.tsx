@@ -59,7 +59,7 @@ const ReadyCTA = forwardRef(function ReadyCTA(
       ref={ref}
       className={`relative overflow-hidden ${className || ""}`}
       style={{
-        paddingTop, paddingBottom,
+        width: '100%', paddingTop, paddingBottom,
         ...(!bgImage ? { background: sectionBackground } : {}),
       }}
     >

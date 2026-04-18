@@ -70,7 +70,7 @@ const TradeProSection = forwardRef(function TradeProSection(
     <section
       ref={ref}
       className={`relative ${className || ""}`}
-      style={{ ...(!bgImageUrl ? { background: sectionBackground } : {}), } as React.CSSProperties}
+      style={{ width: '100%', paddingTop, paddingBottom, ...(!bgImageUrl ? { background: sectionBackground } : {}), } as React.CSSProperties}
     >
       {bgImageUrl && (
         <img src={bgImageUrl} alt="" className="absolute inset-0 w-full h-full object-cover" style={{ zIndex: 0 }} />

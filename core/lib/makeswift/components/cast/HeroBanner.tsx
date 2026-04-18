@@ -255,6 +255,7 @@ const HeroBanner = forwardRef(function HeroBanner(
       ref={ref}
       className={`relative ${className || ""}`}
       style={{
+        width: '100%',
         position: 'relative',
         zIndex: 2,
         paddingTop: paddingTop ?? 136,

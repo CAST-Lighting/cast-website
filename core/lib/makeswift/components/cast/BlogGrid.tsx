@@ -118,7 +118,7 @@ const BlogGrid = forwardRef(function BlogGrid(
     <div
       ref={ref}
       className={className || ""}
-      style={{ background: bgColor || "#0f1923" , paddingTop, paddingBottom}}
+      style={{ width: '100%', background: bgColor || "#0f1923" , paddingTop, paddingBottom}}
     >
       {/* ── Category Filter Pills ── */}
       <div

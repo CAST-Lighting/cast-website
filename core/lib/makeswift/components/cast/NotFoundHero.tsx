@@ -46,7 +46,7 @@ const NotFoundHero = forwardRef(function NotFoundHero(
       ref={ref}
       className={className || ""}
       style={{
-        background: bgColor || "#0f1923", paddingTop, paddingBottom,
+        width: '100%', background: bgColor || "#0f1923", paddingTop, paddingBottom,
         minHeight: "100vh",
         display: "flex",
         alignItems: "center",

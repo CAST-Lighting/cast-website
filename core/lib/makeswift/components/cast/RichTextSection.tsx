@@ -80,7 +80,7 @@ const RichTextSection = forwardRef(function RichTextSection(
     <section
       ref={ref}
       className={className || ""}
-      style={{ background: bgColor || "#0f1923", paddingTop, paddingBottom, }}
+      style={{ width: '100%', background: bgColor || "#0f1923", paddingTop, paddingBottom, }}
     >
       <div className="site-container">
         <div style={{ maxWidth: 800, margin: "0 auto" }}>

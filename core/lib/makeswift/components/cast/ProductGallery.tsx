@@ -120,7 +120,7 @@ const ProductGallery = forwardRef(function ProductGallery(
       ref={ref}
       className={`relative overflow-hidden ${className || ''}`}
       style={{
-        paddingTop, paddingBottom,
+        width: '100%', paddingTop, paddingBottom,
         ...(!bgImage ? { background: sectionBackground } : {}),
       } as React.CSSProperties}
     >

@@ -93,7 +93,7 @@ const CategoryGrid = forwardRef(function CategoryGrid(
     <section
       ref={ref}
       className={`relative overflow-hidden ${className || ""}`}
-      style={{ fontFamily: "'Barlow', sans-serif", background: isLight ? sectionBackground : undefined, } as React.CSSProperties}
+      style={{ width: '100%', paddingTop, paddingBottom, fontFamily: "'Barlow', sans-serif", background: isLight ? sectionBackground : undefined, } as React.CSSProperties}
     >
       {/* bg image + overlay — dark mode only */}
       {!isLight && (

@@ -54,7 +54,7 @@ const RetailSignup = forwardRef(function RetailSignup(
     <div
       ref={ref}
       className={className || ""}
-      style={{ background: bgColor || "#0f1923", minHeight: "100vh" }}
+      style={{ width: '100%', background: bgColor || "#0f1923", minHeight: "100vh" }}
     >
       {/* ── Hero ── */}
       <section

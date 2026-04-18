@@ -119,6 +119,7 @@ const SearchResults = forwardRef(function SearchResults(
       ref={ref}
       className={className || ""}
       style={{
+        width: '100%',
         background: bgColor || "#0f1923",
         minHeight: "80vh",
         paddingTop: paddingTop ?? 48,

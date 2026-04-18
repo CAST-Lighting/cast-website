@@ -36,7 +36,7 @@ const CmsProductContent = forwardRef(function CmsProductContent(
     <div
       ref={ref as Ref<HTMLDivElement>}
       className={className || ""}
-      style={{ background: bgColor, paddingTop, paddingBottom, minHeight: 200 }}
+      style={{ width: '100%', background: bgColor, paddingTop, paddingBottom, minHeight: 200 }}
     >
       <div
         className="site-container"

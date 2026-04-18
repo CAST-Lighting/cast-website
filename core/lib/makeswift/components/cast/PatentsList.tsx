@@ -101,7 +101,7 @@ const PatentsList = forwardRef(function PatentsList(
     <section
       ref={ref}
       className={className || ""}
-      style={{ background: bgColor || "#0f1923", paddingTop, paddingBottom, }}
+      style={{ width: '100%', background: bgColor || "#0f1923", paddingTop, paddingBottom, }}
     >
       <div className="site-container">
         {/* Section Header */}
