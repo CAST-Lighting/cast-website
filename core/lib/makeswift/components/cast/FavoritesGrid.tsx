@@ -14,8 +14,6 @@ interface FavoriteItem {
 interface FavoritesGridProps {
   className?: string
   bgColor?: string
-  paddingTop?: number
-  paddingBottom?: number
   heading?: string
   emptyMessage?: string
 }
@@ -41,8 +39,6 @@ function FavoritesGrid(
   {
     className,
     bgColor = "#F5F5F5",
-    paddingTop = 64,
-    paddingBottom = 64,
     heading = "My Favorites",
     emptyMessage = "Your favorites list is empty.",
   }: FavoritesGridProps,
@@ -106,9 +102,15 @@ function FavoritesGrid(
   return (
     <div
       ref={ref as Ref<HTMLDivElement>}
-      className={className}
-      style={{ background: bgColor, paddingTop, paddingBottom, fontFamily: "'Barlow', sans-serif" }}
+      className={`cast-favorites-grid-defaults ${className || ""}`}
+      style={{ background: bgColor, fontFamily: "'Barlow', sans-serif" }}
     >
+      <style>{`
+        .cast-favorites-grid-defaults { padding-top: 64px; padding-bottom: 64px; }
+        @media (max-width: 1024px) { .cast-favorites-grid-defaults { padding-top: 51px; padding-bottom: 51px; } }
+        @media (max-width: 768px)  { .cast-favorites-grid-defaults { padding-top: 41px; padding-bottom: 41px; } }
+        @media (max-width: 640px)  { .cast-favorites-grid-defaults { padding-top: 35px; padding-bottom: 35px; } }
+      `}</style>
       <style>{`
         .fav-grid {
           display: grid;
