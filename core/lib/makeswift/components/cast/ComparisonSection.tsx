@@ -29,7 +29,7 @@ const ComparisonSection = forwardRef(function ComparisonSection(
     gradientFrom,
     gradientTo,
     gradientDirection,
-    lineHeight
+    lineHeight,
     overline,
     heading,
     headingAccent,
