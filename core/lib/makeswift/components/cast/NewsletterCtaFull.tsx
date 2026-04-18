@@ -12,8 +12,6 @@ interface NewsletterCtaFullProps {
   gradientFrom?: string
   gradientTo?: string
   gradientDirection?: string
-  paddingTop?: number
-  paddingBottom?: number
   heading?: string
   description?: string
   buttonText?: string
@@ -37,8 +35,6 @@ const NewsletterCtaFull = forwardRef(function NewsletterCtaFull(
     gradientFrom,
     gradientTo,
     gradientDirection,
-    paddingTop = 96,
-    paddingBottom = 96,
     heading = "Stay in the Loop",
     description = "Get the latest on new products, contractor resources, and exclusive offers delivered straight to your inbox.",
     buttonText = "Subscribe",
@@ -78,9 +74,10 @@ const NewsletterCtaFull = forwardRef(function NewsletterCtaFull(
   return (
     <section
       ref={ref}
-      className={`relative overflow-hidden ${className || ""}`}
-      style={{ background: bgImage ? undefined : sectionBg, paddingTop, paddingBottom, fontFamily: "'Barlow', sans-serif" }}
+      className={`cast-newsletter-cta-full-defaults relative overflow-hidden ${className || ""}`}
+      style={{ background: bgImage ? undefined : sectionBg, fontFamily: "'Barlow', sans-serif" }}
     >
+      <style>{`\n        .cast-newsletter-cta-full-defaults { padding-top: 96px; padding-bottom: 96px; }\n        @media (max-width: 1024px) { .cast-newsletter-cta-full-defaults { padding-top: 76px; padding-bottom: 76px; } }\n        @media (max-width: 768px)  { .cast-newsletter-cta-full-defaults { padding-top: 62px; padding-bottom: 62px; } }\n        @media (max-width: 640px)  { .cast-newsletter-cta-full-defaults { padding-top: 52px; padding-bottom: 52px; } }\n      `}</style>
       {/* bg image */}
       {bgImage && (
         <img src={bgImage} alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", zIndex: 0 }} />
