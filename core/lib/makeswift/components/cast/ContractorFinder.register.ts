@@ -1,5 +1,5 @@
 import { lazy } from "react"
-import { Style, TextInput, TextArea, Color, Number as NumberControl } from "@makeswift/runtime/controls"
+import { Style, TextInput, Color, Image, Number as NumberControl, Select } from "@makeswift/runtime/controls"
 import { runtime } from "~/lib/makeswift/runtime"
 
 runtime.registerComponent(
@@ -9,18 +9,30 @@ runtime.registerComponent(
     label: "Forms / Contractor Finder",
     props: {
       className: Style(),
-      paddingTop: NumberControl({ label: "📐 Layout — Padding Top", defaultValue: 72, min: 0, max: 400, step: 8, suffix: "px" }),
-      paddingBottom: NumberControl({ label: "📐 Layout — Padding Bottom", defaultValue: 72, min: 0, max: 400, step: 8, suffix: "px" }),
-      bgColor: Color({ label: "🎨 Background — Color", defaultValue: "#0f1923" }),
+      sectionStyle: Style({ label: "📐 Layout — Section Margin & Padding", properties: [Style.Padding, Style.Margin] }),
+
+      // 🎨 Background
+      bgColor: Color({ label: "🎨 Background — Color", defaultValue: "#25262d" }),
+      bgImage: Image({ label: "🎨 Background — Image" }),
+      bgOpacity: NumberControl({ label: "🎨 Background — Opacity", defaultValue: 85, min: 0, max: 100, step: 1, suffix: "%" }),
+      gradientFrom: Color({ label: "🎨 Background — Gradient From" }),
+      gradientTo: Color({ label: "🎨 Background — Gradient To" }),
+      gradientDirection: Select({
+        label: "🎨 Background — Gradient Direction",
+        options: [
+          { value: "to bottom", label: "Top to Bottom" },
+          { value: "to top", label: "Bottom to Top" },
+          { value: "to right", label: "Left to Right" },
+          { value: "to left", label: "Right to Left" },
+          { value: "135deg", label: "Diagonal" },
+        ],
+        defaultValue: "to bottom",
+      }),
 
       // ✏️ Content
-      overline: TextInput({ label: "✏️ Content — Overline", defaultValue: "Find A Professional" }),
-      heading: TextInput({ label: "✏️ Content — Heading", defaultValue: "Get Connected With a CAST Installer" }),
-      subheading: TextArea({ label: "✏️ Content — Subheading", defaultValue: "Tell us a little about your project and we\'ll personally match you with a CAST-certified landscape lighting contractor in your area." }),
-
-      // ✅ Success state
-      successHeading: TextInput({ label: "✅ Success — Heading", defaultValue: "Thank You!" }),
-      successBody: TextArea({ label: "✅ Success — Body", defaultValue: "We\'ve received your request and will reach out within 1–2 business days with a contractor recommendation in your area." }),
+      overline: TextInput({ label: "✏️ Content — Overline", defaultValue: "Section Label" }),
+      heading: TextInput({ label: "✏️ Content — Heading", defaultValue: "Heading Goes Here" }),
+      subheading: TextInput({ label: "✏️ Content — Subheading", defaultValue: "Lorem ipsum dolor sit amet, consectetur adipiscing elit." }),
     },
   }
 )
