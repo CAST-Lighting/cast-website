@@ -20,22 +20,6 @@ runtime.registerComponent(
       className: Style(),
 
       // ─── 📐 Layout ────────────────────────────────────────────────
-      paddingTop: NumberControl({
-        label: "📐 Layout — Padding Top",
-        defaultValue: 48,
-        min: 0,
-        max: 400,
-        step: 8,
-        suffix: "px",
-      }),
-      paddingBottom: NumberControl({
-        label: "📐 Layout — Padding Bottom",
-        defaultValue: 48,
-        min: 0,
-        max: 400,
-        step: 8,
-        suffix: "px",
-      }),
 
       // ─── 🎨 Background ────────────────────────────────────────────
       bgColor: Color({
