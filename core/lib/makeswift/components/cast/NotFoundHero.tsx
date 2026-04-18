@@ -17,7 +17,7 @@ interface NotFoundHeroProps {
 const NotFoundHero = forwardRef(function NotFoundHero(
   {
     className,
-    bgColor
+    bgColor,
     errorCode = "404",
     heading = "Page Not",
     headingAccent = "Found",
