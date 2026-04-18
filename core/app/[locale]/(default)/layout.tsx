@@ -1,9 +1,9 @@
 import { setRequestLocale } from 'next-intl/server';
 import { PropsWithChildren } from 'react';
 import GDPRPopup from '~/lib/makeswift/components/cast/GDPRPopup';
-import CastSiteNavbar from '~/lib/makeswift/components/cast/SiteNavbar';
-import CastNavigationTopper from '~/lib/makeswift/components/cast/NavigationTopper';
 import { GlobalFooterLoader } from '~/lib/makeswift/components/cast/GlobalFooterLoader';
+import { GlobalNavLoader } from '~/lib/makeswift/components/cast/GlobalNavLoader';
+import { GlobalNavTopperLoader } from '~/lib/makeswift/components/cast/GlobalNavTopperLoader';
 
 interface Props extends PropsWithChildren {
   params: Promise<{ locale: string }>;
@@ -32,12 +32,12 @@ export default async function DefaultLayout({ params, children }: Props) {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }} />
-      {/* Nav: /global-elements/nav and /global-elements/nav-topper are empty in Makeswift,
-          so render from code components directly */}
-      <CastNavigationTopper />
-      <CastSiteNavbar />
+      {/* Nav topper + nav: Makeswift-managed via /global-elements/nav-topper and /global-elements/nav.
+          Falls back to code components until content is published to those pages. */}
+      <GlobalNavTopperLoader locale={locale} />
+      <GlobalNavLoader locale={locale} />
       <main>{children}</main>
-      {/* Footer: /global-elements/footer has content — changes in Makeswift propagate here */}
+      {/* Footer: Makeswift-managed via /global-elements/footer */}
       <GlobalFooterLoader locale={locale} />
       <GDPRPopup />
     </>
