@@ -24,12 +24,13 @@ export async function GET(request: Request) {
       body: r.fields.Body ?? '',
     }));
 
-    // Deduplicate by Airtable record ID to guard against pagination overlap or
-    // duplicate records in the base
-    const seen = new Set<string>();
+    // Deduplicate by slug — Airtable may have duplicate records (different IDs, same content).
+    // Keep the first occurrence of each slug (Airtable returns newest first due to sort).
+    const seenSlugs = new Set<string>();
     const dedupedPosts = posts.filter((p) => {
-      if (seen.has(p.id)) return false;
-      seen.add(p.id);
+      const key = p.slug || p.id;
+      if (seenSlugs.has(key)) return false;
+      seenSlugs.add(key);
       return true;
     });
 
