@@ -1,7 +1,7 @@
 import { type PropsWithChildren } from 'react';
-import CastSiteNavbar from '~/lib/makeswift/components/cast/SiteNavbar';
-import CastNavigationTopper from '~/lib/makeswift/components/cast/NavigationTopper';
 import { GlobalFooterLoader } from '~/lib/makeswift/components/cast/GlobalFooterLoader';
+import { GlobalNavLoader } from '~/lib/makeswift/components/cast/GlobalNavLoader';
+import { GlobalNavTopperLoader } from '~/lib/makeswift/components/cast/GlobalNavTopperLoader';
 
 interface Props extends PropsWithChildren {
   params: Promise<{ locale: string; rest?: string[] }>;
@@ -13,8 +13,8 @@ export default async function PathLayout({ children, params }: Props) {
 
   return (
     <>
-      {!isGlobalElement && <CastNavigationTopper />}
-      {!isGlobalElement && <CastSiteNavbar />}
+      {!isGlobalElement && <GlobalNavTopperLoader locale={locale} />}
+      {!isGlobalElement && <GlobalNavLoader locale={locale} />}
       {children}
       {!isGlobalElement && <GlobalFooterLoader locale={locale} />}
     </>
