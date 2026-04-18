@@ -31,9 +31,7 @@ const CategoryGrid = forwardRef(function CategoryGrid(
     gradientFrom,
     gradientTo,
     gradientDirection,
-    lineHeight,
-    paddingTop,
-    paddingBottom,
+    lineHeight
     sectionTitle,
     sectionTitleAccent,
     sectionDescription,
@@ -48,8 +46,6 @@ const CategoryGrid = forwardRef(function CategoryGrid(
     gradientTo?: string
     gradientDirection?: string
     lineHeight?: number
-    paddingTop?: number
-    paddingBottom?: number
     sectionTitle?: string
     sectionTitleAccent?: string
     sectionDescription?: string
@@ -92,9 +88,10 @@ const CategoryGrid = forwardRef(function CategoryGrid(
   return (
     <section
       ref={ref}
-      className={`relative overflow-hidden ${className || ""}`}
-      style={{ fontFamily: "'Barlow', sans-serif", background: isLight ? sectionBackground : undefined, paddingTop: paddingTop ?? 96, paddingBottom: paddingBottom ?? 96 } as React.CSSProperties}
+      className={`cast-category-grid-defaults relative overflow-hidden ${className || ""}`}
+      style={{ fontFamily: "'Barlow', sans-serif", background: isLight ? sectionBackground : undefined, } as React.CSSProperties}
     >
+      <style>{`\n        .cast-category-grid-defaults { padding-top: 72px; padding-bottom: 72px; }\n        @media (max-width: 1024px) { .cast-category-grid-defaults { padding-top: 57px; padding-bottom: 57px; } }\n        @media (max-width: 768px)  { .cast-category-grid-defaults { padding-top: 46px; padding-bottom: 46px; } }\n        @media (max-width: 640px)  { .cast-category-grid-defaults { padding-top: 39px; padding-bottom: 39px; } }\n      `}</style>
       {/* bg image + overlay — dark mode only */}
       {!isLight && (
         <>
