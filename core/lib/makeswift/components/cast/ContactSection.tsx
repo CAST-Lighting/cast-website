@@ -5,9 +5,7 @@ import { Phone, Mail, MapPin } from "lucide-react"
 const ContactSection = forwardRef(function ContactSection(
   {
     className,
-    bgColor,
-    paddingTop,
-    paddingBottom,
+    bgColor
     overline,
     heading,
     headingAccent,
@@ -20,8 +18,6 @@ const ContactSection = forwardRef(function ContactSection(
   }: {
     className?: string
     bgColor?: string
-    paddingTop?: number
-    paddingBottom?: number
     overline?: string
     heading?: string
     headingAccent?: string
@@ -37,10 +33,14 @@ const ContactSection = forwardRef(function ContactSection(
   return (
     <section
       ref={ref}
-      className={`relative overflow-hidden ${className || ''}`}
-      style={{ background: bgColor || '#0d1620', paddingTop: paddingTop ?? 96, paddingBottom: paddingBottom ?? 96 }}
+      className={`cast-contact-section-defaults relative overflow-hidden ${className || ''}`}
+      style={{ background: bgColor || '#0d1620', }}
     >
       <style>{`
+        .cast-contact-section-defaults { padding-top: 80px; padding-bottom: 80px; }
+        @media (max-width: 1024px) { .cast-contact-section-defaults { padding-top: 64px; padding-bottom: 64px; } }
+        @media (max-width: 768px)  { .cast-contact-section-defaults { padding-top: 52px; padding-bottom: 52px; } }
+        @media (max-width: 640px)  { .cast-contact-section-defaults { padding-top: 44px; padding-bottom: 44px; } }
         .cs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
         .cs-name-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
         @media (max-width: 768px) { .cs-grid { grid-template-columns: 1fr; gap: 40px; } }
