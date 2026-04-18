@@ -12,9 +12,7 @@ const NewsletterCta = forwardRef(function NewsletterCta(
     gradientFrom,
     gradientTo,
     gradientDirection,
-    lineHeight,
-    paddingTop,
-    paddingBottom,
+    lineHeight
     heading,
     headingAccent,
     description,
@@ -30,8 +28,6 @@ const NewsletterCta = forwardRef(function NewsletterCta(
     gradientTo?: string
     gradientDirection?: string
     lineHeight?: number
-    paddingTop?: number
-    paddingBottom?: number
     heading?: string
     headingAccent?: string
     description?: string
@@ -52,9 +48,10 @@ const NewsletterCta = forwardRef(function NewsletterCta(
   return (
     <section
       ref={ref}
-      className={`relative ${className || ""}`}
-      style={{ ...(!bgImageUrl ? { background: sectionBackground } : {}), '--section-line-height': lineHeight, paddingTop: paddingTop ?? 80, paddingBottom: paddingBottom ?? 80 } as React.CSSProperties}
+      className={`cast-newsletter-cta-defaults relative ${className || ""}`}
+      style={{ ...(!bgImageUrl ? { background: sectionBackground } : {}), } as React.CSSProperties}
     >
+      <style>{`\n        .cast-newsletter-cta-defaults { padding-top: 72px; padding-bottom: 72px; }\n        @media (max-width: 1024px) { .cast-newsletter-cta-defaults { padding-top: 57px; padding-bottom: 57px; } }\n        @media (max-width: 768px)  { .cast-newsletter-cta-defaults { padding-top: 46px; padding-bottom: 46px; } }\n        @media (max-width: 640px)  { .cast-newsletter-cta-defaults { padding-top: 39px; padding-bottom: 39px; } }\n      `}</style>
       {/* bg image layer */}
       {bgImageUrl && (
         <img src={bgImageUrl} alt="" className="absolute inset-0 w-full h-full object-cover" style={{ zIndex: 0 }} />
