@@ -130,7 +130,7 @@ const AboutContent = forwardRef(function AboutContent(
             </p>
             <div className="flex flex-wrap gap-3 justify-center" style={{ marginTop: 8 }}>
               {btn1Label && (
-                <a href={btn1Href || "#"} className="sg-btn-solid-md">
+                <a href={btn1Href || "#"} className="sg-btn-solid-dark-md">
                   {btn1Label}
                 </a>
               )}

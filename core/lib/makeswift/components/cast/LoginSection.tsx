@@ -56,6 +56,64 @@ const LoginSection = forwardRef(function LoginSection(
       style={{ width: '100%', background: bgColor || "#0f1923" }}
     >
 
+
+      <style>{`
+        .ls-layout {
+          display: grid;
+          grid-template-columns: 1fr auto 1fr;
+          gap: 48px;
+          padding: 80px 0;
+          align-items: start;
+        }
+        @media (max-width: 768px) {
+          .ls-layout {
+            grid-template-columns: 1fr;
+            gap: 32px;
+            padding: 48px 0;
+          }
+          .ls-divider {
+            display: none;
+          }
+        }
+        .ls-label {
+          display: block;
+          font-family: 'Barlow', sans-serif;
+          font-size: 13px;
+          font-weight: 600;
+          text-transform: uppercase;
+          letter-spacing: 0.06em;
+          color: rgba(255,255,255,0.55);
+          margin-bottom: 6px;
+        }
+        .ls-input {
+          width: 100%;
+          background: rgba(255,255,255,0.06);
+          border: 1px solid rgba(255,255,255,0.12);
+          border-radius: 6px;
+          padding: 10px 14px;
+          font-family: 'Barlow', sans-serif;
+          font-size: 15px;
+          color: #fff;
+          outline: none;
+          transition: border-color 0.2s;
+          box-sizing: border-box;
+        }
+        .ls-input:focus {
+          border-color: #007CB0;
+        }
+        .ls-input::placeholder {
+          color: rgba(255,255,255,0.25);
+        }
+        .ls-account-card {
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+          padding: 20px;
+          border: 1px solid rgba(255,255,255,0.08);
+          border-radius: 10px;
+          background: rgba(255,255,255,0.03);
+        }
+      `}</style>
       <div className="site-container" style={{ maxWidth: 1100 }}>
         <div className="ls-layout">
 

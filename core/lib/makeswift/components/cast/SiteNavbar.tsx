@@ -239,8 +239,8 @@ const SiteNavbar = forwardRef(function SiteNavbar(
                 )}
               </div>
             ))}
-            <a href="#" className="block w-full text-center px-5 py-2 rounded-md bg-primary text-primary-foreground font-semibold text-sm mt-2">
-              LOGIN / SIGNUP
+            <a href={resolvedCtaHref} className="block w-full text-center px-5 py-2 rounded-md bg-primary text-primary-foreground font-semibold text-sm mt-2">
+              {resolvedCtaLabel}
             </a>
           </div>
         )}
