@@ -12,7 +12,7 @@ const FALLBACK_BENEFITS = [
   { title: "Dedicated Support Team", desc: "Get direct access to our expert lighting designers for project planning and troubleshooting." },
 ]
 
-interface BenefitItem { title?: string; desc?: string }
+interface BenefitItem { icon?: string; title?: string; desc?: string }
 
 const TradeProSection = forwardRef(function TradeProSection(
   {
@@ -95,7 +95,9 @@ const TradeProSection = forwardRef(function TradeProSection(
               return (
                 <div key={i} className="p-6 rounded-xl border border-border bg-secondary/30 hover:border-primary/30 transition-all group">
                   <div className="icon-box mb-5 group-hover:bg-primary/20 transition-colors">
-                    <Icon className="w-6 h-6 text-primary" />
+                    {b.icon
+                      ? <img src={b.icon} alt="" style={{ width: 24, height: 24, objectFit: "contain" }} />
+                      : <Icon className="w-6 h-6 text-primary" />}
                   </div>
                   <h3 className="heading-style-h3 text-foreground mb-2">{b.title}</h3>
                   <p className="text-size-small text-muted-foreground leading-relaxed">{b.desc}</p>
