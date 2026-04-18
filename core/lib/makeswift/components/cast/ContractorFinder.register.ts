@@ -29,7 +29,11 @@ runtime.registerComponent(
         defaultValue: "to bottom" }),
 
       // ✏️ Content
-      overline: TextInput({ label: "✏️ Content — Label over Title", defaultValue: "Section Label" }),
-      heading: TextInput({ label: "✏️ Content — Heading", defaultValue: "Heading Goes Here" }),
-      subheading: TextInput({ label: "✏️ Content — Subheading", defaultValue: "Lorem ipsum dolor sit amet, consectetur adipiscing elit." }) } }
+      overline: TextInput({ label: "✏️ Content — Label over Title", defaultValue: "Find A Professional" }),
+      heading: TextInput({ label: "✏️ Content — Heading", defaultValue: "Find A CAST Installer Near You" }),
+      subheading: TextInput({ label: "✏️ Content — Subheading", defaultValue: "Tell us about your project and we'll connect you with a CAST-certified landscape lighting contractor in your area." }),
+
+      // 📋 Form
+      formHeading: TextInput({ label: "📋 Form — Heading", defaultValue: "Request a Contractor" }),
+      submitLabel: TextInput({ label: "📋 Form — Submit Button Label", defaultValue: "Find My Contractor" }) } }
 )

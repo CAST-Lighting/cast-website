@@ -1,169 +1,255 @@
 "use client"
+import { forwardRef, type Ref, useState } from "react"
+import { MapPin, Shield, Star, Phone } from "lucide-react"
 
-import { forwardRef, useState, type Ref } from "react"
+const PROJECT_TYPES = [
+  "Residential Installation",
+  "Commercial Installation",
+  "Upgrade / Replacement",
+  "Repair / Maintenance",
+  "Design Consultation",
+]
+
+const TIMELINE_OPTIONS = [
+  "As soon as possible",
+  "Within 1 month",
+  "1–3 months",
+  "3–6 months",
+  "Just exploring",
+]
+
+const inputStyle: React.CSSProperties = {
+  width: "100%", padding: "10px 14px",
+  background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.12)",
+  borderRadius: 8, color: "#fff", fontFamily: "'Barlow', sans-serif", fontSize: 15,
+  boxSizing: "border-box",
+}
+const labelStyle: React.CSSProperties = {
+  fontFamily: "'Barlow', sans-serif", fontSize: 12, fontWeight: 600,
+  color: "rgba(255,255,255,0.5)", display: "block", marginBottom: 6,
+}
+const fieldWrap: React.CSSProperties = { display: "flex", flexDirection: "column" }
 
 interface ContractorFinderProps {
   className?: string
-  sectionStyle?: string
-  overline?: string
-  heading?: string
-  subheading?: string
   bgColor?: string
   bgImage?: string
   bgOpacity?: number
   gradientFrom?: string
   gradientTo?: string
   gradientDirection?: string
+  overline?: string
+  heading?: string
+  subheading?: string
+  formHeading?: string
+  submitLabel?: string
 }
-
-const PLACEHOLDER_CONTRACTORS = [
-  { name: "Smith Landscape & Lighting", city: "Austin", state: "TX", zip: "78701", phone: "(512) 555-0142", specialty: "Residential & Commercial", certified: true },
-  { name: "Premier Outdoor Lighting Co.", city: "Dallas", state: "TX", zip: "75201", phone: "(214) 555-0389", specialty: "Commercial Projects", certified: true },
-  { name: "Green Horizons Landscaping", city: "Houston", state: "TX", zip: "77001", phone: "(713) 555-0217", specialty: "Residential Gardens", certified: false },
-  { name: "Illuminated Gardens LLC", city: "San Antonio", state: "TX", zip: "78201", phone: "(210) 555-0463", specialty: "Luxury Residential", certified: true },
-]
 
 const ContractorFinder = forwardRef(function ContractorFinder(
   {
     className,
-    sectionStyle,
-    overline = "Find A Professional",
-    heading = "Find A CAST Installer Near You",
-    subheading = "Connect with CAST-certified landscape lighting contractors in your area. Every professional in our network is trained on CAST products and committed to quality installation.",
     bgColor,
     bgImage,
     bgOpacity,
     gradientFrom,
     gradientTo,
-    gradientDirection
+    gradientDirection,
+    overline = "Find A Professional",
+    heading = "Find A CAST Installer Near You",
+    subheading = "Tell us about your project and we'll connect you with a CAST-certified landscape lighting contractor in your area.",
+    formHeading = "Request a Contractor",
+    submitLabel = "Find My Contractor",
   }: ContractorFinderProps,
   ref: Ref<HTMLDivElement>
 ) {
+  const [projectType, setProjectType] = useState("")
+  const [firstName, setFirstName] = useState("")
+  const [lastName, setLastName] = useState("")
+  const [email, setEmail] = useState("")
+  const [phone, setPhone] = useState("")
   const [zip, setZip] = useState("")
-  const [searched, setSearched] = useState(false)
-
-  const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault()
-    setSearched(true)
-  }
+  const [timeline, setTimeline] = useState("")
+  const [description, setDescription] = useState("")
+  const [submitted, setSubmitted] = useState(false)
 
   const hasGradient = !!(gradientFrom && gradientTo)
-  const overlayOpacity = typeof bgOpacity === 'number' ? bgOpacity / 100 : 0.85
+  const overlayOpacity = typeof bgOpacity === "number" ? bgOpacity / 100 : 0.85
   const sectionBackground = hasGradient
-    ? `linear-gradient(${gradientDirection || 'to bottom'}, ${gradientFrom}, ${gradientTo})`
-    : bgColor || "#25262d"
+    ? `linear-gradient(${gradientDirection || "to bottom"}, ${gradientFrom}, ${gradientTo})`
+    : bgColor || "#0d1620"
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    fetch("/api/cast/contractor-request", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ projectType, firstName, lastName, email, phone, zip, timeline, description }),
+    }).catch(err => console.error("[ContractorFinder] submit error", err))
+    setSubmitted(true)
+  }
 
   return (
     <div
       ref={ref}
-      className={`cast-contractor-finder-defaults ${className || ""} ${sectionStyle || ""}`}
-      style={{ width: "100%", boxSizing: "border-box", background: sectionBackground, }}
+      className={`relative overflow-hidden ${className || ""}`}
+      style={{ width: "100%", boxSizing: "border-box" }}
     >
-      {/* Hero */}
-      <div style={{ background: "var(--color-primary)", padding: "72px 0" }}>
-        <div className="site-container">
-          {overline && (
-            <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 12, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.12em", color: "rgba(255,255,255,0.7)", margin: "0 0 12px" }}>{overline}</p>
-          )}
-          <h1 style={{ fontSize: "var(--h1-size)", fontWeight: "var(--heading-weight, 700)", lineHeight: "var(--heading-line-height, 1.1)", fontFamily: "'Essonnes', 'Playfair Display', serif", color: "#fff", margin: "0 0 16px", maxWidth: 620 }}>
-            {heading}
-          </h1>
-          <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 17, color: "rgba(255,255,255,0.82)", lineHeight: 1.6, maxWidth: 540, margin: "0 0 36px" }}>
-            {subheading}
-          </p>
-          <form onSubmit={handleSearch} style={{ display: "flex", gap: 0, maxWidth: 480, background: "#2d353c", borderRadius: 8, overflow: "hidden", boxShadow: "0 4px 16px rgba(0,0,0,0.15)" }}>
-            <input
-              type="text"
-              value={zip}
-              onChange={e => setZip(e.target.value)}
-              placeholder="Enter your ZIP code"
-              style={{ flex: 1, padding: "14px 18px", border: "none", fontFamily: "'Barlow', sans-serif", fontSize: 15, color: "var(--color-title)", outline: "none" }}
-            />
-            <button type="submit" style={{ background: "var(--color-accent)", color: "#fff", border: "none", padding: "14px 24px", fontFamily: "'Barlow', sans-serif", fontSize: 14, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.06em", cursor: "pointer", flexShrink: 0 }}>
-              Find Installers
-            </button>
-          </form>
-        </div>
-      </div>
+      {/* Background */}
+      <div style={{ position: "absolute", inset: 0, background: sectionBackground, zIndex: 0 }} />
+      {bgImage && (
+        <>
+          <img src={bgImage} alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", zIndex: 0 }} />
+          <div style={{ position: "absolute", inset: 0, background: sectionBackground, opacity: overlayOpacity, zIndex: 1 }} />
+        </>
+      )}
 
       <style>{`
-        .cf-map-grid {
-          display: grid;
-          grid-template-columns: 1fr 380px;
-          gap: 32px;
-          align-items: flex-start;
-        }
-        @media (max-width: 860px) {
-          .cf-map-grid {
-            grid-template-columns: 1fr;
-          }
-          .cf-map-grid .cf-map-panel {
-            order: 2;
-          }
-          .cf-map-grid .cf-results-panel {
-            order: 1;
-          }
-        }
+        .cf-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; position: relative; z-index: 10; }
+        .cf-name-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        .cf-radio-group { display: flex; flex-wrap: wrap; gap: 10px; }
+        .cf-radio-label { display: flex; align-items: center; gap: 8px; cursor: pointer; font-family: 'Barlow', sans-serif; font-size: 13px; color: rgba(255,255,255,0.8); padding: 8px 14px; border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; transition: border-color 150ms, background 150ms; }
+        .cf-radio-label:has(input:checked) { border-color: #007CB0; background: rgba(0,124,176,0.12); color: #fff; }
+        .cf-radio-label input { accent-color: #007CB0; }
+        .cf-select { width: 100%; padding: 10px 14px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; color: #fff; font-family: 'Barlow', sans-serif; font-size: 15px; box-sizing: border-box; appearance: none; }
+        .cf-select option { background: #1a2332; color: #fff; }
+        .cf-trust-item { display: flex; align-items: flex-start; gap: 14px; }
+        @media (max-width: 900px) { .cf-grid { grid-template-columns: 1fr; gap: 40px; } }
+        @media (max-width: 480px) { .cf-name-row { grid-template-columns: 1fr; } }
       `}</style>
 
-      {/* Map placeholder + results */}
-      <div className="site-container" style={{ paddingTop: 56, paddingBottom: 72 }}>
-        <div className="cf-map-grid">
-          {/* Map placeholder */}
-          <div className="cf-map-panel" style={{ background: "#e2e8ed", borderRadius: 12, overflow: "hidden", minHeight: 480, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", border: "1px solid #d1d9e0", position: "relative" }}>
-            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" strokeWidth="1.5" style={{ marginBottom: 16, opacity: 0.5 }}>
-              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-              <circle cx="12" cy="10" r="3" />
-            </svg>
-            <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 14, color: "var(--color-content)", margin: 0, opacity: 0.7, textAlign: "center", maxWidth: 220 }}>
-              Search by ZIP code above to find certified installers near you
+      <div className="site-container" style={{ position: "relative", zIndex: 10, paddingTop: 72, paddingBottom: 80 }}>
+        <div className="cf-grid">
+
+          {/* Left: messaging + trust */}
+          <div>
+            {overline && (
+              <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 12, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.12em", color: "#7EBEE8", margin: "0 0 14px" }}>{overline}</p>
+            )}
+            <h2 style={{ fontFamily: "'Essonnes', 'Playfair Display', serif", fontSize: "var(--h2-size)", fontWeight: 700, color: "#fff", lineHeight: 1.15, margin: "0 0 20px" }}>
+              {heading}
+            </h2>
+            <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 17, color: "rgba(255,255,255,0.7)", lineHeight: 1.7, margin: "0 0 44px" }}>
+              {subheading}
             </p>
-            {/* Decorative grid lines */}
-            <div style={{ position: "absolute", inset: 0, backgroundImage: "linear-gradient(rgba(0,73,96,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(0,73,96,0.06) 1px, transparent 1px)", backgroundSize: "40px 40px", pointerEvents: "none" }} />
+
+            {/* Trust callouts */}
+            <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
+              <div className="cf-trust-item">
+                <div style={{ width: 44, height: 44, borderRadius: 10, background: "rgba(0,124,176,0.15)", border: "1px solid rgba(0,124,176,0.25)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                  <Shield style={{ width: 20, height: 20, color: "#7EBEE8" }} />
+                </div>
+                <div>
+                  <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 15, fontWeight: 700, color: "#fff", margin: "0 0 4px" }}>CAST-Certified Network</p>
+                  <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 14, color: "rgba(255,255,255,0.6)", margin: 0, lineHeight: 1.5 }}>Every contractor in our network is trained and certified on CAST products and installation standards.</p>
+                </div>
+              </div>
+              <div className="cf-trust-item">
+                <div style={{ width: 44, height: 44, borderRadius: 10, background: "rgba(0,124,176,0.15)", border: "1px solid rgba(0,124,176,0.25)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                  <MapPin style={{ width: 20, height: 20, color: "#7EBEE8" }} />
+                </div>
+                <div>
+                  <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 15, fontWeight: 700, color: "#fff", margin: "0 0 4px" }}>Local Professionals</p>
+                  <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 14, color: "rgba(255,255,255,0.6)", margin: 0, lineHeight: 1.5 }}>We match you with contractors who know your region, local codes, and landscape conditions.</p>
+                </div>
+              </div>
+              <div className="cf-trust-item">
+                <div style={{ width: 44, height: 44, borderRadius: 10, background: "rgba(0,124,176,0.15)", border: "1px solid rgba(0,124,176,0.25)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                  <Star style={{ width: 20, height: 20, color: "#7EBEE8" }} />
+                </div>
+                <div>
+                  <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 15, fontWeight: 700, color: "#fff", margin: "0 0 4px" }}>No Cost to You</p>
+                  <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 14, color: "rgba(255,255,255,0.6)", margin: 0, lineHeight: 1.5 }}>Our contractor matching service is completely free. We'll reach out within one business day.</p>
+                </div>
+              </div>
+            </div>
           </div>
 
-          {/* Results panel */}
-          <div className="cf-results-panel">
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16 }}>
-              <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 15, fontWeight: 600, color: "var(--color-title)", margin: 0 }}>
-                {searched ? `${PLACEHOLDER_CONTRACTORS.length} results near "${zip}"` : "Enter a ZIP code to search"}
-              </p>
-            </div>
+          {/* Right: form */}
+          <div style={{ background: "#1a2332", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 16, padding: "40px 36px" }}>
+            {formHeading && (
+              <h3 style={{ fontFamily: "'Essonnes', 'Playfair Display', serif", fontSize: 22, fontWeight: 700, color: "#fff", margin: "0 0 28px" }}>{formHeading}</h3>
+            )}
 
-            <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-              {(searched ? PLACEHOLDER_CONTRACTORS : PLACEHOLDER_CONTRACTORS.slice(0, 2)).map((c, i) => (
-                <div key={i} style={{ background: "#2d353c", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 10, padding: "18px 20px" }}>
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 6 }}>
-                    <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 15, fontWeight: 700, color: "var(--color-title)", margin: 0 }}>{c.name}</p>
-                    {c.certified && (
-                      <span style={{ background: "var(--color-accent)", color: "#fff", fontSize: 9, fontFamily: "'Barlow', sans-serif", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.06em", padding: "2px 7px", borderRadius: 3, flexShrink: 0, marginLeft: 8 }}>Certified</span>
-                    )}
-                  </div>
-                  <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, color: "var(--color-content)", margin: "0 0 4px" }}>{c.city}, {c.state} {c.zip}</p>
-                  <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, color: "var(--color-content)", margin: "0 0 4px" }}>{c.specialty}</p>
-                  <a href={`tel:${c.phone}`} style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, fontWeight: 600, color: "var(--color-accent)", textDecoration: "none" }}>{c.phone}</a>
-                  <div style={{ marginTop: 12 }}>
-                    <a href="#" className="sg-btn-solid-sm" style={{ textDecoration: "none" }}>Contact</a>
+            {submitted ? (
+              <div style={{ textAlign: "center", padding: "40px 0" }}>
+                <div style={{ fontSize: 48, marginBottom: 16 }}>✓</div>
+                <h3 style={{ fontFamily: "'Essonnes', 'Playfair Display', serif", fontSize: 22, fontWeight: 700, color: "#fff", margin: "0 0 8px" }}>Request Received!</h3>
+                <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 15, color: "rgba(255,255,255,0.6)", margin: 0, lineHeight: 1.6 }}>
+                  We'll connect you with a CAST-certified contractor in your area within one business day.
+                </p>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 18 }}>
+
+                {/* Project type */}
+                <div style={fieldWrap}>
+                  <label style={labelStyle}>I need help with… *</label>
+                  <div className="cf-radio-group">
+                    {PROJECT_TYPES.map(opt => (
+                      <label key={opt} className="cf-radio-label">
+                        <input type="radio" name="projectType" value={opt} checked={projectType === opt} onChange={() => setProjectType(opt)} required />
+                        {opt}
+                      </label>
+                    ))}
                   </div>
                 </div>
-              ))}
 
-              {!searched && (
-                <div style={{ background: "#2d353c", border: "1.5px dashed rgba(255,255,255,0.2)", borderRadius: 10, padding: "24px 20px", textAlign: "center" }}>
-                  <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 14, color: "var(--color-content)", margin: 0, lineHeight: 1.6 }}>
-                    Search by ZIP code to see CAST-certified contractors near you.
-                  </p>
+                {/* First + Last */}
+                <div className="cf-name-row">
+                  <div style={fieldWrap}>
+                    <label style={labelStyle}>First Name *</label>
+                    <input type="text" value={firstName} onChange={e => setFirstName(e.target.value)} placeholder="John" required style={inputStyle} />
+                  </div>
+                  <div style={fieldWrap}>
+                    <label style={labelStyle}>Last Name *</label>
+                    <input type="text" value={lastName} onChange={e => setLastName(e.target.value)} placeholder="Smith" required style={inputStyle} />
+                  </div>
                 </div>
-              )}
-            </div>
 
-            {/* Apply to be listed */}
-            <div style={{ background: "var(--color-primary)", borderRadius: 10, padding: "20px", marginTop: 20 }}>
-              <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 14, fontWeight: 700, color: "#fff", margin: "0 0 6px" }}>Are you a contractor?</p>
-              <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, color: "rgba(255,255,255,0.8)", margin: "0 0 14px", lineHeight: 1.5 }}>Join the CAST TradePro network and get listed in our installer directory.</p>
-              <a href="/trade-pro-signup" className="sg-btn-solid-dark-sm" style={{ textDecoration: "none" }}>Apply Now</a>
-            </div>
+                {/* Email */}
+                <div style={fieldWrap}>
+                  <label style={labelStyle}>Email Address *</label>
+                  <input type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="john@example.com" required style={inputStyle} />
+                </div>
+
+                {/* Phone + Zip */}
+                <div className="cf-name-row">
+                  <div style={fieldWrap}>
+                    <label style={labelStyle}>Phone Number *</label>
+                    <input type="tel" value={phone} onChange={e => setPhone(e.target.value)} placeholder="(555) 000-0000" required style={inputStyle} />
+                  </div>
+                  <div style={fieldWrap}>
+                    <label style={labelStyle}>Zip Code *</label>
+                    <input type="text" value={zip} onChange={e => setZip(e.target.value)} placeholder="07058" required style={inputStyle} />
+                  </div>
+                </div>
+
+                {/* Timeline */}
+                <div style={fieldWrap}>
+                  <label style={labelStyle}>Project Timeline *</label>
+                  <select value={timeline} onChange={e => setTimeline(e.target.value)} required className="cf-select">
+                    <option value="" disabled>When are you looking to start?</option>
+                    {TIMELINE_OPTIONS.map(opt => <option key={opt} value={opt}>{opt}</option>)}
+                  </select>
+                </div>
+
+                {/* Description */}
+                <div style={fieldWrap}>
+                  <label style={labelStyle}>Tell us about your project</label>
+                  <textarea value={description} onChange={e => setDescription(e.target.value)} placeholder="Describe your space, size of the area, any specific lighting goals…" rows={4} style={{ ...inputStyle, resize: "vertical" }} />
+                </div>
+
+                <button type="submit" style={{ width: "100%", padding: "14px 24px", background: "linear-gradient(135deg, #007CB0, #7EBEE8)", border: "none", borderRadius: 8, fontFamily: "'Barlow', sans-serif", fontSize: 15, fontWeight: 700, color: "#0d1620", cursor: "pointer", letterSpacing: "0.03em", marginTop: 4 }}>
+                  {submitLabel}
+                </button>
+
+                <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 12, color: "rgba(255,255,255,0.4)", margin: 0, textAlign: "center" }}>
+                  We'll reach out within one business day. No spam, ever.
+                </p>
+              </form>
+            )}
           </div>
+
         </div>
       </div>
     </div>
