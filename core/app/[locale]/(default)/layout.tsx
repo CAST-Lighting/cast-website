@@ -1,9 +1,6 @@
 import { setRequestLocale } from 'next-intl/server';
 import { PropsWithChildren } from 'react';
 import GDPRPopup from '~/lib/makeswift/components/cast/GDPRPopup';
-import CastSiteNavbar from '~/lib/makeswift/components/cast/SiteNavbar';
-import CastNavigationTopper from '~/lib/makeswift/components/cast/NavigationTopper';
-import CastSiteFooter from '~/lib/makeswift/components/cast/SiteFooter';
 import { GlobalThemeLoader } from '~/lib/makeswift/components/cast/GlobalThemeLoader';
 
 interface Props extends PropsWithChildren {
@@ -26,11 +23,9 @@ const organizationSchema = {
   ],
 };
 
-// NOTE: Use code components directly — do NOT use GlobalNavLoader/GlobalFooterLoader/
-// GlobalNavTopperLoader. Those call MakeswiftPageShim which registers extra Page roots
-// in the Makeswift editor, causing nav/footer/topper to appear as separate Page elements.
-// GlobalThemeLoader is safe here because it only runs on (default) routes, never in the
-// Makeswift editor path ((makeswift) routes).
+// Nav, footer, and topper are managed as Makeswift global components — do NOT
+// render them here as code components or they will duplicate on every page.
+// GlobalThemeLoader is safe here (default-only path, never runs in the editor).
 export default async function DefaultLayout({ params, children }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
@@ -38,12 +33,8 @@ export default async function DefaultLayout({ params, children }: Props) {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }} />
-      {/* GlobalThemeLoader: injects Makeswift-configured CSS vars, overrides static fallback */}
       <GlobalThemeLoader locale={locale} />
-      <CastNavigationTopper />
-      <CastSiteNavbar />
-      <main>{children}</main>
-      <CastSiteFooter />
+      {children}
       <GDPRPopup />
     </>
   );
