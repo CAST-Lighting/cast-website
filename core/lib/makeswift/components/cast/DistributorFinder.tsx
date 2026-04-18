@@ -15,8 +15,6 @@ interface DistributorFinderProps {
   gradientFrom?: string
   gradientTo?: string
   gradientDirection?: string
-  paddingTop?: number
-  paddingBottom?: number
 }
 
 const PLACEHOLDER_DISTRIBUTORS = [
@@ -48,9 +46,7 @@ const DistributorFinder = forwardRef(function DistributorFinder(
     bgOpacity,
     gradientFrom,
     gradientTo,
-    gradientDirection,
-    paddingTop,
-    paddingBottom,
+    gradientDirection
   }: DistributorFinderProps,
   ref: Ref<HTMLDivElement>
 ) {
@@ -77,9 +73,10 @@ const DistributorFinder = forwardRef(function DistributorFinder(
   return (
     <div
       ref={ref}
-      className={`${className || ""} ${sectionStyle || ""}`}
-      style={{ width: "100%", boxSizing: "border-box", background: sectionBackground, paddingTop: paddingTop ?? 0, paddingBottom: paddingBottom ?? 0 }}
+      className={`cast-distributor-finder-defaults ${className || ""} ${sectionStyle || ""}`}
+      style={{ width: "100%", boxSizing: "border-box", background: sectionBackground, }}
     >
+      <style>{`\n        .cast-distributor-finder-defaults { padding-top: 72px; padding-bottom: 72px; }\n        @media (max-width: 1024px) { .cast-distributor-finder-defaults { padding-top: 57px; padding-bottom: 57px; } }\n        @media (max-width: 768px)  { .cast-distributor-finder-defaults { padding-top: 46px; padding-bottom: 46px; } }\n        @media (max-width: 640px)  { .cast-distributor-finder-defaults { padding-top: 39px; padding-bottom: 39px; } }\n      `}</style>
       {/* Hero */}
       <div style={{ background: "var(--color-primary)", padding: "72px 0" }}>
         <div className="site-container">
