@@ -105,48 +105,49 @@ const DistributorFinder = forwardRef(function DistributorFinder(
 
       {/* Main content */}
       <style>{`
-        .df-main-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: flex-start; }
-        @media (max-width: 768px) { .df-main-grid { grid-template-columns: 1fr; } }
+        .df-main-grid { display: grid; grid-template-columns: 1fr 260px 320px; gap: 24px; align-items: flex-start; }
+        .df-map { border-radius: 10px; height: 560px; display: flex; align-items: center; justify-content: center; border: 1px solid #d1d9e0; position: relative; overflow: hidden; background: #e2e8ed; }
+        @media (max-width: 1100px) { .df-main-grid { grid-template-columns: 1fr 240px; } .df-tiles { order: 3; grid-column: 1 / -1; display: grid; grid-template-columns: repeat(auto-fill, minmax(220px,1fr)); gap: 12px; } }
+        @media (max-width: 768px) { .df-main-grid { grid-template-columns: 1fr; } .df-map { height: 300px; } }
       `}</style>
       <div className="site-container" style={{ paddingTop: 64, paddingBottom: 72 }}>
         <div className="df-main-grid">
 
-          {/* Distributor results + map */}
+          {/* Map */}
           <div>
-            <h2 style={{ fontSize: "var(--h3-size)", fontWeight: "var(--heading-weight, 700)", lineHeight: "var(--heading-line-height, 1.1)", fontFamily: "'Essonnes', 'Playfair Display', serif", color: "var(--color-title)", margin: "0 0 24px" }}>
+            <h2 style={{ fontSize: "var(--h3-size)", fontWeight: "var(--heading-weight, 700)", lineHeight: "var(--heading-line-height, 1.1)", fontFamily: "'Essonnes', 'Playfair Display', serif", color: "var(--color-title)", margin: "0 0 16px" }}>
               {searched ? `Results near "${zip}"` : "Current Distributors"}
             </h2>
-
-            {/* Map placeholder */}
-            <div style={{ background: "#e2e8ed", borderRadius: 10, height: 200, display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 20, border: "1px solid #d1d9e0", position: "relative", overflow: "hidden" }}>
+            <div className="df-map">
               <div style={{ position: "absolute", inset: 0, backgroundImage: "linear-gradient(rgba(0,73,96,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(0,73,96,0.06) 1px, transparent 1px)", backgroundSize: "30px 30px" }} />
               <div style={{ textAlign: "center", position: "relative" }}>
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" strokeWidth="1.5" style={{ marginBottom: 8, opacity: 0.5 }}>
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" strokeWidth="1.5" style={{ marginBottom: 10, opacity: 0.5 }}>
                   <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
                   <circle cx="12" cy="10" r="3" />
                 </svg>
                 <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 12, color: "var(--color-content)", margin: 0, opacity: 0.7 }}>Map — connected in next phase</p>
               </div>
             </div>
+          </div>
 
-            <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-              {PLACEHOLDER_DISTRIBUTORS.map((d, i) => (
-                <div key={i} style={{ background: "#2d353c", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 10, padding: "18px 20px" }}>
-                  <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 15, fontWeight: 700, color: "var(--color-title)", margin: "0 0 4px" }}>{d.name}</p>
-                  <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, color: "var(--color-content)", margin: "0 0 4px" }}>{d.city}, {d.state} · {d.type}</p>
-                  <a href={`tel:${d.phone}`} style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, fontWeight: 600, color: "var(--color-accent)", textDecoration: "none", display: "block", marginBottom: 8 }}>{d.phone}</a>
-                  <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
-                    {d.brands.map((b, bi) => (
-                      <span key={bi} style={{ background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.2)", borderRadius: 3, fontSize: 11, fontFamily: "'Barlow', sans-serif", fontWeight: 600, color: "rgba(255,255,255,0.85)", padding: "2px 8px" }}>{b}</span>
-                    ))}
-                  </div>
+          {/* Distributor tiles */}
+          <div className="df-tiles" style={{ display: "flex", flexDirection: "column", gap: 12, paddingTop: 52 }}>
+            {PLACEHOLDER_DISTRIBUTORS.map((d, i) => (
+              <div key={i} style={{ background: "#2d353c", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 10, padding: "16px 18px" }}>
+                <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 14, fontWeight: 700, color: "var(--color-title)", margin: "0 0 4px" }}>{d.name}</p>
+                <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 12, color: "var(--color-content)", margin: "0 0 4px" }}>{d.city}, {d.state} · {d.type}</p>
+                <a href={`tel:${d.phone}`} style={{ fontFamily: "'Barlow', sans-serif", fontSize: 12, fontWeight: 600, color: "var(--color-accent)", textDecoration: "none", display: "block", marginBottom: 8 }}>{d.phone}</a>
+                <div style={{ display: "flex", gap: 5, flexWrap: "wrap" }}>
+                  {d.brands.map((b, bi) => (
+                    <span key={bi} style={{ background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.2)", borderRadius: 3, fontSize: 10, fontFamily: "'Barlow', sans-serif", fontWeight: 600, color: "rgba(255,255,255,0.85)", padding: "2px 7px" }}>{b}</span>
+                  ))}
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
 
           {/* Application form */}
-          <div>
+          <div style={{ paddingTop: 52 }}>
             <div style={{ background: "#2d353c", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 12, padding: "36px 32px", boxShadow: "0 4px 24px rgba(0,0,0,0.06)" }}>
               {submitted ? (
                 <div style={{ textAlign: "center", padding: "40px 0" }}>
