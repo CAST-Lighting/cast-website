@@ -28,8 +28,6 @@ interface BrandLogosProps {
   gradientFrom?: string
   gradientTo?: string
   gradientDirection?: string
-  paddingTop?: number
-  paddingBottom?: number
   logos?: LogoItem[]
   mode?: 'dark' | 'light'
 }
@@ -45,9 +43,7 @@ const BrandLogos = forwardRef(function BrandLogos(
     bgOpacity,
     gradientFrom,
     gradientTo,
-    gradientDirection,
-    paddingTop,
-    paddingBottom,
+    gradientDirection
     logos: logosProp,
     mode = 'dark',
   }: BrandLogosProps,
@@ -64,13 +60,12 @@ const BrandLogos = forwardRef(function BrandLogos(
   return (
     <section
       ref={ref}
-      className={`relative overflow-hidden ${className || ""}`}
+      className={`cast-brand-logos-defaults relative overflow-hidden ${className || ""}`}
       style={{
         ...(!bgImage ? { background: bg } : {}),
-        paddingTop: paddingTop ?? 64,
-        paddingBottom: paddingBottom ?? 64,
       }}
     >
+      <style>{`\n        .cast-brand-logos-defaults { padding-top: 72px; padding-bottom: 72px; }\n        @media (max-width: 1024px) { .cast-brand-logos-defaults { padding-top: 57px; padding-bottom: 57px; } }\n        @media (max-width: 768px)  { .cast-brand-logos-defaults { padding-top: 46px; padding-bottom: 46px; } }\n        @media (max-width: 640px)  { .cast-brand-logos-defaults { padding-top: 39px; padding-bottom: 39px; } }\n      `}</style>
       {bgImage && (
         <img src={bgImage} alt="" className="absolute inset-0 w-full h-full object-cover" style={{ zIndex: 0 }} />
       )}
