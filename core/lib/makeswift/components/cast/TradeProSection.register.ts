@@ -45,7 +45,8 @@ runtime.registerComponent(
           type: {
             icon: Image({ label: "Icon Image" }),
             title: TextInput({ label: "Title", defaultValue: "" }),
-            desc: TextInput({ label: "Description", defaultValue: "" }) } }),
+            desc: TextInput({ label: "Description", defaultValue: "" }),
+            href: TextInput({ label: "Link URL (optional)", defaultValue: "" }) } }),
         getItemLabel(item) { return item?.title || "Benefit" } }),
 
       // 🔘 Buttons

@@ -12,7 +12,7 @@ const FALLBACK_BENEFITS = [
   { title: "Dedicated Support Team", desc: "Get direct access to our expert lighting designers for project planning and troubleshooting." },
 ]
 
-interface BenefitItem { icon?: string; title?: string; desc?: string }
+interface BenefitItem { icon?: string; title?: string; desc?: string; href?: string }
 
 const TradeProSection = forwardRef(function TradeProSection(
   {
@@ -92,8 +92,10 @@ const TradeProSection = forwardRef(function TradeProSection(
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
             {benefits.map((b, i) => {
               const Icon = BENEFIT_ICONS[i % BENEFIT_ICONS.length] as React.ElementType
-              return (
-                <div key={i} className="p-6 rounded-xl border border-border bg-secondary/30 hover:border-primary/30 transition-all group">
+              const cardClass = "p-6 rounded-xl border border-border bg-secondary/30 hover:border-primary/30 transition-all group"
+              const cardStyle = b.href ? { textDecoration: "none", display: "block", cursor: "pointer" } : undefined
+              const inner = (
+                <>
                   <div className="icon-box mb-5 group-hover:bg-primary/20 transition-colors">
                     {b.icon
                       ? <img src={b.icon} alt="" style={{ width: 24, height: 24, objectFit: "contain" }} />
@@ -101,8 +103,11 @@ const TradeProSection = forwardRef(function TradeProSection(
                   </div>
                   <h3 className="heading-style-h3 text-foreground mb-2">{b.title}</h3>
                   <p className="text-size-small text-muted-foreground leading-relaxed">{b.desc}</p>
-                </div>
+                </>
               )
+              return b.href
+                ? <a key={i} href={b.href} className={cardClass} style={cardStyle}>{inner}</a>
+                : <div key={i} className={cardClass}>{inner}</div>
             })}
           </div>
 
