@@ -5,8 +5,6 @@ import { useCmsData } from "~/lib/makeswift/cms-context"
 export interface CmsProductContentProps {
   className?: string
   bgColor?: string
-  paddingTop?: number
-  paddingBottom?: number
 }
 
 const PLACEHOLDER_IMAGES = [
@@ -19,8 +17,6 @@ const CmsProductContent = forwardRef(function CmsProductContent(
   {
     className,
     bgColor = "#0f1923",
-    paddingTop = 48,
-    paddingBottom = 64,
   }: CmsProductContentProps,
   ref: Ref<HTMLElement>
 ) {
@@ -35,12 +31,17 @@ const CmsProductContent = forwardRef(function CmsProductContent(
   return (
     <div
       ref={ref as Ref<HTMLDivElement>}
-      className={className || ""}
+      className={`cast-cms-product-content-defaults ${className || ""}`}
       style={{ background: bgColor, minHeight: 200 }}
     >
+      <style>{`
+        .cast-cms-product-content-defaults { padding-top: 48px; padding-bottom: 64px; }
+        @media (max-width: 1024px) { .cast-cms-product-content-defaults { padding-top: 38px; padding-bottom: 51px; } }
+        @media (max-width: 768px)  { .cast-cms-product-content-defaults { padding-top: 31px; padding-bottom: 41px; } }
+        @media (max-width: 640px)  { .cast-cms-product-content-defaults { padding-top: 26px; padding-bottom: 35px; } }
+      `}</style>
       <div
         className="site-container"
-        style={{ paddingTop, paddingBottom }}
       >
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 48, alignItems: "start" }}>
           {/* Image Gallery */}
