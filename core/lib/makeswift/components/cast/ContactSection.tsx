@@ -5,7 +5,7 @@ import { Phone, Mail, MapPin } from "lucide-react"
 const ContactSection = forwardRef(function ContactSection(
   {
     className,
-    bgColor
+    bgColor,
     overline,
     heading,
     headingAccent,
