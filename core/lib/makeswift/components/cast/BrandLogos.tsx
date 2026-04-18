@@ -43,7 +43,7 @@ const BrandLogos = forwardRef(function BrandLogos(
     bgOpacity,
     gradientFrom,
     gradientTo,
-    gradientDirection
+    gradientDirection,
     logos: logosProp,
     mode = 'dark',
   }: BrandLogosProps,
