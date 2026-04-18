@@ -130,9 +130,8 @@ const AboutContent = forwardRef(function AboutContent(
           display: grid;
           grid-template-columns: repeat(3, 1fr);
           gap: 22px;
-          margin-bottom: 80px;
         }
-        @media (max-width: 900px)  { .ac-cards { grid-template-columns: 1fr 1fr; margin-bottom: 56px; } }
+        @media (max-width: 900px)  { .ac-cards { grid-template-columns: 1fr 1fr; } }
         @media (max-width: 540px)  { .ac-cards { grid-template-columns: 1fr; } }
 
         .ac-card {

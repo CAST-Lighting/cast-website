@@ -67,7 +67,7 @@ const DistributorFinder = forwardRef(function DistributorFinder(
         @media (min-width: 901px) { .df-right { padding-top: 0; } }
         @media (max-width: 900px) { .df-main-grid { grid-template-columns: 1fr; gap: 16px; } .df-map { height: 300px; } }
       `}</style>
-      <div className="site-container" style={{ paddingTop: 64, paddingBottom: 72 }}>
+      <div className="site-container">
         <div className="df-main-grid">
 
           {/* Left: map + form stacked */}

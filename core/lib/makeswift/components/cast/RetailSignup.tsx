@@ -69,7 +69,7 @@ const RetailSignup = forwardRef(function RetailSignup(
           .rs-two-col { grid-template-columns: 1fr; }
         }
       `}</style>
-      <div style={{ padding: "64px 0 96px" }}>
+      <div>
         <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 24px" }}>
           <div className="rs-layout">
             {/* ── Form ── */}

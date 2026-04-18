@@ -117,7 +117,7 @@ const ContractorFinder = forwardRef(function ContractorFinder(
         @media (max-width: 480px) { .cf-name-row { grid-template-columns: 1fr; } }
       `}</style>
 
-      <div className="site-container" style={{ position: "relative", zIndex: 10, paddingTop: 72, paddingBottom: 80 }}>
+      <div className="site-container" style={{ position: "relative", zIndex: 10 }}>
         <div className="cf-grid">
 
           {/* Left: messaging + trust */}

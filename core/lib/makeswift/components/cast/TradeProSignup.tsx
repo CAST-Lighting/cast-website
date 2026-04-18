@@ -71,7 +71,7 @@ const TradeProSignup = forwardRef(function TradeProSignup(
           .tps-city-row { grid-template-columns: 1fr; }
         }
       `}</style>
-      <div style={{ padding: "64px 0 96px" }}>
+      <div>
         <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 24px" }}>
           <div className="tps-layout">
             {/* ── Form ── */}

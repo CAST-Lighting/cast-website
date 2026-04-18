@@ -9,7 +9,6 @@ runtime.registerComponent(
     label: "Sections / Brand Logos",
     props: {
       className: Style({ properties: [Style.Padding, Style.Margin] }),
-      sectionStyle: Style({ properties: [Style.Padding, Style.Margin] }),
 
       // 🎨 Background
       bgColor: Color({ label: "🎨 Background — Color", defaultValue: "#2d353c" }),
