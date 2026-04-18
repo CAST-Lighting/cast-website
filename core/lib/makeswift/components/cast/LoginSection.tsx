@@ -3,8 +3,6 @@ import { forwardRef, type Ref, useState } from "react"
 
 interface LoginSectionProps {
   className?: string
-  paddingTop?: number
-  paddingBottom?: number
   bgColor?: string
   // Login form
   loginHeading?: string
@@ -29,8 +27,6 @@ interface LoginSectionProps {
 const LoginSection = forwardRef(function LoginSection(
   {
     className,
-    paddingTop = 80,
-    paddingBottom = 80,
     bgColor,
     loginHeading = "Welcome Back",
     loginSubheading = "Sign in to your CAST Lighting account",
@@ -57,7 +53,7 @@ const LoginSection = forwardRef(function LoginSection(
     <section
       ref={ref}
       className={className || ""}
-      style={{ width: '100%', background: bgColor || "#0f1923" , paddingTop, paddingBottom}}
+      style={{ width: '100%', background: bgColor || "#0f1923" }}
     >
 
       <div className="site-container" style={{ maxWidth: 1100 }}>

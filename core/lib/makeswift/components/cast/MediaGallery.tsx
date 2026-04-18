@@ -14,8 +14,6 @@ interface MediaItem {
 
 interface MediaGalleryProps {
   className?: string
-  paddingTop?: number
-  paddingBottom?: number
   sectionStyle?: string
   heading?: string
   headingAccent?: string
@@ -30,7 +28,7 @@ interface MediaGalleryProps {
 }
 
 const PlaceholderImage = ({ caption, isVideo }: { caption?: string; isVideo?: boolean }) => (
-  <div style={{ width: "100%", aspectRatio: "16/9", background: "#37474f", paddingTop, paddingBottom, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", borderRadius: 8, position: "relative", overflow: "hidden" }}>
+  <div style={{ width: "100%", aspectRatio: "16/9", background: "#37474f", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", borderRadius: 8, position: "relative", overflow: "hidden" }}>
     {isVideo ? (
       <>
         <svg width="48" height="48" viewBox="0 0 24 24" fill="none" style={{ marginBottom: 8 }}>
@@ -57,8 +55,6 @@ const PlaceholderImage = ({ caption, isVideo }: { caption?: string; isVideo?: bo
 const MediaGallery = forwardRef(function MediaGallery(
   {
     className,
-    paddingTop = 96,
-    paddingBottom = 96,
     sectionStyle,
     heading = "Photos & Videos",
     headingAccent = "",

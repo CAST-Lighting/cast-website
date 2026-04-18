@@ -5,8 +5,6 @@ import { useCmsData } from "~/lib/makeswift/cms-context"
 
 interface ProductHeroProps {
   className?: string
-  paddingTop?: number
-  paddingBottom?: number
   // 📐 Layout
   // 🎨 Background
   bgColor?: string
@@ -39,7 +37,7 @@ const Stars = ({ count = 4.7 }: { count?: number }) => (
 )
 
 const ImagePlaceholder = () => (
-  <div style={{ width: "100%", aspectRatio: "1", background: "rgba(0, paddingTop, paddingBottom,73,96,0.06)", borderRadius: 6, display: "flex", alignItems: "center", justifyContent: "center" }}>
+  <div style={{ width: "100%", aspectRatio: "1", background: "rgba(0,73,96,0.06)", borderRadius: 6, display: "flex", alignItems: "center", justifyContent: "center" }}>
     <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#ced4da" strokeWidth="1"><rect x="3" y="3" width="18" height="18" rx="2" /><circle cx="8.5" cy="8.5" r="1.5" /><path d="M21 15l-5-5L5 21" /></svg>
   </div>
 )
@@ -49,8 +47,6 @@ const SAMPLE_BODY = "<p>Product description will appear here from your BigCommer
 const ProductHero = forwardRef(function ProductHero(
   {
     className,
-    paddingTop = 96,
-    paddingBottom = 96,
     bgColor = "#F5F5F5",
     bgImage,
     bgOpacity = 100,

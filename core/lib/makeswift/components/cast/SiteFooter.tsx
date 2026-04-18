@@ -67,8 +67,6 @@ const SiteFooter = forwardRef(function SiteFooter(
     gradientTo,
     gradientDirection,
     lineHeight,
-    paddingTop,
-    paddingBottom,
     phone,
     address,
     copyright,
@@ -96,8 +94,6 @@ const SiteFooter = forwardRef(function SiteFooter(
     gradientTo?: string
     gradientDirection?: string
     lineHeight?: number
-    paddingTop?: number
-    paddingBottom?: number
     phone?: string
     address?: string
     copyright?: string
@@ -146,7 +142,7 @@ const SiteFooter = forwardRef(function SiteFooter(
     <footer
       ref={ref}
       className={`relative border-t border-border ${className || ""}`}
-      style={{ width: '100%', paddingTop, paddingBottom, ...(!bgImageUrl ? { background: sectionBackground } : {}), } as React.CSSProperties}
+      style={{ width: '100%', ...(!bgImageUrl ? { background: sectionBackground } : {}), } as React.CSSProperties}
     >
       {bgImageUrl && (
         <img src={bgImageUrl} alt="" className="absolute inset-0 w-full h-full object-cover" style={{ zIndex: 0 }} />

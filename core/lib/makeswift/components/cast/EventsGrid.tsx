@@ -14,8 +14,6 @@ interface CastEvent {
 
 interface EventsGridProps {
   className?: string
-  paddingTop?: number
-  paddingBottom?: number
   bgColor?: string
   heading?: string
   headingAccent?: string
@@ -71,8 +69,6 @@ function getExcerpt(text: string, maxLen = 130): string {
 const EventsGrid = forwardRef(function EventsGrid(
   {
     className,
-    paddingTop = 80,
-    paddingBottom = 80,
     bgColor = "#0f1923",
     heading = "Upcoming",
     headingAccent = "Events",
@@ -110,7 +106,7 @@ const EventsGrid = forwardRef(function EventsGrid(
     <section
       ref={ref}
       className={className || ""}
-      style={{ width: '100%', background: bgColor || "#0f1923", paddingTop, paddingBottom, }}
+      style={{ width: '100%', background: bgColor || "#0f1923", }}
     >
       <div className="site-container">
         {/* Section Header */}

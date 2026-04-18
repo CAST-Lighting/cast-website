@@ -29,8 +29,6 @@ function toEmbedUrl(url: string): string {
 const ContentMedia = forwardRef(function ContentMedia(
   {
     className,
-    paddingTop = 96,
-    paddingBottom = 96,
     bgImage,
     bgColor,
     bgOpacity,
@@ -52,8 +50,6 @@ const ContentMedia = forwardRef(function ContentMedia(
     mode = 'dark',
   }: {
     className?: string
-  paddingTop?: number
-  paddingBottom?: number
     bgImage?: string
     bgColor?: string
     bgOpacity?: number
@@ -91,7 +87,7 @@ const ContentMedia = forwardRef(function ContentMedia(
     <section
       ref={ref}
       className={`relative overflow-hidden ${className || ""}`}
-      style={{ width: '100%', paddingTop, paddingBottom, ...(!bgImageUrl ? { background: sectionBackground } : {}), } as React.CSSProperties}
+      style={{ width: '100%', ...(!bgImageUrl ? { background: sectionBackground } : {}), } as React.CSSProperties}
     >
       {bgImageUrl && (
         <img src={bgImageUrl} alt="" className="absolute inset-0 w-full h-full object-cover" style={{ zIndex: 0 }} />

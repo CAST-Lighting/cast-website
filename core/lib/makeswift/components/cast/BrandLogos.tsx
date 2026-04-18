@@ -19,8 +19,6 @@ interface LogoItem { name?: string; image?: string }
 
 interface BrandLogosProps {
   className?: string
-  paddingTop?: number
-  paddingBottom?: number
   overline?: string
   heading?: string
   headingAccent?: string
@@ -37,8 +35,6 @@ interface BrandLogosProps {
 const BrandLogos = forwardRef(function BrandLogos(
   {
     className,
-    paddingTop = 96,
-    paddingBottom = 96,
     overline = "Trusted by Industry Leaders",
     heading = "10,000+ Landscape Professionals Choose CAST",
     headingAccent = "",
@@ -66,7 +62,7 @@ const BrandLogos = forwardRef(function BrandLogos(
       ref={ref}
       className={`relative overflow-hidden ${className || ""}`}
       style={{
-        width: '100%', paddingTop, paddingBottom,
+        width: '100%',
         ...(!bgImage ? { background: bg } : {}),
       }}
     >

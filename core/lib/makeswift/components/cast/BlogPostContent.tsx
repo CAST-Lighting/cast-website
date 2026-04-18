@@ -157,7 +157,7 @@ const BlogPostContent = forwardRef(function BlogPostContent(
         </div>
 
         {/* ── Share + Author row ── */}
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 16, marginBottom: 32, paddingBottom: 24, borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 16, marginBottom: 32: 24, borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
           {/* Author */}
           <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
             <div style={{ width: 38, height: 38, borderRadius: '50%', background: 'linear-gradient(135deg, #007CB0, #7EBEE8)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>

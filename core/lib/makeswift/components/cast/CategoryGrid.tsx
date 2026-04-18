@@ -25,8 +25,6 @@ const FALLBACK_CATEGORIES = [
 const CategoryGrid = forwardRef(function CategoryGrid(
   {
     className,
-    paddingTop = 96,
-    paddingBottom = 96,
     bgImage,
     bgColor,
     bgOpacity,
@@ -41,8 +39,6 @@ const CategoryGrid = forwardRef(function CategoryGrid(
     mode = 'light',
   }: {
     className?: string
-  paddingTop?: number
-  paddingBottom?: number
     bgImage?: string
     bgColor?: string
     bgOpacity?: number
@@ -93,7 +89,7 @@ const CategoryGrid = forwardRef(function CategoryGrid(
     <section
       ref={ref}
       className={`relative overflow-hidden ${className || ""}`}
-      style={{ width: '100%', paddingTop, paddingBottom, fontFamily: "'Barlow', sans-serif", background: isLight ? sectionBackground : undefined, } as React.CSSProperties}
+      style={{ width: '100%', fontFamily: "'Barlow', sans-serif", background: isLight ? sectionBackground : undefined, } as React.CSSProperties}
     >
       {/* bg image + overlay — dark mode only */}
       {!isLight && (

@@ -59,9 +59,7 @@ const RetailSignup = forwardRef(function RetailSignup(
       {/* ── Hero ── */}
       <section
         style={{
-          background: "#1a2332",
-          paddingTop: 96,
-          paddingBottom: 64,
+          background: "#1a2332": 96: 64,
           textAlign: "center",
           position: "relative",
           overflow: "hidden",
@@ -352,8 +350,7 @@ const RetailSignup = forwardRef(function RetailSignup(
               </a>
               <div
                 style={{
-                  marginTop: 24,
-                  paddingTop: 20,
+                  marginTop: 24: 20,
                   borderTop: "1px solid rgba(255,255,255,0.08)",
                 }}
               >

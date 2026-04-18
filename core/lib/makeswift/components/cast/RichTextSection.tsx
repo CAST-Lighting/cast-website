@@ -2,8 +2,6 @@ import { forwardRef, type Ref } from "react"
 
 interface RichTextSectionProps {
   className?: string
-  paddingTop?: number
-  paddingBottom?: number
   bgColor?: string
   heading?: string
   headingAccent?: string
@@ -55,8 +53,6 @@ If you have any questions about these Terms, please contact us at legal@castligh
 const RichTextSection = forwardRef(function RichTextSection(
   {
     className,
-    paddingTop = 80,
-    paddingBottom = 80,
     bgColor = "#0f1923",
     heading = "Terms & Conditions",
     headingAccent = "",
@@ -80,12 +76,12 @@ const RichTextSection = forwardRef(function RichTextSection(
     <section
       ref={ref}
       className={className || ""}
-      style={{ width: '100%', background: bgColor || "#0f1923", paddingTop, paddingBottom, }}
+      style={{ width: '100%', background: bgColor || "#0f1923", }}
     >
       <div className="site-container">
         <div style={{ maxWidth: 800, margin: "0 auto" }}>
           {/* Heading */}
-          <div style={{ marginBottom: 40, paddingBottom: 32, borderBottom: "1px solid rgba(255,255,255,0.1)" }}>
+          <div style={{ marginBottom: 40: 32, borderBottom: "1px solid rgba(255,255,255,0.1)" }}>
             <h1 style={{
               fontFamily: "'Essonnes', 'Playfair Display', serif",
               fontSize: "var(--h1-size, 3rem)",
@@ -147,7 +143,7 @@ const RichTextSection = forwardRef(function RichTextSection(
 
           {/* PDF Download */}
           {showPdf && pdfUrl && (
-            <div style={{ marginTop: 40, paddingTop: 32, borderTop: "1px solid rgba(255,255,255,0.1)" }}>
+            <div style={{ marginTop: 40: 32, borderTop: "1px solid rgba(255,255,255,0.1)" }}>
               <a
                 href={pdfUrl}
                 download

@@ -24,8 +24,6 @@ const FALLBACK_PRODUCTS: BCProduct[] = [
 
 interface ProductGalleryProps {
   className?: string
-  paddingTop?: number
-  paddingBottom?: number
   sectionTitle?: string
   sectionTitleAccent?: string
   sectionDescription?: string
@@ -43,8 +41,6 @@ interface ProductGalleryProps {
 const ProductGallery = forwardRef(function ProductGallery(
   {
     className,
-    paddingTop = 96,
-    paddingBottom = 96,
     sectionTitle,
     sectionTitleAccent,
     sectionDescription,
@@ -120,7 +116,7 @@ const ProductGallery = forwardRef(function ProductGallery(
       ref={ref}
       className={`relative overflow-hidden ${className || ''}`}
       style={{
-        width: '100%', paddingTop, paddingBottom,
+        width: '100%',
         ...(!bgImage ? { background: sectionBackground } : {}),
       } as React.CSSProperties}
     >

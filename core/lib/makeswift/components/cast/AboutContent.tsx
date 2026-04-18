@@ -8,8 +8,6 @@ interface FeatureItem {
 
 interface AboutContentProps {
   className?: string
-  paddingTop?: number
-  paddingBottom?: number
   bgColor?: string
   sectionHeading?: string
   sectionBody?: string
@@ -52,8 +50,6 @@ const DEFAULT_FEATURES: FeatureItem[] = [
 const AboutContent = forwardRef(function AboutContent(
   {
     className,
-    paddingTop = 80,
-    paddingBottom = 80,
     bgColor = "#0f1923",
     sectionHeading = "Built to Last. Built in America.",
     sectionBody = "Since 2001, CAST Lighting has been designing and manufacturing professional-grade landscape lighting fixtures in the USA. Every product is crafted from solid brass or copper — materials chosen for their beauty and ability to withstand decades of outdoor exposure without corroding or deteriorating.",
@@ -73,7 +69,7 @@ const AboutContent = forwardRef(function AboutContent(
     <section
       ref={ref}
       className={className || ""}
-      style={{ width: '100%', background: bgColor || "#0f1923" , paddingTop, paddingBottom}}
+      style={{ width: '100%', background: bgColor || "#0f1923" }}
     >
       <div className="site-container">
         <div className="max-w-3xl mx-auto flex flex-col gap-16">

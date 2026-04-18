@@ -23,8 +23,6 @@ interface ReviewsCarouselProps {
   gradientFrom?: string
   gradientTo?: string
   gradientDirection?: string
-  paddingTop?: number
-  paddingBottom?: number
   overline?: string
   heading?: string
   headingAccent?: string
@@ -104,8 +102,6 @@ const ReviewsCarousel = forwardRef(function ReviewsCarousel(
     gradientFrom,
     gradientTo,
     gradientDirection,
-    paddingTop,
-    paddingBottom,
     overline = "What Professionals Say",
     heading = "Trusted by Contractors",
     headingAccent = "Nationwide",
@@ -185,9 +181,7 @@ const ReviewsCarousel = forwardRef(function ReviewsCarousel(
       className={`relative overflow-hidden ${className || ""}`}
       style={{
         width: '100%',
-        ...(!bgImage ? { background: sectionBackground } : {}),
-        paddingTop: paddingTop ?? 48,
-        paddingBottom: paddingBottom ?? 48,
+        ...(!bgImage ? { background: sectionBackground } : {}): paddingTop ?? 48: paddingBottom ?? 48,
       }}
     >
       {bgImage && (
@@ -267,7 +261,7 @@ const ReviewsCarousel = forwardRef(function ReviewsCarousel(
                 }}>
                   &ldquo;{review.quote}&rdquo;
                 </p>
-                <div style={{ borderTop: `1px solid ${t.divider}`, paddingTop: 16, display: "flex", alignItems: "center", gap: 12 }}>
+                <div style={{ borderTop: `1px solid ${t.divider}`: 16, display: "flex", alignItems: "center", gap: 12 }}>
                   <img
                     src={review.avatar || PLACEHOLDER_PERSON}
                     alt={review.name || "Reviewer"}

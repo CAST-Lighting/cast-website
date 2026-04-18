@@ -13,8 +13,6 @@ interface BundleItem {
 
 interface BundleProductsProps {
   className?: string
-  paddingTop?: number
-  paddingBottom?: number
   sectionStyle?: string
   overline?: string
   heading?: string
@@ -33,8 +31,6 @@ interface BundleProductsProps {
 const BundleProducts = forwardRef(function BundleProducts(
   {
     className,
-    paddingTop = 96,
-    paddingBottom = 96,
     sectionStyle,
     overline = "Frequently Bought Together",
     heading = "Bundle These Products",
@@ -82,7 +78,7 @@ const BundleProducts = forwardRef(function BundleProducts(
     <div
       ref={ref}
       className={`cast-bundle-products-defaults ${className || ""} ${sectionStyle || ""}`}
-      style={{ position: "relative", width: "100%", boxSizing: "border-box", ...(!bgImage ? { background: sectionBackground , paddingTop, paddingBottom} : {}), }}
+      style={{ position: "relative", width: "100%", boxSizing: "border-box", ...(!bgImage ? { background: sectionBackground } : {}), }}
     >
       {bgImage && (
         <img src={bgImage} alt="" className="absolute inset-0 w-full h-full object-cover" style={{ zIndex: 0 }} />

@@ -5,8 +5,6 @@ import { getTheme } from "~/lib/makeswift/theme"
 
 export interface CmsCategoryGridProps {
   className?: string
-  paddingTop?: number
-  paddingBottom?: number
   bgColor?: string
   columns?: number
 }
@@ -25,8 +23,6 @@ const PLACEHOLDER_CATEGORIES = [
 const CmsCategoryGrid = forwardRef(function CmsCategoryGrid(
   {
     className,
-    paddingTop = 80,
-    paddingBottom = 80,
     bgColor = "#F5F5F5",
     columns = 4,
   }: CmsCategoryGridProps,
@@ -52,7 +48,7 @@ const CmsCategoryGrid = forwardRef(function CmsCategoryGrid(
     <div
       ref={ref as Ref<HTMLDivElement>}
       className={className || ""}
-      style={{ width: '100%', background: bgColor, paddingTop, paddingBottom, fontFamily: "'Barlow', sans-serif" }}
+      style={{ width: '100%', background: bgColor, fontFamily: "'Barlow', sans-serif" }}
     >
 
       <div className="site-container" >

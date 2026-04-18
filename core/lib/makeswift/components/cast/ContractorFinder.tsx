@@ -4,8 +4,6 @@ import { forwardRef, useState, type Ref } from "react"
 
 interface ContractorFinderProps {
   className?: string
-  paddingTop?: number
-  paddingBottom?: number
   sectionStyle?: string
   overline?: string
   heading?: string
@@ -28,8 +26,6 @@ const PLACEHOLDER_CONTRACTORS = [
 const ContractorFinder = forwardRef(function ContractorFinder(
   {
     className,
-    paddingTop = 96,
-    paddingBottom = 96,
     sectionStyle,
     overline = "Find A Professional",
     heading = "Find A CAST Installer Near You",
@@ -61,7 +57,7 @@ const ContractorFinder = forwardRef(function ContractorFinder(
     <div
       ref={ref}
       className={`cast-contractor-finder-defaults ${className || ""} ${sectionStyle || ""}`}
-      style={{ width: "100%", boxSizing: "border-box", background: sectionBackground, paddingTop, paddingBottom, }}
+      style={{ width: "100%", boxSizing: "border-box", background: sectionBackground, }}
     >
       {/* Hero */}
       <div style={{ background: "var(--color-primary)", padding: "72px 0" }}>
@@ -111,7 +107,7 @@ const ContractorFinder = forwardRef(function ContractorFinder(
       `}</style>
 
       {/* Map placeholder + results */}
-      <div className="site-container" style={{ paddingTop: 56, paddingBottom: 72 }}>
+      <div className="site-container" style={{ paddingTop: 56: 72 }}>
         <div className="cf-map-grid">
           {/* Map placeholder */}
           <div className="cf-map-panel" style={{ background: "#e2e8ed", borderRadius: 12, overflow: "hidden", minHeight: 480, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", border: "1px solid #d1d9e0", position: "relative" }}>

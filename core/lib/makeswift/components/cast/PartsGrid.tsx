@@ -15,8 +15,6 @@ interface Part {
 
 interface PartsGridProps {
   className?: string
-  paddingTop?: number
-  paddingBottom?: number
   sectionStyle?: string
   overline?: string
   heading?: string
@@ -34,8 +32,6 @@ interface PartsGridProps {
 const PartsGrid = forwardRef(function PartsGrid(
   {
     className,
-    paddingTop = 96,
-    paddingBottom = 96,
     sectionStyle,
     overline = "Need Parts?",
     heading = "Parts For This Product",
@@ -126,7 +122,7 @@ const PartsGrid = forwardRef(function PartsGrid(
     <div
       ref={ref}
       className={`cast-parts-grid-defaults ${className || ""} ${sectionStyle || ""}`}
-      style={{ position: "relative", width: "100%", boxSizing: "border-box", ...(!bgImage ? { background: sectionBackground , paddingTop, paddingBottom} : {}), }}
+      style={{ position: "relative", width: "100%", boxSizing: "border-box", ...(!bgImage ? { background: sectionBackground } : {}), }}
     >
       {bgImage && (
         <img src={bgImage} alt="" className="absolute inset-0 w-full h-full object-cover" style={{ zIndex: 0 }} />

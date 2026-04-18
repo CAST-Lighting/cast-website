@@ -6,8 +6,6 @@ import { getTheme, type ThemeMode } from "~/lib/makeswift/theme"
 const NewsletterCta = forwardRef(function NewsletterCta(
   {
     className,
-    paddingTop = 80,
-    paddingBottom = 80,
     bgImage,
     bgColor,
     bgOpacity,
@@ -23,8 +21,6 @@ const NewsletterCta = forwardRef(function NewsletterCta(
     mode = 'dark',
   }: {
     className?: string
-  paddingTop?: number
-  paddingBottom?: number
     bgImage?: string
     bgColor?: string
     bgOpacity?: number
@@ -53,7 +49,7 @@ const NewsletterCta = forwardRef(function NewsletterCta(
     <section
       ref={ref}
       className={`relative ${className || ""}`}
-      style={{ width: '100%', paddingTop, paddingBottom, ...(!bgImageUrl ? { background: sectionBackground } : {}), } as React.CSSProperties}
+      style={{ width: '100%', ...(!bgImageUrl ? { background: sectionBackground } : {}), } as React.CSSProperties}
     >
       {/* bg image layer */}
       {bgImageUrl && (

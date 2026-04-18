@@ -23,8 +23,6 @@ interface PointItem { text?: string }
 const ComparisonSection = forwardRef(function ComparisonSection(
   {
     className,
-    paddingTop = 96,
-    paddingBottom = 96,
     bgImage,
     bgColor,
     bgOpacity,
@@ -42,8 +40,6 @@ const ComparisonSection = forwardRef(function ComparisonSection(
     otherPoints,
   }: {
     className?: string
-  paddingTop?: number
-  paddingBottom?: number
     bgImage?: string
     bgColor?: string
     bgOpacity?: number
@@ -81,7 +77,7 @@ const ComparisonSection = forwardRef(function ComparisonSection(
     <section
       ref={ref}
       className={`relative ${className || ""}`}
-      style={{ width: '100%', paddingTop, paddingBottom, ...(!bgImageUrl ? { background: sectionBackground } : {}), } as React.CSSProperties}
+      style={{ width: '100%', ...(!bgImageUrl ? { background: sectionBackground } : {}), } as React.CSSProperties}
     >
       {bgImageUrl && (
         <img src={bgImageUrl} alt="" className="absolute inset-0 w-full h-full object-cover" style={{ zIndex: 0 }} />

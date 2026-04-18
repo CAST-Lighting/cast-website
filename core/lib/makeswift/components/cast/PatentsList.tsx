@@ -12,8 +12,6 @@ interface Patent {
 
 interface PatentsListProps {
   className?: string
-  paddingTop?: number
-  paddingBottom?: number
   bgColor?: string
   heading?: string
   headingAccent?: string
@@ -70,8 +68,6 @@ const DEFAULT_PATENTS: Patent[] = [
 const PatentsList = forwardRef(function PatentsList(
   {
     className,
-    paddingTop = 80,
-    paddingBottom = 80,
     bgColor = "#0f1923",
     heading = "CAST Lighting Patents",
     headingAccent = "",
@@ -101,7 +97,7 @@ const PatentsList = forwardRef(function PatentsList(
     <section
       ref={ref}
       className={className || ""}
-      style={{ width: '100%', background: bgColor || "#0f1923", paddingTop, paddingBottom, }}
+      style={{ width: '100%', background: bgColor || "#0f1923", }}
     >
       <div className="site-container">
         {/* Section Header */}

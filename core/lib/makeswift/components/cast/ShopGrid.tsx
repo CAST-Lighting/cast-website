@@ -16,8 +16,6 @@ interface Product {
 
 interface ShopGridProps {
   className?: string
-  paddingTop?: number
-  paddingBottom?: number
   sectionStyle?: string
   heading?: string
   headingAccent?: string
@@ -113,7 +111,7 @@ const ProductCard = ({ product, t }: { product: Product; t: Theme }) => (
 )
 
 const ShopGrid = forwardRef(function ShopGrid(
-  { className, paddingTop = 96, paddingBottom = 96, sectionStyle, heading, headingAccent = "", products, bgColor, bgImage, bgOpacity, gradientFrom, gradientTo, gradientDirection, mode = 'dark' }: ShopGridProps,
+  { className = 96 = 96, sectionStyle, heading, headingAccent = "", products, bgColor, bgImage, bgOpacity, gradientFrom, gradientTo, gradientDirection, mode = 'dark' }: ShopGridProps,
   ref: Ref<HTMLDivElement>
 ) {
   const [activeCategory, setActiveCategory] = useState("All")
@@ -149,7 +147,7 @@ const ShopGrid = forwardRef(function ShopGrid(
     <div
       ref={ref}
       className={`${className || ""} ${sectionStyle || ""}`}
-      style={{ position: "relative", width: "100%", boxSizing: "border-box", paddingTop, paddingBottom, ...(!bgImage ? { background: sectionBackground } : {}), }}
+      style={{ position: "relative", width: "100%", boxSizing: "border-box", ...(!bgImage ? { background: sectionBackground } : {}), }}
     >
       {bgImage && (
         <img src={bgImage} alt="" className="absolute inset-0 w-full h-full object-cover" style={{ zIndex: 0 }} />

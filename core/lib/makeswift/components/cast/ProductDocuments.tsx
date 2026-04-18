@@ -12,8 +12,6 @@ interface Doc {
 
 interface ProductDocumentsProps {
   className?: string
-  paddingTop?: number
-  paddingBottom?: number
   sectionStyle?: string
   heading?: string
   headingAccent?: string
@@ -37,7 +35,7 @@ const DEFAULT_DOCS: Doc[] = [
 ]
 
 const FileIcon = ({ type, accentColor }: { type?: string; accentColor?: string }) => (
-  <div style={{ background: accentColor || "#007CB0", paddingTop, paddingBottom, borderRadius: 3, display: "inline-flex", alignItems: "center", justifyContent: "center", flexShrink: 0, padding: "3px 8px" }}>
+  <div style={{ background: accentColor || "#007CB0", borderRadius: 3, display: "inline-flex", alignItems: "center", justifyContent: "center", flexShrink: 0, padding: "3px 8px" }}>
     <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 10, fontWeight: 700, color: "#fff", textTransform: "uppercase", letterSpacing: "0.04em" }}>{type || "PDF"}</span>
   </div>
 )
@@ -45,8 +43,6 @@ const FileIcon = ({ type, accentColor }: { type?: string; accentColor?: string }
 const ProductDocuments = forwardRef(function ProductDocuments(
   {
     className,
-    paddingTop = 96,
-    paddingBottom = 96,
     sectionStyle,
     heading = "Documents",
     headingAccent = "",

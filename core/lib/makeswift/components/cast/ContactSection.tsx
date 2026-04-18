@@ -5,8 +5,6 @@ import { Phone, Mail, MapPin } from "lucide-react"
 const ContactSection = forwardRef(function ContactSection(
   {
     className,
-    paddingTop = 96,
-    paddingBottom = 96,
     bgColor,
     overline,
     heading,
@@ -19,8 +17,6 @@ const ContactSection = forwardRef(function ContactSection(
     submitLabel,
   }: {
     className?: string
-  paddingTop?: number
-  paddingBottom?: number
     bgColor?: string
     overline?: string
     heading?: string
@@ -38,7 +34,7 @@ const ContactSection = forwardRef(function ContactSection(
     <section
       ref={ref}
       className={`relative overflow-hidden ${className || ''}`}
-      style={{ width: '100%', paddingTop, paddingBottom, background: bgColor || '#0d1620', }}
+      style={{ width: '100%', background: bgColor || '#0d1620', }}
     >
       <style>{`        .cs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }\n        .cs-name-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }\n        @media (max-width: 768px) { .cs-grid { grid-template-columns: 1fr; gap: 40px; } }\n        @media (max-width: 480px) { .cs-name-row { grid-template-columns: 1fr; } }`}</style>
       <div className="site-container">

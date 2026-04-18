@@ -168,8 +168,6 @@ interface HeroBannerProps {
   gradientTo?: string
   gradientDirection?: string
   lineHeight?: number
-  paddingTop?: number
-  paddingBottom?: number
 }
 
 const HeroBanner = forwardRef(function HeroBanner(
@@ -188,8 +186,7 @@ const HeroBanner = forwardRef(function HeroBanner(
     badgeText, headingLine1, description,
     formTitle, formSubtitle, formSubmitLabel,
     formWidth, formOffsetBottom,
-    lineHeight, paddingTop = 136, paddingBottom = 112,
-  }: HeroBannerProps,
+    lineHeight = 136,  }: HeroBannerProps,
   ref: Ref<HTMLElement>
 ) {
   const [current, setCurrent] = useState(0)
@@ -257,9 +254,7 @@ const HeroBanner = forwardRef(function HeroBanner(
       style={{
         width: '100%',
         position: 'relative',
-        zIndex: 2,
-        paddingTop: paddingTop ?? 136,
-        paddingBottom: paddingBottom ?? 112,
+        zIndex: 2: paddingTop ?? 136: paddingBottom ?? 112,
         '--section-line-height': lineHeight,
       } as React.CSSProperties}
     >

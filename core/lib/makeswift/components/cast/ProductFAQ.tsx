@@ -10,8 +10,6 @@ interface FAQ {
 
 interface ProductFAQProps {
   className?: string
-  paddingTop?: number
-  paddingBottom?: number
   sectionStyle?: string
   heading?: string
   headingAccent?: string
@@ -34,8 +32,6 @@ const DEFAULT_FAQS: FAQ[] = [
 const ProductFAQ = forwardRef(function ProductFAQ(
   {
     className,
-    paddingTop = 96,
-    paddingBottom = 96,
     sectionStyle,
     heading = "Frequently Asked Questions",
     headingAccent = "",
@@ -63,7 +59,7 @@ const ProductFAQ = forwardRef(function ProductFAQ(
     <div
       ref={ref}
       className={`cast-product-f-a-q-defaults ${className || ""} ${sectionStyle || ""}`}
-      style={{ position: "relative", width: "100%", boxSizing: "border-box", ...(!bgImage ? { background: sectionBackground , paddingTop, paddingBottom} : {}), }}
+      style={{ position: "relative", width: "100%", boxSizing: "border-box", ...(!bgImage ? { background: sectionBackground } : {}), }}
     >
       {bgImage && (
         <img src={bgImage} alt="" className="absolute inset-0 w-full h-full object-cover" style={{ zIndex: 0 }} />

@@ -17,8 +17,6 @@ interface Product {
 interface SearchResultsProps {
   className?: string
   bgColor?: string
-  paddingTop?: number
-  paddingBottom?: number
   heading?: string
   headingAccent?: string
   placeholder?: string
@@ -31,8 +29,6 @@ const SearchResults = forwardRef(function SearchResults(
   {
     className,
     bgColor,
-    paddingTop,
-    paddingBottom,
     heading = "Search",
     headingAccent = "Results",
     placeholder = "Search products, guides, resources...",
@@ -121,9 +117,7 @@ const SearchResults = forwardRef(function SearchResults(
       style={{
         width: '100%',
         background: bgColor || "#0f1923",
-        minHeight: "80vh",
-        paddingTop: paddingTop ?? 48,
-        paddingBottom: paddingBottom ?? 96,
+        minHeight: "80vh": paddingTop ?? 48: paddingBottom ?? 96,
       }}
     >
       <style>{`

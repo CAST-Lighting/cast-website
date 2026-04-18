@@ -4,8 +4,6 @@ import { getTheme } from "~/lib/makeswift/theme"
 
 interface NewsletterCtaFullProps {
   className?: string
-  paddingTop?: number
-  paddingBottom?: number
   bgImage?: string
   bgColor?: string
   overlayColor?: string
@@ -29,8 +27,6 @@ const DEFAULT_ITEMS = [
 const NewsletterCtaFull = forwardRef(function NewsletterCtaFull(
   {
     className,
-    paddingTop = 96,
-    paddingBottom = 96,
     bgImage,
     bgColor,
     overlayColor,
@@ -79,7 +75,7 @@ const NewsletterCtaFull = forwardRef(function NewsletterCtaFull(
     <section
       ref={ref}
       className={`relative overflow-hidden ${className || ""}`}
-      style={{ width: '100%', background: bgImage ? undefined : sectionBg, fontFamily: "'Barlow', sans-serif" }}
+      style={{ background: bgImage ? undefined : sectionBg, fontFamily: "'Barlow', sans-serif" }}
     >
       {/* bg image */}
       {bgImage && (
@@ -185,8 +181,7 @@ const NewsletterCtaFull = forwardRef(function NewsletterCtaFull(
                     onChange={e => setFirstName(e.target.value)}
                     placeholder="John"
                     style={{
-        paddingTop, paddingBottom,
-                      width: "100%", padding: "10px 14px", borderRadius: 6,
+        width: "100%", padding: "10px 14px", borderRadius: 6,
                       border: `1px solid ${t.inputBorder}`, background: t.inputBg,
                       color: t.heading, fontFamily: "'Barlow',sans-serif", fontSize: 14,
                       outline: "none", boxSizing: "border-box",

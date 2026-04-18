@@ -22,8 +22,6 @@ interface CategoryTag {
 
 interface BlogGridProps {
   className?: string
-  paddingTop?: number
-  paddingBottom?: number
   bgColor?: string
   postsPerPage?: number
   categoryTags?: CategoryTag[]
@@ -60,8 +58,6 @@ function getExcerpt(body: string, maxLen = 120): string {
 const BlogGrid = forwardRef(function BlogGrid(
   {
     className,
-    paddingTop = 72,
-    paddingBottom = 72,
     bgColor = "#0f1923",
     postsPerPage = 9,
     categoryTags: categoryTagsProp,
@@ -118,7 +114,7 @@ const BlogGrid = forwardRef(function BlogGrid(
     <div
       ref={ref}
       className={className || ""}
-      style={{ width: '100%', background: bgColor || "#0f1923" , paddingTop, paddingBottom}}
+      style={{ width: '100%', background: bgColor || "#0f1923" }}
     >
       {/* ── Category Filter Pills ── */}
       <div

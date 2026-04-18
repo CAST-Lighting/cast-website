@@ -4,8 +4,6 @@ import { ArrowLeft, Search } from "lucide-react"
 
 interface NotFoundHeroProps {
   className?: string
-  paddingTop?: number
-  paddingBottom?: number
   bgColor?: string
   errorCode?: string
   heading?: string
@@ -19,8 +17,6 @@ interface NotFoundHeroProps {
 const NotFoundHero = forwardRef(function NotFoundHero(
   {
     className,
-    paddingTop = 80,
-    paddingBottom = 80,
     bgColor,
     errorCode = "404",
     heading = "Page Not",
@@ -46,7 +42,7 @@ const NotFoundHero = forwardRef(function NotFoundHero(
       ref={ref}
       className={className || ""}
       style={{
-        width: '100%', background: bgColor || "#0f1923", paddingTop, paddingBottom,
+        width: '100%', background: bgColor || "#0f1923",
         minHeight: "100vh",
         display: "flex",
         alignItems: "center",
