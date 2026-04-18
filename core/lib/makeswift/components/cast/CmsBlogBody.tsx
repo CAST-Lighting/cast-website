@@ -141,7 +141,7 @@ const CmsBlogBody = forwardRef(function CmsBlogBody(
         </div>
 
         {/* Share + Audio — stacked, left-aligned */}
-        <div style={{ marginBottom: 36, paddingBottom: 28, borderBottom: "1px solid rgba(0,73,96,0.1)" }}>
+        <div style={{ marginBottom: 36, paddingBottom: 28 }}>
 
           {/* Share buttons row */}
           <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: hasAudio ? 18 : 0 }}>
@@ -157,7 +157,7 @@ const CmsBlogBody = forwardRef(function CmsBlogBody(
 
           {/* Audio player — left-aligned below share buttons */}
           {audioUrl && (
-            <div style={{ background: "rgba(0,124,176,0.05)", border: "1px solid rgba(0,124,176,0.15)", borderRadius: 8, padding: "12px 16px", display: "inline-block", minWidth: 240 }}>
+            <div style={{ background: "rgba(0,124,176,0.05)", border: "1px solid rgba(0,124,176,0.15)", borderRadius: 8, padding: "12px 16px", display: "inline-block", minWidth: 360 }}>
               <p style={{ fontFamily: "'Barlow',sans-serif", fontSize: 11, fontWeight: 700, color: "rgba(0,73,96,0.45)", textTransform: "uppercase", letterSpacing: "0.08em", margin: "0 0 8px" }}>
                 Prefer to listen instead?
               </p>
@@ -170,7 +170,7 @@ const CmsBlogBody = forwardRef(function CmsBlogBody(
 
           {/* Audio placeholder in editor */}
           {!audioUrl && !cms && (
-            <div style={{ background: "rgba(0,124,176,0.05)", border: "1px solid rgba(0,124,176,0.15)", borderRadius: 8, padding: "12px 16px", display: "inline-block", minWidth: 220 }}>
+            <div style={{ background: "rgba(0,124,176,0.05)", border: "1px solid rgba(0,124,176,0.15)", borderRadius: 8, padding: "12px 16px", display: "inline-block", minWidth: 360 }}>
               <p style={{ fontFamily: "'Barlow',sans-serif", fontSize: 11, fontWeight: 700, color: "rgba(0,73,96,0.45)", textTransform: "uppercase", letterSpacing: "0.08em", margin: "0 0 8px" }}>
                 Prefer to listen instead?
               </p>
@@ -192,7 +192,7 @@ const CmsBlogBody = forwardRef(function CmsBlogBody(
 
         {/* Tags */}
         {tags.length > 0 && (
-          <div style={{ marginTop: 52, paddingBottom: 28, borderTop: "1px solid rgba(0,73,96,0.1)", display: "flex", gap: 10, alignItems: "center", flexWrap: "wrap" }}>
+          <div style={{ marginTop: 52, paddingTop: 20, paddingBottom: 28, borderTop: "1px solid rgba(0,73,96,0.1)", display: "flex", gap: 10, alignItems: "center", flexWrap: "wrap" }}>
             <span style={{ fontFamily: "'Barlow',sans-serif", fontSize: 12, fontWeight: 700, color: "rgba(0,73,96,0.35)", textTransform: "uppercase", letterSpacing: "0.1em", flexShrink: 0 }}>
               Tagged:
             </span>
@@ -203,7 +203,7 @@ const CmsBlogBody = forwardRef(function CmsBlogBody(
         )}
 
         {/* Share row — bottom repeat */}
-        <div style={{ marginTop: 32, paddingBottom: 24, borderTop: "1px solid rgba(0,73,96,0.1)", display: "flex", alignItems: "center", gap: 12, flexWrap: "wrap" }}>
+        <div style={{ marginTop: 32, paddingTop: 20, paddingBottom: 24, borderTop: "1px solid rgba(0,73,96,0.1)", display: "flex", alignItems: "center", gap: 12, flexWrap: "wrap" }}>
           <span style={{ fontFamily: "'Barlow',sans-serif", fontSize: 12, fontWeight: 700, color: "rgba(0,73,96,0.35)", textTransform: "uppercase", letterSpacing: "0.1em" }}>
             Share this post
           </span>

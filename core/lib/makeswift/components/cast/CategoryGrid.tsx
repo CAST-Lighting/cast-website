@@ -104,18 +104,18 @@ const CategoryGrid = forwardRef(function CategoryGrid(
           flex-direction: column;
           align-items: center;
           text-decoration: none;
-          padding: 28px 20px 22px;
-          gap: 14px;
+          padding: 18px 14px 14px;
+          gap: 10px;
           transition: border-color 200ms, box-shadow 200ms, transform 180ms;
           text-align: center;
         }
         .cat-card:hover {
           border-color: rgba(0,124,176,0.45);
-          box-shadow: 0 6px 28px rgba(0,0,0,0.13);
+          box-shadow: 0 4px 20px rgba(0,0,0,0.10);
           transform: translateY(-2px);
         }
         .cat-icon-wrap {
-          width: 56px; height: 56px; border-radius: 50%;
+          width: 44px; height: 44px; border-radius: 50%;
           background: rgba(0,124,176,0.08);
           display: flex; align-items: center; justify-content: center;
           flex-shrink: 0;
@@ -126,13 +126,13 @@ const CategoryGrid = forwardRef(function CategoryGrid(
         }
         .cat-label {
           font-family: 'Barlow', sans-serif;
-          font-size: 14px; font-weight: 700;
+          font-size: 13px; font-weight: 700;
           color: ${t.heading};
           line-height: 1.3;
         }
         .cat-cta {
           font-family: 'Barlow', sans-serif;
-          font-size: 12px; font-weight: 600;
+          font-size: 11px; font-weight: 600;
           color: ${t.accent};
           margin-top: auto;
         }
@@ -150,7 +150,7 @@ const CategoryGrid = forwardRef(function CategoryGrid(
         <div className="site-container">
 
           {/* Heading */}
-          <div style={{ textAlign: 'center', marginBottom: 40 }}>
+          <div style={{ textAlign: 'center', marginBottom: 28 }}>
             <h2 style={{ fontFamily: "'Essonnes','Playfair Display',serif", fontSize: "var(--h2-size)", fontWeight: 700, color: t.heading, margin: "0 0 12px" }}>
               {sectionTitle || "Product"}{" "}
               <span className="text-gradient-warm">{sectionTitleAccent || "Categories"}</span>
@@ -167,7 +167,7 @@ const CategoryGrid = forwardRef(function CategoryGrid(
               return (
                 <a key={i} href={cat.href} className="cat-card">
                   <div className="cat-icon-wrap">
-                    <Icon style={{ width: 26, height: 26, color: t.accent }} />
+                    <Icon style={{ width: 20, height: 20, color: t.accent }} />
                   </div>
                   <span className="cat-label">{cat.name}</span>
                   <span className="cat-cta">Browse →</span>
