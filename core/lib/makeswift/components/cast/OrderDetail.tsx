@@ -174,7 +174,7 @@ function OrderDetail(
               order.shippedAt    && { label: "Shipped",   value: order.shippedAt },
               order.deliveredAt  && { label: "Delivered", value: order.deliveredAt },
             ].filter(Boolean).map((row) => (
-              <div key={(row as {label:string}).label} style={{ display: "flex", justifyContent: "space-between", marginBottom: 4 }}>
+              <div key={(row as {label:string}).label} style={{ display: "flex", gap: 12, marginBottom: 4 }}>
                 <span style={{ fontSize: 13, color: t.subtle }}>{(row as {label:string}).label}</span>
                 <span style={{ fontSize: 13, fontWeight: 600, color: t.heading }}>{(row as {value:string}).value}</span>
               </div>
@@ -223,7 +223,7 @@ function OrderDetail(
                     <p style={{ fontFamily: "'Barlow',sans-serif", fontSize: 13, color: t.body, margin: 0 }}>{item.price}</p>
                   </td>
                   <td style={{ textAlign: "center" }}>
-                    <p style={{ fontFamily: "'Barlow',sans-serif", fontSize: 13, fontWeight: 700, color: t.heading, margin: 0 }}>{item.qty}</p>
+                    <p style={{ fontFamily: "'Barlow',sans-serif", fontSize: 13, fontWeight: 700, color: t.heading, margin: 0 }}>Qty. {item.qty}</p>
                   </td>
                   <td style={{ textAlign: "right" }}>
                     <p style={{ fontFamily: "'Barlow',sans-serif", fontSize: 14, fontWeight: 700, color: t.accent, margin: 0 }}>{item.lineTotal}</p>
@@ -249,12 +249,12 @@ function OrderDetail(
               { label: "Shipping", value: order.shipping },
               { label: "Tax",      value: order.tax },
             ].map(({ label, value }) => (
-              <div key={label} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "6px 0", borderBottom: `1px solid ${t.divider}` }}>
+              <div key={label} style={{ display: "flex", gap: 12, alignItems: "center", padding: "6px 0", borderBottom: `1px solid ${t.divider}` }}>
                 <span style={{ fontFamily: "'Barlow',sans-serif", fontSize: 13, color: t.subtle }}>{label}</span>
                 <span style={{ fontFamily: "'Barlow',sans-serif", fontSize: 13, color: t.body, fontWeight: 600 }}>{value}</span>
               </div>
             ))}
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", paddingTop: 12, marginTop: 4 }}>
+            <div style={{ display: "flex", gap: 12, alignItems: "center", paddingTop: 12, marginTop: 4 }}>
               <span style={{ fontFamily: "'Barlow',sans-serif", fontSize: 15, fontWeight: 700, color: t.heading }}>Total</span>
               <span style={{ fontFamily: "'Barlow',sans-serif", fontSize: 20, fontWeight: 700, color: t.accent }}>{order.total}</span>
             </div>
@@ -262,7 +262,7 @@ function OrderDetail(
         </div>
 
         {/* Action bar */}
-        <div className="od-action-bar">
+        <div className="od-action-bar" style={{ gap: 16 }}>
           <a href="/account/orders" className={t.btnOutline} style={{ textDecoration: "none" }}>← All Orders</a>
           <a href="/shop" className={t.btnPrimary} style={{ textDecoration: "none" }}>Reorder Items →</a>
         </div>
