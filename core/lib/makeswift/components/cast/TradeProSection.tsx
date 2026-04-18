@@ -23,7 +23,7 @@ const TradeProSection = forwardRef(function TradeProSection(
     gradientFrom,
     gradientTo,
     gradientDirection,
-    lineHeight
+    lineHeight,
     overline,
     heading,
     headingAccent,
