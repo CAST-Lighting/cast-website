@@ -1,9 +1,9 @@
 import { setRequestLocale } from 'next-intl/server';
 import { PropsWithChildren } from 'react';
 import GDPRPopup from '~/lib/makeswift/components/cast/GDPRPopup';
-import { GlobalFooterLoader } from '~/lib/makeswift/components/cast/GlobalFooterLoader';
-import { GlobalNavLoader } from '~/lib/makeswift/components/cast/GlobalNavLoader';
-import { GlobalNavTopperLoader } from '~/lib/makeswift/components/cast/GlobalNavTopperLoader';
+import CastSiteNavbar from '~/lib/makeswift/components/cast/SiteNavbar';
+import CastNavigationTopper from '~/lib/makeswift/components/cast/NavigationTopper';
+import CastSiteFooter from '~/lib/makeswift/components/cast/SiteFooter';
 
 interface Props extends PropsWithChildren {
   params: Promise<{ locale: string }>;
@@ -25,6 +25,9 @@ const organizationSchema = {
   ],
 };
 
+// NOTE: Use code components directly here — do NOT use GlobalNavLoader/GlobalFooterLoader/GlobalNavTopperLoader.
+// Those call MakeswiftPageShim which registers extra Page roots in the Makeswift editor,
+// causing nav/footer/topper to appear as separate Page elements instead of within the main page.
 export default async function DefaultLayout({ params, children }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
@@ -32,13 +35,10 @@ export default async function DefaultLayout({ params, children }: Props) {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }} />
-      {/* Nav topper + nav: Makeswift-managed via /global-elements/nav-topper and /global-elements/nav.
-          Falls back to code components until content is published to those pages. */}
-      <GlobalNavTopperLoader locale={locale} />
-      <GlobalNavLoader locale={locale} />
+      <CastNavigationTopper />
+      <CastSiteNavbar />
       <main>{children}</main>
-      {/* Footer: Makeswift-managed via /global-elements/footer */}
-      <GlobalFooterLoader locale={locale} />
+      <CastSiteFooter />
       <GDPRPopup />
     </>
   );
