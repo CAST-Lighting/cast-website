@@ -36,8 +36,6 @@ interface ProductGalleryProps {
   gradientTo?: string
   gradientDirection?: string
   lineHeight?: number
-  paddingTop?: number
-  paddingBottom?: number
 }
 
 const ProductGallery = forwardRef(function ProductGallery(
@@ -54,9 +52,7 @@ const ProductGallery = forwardRef(function ProductGallery(
     gradientFrom,
     gradientTo,
     gradientDirection,
-    lineHeight,
-    paddingTop,
-    paddingBottom,
+    lineHeight
   }: ProductGalleryProps,
   ref: Ref<HTMLElement>
 ) {
@@ -118,14 +114,12 @@ const ProductGallery = forwardRef(function ProductGallery(
   return (
     <section
       ref={ref}
-      className={`relative overflow-hidden ${className || ''}`}
+      className={`cast-product-gallery-defaults relative overflow-hidden ${className || ''}`}
       style={{
         ...(!bgImage ? { background: sectionBackground } : {}),
-        '--section-line-height': lineHeight,
-        paddingTop: paddingTop ?? 96,
-        paddingBottom: paddingBottom ?? 96,
       } as React.CSSProperties}
     >
+      <style>{`\n        .cast-product-gallery-defaults { padding-top: 72px; padding-bottom: 72px; }\n        @media (max-width: 1024px) { .cast-product-gallery-defaults { padding-top: 57px; padding-bottom: 57px; } }\n        @media (max-width: 768px)  { .cast-product-gallery-defaults { padding-top: 46px; padding-bottom: 46px; } }\n        @media (max-width: 640px)  { .cast-product-gallery-defaults { padding-top: 39px; padding-bottom: 39px; } }\n      `}</style>
       {bgImage && <img src={bgImage} alt="" className="absolute inset-0 w-full h-full object-cover" style={{ zIndex: 0 }} />}
       {bgImage && <div className="absolute inset-0" style={{ background: sectionBackground, opacity: overlayOpacity, zIndex: 1 }} />}
 
