@@ -77,6 +77,11 @@ const NewsletterCtaFull = forwardRef(function NewsletterCtaFull(
       className={`relative overflow-hidden ${className || ""}`}
       style={{ background: bgImage ? undefined : sectionBg, fontFamily: "'Barlow', sans-serif" }}
     >
+      <style>{`
+        .nlf-inner { width: 100%; box-sizing: border-box; }
+        @media (max-width: 768px) { .nlf-inner { grid-template-columns: 1fr !important; padding: 40px 24px !important; } }
+        @media (max-width: 480px) { .nlf-inner { padding: 32px 20px !important; } }
+      `}</style>
       {/* bg image */}
       {bgImage && (
         <img src={bgImage} alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", zIndex: 0 }} />
@@ -90,17 +95,14 @@ const NewsletterCtaFull = forwardRef(function NewsletterCtaFull(
         <div style={{ position: "absolute", inset: 0, zIndex: 1, background: sectionBg, opacity: 0.7 }} />
       )}
 
-      <div className="site-container" style={{ position: "relative", zIndex: 10 }}>
+      <div style={{ position: "relative", zIndex: 10, width: "100%" }}>
         <div className="nlf-inner" style={{
           background: cardBg,
-          borderRadius: 16,
-          border: "1px solid rgba(255,255,255,0.07)",
           padding: "56px 48px",
           display: "grid",
           gridTemplateColumns: "1fr 1fr",
           gap: 48,
           alignItems: "center",
-          boxShadow: "0 8px 48px rgba(0,0,0,0.32)",
         }}>
 
           {/* Left — copy */}
