@@ -55,7 +55,7 @@ const DEFAULT_PRODUCTS: Product[] = [
 const PRICE_RANGES = ["$0 – $100", "$101 – $500", "$501 – $1,000", "$1,000+"]
 
 const ProductCard = ({ product, t }: { product: Product; t: Theme }) => (
-  <div style={{ background: t.cardBg, paddingTop, paddingBottom, border: `1px solid ${t.cardBorder}`, borderRadius: 10, overflow: "hidden", display: "flex", flexDirection: "column", transition: "border-color 200ms, box-shadow 200ms" }}
+  <div style={{ background: t.cardBg, border: `1px solid ${t.cardBorder}`, borderRadius: 10, overflow: "hidden", display: "flex", flexDirection: "column", transition: "border-color 200ms, box-shadow 200ms" }}
     onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(0,124,176,0.4)"; (e.currentTarget as HTMLDivElement).style.boxShadow = "0 4px 24px rgba(0,0,0,0.18)"; }}
     onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.borderColor = t.cardBorder; (e.currentTarget as HTMLDivElement).style.boxShadow = "none"; }}
   >
@@ -103,9 +103,7 @@ const ProductCard = ({ product, t }: { product: Product; t: Theme }) => (
       <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 18, fontWeight: 700, color: t.heading, margin: 0 }}>{product.price}</p>
       <a
         href={product.href || "#"}
-        className,
-    paddingTop = 96,
-    paddingBottom = 96={t.btnPrimary}
+        className={t.btnPrimary}
         style={{ marginTop: "auto", textAlign: "center", textDecoration: "none", justifyContent: "center" }}
       >
         View Product →
@@ -115,7 +113,7 @@ const ProductCard = ({ product, t }: { product: Product; t: Theme }) => (
 )
 
 const ShopGrid = forwardRef(function ShopGrid(
-  { className, sectionStyle, heading, headingAccent = "", products, bgColor, bgImage, bgOpacity, gradientFrom, gradientTo, gradientDirection, mode = 'dark' }: ShopGridProps,
+  { className, paddingTop = 96, paddingBottom = 96, sectionStyle, heading, headingAccent = "", products, bgColor, bgImage, bgOpacity, gradientFrom, gradientTo, gradientDirection, mode = 'dark' }: ShopGridProps,
   ref: Ref<HTMLDivElement>
 ) {
   const [activeCategory, setActiveCategory] = useState("All")
@@ -150,8 +148,8 @@ const ShopGrid = forwardRef(function ShopGrid(
   return (
     <div
       ref={ref}
-      className={`cast-shop-grid-defaults ${className || ""} ${sectionStyle || ""}`}
-      style={{ position: "relative", width: "100%", boxSizing: "border-box", ...(!bgImage ? { background: sectionBackground } : {}), }}
+      className={`${className || ""} ${sectionStyle || ""}`}
+      style={{ position: "relative", width: "100%", boxSizing: "border-box", paddingTop, paddingBottom, ...(!bgImage ? { background: sectionBackground } : {}), }}
     >
       {bgImage && (
         <img src={bgImage} alt="" className="absolute inset-0 w-full h-full object-cover" style={{ zIndex: 0 }} />
