@@ -74,8 +74,18 @@ const NewsletterCtaFull = forwardRef(function NewsletterCtaFull(
   return (
     <section
       ref={ref}
-      className={`relative overflow-hidden ${className || ""}`}
-      style={{ background: bgImage ? undefined : sectionBg, fontFamily: "'Barlow', sans-serif" }}
+      className={`relative ${className || ""}`}
+      style={{
+        background: bgImage ? undefined : sectionBg,
+        fontFamily: "'Barlow', sans-serif",
+        width: "100vw",
+        position: "relative",
+        left: "50%",
+        right: "50%",
+        marginLeft: "-50vw",
+        marginRight: "-50vw",
+        overflow: "hidden",
+      }}
     >
       <style>{`
         .nlf-inner { width: 100%; box-sizing: border-box; }
