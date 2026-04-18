@@ -52,7 +52,7 @@ const ProductDocuments = forwardRef(function ProductDocuments(
     bgOpacity,
     gradientFrom,
     gradientTo,
-    gradientDirection
+    gradientDirection,
     mode = 'dark',
   }: ProductDocumentsProps,
   ref: Ref<HTMLDivElement>
