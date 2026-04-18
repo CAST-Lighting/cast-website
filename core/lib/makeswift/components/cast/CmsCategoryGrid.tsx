@@ -50,7 +50,52 @@ const CmsCategoryGrid = forwardRef(function CmsCategoryGrid(
       className={`cast-cms-category-grid-defaults ${className || ""}`}
       style={{ background: bgColor, fontFamily: "'Barlow', sans-serif" }}
     >
-      <style>{`        .ccg-grid {\n          display: grid;\n          grid-template-columns: repeat(${cols}, 1fr);\n          gap: 20px;\n        }\n        @media (max-width: 1200px) { .ccg-grid { grid-template-columns: repeat(${Math.min(cols, 3)}, 1fr); } }\n        @media (max-width: 768px)  { .ccg-grid { grid-template-columns: repeat(2, 1fr); } }\n        @media (max-width: 480px)  { .ccg-grid { grid-template-columns: 1fr; } }\n        .ccg-card {\n          background: ${t.cardBg};\n          border: 1px solid ${t.cardBorder};\n          border-radius: 10px;\n          overflow: hidden;\n          display: flex;\n          flex-direction: column;\n          text-decoration: none;\n          transition: border-color 200ms, box-shadow 200ms;\n        }\n        .ccg-card:hover {\n          border-color: rgba(0,124,176,0.4);\n          box-shadow: 0 4px 24px rgba(0,73,96,0.12);\n        }\n        .ccg-card-name {\n          font-family: 'Essonnes','Playfair Display',serif;\n          font-size: 17px;\n          font-weight: 700;\n          color: ${t.heading};\n          margin: 0 0 6px;\n          line-height: 1.25;\n          transition: color 200ms;\n        }\n        .ccg-card:hover .ccg-card-name { color: ${t.accent}; }\n        .ccg-cta {\n          font-family: 'Barlow', sans-serif;\n          font-size: 12px;\n          font-weight: 700;\n          text-transform: uppercase;\n          letter-spacing: 0.08em;\n          color: ${t.accent};\n        }`}</style>
+      <style>{`
+        .cast-cms-category-grid-defaults { padding-top: 48px; padding-bottom: 64px; }
+        @media (max-width: 1024px) { .cast-cms-category-grid-defaults { padding-top: 38px; padding-bottom: 51px; } }
+        @media (max-width: 768px)  { .cast-cms-category-grid-defaults { padding-top: 31px; padding-bottom: 41px; } }
+        @media (max-width: 640px)  { .cast-cms-category-grid-defaults { padding-top: 26px; padding-bottom: 35px; } }
+        .ccg-grid {
+          display: grid;
+          grid-template-columns: repeat(${cols}, 1fr);
+          gap: 20px;
+        }
+        @media (max-width: 1200px) { .ccg-grid { grid-template-columns: repeat(${Math.min(cols, 3)}, 1fr); } }
+        @media (max-width: 768px)  { .ccg-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 480px)  { .ccg-grid { grid-template-columns: 1fr; } }
+        .ccg-card {
+          background: ${t.cardBg};
+          border: 1px solid ${t.cardBorder};
+          border-radius: 10px;
+          overflow: hidden;
+          display: flex;
+          flex-direction: column;
+          text-decoration: none;
+          transition: border-color 200ms, box-shadow 200ms;
+        }
+        .ccg-card:hover {
+          border-color: rgba(0,124,176,0.4);
+          box-shadow: 0 4px 24px rgba(0,73,96,0.12);
+        }
+        .ccg-card-name {
+          font-family: 'Essonnes','Playfair Display',serif;
+          font-size: 17px;
+          font-weight: 700;
+          color: ${t.heading};
+          margin: 0 0 6px;
+          line-height: 1.25;
+          transition: color 200ms;
+        }
+        .ccg-card:hover .ccg-card-name { color: ${t.accent}; }
+        .ccg-cta {
+          font-family: 'Barlow', sans-serif;
+          font-size: 12px;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 0.08em;
+          color: ${t.accent};
+        }
+      `}</style>
 
       <div className="site-container" >
         <div className="ccg-grid">

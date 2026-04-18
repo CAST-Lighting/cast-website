@@ -60,7 +60,35 @@ function OrdersGrid(
       className={`cast-orders-grid-defaults ${className || ""}`}
       style={{ background: bgColor, fontFamily: "'Barlow', sans-serif" }}
     >
-
+      <style>{`
+        .cast-orders-grid-defaults { padding-top: 64px; padding-bottom: 64px; }
+        @media (max-width: 1024px) { .cast-orders-grid-defaults { padding-top: 51px; padding-bottom: 51px; } }
+        @media (max-width: 768px)  { .cast-orders-grid-defaults { padding-top: 41px; padding-bottom: 41px; } }
+        @media (max-width: 640px)  { .cast-orders-grid-defaults { padding-top: 35px; padding-bottom: 35px; } }
+      `}</style>
+      <style>{`
+        .og-grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 20px;
+        }
+        @media (max-width: 1200px) { .og-grid { grid-template-columns: repeat(3, 1fr); } }
+        @media (max-width: 768px)  { .og-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 480px)  { .og-grid { grid-template-columns: 1fr; } }
+        .og-card {
+          background: ${t.cardBg};
+          border: 1px solid ${t.cardBorder};
+          border-radius: 10px;
+          overflow: hidden;
+          display: flex;
+          flex-direction: column;
+          transition: border-color 200ms, box-shadow 200ms;
+        }
+        .og-card:hover {
+          border-color: rgba(0,124,176,0.4);
+          box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+        }
+      `}</style>
 
       <div className="site-container">
 

@@ -8,7 +8,7 @@ runtime.registerComponent(
     type: "cast-favorites-grid",
     label: "Account / Favorites Grid",
     props: {
-      className: Style({ properties: [Style.Padding, Style.Margin] }),
+      className: Style(),
 
       // 🎨 Background
       bgColor: Color({ label: "🎨 Background — Color", defaultValue: "#F5F5F5" }),

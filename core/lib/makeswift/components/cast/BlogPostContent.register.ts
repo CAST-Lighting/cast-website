@@ -8,7 +8,7 @@ runtime.registerComponent(
     type: "cast-blog-post-content",
     label: "Sections / Blog Post Content",
     props: {
-      className: Style({ properties: [Style.Padding, Style.Margin] }),
+      className: Style(),
 
       // 🎨 Background
       bgColor: Color({ label: "🎨 Background — Color", defaultValue: "#0f1923" }),

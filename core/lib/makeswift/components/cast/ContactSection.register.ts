@@ -8,7 +8,7 @@ runtime.registerComponent(
     type: "cast-contact-section",
     label: "Forms / Contact Section",
     props: {
-      className: Style({ properties: [Style.Padding, Style.Margin] }),
+      className: Style(),
 
       // 🎨 Background
       bgColor: Color({ label: "🎨 Background — Color", defaultValue: "#0d1620" }),

@@ -91,6 +91,7 @@ const CategoryGrid = forwardRef(function CategoryGrid(
       className={`cast-category-grid-defaults relative overflow-hidden ${className || ""}`}
       style={{ fontFamily: "'Barlow', sans-serif", background: isLight ? sectionBackground : undefined, } as React.CSSProperties}
     >
+      <style>{`\n        .cast-category-grid-defaults { padding-top: 72px; padding-bottom: 72px; }\n        @media (max-width: 1024px) { .cast-category-grid-defaults { padding-top: 57px; padding-bottom: 57px; } }\n        @media (max-width: 768px)  { .cast-category-grid-defaults { padding-top: 46px; padding-bottom: 46px; } }\n        @media (max-width: 640px)  { .cast-category-grid-defaults { padding-top: 39px; padding-bottom: 39px; } }\n      `}</style>
       {/* bg image + overlay — dark mode only */}
       {!isLight && (
         <>
@@ -116,6 +117,30 @@ const CategoryGrid = forwardRef(function CategoryGrid(
               {sectionDescription || "Explore our full range of professional landscape lighting solutions."}
             </p>
           </div>
+
+          <style>{`
+            .cat-card {
+              display: flex; flex-direction: column; align-items: center; gap: 12px;
+              background: ${t.cardBg};
+              border: 1px solid ${t.cardBorder};
+              border-radius: 12px;
+              width: 112px; flex-shrink: 0; padding: 20px 8px;
+              text-decoration: none;
+              transition: border-color 200ms, box-shadow 200ms;
+            }
+            .cat-card:hover {
+              border-color: rgba(0,124,176,0.4);
+              box-shadow: 0 4px 24px ${isLight ? 'rgba(0,73,96,0.12)' : 'rgba(0,0,0,0.25)'};
+            }
+            .cat-card svg, .cat-card .cat-icon { color: ${t.subtle}; transition: color 200ms; }
+            .cat-card:hover svg, .cat-card:hover .cat-icon { color: ${t.accent}; }
+            .cat-label {
+              font-family: 'Barlow', sans-serif; font-size: 12px; font-weight: 600;
+              color: ${t.body}; text-align: center; line-height: 1.3;
+              transition: color 200ms;
+            }
+            .cat-card:hover .cat-label { color: ${t.accent}; }
+          `}</style>
 
           <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 16 }}>
             {displayCategories.map((cat, i) => {

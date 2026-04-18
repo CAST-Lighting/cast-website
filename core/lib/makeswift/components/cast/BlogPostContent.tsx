@@ -100,6 +100,7 @@ const BlogPostContent = forwardRef(function BlogPostContent(
       className={`cast-blog-post-content-defaults relative ${className || ""}`}
       style={{ background: bgColor || '#0f1923' }}
     >
+      <style>{`\n        .cast-blog-post-content-defaults { padding-top: 64px; padding-bottom: 96px; }\n        @media (max-width: 1024px) { .cast-blog-post-content-defaults { padding-top: 51px; padding-bottom: 76px; } }\n        @media (max-width: 768px)  { .cast-blog-post-content-defaults { padding-top: 41px; padding-bottom: 62px; } }\n        @media (max-width: 640px)  { .cast-blog-post-content-defaults { padding-top: 35px; padding-bottom: 52px; } }\n      `}</style>
       <div className="site-container" style={{ maxWidth: 1200 }}>
 
         {/* ── Category breadcrumb ── */}

@@ -8,7 +8,7 @@ runtime.registerComponent(
     type: "site-content-media",
     label: "Sections / Content + Video",
     props: {
-      className: Style({ properties: [Style.Padding, Style.Margin] }),
+      className: Style(),
 
       // 🎨 Background
       bgImage: Image({ label: "🎨 Background — Image" }),

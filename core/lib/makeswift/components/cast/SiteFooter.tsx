@@ -146,7 +146,7 @@ const SiteFooter = forwardRef(function SiteFooter(
     <footer
       ref={ref}
       className={`relative border-t border-border ${className || ""}`}
-      style={{ ...(!bgImageUrl ? { background: sectionBackground } : {}), } as React.CSSProperties}
+      style={{ ...(!bgImageUrl ? { background: sectionBackground } : {}), '--section-line-height': lineHeight, paddingTop: paddingTop ?? 64, paddingBottom: paddingBottom ?? 64 } as React.CSSProperties}
     >
       {bgImageUrl && (
         <img src={bgImageUrl} alt="" className="absolute inset-0 w-full h-full object-cover" style={{ zIndex: 0 }} />

@@ -8,7 +8,7 @@ runtime.registerComponent(
     type: "site-product-documents",
     label: "Product / Documents",
     props: {
-      className: Style({ properties: [Style.Padding, Style.Margin] }),
+      className: Style(),
       sectionStyle: Style({ properties: [Style.Padding, Style.Margin] }),
 
       // 🌓 Theme

@@ -116,6 +116,7 @@ const BlogGrid = forwardRef(function BlogGrid(
       className={`cast-blog-grid-defaults ${className || ""}`}
       style={{ background: bgColor || "#0f1923" }}
     >
+      <style>{`\n        .cast-blog-grid-defaults { padding-top: 72px; padding-bottom: 72px; }\n        @media (max-width: 1024px) { .cast-blog-grid-defaults { padding-top: 57px; padding-bottom: 57px; } }\n        @media (max-width: 768px)  { .cast-blog-grid-defaults { padding-top: 46px; padding-bottom: 46px; } }\n        @media (max-width: 640px)  { .cast-blog-grid-defaults { padding-top: 39px; padding-bottom: 39px; } }\n      `}</style>
       {/* ── Category Filter Pills ── */}
       <div
         style={{
@@ -174,6 +175,7 @@ const BlogGrid = forwardRef(function BlogGrid(
                   animation: "spin 0.8s linear infinite",
                 }}
               />
+              <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
               <p
                 style={{
                   fontFamily: "'Barlow', sans-serif",
@@ -245,6 +247,11 @@ const BlogGrid = forwardRef(function BlogGrid(
             </div>
           ) : (
             <>
+            <style>{`
+              .blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+              @media (max-width: 900px) { .blog-grid { grid-template-columns: repeat(2, 1fr); } }
+              @media (max-width: 575px) { .blog-grid { grid-template-columns: 1fr; } }
+            `}</style>
             <div className="blog-grid">
               {visiblePosts.map((post) => {
                 const excerpt = getExcerpt(post.body)

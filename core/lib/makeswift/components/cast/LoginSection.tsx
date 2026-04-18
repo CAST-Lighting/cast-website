@@ -55,7 +55,30 @@ const LoginSection = forwardRef(function LoginSection(
       className={`cast-login-section-defaults ${className || ""}`}
       style={{ background: bgColor || "#0f1923" }}
     >
-      <style>{`        .ls-input {\n          width: 100%; padding: 12px 16px; border: 1px solid rgba(255,255,255,0.12);\n          border-radius: 0; background: rgba(255,255,255,0.05);\n          font-family: 'Barlow', sans-serif; font-size: 15px; color: #fff;\n          outline: none; box-sizing: border-box; transition: border-color 200ms;\n        }\n        .ls-input:focus { border-color: #007CB0; }\n        .ls-input::placeholder { color: rgba(255,255,255,0.35); }\n        .ls-label { font-family: 'Barlow', sans-serif; font-size: 13px; font-weight: 600;\n          color: rgba(255,255,255,0.7); display: block; margin-bottom: 6px; }\n        .ls-account-card {\n          background: #2d353c; border: 1px solid rgba(255,255,255,0.08);\n          border-radius: 10px; padding: 28px; display: flex; flex-direction: column; gap: 14px;\n          transition: border-color 200ms;\n        }\n        .ls-account-card:hover { border-color: rgba(0,124,176,0.4); }\n        .ls-layout { display: grid; grid-template-columns: 1fr 1px 1fr; gap: 48px; align-items: start; }\n        @media (max-width: 900px) { .ls-layout { grid-template-columns: 1fr; } .ls-divider { display: none; } }`}</style>
+      <style>{`
+        .cast-login-section-defaults { padding-top: 80px; padding-bottom: 96px; }
+        @media (max-width: 1024px) { .cast-login-section-defaults { padding-top: 64px; padding-bottom: 76px; } }
+        @media (max-width: 768px)  { .cast-login-section-defaults { padding-top: 52px; padding-bottom: 62px; } }
+        @media (max-width: 640px)  { .cast-login-section-defaults { padding-top: 44px; padding-bottom: 52px; } }
+        .ls-input {
+          width: 100%; padding: 12px 16px; border: 1px solid rgba(255,255,255,0.12);
+          border-radius: 0; background: rgba(255,255,255,0.05);
+          font-family: 'Barlow', sans-serif; font-size: 15px; color: #fff;
+          outline: none; box-sizing: border-box; transition: border-color 200ms;
+        }
+        .ls-input:focus { border-color: #007CB0; }
+        .ls-input::placeholder { color: rgba(255,255,255,0.35); }
+        .ls-label { font-family: 'Barlow', sans-serif; font-size: 13px; font-weight: 600;
+          color: rgba(255,255,255,0.7); display: block; margin-bottom: 6px; }
+        .ls-account-card {
+          background: #2d353c; border: 1px solid rgba(255,255,255,0.08);
+          border-radius: 10px; padding: 28px; display: flex; flex-direction: column; gap: 14px;
+          transition: border-color 200ms;
+        }
+        .ls-account-card:hover { border-color: rgba(0,124,176,0.4); }
+        .ls-layout { display: grid; grid-template-columns: 1fr 1px 1fr; gap: 48px; align-items: start; }
+        @media (max-width: 900px) { .ls-layout { grid-template-columns: 1fr; } .ls-divider { display: none; } }
+      `}</style>
 
       <div className="site-container" style={{ maxWidth: 1100 }}>
         <div className="ls-layout">

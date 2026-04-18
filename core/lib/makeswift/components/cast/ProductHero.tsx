@@ -117,8 +117,47 @@ const ProductHero = forwardRef(function ProductHero(
         ...(!bgImage ? { background: sectionBg } : {})
       }}
     >
+      <style>{`
+        .cast-product-hero-defaults { padding-top: 48px; padding-bottom: 48px; }
+        @media (max-width: 1024px) { .cast-product-hero-defaults { padding-top: 38px; padding-bottom: 38px; } }
+        @media (max-width: 768px)  { .cast-product-hero-defaults { padding-top: 31px; padding-bottom: 31px; } }
+        @media (max-width: 640px)  { .cast-product-hero-defaults { padding-top: 26px; padding-bottom: 26px; } }
+      `}</style>
       {bgImage && <img src={bgImage} alt="" className="absolute inset-0 w-full h-full object-cover" style={{ zIndex: 0 }} />}
       {bgImage && <div className="absolute inset-0" style={{ zIndex: 1, background: sectionBg, opacity: overlayOpacity }} />}
+
+      <style>{`
+        .ph-thumb {
+          width: 72px; height: 72px; border-radius: 4px; border: 2px solid transparent;
+          background: rgba(0,73,96,0.06); cursor: pointer; overflow: hidden; flex-shrink: 0;
+          display: flex; align-items: center; justify-content: center;
+          transition: border-color 200ms;
+        }
+        .ph-thumb.active { border-color: #007CB0; }
+        .ph-thumb:hover { border-color: #7EBEE8; }
+        .ph-qty { display: flex; align-items: center; border: 2px solid rgba(0,73,96,0.2); border-radius: 4px; overflow: hidden; width: fit-content; background: #fff; }
+        .ph-qty button { width: 38px; height: 38px; border: none; background: #fff; cursor: pointer; font-size: 20px; color: #007CB0; display: flex; align-items: center; justify-content: center; transition: background 200ms; }
+        .ph-qty button:hover { background: #f0f8ff; }
+        .ph-qty input { width: 48px; border: none; text-align: center; font-family: 'Barlow', sans-serif; font-size: 16px; font-weight: 700; color: #25262d; outline: none; background: #fff; }
+        .ph-tradepro-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(0,73,96,0.08); color: #007CB0; font-family: 'Barlow', sans-serif; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; padding: 4px 10px; border-radius: 3px; }
+        .ph-body-html a { color: #7EBEE8; text-decoration: underline; text-underline-offset: 2px; }
+        .ph-body-html a:hover { color: #007CB0; }
+        .ph-body-html p { margin: 0 0 16px; }
+        .ph-body-html ul { padding-left: 24px !important; margin: 0 0 16px !important; list-style: disc outside !important; }
+        .ph-body-html ol { padding-left: 24px !important; margin: 0 0 16px !important; list-style: decimal outside !important; }
+        .ph-body-html li { margin-bottom: 6px !important; display: list-item !important; list-style: inherit !important; }
+        .ph-body-html ul ul { list-style: circle outside !important; margin: 4px 0 4px !important; }
+        .ph-body-html strong, .ph-body-html b { color: #014960; font-weight: 600; }
+        .ph-body-html h3 { font-family: 'Essonnes', 'Playfair Display', serif; font-size: var(--h3-size); color: #014960; margin: 24px 0 10px; }
+        .ph-body-html h4 { font-family: 'Essonnes', 'Playfair Display', serif; font-size: var(--h4-size); color: #014960; margin: 20px 0 8px; }
+        @media (max-width: 1279px) {
+          .ph-gallery { flex: 0 0 400px !important; max-width: 400px !important; }
+        }
+        @media (max-width: 900px) {
+          .ph-layout { flex-direction: column !important; }
+          .ph-gallery { max-width: 100% !important; flex: unset !important; position: relative !important; top: auto !important; align-self: stretch !important; }
+        }
+      `}</style>
 
       <div className="relative" style={{ zIndex: 10 }}>
         <div className="site-container">

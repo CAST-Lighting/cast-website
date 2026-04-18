@@ -34,6 +34,12 @@ const CmsProductContent = forwardRef(function CmsProductContent(
       className={`cast-cms-product-content-defaults ${className || ""}`}
       style={{ background: bgColor, minHeight: 200 }}
     >
+      <style>{`
+        .cast-cms-product-content-defaults { padding-top: 48px; padding-bottom: 64px; }
+        @media (max-width: 1024px) { .cast-cms-product-content-defaults { padding-top: 38px; padding-bottom: 51px; } }
+        @media (max-width: 768px)  { .cast-cms-product-content-defaults { padding-top: 31px; padding-bottom: 41px; } }
+        @media (max-width: 640px)  { .cast-cms-product-content-defaults { padding-top: 26px; padding-bottom: 35px; } }
+      `}</style>
       <div
         className="site-container"
       >

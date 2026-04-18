@@ -59,6 +59,7 @@ const ContractorFinder = forwardRef(function ContractorFinder(
       className={`cast-contractor-finder-defaults ${className || ""} ${sectionStyle || ""}`}
       style={{ width: "100%", boxSizing: "border-box", background: sectionBackground, }}
     >
+      <style>{`\n        .cast-contractor-finder-defaults { padding-top: 72px; padding-bottom: 72px; }\n        @media (max-width: 1024px) { .cast-contractor-finder-defaults { padding-top: 57px; padding-bottom: 57px; } }\n        @media (max-width: 768px)  { .cast-contractor-finder-defaults { padding-top: 46px; padding-bottom: 46px; } }\n        @media (max-width: 640px)  { .cast-contractor-finder-defaults { padding-top: 39px; padding-bottom: 39px; } }\n      `}</style>
       {/* Hero */}
       <div style={{ background: "var(--color-primary)", padding: "72px 0" }}>
         <div className="site-container">
@@ -85,6 +86,26 @@ const ContractorFinder = forwardRef(function ContractorFinder(
           </form>
         </div>
       </div>
+
+      <style>{`
+        .cf-map-grid {
+          display: grid;
+          grid-template-columns: 1fr 380px;
+          gap: 32px;
+          align-items: flex-start;
+        }
+        @media (max-width: 860px) {
+          .cf-map-grid {
+            grid-template-columns: 1fr;
+          }
+          .cf-map-grid .cf-map-panel {
+            order: 2;
+          }
+          .cf-map-grid .cf-results-panel {
+            order: 1;
+          }
+        }
+      `}</style>
 
       {/* Map placeholder + results */}
       <div className="site-container" style={{ paddingTop: 56, paddingBottom: 72 }}>

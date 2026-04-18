@@ -77,6 +77,7 @@ const NewsletterCtaFull = forwardRef(function NewsletterCtaFull(
       className={`cast-newsletter-cta-full-defaults relative overflow-hidden ${className || ""}`}
       style={{ background: bgImage ? undefined : sectionBg, fontFamily: "'Barlow', sans-serif" }}
     >
+      <style>{`\n        .cast-newsletter-cta-full-defaults { padding-top: 96px; padding-bottom: 96px; }\n        @media (max-width: 1024px) { .cast-newsletter-cta-full-defaults { padding-top: 76px; padding-bottom: 76px; } }\n        @media (max-width: 768px)  { .cast-newsletter-cta-full-defaults { padding-top: 62px; padding-bottom: 62px; } }\n        @media (max-width: 640px)  { .cast-newsletter-cta-full-defaults { padding-top: 52px; padding-bottom: 52px; } }\n      `}</style>
       {/* bg image */}
       {bgImage && (
         <img src={bgImage} alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", zIndex: 0 }} />
@@ -220,6 +221,15 @@ const NewsletterCtaFull = forwardRef(function NewsletterCtaFull(
 
         </div>
       </div>
+
+      <style>{`
+        @media (max-width: 768px) {
+          .nlf-inner { grid-template-columns: 1fr !important; padding: 36px 24px !important; }
+        }
+        @media (max-width: 480px) {
+          .nlf-inner { padding: 28px 16px !important; }
+        }
+      `}</style>
     </section>
   )
 })

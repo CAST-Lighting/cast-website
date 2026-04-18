@@ -58,6 +58,7 @@ const ReadyCTA = forwardRef(function ReadyCTA(
         ...(!bgImage ? { background: sectionBackground } : {}),
       }}
     >
+      <style>{`\n        .cast-ready-c-t-a-defaults { padding-top: 80px; padding-bottom: 80px; }\n        @media (max-width: 1024px) { .cast-ready-c-t-a-defaults { padding-top: 64px; padding-bottom: 64px; } }\n        @media (max-width: 768px)  { .cast-ready-c-t-a-defaults { padding-top: 52px; padding-bottom: 52px; } }\n        @media (max-width: 640px)  { .cast-ready-c-t-a-defaults { padding-top: 44px; padding-bottom: 44px; } }\n      `}</style>
       {bgImage && (
         <img
           src={bgImage}

@@ -123,7 +123,58 @@ function QuoteDetail(
       className={`cast-quote-detail-defaults ${className || ""}`}
       style={{ background: bgColor, fontFamily: "'Barlow', sans-serif" }}
     >
-
+      <style>{`
+        .cast-quote-detail-defaults { padding-top: 64px; padding-bottom: 64px; }
+        @media (max-width: 1024px) { .cast-quote-detail-defaults { padding-top: 51px; padding-bottom: 51px; } }
+        @media (max-width: 768px)  { .cast-quote-detail-defaults { padding-top: 41px; padding-bottom: 41px; } }
+        @media (max-width: 640px)  { .cast-quote-detail-defaults { padding-top: 35px; padding-bottom: 35px; } }
+      `}</style>
+      <style>{`
+        .qd-table { width: 100%; border-collapse: collapse; }
+        .qd-table th {
+          font-family: 'Barlow', sans-serif; font-size: 11px; font-weight: 700;
+          text-transform: uppercase; letter-spacing: 0.08em;
+          color: ${t.subtle}; padding: 10px 16px; text-align: left;
+          border-bottom: 1px solid ${t.divider};
+        }
+        .qd-table th:last-child { text-align: right; }
+        .qd-table td { padding: 14px 16px; border-bottom: 1px solid ${t.divider}; vertical-align: middle; }
+        .qd-table tr:last-child td { border-bottom: none; }
+        .qd-panel {
+          background: ${t.cardBg};
+          border: 1px solid ${t.cardBorder};
+          border-radius: 8px;
+        }
+        .qd-bottom-grid {
+          display: grid;
+          grid-template-columns: 1fr auto;
+          gap: 24px;
+          align-items: start;
+        }
+        .qd-action-bar {
+          display: flex; gap: 12px; flex-wrap: wrap;
+          margin-top: 32px; padding-top: 24px;
+          border-top: 1px solid ${t.divider};
+          justify-content: flex-end;
+        }
+        @media (max-width: 640px) {
+          .qd-bottom-grid { grid-template-columns: 1fr; }
+          .qd-action-bar { justify-content: flex-start; }
+        }
+        .qd-name-input {
+          background: ${t.inputBg}; border: 1px solid rgba(0,124,176,0.4);
+          border-radius: 4px; color: ${t.heading};
+          font-family: 'Essonnes','Playfair Display',serif;
+          font-size: var(--h2-size); font-weight: 700;
+          padding: 4px 10px; outline: none; width: 100%; box-sizing: border-box;
+        }
+        .qd-rename-btn {
+          background: none; border: none; cursor: pointer; color: ${t.subtle};
+          padding: 0; display: inline-flex; align-items: center;
+          transition: color 150ms; margin-left: 8px; flex-shrink: 0;
+        }
+        .qd-rename-btn:hover { color: ${t.accent}; }
+      `}</style>
 
       <div className="site-container">
 

@@ -51,6 +51,7 @@ const NotFoundHero = forwardRef(function NotFoundHero(
         overflow: "hidden",
       }}
     >
+      <style>{`\n        .cast-not-found-hero-defaults { padding-top: 120px; padding-bottom: 80px; }\n        @media (max-width: 1024px) { .cast-not-found-hero-defaults { padding-top: 96px; padding-bottom: 64px; } }\n        @media (max-width: 768px)  { .cast-not-found-hero-defaults { padding-top: 78px; padding-bottom: 52px; } }\n        @media (max-width: 640px)  { .cast-not-found-hero-defaults { padding-top: 66px; padding-bottom: 44px; } }\n      `}</style>
       {/* Grid pattern */}
       <div
         style={{

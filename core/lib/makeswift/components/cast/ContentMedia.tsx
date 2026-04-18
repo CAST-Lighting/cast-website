@@ -89,6 +89,7 @@ const ContentMedia = forwardRef(function ContentMedia(
       className={`cast-content-media-defaults relative overflow-hidden ${className || ""}`}
       style={{ ...(!bgImageUrl ? { background: sectionBackground } : {}), } as React.CSSProperties}
     >
+      <style>{`\n        .cast-content-media-defaults { padding-top: 80px; padding-bottom: 80px; }\n        @media (max-width: 1024px) { .cast-content-media-defaults { padding-top: 64px; padding-bottom: 64px; } }\n        @media (max-width: 768px)  { .cast-content-media-defaults { padding-top: 52px; padding-bottom: 52px; } }\n        @media (max-width: 640px)  { .cast-content-media-defaults { padding-top: 44px; padding-bottom: 44px; } }\n      `}</style>
       {bgImageUrl && (
         <img src={bgImageUrl} alt="" className="absolute inset-0 w-full h-full object-cover" style={{ zIndex: 0 }} />
       )}

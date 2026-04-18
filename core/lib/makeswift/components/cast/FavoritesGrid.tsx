@@ -105,7 +105,90 @@ function FavoritesGrid(
       className={`cast-favorites-grid-defaults ${className || ""}`}
       style={{ background: bgColor, fontFamily: "'Barlow', sans-serif" }}
     >
-
+      <style>{`
+        .cast-favorites-grid-defaults { padding-top: 64px; padding-bottom: 64px; }
+        @media (max-width: 1024px) { .cast-favorites-grid-defaults { padding-top: 51px; padding-bottom: 51px; } }
+        @media (max-width: 768px)  { .cast-favorites-grid-defaults { padding-top: 41px; padding-bottom: 41px; } }
+        @media (max-width: 640px)  { .cast-favorites-grid-defaults { padding-top: 35px; padding-bottom: 35px; } }
+      `}</style>
+      <style>{`
+        .fav-grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 20px;
+        }
+        @media (max-width: 1200px) { .fav-grid { grid-template-columns: repeat(3, 1fr); } }
+        @media (max-width: 768px)  { .fav-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 480px)  { .fav-grid { grid-template-columns: 1fr; } }
+        .fav-card {
+          background: ${t.cardBg};
+          border: 1px solid ${t.cardBorder};
+          border-radius: 10px;
+          overflow: hidden;
+          display: flex;
+          flex-direction: column;
+          transition: border-color 200ms, box-shadow 200ms;
+        }
+        .fav-card:hover {
+          border-color: rgba(0,124,176,0.4);
+          box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+        }
+        .fav-qty {
+          display: flex; align-items: center;
+          border: 1px solid ${t.inputBorder}; border-radius: 4px;
+          overflow: hidden; background: ${t.inputBg}; width: fit-content;
+        }
+        .fav-qty button {
+          width: 28px; height: 28px; border: none; background: transparent;
+          color: ${t.accent}; cursor: pointer; font-size: 16px;
+          display: flex; align-items: center; justify-content: center;
+          transition: background 150ms;
+        }
+        .fav-qty button:hover { background: rgba(0,124,176,0.08); }
+        .fav-qty input {
+          width: 34px; border: none; background: transparent; text-align: center;
+          font-family: 'Barlow', sans-serif; font-size: 13px; font-weight: 700;
+          color: ${t.heading}; outline: none;
+        }
+        .fav-qty input::-webkit-outer-spin-button,
+        .fav-qty input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+        .fav-qty input[type=number] { -moz-appearance: textfield; }
+        .fav-remove-btn {
+          display: inline-flex; align-items: center; gap: 4px;
+          background: none; border: 1px solid ${t.cardBorder};
+          border-radius: 4px; color: ${t.subtle};
+          font-family: 'Barlow', sans-serif; font-size: 11px; font-weight: 600;
+          padding: 5px 9px; cursor: pointer;
+          transition: border-color 150ms, color 150ms; white-space: nowrap;
+        }
+        .fav-remove-btn:hover { border-color: #ef4444; color: #ef4444; }
+        .fav-remove-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+        .fav-footer {
+          margin-top: 32px;
+          border-top: 1px solid ${t.divider};
+          padding-top: 24px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          flex-wrap: wrap;
+          gap: 16px;
+        }
+        .fav-footer-right {
+          display: flex;
+          align-items: center;
+          gap: 24px;
+          flex-wrap: wrap;
+        }
+        .fav-total-label {
+          text-align: right;
+        }
+        @media (max-width: 640px) {
+          .fav-footer { flex-direction: column; align-items: flex-start; }
+          .fav-footer-right { flex-direction: column; align-items: flex-start; gap: 12px; width: 100%; }
+          .fav-total-label { text-align: left; }
+        }
+        @keyframes fav-spin { to { transform: rotate(360deg); } }
+      `}</style>
 
       <div className="site-container">
 

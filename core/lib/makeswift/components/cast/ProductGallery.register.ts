@@ -8,7 +8,7 @@ runtime.registerComponent(
     type: "site-product-gallery",
     label: "Sections / Product Carousel",
     props: {
-      className: Style({ properties: [Style.Padding, Style.Margin] }),
+      className: Style(),
 
       // ✏️ Content
       sectionTitle: TextInput({ label: "✏️ Content — Section Title", defaultValue: "Our Favorite" }),

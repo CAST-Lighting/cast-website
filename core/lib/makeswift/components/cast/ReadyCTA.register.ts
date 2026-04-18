@@ -8,7 +8,7 @@ runtime.registerComponent(
     type: "site-ready-cta",
     label: "CTA / Ready CTA",
     props: {
-      className: Style({ properties: [Style.Padding, Style.Margin] }),
+      className: Style(),
 
       // 🌓 Theme
       mode: Select({ label: "🌓 Theme", options: [{ value: "dark", label: "Dark" }, { value: "light", label: "Light" }], defaultValue: "dark" }),

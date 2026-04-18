@@ -9,7 +9,7 @@ runtime.registerComponent(
     type: "cast-cms-category-grid",
     label: "CMS Content / Category Grid",
     props: {
-      className: Style({ properties: [Style.Padding, Style.Margin] }),
+      className: Style(),
 
       // 🎨 Background
       bgColor: Color({ label: "🎨 Background — Color", defaultValue: "#0f1923" }),

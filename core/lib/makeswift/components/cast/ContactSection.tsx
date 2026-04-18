@@ -36,7 +36,16 @@ const ContactSection = forwardRef(function ContactSection(
       className={`cast-contact-section-defaults relative overflow-hidden ${className || ''}`}
       style={{ background: bgColor || '#0d1620', }}
     >
-      <style>{`        .cs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }\n        .cs-name-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }\n        @media (max-width: 768px) { .cs-grid { grid-template-columns: 1fr; gap: 40px; } }\n        @media (max-width: 480px) { .cs-name-row { grid-template-columns: 1fr; } }`}</style>
+      <style>{`
+        .cast-contact-section-defaults { padding-top: 80px; padding-bottom: 80px; }
+        @media (max-width: 1024px) { .cast-contact-section-defaults { padding-top: 64px; padding-bottom: 64px; } }
+        @media (max-width: 768px)  { .cast-contact-section-defaults { padding-top: 52px; padding-bottom: 52px; } }
+        @media (max-width: 640px)  { .cast-contact-section-defaults { padding-top: 44px; padding-bottom: 44px; } }
+        .cs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+        .cs-name-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        @media (max-width: 768px) { .cs-grid { grid-template-columns: 1fr; gap: 40px; } }
+        @media (max-width: 480px) { .cs-name-row { grid-template-columns: 1fr; } }
+      `}</style>
       <div className="site-container">
         <div className="cs-grid">
           {/* Left: info */}

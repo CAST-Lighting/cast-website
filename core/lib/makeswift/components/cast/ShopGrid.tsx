@@ -149,12 +149,72 @@ const ShopGrid = forwardRef(function ShopGrid(
       className={`cast-shop-grid-defaults ${className || ""} ${sectionStyle || ""}`}
       style={{ position: "relative", width: "100%", boxSizing: "border-box", ...(!bgImage ? { background: sectionBackground } : {}), }}
     >
+      <style>{`\n        .cast-shop-grid-defaults { padding-top: 72px; padding-bottom: 72px; }\n        @media (max-width: 1024px) { .cast-shop-grid-defaults { padding-top: 57px; padding-bottom: 57px; } }\n        @media (max-width: 768px)  { .cast-shop-grid-defaults { padding-top: 46px; padding-bottom: 46px; } }\n        @media (max-width: 640px)  { .cast-shop-grid-defaults { padding-top: 39px; padding-bottom: 39px; } }\n      `}</style>
       {bgImage && (
         <img src={bgImage} alt="" className="absolute inset-0 w-full h-full object-cover" style={{ zIndex: 0 }} />
       )}
       {bgImage && (
         <div className="absolute inset-0" style={{ zIndex: 1, background: sectionBackground, opacity: overlayOpacity }} />
       )}
+      <style>{`
+        .sg-sidebar {
+          width: 300px;
+          flex-shrink: 0;
+          background: ${t.cardBg};
+          border: 1px solid ${t.cardBorder};
+          border-radius: 8px;
+          padding: 24px;
+          align-self: flex-start;
+          position: sticky;
+          top: 100px;
+        }
+        .sg-filter-label {
+          font-family: 'Barlow', sans-serif;
+          font-size: 11px;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 0.1em;
+          color: var(--color-content);
+          margin: 0 0 10px;
+        }
+        .sg-filter-section { margin-bottom: 24px; }
+        .sg-filter-section:last-child { margin-bottom: 0; }
+        .sg-filter-item {
+          display: flex; align-items: center; gap: 8px;
+          font-family: 'Barlow', sans-serif; font-size: 14px; color: var(--color-content);
+          padding: 4px 0; cursor: pointer;
+        }
+        .sg-filter-item input { cursor: pointer; accent-color: var(--color-primary); }
+        .sg-search-input {
+          width: 100%; box-sizing: border-box;
+          border: 1px solid ${t.cardBorder}; border-radius: 4px;
+          padding: 8px 12px; font-family: 'Barlow', sans-serif; font-size: 14px;
+          outline: none; color: var(--color-title);
+          transition: border-color 200ms;
+        }
+        .sg-search-input:focus { border-color: var(--color-accent); }
+        .sg-section-heading {
+          font-family: 'Barlow', sans-serif;
+          font-size: 13px; font-weight: 700;
+          text-transform: uppercase; letter-spacing: 0.1em;
+          color: var(--color-content); margin: 0 0 6px;
+        }
+        .sg-section-title {
+          font-size: var(--h3-size);
+          font-weight: var(--heading-weight, 700);
+          line-height: var(--heading-line-height, 1.1);
+          font-family: 'Essonnes', 'Playfair Display', serif;
+          color: var(--color-title); margin: 0 0 20px;
+        }
+        .sg-product-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 20px;
+        }
+        @media (max-width: 1100px) { .sg-product-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 900px) { .sg-sidebar { width: 100%; position: static; } .sg-layout { flex-direction: column !important; } }
+        @media (max-width: 575px) { .sg-product-grid { grid-template-columns: 1fr; } }
+      `}</style>
 
       <div className="relative" style={{ zIndex: 10 }}>
       <div className="site-container">

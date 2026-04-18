@@ -109,7 +109,52 @@ function OrderDetail(
       className={`cast-order-detail-defaults ${className || ""}`}
       style={{ background: bgColor, fontFamily: "'Barlow', sans-serif" }}
     >
-
+      <style>{`
+        .cast-order-detail-defaults { padding-top: 64px; padding-bottom: 64px; }
+        @media (max-width: 1024px) { .cast-order-detail-defaults { padding-top: 51px; padding-bottom: 51px; } }
+        @media (max-width: 768px)  { .cast-order-detail-defaults { padding-top: 41px; padding-bottom: 41px; } }
+        @media (max-width: 640px)  { .cast-order-detail-defaults { padding-top: 35px; padding-bottom: 35px; } }
+      `}</style>
+      <style>{`
+        .od-table { width: 100%; border-collapse: collapse; }
+        .od-table th {
+          font-family: 'Barlow', sans-serif; font-size: 11px; font-weight: 700;
+          text-transform: uppercase; letter-spacing: 0.08em;
+          color: rgba(0,73,96,0.45); padding: 10px 16px; text-align: left;
+          border-bottom: 1px solid ${t.divider};
+        }
+        .od-table th:last-child { text-align: right; }
+        .od-table td { padding: 14px 16px; border-bottom: 1px solid ${t.divider}; vertical-align: middle; }
+        .od-table tr:last-child td { border-bottom: none; }
+        .od-panel {
+          background: ${t.cardBg};
+          border: 1px solid ${t.cardBorder};
+          border-radius: 8px;
+        }
+        .od-bottom-grid {
+          display: grid;
+          grid-template-columns: 1fr auto;
+          gap: 24px;
+          align-items: start;
+        }
+        .od-info-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 16px;
+          margin-bottom: 24px;
+        }
+        .od-action-bar {
+          display: flex; gap: 12px; flex-wrap: wrap;
+          margin-top: 32px; padding-top: 24px;
+          border-top: 1px solid ${t.divider};
+          justify-content: flex-end;
+        }
+        @media (max-width: 640px) {
+          .od-bottom-grid { grid-template-columns: 1fr; }
+          .od-info-grid   { grid-template-columns: 1fr; }
+          .od-action-bar  { justify-content: flex-start; }
+        }
+      `}</style>
 
       <div className="site-container">
 

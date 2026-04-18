@@ -8,7 +8,7 @@ runtime.registerComponent(
     type: "cast-blog-grid",
     label: "Sections / Blog Grid",
     props: {
-      className: Style({ properties: [Style.Padding, Style.Margin] }),
+      className: Style(),
 
       // 🎨 Background
       bgColor: Color({ label: "🎨 Background — Color", defaultValue: "#0f1923" }),

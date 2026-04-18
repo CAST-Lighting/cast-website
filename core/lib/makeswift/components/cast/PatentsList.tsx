@@ -99,6 +99,7 @@ const PatentsList = forwardRef(function PatentsList(
       className={`cast-patents-list-defaults ${className || ""}`}
       style={{ background: bgColor || "#0f1923", }}
     >
+      <style>{`\n        .cast-patents-list-defaults { padding-top: 64px; padding-bottom: 64px; }\n        @media (max-width: 1024px) { .cast-patents-list-defaults { padding-top: 51px; padding-bottom: 51px; } }\n        @media (max-width: 768px)  { .cast-patents-list-defaults { padding-top: 41px; padding-bottom: 41px; } }\n        @media (max-width: 640px)  { .cast-patents-list-defaults { padding-top: 35px; padding-bottom: 35px; } }\n      `}</style>
       <div className="site-container">
         {/* Section Header */}
         <div style={{ marginBottom: 56, maxWidth: 680 }}>
@@ -171,6 +172,16 @@ const PatentsList = forwardRef(function PatentsList(
         )}
 
         {/* Patents Table */}
+        <style>{`
+          .pl-table-header { display: grid; grid-template-columns: 200px 1fr auto; gap: 0 24px; padding: 14px 24px; background: #25262d; border-bottom: 1px solid rgba(255,255,255,0.10); }
+          .pl-table-row { display: grid; grid-template-columns: 200px 1fr auto; gap: 0 24px; padding: 20px 24px; align-items: start; }
+          .pl-date-col { text-align: right; min-width: 130px; }
+          @media (max-width: 640px) {
+            .pl-table-header { display: none; }
+            .pl-table-row { grid-template-columns: 1fr; gap: 10px; }
+            .pl-date-col { text-align: left; min-width: 0; }
+          }
+        `}</style>
         <div style={{ borderRadius: 10, overflow: "hidden", border: "1px solid rgba(255,255,255,0.08)" }}>
           {/* Table Header */}
           <div className="pl-table-header">

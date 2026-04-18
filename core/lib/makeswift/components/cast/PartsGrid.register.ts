@@ -8,7 +8,7 @@ runtime.registerComponent(
     type: "site-parts-grid",
     label: "Product / Parts Grid",
     props: {
-      className: Style({ properties: [Style.Padding, Style.Margin] }),
+      className: Style(),
       sectionStyle: Style({ properties: [Style.Padding, Style.Margin] }),
 
       // 🎨 Background

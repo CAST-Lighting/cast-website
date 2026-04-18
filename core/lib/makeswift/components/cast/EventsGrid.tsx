@@ -108,6 +108,7 @@ const EventsGrid = forwardRef(function EventsGrid(
       className={`cast-events-grid-defaults ${className || ""}`}
       style={{ background: bgColor || "#0f1923", }}
     >
+      <style>{`\n        .cast-events-grid-defaults { padding-top: 72px; padding-bottom: 96px; }\n        @media (max-width: 1024px) { .cast-events-grid-defaults { padding-top: 57px; padding-bottom: 76px; } }\n        @media (max-width: 768px)  { .cast-events-grid-defaults { padding-top: 46px; padding-bottom: 62px; } }\n        @media (max-width: 640px)  { .cast-events-grid-defaults { padding-top: 39px; padding-bottom: 52px; } }\n      `}</style>
       <div className="site-container">
         {/* Section Header */}
         <div style={{ marginBottom: 56, maxWidth: 600 }}>
@@ -157,6 +158,7 @@ const EventsGrid = forwardRef(function EventsGrid(
               borderRadius: "50%",
               animation: "spin 0.8s linear infinite",
             }} />
+            <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
             <p style={{
               fontFamily: "'Barlow', sans-serif",
               fontSize: 15,
@@ -214,6 +216,11 @@ const EventsGrid = forwardRef(function EventsGrid(
         {/* Events Grid */}
         {!loading && !error && displayEvents.length > 0 && (
           <>
+          <style>{`
+            .events-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+            @media (max-width: 900px) { .events-grid { grid-template-columns: repeat(2, 1fr); } }
+            @media (max-width: 575px) { .events-grid { grid-template-columns: 1fr; } }
+          `}</style>
           <div className="events-grid">
             {displayEvents.map((event) => {
               const { month, day, year } = formatEventDate(event.date)

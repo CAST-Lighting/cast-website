@@ -8,7 +8,7 @@ runtime.registerComponent(
     type: "cast-tradepro-signup",
     label: "Forms / TradePro Signup",
     props: {
-      className: Style({ properties: [Style.Padding, Style.Margin] }),
+      className: Style(),
 
       // ✏️ Content — Hero
       badgeText: TextInput({ label: "✏️ Content — Badge Text", defaultValue: "Account Application" }),

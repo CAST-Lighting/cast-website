@@ -8,7 +8,7 @@ runtime.registerComponent(
     type: "site-product-faq",
     label: "Product / FAQ",
     props: {
-      className: Style({ properties: [Style.Padding, Style.Margin] }),
+      className: Style(),
       sectionStyle: Style({ properties: [Style.Padding, Style.Margin] }),
 
       // 🎨 Background
