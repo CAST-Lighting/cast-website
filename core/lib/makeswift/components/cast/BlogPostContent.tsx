@@ -11,8 +11,6 @@ interface RelatedPost {
 interface BlogPostContentProps {
   className?: string
   bgColor?: string
-  paddingTop?: number
-  paddingBottom?: number
   // Post meta
   postTitle?: string
   postDate?: string
@@ -59,8 +57,6 @@ const BlogPostContent = forwardRef(function BlogPostContent(
   {
     className,
     bgColor,
-    paddingTop = 64,
-    paddingBottom = 96,
     postTitle,
     postDate,
     category,
@@ -101,9 +97,10 @@ const BlogPostContent = forwardRef(function BlogPostContent(
   return (
     <section
       ref={ref}
-      className={`relative ${className || ""}`}
-      style={{ background: bgColor || '#0f1923', paddingTop, paddingBottom }}
+      className={`cast-blog-post-content-defaults relative ${className || ""}`}
+      style={{ background: bgColor || '#0f1923' }}
     >
+      <style>{`\n        .cast-blog-post-content-defaults { padding-top: 64px; padding-bottom: 96px; }\n        @media (max-width: 1024px) { .cast-blog-post-content-defaults { padding-top: 51px; padding-bottom: 76px; } }\n        @media (max-width: 768px)  { .cast-blog-post-content-defaults { padding-top: 41px; padding-bottom: 62px; } }\n        @media (max-width: 640px)  { .cast-blog-post-content-defaults { padding-top: 35px; padding-bottom: 52px; } }\n      `}</style>
       <div className="site-container" style={{ maxWidth: 1200 }}>
 
         {/* ── Category breadcrumb ── */}
