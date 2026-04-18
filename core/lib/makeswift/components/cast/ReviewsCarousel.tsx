@@ -261,7 +261,7 @@ const ReviewsCarousel = forwardRef(function ReviewsCarousel(
                 }}>
                   &ldquo;{review.quote}&rdquo;
                 </p>
-                <div style={{ borderTop: `1px solid ${t.divider}`: 16, display: "flex", alignItems: "center", gap: 12 }}>
+                <div style={{ borderTop: `1px solid ${t.divider}`, paddingTop: 16, display: "flex", alignItems: "center", gap: 12 }}>
                   <img
                     src={review.avatar || PLACEHOLDER_PERSON}
                     alt={review.name || "Reviewer"}

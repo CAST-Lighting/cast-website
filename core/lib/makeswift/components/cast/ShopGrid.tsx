@@ -111,7 +111,7 @@ const ProductCard = ({ product, t }: { product: Product; t: Theme }) => (
 )
 
 const ShopGrid = forwardRef(function ShopGrid(
-  { className = 96 = 96, sectionStyle, heading, headingAccent = "", products, bgColor, bgImage, bgOpacity, gradientFrom, gradientTo, gradientDirection, mode = 'dark' }: ShopGridProps,
+  { className, sectionStyle, heading, headingAccent = "", products, bgColor, bgImage, bgOpacity, gradientFrom, gradientTo, gradientDirection, mode = 'dark' }: ShopGridProps,
   ref: Ref<HTMLDivElement>
 ) {
   const [activeCategory, setActiveCategory] = useState("All")
