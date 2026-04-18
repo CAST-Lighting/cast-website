@@ -24,14 +24,23 @@ export async function GET(request: Request) {
       body: r.fields.Body ?? '',
     }));
 
+    // Deduplicate by Airtable record ID to guard against pagination overlap or
+    // duplicate records in the base
+    const seen = new Set<string>();
+    const dedupedPosts = posts.filter((p) => {
+      if (seen.has(p.id)) return false;
+      seen.add(p.id);
+      return true;
+    });
+
     const filtered = search
-      ? posts.filter(
+      ? dedupedPosts.filter(
           (p) =>
             p.title.toLowerCase().includes(search) ||
             p.slug.toLowerCase().includes(search) ||
             p.author.toLowerCase().includes(search),
         )
-      : posts;
+      : dedupedPosts;
 
     return Response.json(filtered);
   } catch (err) {
