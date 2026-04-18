@@ -15,8 +15,6 @@ interface CastEvent {
 interface EventsGridProps {
   className?: string
   bgColor?: string
-  paddingTop?: number
-  paddingBottom?: number
   heading?: string
   headingAccent?: string
   overline?: string
@@ -72,8 +70,6 @@ const EventsGrid = forwardRef(function EventsGrid(
   {
     className,
     bgColor = "#0f1923",
-    paddingTop = 72,
-    paddingBottom = 96,
     heading = "Upcoming",
     headingAccent = "Events",
     overline = "Training & Community",
@@ -109,9 +105,10 @@ const EventsGrid = forwardRef(function EventsGrid(
   return (
     <section
       ref={ref}
-      className={className || ""}
-      style={{ background: bgColor || "#0f1923", paddingTop: paddingTop ?? 72, paddingBottom: paddingBottom ?? 96 }}
+      className={`cast-events-grid-defaults ${className || ""}`}
+      style={{ background: bgColor || "#0f1923", }}
     >
+      <style>{`\n        .cast-events-grid-defaults { padding-top: 72px; padding-bottom: 96px; }\n        @media (max-width: 1024px) { .cast-events-grid-defaults { padding-top: 57px; padding-bottom: 76px; } }\n        @media (max-width: 768px)  { .cast-events-grid-defaults { padding-top: 46px; padding-bottom: 62px; } }\n        @media (max-width: 640px)  { .cast-events-grid-defaults { padding-top: 39px; padding-bottom: 52px; } }\n      `}</style>
       <div className="site-container">
         {/* Section Header */}
         <div style={{ marginBottom: 56, maxWidth: 600 }}>
