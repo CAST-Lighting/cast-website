@@ -1,5 +1,5 @@
 import { lazy } from "react"
-import { Style, Color, Image, Number as NumberControl, Select, TextInput, List, Shape } from "@makeswift/runtime/controls"
+import { Style, Color, Image, Select, TextInput, List, Shape } from "@makeswift/runtime/controls"
 import { runtime } from "~/lib/makeswift/runtime"
 
 runtime.registerComponent(
@@ -30,8 +30,7 @@ runtime.registerComponent(
           { value: "135deg", label: "↘ Diagonal ↘" },
           { value: "225deg", label: "↙ Diagonal ↙" },
         ],
-        defaultValue: "to bottom",
-      }),
+        defaultValue: "to bottom" }),
 
       // ✏️ Content
       overline: TextInput({ label: "✏️ Content — Overline", defaultValue: "For Contractors & Installers" }),
@@ -45,15 +44,10 @@ runtime.registerComponent(
         type: Shape({
           type: {
             title: TextInput({ label: "Title", defaultValue: "" }),
-            desc: TextInput({ label: "Description", defaultValue: "" }),
-          },
-        }),
-        getItemLabel(item) { return item?.title || "Benefit" },
-      }),
+            desc: TextInput({ label: "Description", defaultValue: "" }) } }),
+        getItemLabel(item) { return item?.title || "Benefit" } }),
 
       // 🔘 Buttons
       btnLabel: TextInput({ label: "🔘 Buttons — Button Label", defaultValue: "Join The TradePro Program" }),
-      btnHref: TextInput({ label: "🔘 Buttons — Button Href", defaultValue: "/trade-pro" }),
-    },
-  }
+      btnHref: TextInput({ label: "🔘 Buttons — Button Href", defaultValue: "/trade-pro" }) } }
 )

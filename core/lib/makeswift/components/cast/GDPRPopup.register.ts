@@ -23,7 +23,5 @@ runtime.registerComponent(
       privacyHref: TextInput({ label: "🔗 Links — Privacy Link URL", defaultValue: "/privacy" }),
 
       // 🎨 Background
-      bgColor: Color({ label: "🎨 Background — Card Color", defaultValue: "#2d353c" }),
-    },
-  }
+      bgColor: Color({ label: "🎨 Background — Card Color", defaultValue: "#2d353c" }) } }
 )

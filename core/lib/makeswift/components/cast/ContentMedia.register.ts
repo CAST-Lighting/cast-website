@@ -1,5 +1,5 @@
 import { lazy } from "react"
-import { Style, Color, Image, Number as NumberControl, Select, TextInput, List, Shape } from "@makeswift/runtime/controls"
+import { Style, Color, Image, Select, TextInput, List, Shape } from "@makeswift/runtime/controls"
 import { runtime } from "~/lib/makeswift/runtime"
 
 runtime.registerComponent(
@@ -27,8 +27,7 @@ runtime.registerComponent(
           { value: "135deg", label: "↘ Diagonal ↘" },
           { value: "225deg", label: "↙ Diagonal ↙" },
         ],
-        defaultValue: "135deg",
-      }),
+        defaultValue: "135deg" }),
 
       // ✏️ Content
       heading: TextInput({ label: "✏️ Content — Heading", defaultValue: "Unmatched Quality, Technology &" }),
@@ -44,11 +43,8 @@ runtime.registerComponent(
         type: Shape({
           type: {
             title: TextInput({ label: "Title", defaultValue: "" }),
-            desc: TextInput({ label: "Description", defaultValue: "" }),
-          },
-        }),
-        getItemLabel(item) { return item?.title || "Feature" },
-      }),
+            desc: TextInput({ label: "Description", defaultValue: "" }) } }),
+        getItemLabel(item) { return item?.title || "Feature" } }),
 
       // 🔘 Buttons
       btn1Label: TextInput({ label: "🔘 Buttons — Button 1 Label", defaultValue: "Shop Products" }),
@@ -61,7 +57,5 @@ runtime.registerComponent(
 
       // ✏️ Content — Stat
       stat: TextInput({ label: "✏️ Content — Stat Number", defaultValue: "25+" }),
-      statLabel: TextInput({ label: "✏️ Content — Stat Label", defaultValue: "Years of Excellence" }),
-    },
-  }
+      statLabel: TextInput({ label: "✏️ Content — Stat Label", defaultValue: "Years of Excellence" }) } }
 )

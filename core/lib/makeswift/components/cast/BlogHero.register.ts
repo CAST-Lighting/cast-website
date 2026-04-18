@@ -1,5 +1,5 @@
 import { lazy } from "react"
-import { Style, Color, Image, Number as NumberControl, TextInput } from "@makeswift/runtime/controls"
+import { Style, Color, Image, TextInput } from "@makeswift/runtime/controls"
 import { runtime } from "~/lib/makeswift/runtime"
 
 runtime.registerComponent(
@@ -19,7 +19,5 @@ runtime.registerComponent(
       overline: TextInput({ label: "✏️ Content — Overline", defaultValue: "Section Label" }),
       heading: TextInput({ label: "✏️ Content — Heading", defaultValue: "Heading Goes Here" }),
       headingAccent: TextInput({ label: "✏️ Content — Heading Accent (gold)", defaultValue: "Accent" }),
-      description: TextInput({ label: "✏️ Content — Description", defaultValue: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." }),
-    },
-  }
+      description: TextInput({ label: "✏️ Content — Description", defaultValue: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." }) } }
 )

@@ -1,5 +1,5 @@
 import { lazy } from "react"
-import { Style, Color, Number as NumberControl, TextInput, Checkbox, Image } from "@makeswift/runtime/controls"
+import { Style, Color, TextInput, Checkbox, Image } from "@makeswift/runtime/controls"
 import { runtime } from "~/lib/makeswift/runtime"
 
 runtime.registerComponent(
@@ -59,7 +59,5 @@ runtime.registerComponent(
       related2Category: TextInput({ label: "🔗 Links — Related Post 2 Category", defaultValue: "" }),
       related3Title: TextInput({ label: "🔗 Links — Related Post 3 Title", defaultValue: "" }),
       related3Href: TextInput({ label: "🔗 Links — Related Post 3 URL", defaultValue: "#" }),
-      related3Category: TextInput({ label: "🔗 Links — Related Post 3 Category", defaultValue: "" }),
-    },
-  }
+      related3Category: TextInput({ label: "🔗 Links — Related Post 3 Category", defaultValue: "" }) } }
 )

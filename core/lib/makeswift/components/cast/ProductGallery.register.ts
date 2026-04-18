@@ -1,5 +1,5 @@
 import { lazy } from "react"
-import { Style, Color, Image, Number as NumberControl, Select, TextInput } from "@makeswift/runtime/controls"
+import { Style, Color, Image, Select, TextInput } from "@makeswift/runtime/controls"
 import { runtime } from "~/lib/makeswift/runtime"
 
 runtime.registerComponent(
@@ -36,9 +36,5 @@ runtime.registerComponent(
           { value: "135deg", label: "↘ Diagonal ↘" },
           { value: "225deg", label: "↙ Diagonal ↙" },
         ],
-        defaultValue: "to bottom",
-      }),
-
-    },
-  }
+        defaultValue: "to bottom" }) } }
 )

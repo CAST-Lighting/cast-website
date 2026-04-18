@@ -1,5 +1,5 @@
 import { lazy } from "react"
-import { Style, TextInput, List, Shape, Image, Color, Number as NumberControl, Select } from "@makeswift/runtime/controls"
+import { Style, TextInput, List, Shape, Image, Color, Select } from "@makeswift/runtime/controls"
 import { runtime } from "~/lib/makeswift/runtime"
 
 runtime.registerComponent(
@@ -26,8 +26,7 @@ runtime.registerComponent(
           { value: "to left", label: "Right to Left" },
           { value: "135deg", label: "Diagonal" },
         ],
-        defaultValue: "to bottom",
-      }),
+        defaultValue: "to bottom" }),
 
       // ✏️ Content
       overline: TextInput({ label: "✏️ Content — Overline", defaultValue: "Section Label" }),
@@ -44,11 +43,6 @@ runtime.registerComponent(
           type: {
             image: Image({ label: "Logo Image" }),
             name: TextInput({ label: "Brand Name", defaultValue: "Brand Name" }),
-            url: TextInput({ label: "Link URL", defaultValue: "#" }),
-          },
-        }),
-        getItemLabel(item) { return item?.name || "Brand"; },
-      }),
-    },
-  }
+            url: TextInput({ label: "Link URL", defaultValue: "#" }) } }),
+        getItemLabel(item) { return item?.name || "Brand"; } }) } }
 )

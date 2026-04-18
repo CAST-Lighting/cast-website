@@ -1,5 +1,5 @@
 import { lazy } from "react"
-import { Style, TextInput, Image, Color, Checkbox, Number as NumberControl, Select } from "@makeswift/runtime/controls"
+import { Style, TextInput, Image, Color, Checkbox, Select } from "@makeswift/runtime/controls"
 import { runtime } from "~/lib/makeswift/runtime"
 
 runtime.registerComponent(
@@ -29,13 +29,10 @@ runtime.registerComponent(
           { value: "to left", label: "Right to Left" },
           { value: "135deg", label: "Diagonal" },
         ],
-        defaultValue: "to bottom",
-      }),
+        defaultValue: "to bottom" }),
 
       // 🔘 Buttons
       ctaLabel: TextInput({ label: "🔘 Buttons — CTA Button Label", defaultValue: "Browse All Products" }),
       ctaHref: TextInput({ label: "🔘 Buttons — CTA Button URL", defaultValue: "/category/23" }),
-      showSearch: Checkbox({ label: "📐 Layout — Show Search Bar", defaultValue: true }),
-    },
-  }
+      showSearch: Checkbox({ label: "📐 Layout — Show Search Bar", defaultValue: true }) } }
 )

@@ -1,5 +1,5 @@
 import { lazy } from "react"
-import { Style, Color, Number as NumberControl, TextInput, List, Shape } from "@makeswift/runtime/controls"
+import { Style, Color, TextInput, List, Shape } from "@makeswift/runtime/controls"
 import { runtime } from "~/lib/makeswift/runtime"
 
 runtime.registerComponent(
@@ -22,16 +22,11 @@ runtime.registerComponent(
         type: Shape({
           type: {
             label: TextInput({ label: "Label", defaultValue: "Category" }),
-            value: TextInput({ label: "Tag Value (exact match)", defaultValue: "" }),
-          },
-        }),
+            value: TextInput({ label: "Tag Value (exact match)", defaultValue: "" }) } }),
         getItemLabel(item) {
           return item?.label || "Tag"
-        },
-      }),
+        } }),
 
       // ✏️ Content
-      emptyMessage: TextInput({ label: "✏️ Content — Empty State Message", defaultValue: "No posts found." }),
-    },
-  }
+      emptyMessage: TextInput({ label: "✏️ Content — Empty State Message", defaultValue: "No posts found." }) } }
 )

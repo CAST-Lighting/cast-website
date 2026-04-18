@@ -1,5 +1,5 @@
 import { lazy } from "react"
-import { Style, TextInput, TextArea, Color, Number as NumberControl, Checkbox } from "@makeswift/runtime/controls"
+import { Style, TextInput, TextArea, Color, Checkbox } from "@makeswift/runtime/controls"
 import { runtime } from "~/lib/makeswift/runtime"
 
 runtime.registerComponent(
@@ -24,7 +24,5 @@ runtime.registerComponent(
       // 🔗 Links — PDF
       pdfLabel: TextInput({ label: "🔗 Links — PDF Button Label", defaultValue: "Download PDF Version" }),
       pdfUrl: TextInput({ label: "🔗 Links — PDF URL", defaultValue: "" }),
-      showPdf: Checkbox({ label: "🔗 Links — Show PDF Download Button", defaultValue: false }),
-    },
-  }
+      showPdf: Checkbox({ label: "🔗 Links — Show PDF Download Button", defaultValue: false }) } }
 )

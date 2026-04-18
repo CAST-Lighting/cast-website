@@ -1,5 +1,5 @@
 import { lazy } from "react"
-import { Style, Color, Image, Number as NumberControl, Select, TextInput, Checkbox, List, Shape } from "@makeswift/runtime/controls"
+import { Style, Color, Image, Select, TextInput, Checkbox, List, Shape } from "@makeswift/runtime/controls"
 import { runtime } from "~/lib/makeswift/runtime"
 
 runtime.registerComponent(
@@ -17,8 +17,7 @@ runtime.registerComponent(
       slides: List({
         label: '📸 Slides — Background Images',
         type: Image(),
-        getItemLabel: (_, index) => `Slide ${(index ?? 0) + 1}`,
-      }),
+        getItemLabel: (_, index) => `Slide ${(index ?? 0) + 1}` }),
       staticImage: Checkbox({ label: '📸 Static Image — Use Single Image (Slide 1)', defaultValue: false }),
       gradientFrom: Color({ label: '🎨 Background — Gradient From', defaultValue: '#25262d' }),
       gradientTo:   Color({ label: '🎨 Background — Gradient To',   defaultValue: '#25262d' }),
@@ -32,8 +31,7 @@ runtime.registerComponent(
           { value: '135deg',    label: '↘ Diagonal' },
           { value: '225deg',    label: '↙ Diagonal' },
         ],
-        defaultValue: '135deg',
-      }),
+        defaultValue: '135deg' }),
 
       // ─── CONTENT ─────────────────────────────────────────────────────
       badgeText:    TextInput({ label: '✏️ Content — Badge Text',    defaultValue: 'New 2026 Product Catalog Now Available' }),
@@ -43,8 +41,7 @@ runtime.registerComponent(
       phrases: List({
         label: '✏️ Content — Rotating Phrases',
         type: Shape({ type: { text: TextInput({ label: 'Phrase', defaultValue: '' }) } }),
-        getItemLabel: (item) => item?.text || 'Phrase',
-      }),
+        getItemLabel: (item) => item?.text || 'Phrase' }),
       description: TextInput({ label: '✏️ Content — Description', defaultValue: 'Professional-grade brass and copper fixtures trusted by contractors nationwide. Lifetime warranty on every product.' }),
 
       // ─── BUTTONS ─────────────────────────────────────────────────────
@@ -53,11 +50,8 @@ runtime.registerComponent(
         type: Shape({
           type: {
             label: TextInput({ label: 'Label', defaultValue: 'Button' }),
-            href:  TextInput({ label: 'Link',  defaultValue: '#' }),
-          },
-        }),
-        getItemLabel: (item) => item?.label || 'Button',
-      }),
+            href:  TextInput({ label: 'Link',  defaultValue: '#' }) } }),
+        getItemLabel: (item) => item?.label || 'Button' }),
 
       // ─── FORM ────────────────────────────────────────────────────────
       showForm:         Checkbox({ label: '📋 Form — Show Form',             defaultValue: false }),
@@ -65,7 +59,5 @@ runtime.registerComponent(
       formSubtitle:     TextInput({ label: '📋 Form — Subtitle',             defaultValue: "Apply for exclusive contractor pricing, training, and dedicated support." }),
       formSubmitLabel:  TextInput({ label: '📋 Form — Submit Button Label',  defaultValue: 'Submit Application' }),
       formWidth:        NumberControl({ label: '📋 Form — Width (px)',        defaultValue: 472, min: 280, max: 800, step: 8, suffix: 'px' }),
-      formOffsetBottom: NumberControl({ label: '📋 Form — Overlap Below (px)', defaultValue: 32,  min: 0,   max: 400, step: 8, suffix: 'px' }),
-    },
-  }
+      formOffsetBottom: NumberControl({ label: '📋 Form — Overlap Below (px)', defaultValue: 32,  min: 0,   max: 400, step: 8, suffix: 'px' }) } }
 )

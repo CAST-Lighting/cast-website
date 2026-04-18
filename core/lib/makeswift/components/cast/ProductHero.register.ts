@@ -1,5 +1,5 @@
 import { lazy } from "react"
-import { Style, TextInput, TextArea, List, Shape, Image, Color, Checkbox, Number as NumberControl, Select } from "@makeswift/runtime/controls"
+import { Style, TextInput, TextArea, List, Shape, Image, Color, Checkbox, Select } from "@makeswift/runtime/controls"
 import { runtime } from "~/lib/makeswift/runtime"
 
 runtime.registerComponent(
@@ -26,8 +26,7 @@ runtime.registerComponent(
           { value: "to left", label: "Right to Left" },
           { value: "135deg", label: "Diagonal" },
         ],
-        defaultValue: "to bottom",
-      }),
+        defaultValue: "to bottom" }),
 
       // ✏️ Content — Product Info
       productName: TextInput({ label: "✏️ Content — Product Name", defaultValue: "Product Name" }),
@@ -45,28 +44,19 @@ runtime.registerComponent(
         type: Shape({
           type: {
             src: Image({ label: "Image" }),
-            alt: TextInput({ label: "Alt Text", defaultValue: "Product image" }),
-          },
-        }),
-        getItemLabel(item) { return item?.alt || "Image"; },
-      }),
+            alt: TextInput({ label: "Alt Text", defaultValue: "Product image" }) } }),
+        getItemLabel(item) { return item?.alt || "Image"; } }),
 
       // ✏️ Content — Body
       bodyText: TextArea({
         label: "✏️ Content — Product Description",
-        defaultValue: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sed enim fringilla, suscipit felis eget, euismod nisi. Vestibulum ac fermentum ex, ac cursus sem. Nam vel bibendum erat. Pellentesque blandit viverra viverra. Nullam vestibulum ex eget gravida volutpat.\n\nPhasellus laoreet gravida libero, at porttitor diam fringilla at. Sed ac orci facilisis, placerat augue a, pulvinar enim. Integer volutpat velit nulla, vel varius purus elementum at. Cras euismod semper mi, at bibendum odio tincidunt vitae.\n\nPellentesque blandit viverra viverra. Nullam vestibulum ex eget gravida volutpat. Phasellus laoreet gravida libero, at porttitor diam fringilla at.",
-      }),
+        defaultValue: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sed enim fringilla, suscipit felis eget, euismod nisi. Vestibulum ac fermentum ex, ac cursus sem. Nam vel bibendum erat. Pellentesque blandit viverra viverra. Nullam vestibulum ex eget gravida volutpat.\n\nPhasellus laoreet gravida libero, at porttitor diam fringilla at. Sed ac orci facilisis, placerat augue a, pulvinar enim. Integer volutpat velit nulla, vel varius purus elementum at. Cras euismod semper mi, at bibendum odio tincidunt vitae.\n\nPellentesque blandit viverra viverra. Nullam vestibulum ex eget gravida volutpat. Phasellus laoreet gravida libero, at porttitor diam fringilla at." }),
 
       // 📦 Items — Bullet Points
       bulletPoints: List({
         label: "📦 Items — Feature Bullet Points",
         type: Shape({
           type: {
-            text: TextInput({ label: "Bullet Text", defaultValue: "Feature description goes here" }),
-          },
-        }),
-        getItemLabel(item) { return item?.text || "Bullet"; },
-      }),
-    },
-  }
+            text: TextInput({ label: "Bullet Text", defaultValue: "Feature description goes here" }) } }),
+        getItemLabel(item) { return item?.text || "Bullet"; } }) } }
 )

@@ -1,5 +1,5 @@
 import { lazy } from "react"
-import { Style, Color, Image, Number as NumberControl, Select, TextInput } from "@makeswift/runtime/controls"
+import { Style, Color, Image, Select, TextInput } from "@makeswift/runtime/controls"
 import { runtime } from "~/lib/makeswift/runtime"
 
 runtime.registerComponent(
@@ -27,8 +27,7 @@ runtime.registerComponent(
           { value: "135deg", label: "↘ Diagonal ↘" },
           { value: "225deg", label: "↙ Diagonal ↙" },
         ],
-        defaultValue: "135deg",
-      }),
+        defaultValue: "135deg" }),
 
       // ✏️ Content
       badgeText: TextInput({ label: "✏️ Content — Badge Text", defaultValue: "CAST Lighting" }),
@@ -40,8 +39,5 @@ runtime.registerComponent(
       btn1Label: TextInput({ label: "🔘 Buttons — Button 1 Label", defaultValue: "Shop Products" }),
       btn1Href: TextInput({ label: "🔘 Buttons — Button 1 Link", defaultValue: "#" }),
       btn2Label: TextInput({ label: "🔘 Buttons — Button 2 Label", defaultValue: "" }),
-      btn2Href: TextInput({ label: "🔘 Buttons — Button 2 Link", defaultValue: "#" }),
-
-    },
-  }
+      btn2Href: TextInput({ label: "🔘 Buttons — Button 2 Link", defaultValue: "#" }) } }
 )

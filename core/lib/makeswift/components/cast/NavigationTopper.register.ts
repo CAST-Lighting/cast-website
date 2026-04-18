@@ -19,30 +19,22 @@ runtime.registerComponent(
         type: Shape({
           type: {
             label: TextInput({ label: "Label", defaultValue: "Link" }),
-            href: TextInput({ label: "URL", defaultValue: "/trade-pro" }),
-          },
-        }),
+            href: TextInput({ label: "URL", defaultValue: "/trade-pro" }) } }),
         getItemLabel: (item) => item?.label || "Link",
         defaultValue: [
           { label: "EASY CONTRACTOR PRICING", href: "/trade-pro" },
           { label: "BECOME A TRADE PRO", href: "/trade-pro" },
-        ],
-      }),
+        ] }),
 
       rightLinks: List({
         label: "🔗 Right Links",
         type: Shape({
           type: {
             label: TextInput({ label: "Label", defaultValue: "Link" }),
-            href: TextInput({ label: "URL", defaultValue: "/contact" }),
-          },
-        }),
+            href: TextInput({ label: "URL", defaultValue: "/contact" }) } }),
         getItemLabel: (item) => item?.label || "Link",
-        defaultValue: [{ label: "Contact Us", href: "/contact" }],
-      }),
+        defaultValue: [{ label: "Contact Us", href: "/contact" }] }),
 
       phoneNumber: TextInput({ label: "📞 Phone Number", defaultValue: "(973) 423-2303" }),
-      hidePhone: Checkbox({ label: "📵 Hide Phone Number", defaultValue: false }),
-    },
-  }
+      hidePhone: Checkbox({ label: "📵 Hide Phone Number", defaultValue: false }) } }
 )

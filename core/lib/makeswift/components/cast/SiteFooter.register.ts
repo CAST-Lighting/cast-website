@@ -1,5 +1,5 @@
 import { lazy } from "react"
-import { Style, Color, Image, Number as NumberControl, Select, TextInput, List, Shape } from "@makeswift/runtime/controls"
+import { Style, Color, Image, Select, TextInput, List, Shape } from "@makeswift/runtime/controls"
 import { runtime } from "~/lib/makeswift/runtime"
 
 runtime.registerComponent(
@@ -27,8 +27,7 @@ runtime.registerComponent(
           { value: "135deg", label: "↘ Diagonal ↘" },
           { value: "225deg", label: "↙ Diagonal ↙" },
         ],
-        defaultValue: "to bottom",
-      }),
+        defaultValue: "to bottom" }),
 
       // ✏️ Content
       tagline: TextInput({ label: "✏️ Content — Tagline", defaultValue: "Professional-grade landscape lighting trusted by contractors since 2001." }),
@@ -51,44 +50,30 @@ runtime.registerComponent(
         type: Shape({
           type: {
             label: TextInput({ label: "Label", defaultValue: "" }),
-            href: TextInput({ label: "URL", defaultValue: "#" }),
-          },
-        }),
-        getItemLabel(item) { return item?.label || "Link" },
-      }),
+            href: TextInput({ label: "URL", defaultValue: "#" }) } }),
+        getItemLabel(item) { return item?.label || "Link" } }),
       col2Title: TextInput({ label: "🔗 Links — Column 2 Title", defaultValue: "Resources" }),
       col2Links: List({
         label: "🔗 Links — Column 2 Links",
         type: Shape({
           type: {
             label: TextInput({ label: "Label", defaultValue: "" }),
-            href: TextInput({ label: "URL", defaultValue: "#" }),
-          },
-        }),
-        getItemLabel(item) { return item?.label || "Link" },
-      }),
+            href: TextInput({ label: "URL", defaultValue: "#" }) } }),
+        getItemLabel(item) { return item?.label || "Link" } }),
       col3Title: TextInput({ label: "🔗 Links — Column 3 Title", defaultValue: "Company" }),
       col3Links: List({
         label: "🔗 Links — Column 3 Links",
         type: Shape({
           type: {
             label: TextInput({ label: "Label", defaultValue: "" }),
-            href: TextInput({ label: "URL", defaultValue: "#" }),
-          },
-        }),
-        getItemLabel(item) { return item?.label || "Link" },
-      }),
+            href: TextInput({ label: "URL", defaultValue: "#" }) } }),
+        getItemLabel(item) { return item?.label || "Link" } }),
       col4Title: TextInput({ label: "🔗 Links — Column 4 Title", defaultValue: "Support" }),
       col4Links: List({
         label: "🔗 Links — Column 4 Links",
         type: Shape({
           type: {
             label: TextInput({ label: "Label", defaultValue: "" }),
-            href: TextInput({ label: "URL", defaultValue: "#" }),
-          },
-        }),
-        getItemLabel(item) { return item?.label || "Link" },
-      }),
-    },
-  }
+            href: TextInput({ label: "URL", defaultValue: "#" }) } }),
+        getItemLabel(item) { return item?.label || "Link" } }) } }
 )

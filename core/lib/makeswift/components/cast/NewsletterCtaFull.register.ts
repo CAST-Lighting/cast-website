@@ -1,5 +1,5 @@
 import { lazy } from "react"
-import { Style, TextInput, TextArea, List, Shape, Image, Color, Number as NumberControl, Select } from "@makeswift/runtime/controls"
+import { Style, TextInput, TextArea, List, Shape, Image, Color, Select } from "@makeswift/runtime/controls"
 import { runtime } from "~/lib/makeswift/runtime"
 
 runtime.registerComponent(
@@ -28,15 +28,13 @@ runtime.registerComponent(
           { value: "to left", label: "Right to Left" },
           { value: "135deg", label: "Diagonal" },
         ],
-        defaultValue: "to bottom",
-      }),
+        defaultValue: "to bottom" }),
 
       // ✏️ Content
       heading: TextInput({ label: "✏️ Content — Heading", defaultValue: "Heading Goes Here" }),
       description: TextArea({
         label: "✏️ Content — Description",
-        defaultValue: "Get the latest on new products, contractor resources, and exclusive offers delivered straight to your inbox.",
-      }),
+        defaultValue: "Get the latest on new products, contractor resources, and exclusive offers delivered straight to your inbox." }),
 
       // 🔘 Buttons
       buttonText: TextInput({ label: "🔘 Buttons — Button Text", defaultValue: "Submit" }),
@@ -46,11 +44,6 @@ runtime.registerComponent(
         label: "📦 Items — Benefit Items",
         type: Shape({
           type: {
-            text: TextInput({ label: "Text", defaultValue: "Benefit item" }),
-          },
-        }),
-        getItemLabel(item) { return item?.text || "Item"; },
-      }),
-    },
-  }
+            text: TextInput({ label: "Text", defaultValue: "Benefit item" }) } }),
+        getItemLabel(item) { return item?.text || "Item"; } }) } }
 )

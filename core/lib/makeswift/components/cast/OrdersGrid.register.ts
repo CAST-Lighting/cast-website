@@ -1,5 +1,5 @@
 import { lazy } from "react"
-import { Style, TextInput, Color, Number as NumberControl } from "@makeswift/runtime/controls"
+import { Style, TextInput, Color } from "@makeswift/runtime/controls"
 import { runtime } from "~/lib/makeswift/runtime"
 
 runtime.registerComponent(
@@ -11,7 +11,5 @@ runtime.registerComponent(
       className: Style({ properties: [Style.Padding, Style.Margin] }),
       bgColor:      Color({ label: "🎨 Background — Color", defaultValue: "#F5F5F5" }),
       heading:      TextInput({ label: "✏️ Content — Heading",             defaultValue: "My Orders" }),
-      emptyMessage: TextInput({ label: "✏️ Content — Empty State Message", defaultValue: "No orders yet." }),
-    },
-  }
+      emptyMessage: TextInput({ label: "✏️ Content — Empty State Message", defaultValue: "No orders yet." }) } }
 )

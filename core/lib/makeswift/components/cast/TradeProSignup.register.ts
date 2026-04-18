@@ -20,26 +20,21 @@ runtime.registerComponent(
       sidebarBody: TextArea({
         label: "✏️ Content — Sidebar Body",
         defaultValue:
-          "If you are a contractor or landscape architect without a Distributor or Specification Sales Agency in your area, you can apply to have your own CAST online ordering account.",
-      }),
+          "If you are a contractor or landscape architect without a Distributor or Specification Sales Agency in your area, you can apply to have your own CAST online ordering account." }),
       sidebarNote: TextArea({
         label: "✏️ Content — Sidebar Note",
         defaultValue:
-          "Application may take between 2–5 business days to be approved and we may contact you with questions after an application has been submitted.",
-      }),
+          "Application may take between 2–5 business days to be approved and we may contact you with questions after an application has been submitted." }),
 
       // 📦 Items — Benefits
       benefits: List({
         label: "📦 Items — Benefits",
         type: Shape({
           type: {
-            text: TextInput({ label: "Benefit Text", defaultValue: "Benefit goes here." }),
-          },
-        }),
+            text: TextInput({ label: "Benefit Text", defaultValue: "Benefit goes here." }) } }),
         getItemLabel(item) {
           return item?.text || "Benefit"
-        },
-      }),
+        } }),
 
       // 🔗 Links
       loginHref: TextInput({ label: "🔗 Links — Login Page Link", defaultValue: "/login" }),
@@ -48,7 +43,5 @@ runtime.registerComponent(
       submitLabel: TextInput({ label: "📋 Form — Submit Button Label", defaultValue: "Submit Application →" }),
 
       // 🎨 Background
-      bgColor: Color({ label: "🎨 Background — Color", defaultValue: "#0f1923" }),
-    },
-  }
+      bgColor: Color({ label: "🎨 Background — Color", defaultValue: "#0f1923" }) } }
 )

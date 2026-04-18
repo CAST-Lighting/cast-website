@@ -15,7 +15,5 @@ runtime.registerComponent(
 
       // ✏️ Content
       heading: TextInput({ label: "✏️ Content — Heading", defaultValue: "My Favorites" }),
-      emptyMessage: TextInput({ label: "✏️ Content — Empty State Message", defaultValue: "Your favorites list is empty." }),
-    },
-  }
+      emptyMessage: TextInput({ label: "✏️ Content — Empty State Message", defaultValue: "Your favorites list is empty." }) } }
 )

@@ -1,5 +1,5 @@
 import { lazy } from "react"
-import { Style, Number as NumberControl, TextInput, Image, List, Shape, Checkbox } from "@makeswift/runtime/controls"
+import { Style, TextInput, Image, List, Shape, Checkbox } from "@makeswift/runtime/controls"
 import { runtime } from "~/lib/makeswift/runtime"
 
 runtime.registerComponent(
@@ -30,17 +30,11 @@ runtime.registerComponent(
               type: Shape({
                 type: {
                   label: TextInput({ label: "Item Label", defaultValue: "Item" }),
-                  href: TextInput({ label: "Item URL", defaultValue: "#" }),
-                }
+                  href: TextInput({ label: "Item URL", defaultValue: "#" }) }
               }),
-              getItemLabel(item) { return item?.label || "Item" },
-            }),
-          }
+              getItemLabel(item) { return item?.label || "Item" } }) }
         }),
-        getItemLabel(item) { return item?.label || "Link" },
-      }),
+        getItemLabel(item) { return item?.label || "Link" } }),
 
-      landingPageMode: Checkbox({ label: '🚀 Landing Page Nav (hide links & search)', defaultValue: false }),
-    },
-  }
+      landingPageMode: Checkbox({ label: '🚀 Landing Page Nav (hide links & search)', defaultValue: false }) } }
 )

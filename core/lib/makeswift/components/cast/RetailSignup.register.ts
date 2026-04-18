@@ -20,21 +20,17 @@ runtime.registerComponent(
       sidebarBody: TextArea({
         label: "✏️ Content — Sidebar Body",
         defaultValue:
-          "The CAST Retail Store is a resource for repair parts, lamps and accessories to help our customers maintain their lighting systems.",
-      }),
+          "The CAST Retail Store is a resource for repair parts, lamps and accessories to help our customers maintain their lighting systems." }),
 
       // 📦 Items — Benefits
       benefits: List({
         label: "📦 Items — Benefits",
         type: Shape({
           type: {
-            text: TextInput({ label: "Benefit Text", defaultValue: "Benefit goes here." }),
-          },
-        }),
+            text: TextInput({ label: "Benefit Text", defaultValue: "Benefit goes here." }) } }),
         getItemLabel(item) {
           return item?.text || "Benefit"
-        },
-      }),
+        } }),
 
       // 🔗 Links
       loginHref: TextInput({ label: "🔗 Links — Login Page Link", defaultValue: "/login" }),
@@ -43,7 +39,5 @@ runtime.registerComponent(
       submitLabel: TextInput({ label: "📋 Form — Submit Button Label", defaultValue: "Register & Continue to Checkout →" }),
 
       // 🎨 Background
-      bgColor: Color({ label: "🎨 Background — Color", defaultValue: "#0f1923" }),
-    },
-  }
+      bgColor: Color({ label: "🎨 Background — Color", defaultValue: "#0f1923" }) } }
 )

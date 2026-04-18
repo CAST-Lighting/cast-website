@@ -30,7 +30,5 @@ runtime.registerComponent(
       bodySmPx: Number({ label: "📐 Layout — Body Small (px)", defaultValue: 16, min: 12, max: 20, step: 1 }),
       headingWeight: Number({ label: "📐 Layout — Heading Weight", defaultValue: 700, min: 300, max: 900, step: 100 }),
       bodyLineHeight: Number({ label: "📐 Layout — Body Line Height", defaultValue: 1.5, min: 1.2, max: 2, step: 0.05 }),
-      headingLineHeight: Number({ label: "📐 Layout — Heading Line Height", defaultValue: 1.1, min: 0.9, max: 1.5, step: 0.05 }),
-    },
-  }
+      headingLineHeight: Number({ label: "📐 Layout — Heading Line Height", defaultValue: 1.1, min: 0.9, max: 1.5, step: 0.05 }) } }
 )
