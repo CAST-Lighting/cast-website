@@ -9,7 +9,7 @@ runtime.registerComponent(
     type: "cast-login-section",
     label: "Forms / Login & Sign Up",
     props: {
-      className: Style(),
+      className: Style({ properties: [Style.Padding, Style.Margin] }),
 
       // 🎨 Background
       bgColor: Color({ label: "🎨 Background — Color", defaultValue: "#0f1923" }),

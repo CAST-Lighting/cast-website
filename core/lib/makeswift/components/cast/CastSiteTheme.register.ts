@@ -8,7 +8,7 @@ runtime.registerComponent(
     type: "cast-site-theme",
     label: "Utilities / Global Theme",
     props: {
-      className: Style(),
+      className: Style({ properties: [Style.Padding, Style.Margin] }),
 
       // 🎨 Background — Colors
       primaryColor: Color({ label: "🎨 Background — Primary (Dark Blue)", defaultValue: "#004960" }),

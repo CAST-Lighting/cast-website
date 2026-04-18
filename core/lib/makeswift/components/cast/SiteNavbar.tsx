@@ -110,7 +110,7 @@ const SiteNavbar = forwardRef(function SiteNavbar(
     <header
       ref={ref}
       className={`fixed left-0 right-0 z-50 ${className || ""}`}
-      style={{ top: 36, '--section-line-height': lineHeight } as React.CSSProperties}
+      style={{ top: 36 } as React.CSSProperties}
     >
       {/* Main nav */}
       <nav className="backdrop-blur-md border-b border-[#004a61] bg-[#005C7A]/80">

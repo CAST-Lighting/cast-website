@@ -78,7 +78,6 @@ const RichTextSection = forwardRef(function RichTextSection(
       className={`cast-rich-text-section-defaults ${className || ""}`}
       style={{ background: bgColor || "#0f1923", }}
     >
-      <style>{`\n        .cast-rich-text-section-defaults { padding-top: 64px; padding-bottom: 64px; }\n        @media (max-width: 1024px) { .cast-rich-text-section-defaults { padding-top: 51px; padding-bottom: 51px; } }\n        @media (max-width: 768px)  { .cast-rich-text-section-defaults { padding-top: 41px; padding-bottom: 41px; } }\n        @media (max-width: 640px)  { .cast-rich-text-section-defaults { padding-top: 35px; padding-bottom: 35px; } }\n      `}</style>
       <div className="site-container">
         <div style={{ maxWidth: 800, margin: "0 auto" }}>
           {/* Heading */}

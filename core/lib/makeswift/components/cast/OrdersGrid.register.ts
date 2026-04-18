@@ -8,7 +8,7 @@ runtime.registerComponent(
     type: "cast-orders-grid",
     label: "Account / Orders Grid",
     props: {
-      className: Style(),
+      className: Style({ properties: [Style.Padding, Style.Margin] }),
       bgColor:      Color({ label: "🎨 Background — Color", defaultValue: "#F5F5F5" }),
       heading:      TextInput({ label: "✏️ Content — Heading",             defaultValue: "My Orders" }),
       emptyMessage: TextInput({ label: "✏️ Content — Empty State Message", defaultValue: "No orders yet." }),

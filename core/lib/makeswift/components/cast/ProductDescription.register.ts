@@ -8,7 +8,7 @@ runtime.registerComponent(
     type: "site-product-description",
     label: "Product / Description",
     props: {
-      className: Style(),
+      className: Style({ properties: [Style.Padding, Style.Margin] }),
       sectionStyle: Style({ properties: [Style.Padding, Style.Margin] }),
 
       // 🎨 Background

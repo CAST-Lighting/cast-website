@@ -8,7 +8,7 @@ runtime.registerComponent(
     type: "cast-gdpr-popup",
     label: "Utilities / GDPR Cookie Popup",
     props: {
-      className: Style(),
+      className: Style({ properties: [Style.Padding, Style.Margin] }),
 
       // ✏️ Content
       heading: TextInput({ label: "✏️ Content — Heading", defaultValue: "We Value Your Privacy" }),

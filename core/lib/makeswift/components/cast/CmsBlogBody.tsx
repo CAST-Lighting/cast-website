@@ -104,12 +104,6 @@ const CmsBlogBody = forwardRef(function CmsBlogBody(
 
   return (
     <div ref={ref as Ref<HTMLDivElement>} className={`cast-cms-blog-body-defaults ${className || ""}`} style={{ background: bgColor, minHeight: 200 }}>
-      <style>{`
-        .cast-cms-blog-body-defaults { padding-top: 56px; padding-bottom: 80px; }
-        @media (max-width: 1024px) { .cast-cms-blog-body-defaults { padding-top: 44px; padding-bottom: 64px; } }
-        @media (max-width: 768px)  { .cast-cms-blog-body-defaults { padding-top: 36px; padding-bottom: 52px; } }
-        @media (max-width: 640px)  { .cast-cms-blog-body-defaults { padding-top: 30px; padding-bottom: 44px; } }
-      `}</style>
       <style>{PROSE_STYLES}</style>
 
       {/* Featured Image */}

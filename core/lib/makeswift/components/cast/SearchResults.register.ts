@@ -8,9 +8,7 @@ runtime.registerComponent(
     type: "cast-search-results",
     label: "Search / Results Grid",
     props: {
-      className: Style(),
-      paddingTop:    Number({ label: "📐 Layout — Padding Top",    defaultValue: 48, min: 0, max: 400, step: 8, suffix: "px" }),
-      paddingBottom: Number({ label: "📐 Layout — Padding Bottom", defaultValue: 96, min: 0, max: 400, step: 8, suffix: "px" }),
+      className: Style({ properties: [Style.Padding, Style.Margin] }),
 
       // 🎨 Background
       bgColor: Color({ label: "🎨 Background — Color", defaultValue: "#0f1923" }),

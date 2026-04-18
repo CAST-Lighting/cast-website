@@ -87,52 +87,7 @@ function QuotesList(
       className={`cast-quotes-list-defaults ${className || ""}`}
       style={{ background: bgColor, fontFamily: "'Barlow', sans-serif" }}
     >
-      <style>{`
-        .cast-quotes-list-defaults { padding-top: 64px; padding-bottom: 64px; }
-        @media (max-width: 1024px) { .cast-quotes-list-defaults { padding-top: 51px; padding-bottom: 51px; } }
-        @media (max-width: 768px)  { .cast-quotes-list-defaults { padding-top: 41px; padding-bottom: 41px; } }
-        @media (max-width: 640px)  { .cast-quotes-list-defaults { padding-top: 35px; padding-bottom: 35px; } }
-      `}</style>
-      <style>{`
-        .ql-grid {
-          display: grid;
-          grid-template-columns: repeat(4, 1fr);
-          gap: 20px;
-        }
-        @media (max-width: 1200px) { .ql-grid { grid-template-columns: repeat(3, 1fr); } }
-        @media (max-width: 768px)  { .ql-grid { grid-template-columns: repeat(2, 1fr); } }
-        @media (max-width: 480px)  { .ql-grid { grid-template-columns: 1fr; } }
-        .ql-card {
-          background: ${t.cardBg};
-          border: 1px solid ${t.cardBorder};
-          border-radius: 10px;
-          overflow: hidden;
-          display: flex;
-          flex-direction: column;
-          transition: border-color 200ms, box-shadow 200ms;
-        }
-        .ql-card:hover {
-          border-color: rgba(0,124,176,0.4);
-          box-shadow: 0 4px 24px rgba(0,0,0,0.18);
-        }
-        .ql-name-input {
-          background: ${t.inputBg};
-          border: 1px solid rgba(0,124,176,0.4);
-          border-radius: 4px;
-          color: ${t.heading};
-          font-family: 'Barlow', sans-serif;
-          font-size: 13px; font-weight: 700;
-          padding: 5px 8px; width: 100%; outline: none;
-          box-sizing: border-box;
-        }
-        .ql-rename-btn {
-          background: none; border: none; cursor: pointer;
-          color: ${t.subtle}; padding: 0;
-          display: inline-flex; align-items: center;
-          transition: color 150ms; flex-shrink: 0;
-        }
-        .ql-rename-btn:hover { color: ${t.accent}; }
-      `}</style>
+
 
       <div className="site-container">
 

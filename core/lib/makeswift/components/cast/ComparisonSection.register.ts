@@ -8,7 +8,7 @@ runtime.registerComponent(
     type: "site-comparison",
     label: "Sections / Brand Comparison",
     props: {
-      className: Style(),
+      className: Style({ properties: [Style.Padding, Style.Margin] }),
 
       // 🎨 Background
       bgImage: Image({ label: "🎨 Background — Image" }),

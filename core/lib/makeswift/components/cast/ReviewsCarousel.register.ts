@@ -8,9 +8,7 @@ runtime.registerComponent(
     type: "site-reviews-carousel",
     label: "Sections / Reviews Carousel",
     props: {
-      className: Style(),
-      paddingTop:    Number({ label: "📐 Layout — Padding Top",    defaultValue: 96, min: 0, max: 400, step: 8, suffix: "px" }),
-      paddingBottom: Number({ label: "📐 Layout — Padding Bottom", defaultValue: 96, min: 0, max: 400, step: 8, suffix: "px" }),
+      className: Style({ properties: [Style.Padding, Style.Margin] }),
 
       // 🌓 Theme
       mode: Select({ label: "🌓 Theme", options: [{ value: "dark", label: "Dark" }, { value: "light", label: "Light" }], defaultValue: "dark" }),

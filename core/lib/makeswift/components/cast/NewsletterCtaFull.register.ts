@@ -8,7 +8,7 @@ runtime.registerComponent(
     type: "site-newsletter-cta-full",
     label: "CTA / Newsletter Full",
     props: {
-      className: Style(),
+      className: Style({ properties: [Style.Padding, Style.Margin] }),
 
       // 🎨 Background
       bgImage: Image({ label: "🎨 Background — Image" }),

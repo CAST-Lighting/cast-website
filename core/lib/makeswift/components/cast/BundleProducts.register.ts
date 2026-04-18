@@ -8,7 +8,7 @@ runtime.registerComponent(
     type: "site-bundle-products",
     label: "Product / Bundle Products",
     props: {
-      className: Style(),
+      className: Style({ properties: [Style.Padding, Style.Margin] }),
       sectionStyle: Style({ properties: [Style.Padding, Style.Margin] }),
 
       // 🎨 Background

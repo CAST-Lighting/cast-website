@@ -17,7 +17,7 @@ runtime.registerComponent(
     type: "cast-cms-product-content",
     label: "CMS Content / Product Details",
     props: {
-      className: Style(),
+      className: Style({ properties: [Style.Padding, Style.Margin] }),
 
       // ─── 📐 Layout ────────────────────────────────────────────────
 

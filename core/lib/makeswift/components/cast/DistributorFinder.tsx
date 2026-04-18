@@ -76,7 +76,6 @@ const DistributorFinder = forwardRef(function DistributorFinder(
       className={`cast-distributor-finder-defaults ${className || ""} ${sectionStyle || ""}`}
       style={{ width: "100%", boxSizing: "border-box", background: sectionBackground, }}
     >
-      <style>{`\n        .cast-distributor-finder-defaults { padding-top: 72px; padding-bottom: 72px; }\n        @media (max-width: 1024px) { .cast-distributor-finder-defaults { padding-top: 57px; padding-bottom: 57px; } }\n        @media (max-width: 768px)  { .cast-distributor-finder-defaults { padding-top: 46px; padding-bottom: 46px; } }\n        @media (max-width: 640px)  { .cast-distributor-finder-defaults { padding-top: 39px; padding-bottom: 39px; } }\n      `}</style>
       {/* Hero */}
       <div style={{ background: "var(--color-primary)", padding: "72px 0" }}>
         <div className="site-container">
@@ -105,10 +104,6 @@ const DistributorFinder = forwardRef(function DistributorFinder(
       </div>
 
       {/* Main content */}
-      <style>{`
-        .df-main-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: flex-start; }
-        @media (max-width: 768px) { .df-main-grid { grid-template-columns: 1fr; } }
-      `}</style>
       <div className="site-container" style={{ paddingTop: 64, paddingBottom: 72 }}>
         <div className="df-main-grid">
 

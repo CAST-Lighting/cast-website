@@ -71,7 +71,6 @@ const AboutContent = forwardRef(function AboutContent(
       className={`cast-about-content-defaults ${className || ""}`}
       style={{ background: bgColor || "#0f1923" }}
     >
-      <style>{`\n        .cast-about-content-defaults { padding-top: 80px; padding-bottom: 80px; }\n        @media (max-width: 1024px) { .cast-about-content-defaults { padding-top: 64px; padding-bottom: 64px; } }\n        @media (max-width: 768px)  { .cast-about-content-defaults { padding-top: 52px; padding-bottom: 52px; } }\n        @media (max-width: 640px)  { .cast-about-content-defaults { padding-top: 44px; padding-bottom: 44px; } }\n      `}</style>
       <div className="site-container">
         <div className="max-w-3xl mx-auto flex flex-col gap-16">
 
