@@ -5,8 +5,6 @@ import { ArrowLeft, Search } from "lucide-react"
 interface NotFoundHeroProps {
   className?: string
   bgColor?: string
-  paddingTop?: number
-  paddingBottom?: number
   errorCode?: string
   heading?: string
   headingAccent?: string
@@ -19,9 +17,7 @@ interface NotFoundHeroProps {
 const NotFoundHero = forwardRef(function NotFoundHero(
   {
     className,
-    bgColor,
-    paddingTop,
-    paddingBottom,
+    bgColor
     errorCode = "404",
     heading = "Page Not",
     headingAccent = "Found",
@@ -44,7 +40,7 @@ const NotFoundHero = forwardRef(function NotFoundHero(
   return (
     <section
       ref={ref}
-      className={className || ""}
+      className={`cast-not-found-hero-defaults ${className || ""}`}
       style={{
         background: bgColor || "#0f1923",
         minHeight: "100vh",
@@ -53,10 +49,9 @@ const NotFoundHero = forwardRef(function NotFoundHero(
         justifyContent: "center",
         position: "relative",
         overflow: "hidden",
-        paddingTop: paddingTop ?? 80,
-        paddingBottom: paddingBottom ?? 80,
       }}
     >
+      <style>{`\n        .cast-not-found-hero-defaults { padding-top: 120px; padding-bottom: 80px; }\n        @media (max-width: 1024px) { .cast-not-found-hero-defaults { padding-top: 96px; padding-bottom: 64px; } }\n        @media (max-width: 768px)  { .cast-not-found-hero-defaults { padding-top: 78px; padding-bottom: 52px; } }\n        @media (max-width: 640px)  { .cast-not-found-hero-defaults { padding-top: 66px; padding-bottom: 44px; } }\n      `}</style>
       {/* Grid pattern */}
       <div
         style={{
