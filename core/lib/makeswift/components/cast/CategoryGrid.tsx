@@ -31,7 +31,7 @@ const CategoryGrid = forwardRef(function CategoryGrid(
     gradientFrom,
     gradientTo,
     gradientDirection,
-    lineHeight
+    lineHeight,
     sectionTitle,
     sectionTitleAccent,
     sectionDescription,
