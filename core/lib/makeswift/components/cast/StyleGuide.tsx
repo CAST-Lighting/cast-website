@@ -6,7 +6,7 @@ const StyleGuide = forwardRef(function StyleGuide(
   ref: Ref<HTMLDivElement>
 ) {
   return (
-    <div ref={ref} className={className} style={{ fontFamily: "'Barlow', sans-serif", background: '#f5f5f5', minHeight: '100vh' }}>
+    <div ref={ref} className={className} style={{ width: '100%', fontFamily: "'Barlow', sans-serif", background: '#f5f5f5', minHeight: '100vh' }}>
 
       {/* ── Header ─────────────────────────────────────────────────────── */}
       <div style={{ background: '#014960', color: '#fff', padding: '48px 64px' }}>

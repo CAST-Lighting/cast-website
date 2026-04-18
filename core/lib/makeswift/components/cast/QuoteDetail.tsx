@@ -121,7 +121,7 @@ function QuoteDetail(
     <div
       ref={ref as Ref<HTMLDivElement>}
       className={`cast-quote-detail-defaults ${className || ""}`}
-      style={{ background: bgColor, fontFamily: "'Barlow', sans-serif" }}
+      style={{ width: '100%', background: bgColor, fontFamily: "'Barlow', sans-serif" }}
     >
 
 

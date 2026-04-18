@@ -107,7 +107,7 @@ const CmsBlogBody = forwardRef(function CmsBlogBody(
   ]
 
   return (
-    <div ref={ref as Ref<HTMLDivElement>} className={className || ""} style={{ background: bgColor, paddingTop, paddingBottom, minHeight: 200 }}>
+    <div ref={ref as Ref<HTMLDivElement>} className={className || ""} style={{ width: '100%', background: bgColor, paddingTop, paddingBottom, minHeight: 200 }}>
       <style>{PROSE_STYLES}</style>
 
       {/* Featured Image */}

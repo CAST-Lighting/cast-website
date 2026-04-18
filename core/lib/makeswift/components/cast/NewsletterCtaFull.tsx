@@ -79,7 +79,7 @@ const NewsletterCtaFull = forwardRef(function NewsletterCtaFull(
     <section
       ref={ref}
       className={`relative overflow-hidden ${className || ""}`}
-      style={{ background: bgImage ? undefined : sectionBg, fontFamily: "'Barlow', sans-serif" }}
+      style={{ width: '100%', background: bgImage ? undefined : sectionBg, fontFamily: "'Barlow', sans-serif" }}
     >
       {/* bg image */}
       {bgImage && (

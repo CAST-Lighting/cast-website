@@ -107,7 +107,7 @@ function FavoritesGrid(
     <div
       ref={ref as Ref<HTMLDivElement>}
       className={className || ""}
-      style={{ background: bgColor, paddingTop, paddingBottom, fontFamily: "'Barlow', sans-serif" }}
+      style={{ width: '100%', background: bgColor, paddingTop, paddingBottom, fontFamily: "'Barlow', sans-serif" }}
     >
       <style>{`
         .fav-grid {
