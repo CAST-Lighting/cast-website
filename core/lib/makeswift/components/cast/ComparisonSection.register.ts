@@ -30,7 +30,7 @@ runtime.registerComponent(
         defaultValue: "to bottom" }),
 
       // ✏️ Content
-      overline: TextInput({ label: "✏️ Content — Overline", defaultValue: "CAST vs Other Brands" }),
+      overline: TextInput({ label: "✏️ Content — Label over Title", defaultValue: "CAST vs Other Brands" }),
       heading: TextInput({ label: "✏️ Content — Heading", defaultValue: "Why Contractors Choose" }),
       headingAccent: TextInput({ label: "✏️ Content — Heading Accent", defaultValue: "CAST" }),
       description: TextInput({ label: "✏️ Content — Description", defaultValue: "See how CAST Lighting compares to other landscape lighting brands." }),

@@ -21,7 +21,7 @@ runtime.registerComponent(
       bgOpacity: Number({ label: "🎨 Background — Overlay Opacity %", defaultValue: 88, min: 0, max: 100, step: 5 }),
 
       // ✏️ Content
-      overline: TextInput({ label: "✏️ Content — Overline", defaultValue: "Section Label" }),
+      overline: TextInput({ label: "✏️ Content — Label over Title", defaultValue: "Section Label" }),
       heading: TextInput({ label: "✏️ Content — Heading", defaultValue: "Heading Goes Here" }),
       headingAccent: TextInput({ label: "✏️ Content — Heading Accent (gold)", defaultValue: "Accent" }),
       body: TextArea({ label: "✏️ Content — Body Text", defaultValue: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." }),

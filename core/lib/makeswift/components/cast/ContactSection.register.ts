@@ -14,7 +14,7 @@ runtime.registerComponent(
       bgColor: Color({ label: "🎨 Background — Color", defaultValue: "#0d1620" }),
 
       // ✏️ Content
-      overline: TextInput({ label: "✏️ Content — Overline", defaultValue: "Section Label" }),
+      overline: TextInput({ label: "✏️ Content — Label over Title", defaultValue: "Section Label" }),
       heading: TextInput({ label: "✏️ Content — Heading", defaultValue: "Heading Goes Here" }),
       headingAccent: TextInput({ label: "✏️ Content — Heading Accent (gold)", defaultValue: "Accent" }),
       description: TextInput({ label: "✏️ Content — Description", defaultValue: "Lorem ipsum dolor sit amet, consectetur adipiscing elit." }),

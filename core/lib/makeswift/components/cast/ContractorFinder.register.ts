@@ -29,7 +29,7 @@ runtime.registerComponent(
         defaultValue: "to bottom" }),
 
       // ✏️ Content
-      overline: TextInput({ label: "✏️ Content — Overline", defaultValue: "Section Label" }),
+      overline: TextInput({ label: "✏️ Content — Label over Title", defaultValue: "Section Label" }),
       heading: TextInput({ label: "✏️ Content — Heading", defaultValue: "Heading Goes Here" }),
       subheading: TextInput({ label: "✏️ Content — Subheading", defaultValue: "Lorem ipsum dolor sit amet, consectetur adipiscing elit." }) } }
 )

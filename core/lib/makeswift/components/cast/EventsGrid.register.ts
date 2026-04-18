@@ -18,6 +18,6 @@ runtime.registerComponent(
       // ✏️ Content
       heading: TextInput({ label: "✏️ Content — Heading", defaultValue: "Upcoming" }),
       headingAccent: TextInput({ label: "✏️ Content — Heading Accent", defaultValue: "Events" }),
-      overline: TextInput({ label: "✏️ Content — Overline", defaultValue: "Training & Community" }),
+      overline: TextInput({ label: "✏️ Content — Label over Title", defaultValue: "Training & Community" }),
       emptyMessage: TextInput({ label: "✏️ Content — Empty State Message", defaultValue: "No upcoming events at this time." }) } }
 )

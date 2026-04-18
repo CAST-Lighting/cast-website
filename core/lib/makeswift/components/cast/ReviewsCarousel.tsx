@@ -173,7 +173,7 @@ const ReviewsCarousel = forwardRef(function ReviewsCarousel(
   const overlayOpacity = typeof bgOpacity === "number" ? bgOpacity / 100 : 0.88
   const sectionBackground = hasGradient
     ? `linear-gradient(${gradientDirection || "to bottom"}, ${gradientFrom}, ${gradientTo})`
-    : bgColor || "#141e27"
+    : bgColor || "#f8f9fa"
 
   return (
     <section
@@ -204,7 +204,7 @@ const ReviewsCarousel = forwardRef(function ReviewsCarousel(
         <div className="site-container mb-10">
           <div className="flex flex-col md:flex-row md:items-end md:justify-between">
             <div style={{ textAlign: "left" }}>
-              <span className="overline" style={{ color: t.accent }}>{overline}</span>
+              <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 12, fontWeight: 700, textTransform: "uppercase" as const, letterSpacing: "0.14em", color: t.accent, margin: "0 0 12px", display: "block" }}>{overline}</span>
               <h2 className="section-heading" style={{ marginTop: 12, fontSize: "var(--h2-size)", color: t.heading }}>
                 {heading}{" "}
                 <span className="text-gradient-warm">{headingAccent}</span>

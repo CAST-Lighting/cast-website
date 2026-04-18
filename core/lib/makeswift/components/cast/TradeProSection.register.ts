@@ -33,7 +33,7 @@ runtime.registerComponent(
         defaultValue: "to bottom" }),
 
       // ✏️ Content
-      overline: TextInput({ label: "✏️ Content — Overline", defaultValue: "For Contractors & Installers" }),
+      overline: TextInput({ label: "✏️ Content — Label over Title", defaultValue: "For Contractors & Installers" }),
       heading: TextInput({ label: "✏️ Content — Heading", defaultValue: "The TradePro" }),
       headingAccent: TextInput({ label: "✏️ Content — Heading Accent", defaultValue: "Advantage" }),
       description: TextInput({ label: "✏️ Content — Description", defaultValue: "Access professional products with lifetime warranties that give you design control in the field." }),

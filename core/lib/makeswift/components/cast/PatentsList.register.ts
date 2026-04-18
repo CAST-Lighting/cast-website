@@ -18,7 +18,7 @@ runtime.registerComponent(
       // ✏️ Content
       heading: TextInput({ label: "✏️ Content — Heading", defaultValue: "CAST Lighting Patents" }),
       headingAccent: TextInput({ label: "✏️ Content — Heading Accent", defaultValue: "" }),
-      overline: TextInput({ label: "✏️ Content — Overline", defaultValue: "Intellectual Property" }),
+      overline: TextInput({ label: "✏️ Content — Label over Title", defaultValue: "Intellectual Property" }),
       description: TextArea({ label: "✏️ Content — Description", defaultValue: "Our portfolio of patents reflects decades of innovation in outdoor lighting technology, materials science, and intelligent control systems." }),
 
       // 📦 Items — Patents
