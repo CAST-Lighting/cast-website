@@ -22,8 +22,6 @@ interface ProductDocumentsProps {
   gradientFrom?: string
   gradientTo?: string
   gradientDirection?: string
-  paddingTop?: number
-  paddingBottom?: number
   mode?: ThemeMode
 }
 
@@ -54,9 +52,7 @@ const ProductDocuments = forwardRef(function ProductDocuments(
     bgOpacity,
     gradientFrom,
     gradientTo,
-    gradientDirection,
-    paddingTop,
-    paddingBottom,
+    gradientDirection
     mode = 'dark',
   }: ProductDocumentsProps,
   ref: Ref<HTMLDivElement>
@@ -72,9 +68,10 @@ const ProductDocuments = forwardRef(function ProductDocuments(
   return (
     <div
       ref={ref}
-      className={`${className || ""} ${sectionStyle || ""}`}
-      style={{ position: "relative", width: "100%", boxSizing: "border-box", ...(!bgImage ? { background: sectionBackground } : {}), paddingTop: paddingTop ?? 48, paddingBottom: paddingBottom ?? 48 }}
+      className={`cast-product-documents-defaults ${className || ""} ${sectionStyle || ""}`}
+      style={{ position: "relative", width: "100%", boxSizing: "border-box", ...(!bgImage ? { background: sectionBackground } : {}), }}
     >
+      <style>{`\n        .cast-product-documents-defaults { padding-top: 72px; padding-bottom: 72px; }\n        @media (max-width: 1024px) { .cast-product-documents-defaults { padding-top: 57px; padding-bottom: 57px; } }\n        @media (max-width: 768px)  { .cast-product-documents-defaults { padding-top: 46px; padding-bottom: 46px; } }\n        @media (max-width: 640px)  { .cast-product-documents-defaults { padding-top: 39px; padding-bottom: 39px; } }\n      `}</style>
       {bgImage && (
         <img src={bgImage} alt="" className="absolute inset-0 w-full h-full object-cover" style={{ zIndex: 0 }} />
       )}
