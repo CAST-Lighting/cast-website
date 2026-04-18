@@ -24,8 +24,6 @@ interface MediaGalleryProps {
   gradientFrom?: string
   gradientTo?: string
   gradientDirection?: string
-  paddingTop?: number
-  paddingBottom?: number
   mode?: 'dark' | 'light'
 }
 
@@ -66,9 +64,7 @@ const MediaGallery = forwardRef(function MediaGallery(
     bgOpacity,
     gradientFrom,
     gradientTo,
-    gradientDirection,
-    paddingTop,
-    paddingBottom,
+    gradientDirection
     mode = 'dark',
   }: MediaGalleryProps,
   ref: Ref<HTMLDivElement>
@@ -146,9 +142,10 @@ const MediaGallery = forwardRef(function MediaGallery(
   return (
     <div
       ref={ref}
-      className={`${className || ""} ${sectionStyle || ""}`}
-      style={{ position: "relative", width: "100%", boxSizing: "border-box", ...(!bgImage ? { background: sectionBackground } : {}), paddingTop: paddingTop ?? 48, paddingBottom: paddingBottom ?? 48 }}
+      className={`cast-media-gallery-defaults ${className || ""} ${sectionStyle || ""}`}
+      style={{ position: "relative", width: "100%", boxSizing: "border-box", ...(!bgImage ? { background: sectionBackground } : {}), }}
     >
+      <style>{`\n        .cast-media-gallery-defaults { padding-top: 80px; padding-bottom: 80px; }\n        @media (max-width: 1024px) { .cast-media-gallery-defaults { padding-top: 64px; padding-bottom: 64px; } }\n        @media (max-width: 768px)  { .cast-media-gallery-defaults { padding-top: 52px; padding-bottom: 52px; } }\n        @media (max-width: 640px)  { .cast-media-gallery-defaults { padding-top: 44px; padding-bottom: 44px; } }\n      `}</style>
       {bgImage && (
         <img src={bgImage} alt="" className="absolute inset-0 w-full h-full object-cover" style={{ zIndex: 0 }} />
       )}
