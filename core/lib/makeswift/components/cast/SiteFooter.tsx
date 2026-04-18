@@ -162,15 +162,15 @@ const SiteFooter = forwardRef(function SiteFooter(
               <a href="/" className="heading-style-h5 tracking-wider text-foreground">
                 <img src="https://storage.googleapis.com/s.mkswft.com/RmlsZToxNmVlZWE3MS1iNjRjLTQ0MjctOGI2My1jNWI3ODQxNWFmNGI=/cast__lighting_white.svg" alt="CAST Lighting" style={{ height: 48, width: 'auto' }} />
               </a>
-              <p className="text-size-small text-muted-foreground mt-4 leading-relaxed">
+              <p className="text-size-small mt-4 leading-relaxed" style={{ color: 'rgba(255,255,255,0.65)' }}>
                 {tagline || "Professional-grade landscape lighting trusted by contractors since 2001."}
               </p>
-              <div className="flex items-start gap-2 mt-4 text-size-small text-muted-foreground">
-                <Phone className="w-4 h-4 mt-0.5 text-primary flex-shrink-0" />
+              <div className="flex items-start gap-2 mt-4 text-size-small" style={{ color: 'rgba(255,255,255,0.65)' }}>
+                <Phone className="w-4 h-4 mt-0.5 flex-shrink-0" style={{ color: '#7fbee8' }} />
                 <span>{phone || "(800) 555-CAST"}</span>
               </div>
-              <div className="flex items-start gap-2 mt-2 text-size-small text-muted-foreground">
-                <MapPin className="w-4 h-4 mt-0.5 text-primary flex-shrink-0" />
+              <div className="flex items-start gap-2 mt-2 text-size-small" style={{ color: 'rgba(255,255,255,0.65)' }}>
+                <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" style={{ color: '#7fbee8' }} />
                 <span>{address || "Pine Brook, NJ 07058"}</span>
               </div>
               <div className="flex items-center gap-3 mt-5">
@@ -188,7 +188,7 @@ const SiteFooter = forwardRef(function SiteFooter(
                 <ul className="space-y-2.5">
                   {col.links.map((link, i) => (
                     <li key={i}>
-                      <a href={link.href || '#'} className="text-size-small text-muted-foreground hover:text-primary transition-colors">
+                      <a href={link.href || '#'} className="text-size-small transition-colors" style={{ color: 'rgba(255,255,255,0.65)' }} onMouseOver={e => (e.currentTarget.style.color = '#7fbee8')} onMouseOut={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.65)')}>
                         {link.label}
                       </a>
                     </li>
@@ -198,13 +198,13 @@ const SiteFooter = forwardRef(function SiteFooter(
             ))}
           </div>
 
-          <div className="border-t border-border pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-size-small text-muted-foreground">
+          <div className="border-t pt-8 flex flex-col md:flex-row justify-between items-center gap-4" style={{ borderColor: 'rgba(255,255,255,0.1)' }}>
+            <p className="text-size-small" style={{ color: 'rgba(255,255,255,0.45)' }}>
               {copyright || "© 2026 CAST Lighting. All rights reserved."}
             </p>
-            <div className="flex gap-6 text-size-small text-muted-foreground">
-              <a href="/privacy" className="hover:text-primary transition-colors">Privacy Policy</a>
-              <a href="/returns" className="hover:text-primary transition-colors">Terms of Service</a>
+            <div className="flex gap-6 text-size-small" style={{ color: 'rgba(255,255,255,0.45)' }}>
+              <a href="/privacy" className="transition-colors" style={{ color: 'rgba(255,255,255,0.45)' }} onMouseOver={e => (e.currentTarget.style.color = '#7fbee8')} onMouseOut={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.45)')}>Privacy Policy</a>
+              <a href="/returns" className="transition-colors" style={{ color: 'rgba(255,255,255,0.45)' }} onMouseOver={e => (e.currentTarget.style.color = '#7fbee8')} onMouseOut={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.45)')}>Terms of Service</a>
             </div>
           </div>
         </div>
