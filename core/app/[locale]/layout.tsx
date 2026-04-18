@@ -27,10 +27,7 @@ import { ContainerQueryPolyfill } from '~/components/polyfills/container-query';
 import { scriptsTransformer } from '~/data-transformers/scripts-transformer';
 import { routing } from '~/i18n/routing';
 import { getToastNotification } from '~/lib/server-toast';
-
-// NOTE: GlobalThemeLoader has been moved to (default)/layout.tsx so it only
-// runs on the live site — not inside the Makeswift editor path. A static
-// fallback below ensures CSS variables are always present in the editor.
+import { GlobalThemeLoader } from '~/lib/makeswift/components/cast/GlobalThemeLoader';
 
 const RootLayoutMetadataQuery = graphql(
   `
@@ -81,7 +78,7 @@ export async function generateMetadata(): Promise<Metadata> {
       default: pageTitle || storeName,
     },
     icons: {
-      icon: '/favicon.ico', // app/favicon.ico/route.ts
+      icon: '/favicon.ico',
     },
     description: metaDescription,
     keywords: metaKeywords ? metaKeywords.split(',') : null,
@@ -110,33 +107,6 @@ interface Props extends PropsWithChildren {
   params: Promise<{ locale: string }>;
 }
 
-// Static fallback CSS variables — ensures the editor always has the CAST design
-// tokens even when GlobalThemeLoader (in default layout) is not running.
-const castThemeFallback = `
-:root {
-  --color-primary: #004960;
-  --color-accent: #057cb0;
-  --color-secondary: #005c7a;
-  --color-light: #7fbee8;
-  --color-title: #1a2332;
-  --color-content: #3c3c47;
-  --color-theme-primary: #057cb0;
-  --color-theme-secondary: #004960;
-  --h1-size: 46px;
-  --h2-size: 36px;
-  --h3-size: 29px;
-  --h4-size: 26px;
-  --h5-size: 23px;
-  --h6-size: 20px;
-  --body-size: 18px;
-  --body-lg-size: 20px;
-  --body-sm-size: 16px;
-  --heading-weight: 700;
-  --body-line-height: 1.5;
-  --heading-line-height: 1.1;
-}
-`.trim();
-
 export default async function RootLayout({ params, children }: Props) {
   const { locale } = await params;
 
@@ -148,24 +118,18 @@ export default async function RootLayout({ params, children }: Props) {
     notFound();
   }
 
-  // need to call this method everywhere where static rendering is enabled
-  // https://next-intl-docs.vercel.app/docs/getting-started/app-router#add-setRequestLocale-to-all-layouts-and-pages
   setRequestLocale(locale);
 
   const scripts = scriptsTransformer(rootData.data.site.content.scripts);
-  // CAST manages its own cookie consent — disable the Catalyst/BigCommerce banner
   const isCookieConsentEnabled = false;
   const privacyPolicyUrl = rootData.data.site.settings?.privacy?.privacyPolicyUrl;
 
   return (
     <html className={clsx(fonts.map((f) => f.variable))} lang={locale}>
-      {/* CAST Lighting brand fonts */}
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet" />
       <body className="flex min-h-screen flex-col overflow-x-hidden">
-        {/* Static CSS variable fallback — overridden by GlobalThemeLoader on live pages */}
-        <style dangerouslySetInnerHTML={{ __html: castThemeFallback }} />
         <NextIntlClientProvider>
           <ConsentManager
             isCookieConsentEnabled={isCookieConsentEnabled}
@@ -180,6 +144,7 @@ export default async function RootLayout({ params, children }: Props) {
               >
                 <Providers>
                   <MakeswiftProvider siteVersion={siteVersion}>
+                    <GlobalThemeLoader locale={locale} />
                     {toastNotificationCookieData && (
                       <CookieNotifications {...toastNotificationCookieData} />
                     )}
