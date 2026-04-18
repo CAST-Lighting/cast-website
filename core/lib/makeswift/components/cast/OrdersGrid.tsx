@@ -15,8 +15,6 @@ interface Order {
 interface OrdersGridProps {
   className?: string
   bgColor?: string
-  paddingTop?: number
-  paddingBottom?: number
   heading?: string
   emptyMessage?: string
 }
@@ -41,8 +39,6 @@ function OrdersGrid(
   {
     className,
     bgColor = "#F5F5F5",
-    paddingTop = 64,
-    paddingBottom = 64,
     heading = "My Orders",
     emptyMessage = "No orders yet.",
   }: OrdersGridProps,
@@ -61,9 +57,15 @@ function OrdersGrid(
   return (
     <div
       ref={ref as Ref<HTMLDivElement>}
-      className={className}
-      style={{ background: bgColor, paddingTop, paddingBottom, fontFamily: "'Barlow', sans-serif" }}
+      className={`cast-orders-grid-defaults ${className || ""}`}
+      style={{ background: bgColor, fontFamily: "'Barlow', sans-serif" }}
     >
+      <style>{`
+        .cast-orders-grid-defaults { padding-top: 64px; padding-bottom: 64px; }
+        @media (max-width: 1024px) { .cast-orders-grid-defaults { padding-top: 51px; padding-bottom: 51px; } }
+        @media (max-width: 768px)  { .cast-orders-grid-defaults { padding-top: 41px; padding-bottom: 41px; } }
+        @media (max-width: 640px)  { .cast-orders-grid-defaults { padding-top: 35px; padding-bottom: 35px; } }
+      `}</style>
       <style>{`
         .og-grid {
           display: grid;
