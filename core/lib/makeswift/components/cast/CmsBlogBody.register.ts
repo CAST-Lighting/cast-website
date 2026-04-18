@@ -12,5 +12,5 @@ runtime.registerComponent(
       className: Style({ properties: [Style.Padding, Style.Margin] }),
       paddingTop: Number({ label: "📐 Padding Top (px)", defaultValue: 56, min: 0, step: 4 }),
       paddingBottom: Number({ label: "📐 Padding Bottom (px)", defaultValue: 80, min: 0, step: 4 }),
-      bgColor: Color({ label: "🎨 Background Color", defaultValue: "#0f1923" }) } }
+      bgColor: Color({ label: "🎨 Background Color", defaultValue: "#F5F5F5" }) } }
 )

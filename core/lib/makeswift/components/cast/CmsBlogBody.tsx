@@ -26,34 +26,34 @@ const PLACEHOLDER_HTML = `
 const PROSE_STYLES = `
   .bp-prose h1, .bp-prose h2, .bp-prose h3, .bp-prose h4 {
     font-family: 'Essonnes', 'Playfair Display', serif;
-    color: #fff; line-height: 1.3; margin: 1.6em 0 0.6em;
+    color: #0f1923; line-height: 1.3; margin: 1.6em 0 0.6em;
   }
   .bp-prose h1 { font-size: 2em; }
-  .bp-prose h2 { font-size: 1.55em; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 0.4em; }
+  .bp-prose h2 { font-size: 1.55em; border-bottom: 1px solid rgba(0,73,96,0.1); padding-bottom: 0.4em; }
   .bp-prose h3 { font-size: 1.25em; }
-  .bp-prose h4 { font-size: 1.05em; color: rgba(255,255,255,0.85); }
-  .bp-prose p { font-family: 'Barlow', sans-serif; font-size: 17px; color: rgba(255,255,255,0.72); line-height: 1.85; margin: 0 0 1.3em; }
+  .bp-prose h4 { font-size: 1.05em; color: rgba(0,73,96,0.8); }
+  .bp-prose p { font-family: 'Barlow', sans-serif; font-size: 17px; color: rgba(0,0,0,0.7); line-height: 1.85; margin: 0 0 1.3em; }
   .bp-prose img { width: 100%; border-radius: 8px; margin: 1.5em 0; display: block; }
   .bp-prose a { color: #007CB0; text-decoration: underline; }
-  .bp-prose a:hover { color: #7EBEE8; }
-  .bp-prose ul { font-family: 'Barlow', sans-serif; font-size: 17px; color: rgba(255,255,255,0.72); padding-left: 1.6em !important; margin: 0 0 1.3em !important; line-height: 1.85; list-style: disc outside !important; }
-  .bp-prose ol { font-family: 'Barlow', sans-serif; font-size: 17px; color: rgba(255,255,255,0.72); padding-left: 1.6em !important; margin: 0 0 1.3em !important; line-height: 1.85; list-style: decimal outside !important; }
+  .bp-prose a:hover { color: #005f88; }
+  .bp-prose ul { font-family: 'Barlow', sans-serif; font-size: 17px; color: rgba(0,0,0,0.7); padding-left: 1.6em !important; margin: 0 0 1.3em !important; line-height: 1.85; list-style: disc outside !important; }
+  .bp-prose ol { font-family: 'Barlow', sans-serif; font-size: 17px; color: rgba(0,0,0,0.7); padding-left: 1.6em !important; margin: 0 0 1.3em !important; line-height: 1.85; list-style: decimal outside !important; }
   .bp-prose li { margin-bottom: 0.35em !important; display: list-item !important; list-style: inherit !important; }
   .bp-prose ul ul { list-style: circle outside !important; }
-  .bp-prose blockquote { border-left: 3px solid #007CB0; margin: 1.5em 0; padding: 0.6em 1.5em; background: rgba(0,124,176,0.07); border-radius: 0 6px 6px 0; }
-  .bp-prose blockquote p { color: rgba(255,255,255,0.85); font-style: italic; margin: 0; }
-  .bp-prose pre { font-family: 'Courier New', monospace; background: rgba(0,0,0,0.45); border: 1px solid rgba(255,255,255,0.08); border-radius: 6px; font-size: 14px; color: #007CB0; padding: 1.2em 1.4em; overflow-x: auto; margin: 1.4em 0; }
-  .bp-prose code { font-family: 'Courier New', monospace; background: rgba(0,0,0,0.35); border-radius: 4px; font-size: 14px; color: #007CB0; padding: 2px 7px; }
+  .bp-prose blockquote { border-left: 3px solid #007CB0; margin: 1.5em 0; padding: 0.6em 1.5em; background: rgba(0,124,176,0.05); border-radius: 0 6px 6px 0; }
+  .bp-prose blockquote p { color: rgba(0,73,96,0.75); font-style: italic; margin: 0; }
+  .bp-prose pre { font-family: 'Courier New', monospace; background: rgba(0,0,0,0.04); border: 1px solid rgba(0,73,96,0.1); border-radius: 6px; font-size: 14px; color: #007CB0; padding: 1.2em 1.4em; overflow-x: auto; margin: 1.4em 0; }
+  .bp-prose code { font-family: 'Courier New', monospace; background: rgba(0,124,176,0.07); border-radius: 4px; font-size: 14px; color: #007CB0; padding: 2px 7px; }
   .bp-prose pre code { background: none; padding: 0; }
   .bp-prose table { width: 100%; border-collapse: collapse; margin: 1.5em 0; font-family: 'Barlow', sans-serif; font-size: 15px; }
-  .bp-prose th { background: rgba(0,124,176,0.12); color: #fff; padding: 10px 14px; text-align: left; border-bottom: 2px solid rgba(0,124,176,0.3); }
-  .bp-prose td { color: rgba(255,255,255,0.7); padding: 10px 14px; border-bottom: 1px solid rgba(255,255,255,0.06); }
-  .bp-share-btn { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.15); background: none; cursor: pointer; transition: border-color 150ms, background 150ms; color: rgba(255,255,255,0.6); text-decoration: none; }
-  .bp-share-btn:hover { border-color: #007CB0; background: rgba(0,124,176,0.12); color: #7EBEE8; }
-  .bp-tag { font-family: 'Barlow', sans-serif; font-size: 12px; font-weight: 600; color: #007CB0; background: rgba(0,124,176,0.1); border: 1px solid rgba(0,124,176,0.22); border-radius: 100px; padding: 5px 14px; text-decoration: none; transition: all 200ms; }
-  .bp-tag:hover { background: rgba(0,124,176,0.25); color: #7EBEE8; border-color: rgba(0,124,176,0.5); }
+  .bp-prose th { background: rgba(0,124,176,0.06); color: #0f1923; padding: 10px 14px; text-align: left; border-bottom: 2px solid rgba(0,124,176,0.3); }
+  .bp-prose td { color: rgba(0,0,0,0.65); padding: 10px 14px; border-bottom: 1px solid rgba(0,73,96,0.08); }
+  .bp-share-btn { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; border: 1px solid rgba(0,73,96,0.15); background: none; cursor: pointer; transition: border-color 150ms, background 150ms; color: rgba(0,73,96,0.5); text-decoration: none; }
+  .bp-share-btn:hover { border-color: #007CB0; background: rgba(0,124,176,0.08); color: #007CB0; }
+  .bp-tag { font-family: 'Barlow', sans-serif; font-size: 12px; font-weight: 600; color: #007CB0; background: rgba(0,124,176,0.07); border: 1px solid rgba(0,124,176,0.2); border-radius: 100px; padding: 5px 14px; text-decoration: none; transition: all 200ms; }
+  .bp-tag:hover { background: rgba(0,124,176,0.15); color: #005f88; border-color: rgba(0,124,176,0.4); }
   .bp-audio { width: 100%; outline: none; }
-  .bp-audio::-webkit-media-controls-panel { background: #1e2a33; }
+  .bp-audio::-webkit-media-controls-panel { background: #f0f4f6; }
 `
 
 // Social share icons
@@ -71,7 +71,7 @@ const ShareIcon = ({ type }: { type: string }) => {
 const CmsBlogBody = forwardRef(function CmsBlogBody(
   {
     className,
-    bgColor = "#0f1923",
+    bgColor = "#F5F5F5",
   }: CmsBlogBodyProps,
   ref: Ref<HTMLElement>
 ) {
@@ -89,7 +89,6 @@ const CmsBlogBody = forwardRef(function CmsBlogBody(
   const title         = cms?.heading             || "Blog Post Title"
   const blogPath      = "/blog"
 
-  // Build share URLs (uses window.location on client — safe since this is "use client")
   const pageUrl = typeof window !== "undefined" ? window.location.href : ""
   const encodedUrl = encodeURIComponent(pageUrl)
   const encodedTitle = encodeURIComponent(title)
@@ -102,6 +101,8 @@ const CmsBlogBody = forwardRef(function CmsBlogBody(
     { type: "email",     href: `mailto:?subject=${encodedTitle}&body=${encodedUrl}` },
   ]
 
+  const hasAudio = !!audioUrl || !cms
+
   return (
     <div ref={ref as Ref<HTMLDivElement>} className={className || ""} style={{ width: '100%', background: bgColor, minHeight: 200 }}>
       <style>{PROSE_STYLES}</style>
@@ -109,7 +110,7 @@ const CmsBlogBody = forwardRef(function CmsBlogBody(
       {/* Featured Image */}
       {featuredImage && (
         <div style={{ maxWidth: 900, margin: "0 auto", padding: "0 24px" }}>
-          <div style={{ borderRadius: 10, overflow: "hidden", boxShadow: "0 12px 48px rgba(0,0,0,0.35)" }}>
+          <div style={{ borderRadius: 10, overflow: "hidden", boxShadow: "0 8px 32px rgba(0,0,0,0.12)" }}>
             <img src={featuredImage} alt={title} style={{ width: "100%", display: "block", maxHeight: 480, objectFit: "cover" }} />
           </div>
         </div>
@@ -117,34 +118,34 @@ const CmsBlogBody = forwardRef(function CmsBlogBody(
 
       <div style={{ maxWidth: 860, margin: "0 auto", padding: "56px 24px 80px" }}>
 
-        {/* Post header — title, date, category, read time */}
+        {/* Post header */}
         <div style={{ marginBottom: 28 }}>
-          <h1 style={{ fontFamily: "'Essonnes','Playfair Display',serif", fontSize: "var(--h2-size)", fontWeight: 700, color: "#fff", lineHeight: 1.2, margin: "0 0 12px" }}>
+          <h1 style={{ fontFamily: "'Essonnes','Playfair Display',serif", fontSize: "var(--h2-size)", fontWeight: 700, color: "#0f1923", lineHeight: 1.2, margin: "0 0 12px" }}>
             {title}
           </h1>
           <div style={{ display: "flex", alignItems: "center", gap: 12, flexWrap: "wrap" }}>
-            <span style={{ fontFamily: "'Barlow',sans-serif", fontSize: 13, color: "rgba(255,255,255,0.45)", textTransform: "uppercase", letterSpacing: "0.07em" }}>
+            <span style={{ fontFamily: "'Barlow',sans-serif", fontSize: 13, color: "rgba(0,73,96,0.45)", textTransform: "uppercase", letterSpacing: "0.07em" }}>
               {date}
             </span>
-            <span style={{ color: "rgba(255,255,255,0.2)", fontSize: 12 }}>•</span>
+            <span style={{ color: "rgba(0,73,96,0.25)", fontSize: 12 }}>•</span>
             <a href={`${blogPath}/category/${categorySlug}`} style={{ fontFamily: "'Barlow',sans-serif", fontSize: 13, fontWeight: 700, color: "#007CB0", textDecoration: "none", textTransform: "uppercase", letterSpacing: "0.07em" }}>
               {category}
             </a>
             {readTime && (
               <>
-                <span style={{ color: "rgba(255,255,255,0.2)", fontSize: 12 }}>•</span>
-                <span style={{ fontFamily: "'Barlow',sans-serif", fontSize: 13, color: "rgba(255,255,255,0.4)" }}>{readTime}</span>
+                <span style={{ color: "rgba(0,73,96,0.25)", fontSize: 12 }}>•</span>
+                <span style={{ fontFamily: "'Barlow',sans-serif", fontSize: 13, color: "rgba(0,73,96,0.4)" }}>{readTime}</span>
               </>
             )}
           </div>
         </div>
 
-        {/* Share + Audio row */}
-        <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 24, flexWrap: "wrap", marginBottom: 36, paddingBottom: 28, borderBottom: "1px solid rgba(255,255,255,0.08)" }}>
+        {/* Share + Audio — stacked, left-aligned */}
+        <div style={{ marginBottom: 36, paddingBottom: 28, borderBottom: "1px solid rgba(0,73,96,0.1)" }}>
 
-          {/* Share buttons */}
-          <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-            <span style={{ fontFamily: "'Barlow',sans-serif", fontSize: 11, fontWeight: 700, color: "rgba(255,255,255,0.35)", textTransform: "uppercase", letterSpacing: "0.1em" }}>
+          {/* Share buttons row */}
+          <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: hasAudio ? 18 : 0 }}>
+            <span style={{ fontFamily: "'Barlow',sans-serif", fontSize: 11, fontWeight: 700, color: "rgba(0,73,96,0.35)", textTransform: "uppercase", letterSpacing: "0.1em" }}>
               Share Post
             </span>
             {shareLinks.map(({ type, href }) => (
@@ -154,10 +155,10 @@ const CmsBlogBody = forwardRef(function CmsBlogBody(
             ))}
           </div>
 
-          {/* Audio player */}
+          {/* Audio player — left-aligned below share buttons */}
           {audioUrl && (
-            <div style={{ background: "rgba(0,124,176,0.07)", border: "1px solid rgba(0,124,176,0.2)", borderRadius: 8, padding: "12px 16px", minWidth: 240, flex: "0 0 auto" }}>
-              <p style={{ fontFamily: "'Barlow',sans-serif", fontSize: 11, fontWeight: 700, color: "rgba(255,255,255,0.45)", textTransform: "uppercase", letterSpacing: "0.08em", margin: "0 0 8px" }}>
+            <div style={{ background: "rgba(0,124,176,0.05)", border: "1px solid rgba(0,124,176,0.15)", borderRadius: 8, padding: "12px 16px", display: "inline-block", minWidth: 240 }}>
+              <p style={{ fontFamily: "'Barlow',sans-serif", fontSize: 11, fontWeight: 700, color: "rgba(0,73,96,0.45)", textTransform: "uppercase", letterSpacing: "0.08em", margin: "0 0 8px" }}>
                 Prefer to listen instead?
               </p>
               <audio controls className="bp-audio" style={{ width: "100%", height: 32 }}>
@@ -169,18 +170,18 @@ const CmsBlogBody = forwardRef(function CmsBlogBody(
 
           {/* Audio placeholder in editor */}
           {!audioUrl && !cms && (
-            <div style={{ background: "rgba(0,124,176,0.07)", border: "1px solid rgba(0,124,176,0.15)", borderRadius: 8, padding: "12px 16px", minWidth: 220 }}>
-              <p style={{ fontFamily: "'Barlow',sans-serif", fontSize: 11, fontWeight: 700, color: "rgba(255,255,255,0.45)", textTransform: "uppercase", letterSpacing: "0.08em", margin: "0 0 8px" }}>
+            <div style={{ background: "rgba(0,124,176,0.05)", border: "1px solid rgba(0,124,176,0.15)", borderRadius: 8, padding: "12px 16px", display: "inline-block", minWidth: 220 }}>
+              <p style={{ fontFamily: "'Barlow',sans-serif", fontSize: 11, fontWeight: 700, color: "rgba(0,73,96,0.45)", textTransform: "uppercase", letterSpacing: "0.08em", margin: "0 0 8px" }}>
                 Prefer to listen instead?
               </p>
               <div style={{ display: "flex", alignItems: "center", gap: 10, padding: "4px 0" }}>
                 <div style={{ width: 28, height: 28, borderRadius: "50%", background: "#007CB0", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
                   <svg width="10" height="12" viewBox="0 0 10 12" fill="#fff"><path d="M0 0l10 6-10 6V0z"/></svg>
                 </div>
-                <div style={{ flex: 1, height: 3, background: "rgba(255,255,255,0.1)", borderRadius: 2, position: "relative" }}>
+                <div style={{ flex: 1, height: 3, background: "rgba(0,73,96,0.1)", borderRadius: 2, position: "relative" }}>
                   <div style={{ width: "40%", height: "100%", background: "#007CB0", borderRadius: 2 }} />
                 </div>
-                <span style={{ fontFamily: "'Barlow',sans-serif", fontSize: 11, color: "rgba(255,255,255,0.4)" }}>0:00 / 9:55</span>
+                <span style={{ fontFamily: "'Barlow',sans-serif", fontSize: 11, color: "rgba(0,73,96,0.4)" }}>0:00 / 9:55</span>
               </div>
             </div>
           )}
@@ -191,8 +192,8 @@ const CmsBlogBody = forwardRef(function CmsBlogBody(
 
         {/* Tags */}
         {tags.length > 0 && (
-          <div style={{ marginTop: 52, paddingBottom: 28, borderTop: "1px solid rgba(255,255,255,0.08)", display: "flex", gap: 10, alignItems: "center", flexWrap: "wrap" }}>
-            <span style={{ fontFamily: "'Barlow',sans-serif", fontSize: 12, fontWeight: 700, color: "rgba(255,255,255,0.35)", textTransform: "uppercase", letterSpacing: "0.1em", flexShrink: 0 }}>
+          <div style={{ marginTop: 52, paddingBottom: 28, borderTop: "1px solid rgba(0,73,96,0.1)", display: "flex", gap: 10, alignItems: "center", flexWrap: "wrap" }}>
+            <span style={{ fontFamily: "'Barlow',sans-serif", fontSize: 12, fontWeight: 700, color: "rgba(0,73,96,0.35)", textTransform: "uppercase", letterSpacing: "0.1em", flexShrink: 0 }}>
               Tagged:
             </span>
             {tags.map((tag) => (
@@ -202,8 +203,8 @@ const CmsBlogBody = forwardRef(function CmsBlogBody(
         )}
 
         {/* Share row — bottom repeat */}
-        <div style={{ marginTop: 32, paddingBottom: 24, borderTop: "1px solid rgba(255,255,255,0.08)", display: "flex", alignItems: "center", gap: 12, flexWrap: "wrap" }}>
-          <span style={{ fontFamily: "'Barlow',sans-serif", fontSize: 12, fontWeight: 700, color: "rgba(255,255,255,0.35)", textTransform: "uppercase", letterSpacing: "0.1em" }}>
+        <div style={{ marginTop: 32, paddingBottom: 24, borderTop: "1px solid rgba(0,73,96,0.1)", display: "flex", alignItems: "center", gap: 12, flexWrap: "wrap" }}>
+          <span style={{ fontFamily: "'Barlow',sans-serif", fontSize: 12, fontWeight: 700, color: "rgba(0,73,96,0.35)", textTransform: "uppercase", letterSpacing: "0.1em" }}>
             Share this post
           </span>
           {shareLinks.map(({ type, href }) => (
@@ -214,7 +215,7 @@ const CmsBlogBody = forwardRef(function CmsBlogBody(
         </div>
 
         {/* Author Bio */}
-        <div style={{ marginTop: 40, background: "#2d353c", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 10, padding: "24px 28px", display: "flex", alignItems: "center", gap: 20 }}>
+        <div style={{ marginTop: 40, background: "#fff", border: "1px solid rgba(0,73,96,0.1)", borderRadius: 10, padding: "24px 28px", display: "flex", alignItems: "center", gap: 20 }}>
           <div style={{ width: 52, height: 52, borderRadius: "50%", background: "linear-gradient(135deg, #007CB0, #7EBEE8)", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
               <circle cx="12" cy="8" r="4" stroke="#fff" strokeWidth="1.5" />
@@ -222,8 +223,8 @@ const CmsBlogBody = forwardRef(function CmsBlogBody(
             </svg>
           </div>
           <div>
-            <p style={{ fontFamily: "'Barlow',sans-serif", fontSize: 15, fontWeight: 700, color: "#fff", margin: 0 }}>{author}</p>
-            <p style={{ fontFamily: "'Barlow',sans-serif", fontSize: 13, color: "rgba(255,255,255,0.45)", margin: "3px 0 0" }}>CAST Lighting Team</p>
+            <p style={{ fontFamily: "'Barlow',sans-serif", fontSize: 15, fontWeight: 700, color: "#0f1923", margin: 0 }}>{author}</p>
+            <p style={{ fontFamily: "'Barlow',sans-serif", fontSize: 13, color: "rgba(0,73,96,0.45)", margin: "3px 0 0" }}>CAST Lighting Team</p>
           </div>
         </div>
 
