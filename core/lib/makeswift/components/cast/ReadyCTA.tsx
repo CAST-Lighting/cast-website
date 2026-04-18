@@ -30,7 +30,7 @@ const ReadyCTA = forwardRef(function ReadyCTA(
     bgOpacity,
     gradientFrom,
     gradientTo,
-    gradientDirection
+    gradientDirection,
     overline = "Get Started Today",
     heading = "Ready to Upgrade Your",
     headingAccent = "Outdoor Lighting?",
