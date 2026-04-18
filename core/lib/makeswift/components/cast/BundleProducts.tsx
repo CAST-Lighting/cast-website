@@ -25,8 +25,6 @@ interface BundleProductsProps {
   gradientFrom?: string
   gradientTo?: string
   gradientDirection?: string
-  paddingTop?: number
-  paddingBottom?: number
   mode?: 'dark' | 'light'
 }
 
@@ -44,9 +42,7 @@ const BundleProducts = forwardRef(function BundleProducts(
     bgOpacity,
     gradientFrom,
     gradientTo,
-    gradientDirection,
-    paddingTop,
-    paddingBottom,
+    gradientDirection
     mode = 'dark',
   }: BundleProductsProps,
   ref: Ref<HTMLDivElement>
@@ -81,9 +77,10 @@ const BundleProducts = forwardRef(function BundleProducts(
   return (
     <div
       ref={ref}
-      className={`${className || ""} ${sectionStyle || ""}`}
-      style={{ position: "relative", width: "100%", boxSizing: "border-box", ...(!bgImage ? { background: sectionBackground } : {}), paddingTop: paddingTop ?? 48, paddingBottom: paddingBottom ?? 48 }}
+      className={`cast-bundle-products-defaults ${className || ""} ${sectionStyle || ""}`}
+      style={{ position: "relative", width: "100%", boxSizing: "border-box", ...(!bgImage ? { background: sectionBackground } : {}), }}
     >
+      <style>{`\n        .cast-bundle-products-defaults { padding-top: 72px; padding-bottom: 72px; }\n        @media (max-width: 1024px) { .cast-bundle-products-defaults { padding-top: 57px; padding-bottom: 57px; } }\n        @media (max-width: 768px)  { .cast-bundle-products-defaults { padding-top: 46px; padding-bottom: 46px; } }\n        @media (max-width: 640px)  { .cast-bundle-products-defaults { padding-top: 39px; padding-bottom: 39px; } }\n      `}</style>
       {bgImage && (
         <img src={bgImage} alt="" className="absolute inset-0 w-full h-full object-cover" style={{ zIndex: 0 }} />
       )}
