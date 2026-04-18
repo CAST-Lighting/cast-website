@@ -23,9 +23,7 @@ const TradeProSection = forwardRef(function TradeProSection(
     gradientFrom,
     gradientTo,
     gradientDirection,
-    lineHeight,
-    paddingTop,
-    paddingBottom,
+    lineHeight
     overline,
     heading,
     headingAccent,
@@ -43,8 +41,6 @@ const TradeProSection = forwardRef(function TradeProSection(
     gradientTo?: string
     gradientDirection?: string
     lineHeight?: number
-    paddingTop?: number
-    paddingBottom?: number
     overline?: string
     heading?: string
     headingAccent?: string
@@ -69,9 +65,10 @@ const TradeProSection = forwardRef(function TradeProSection(
   return (
     <section
       ref={ref}
-      className={`relative ${className || ""}`}
-      style={{ ...(!bgImageUrl ? { background: sectionBackground } : {}), '--section-line-height': lineHeight, paddingTop: paddingTop ?? 96, paddingBottom: paddingBottom ?? 96 } as React.CSSProperties}
+      className={`cast-trade-pro-section-defaults relative ${className || ""}`}
+      style={{ ...(!bgImageUrl ? { background: sectionBackground } : {}), } as React.CSSProperties}
     >
+      <style>{`\n        .cast-trade-pro-section-defaults { padding-top: 80px; padding-bottom: 80px; }\n        @media (max-width: 1024px) { .cast-trade-pro-section-defaults { padding-top: 64px; padding-bottom: 64px; } }\n        @media (max-width: 768px)  { .cast-trade-pro-section-defaults { padding-top: 52px; padding-bottom: 52px; } }\n        @media (max-width: 640px)  { .cast-trade-pro-section-defaults { padding-top: 44px; padding-bottom: 44px; } }\n      `}</style>
       {bgImageUrl && (
         <img src={bgImageUrl} alt="" className="absolute inset-0 w-full h-full object-cover" style={{ zIndex: 0 }} />
       )}
