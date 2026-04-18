@@ -4,8 +4,6 @@ import { forwardRef, type Ref, useState } from "react"
 interface LoginSectionProps {
   className?: string
   bgColor?: string
-  paddingTop?: number
-  paddingBottom?: number
   // Login form
   loginHeading?: string
   loginSubheading?: string
@@ -30,8 +28,6 @@ const LoginSection = forwardRef(function LoginSection(
   {
     className,
     bgColor,
-    paddingTop = 80,
-    paddingBottom = 96,
     loginHeading = "Welcome Back",
     loginSubheading = "Sign in to your CAST Lighting account",
     loginBtnLabel = "Sign In",
@@ -56,10 +52,14 @@ const LoginSection = forwardRef(function LoginSection(
   return (
     <section
       ref={ref}
-      className={className || ""}
-      style={{ background: bgColor || "#0f1923", paddingTop, paddingBottom }}
+      className={`cast-login-section-defaults ${className || ""}`}
+      style={{ background: bgColor || "#0f1923" }}
     >
       <style>{`
+        .cast-login-section-defaults { padding-top: 80px; padding-bottom: 96px; }
+        @media (max-width: 1024px) { .cast-login-section-defaults { padding-top: 64px; padding-bottom: 76px; } }
+        @media (max-width: 768px)  { .cast-login-section-defaults { padding-top: 52px; padding-bottom: 62px; } }
+        @media (max-width: 640px)  { .cast-login-section-defaults { padding-top: 44px; padding-bottom: 52px; } }
         .ls-input {
           width: 100%; padding: 12px 16px; border: 1px solid rgba(255,255,255,0.12);
           border-radius: 0; background: rgba(255,255,255,0.05);
