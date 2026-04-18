@@ -4,8 +4,6 @@ import GDPRPopup from '~/lib/makeswift/components/cast/GDPRPopup';
 import CastSiteNavbar from '~/lib/makeswift/components/cast/SiteNavbar';
 import CastNavigationTopper from '~/lib/makeswift/components/cast/NavigationTopper';
 import { GlobalFooterLoader } from '~/lib/makeswift/components/cast/GlobalFooterLoader';
-import { GlobalNavLoader } from '~/lib/makeswift/components/cast/GlobalNavLoader';
-import { GlobalNavTopperLoader } from '~/lib/makeswift/components/cast/GlobalNavTopperLoader';
 
 interface Props extends PropsWithChildren {
   params: Promise<{ locale: string }>;
@@ -34,11 +32,12 @@ export default async function DefaultLayout({ params, children }: Props) {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }} />
-      {/* Nav: Makeswift-managed global elements — fall back to null if not published yet */}
-      <GlobalNavTopperLoader locale={locale} />
-      <GlobalNavLoader locale={locale} />
+      {/* Nav: /global-elements/nav and /global-elements/nav-topper are empty in Makeswift,
+          so render from code components directly */}
+      <CastNavigationTopper />
+      <CastSiteNavbar />
       <main>{children}</main>
-      {/* Footer: Makeswift-managed — changes in Global Elements > footer propagate here */}
+      {/* Footer: /global-elements/footer has content — changes in Makeswift propagate here */}
       <GlobalFooterLoader locale={locale} />
       <GDPRPopup />
     </>
