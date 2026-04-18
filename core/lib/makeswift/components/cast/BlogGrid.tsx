@@ -23,8 +23,6 @@ interface CategoryTag {
 interface BlogGridProps {
   className?: string
   bgColor?: string
-  paddingTop?: number
-  paddingBottom?: number
   postsPerPage?: number
   categoryTags?: CategoryTag[]
   emptyMessage?: string
@@ -61,8 +59,6 @@ const BlogGrid = forwardRef(function BlogGrid(
   {
     className,
     bgColor = "#0f1923",
-    paddingTop = 72,
-    paddingBottom = 72,
     postsPerPage = 9,
     categoryTags: categoryTagsProp,
     emptyMessage = "No posts found.",
@@ -117,9 +113,10 @@ const BlogGrid = forwardRef(function BlogGrid(
   return (
     <div
       ref={ref}
-      className={className || ""}
-      style={{ background: bgColor || "#0f1923", paddingTop, paddingBottom }}
+      className={`cast-blog-grid-defaults ${className || ""}`}
+      style={{ background: bgColor || "#0f1923" }}
     >
+      <style>{`\n        .cast-blog-grid-defaults { padding-top: 72px; padding-bottom: 72px; }\n        @media (max-width: 1024px) { .cast-blog-grid-defaults { padding-top: 57px; padding-bottom: 57px; } }\n        @media (max-width: 768px)  { .cast-blog-grid-defaults { padding-top: 46px; padding-bottom: 46px; } }\n        @media (max-width: 640px)  { .cast-blog-grid-defaults { padding-top: 39px; padding-bottom: 39px; } }\n      `}</style>
       {/* ── Category Filter Pills ── */}
       <div
         style={{
