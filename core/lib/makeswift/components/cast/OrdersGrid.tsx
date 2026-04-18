@@ -60,7 +60,29 @@ function OrdersGrid(
       className={`cast-orders-grid-defaults ${className || ""}`}
       style={{ width: '100%', background: bgColor, fontFamily: "'Barlow', sans-serif" }}
     >
-
+      <style>{`
+        .og-grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 20px;
+        }
+        @media (max-width: 1200px) { .og-grid { grid-template-columns: repeat(3, 1fr); } }
+        @media (max-width: 768px)  { .og-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 480px)  { .og-grid { grid-template-columns: 1fr; } }
+        .og-card {
+          background: ${t.cardBg};
+          border: 1px solid ${t.cardBorder};
+          border-radius: 10px;
+          overflow: hidden;
+          display: flex;
+          flex-direction: column;
+          transition: border-color 200ms, box-shadow 200ms;
+        }
+        .og-card:hover {
+          border-color: rgba(0,124,176,0.4);
+          box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+        }
+      `}</style>
 
       <div className="site-container">
 
@@ -85,6 +107,7 @@ function OrdersGrid(
           <div className="og-grid">
             {orders.map((order) => {
               const { bg, color } = statusStyle(order.status)
+              const canTrack = (order.status === "Shipped" || order.status === "Delivered") && order.trackingNumber
               return (
                 <div key={order.id} className="og-card">
                   <div style={{ padding: "18px 16px", flex: 1, display: "flex", flexDirection: "column" }}>
@@ -108,7 +131,7 @@ function OrdersGrid(
                         <p style={{ fontSize: 12, color: t.subtle, margin: 0 }}>{order.itemCount} {order.itemCount === 1 ? "item" : "items"}</p>
                         {order.trackingNumber && (
                           <p style={{ fontSize: 11, fontWeight: 600, color: t.accent, margin: 0, fontFamily: "'Barlow',sans-serif", letterSpacing: "0.03em" }}>
-                            Tracking: {order.trackingNumber}
+                            #{order.trackingNumber}
                           </p>
                         )}
                       </div>
@@ -125,7 +148,7 @@ function OrdersGrid(
                       <a href={`/account/orders/${order.id}`} className={t.btnPrimary} style={{ textDecoration: "none", justifyContent: "center", textAlign: "center" }}>
                         View Order →
                       </a>
-                      {(order.status === "Shipped" || order.status === "Delivered") && order.trackingNumber && (
+                      {canTrack && (
                         <a
                           href={`https://www.ups.com/track?tracknum=${order.trackingNumber}`}
                           target="_blank"

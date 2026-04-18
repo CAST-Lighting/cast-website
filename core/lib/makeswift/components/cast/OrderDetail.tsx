@@ -109,7 +109,62 @@ function OrderDetail(
       className={`cast-order-detail-defaults ${className || ""}`}
       style={{ width: '100%', background: bgColor, fontFamily: "'Barlow', sans-serif" }}
     >
-
+      <style>{`
+        .od-panel {
+          background: ${t.cardBg};
+          border: 1px solid ${t.cardBorder};
+          border-radius: 10px;
+          margin-bottom: 24px;
+        }
+        .od-info-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 16px;
+          margin-bottom: 24px;
+        }
+        .od-bottom-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 16px;
+          margin-bottom: 32px;
+        }
+        .od-table { width: 100%; border-collapse: collapse; }
+        .od-table th {
+          font-family: 'Barlow', sans-serif;
+          font-size: 11px; font-weight: 700;
+          text-transform: uppercase; letter-spacing: 0.08em;
+          color: ${t.subtle};
+          padding: 10px 16px; text-align: left;
+          border-bottom: 1px solid ${t.divider};
+        }
+        .od-table td {
+          padding: 4px 16px;
+          border-bottom: 1px solid ${t.divider};
+          vertical-align: middle;
+        }
+        .od-table tr:last-child td { border-bottom: none; }
+        .od-action-bar {
+          display: flex; align-items: center;
+          flex-wrap: wrap; gap: 24px; margin-top: 8px;
+        }
+        .od-item-cards { display: none; }
+        @media (max-width: 640px) {
+          .od-info-grid  { grid-template-columns: 1fr; }
+          .od-bottom-grid { grid-template-columns: 1fr; }
+          .od-table-wrap { display: none; }
+          .od-item-cards {
+            display: flex; flex-direction: column;
+            gap: 10px; margin-bottom: 24px;
+          }
+          .od-item-card {
+            background: ${t.cardBg};
+            border: 1px solid ${t.cardBorder};
+            border-radius: 8px; padding: 12px 14px;
+            display: grid; grid-template-columns: 44px 1fr;
+            gap: 12px; align-items: start;
+          }
+        }
+      `}</style>
 
       <div className="site-container">
 
@@ -187,8 +242,8 @@ function OrderDetail(
           </div>
         </div>
 
-        {/* Line items */}
-        <div className="od-panel" style={{ overflowX: "auto", marginBottom: 24 }}>
+        {/* Line items — desktop table */}
+        <div className="od-panel od-table-wrap" style={{ overflowX: "auto", marginBottom: 24 }}>
           <table className="od-table" style={{ minWidth: 560 }}>
             <thead>
               <tr>
@@ -223,7 +278,7 @@ function OrderDetail(
                     <p style={{ fontFamily: "'Barlow',sans-serif", fontSize: 13, color: t.body, margin: 0 }}>{item.price}</p>
                   </td>
                   <td style={{ textAlign: "center" }}>
-                    <p style={{ fontFamily: "'Barlow',sans-serif", fontSize: 13, fontWeight: 700, color: t.heading, margin: 0 }}>Qty. {item.qty}</p>
+                    <p style={{ fontFamily: "'Barlow',sans-serif", fontSize: 13, fontWeight: 700, color: t.heading, margin: 0, paddingLeft: 6 }}>Qty. {item.qty}</p>
                   </td>
                   <td style={{ textAlign: "right" }}>
                     <p style={{ fontFamily: "'Barlow',sans-serif", fontSize: 14, fontWeight: 700, color: t.accent, margin: 0 }}>{item.lineTotal}</p>
@@ -232,6 +287,29 @@ function OrderDetail(
               ))}
             </tbody>
           </table>
+        </div>
+
+        {/* Line items — mobile stacked cards */}
+        <div className="od-item-cards">
+          {order.items.map((item) => (
+            <div key={item.id} className="od-item-card">
+              <div style={{ width: 44, height: 44, borderRadius: 4, overflow: "hidden", background: t.inputBg, flexShrink: 0 }}>
+                {item.image
+                  ? <img src={item.image} alt={item.name} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+                  : <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={t.accent} strokeWidth="1.5" style={{ opacity: 0.4 }}><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                    </div>
+                }
+              </div>
+              <div>
+                <p style={{ fontFamily: "'Barlow',sans-serif", fontSize: 13, fontWeight: 700, color: t.heading, margin: "0 0 2px", lineHeight: 1.3 }}>{item.name}</p>
+                <p style={{ fontFamily: "'Barlow',sans-serif", fontSize: 11, fontWeight: 700, color: t.accent, textTransform: "uppercase", letterSpacing: "0.05em", margin: "0 0 4px" }}>{item.modelNumber}</p>
+                <p style={{ fontFamily: "'Barlow',sans-serif", fontSize: 12, color: t.subtle, margin: 0 }}>
+                  Qty. {item.qty} × {item.price} = <strong style={{ color: t.accent }}>{item.lineTotal}</strong>
+                </p>
+              </div>
+            </div>
+          ))}
         </div>
 
         {/* Notes + Totals */}
@@ -262,7 +340,7 @@ function OrderDetail(
         </div>
 
         {/* Action bar */}
-        <div className="od-action-bar" style={{ gap: 16 }}>
+        <div className="od-action-bar">
           <a href="/account/orders" className={t.btnOutline} style={{ textDecoration: "none" }}>← All Orders</a>
           <a href="/shop" className={t.btnPrimary} style={{ textDecoration: "none" }}>Reorder Items →</a>
         </div>
