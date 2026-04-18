@@ -42,7 +42,7 @@ const PartsGrid = forwardRef(function PartsGrid(
     bgOpacity,
     gradientFrom,
     gradientTo,
-    gradientDirection
+    gradientDirection,
     mode = 'dark',
   }: PartsGridProps,
   ref: Ref<HTMLDivElement>
