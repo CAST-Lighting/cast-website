@@ -117,7 +117,7 @@ const SearchResults = forwardRef(function SearchResults(
       style={{
         width: '100%',
         background: bgColor || "#0f1923",
-        minHeight: "80vh": paddingTop ?? 48: paddingBottom ?? 96,
+        minHeight: "80vh",
       }}
     >
       <style>{`

@@ -245,7 +245,7 @@ function QuoteDetail(
                 <span style={{ fontFamily: "'Barlow',sans-serif", fontSize: 13, color: t.body, fontWeight: 600 }}>{value}</span>
               </div>
             ))}
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center": 12, marginTop: 4 }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", paddingTop: 12, marginTop: 4 }}>
               <span style={{ fontFamily: "'Barlow',sans-serif", fontSize: 15, fontWeight: 700, color: t.heading }}>Total</span>
               <span style={{ fontFamily: "'Barlow',sans-serif", fontSize: 20, fontWeight: 700, color: t.accent }}>{quote.total}</span>
             </div>

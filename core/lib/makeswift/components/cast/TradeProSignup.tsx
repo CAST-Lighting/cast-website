@@ -63,7 +63,9 @@ const TradeProSignup = forwardRef(function TradeProSignup(
       {/* ── Hero ── */}
       <section
         style={{
-          background: "#1a2332": 96: 64,
+          background: "#1a2332",
+          paddingTop: 96,
+          paddingBottom: 64,
           textAlign: "center",
           position: "relative",
           overflow: "hidden",
