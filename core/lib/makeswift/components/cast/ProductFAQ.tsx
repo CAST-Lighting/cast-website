@@ -41,7 +41,7 @@ const ProductFAQ = forwardRef(function ProductFAQ(
     bgOpacity,
     gradientFrom,
     gradientTo,
-    gradientDirection
+    gradientDirection,
     mode = 'dark',
   }: ProductFAQProps,
   ref: Ref<HTMLDivElement>
