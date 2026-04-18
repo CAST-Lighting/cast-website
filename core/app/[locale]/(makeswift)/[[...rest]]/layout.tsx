@@ -1,22 +1,26 @@
 import { type PropsWithChildren } from 'react';
-import { GlobalFooterLoader } from '~/lib/makeswift/components/cast/GlobalFooterLoader';
-import { GlobalNavLoader } from '~/lib/makeswift/components/cast/GlobalNavLoader';
-import { GlobalNavTopperLoader } from '~/lib/makeswift/components/cast/GlobalNavTopperLoader';
+import CastSiteNavbar from '~/lib/makeswift/components/cast/SiteNavbar';
+import CastNavigationTopper from '~/lib/makeswift/components/cast/NavigationTopper';
+import CastSiteFooter from '~/lib/makeswift/components/cast/SiteFooter';
 
 interface Props extends PropsWithChildren {
   params: Promise<{ locale: string; rest?: string[] }>;
 }
 
+// NOTE: Use code components here (not GlobalNavLoader/GlobalFooterLoader).
+// Those loaders call MakeswiftPageShim which registers extra Page roots in the
+// Makeswift editor Elements panel, causing duplicate Page entries on every page.
+// The (default) layout handles Makeswift-managed nav/footer for the live site.
 export default async function PathLayout({ children, params }: Props) {
-  const { locale, rest } = await params;
+  const { rest } = await params;
   const isGlobalElement = rest?.[0] === 'global-elements';
 
   return (
     <>
-      {!isGlobalElement && <GlobalNavTopperLoader locale={locale} />}
-      {!isGlobalElement && <GlobalNavLoader locale={locale} />}
+      {!isGlobalElement && <CastNavigationTopper />}
+      {!isGlobalElement && <CastSiteNavbar />}
       {children}
-      {!isGlobalElement && <GlobalFooterLoader locale={locale} />}
+      {!isGlobalElement && <CastSiteFooter />}
     </>
   );
 }
