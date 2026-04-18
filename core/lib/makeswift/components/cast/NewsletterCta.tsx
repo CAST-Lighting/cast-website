@@ -12,7 +12,7 @@ const NewsletterCta = forwardRef(function NewsletterCta(
     gradientFrom,
     gradientTo,
     gradientDirection,
-    lineHeight
+    lineHeight,
     heading,
     headingAccent,
     description,
