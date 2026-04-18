@@ -10,6 +10,8 @@ runtime.registerComponent(
     label: "Forms / Login & Sign Up",
     props: {
       className: Style({ properties: [Style.Padding, Style.Margin] }),
+      paddingTop: Number({ label: "📐 Layout — Padding Top (px)", defaultValue: 80 }),
+      paddingBottom: Number({ label: "📐 Layout — Padding Bottom (px)", defaultValue: 96 }),
 
       // 🎨 Background
       bgColor: Color({ label: "🎨 Background — Color", defaultValue: "#0f1923" }),

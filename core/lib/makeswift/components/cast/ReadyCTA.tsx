@@ -5,6 +5,8 @@ import { getTheme, type ThemeMode } from "~/lib/makeswift/theme"
 
 interface ReadyCTAProps {
   className?: string
+  paddingTop?: number
+  paddingBottom?: number
   bgColor?: string
   bgImage?: string
   bgOpacity?: number
@@ -25,6 +27,8 @@ interface ReadyCTAProps {
 const ReadyCTA = forwardRef(function ReadyCTA(
   {
     className,
+    paddingTop = 80,
+    paddingBottom = 80,
     bgColor,
     bgImage,
     bgOpacity,
@@ -53,12 +57,12 @@ const ReadyCTA = forwardRef(function ReadyCTA(
   return (
     <section
       ref={ref}
-      className={`cast-ready-c-t-a-defaults relative overflow-hidden ${className || ""}`}
+      className={`relative overflow-hidden ${className || ""}`}
       style={{
+        paddingTop, paddingBottom,
         ...(!bgImage ? { background: sectionBackground } : {}),
       }}
     >
-      <style>{`\n        .cast-ready-c-t-a-defaults { padding-top: 80px; padding-bottom: 80px; }\n        @media (max-width: 1024px) { .cast-ready-c-t-a-defaults { padding-top: 64px; padding-bottom: 64px; } }\n        @media (max-width: 768px)  { .cast-ready-c-t-a-defaults { padding-top: 52px; padding-bottom: 52px; } }\n        @media (max-width: 640px)  { .cast-ready-c-t-a-defaults { padding-top: 44px; padding-bottom: 44px; } }\n      `}</style>
       {bgImage && (
         <img
           src={bgImage}

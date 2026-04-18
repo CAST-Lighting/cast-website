@@ -24,6 +24,8 @@ const FALLBACK_PRODUCTS: BCProduct[] = [
 
 interface ProductGalleryProps {
   className?: string
+  paddingTop?: number
+  paddingBottom?: number
   sectionTitle?: string
   sectionTitleAccent?: string
   sectionDescription?: string
@@ -41,6 +43,8 @@ interface ProductGalleryProps {
 const ProductGallery = forwardRef(function ProductGallery(
   {
     className,
+    paddingTop = 96,
+    paddingBottom = 96,
     sectionTitle,
     sectionTitleAccent,
     sectionDescription,
@@ -114,12 +118,12 @@ const ProductGallery = forwardRef(function ProductGallery(
   return (
     <section
       ref={ref}
-      className={`cast-product-gallery-defaults relative overflow-hidden ${className || ''}`}
+      className={`relative overflow-hidden ${className || ''}`}
       style={{
+        paddingTop, paddingBottom,
         ...(!bgImage ? { background: sectionBackground } : {}),
       } as React.CSSProperties}
     >
-      <style>{`\n        .cast-product-gallery-defaults { padding-top: 72px; padding-bottom: 72px; }\n        @media (max-width: 1024px) { .cast-product-gallery-defaults { padding-top: 57px; padding-bottom: 57px; } }\n        @media (max-width: 768px)  { .cast-product-gallery-defaults { padding-top: 46px; padding-bottom: 46px; } }\n        @media (max-width: 640px)  { .cast-product-gallery-defaults { padding-top: 39px; padding-bottom: 39px; } }\n      `}</style>
       {bgImage && <img src={bgImage} alt="" className="absolute inset-0 w-full h-full object-cover" style={{ zIndex: 0 }} />}
       {bgImage && <div className="absolute inset-0" style={{ background: sectionBackground, opacity: overlayOpacity, zIndex: 1 }} />}
 

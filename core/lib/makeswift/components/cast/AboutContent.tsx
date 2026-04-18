@@ -8,6 +8,8 @@ interface FeatureItem {
 
 interface AboutContentProps {
   className?: string
+  paddingTop?: number
+  paddingBottom?: number
   bgColor?: string
   sectionHeading?: string
   sectionBody?: string
@@ -50,6 +52,8 @@ const DEFAULT_FEATURES: FeatureItem[] = [
 const AboutContent = forwardRef(function AboutContent(
   {
     className,
+    paddingTop = 80,
+    paddingBottom = 80,
     bgColor = "#0f1923",
     sectionHeading = "Built to Last. Built in America.",
     sectionBody = "Since 2001, CAST Lighting has been designing and manufacturing professional-grade landscape lighting fixtures in the USA. Every product is crafted from solid brass or copper — materials chosen for their beauty and ability to withstand decades of outdoor exposure without corroding or deteriorating.",
@@ -68,10 +72,9 @@ const AboutContent = forwardRef(function AboutContent(
   return (
     <section
       ref={ref}
-      className={`cast-about-content-defaults ${className || ""}`}
-      style={{ background: bgColor || "#0f1923" }}
+      className={className || ""}
+      style={{ background: bgColor || "#0f1923" , paddingTop, paddingBottom}}
     >
-      <style>{`\n        .cast-about-content-defaults { padding-top: 80px; padding-bottom: 80px; }\n        @media (max-width: 1024px) { .cast-about-content-defaults { padding-top: 64px; padding-bottom: 64px; } }\n        @media (max-width: 768px)  { .cast-about-content-defaults { padding-top: 52px; padding-bottom: 52px; } }\n        @media (max-width: 640px)  { .cast-about-content-defaults { padding-top: 44px; padding-bottom: 44px; } }\n      `}</style>
       <div className="site-container">
         <div className="max-w-3xl mx-auto flex flex-col gap-16">
 

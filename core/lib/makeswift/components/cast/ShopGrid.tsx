@@ -16,6 +16,8 @@ interface Product {
 
 interface ShopGridProps {
   className?: string
+  paddingTop?: number
+  paddingBottom?: number
   sectionStyle?: string
   heading?: string
   headingAccent?: string
@@ -53,7 +55,7 @@ const DEFAULT_PRODUCTS: Product[] = [
 const PRICE_RANGES = ["$0 – $100", "$101 – $500", "$501 – $1,000", "$1,000+"]
 
 const ProductCard = ({ product, t }: { product: Product; t: Theme }) => (
-  <div style={{ background: t.cardBg, border: `1px solid ${t.cardBorder}`, borderRadius: 10, overflow: "hidden", display: "flex", flexDirection: "column", transition: "border-color 200ms, box-shadow 200ms" }}
+  <div style={{ background: t.cardBg, paddingTop, paddingBottom, border: `1px solid ${t.cardBorder}`, borderRadius: 10, overflow: "hidden", display: "flex", flexDirection: "column", transition: "border-color 200ms, box-shadow 200ms" }}
     onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(0,124,176,0.4)"; (e.currentTarget as HTMLDivElement).style.boxShadow = "0 4px 24px rgba(0,0,0,0.18)"; }}
     onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.borderColor = t.cardBorder; (e.currentTarget as HTMLDivElement).style.boxShadow = "none"; }}
   >
@@ -101,7 +103,9 @@ const ProductCard = ({ product, t }: { product: Product; t: Theme }) => (
       <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 18, fontWeight: 700, color: t.heading, margin: 0 }}>{product.price}</p>
       <a
         href={product.href || "#"}
-        className={t.btnPrimary}
+        className,
+    paddingTop = 96,
+    paddingBottom = 96={t.btnPrimary}
         style={{ marginTop: "auto", textAlign: "center", textDecoration: "none", justifyContent: "center" }}
       >
         View Product →
@@ -149,7 +153,6 @@ const ShopGrid = forwardRef(function ShopGrid(
       className={`cast-shop-grid-defaults ${className || ""} ${sectionStyle || ""}`}
       style={{ position: "relative", width: "100%", boxSizing: "border-box", ...(!bgImage ? { background: sectionBackground } : {}), }}
     >
-      <style>{`\n        .cast-shop-grid-defaults { padding-top: 72px; padding-bottom: 72px; }\n        @media (max-width: 1024px) { .cast-shop-grid-defaults { padding-top: 57px; padding-bottom: 57px; } }\n        @media (max-width: 768px)  { .cast-shop-grid-defaults { padding-top: 46px; padding-bottom: 46px; } }\n        @media (max-width: 640px)  { .cast-shop-grid-defaults { padding-top: 39px; padding-bottom: 39px; } }\n      `}</style>
       {bgImage && (
         <img src={bgImage} alt="" className="absolute inset-0 w-full h-full object-cover" style={{ zIndex: 0 }} />
       )}

@@ -4,6 +4,8 @@ import { getTheme } from "~/lib/makeswift/theme"
 
 interface NewsletterCtaFullProps {
   className?: string
+  paddingTop?: number
+  paddingBottom?: number
   bgImage?: string
   bgColor?: string
   overlayColor?: string
@@ -27,6 +29,8 @@ const DEFAULT_ITEMS = [
 const NewsletterCtaFull = forwardRef(function NewsletterCtaFull(
   {
     className,
+    paddingTop = 96,
+    paddingBottom = 96,
     bgImage,
     bgColor,
     overlayColor,
@@ -74,10 +78,9 @@ const NewsletterCtaFull = forwardRef(function NewsletterCtaFull(
   return (
     <section
       ref={ref}
-      className={`cast-newsletter-cta-full-defaults relative overflow-hidden ${className || ""}`}
+      className={`relative overflow-hidden ${className || ""}`}
       style={{ background: bgImage ? undefined : sectionBg, fontFamily: "'Barlow', sans-serif" }}
     >
-      <style>{`\n        .cast-newsletter-cta-full-defaults { padding-top: 96px; padding-bottom: 96px; }\n        @media (max-width: 1024px) { .cast-newsletter-cta-full-defaults { padding-top: 76px; padding-bottom: 76px; } }\n        @media (max-width: 768px)  { .cast-newsletter-cta-full-defaults { padding-top: 62px; padding-bottom: 62px; } }\n        @media (max-width: 640px)  { .cast-newsletter-cta-full-defaults { padding-top: 52px; padding-bottom: 52px; } }\n      `}</style>
       {/* bg image */}
       {bgImage && (
         <img src={bgImage} alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", zIndex: 0 }} />
@@ -182,6 +185,7 @@ const NewsletterCtaFull = forwardRef(function NewsletterCtaFull(
                     onChange={e => setFirstName(e.target.value)}
                     placeholder="John"
                     style={{
+        paddingTop, paddingBottom,
                       width: "100%", padding: "10px 14px", borderRadius: 6,
                       border: `1px solid ${t.inputBorder}`, background: t.inputBg,
                       color: t.heading, fontFamily: "'Barlow',sans-serif", fontSize: 14,
@@ -221,15 +225,6 @@ const NewsletterCtaFull = forwardRef(function NewsletterCtaFull(
 
         </div>
       </div>
-
-      <style>{`
-        @media (max-width: 768px) {
-          .nlf-inner { grid-template-columns: 1fr !important; padding: 36px 24px !important; }
-        }
-        @media (max-width: 480px) {
-          .nlf-inner { padding: 28px 16px !important; }
-        }
-      `}</style>
     </section>
   )
 })

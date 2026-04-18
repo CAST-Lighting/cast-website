@@ -2,6 +2,8 @@ import { forwardRef, type Ref } from "react"
 
 interface RichTextSectionProps {
   className?: string
+  paddingTop?: number
+  paddingBottom?: number
   bgColor?: string
   heading?: string
   headingAccent?: string
@@ -53,6 +55,8 @@ If you have any questions about these Terms, please contact us at legal@castligh
 const RichTextSection = forwardRef(function RichTextSection(
   {
     className,
+    paddingTop = 80,
+    paddingBottom = 80,
     bgColor = "#0f1923",
     heading = "Terms & Conditions",
     headingAccent = "",
@@ -75,10 +79,9 @@ const RichTextSection = forwardRef(function RichTextSection(
   return (
     <section
       ref={ref}
-      className={`cast-rich-text-section-defaults ${className || ""}`}
-      style={{ background: bgColor || "#0f1923", }}
+      className={className || ""}
+      style={{ background: bgColor || "#0f1923", paddingTop, paddingBottom, }}
     >
-      <style>{`\n        .cast-rich-text-section-defaults { padding-top: 64px; padding-bottom: 64px; }\n        @media (max-width: 1024px) { .cast-rich-text-section-defaults { padding-top: 51px; padding-bottom: 51px; } }\n        @media (max-width: 768px)  { .cast-rich-text-section-defaults { padding-top: 41px; padding-bottom: 41px; } }\n        @media (max-width: 640px)  { .cast-rich-text-section-defaults { padding-top: 35px; padding-bottom: 35px; } }\n      `}</style>
       <div className="site-container">
         <div style={{ maxWidth: 800, margin: "0 auto" }}>
           {/* Heading */}

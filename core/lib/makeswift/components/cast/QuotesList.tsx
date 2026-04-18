@@ -14,6 +14,8 @@ interface Quote {
 
 interface QuotesListProps {
   className?: string
+  paddingTop?: number
+  paddingBottom?: number
   bgColor?: string
   heading?: string
   emptyMessage?: string
@@ -37,6 +39,8 @@ const DEMO: Quote[] = [
 function QuotesList(
   {
     className,
+    paddingTop = 80,
+    paddingBottom = 80,
     bgColor = "#F5F5F5",
     heading = "My Quotes",
     emptyMessage = "No quotes yet.",
@@ -84,15 +88,9 @@ function QuotesList(
   return (
     <div
       ref={ref as Ref<HTMLDivElement>}
-      className={`cast-quotes-list-defaults ${className || ""}`}
-      style={{ background: bgColor, fontFamily: "'Barlow', sans-serif" }}
+      className={className || ""}
+      style={{ background: bgColor, paddingTop, paddingBottom, fontFamily: "'Barlow', sans-serif" }}
     >
-      <style>{`
-        .cast-quotes-list-defaults { padding-top: 64px; padding-bottom: 64px; }
-        @media (max-width: 1024px) { .cast-quotes-list-defaults { padding-top: 51px; padding-bottom: 51px; } }
-        @media (max-width: 768px)  { .cast-quotes-list-defaults { padding-top: 41px; padding-bottom: 41px; } }
-        @media (max-width: 640px)  { .cast-quotes-list-defaults { padding-top: 35px; padding-bottom: 35px; } }
-      `}</style>
       <style>{`
         .ql-grid {
           display: grid;

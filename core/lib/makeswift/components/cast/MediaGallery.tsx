@@ -14,6 +14,8 @@ interface MediaItem {
 
 interface MediaGalleryProps {
   className?: string
+  paddingTop?: number
+  paddingBottom?: number
   sectionStyle?: string
   heading?: string
   headingAccent?: string
@@ -28,7 +30,7 @@ interface MediaGalleryProps {
 }
 
 const PlaceholderImage = ({ caption, isVideo }: { caption?: string; isVideo?: boolean }) => (
-  <div style={{ width: "100%", aspectRatio: "16/9", background: "#37474f", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", borderRadius: 8, position: "relative", overflow: "hidden" }}>
+  <div style={{ width: "100%", aspectRatio: "16/9", background: "#37474f", paddingTop, paddingBottom, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", borderRadius: 8, position: "relative", overflow: "hidden" }}>
     {isVideo ? (
       <>
         <svg width="48" height="48" viewBox="0 0 24 24" fill="none" style={{ marginBottom: 8 }}>
@@ -55,6 +57,8 @@ const PlaceholderImage = ({ caption, isVideo }: { caption?: string; isVideo?: bo
 const MediaGallery = forwardRef(function MediaGallery(
   {
     className,
+    paddingTop = 96,
+    paddingBottom = 96,
     sectionStyle,
     heading = "Photos & Videos",
     headingAccent = "",
@@ -145,7 +149,6 @@ const MediaGallery = forwardRef(function MediaGallery(
       className={`cast-media-gallery-defaults ${className || ""} ${sectionStyle || ""}`}
       style={{ position: "relative", width: "100%", boxSizing: "border-box", ...(!bgImage ? { background: sectionBackground } : {}), }}
     >
-      <style>{`\n        .cast-media-gallery-defaults { padding-top: 80px; padding-bottom: 80px; }\n        @media (max-width: 1024px) { .cast-media-gallery-defaults { padding-top: 64px; padding-bottom: 64px; } }\n        @media (max-width: 768px)  { .cast-media-gallery-defaults { padding-top: 52px; padding-bottom: 52px; } }\n        @media (max-width: 640px)  { .cast-media-gallery-defaults { padding-top: 44px; padding-bottom: 44px; } }\n      `}</style>
       {bgImage && (
         <img src={bgImage} alt="" className="absolute inset-0 w-full h-full object-cover" style={{ zIndex: 0 }} />
       )}

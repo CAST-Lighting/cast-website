@@ -4,6 +4,8 @@ import { forwardRef, useState, type Ref } from "react"
 
 interface DistributorFinderProps {
   className?: string
+  paddingTop?: number
+  paddingBottom?: number
   sectionStyle?: string
   overline?: string
   heading?: string
@@ -36,6 +38,8 @@ const Benefit = ({ text }: { text: string }) => (
 const DistributorFinder = forwardRef(function DistributorFinder(
   {
     className,
+    paddingTop = 96,
+    paddingBottom = 96,
     sectionStyle,
     overline = "Find Or Become A Distributor",
     heading = "CAST Distribution Partners",
@@ -74,9 +78,8 @@ const DistributorFinder = forwardRef(function DistributorFinder(
     <div
       ref={ref}
       className={`cast-distributor-finder-defaults ${className || ""} ${sectionStyle || ""}`}
-      style={{ width: "100%", boxSizing: "border-box", background: sectionBackground, }}
+      style={{ width: "100%", boxSizing: "border-box", background: sectionBackground, paddingTop, paddingBottom, }}
     >
-      <style>{`\n        .cast-distributor-finder-defaults { padding-top: 72px; padding-bottom: 72px; }\n        @media (max-width: 1024px) { .cast-distributor-finder-defaults { padding-top: 57px; padding-bottom: 57px; } }\n        @media (max-width: 768px)  { .cast-distributor-finder-defaults { padding-top: 46px; padding-bottom: 46px; } }\n        @media (max-width: 640px)  { .cast-distributor-finder-defaults { padding-top: 39px; padding-bottom: 39px; } }\n      `}</style>
       {/* Hero */}
       <div style={{ background: "var(--color-primary)", padding: "72px 0" }}>
         <div className="site-container">

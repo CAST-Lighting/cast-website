@@ -4,6 +4,8 @@ import { useCmsData } from "~/lib/makeswift/cms-context"
 
 export interface CmsProductContentProps {
   className?: string
+  paddingTop?: number
+  paddingBottom?: number
   bgColor?: string
 }
 
@@ -16,6 +18,8 @@ const PLACEHOLDER_IMAGES = [
 const CmsProductContent = forwardRef(function CmsProductContent(
   {
     className,
+    paddingTop = 80,
+    paddingBottom = 80,
     bgColor = "#0f1923",
   }: CmsProductContentProps,
   ref: Ref<HTMLElement>
@@ -31,15 +35,9 @@ const CmsProductContent = forwardRef(function CmsProductContent(
   return (
     <div
       ref={ref as Ref<HTMLDivElement>}
-      className={`cast-cms-product-content-defaults ${className || ""}`}
-      style={{ background: bgColor, minHeight: 200 }}
+      className={className || ""}
+      style={{ background: bgColor, paddingTop, paddingBottom, minHeight: 200 }}
     >
-      <style>{`
-        .cast-cms-product-content-defaults { padding-top: 48px; padding-bottom: 64px; }
-        @media (max-width: 1024px) { .cast-cms-product-content-defaults { padding-top: 38px; padding-bottom: 51px; } }
-        @media (max-width: 768px)  { .cast-cms-product-content-defaults { padding-top: 31px; padding-bottom: 41px; } }
-        @media (max-width: 640px)  { .cast-cms-product-content-defaults { padding-top: 26px; padding-bottom: 35px; } }
-      `}</style>
       <div
         className="site-container"
       >

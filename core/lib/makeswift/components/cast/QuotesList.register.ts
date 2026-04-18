@@ -9,14 +9,14 @@ runtime.registerComponent(
     label: "Account / Quotes List",
     props: {
       className: Style({ properties: [Style.Padding, Style.Margin] }),
+      paddingTop: NumberControl({ label: "📐 Layout — Padding Top (px)", defaultValue: 64, min: 0, max: 400, step: 8 }),
+      paddingBottom: NumberControl({ label: "📐 Layout — Padding Bottom (px)", defaultValue: 64, min: 0, max: 400, step: 8 }),
 
-      // ─── 📐 Layout ────────────────────────────────────────────────
+      // 🎨 Background
+      bgColor: Color({ label: "🎨 Background — Color", defaultValue: "#0f1923" }),
 
-      // ─── 🎨 Background ────────────────────────────────────────────
-      bgColor: Color({ label: "🎨 Background — Color", defaultValue: "#F5F5F5" }),
-
-      // ─── ✏️ Content ───────────────────────────────────────────────
-      heading:      TextInput({ label: "✏️ Content — Heading",             defaultValue: "My Quotes" }),
+      // ✏️ Content
+      heading: TextInput({ label: "✏️ Content — Heading", defaultValue: "My Quotes" }),
       emptyMessage: TextInput({ label: "✏️ Content — Empty State Message", defaultValue: "No quotes yet." }),
     },
   }

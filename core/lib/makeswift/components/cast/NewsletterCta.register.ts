@@ -9,6 +9,9 @@ runtime.registerComponent(
     label: "CTA / Newsletter Bar",
     props: {
       className: Style({ properties: [Style.Padding, Style.Margin] }),
+      lineHeight: NumberControl({ label: "📐 Layout — Line Height", defaultValue: 1.6, min: 1, max: 3, step: 0.05 }),
+      paddingTop: NumberControl({ label: "📐 Layout — Padding Top", defaultValue: 80, min: 0, max: 400, step: 8, suffix: "px" }),
+      paddingBottom: NumberControl({ label: "📐 Layout — Padding Bottom", defaultValue: 80, min: 0, max: 400, step: 8, suffix: "px" }),
 
       // 🌓 Theme
       mode: Select({ label: "🌓 Theme", options: [{ value: "dark", label: "Dark" }, { value: "light", label: "Light" }], defaultValue: "dark" }),

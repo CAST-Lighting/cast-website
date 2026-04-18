@@ -9,6 +9,8 @@ runtime.registerComponent(
     label: "Product / Bundle Products",
     props: {
       className: Style({ properties: [Style.Padding, Style.Margin] }),
+      paddingTop: NumberControl({ label: "📐 Layout — Padding Top", defaultValue: 96, min: 0, max: 400, step: 8, suffix: "px" }),
+      paddingBottom: NumberControl({ label: "📐 Layout — Padding Bottom", defaultValue: 96, min: 0, max: 400, step: 8, suffix: "px" }),
       sectionStyle: Style({ properties: [Style.Padding, Style.Margin] }),
 
       // 🎨 Background

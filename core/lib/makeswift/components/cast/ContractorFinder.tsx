@@ -4,6 +4,8 @@ import { forwardRef, useState, type Ref } from "react"
 
 interface ContractorFinderProps {
   className?: string
+  paddingTop?: number
+  paddingBottom?: number
   sectionStyle?: string
   overline?: string
   heading?: string
@@ -26,6 +28,8 @@ const PLACEHOLDER_CONTRACTORS = [
 const ContractorFinder = forwardRef(function ContractorFinder(
   {
     className,
+    paddingTop = 96,
+    paddingBottom = 96,
     sectionStyle,
     overline = "Find A Professional",
     heading = "Find A CAST Installer Near You",
@@ -57,9 +61,8 @@ const ContractorFinder = forwardRef(function ContractorFinder(
     <div
       ref={ref}
       className={`cast-contractor-finder-defaults ${className || ""} ${sectionStyle || ""}`}
-      style={{ width: "100%", boxSizing: "border-box", background: sectionBackground, }}
+      style={{ width: "100%", boxSizing: "border-box", background: sectionBackground, paddingTop, paddingBottom, }}
     >
-      <style>{`\n        .cast-contractor-finder-defaults { padding-top: 72px; padding-bottom: 72px; }\n        @media (max-width: 1024px) { .cast-contractor-finder-defaults { padding-top: 57px; padding-bottom: 57px; } }\n        @media (max-width: 768px)  { .cast-contractor-finder-defaults { padding-top: 46px; padding-bottom: 46px; } }\n        @media (max-width: 640px)  { .cast-contractor-finder-defaults { padding-top: 39px; padding-bottom: 39px; } }\n      `}</style>
       {/* Hero */}
       <div style={{ background: "var(--color-primary)", padding: "72px 0" }}>
         <div className="site-container">

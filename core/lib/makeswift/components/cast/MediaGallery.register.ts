@@ -9,7 +9,9 @@ runtime.registerComponent(
     label: "Product / Media Gallery",
     props: {
       className: Style({ properties: [Style.Padding, Style.Margin] }),
-      sectionStyle: Style({ label: "📐 Layout — Section Margin & Padding", properties: [Style.Padding, Style.Margin] }),
+      paddingTop: NumberControl({ label: "📐 Layout — Padding Top", defaultValue: 96, min: 0, max: 400, step: 8, suffix: "px" }),
+      paddingBottom: NumberControl({ label: "📐 Layout — Padding Bottom", defaultValue: 96, min: 0, max: 400, step: 8, suffix: "px" }),
+      sectionStyle: Style({ properties: [Style.Padding, Style.Margin] }),
 
       // 🎨 Background
       bgColor: Color({ label: "🎨 Background — Color", defaultValue: "#2d353c" }),
@@ -41,7 +43,6 @@ runtime.registerComponent(
         label: "📸 Media — Items",
         type: Shape({
           type: {
-            caption: TextInput({ label: "Caption", defaultValue: "Media caption" }),
             type: Select({
               label: "Type",
               options: [
@@ -51,6 +52,7 @@ runtime.registerComponent(
               defaultValue: "image",
             }),
             src: Image({ label: "Image / Video Thumbnail" }),
+            caption: TextInput({ label: "Caption", defaultValue: "Media caption" }),
           },
         }),
         getItemLabel(item) { return item?.caption || "Media Item"; },

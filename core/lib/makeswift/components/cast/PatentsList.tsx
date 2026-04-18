@@ -12,6 +12,8 @@ interface Patent {
 
 interface PatentsListProps {
   className?: string
+  paddingTop?: number
+  paddingBottom?: number
   bgColor?: string
   heading?: string
   headingAccent?: string
@@ -68,6 +70,8 @@ const DEFAULT_PATENTS: Patent[] = [
 const PatentsList = forwardRef(function PatentsList(
   {
     className,
+    paddingTop = 80,
+    paddingBottom = 80,
     bgColor = "#0f1923",
     heading = "CAST Lighting Patents",
     headingAccent = "",
@@ -96,10 +100,9 @@ const PatentsList = forwardRef(function PatentsList(
   return (
     <section
       ref={ref}
-      className={`cast-patents-list-defaults ${className || ""}`}
-      style={{ background: bgColor || "#0f1923", }}
+      className={className || ""}
+      style={{ background: bgColor || "#0f1923", paddingTop, paddingBottom, }}
     >
-      <style>{`\n        .cast-patents-list-defaults { padding-top: 64px; padding-bottom: 64px; }\n        @media (max-width: 1024px) { .cast-patents-list-defaults { padding-top: 51px; padding-bottom: 51px; } }\n        @media (max-width: 768px)  { .cast-patents-list-defaults { padding-top: 41px; padding-bottom: 41px; } }\n        @media (max-width: 640px)  { .cast-patents-list-defaults { padding-top: 35px; padding-bottom: 35px; } }\n      `}</style>
       <div className="site-container">
         {/* Section Header */}
         <div style={{ marginBottom: 56, maxWidth: 680 }}>
