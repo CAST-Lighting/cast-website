@@ -42,7 +42,7 @@ const BundleProducts = forwardRef(function BundleProducts(
     bgOpacity,
     gradientFrom,
     gradientTo,
-    gradientDirection
+    gradientDirection,
     mode = 'dark',
   }: BundleProductsProps,
   ref: Ref<HTMLDivElement>
