@@ -64,7 +64,7 @@ const MediaGallery = forwardRef(function MediaGallery(
     bgOpacity,
     gradientFrom,
     gradientTo,
-    gradientDirection
+    gradientDirection,
     mode = 'dark',
   }: MediaGalleryProps,
   ref: Ref<HTMLDivElement>
