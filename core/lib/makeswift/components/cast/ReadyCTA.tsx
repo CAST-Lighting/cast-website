@@ -11,8 +11,6 @@ interface ReadyCTAProps {
   gradientFrom?: string
   gradientTo?: string
   gradientDirection?: string
-  paddingTop?: number
-  paddingBottom?: number
   overline?: string
   heading?: string
   headingAccent?: string
@@ -32,9 +30,7 @@ const ReadyCTA = forwardRef(function ReadyCTA(
     bgOpacity,
     gradientFrom,
     gradientTo,
-    gradientDirection,
-    paddingTop,
-    paddingBottom,
+    gradientDirection
     overline = "Get Started Today",
     heading = "Ready to Upgrade Your",
     headingAccent = "Outdoor Lighting?",
@@ -57,13 +53,12 @@ const ReadyCTA = forwardRef(function ReadyCTA(
   return (
     <section
       ref={ref}
-      className={`relative overflow-hidden ${className || ""}`}
+      className={`cast-ready-c-t-a-defaults relative overflow-hidden ${className || ""}`}
       style={{
         ...(!bgImage ? { background: sectionBackground } : {}),
-        paddingTop: paddingTop ?? 96,
-        paddingBottom: paddingBottom ?? 96,
       }}
     >
+      <style>{`\n        .cast-ready-c-t-a-defaults { padding-top: 80px; padding-bottom: 80px; }\n        @media (max-width: 1024px) { .cast-ready-c-t-a-defaults { padding-top: 64px; padding-bottom: 64px; } }\n        @media (max-width: 768px)  { .cast-ready-c-t-a-defaults { padding-top: 52px; padding-bottom: 52px; } }\n        @media (max-width: 640px)  { .cast-ready-c-t-a-defaults { padding-top: 44px; padding-bottom: 44px; } }\n      `}</style>
       {bgImage && (
         <img
           src={bgImage}
