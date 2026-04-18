@@ -9,7 +9,6 @@ runtime.registerComponent(
     label: "CTA / Newsletter Full",
     props: {
       className: Style({ properties: [Style.Padding, Style.Margin] }),
-      sectionStyle: Style({ properties: [Style.Padding, Style.Margin] }),
 
       // 🎨 Background
       bgImage: Image({ label: "🎨 Background — Image" }),
