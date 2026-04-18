@@ -6,8 +6,6 @@ import { getTheme } from "~/lib/makeswift/theme"
 export interface CmsCategoryGridProps {
   className?: string
   bgColor?: string
-  paddingTop?: number
-  paddingBottom?: number
   columns?: number
 }
 
@@ -26,8 +24,6 @@ const CmsCategoryGrid = forwardRef(function CmsCategoryGrid(
   {
     className,
     bgColor = "#F5F5F5",
-    paddingTop = 48,
-    paddingBottom = 64,
     columns = 4,
   }: CmsCategoryGridProps,
   ref: Ref<HTMLElement>
@@ -51,10 +47,14 @@ const CmsCategoryGrid = forwardRef(function CmsCategoryGrid(
   return (
     <div
       ref={ref as Ref<HTMLDivElement>}
-      className={className || ""}
+      className={`cast-cms-category-grid-defaults ${className || ""}`}
       style={{ background: bgColor, fontFamily: "'Barlow', sans-serif" }}
     >
       <style>{`
+        .cast-cms-category-grid-defaults { padding-top: 48px; padding-bottom: 64px; }
+        @media (max-width: 1024px) { .cast-cms-category-grid-defaults { padding-top: 38px; padding-bottom: 51px; } }
+        @media (max-width: 768px)  { .cast-cms-category-grid-defaults { padding-top: 31px; padding-bottom: 41px; } }
+        @media (max-width: 640px)  { .cast-cms-category-grid-defaults { padding-top: 26px; padding-bottom: 35px; } }
         .ccg-grid {
           display: grid;
           grid-template-columns: repeat(${cols}, 1fr);
@@ -97,7 +97,7 @@ const CmsCategoryGrid = forwardRef(function CmsCategoryGrid(
         }
       `}</style>
 
-      <div className="site-container" style={{ paddingTop, paddingBottom }}>
+      <div className="site-container" >
         <div className="ccg-grid">
           {subcategories.map((cat, i) => (
             <a key={i} href={cat.href} className="ccg-card">
