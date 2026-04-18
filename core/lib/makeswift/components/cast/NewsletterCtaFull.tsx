@@ -105,7 +105,7 @@ const NewsletterCtaFull = forwardRef(function NewsletterCtaFull(
         <div style={{ position: "absolute", inset: 0, zIndex: 1, background: sectionBg, opacity: 0.7 }} />
       )}
 
-      <div style={{ position: "relative", zIndex: 10, width: "100%" }}>
+      <div className="site-container" style={{ position: "relative", zIndex: 10 }}>
         <div className="nlf-inner" style={{
           background: cardBg,
           padding: "56px 48px",
