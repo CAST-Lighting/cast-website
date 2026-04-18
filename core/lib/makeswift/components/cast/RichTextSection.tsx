@@ -3,8 +3,6 @@ import { forwardRef, type Ref } from "react"
 interface RichTextSectionProps {
   className?: string
   bgColor?: string
-  paddingTop?: number
-  paddingBottom?: number
   heading?: string
   headingAccent?: string
   lastUpdated?: string
@@ -56,8 +54,6 @@ const RichTextSection = forwardRef(function RichTextSection(
   {
     className,
     bgColor = "#0f1923",
-    paddingTop = 64,
-    paddingBottom = 64,
     heading = "Terms & Conditions",
     headingAccent = "",
     lastUpdated = "January 1, 2026",
@@ -79,9 +75,10 @@ const RichTextSection = forwardRef(function RichTextSection(
   return (
     <section
       ref={ref}
-      className={className || ""}
-      style={{ background: bgColor || "#0f1923", paddingTop: paddingTop ?? 64, paddingBottom: paddingBottom ?? 64 }}
+      className={`cast-rich-text-section-defaults ${className || ""}`}
+      style={{ background: bgColor || "#0f1923", }}
     >
+      <style>{`\n        .cast-rich-text-section-defaults { padding-top: 64px; padding-bottom: 64px; }\n        @media (max-width: 1024px) { .cast-rich-text-section-defaults { padding-top: 51px; padding-bottom: 51px; } }\n        @media (max-width: 768px)  { .cast-rich-text-section-defaults { padding-top: 41px; padding-bottom: 41px; } }\n        @media (max-width: 640px)  { .cast-rich-text-section-defaults { padding-top: 35px; padding-bottom: 35px; } }\n      `}</style>
       <div className="site-container">
         <div style={{ maxWidth: 800, margin: "0 auto" }}>
           {/* Heading */}
