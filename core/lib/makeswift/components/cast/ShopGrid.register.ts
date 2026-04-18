@@ -1,5 +1,5 @@
 import { lazy } from "react"
-import { Style, List, Shape, TextInput, Image, Color, Select } from "@makeswift/runtime/controls"
+import { Style, List, Shape, TextInput, Image, Color, Select, Number as NumberControl} from "@makeswift/runtime/controls"
 import { runtime } from "~/lib/makeswift/runtime"
 
 runtime.registerComponent(
