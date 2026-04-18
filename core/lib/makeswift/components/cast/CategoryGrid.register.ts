@@ -8,7 +8,7 @@ runtime.registerComponent(
     type: "site-category-grid",
     label: "Sections / Category Grid",
     props: {
-      className: Style(),
+      className: Style({ properties: [Style.Padding, Style.Margin] }),
 
       // 🎨 Background
       bgImage: Image({ label: "🎨 Background — Image" }),

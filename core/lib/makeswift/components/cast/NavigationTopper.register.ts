@@ -8,7 +8,7 @@ runtime.registerComponent(
     type: "cast-navigation-topper",
     label: "Navigation / Top Bar",
     props: {
-      className: Style(),
+      className: Style({ properties: [Style.Padding, Style.Margin] }),
 
       // 🎨 Background
       bgColor: Color({ label: "🎨 Background — Color" }),

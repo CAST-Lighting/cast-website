@@ -8,7 +8,7 @@ runtime.registerComponent(
     type: "cast-not-found-hero",
     label: "404 / Not Found Hero",
     props: {
-      className: Style(),
+      className: Style({ properties: [Style.Padding, Style.Margin] }),
 
       // 🎨 Background
       bgColor: Color({ label: "🎨 Background — Color", defaultValue: "#0f1923" }),

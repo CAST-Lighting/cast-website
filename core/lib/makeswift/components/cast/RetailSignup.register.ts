@@ -8,7 +8,7 @@ runtime.registerComponent(
     type: "cast-retail-signup",
     label: "Forms / Retail Signup",
     props: {
-      className: Style(),
+      className: Style({ properties: [Style.Padding, Style.Margin] }),
 
       // ✏️ Content — Hero
       badgeText: TextInput({ label: "✏️ Content — Badge Text", defaultValue: "Account Application" }),

@@ -8,7 +8,7 @@ runtime.registerComponent(
     type: "site-shop-grid",
     label: "Product / Shop Grid",
     props: {
-      className: Style(),
+      className: Style({ properties: [Style.Padding, Style.Margin] }),
       sectionStyle: Style({ label: "📐 Layout — Section Margin & Padding", properties: [Style.Padding, Style.Margin] }),
 
       // 🎨 Background

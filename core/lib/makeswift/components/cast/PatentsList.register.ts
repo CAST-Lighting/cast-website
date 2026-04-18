@@ -8,7 +8,7 @@ runtime.registerComponent(
     type: "cast-patents-list",
     label: "Sections / Patents List",
     props: {
-      className: Style(),
+      className: Style({ properties: [Style.Padding, Style.Margin] }),
 
       // 🎨 Background
       bgColor: Color({ label: "🎨 Background — Color", defaultValue: "#0f1923" }),

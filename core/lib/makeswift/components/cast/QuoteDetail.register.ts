@@ -8,7 +8,7 @@ runtime.registerComponent(
     type: "cast-quote-detail",
     label: "Account / Quote Detail",
     props: {
-      className: Style(),
+      className: Style({ properties: [Style.Padding, Style.Margin] }),
 
       // ─── 📐 Layout ────────────────────────────────────────────────
 

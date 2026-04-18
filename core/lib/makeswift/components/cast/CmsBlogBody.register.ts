@@ -9,7 +9,7 @@ runtime.registerComponent(
     type: "cast-cms-blog-body",
     label: "CMS Content / Blog Body",
     props: {
-      className: Style(),
+      className: Style({ properties: [Style.Padding, Style.Margin] }),
       bgColor: Color({ label: "🎨 Background Color", defaultValue: "#0f1923" }),
     },
   }

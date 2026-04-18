@@ -8,7 +8,7 @@ runtime.registerComponent(
     type: "cast-style-guide",
     label: "Utilities / Style Guide",
     props: {
-      className: Style(),
+      className: Style({ properties: [Style.Padding, Style.Margin] }),
     },
   }
 )

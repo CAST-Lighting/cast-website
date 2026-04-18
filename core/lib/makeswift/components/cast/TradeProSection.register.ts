@@ -8,7 +8,7 @@ runtime.registerComponent(
     type: "site-trade-pro",
     label: "CTA / TradePro Benefits",
     props: {
-      className: Style(),
+      className: Style({ properties: [Style.Padding, Style.Margin] }),
 
       // 🌓 Theme
       mode: Select({ label: "🌓 Theme", options: [{ value: "dark", label: "Dark" }, { value: "light", label: "Light" }], defaultValue: "dark" }),

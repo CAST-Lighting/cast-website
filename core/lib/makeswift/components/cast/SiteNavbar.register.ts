@@ -8,7 +8,7 @@ runtime.registerComponent(
     type: "site-navbar",
     label: "Navigation / Navbar",
     props: {
-      className: Style(),
+      className: Style({ properties: [Style.Padding, Style.Margin] }),
       lineHeight: NumberControl({ label: 'Text Line Height', defaultValue: 1.6, min: 1, max: 3, step: 0.05 }),
 
       // Logo

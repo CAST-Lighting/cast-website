@@ -8,7 +8,7 @@ runtime.registerComponent(
     type: "site-distributor-finder",
     label: "Forms / Distributor Finder",
     props: {
-      className: Style(),
+      className: Style({ properties: [Style.Padding, Style.Margin] }),
       sectionStyle: Style({ label: "📐 Layout — Section Margin & Padding", properties: [Style.Padding, Style.Margin] }),
 
       // 🎨 Background

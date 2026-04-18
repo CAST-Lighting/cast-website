@@ -11,7 +11,7 @@ runtime.registerComponent(
       // ── Style (responsive — cascades across all 5 Makeswift breakpoints) ──
       // Use this panel to set padding, margin, and other layout at each breakpoint.
       // Changes here cascade from large → small unless explicitly overridden.
-      className: Style(),
+      className: Style({ properties: [Style.Padding, Style.Margin] }),
 
       // ─── BACKGROUND ──────────────────────────────────────────────────
       slides: List({

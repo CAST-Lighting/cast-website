@@ -8,7 +8,7 @@ runtime.registerComponent(
     type: "cast-order-detail",
     label: "Account / Order Detail",
     props: {
-      className: Style(),
+      className: Style({ properties: [Style.Padding, Style.Margin] }),
       bgColor:       Color({ label: "🎨 Background — Color", defaultValue: "#F5F5F5" }),
     },
   }
