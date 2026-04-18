@@ -26,8 +26,6 @@ interface ShopGridProps {
   gradientFrom?: string
   gradientTo?: string
   gradientDirection?: string
-  paddingTop?: number
-  paddingBottom?: number
   mode?: 'dark' | 'light'
 }
 
@@ -113,7 +111,7 @@ const ProductCard = ({ product, t }: { product: Product; t: Theme }) => (
 )
 
 const ShopGrid = forwardRef(function ShopGrid(
-  { className, sectionStyle, heading, headingAccent = "", products, bgColor, bgImage, bgOpacity, gradientFrom, gradientTo, gradientDirection, paddingTop, paddingBottom, mode = 'dark' }: ShopGridProps,
+  { className, sectionStyle, heading, headingAccent = "", products, bgColor, bgImage, bgOpacity, gradientFrom, gradientTo, gradientDirection, mode = 'dark' }: ShopGridProps,
   ref: Ref<HTMLDivElement>
 ) {
   const [activeCategory, setActiveCategory] = useState("All")
@@ -148,9 +146,10 @@ const ShopGrid = forwardRef(function ShopGrid(
   return (
     <div
       ref={ref}
-      className={`${className || ""} ${sectionStyle || ""}`}
-      style={{ position: "relative", width: "100%", boxSizing: "border-box", ...(!bgImage ? { background: sectionBackground } : {}), paddingTop: paddingTop ?? 96, paddingBottom: paddingBottom ?? 96 }}
+      className={`cast-shop-grid-defaults ${className || ""} ${sectionStyle || ""}`}
+      style={{ position: "relative", width: "100%", boxSizing: "border-box", ...(!bgImage ? { background: sectionBackground } : {}), }}
     >
+      <style>{`\n        .cast-shop-grid-defaults { padding-top: 72px; padding-bottom: 72px; }\n        @media (max-width: 1024px) { .cast-shop-grid-defaults { padding-top: 57px; padding-bottom: 57px; } }\n        @media (max-width: 768px)  { .cast-shop-grid-defaults { padding-top: 46px; padding-bottom: 46px; } }\n        @media (max-width: 640px)  { .cast-shop-grid-defaults { padding-top: 39px; padding-bottom: 39px; } }\n      `}</style>
       {bgImage && (
         <img src={bgImage} alt="" className="absolute inset-0 w-full h-full object-cover" style={{ zIndex: 0 }} />
       )}
