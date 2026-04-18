@@ -6,8 +6,6 @@ import { useCmsData } from "~/lib/makeswift/cms-context"
 interface ProductHeroProps {
   className?: string
   // 📐 Layout
-  paddingTop?: number
-  paddingBottom?: number
   // 🎨 Background
   bgColor?: string
   bgImage?: string
@@ -49,8 +47,6 @@ const SAMPLE_BODY = "<p>Product description will appear here from your BigCommer
 const ProductHero = forwardRef(function ProductHero(
   {
     className,
-    paddingTop = 48,
-    paddingBottom = 48,
     bgColor = "#F5F5F5",
     bgImage,
     bgOpacity = 100,
@@ -113,16 +109,20 @@ const ProductHero = forwardRef(function ProductHero(
   return (
     <div
       ref={ref}
-      className={className ?? ""}
+      className={`cast-product-hero-defaults ${className ?? ""}`}
       style={{
         position: "relative",
         width: "100%",
         boxSizing: "border-box",
-        ...(!bgImage ? { background: sectionBg } : {}),
-        paddingTop,
-        paddingBottom,
+        ...(!bgImage ? { background: sectionBg } : {})
       }}
     >
+      <style>{`
+        .cast-product-hero-defaults { padding-top: 48px; padding-bottom: 48px; }
+        @media (max-width: 1024px) { .cast-product-hero-defaults { padding-top: 38px; padding-bottom: 38px; } }
+        @media (max-width: 768px)  { .cast-product-hero-defaults { padding-top: 31px; padding-bottom: 31px; } }
+        @media (max-width: 640px)  { .cast-product-hero-defaults { padding-top: 26px; padding-bottom: 26px; } }
+      `}</style>
       {bgImage && <img src={bgImage} alt="" className="absolute inset-0 w-full h-full object-cover" style={{ zIndex: 0 }} />}
       {bgImage && <div className="absolute inset-0" style={{ zIndex: 1, background: sectionBg, opacity: overlayOpacity }} />}
 
