@@ -1,7 +1,6 @@
 import { setRequestLocale } from 'next-intl/server';
 import { PropsWithChildren } from 'react';
 import GDPRPopup from '~/lib/makeswift/components/cast/GDPRPopup';
-import { GlobalThemeLoader } from '~/lib/makeswift/components/cast/GlobalThemeLoader';
 
 interface Props extends PropsWithChildren {
   params: Promise<{ locale: string }>;
@@ -23,9 +22,8 @@ const organizationSchema = {
   ],
 };
 
-// Nav, footer, and topper are managed as Makeswift global components — do NOT
-// render them here as code components or they will duplicate on every page.
-// GlobalThemeLoader is safe here (default-only path, never runs in the editor).
+// Nav, footer, and topper are managed as Makeswift global components.
+// GlobalThemeLoader lives in the root [locale]/layout.tsx so it applies to all routes.
 export default async function DefaultLayout({ params, children }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
@@ -33,7 +31,6 @@ export default async function DefaultLayout({ params, children }: Props) {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }} />
-      <GlobalThemeLoader locale={locale} />
       {children}
       <GDPRPopup />
     </>
