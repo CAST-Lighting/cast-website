@@ -173,7 +173,7 @@ const ReviewsCarousel = forwardRef(function ReviewsCarousel(
   const overlayOpacity = typeof bgOpacity === "number" ? bgOpacity / 100 : 0.88
   const sectionBackground = hasGradient
     ? `linear-gradient(${gradientDirection || "to bottom"}, ${gradientFrom}, ${gradientTo})`
-    : bgColor || "#f8f9fa"
+    : bgColor || "#141e27"
 
   return (
     <section

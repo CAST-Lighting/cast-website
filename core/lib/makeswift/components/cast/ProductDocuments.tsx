@@ -63,7 +63,7 @@ const ProductDocuments = forwardRef(function ProductDocuments(
   const overlayOpacity = typeof bgOpacity === 'number' ? bgOpacity / 100 : 0.85
   const sectionBackground = hasGradient
     ? `linear-gradient(${gradientDirection || 'to bottom'}, ${gradientFrom}, ${gradientTo})`
-    : bgColor || "#f0f2f5"
+    : bgColor || "#2d353c"
 
   return (
     <div
@@ -78,11 +78,23 @@ const ProductDocuments = forwardRef(function ProductDocuments(
         <div className="absolute inset-0" style={{ zIndex: 1, background: sectionBackground, opacity: overlayOpacity }} />
       )}
       <div className="relative" style={{ zIndex: 10 }}>
-      <div className="site-container">
+      <style>{`
+        .pd-docs-grid {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 16px;
+        }
+        @media (max-width: 640px) {
+          .pd-docs-grid {
+            grid-template-columns: 1fr;
+          }
+        }
+      `}</style>
+            <div className="site-container">
         <h2 style={{ fontSize: "var(--h2-size)", fontWeight: "var(--heading-weight, 700)", lineHeight: "var(--heading-line-height, 1.1)", fontFamily: "'Essonnes', 'Playfair Display', serif", color: t.heading, margin: "0 0 32px" }}>
           {heading}{headingAccent && <> <span className="text-gradient-warm">{headingAccent}</span></>}
         </h2>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 16 }}>
+        <div className="pd-docs-grid" style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 16 }}>
           {list.map((doc, i) => (
             <div key={i} style={{ background: t.cardBg, border: `1px solid ${t.cardBorder}`, borderRadius: 8, padding: "20px", display: "flex", gap: 16, alignItems: "flex-start" }}>
               <FileIcon type={doc.fileType} accentColor={t.accent} />

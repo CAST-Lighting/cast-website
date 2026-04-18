@@ -137,7 +137,7 @@ const MediaGallery = forwardRef(function MediaGallery(
   const overlayOpacity = typeof bgOpacity === "number" ? bgOpacity / 100 : 0.85
   const sectionBackground = hasGradient
     ? `linear-gradient(${gradientDirection || "to bottom"}, ${gradientFrom}, ${gradientTo})`
-    : bgColor || "#f0f2f5"
+    : bgColor || "#2d353c"
 
   return (
     <div

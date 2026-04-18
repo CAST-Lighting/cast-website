@@ -34,10 +34,24 @@ const CmsProductContent = forwardRef(function CmsProductContent(
       className={className || ""}
       style={{ width: '100%', background: bgColor, minHeight: 200 }}
     >
-      <div
+      <style>{`
+        .cpc-layout {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 48px;
+          align-items: start;
+        }
+        @media (max-width: 768px) {
+          .cpc-layout {
+            grid-template-columns: 1fr;
+            gap: 32px;
+          }
+        }
+      `}</style>
+            <div
         className="site-container"
       >
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 48, alignItems: "start" }}>
+        <div className="cpc-layout" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 48, alignItems: "start" }}>
           {/* Image Gallery */}
           <div>
             {/* Main Image */}
