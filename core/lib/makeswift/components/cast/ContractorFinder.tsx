@@ -107,7 +107,7 @@ const ContractorFinder = forwardRef(function ContractorFinder(
       `}</style>
 
       {/* Map placeholder + results */}
-      <div className="site-container" style={{ paddingTop: 56: 72 }}>
+      <div className="site-container" style={{ paddingTop: 56, paddingBottom: 72 }}>
         <div className="cf-map-grid">
           {/* Map placeholder */}
           <div className="cf-map-panel" style={{ background: "#e2e8ed", borderRadius: 12, overflow: "hidden", minHeight: 480, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", border: "1px solid #d1d9e0", position: "relative" }}>

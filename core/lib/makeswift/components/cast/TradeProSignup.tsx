@@ -382,7 +382,7 @@ const TradeProSignup = forwardRef(function TradeProSignup(
               </a>
               <div
                 style={{
-                  marginTop: 24: 20,
+                  marginTop: 24, paddingBottom: 20,
                   borderTop: "1px solid rgba(255,255,255,0.08)",
                 }}
               >

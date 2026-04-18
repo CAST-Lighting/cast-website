@@ -108,7 +108,7 @@ const DistributorFinder = forwardRef(function DistributorFinder(
         .df-main-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: flex-start; }
         @media (max-width: 768px) { .df-main-grid { grid-template-columns: 1fr; } }
       `}</style>
-      <div className="site-container" style={{ paddingTop: 64: 72 }}>
+      <div className="site-container" style={{ paddingTop: 64, paddingBottom: 72 }}>
         <div className="df-main-grid">
 
           {/* Distributor results + map */}

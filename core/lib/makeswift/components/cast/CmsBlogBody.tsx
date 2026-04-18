@@ -140,7 +140,7 @@ const CmsBlogBody = forwardRef(function CmsBlogBody(
         </div>
 
         {/* Share + Audio row */}
-        <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 24, flexWrap: "wrap", marginBottom: 36: 28, borderBottom: "1px solid rgba(255,255,255,0.08)" }}>
+        <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 24, flexWrap: "wrap", marginBottom: 36, paddingBottom: 28, borderBottom: "1px solid rgba(255,255,255,0.08)" }}>
 
           {/* Share buttons */}
           <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
@@ -191,7 +191,7 @@ const CmsBlogBody = forwardRef(function CmsBlogBody(
 
         {/* Tags */}
         {tags.length > 0 && (
-          <div style={{ marginTop: 52: 28, borderTop: "1px solid rgba(255,255,255,0.08)", display: "flex", gap: 10, alignItems: "center", flexWrap: "wrap" }}>
+          <div style={{ marginTop: 52, paddingBottom: 28, borderTop: "1px solid rgba(255,255,255,0.08)", display: "flex", gap: 10, alignItems: "center", flexWrap: "wrap" }}>
             <span style={{ fontFamily: "'Barlow',sans-serif", fontSize: 12, fontWeight: 700, color: "rgba(255,255,255,0.35)", textTransform: "uppercase", letterSpacing: "0.1em", flexShrink: 0 }}>
               Tagged:
             </span>
@@ -202,7 +202,7 @@ const CmsBlogBody = forwardRef(function CmsBlogBody(
         )}
 
         {/* Share row — bottom repeat */}
-        <div style={{ marginTop: 32: 24, borderTop: "1px solid rgba(255,255,255,0.08)", display: "flex", alignItems: "center", gap: 12, flexWrap: "wrap" }}>
+        <div style={{ marginTop: 32, paddingBottom: 24, borderTop: "1px solid rgba(255,255,255,0.08)", display: "flex", alignItems: "center", gap: 12, flexWrap: "wrap" }}>
           <span style={{ fontFamily: "'Barlow',sans-serif", fontSize: 12, fontWeight: 700, color: "rgba(255,255,255,0.35)", textTransform: "uppercase", letterSpacing: "0.1em" }}>
             Share this post
           </span>

@@ -81,7 +81,7 @@ const RichTextSection = forwardRef(function RichTextSection(
       <div className="site-container">
         <div style={{ maxWidth: 800, margin: "0 auto" }}>
           {/* Heading */}
-          <div style={{ marginBottom: 40: 32, borderBottom: "1px solid rgba(255,255,255,0.1)" }}>
+          <div style={{ marginBottom: 40, paddingBottom: 32, borderBottom: "1px solid rgba(255,255,255,0.1)" }}>
             <h1 style={{
               fontFamily: "'Essonnes', 'Playfair Display', serif",
               fontSize: "var(--h1-size, 3rem)",
@@ -143,7 +143,7 @@ const RichTextSection = forwardRef(function RichTextSection(
 
           {/* PDF Download */}
           {showPdf && pdfUrl && (
-            <div style={{ marginTop: 40: 32, borderTop: "1px solid rgba(255,255,255,0.1)" }}>
+            <div style={{ marginTop: 40, paddingBottom: 32, borderTop: "1px solid rgba(255,255,255,0.1)" }}>
               <a
                 href={pdfUrl}
                 download

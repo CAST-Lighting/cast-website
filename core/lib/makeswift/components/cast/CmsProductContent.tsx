@@ -157,7 +157,7 @@ const CmsProductContent = forwardRef(function CmsProductContent(
 
             {/* Features list */}
             <div style={{
-              marginTop: 32: 24,
+              marginTop: 32, paddingBottom: 24,
               borderTop: "1px solid rgba(255,255,255,0.08)",
             }}>
               {[
