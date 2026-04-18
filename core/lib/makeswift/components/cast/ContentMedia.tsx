@@ -35,7 +35,7 @@ const ContentMedia = forwardRef(function ContentMedia(
     gradientFrom,
     gradientTo,
     gradientDirection,
-    lineHeight
+    lineHeight,
     heading,
     headingAccent,
     bodyText,
