@@ -76,33 +76,6 @@ const DistributorFinder = forwardRef(function DistributorFinder(
       className={`cast-distributor-finder-defaults ${className || ""} ${sectionStyle || ""}`}
       style={{ width: "100%", boxSizing: "border-box", background: sectionBackground, }}
     >
-      {/* Hero */}
-      <div style={{ background: "var(--color-primary)", padding: "72px 0" }}>
-        <div className="site-container">
-          {overline && (
-            <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 12, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.12em", color: "rgba(255,255,255,0.7)", margin: "0 0 12px" }}>{overline}</p>
-          )}
-          <h1 style={{ fontSize: "var(--h1-size)", fontWeight: "var(--heading-weight, 700)", lineHeight: "var(--heading-line-height, 1.1)", fontFamily: "'Essonnes', 'Playfair Display', serif", color: "#fff", margin: "0 0 16px", maxWidth: 620 }}>
-            {heading}
-          </h1>
-          <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 17, color: "rgba(255,255,255,0.82)", lineHeight: 1.6, maxWidth: 540, margin: "0 0 36px" }}>
-            {subheading}
-          </p>
-          <form onSubmit={handleSearch} style={{ display: "flex", gap: 0, maxWidth: 480, width: "100%", background: "#2d353c", borderRadius: 8, overflow: "hidden", boxShadow: "0 4px 16px rgba(0,0,0,0.15)" }}>
-            <input
-              type="text"
-              value={zip}
-              onChange={e => setZip(e.target.value)}
-              placeholder="Enter your ZIP code"
-              style={{ flex: 1, padding: "14px 18px", border: "none", fontFamily: "'Barlow', sans-serif", fontSize: 15, color: "var(--color-title)", outline: "none" }}
-            />
-            <button type="submit" style={{ background: "var(--color-accent)", color: "#fff", border: "none", padding: "14px 24px", fontFamily: "'Barlow', sans-serif", fontSize: 14, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.06em", cursor: "pointer", flexShrink: 0 }}>
-              Find
-            </button>
-          </form>
-        </div>
-      </div>
-
       {/* Main content */}
       <style>{`
         .df-main-grid { display: grid; grid-template-columns: 1fr 300px; gap: 32px; align-items: flex-start; }
@@ -193,8 +166,20 @@ const DistributorFinder = forwardRef(function DistributorFinder(
             </div>{/* end form */}
           </div>{/* end left column */}
 
-          {/* Right: distributor tiles */}
+          {/* Right: search + distributor tiles */}
           <div style={{ display: "flex", flexDirection: "column", gap: 12, paddingTop: 52 }}>
+            <form onSubmit={handleSearch} style={{ display: "flex", gap: 0, width: "100%", background: "rgba(255,255,255,0.06)", borderRadius: 8, overflow: "hidden", border: "1px solid rgba(255,255,255,0.12)", marginBottom: 4 }}>
+              <input
+                type="text"
+                value={zip}
+                onChange={e => setZip(e.target.value)}
+                placeholder="Enter your ZIP code"
+                style={{ flex: 1, padding: "11px 14px", border: "none", background: "transparent", fontFamily: "'Barlow', sans-serif", fontSize: 14, color: "#fff", outline: "none" }}
+              />
+              <button type="submit" style={{ background: "var(--color-accent)", color: "#fff", border: "none", padding: "11px 18px", fontFamily: "'Barlow', sans-serif", fontSize: 13, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.06em", cursor: "pointer", flexShrink: 0 }}>
+                Find
+              </button>
+            </form>
             {PLACEHOLDER_DISTRIBUTORS.map((d, i) => (
               <div key={i} style={{ background: "#2d353c", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 10, padding: "16px 18px" }}>
                 <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 14, fontWeight: 700, color: "var(--color-title)", margin: "0 0 4px" }}>{d.name}</p>
