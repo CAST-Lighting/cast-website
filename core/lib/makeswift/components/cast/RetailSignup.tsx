@@ -56,71 +56,6 @@ const RetailSignup = forwardRef(function RetailSignup(
       className={className || ""}
       style={{ width: '100%', background: bgColor || "#0f1923", minHeight: "100vh" }}
     >
-      {/* ── Hero ── */}
-      <section
-        style={{
-          background: "#1a2332",
-          paddingTop: 96,
-          paddingBottom: 64,
-          textAlign: "center",
-          position: "relative",
-          overflow: "hidden",
-        }}
-      >
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            backgroundImage:
-              "linear-gradient(rgba(0,124,176,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,124,176,0.03) 1px, transparent 1px)",
-            backgroundSize: "48px 48px",
-          }}
-        />
-        <div className="site-container" style={{ position: "relative", zIndex: 1 }}>
-          {badgeText && (
-            <p
-              style={{
-                fontFamily: "'Barlow', sans-serif",
-                fontSize: 11,
-                fontWeight: 700,
-                textTransform: "uppercase",
-                letterSpacing: "0.16em",
-                color: "#007CB0",
-                margin: "0 0 16px",
-              }}
-            >
-              {badgeText}
-            </p>
-          )}
-          <h1
-            style={{
-              fontFamily: "'Essonnes', 'Playfair Display', serif",
-              fontSize: "var(--h2-size)",
-              fontWeight: 700,
-              color: "#fff",
-              lineHeight: 1.1,
-              margin: "0 0 20px",
-            }}
-          >
-            {heading}
-          </h1>
-          {description && (
-            <p
-              style={{
-                fontFamily: "'Barlow', sans-serif",
-                fontSize: 18,
-                color: "rgba(255,255,255,0.6)",
-                maxWidth: 620,
-                margin: "0 auto",
-                lineHeight: 1.7,
-              }}
-            >
-              {description}
-            </p>
-          )}
-        </div>
-      </section>
-
       {/* ── Form + Sidebar ── */}
       <style>{`
         .rs-layout { display: grid; grid-template-columns: 1fr 380px; gap: 48px; align-items: start; }
@@ -140,8 +75,8 @@ const RetailSignup = forwardRef(function RetailSignup(
             {/* ── Form ── */}
             <div
               style={{
-                background: "#2d353c",
-                border: "1px solid rgba(255,255,255,0.08)",
+                background: "#fff",
+                border: "1px solid #e5e7eb",
                 borderRadius: 12,
                 padding: "40px 36px",
               }}
@@ -157,7 +92,7 @@ const RetailSignup = forwardRef(function RetailSignup(
                       fontFamily: "'Essonnes', 'Playfair Display', serif",
                       fontSize: "var(--h3-size)",
                       fontWeight: 700,
-                      color: "#fff",
+                      color: "#0f1923",
                       margin: "0 0 10px",
                     }}
                   >
@@ -167,7 +102,7 @@ const RetailSignup = forwardRef(function RetailSignup(
                     style={{
                       fontFamily: "'Barlow', sans-serif",
                       fontSize: 15,
-                      color: "rgba(255,255,255,0.65)",
+                      color: "#6b7280",
                       lineHeight: 1.6,
                       margin: 0,
                     }}
@@ -273,8 +208,8 @@ const RetailSignup = forwardRef(function RetailSignup(
             {/* ── Sidebar ── */}
             <div
               style={{
-                background: "#1a2332",
-                border: "1px solid rgba(255,255,255,0.08)",
+                background: "#fff",
+                border: "1px solid #e5e7eb",
                 borderRadius: 12,
                 padding: "32px 28px",
               }}
@@ -284,7 +219,7 @@ const RetailSignup = forwardRef(function RetailSignup(
                   fontFamily: "'Essonnes', 'Playfair Display', serif",
                   fontSize: 22,
                   fontWeight: 700,
-                  color: "#fff",
+                  color: "#0f1923",
                   margin: "0 0 16px",
                 }}
               >
@@ -295,7 +230,7 @@ const RetailSignup = forwardRef(function RetailSignup(
                   style={{
                     fontFamily: "'Barlow', sans-serif",
                     fontSize: 15,
-                    color: "rgba(255,255,255,0.65)",
+                    color: "#6b7280",
                     lineHeight: 1.7,
                     margin: "0 0 20px",
                   }}
@@ -307,8 +242,8 @@ const RetailSignup = forwardRef(function RetailSignup(
                 <div
                   key={i}
                   style={{
-                    background: "rgba(0,124,176,0.1)",
-                    border: "1px solid rgba(0,124,176,0.25)",
+                    background: "rgba(0,124,176,0.06)",
+                    border: "1px solid rgba(0,124,176,0.2)",
                     borderRadius: 8,
                     padding: "14px 16px",
                     marginBottom: 12,
@@ -331,7 +266,7 @@ const RetailSignup = forwardRef(function RetailSignup(
                 style={{
                   fontFamily: "'Barlow', sans-serif",
                   fontSize: 14,
-                  color: "rgba(255,255,255,0.5)",
+                  color: "#9ca3af",
                   lineHeight: 1.6,
                   margin: "16px 0 8px",
                 }}
@@ -353,14 +288,14 @@ const RetailSignup = forwardRef(function RetailSignup(
               <div
                 style={{
                   marginTop: 24, paddingBottom: 20,
-                  borderTop: "1px solid rgba(255,255,255,0.08)",
+                  borderTop: "1px solid #e5e7eb",
                 }}
               >
                 <p
                   style={{
                     fontFamily: "'Barlow', sans-serif",
                     fontSize: 12,
-                    color: "rgba(255,255,255,0.4)",
+                    color: "#9ca3af",
                     lineHeight: 1.6,
                     margin: 0,
                   }}
@@ -380,14 +315,14 @@ const RetailSignup = forwardRef(function RetailSignup(
 const inputStyle: React.CSSProperties = {
   width: "100%",
   padding: "11px 14px",
-  border: "1px solid rgba(255,255,255,0.12)",
+  border: "1px solid #d1d5db",
   borderRadius: 6,
   fontFamily: "'Barlow', sans-serif",
   fontSize: 14,
-  color: "#fff",
+  color: "#111827",
   boxSizing: "border-box",
   outline: "none",
-  background: "rgba(255,255,255,0.05)",
+  background: "#f9fafb",
 }
 
 const selectStyle: React.CSSProperties = {
@@ -397,9 +332,9 @@ const selectStyle: React.CSSProperties = {
 
 const labelStyle: React.CSSProperties = {
   fontFamily: "'Barlow', sans-serif",
-  fontSize: 13,
+  fontSize: 12,
   fontWeight: 600,
-  color: "rgba(255,255,255,0.85)",
+  color: "#6b7280",
   display: "block",
   marginBottom: 6,
 }
@@ -410,7 +345,7 @@ const radioLabelStyle: React.CSSProperties = {
   gap: 6,
   fontFamily: "'Barlow', sans-serif",
   fontSize: 14,
-  color: "rgba(255,255,255,0.75)",
+  color: "#374151",
 }
 
 export default RetailSignup
