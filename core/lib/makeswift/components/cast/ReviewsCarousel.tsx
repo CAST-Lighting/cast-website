@@ -204,7 +204,7 @@ const ReviewsCarousel = forwardRef(function ReviewsCarousel(
         <div className="site-container mb-10">
           <div className="flex flex-col md:flex-row md:items-end md:justify-between">
             <div style={{ textAlign: "left" }}>
-              <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 12, fontWeight: 700, textTransform: "uppercase" as const, letterSpacing: "0.14em", color: t.accent, margin: "0 0 12px", display: "block" }}>{overline}</span>
+              <span className="text-style-overline" style={{ margin: "0 0 12px", display: "block", color: "var(--cast-light-blue)" }}>{overline}</span>
               <h2 className="section-heading" style={{ marginTop: 12, fontSize: "var(--h2-size)", color: t.heading }}>
                 {heading}{" "}
                 <span className="text-gradient-warm">{headingAccent}</span>
@@ -283,17 +283,4 @@ const ReviewsCarousel = forwardRef(function ReviewsCarousel(
                       color: t.subtle,
                       margin: 0,
                     }}>
-                      {review.role}{review.location ? ` · ${review.location}` : ""}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-  )
-})
-
-export default ReviewsCarousel
+         

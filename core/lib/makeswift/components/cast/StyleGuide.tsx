@@ -9,7 +9,7 @@ const StyleGuide = forwardRef(function StyleGuide(
     <div ref={ref} className={className} style={{ width: '100%', fontFamily: "'Barlow', sans-serif", background: '#f5f5f5', minHeight: '100vh' }}>
 
       {/* ── Header ─────────────────────────────────────────────────────── */}
-      <div style={{ background: '#014960', color: '#fff', padding: '48px 64px' }}>
+      <div style={{ background: '#004960', color: '#fff', padding: '48px 64px' }}>
         <div style={{ maxWidth: 1600, margin: '0 auto' }}>
           <img src="/images/logos/cast__lighting_white.svg" alt="CAST Lighting" style={{ height: 40, marginBottom: 24 }} />
           <h1 style={{ fontFamily: "'Essonnes','Playfair Display',serif", fontSize: 48, fontWeight: 700, margin: 0, color: '#cfd8dc' }}>
@@ -350,6 +350,4 @@ function ColorSwatch({ hex, name, pantone, usage }: { hex: string; name: string;
         <div style={{ fontSize: 11, color: '#546f7a', marginBottom: 4 }}>Pantone {pantone}</div>
         <div style={{ fontSize: 11, color: '#90a4ae' }}>{usage}</div>
       </div>
-    </div>
-  )
-}
+    <

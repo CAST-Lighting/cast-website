@@ -92,15 +92,7 @@ const ReadyCTA = forwardRef(function ReadyCTA(
       <div className="relative" style={{ zIndex: 10 }}>
         <div className="site-container" style={{ textAlign: "center", maxWidth: 720 }}>
           {overline && (
-            <p style={{
-              fontFamily: "'Barlow', sans-serif",
-              fontSize: 12,
-              fontWeight: 700,
-              textTransform: "uppercase",
-              letterSpacing: "0.14em",
-              color: t.subtle,
-              margin: "0 0 16px",
-            }}>
+            <p className="text-style-overline" style={{ margin: "0 0 16px", color: "var(--cast-light-blue)" }}>
               {overline}
             </p>
           )}
@@ -148,5 +140,3 @@ const ReadyCTA = forwardRef(function ReadyCTA(
     </section>
   )
 })
-
-export default ReadyCTA

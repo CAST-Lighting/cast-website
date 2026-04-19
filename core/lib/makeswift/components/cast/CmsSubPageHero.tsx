@@ -100,15 +100,8 @@ const CmsSubPageHero = forwardRef(function CmsSubPageHero(
       <div className="site-container" style={{ position: "relative", zIndex: 10 }}>
         {badgeText && (
           <p
-            style={{
-              fontFamily: "'Barlow', sans-serif",
-              fontSize: 11,
-              fontWeight: 700,
-              textTransform: "uppercase",
-              letterSpacing: "0.16em",
-              color: "#007CB0",
-              margin: "0 0 16px",
-            }}
+            className="text-style-overline"
+            style={{ margin: "0 0 16px", color: "var(--cast-light-blue)" }}
           >
             {badgeText}
           </p>

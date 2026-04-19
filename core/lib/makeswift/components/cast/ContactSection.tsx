@@ -92,7 +92,7 @@ const ContactSection = forwardRef(function ContactSection(
           {/* Left: info */}
           <div>
             {overline && (
-              <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#007CB0", margin: "0 0 16px" }}>
+              <p className="text-style-overline" style={{ margin: "0 0 16px", color: "var(--cast-mid-blue)" }}>
                 {overline}
               </p>
             )}
@@ -226,17 +226,5 @@ const ContactSection = forwardRef(function ContactSection(
                   <textarea value={message} onChange={e => setMessage(e.target.value)} placeholder="Tell us about your project…" rows={4} required style={{ ...inputStyle, resize: "vertical" }} />
                 </div>
 
-                <button type="submit" style={{ width: "100%", padding: "14px 24px", background: "linear-gradient(135deg, #007CB0, #7EBEE8)", border: "none", borderRadius: 8, fontFamily: "'Barlow', sans-serif", fontSize: 15, fontWeight: 700, color: "#0d1620", cursor: "pointer", letterSpacing: "0.03em", marginTop: 4 }}>
-                  {submitLabel || "Send Message"}
-                </button>
-              </form>
-            )}
-          </div>
-
-        </div>
-      </div>
-    </section>
-  )
-})
-
-export default ContactSection
+                <button type="submit" className="sg-btn-solid-dark-lg" style={{ width: "100%", marginTop: 4 }}>
+         

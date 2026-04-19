@@ -89,7 +89,7 @@ const ComparisonSection = forwardRef(function ComparisonSection(
       <div className="relative" style={{ zIndex: 10 }}>
         <div className="site-container">
           <div className="text-center mb-4">
-            <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 12, fontWeight: 700, textTransform: "uppercase" as const, letterSpacing: "0.14em", color: "#7EBEE8", margin: "0 0 12px", display: "block" }}>{overline || "CAST vs Other Brands"}</span>
+            <span className="text-style-overline" style={{ margin: "0 0 12px", display: "block", color: "var(--cast-light-blue)" }}>{overline || "CAST vs Other Brands"}</span>
           </div>
           <div className="text-center mb-14">
             <h2 className="heading-style-h2 text-foreground mb-3">
@@ -129,12 +129,4 @@ const ComparisonSection = forwardRef(function ComparisonSection(
                   </li>
                 ))}
               </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  )
-})
-
-export default ComparisonSection
+            </di

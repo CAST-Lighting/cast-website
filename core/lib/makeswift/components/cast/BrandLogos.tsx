@@ -77,15 +77,7 @@ const BrandLogos = forwardRef(function BrandLogos(
         <div className="site-container">
           <div style={{ textAlign: "center", marginBottom: 40 }}>
             {overline && (
-              <p style={{
-                fontFamily: "'Barlow', sans-serif",
-                fontSize: 12,
-                fontWeight: 700,
-                textTransform: "uppercase",
-                letterSpacing: "0.14em",
-                color: t.subtle,
-                margin: "0 0 12px",
-              }}>
+              <p className="text-style-overline" style={{ margin: "0 0 12px", color: "var(--cast-light-blue)" }}>
                 {overline}
               </p>
             )}
@@ -150,6 +142,4 @@ const BrandLogos = forwardRef(function BrandLogos(
       </div>
     </section>
   )
-})
-
-export default BrandLogos
+}

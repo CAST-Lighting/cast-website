@@ -190,7 +190,7 @@ const AboutContent = forwardRef(function AboutContent(
 
             <div style={{ display: "flex", flexWrap: "wrap", gap: 12, marginTop: 4 }}>
               {btn1Label && (
-                <a href={btn1Href || "#"} className="sg-btn-solid-md">{btn1Label}</a>
+                <a href={btn1Href || "#"} className="sg-btn-solid-dark-md">{btn1Label}</a>
               )}
               {btn2Label && (
                 <a href={btn2Href || "#"} className="sg-btn-outline-dark-md">{btn2Label}</a>
@@ -264,15 +264,4 @@ const AboutContent = forwardRef(function AboutContent(
                 color: "rgba(255,255,255,0.55)",
                 margin: 0,
               }}>
-                {item.desc || "Feature description."}
-              </p>
-            </div>
-          ))}
-        </div>
-
-      </div>
-    </section>
-  )
-})
-
-export default AboutContent
+                {item.desc || "Fea
