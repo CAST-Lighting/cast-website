@@ -357,7 +357,7 @@ function QuoteDetail(
 
         {/* Action bar */}
         <div className="qd-action-bar">
-          <a href="/account/quotes" className={t.btnOutline} style={{ textDecoration: "none" }}>← All Quotes</a>
+          <a href="/account/quotes" className={t.btnOutline} style={{ textDecoration: "none", padding: "12px 22px" }}>← All Quotes</a>
           {quote.status === "Approved" && (
             <button className={t.btnPrimary} onClick={handleConvertToOrder} disabled={converting} style={{ opacity: converting ? 0.6 : 1 }}>
               {converting ? "Processing…" : "Convert to Order →"}

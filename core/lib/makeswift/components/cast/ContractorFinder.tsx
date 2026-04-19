@@ -167,7 +167,7 @@ const ContractorFinder = forwardRef(function ContractorFinder(
           {/* Right: form */}
           <div style={{ background: "#1a2332", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 16, padding: "40px 36px" }}>
             {formHeading && (
-              <h3 style={{ fontFamily: "'Essonnes', 'Playfair Display', serif", fontSize: 22, fontWeight: 700, color: "#fff", margin: "0 0 28px" }}>{formHeading}</h3>
+              <h3 style={{ fontFamily: "'Essonnes', 'Playfair Display', serif", fontSize: 28, fontWeight: 700, color: "#fff", margin: "0 0 28px" }}>{formHeading}</h3>
             )}
 
             {submitted ? (
@@ -246,14 +246,3 @@ const ContractorFinder = forwardRef(function ContractorFinder(
                 <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 12, color: "rgba(255,255,255,0.4)", margin: 0, textAlign: "center" }}>
                   We'll reach out within one business day. No spam, ever.
                 </p>
-              </form>
-            )}
-          </div>
-
-        </div>
-      </div>
-    </div>
-  )
-})
-
-export default ContractorFinder

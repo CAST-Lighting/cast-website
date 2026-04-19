@@ -165,7 +165,7 @@ const SiteNavbar = forwardRef(function SiteNavbar(
             </button>
             <a
               href={resolvedCtaHref}
-              className="hidden md:inline-flex items-center px-5 py-2 rounded-md bg-primary text-primary-foreground font-semibold text-sm hover:bg-warm-glow transition-colors duration-200 ease-in"
+              className="hidden md:inline-flex items-center px-5 py-2 rounded-md bg-white text-[#003647] font-semibold text-sm hover:bg-gray-100 transition-colors duration-200 ease-in"
             >
               {resolvedCtaLabel}
             </a>
@@ -239,7 +239,7 @@ const SiteNavbar = forwardRef(function SiteNavbar(
                 )}
               </div>
             ))}
-            <a href="#" className="block w-full text-center px-5 py-2 rounded-md bg-primary text-primary-foreground font-semibold text-sm mt-2">
+            <a href="#" className="block w-full text-center px-5 py-2 rounded-md bg-white text-[#003647] font-semibold text-sm mt-2">
               LOGIN / SIGNUP
             </a>
           </div>
@@ -272,16 +272,4 @@ const SiteNavbar = forwardRef(function SiteNavbar(
               <a
                 href="/shop"
                 onClick={() => setCartOpen(false)}
-                className="inline-flex items-center px-6 py-2.5 rounded-md bg-primary text-primary-foreground font-semibold text-sm hover:bg-warm-glow transition-colors duration-200 ease-in"
-              >
-                Shop Now
-              </a>
-            </div>
-          </div>
-        </>
-      )}
-    </header>
-  )
-})
-
-export default SiteNavbar
+                className="inline-flex items-center px-6 py-2.5 rounded-md bg-prim

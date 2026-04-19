@@ -529,7 +529,7 @@
   transition: background 200ms ease, border-color 200ms ease;
   border-radius: var(--cast-radius-sm, 4px);
 }
-.sg-btn-outline-dark-sm:hover { background: rgba(175,229,253,0.15); border-color: #ffffff; }
+.sg-btn-outline-dark-sm:hover { background: rgba(175,229,253,0.15); border-color: #ffffff; color: #003647; }
 
 .sg-btn-outline-dark-md {
   display: inline-flex; align-items: center; justify-content: center;
@@ -541,7 +541,7 @@
   transition: background 200ms ease, border-color 200ms ease;
   border-radius: var(--cast-radius-sm, 4px);
 }
-.sg-btn-outline-dark-md:hover { background: rgba(175,229,253,0.15); border-color: #ffffff; }
+.sg-btn-outline-dark-md:hover { background: rgba(175,229,253,0.15); border-color: #ffffff; color: #003647; }
 
 .sg-btn-outline-dark-lg {
   display: inline-flex; align-items: center; justify-content: center;
@@ -553,7 +553,7 @@
   transition: background 200ms ease, border-color 200ms ease;
   border-radius: var(--cast-radius-sm, 4px);
 }
-.sg-btn-outline-dark-lg:hover { background: rgba(175,229,253,0.15); border-color: #ffffff; }
+.sg-btn-outline-dark-lg:hover { background: rgba(175,229,253,0.15); border-color: #ffffff; color: #003647; }
 
 /* -- Underline buttons — Light background -- */
 .sg-btn-underline-sm {
