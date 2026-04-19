@@ -272,4 +272,16 @@ const SiteNavbar = forwardRef(function SiteNavbar(
               <a
                 href="/shop"
                 onClick={() => setCartOpen(false)}
-                className="inline-flex items-center px-6 py-2.5 rounded-md bg-prim
+                className="inline-flex items-center px-6 py-2.5 rounded-md bg-primary text-primary-foreground font-semibold text-sm hover:bg-warm-glow transition-colors duration-200 ease-in"
+              >
+                Shop Now
+              </a>
+            </div>
+          </div>
+        </>
+      )}
+    </header>
+  )
+})
+
+export default SiteNavbar
