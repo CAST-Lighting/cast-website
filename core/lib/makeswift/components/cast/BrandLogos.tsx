@@ -142,4 +142,6 @@ const BrandLogos = forwardRef(function BrandLogos(
       </div>
     </section>
   )
-}
+})
+
+export default BrandLogos

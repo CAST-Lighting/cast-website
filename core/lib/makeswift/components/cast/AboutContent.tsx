@@ -264,4 +264,15 @@ const AboutContent = forwardRef(function AboutContent(
                 color: "rgba(255,255,255,0.55)",
                 margin: 0,
               }}>
-                {item.desc || "Fea
+                {item.desc || "Feature description."}
+              </p>
+            </div>
+          ))}
+        </div>
+
+      </div>
+    </section>
+  )
+})
+
+export default AboutContent
