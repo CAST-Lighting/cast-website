@@ -163,7 +163,7 @@ const ProductGallery = forwardRef(function ProductGallery(
                 href={product.path}
                 className="group flex-shrink-0 w-[280px] bg-card border border-border rounded-xl overflow-hidden hover:border-primary/40 transition-all duration-300 shadow-md shadow-black/20 hover:shadow-lg hover:shadow-black/30 no-underline"
               >
-                <div className="relative overflow-hidden aspect-[4/5]">
+                <div className="relative overflow-hidden aspect-square">
                   <img
                     src={product.image}
                     alt={product.imageAlt}
