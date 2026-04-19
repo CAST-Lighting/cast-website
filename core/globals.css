@@ -67,8 +67,8 @@
 }
 .section-heading {
   font-family: 'Essonnes', 'Playfair Display', serif;
+  font-size: var(--h2-size);
   font-weight: 700; line-height: 1.15; letter-spacing: -0.01em;
-  font-size: var(--h2-size); /* Phase 2 — was missing */
 }
 .section-desc {
   font-size: 18px; line-height: var(--section-line-height, 1.6); color: hsl(var(--muted-foreground));
@@ -182,52 +182,41 @@
   --dark-surface:  #37474f;   /* Blue Grey 800 — card/panel surfaces */
   --dark-surface-2: #2d353c;  /* Mid-tone — alternate panels */
   --dark-border:   rgba(255,255,255,0.08);
+  /* ── CAST canonical design tokens ── */
+  --cast-dark-blue:  #004960;
+  --cast-mid-blue:   #007CB0;
+  --cast-light-blue: #7EBEE8;
 
-  /* ── CAST Design System Canonical Tokens — Added April 19, 2026 ──────────── */
-  /* Reference these variables in all new component work. DO NOT remove. */
+  --cast-bg-deepest:  #0d1620;
+  --cast-bg-dark:     #1a2332;
+  --cast-bg-surface:  #25262d;
+  --cast-bg-card:     #2d353c;
+  --cast-bg-elevated: #37474f;
+  --cast-bg-light:    #f5f5f5;
+  --cast-bg-white:    #ffffff;
+  --cast-bg-light-alt: #f0f2f5;
 
-  /* ── Primary Three Blues (Pantone-matched) ──────────────────── */
-  --cast-dark-blue:   #004960;  /* Pantone 302 C — dark teal, primary page bg & headings */
-  --cast-mid-blue:    #007CB0;  /* Pantone 640 C — buttons, links, interactive elements */
-  --cast-light-blue:  #7EBEE8;  /* Pantone 283 C — glow, accents, dark-bg outlines */
+  --cast-text-heading-dark:  #ffffff;
+  --cast-text-heading-light: #004960;
+  --cast-text-body-dark:  rgba(255,255,255,0.78);
+  --cast-text-body-light: #1a3a4a;
+  --cast-text-muted-dark:  rgba(255,255,255,0.45);
+  --cast-text-muted-light: #546f7a;
+  --cast-text-meta: #90a4ae;
 
-  /* ── Background Scale — Dark Theme ──────────────────────────── */
-  --cast-bg-deepest:  #0d1620;  /* Deepest dark — contact section bg */
-  --cast-bg-dark:     #1a2332;  /* Standard dark section bg — canonical choice */
-  --cast-bg-surface:  #25262d;  /* Perimeter Black — outermost page bg */
-  --cast-bg-card:     #2d353c;  /* Card/panel surfaces on dark */
-  --cast-bg-elevated: #37474f;  /* Elevated panels (Blue Grey 800) */
+  --cast-radius-sm:     4px;
+  --cast-radius-md:     8px;
+  --cast-radius-base:  10px;
+  --cast-radius-lg:    12px;
+  --cast-radius-xl:    16px;
+  --cast-radius-pill:  9999px;
+  --cast-radius-circle: 50%;
 
-  /* ── Background Scale — Light Theme ─────────────────────────── */
-  --cast-bg-light:     #f5f5f5;  /* Light page background */
-  --cast-bg-white:     #ffffff;  /* Card backgrounds on light */
-  --cast-bg-light-alt: #f0f2f5;  /* Alternate light section bg */
+  --cast-glow-lg:   0 0 40px -10px rgba(126,190,232,0.3);
+  --cast-glow-sm:   0 0 20px -5px  rgba(126,190,232,0.2);
+  --cast-shadow-card: 0 4px 20px rgba(0,0,0,0.10);
+  --cast-shadow-hero: 0 8px 60px -12px rgba(126,190,232,0.3);
 
-  /* ── Text Colors ─────────────────────────────────────────────── */
-  --cast-text-heading-dark:  #ffffff;               /* Headings on dark sections */
-  --cast-text-heading-light: #004960;               /* Headings on light sections */
-  --cast-text-body-dark:     rgba(255,255,255,0.78); /* Body on dark */
-  --cast-text-body-light:    #1a3a4a;               /* Body on light */
-  --cast-text-muted-dark:    rgba(255,255,255,0.45); /* Muted on dark */
-  --cast-text-muted-light:   #546f7a;               /* Muted on light (Blue Grey 600) */
-  --cast-text-meta:          #90a4ae;               /* Meta, labels (Blue Grey 300) */
-
-  /* ── Border Radius Scale ─────────────────────────────────────── */
-  --cast-radius-sm:     4px;     /* Buttons */
-  --cast-radius-md:     8px;     /* Inputs, icon boxes */
-  --cast-radius-base:   10px;    /* Standard cards */
-  --cast-radius-lg:     12px;    /* Feature cards, galleries */
-  --cast-radius-xl:     16px;    /* Panels, modals */
-  --cast-radius-pill:   9999px;  /* Badge pills */
-  --cast-radius-circle: 50%;     /* Icon circles */
-
-  /* ── Shadow / Glow Scale ─────────────────────────────────────── */
-  --cast-glow-lg:      0 0 40px -10px rgba(126, 190, 232, 0.3);
-  --cast-glow-sm:      0 0 20px -5px rgba(126, 190, 232, 0.2);
-  --cast-shadow-card:  0 4px 20px rgba(0, 0, 0, 0.10);
-  --cast-shadow-hero:  0 8px 60px -12px rgba(126, 190, 232, 0.3);
-
-  /* ── Transition Standard ─────────────────────────────────────── */
   --cast-transition: 200ms ease;
 
   /* Heading scale in px — mobile (matches cast-lighting.com at 18px base) */
@@ -409,14 +398,8 @@
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--cast-light-blue, var(--color-accent)); /* Phase 2 — canonical light blue */
+  color: var(--cast-light-blue, var(--color-accent));
 }
-
-/* ── CAST Background Utility Classes ────────────────────────────────────── */
-.cast-bg-dark-section  { background-color: var(--cast-bg-dark,  #1a2332); }  /* standard dark section */
-.cast-bg-deepest       { background-color: var(--cast-bg-deepest, #0d1620); } /* deepest dark */
-.cast-bg-surface       { background-color: var(--cast-bg-surface, #25262d); } /* perimeter black */
-.cast-bg-card          { background-color: var(--cast-bg-card, #2d353c); }    /* card surfaces */
 
 /* ============================================================
    BUTTON SYSTEM — CAST Lighting
@@ -764,4 +747,22 @@
   --font-size-xl: 1.25rem;
   --font-size-2xl: 1.5rem;
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --shadow-base: 0 1px 3px 0 rgba(0, 
+  --shadow-base: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* ============================================================
+   Makeswift section default padding
+   CSS baseline — overridden by Makeswift-generated className styles when user explicitly sets padding
+   ============================================================ */
+.cast-section-default { padding-top: 60px; padding-bottom: 60px; }
+.cast-footer-default { padding-top: 60px; }
+
+
+/* ── CAST background utility classes ── */
+.cast-bg-dark-section { background: var(--cast-bg-dark, #1a2332); }
+.cast-bg-deepest      { background: var(--cast-bg-deepest, #0d1620); }
+.cast-bg-surface      { background: var(--cast-bg-surface, #25262d); }
+.cast-bg-card         { background: var(--cast-bg-card, #2d353c); }
