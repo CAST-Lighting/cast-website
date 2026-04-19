@@ -14,10 +14,10 @@ runtime.registerComponent(
 
       // 🎨 Background
       bgImage: Image({ label: "🎨 Background — Image" }),
-      bgColor: Color({ label: "🎨 Background — Color", defaultValue: "#014960" }),
-      bgOpacity: NumberControl({ label: "🎨 Background — Opacity", defaultValue: 100, min: 0, max: 100, step: 1, suffix: "%" }),
-      gradientFrom: Color({ label: "🎨 Background — Gradient From", defaultValue: "#014960" }),
-      gradientTo: Color({ label: "🎨 Background — Gradient To", defaultValue: "#25262d" }),
+      bgColor: Color({ label: "🎨 Background — Color", defaultValue: "#004960" }),
+      bgOpacity: NumberControl({ label: "🎨 Background — Opacity", defaultValue: 88, min: 0, max: 100, step: 1, suffix: "%" }),
+      gradientFrom: Color({ label: "🎨 Background — Gradient From" }),
+      gradientTo: Color({ label: "🎨 Background — Gradient To" }),
       gradientDirection: Select({
         label: "🎨 Background — Gradient Direction",
         options: [
@@ -28,12 +28,12 @@ runtime.registerComponent(
           { value: "135deg", label: "↘ Diagonal ↘" },
           { value: "225deg", label: "↙ Diagonal ↙" },
         ],
-        defaultValue: "135deg" }),
+        defaultValue: "to bottom" }),
 
       // ✏️ Content
-      heading: TextInput({ label: "✏️ Content — Heading", defaultValue: "Unmatched Quality, Technology &" }),
-      headingAccent: TextInput({ label: "✏️ Content — Heading Accent", defaultValue: "Durability" }),
-      bodyText: TextInput({ label: "✏️ Content — Body Text", defaultValue: "Every CAST fixture is made from solid brass and copper alloys that will never rust or corrode. Our proprietary LED technology delivers superior color rendering and energy efficiency." }),
+      heading: TextInput({ label: "✏️ Content — Heading", defaultValue: "Heading Goes Here" }),
+      headingAccent: TextInput({ label: "✏️ Content — Heading Accent", defaultValue: "Accent" }),
+      bodyText: TextInput({ label: "✏️ Content — Body Text", defaultValue: "Lorem ipsum dolor sit amet, consectetur adipiscing elit." }),
 
       // 🌓 Theme
       mode: Select({ label: '🌓 Theme', options: [{ value: 'dark', label: 'Dark' }, { value: 'light', label: 'Light' }], defaultValue: 'dark' }),
@@ -48,9 +48,9 @@ runtime.registerComponent(
         getItemLabel(item) { return item?.title || "Feature" } }),
 
       // 🔘 Buttons
-      btn1Label: TextInput({ label: "🔘 Buttons — Button 1 Label", defaultValue: "Shop Products" }),
+      btn1Label: TextInput({ label: "🔘 Buttons — Button 1 Label", defaultValue: "Button Here" }),
       btn1Href: TextInput({ label: "🔘 Buttons — Button 1 Href", defaultValue: "/shop" }),
-      btn2Label: TextInput({ label: "🔘 Buttons — Button 2 Label", defaultValue: "Learn More →" }),
+      btn2Label: TextInput({ label: "🔘 Buttons — Button 2 Label", defaultValue: "Button Here" }),
       btn2Href: TextInput({ label: "🔘 Buttons — Button 2 Href", defaultValue: "/about" }),
 
       // 📸 Media

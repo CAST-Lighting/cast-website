@@ -12,7 +12,7 @@ runtime.registerComponent(
 
       // ✏️ Content — Hero
       badgeText: TextInput({ label: "✏️ Content — Badge Text", defaultValue: "Account Application" }),
-      heading: TextInput({ label: "✏️ Content — Heading", defaultValue: "Retail Store Registration" }),
+      heading: TextInput({ label: "✏️ Content — Heading", defaultValue: "Retail Store Account" }),
       description: TextArea({ label: "✏️ Content — Description", defaultValue: "First-time users, register for an account below" }),
 
       // ✏️ Content — Sidebar
@@ -39,5 +39,5 @@ runtime.registerComponent(
       submitLabel: TextInput({ label: "📋 Form — Submit Button Label", defaultValue: "Register & Continue to Checkout →" }),
 
       // 🎨 Background
-      bgColor: Color({ label: "🎨 Background — Color", defaultValue: "#0f1923" }) } }
+      bgColor: Color({ label: "🎨 Background — Color", defaultValue: "#f5f5f5" }) } }
 )

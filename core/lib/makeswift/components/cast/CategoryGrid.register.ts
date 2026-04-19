@@ -14,7 +14,7 @@ runtime.registerComponent(
 
       // 🎨 Background
       bgImage: Image({ label: "🎨 Background — Image" }),
-      bgColor: Color({ label: "🎨 Background — Color", defaultValue: "#27474f" }),
+      bgColor: Color({ label: "🎨 Background — Color", defaultValue: "#0f1923" }),
       bgOpacity: NumberControl({ label: "🎨 Background — Opacity", defaultValue: 100, min: 0, max: 100, step: 1, suffix: "%" }),
       gradientFrom: Color({ label: "🎨 Background — Gradient From" }),
       gradientTo: Color({ label: "🎨 Background — Gradient To" }),

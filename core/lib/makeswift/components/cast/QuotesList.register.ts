@@ -11,7 +11,7 @@ runtime.registerComponent(
       className: Style({ properties: [Style.Padding, Style.Margin] }),
 
       // 🎨 Background
-      bgColor: Color({ label: "🎨 Background — Color", defaultValue: "#0f1923" }),
+      bgColor: Color({ label: "🎨 Background — Color", defaultValue: "#f5f5f5" }),
 
       // ✏️ Content
       heading: TextInput({ label: "✏️ Content — Heading", defaultValue: "My Quotes" }),
