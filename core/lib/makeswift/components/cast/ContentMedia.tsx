@@ -15,12 +15,9 @@ interface FeatureItem { title?: string; desc?: string }
 
 function toEmbedUrl(url: string): string {
   if (!url) return ''
-  // Already an embed URL
   if (url.includes('/embed/')) return url
-  // youtu.be short link
   const shortMatch = url.match(/youtu\.be\/([^?&]+)/)
   if (shortMatch) return `https://www.youtube.com/embed/${shortMatch[1]}`
-  // Standard watch URL
   const watchMatch = url.match(/[?&]v=([^&]+)/)
   if (watchMatch) return `https://www.youtube.com/embed/${watchMatch[1]}`
   return url
@@ -44,7 +41,10 @@ const ContentMedia = forwardRef(function ContentMedia(
     btn1Href,
     btn2Label,
     btn2Href,
+    mediaType = 'video',
     videoUrl,
+    imageUrl,
+    reverseLayout = false,
     stat,
     statLabel,
     mode = 'dark',
@@ -65,7 +65,10 @@ const ContentMedia = forwardRef(function ContentMedia(
     btn1Href?: string
     btn2Label?: string
     btn2Href?: string
+    mediaType?: 'video' | 'image'
     videoUrl?: string
+    imageUrl?: string
+    reverseLayout?: boolean
     stat?: string
     statLabel?: string
     mode?: 'dark' | 'light'
@@ -73,7 +76,6 @@ const ContentMedia = forwardRef(function ContentMedia(
   ref: Ref<HTMLElement>
 ) {
   const t = getTheme(mode)
-  const bgImageUrl = bgImage
   const hasGradient = !!(gradientFrom && gradientTo)
   const overlayOpacity = typeof bgOpacity === 'number' ? bgOpacity / 100 : 0.85
   const sectionBackground = hasGradient
@@ -83,23 +85,29 @@ const ContentMedia = forwardRef(function ContentMedia(
   const features = (featuresProp && featuresProp.length > 0) ? featuresProp : FALLBACK_FEATURES
   const embedSrc = toEmbedUrl(videoUrl || '')
 
+  // Content column order — reversed puts media left, content right
+  const contentOrder = reverseLayout ? 2 : 1
+  const mediaOrder   = reverseLayout ? 1 : 2
+
   return (
     <section
       ref={ref}
       className={`relative overflow-hidden ${className || ""}`}
-      style={{ width: '100%', ...(!bgImageUrl ? { background: sectionBackground } : {}), } as React.CSSProperties}
+      style={{ width: '100%', ...(!bgImage ? { background: sectionBackground } : {}), } as React.CSSProperties}
     >
-      {bgImageUrl && (
-        <img src={bgImageUrl} alt="" className="absolute inset-0 w-full h-full object-cover" style={{ zIndex: 0 }} />
+      {bgImage && (
+        <img src={bgImage} alt="" className="absolute inset-0 w-full h-full object-cover" style={{ zIndex: 0 }} />
       )}
-      {bgImageUrl && (
+      {bgImage && (
         <div className="absolute inset-0" style={{ zIndex: 1, background: sectionBackground, opacity: overlayOpacity }} />
       )}
 
       <div className="relative" style={{ zIndex: 10 }}>
         <div className="site-container">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div>
+
+            {/* ── Content column ── */}
+            <div style={{ order: contentOrder }}>
               <h2 className="heading-style-h2 text-foreground mb-6 leading-tight">
                 {heading || "Unmatched Quality, Technology &"}{" "}
                 <span className="text-gradient-warm">{headingAccent || "Durability"}</span>
@@ -131,36 +139,68 @@ const ContentMedia = forwardRef(function ContentMedia(
               </div>
             </div>
 
-            <div className="relative">
+            {/* ── Media column ── */}
+            <div className="relative" style={{ order: mediaOrder }}>
               <div className="rounded-2xl overflow-hidden glow-warm">
-                {embedSrc ? (
-                  <iframe
-                    src={embedSrc}
-                    title="Quality landscape lighting showcase"
-                    className="w-full h-[280px] md:h-[500px]"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  />
-                ) : (
-                  <div className="w-full h-[280px] md:h-[500px] relative">
+                {mediaType === 'image' ? (
+                  /* ── Image mode ── */
+                  imageUrl ? (
                     <img
-                      src="https://storage.googleapis.com/s.mkswft.com/RmlsZToyYWIwMGYxYS1hZDc1LTRmMjgtOGQ0YS0yODNkMjExZmQ1ODg=/placeholder_video.webp"
-                      alt="Add a YouTube URL in the panel to display a video"
-                      className="w-full h-full object-cover"
+                      src={imageUrl}
+                      alt={heading || ""}
+                      className="w-full h-[280px] md:h-[500px] object-cover block"
                     />
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div style={{ width: 64, height: 64, borderRadius: '50%', background: 'rgba(0,0,0,0.55)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
+                  ) : (
+                    <div className="w-full h-[280px] md:h-[500px] flex items-center justify-center"
+                      style={{ background: "rgba(255,255,255,0.06)", border: "1px dashed rgba(255,255,255,0.15)" }}>
+                      <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 14, color: "rgba(255,255,255,0.4)" }}>
+                        Add an image URL in the panel
+                      </span>
+                    </div>
+                  )
+                ) : (
+                  /* ── Video mode ── */
+                  embedSrc ? (
+                    <iframe
+                      src={embedSrc}
+                      title="Quality landscape lighting showcase"
+                      className="w-full h-[280px] md:h-[500px]"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    />
+                  ) : (
+                    <div className="w-full h-[280px] md:h-[500px] relative">
+                      <img
+                        src="https://storage.googleapis.com/s.mkswft.com/RmlsZToyYWIwMGYxYS1hZDc1LTRmMjgtOGQ0YS0yODNkMjExZmQ1ODg=/placeholder_video.webp"
+                        alt="Add a YouTube URL in the panel to display a video"
+                        className="w-full h-full object-cover"
+                      />
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div style={{ width: 64, height: 64, borderRadius: '50%', background: 'rgba(0,0,0,0.55)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                          <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  )
                 )}
               </div>
-              <div className="absolute -bottom-6 -left-6 rounded-xl p-5 glow-warm-sm" style={{ background: '#ffffff', border: '1px solid rgba(0,0,0,0.08)' }}>
+
+              {/* Stat badge */}
+              <div
+                className="absolute -bottom-6 glow-warm-sm"
+                style={{
+                  [reverseLayout ? 'right' : 'left']: '-1.5rem',
+                  borderRadius: '0.75rem',
+                  padding: '1.25rem',
+                  background: '#ffffff',
+                  border: '1px solid rgba(0,0,0,0.08)',
+                }}
+              >
                 <div className="heading-style-h3" style={{ color: t.accent }}>{stat || "25+"}</div>
                 <div className="text-size-small" style={{ color: '#1a2332', fontWeight: 600 }}>{statLabel || "Years of Excellence"}</div>
               </div>
             </div>
+
           </div>
         </div>
       </div>
