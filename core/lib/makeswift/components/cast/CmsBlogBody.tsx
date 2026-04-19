@@ -116,7 +116,7 @@ const CmsBlogBody = forwardRef(function CmsBlogBody(
         </div>
       )}
 
-      <div style={{ maxWidth: 860, margin: "0 auto", padding: "56px 24px 80px" }}>
+      <div style={{ maxWidth: 860, margin: "0 auto", padding: "0 24px" }}>
 
         {/* Post header */}
         <div style={{ marginBottom: 28 }}>

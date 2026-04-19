@@ -162,7 +162,7 @@ const BlogGrid = forwardRef(function BlogGrid(
       </div>
 
       {/* ── Post Grid ── */}
-      <div style={{ padding: "56px 0 0" }}>
+      <div>
         <div className="site-container">
           {loading ? (
             <div style={{ textAlign: "center", padding: "80px 0" }}>
