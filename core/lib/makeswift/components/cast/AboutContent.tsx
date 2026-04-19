@@ -19,8 +19,6 @@ interface AboutContentProps {
   sectionBody?: string
   stats?: StatItem[]
   features?: FeatureItem[]
-  missionHeading?: string
-  missionBody?: string
   btn1Label?: string
   btn1Href?: string
   btn2Label?: string
@@ -85,8 +83,6 @@ const AboutContent = forwardRef(function AboutContent(
     sectionBody = "Since 2001, CAST Lighting has been designing and manufacturing professional-grade landscape lighting fixtures in the USA. Every product is crafted from solid brass or copper — materials chosen for their beauty and ability to withstand decades of outdoor exposure without corroding or deteriorating.",
     stats: statsProp,
     features: featuresProp,
-    missionHeading = "Our Mission",
-    missionBody = "To provide landscape lighting professionals with the highest-quality fixtures available — products that are beautiful, durable, and easy to install. We believe outdoor lighting should enhance properties for a lifetime, and we build every product with that standard in mind.",
     btn1Label = "Shop Products",
     btn1Href = "/shop",
     btn2Label = "Contact Us",
@@ -273,45 +269,6 @@ const AboutContent = forwardRef(function AboutContent(
               </p>
             </div>
           ))}
-        </div>
-
-        {/* ── 3. Mission Block ───────────────────────────────── */}
-        <div style={{
-          textAlign: "center",
-          padding: "56px 48px",
-          borderRadius: 16,
-          background: "rgba(255,255,255,0.03)",
-          border: "1px solid rgba(255,255,255,0.07)",
-          maxWidth: 820,
-          margin: "0 auto",
-        }}>
-          {/* Decorative rule */}
-          <div style={{
-            width: 48, height: 2,
-            background: "linear-gradient(90deg, #007CB0, #7EBEE8)",
-            borderRadius: 2,
-            margin: "0 auto 28px",
-          }} />
-
-          <h2 style={{
-            fontFamily: "'Essonnes', 'Playfair Display', serif",
-            fontSize: "clamp(1.5rem, 2.4vw, 2rem)",
-            fontWeight: 700,
-            color: "#fff",
-            margin: "0 0 20px",
-            lineHeight: 1.2,
-          }}>
-            {missionHeading}
-          </h2>
-          <p style={{
-            fontFamily: "'Barlow', sans-serif",
-            fontSize: 17,
-            lineHeight: 1.9,
-            color: "rgba(255,255,255,0.62)",
-            margin: 0,
-          }}>
-            {missionBody}
-          </p>
         </div>
 
       </div>

@@ -53,7 +53,7 @@ If you have any questions about these Terms, please contact us at legal@castligh
 const RichTextSection = forwardRef(function RichTextSection(
   {
     className,
-    bgColor = "#0f1923",
+    bgColor = "#ffffff",
     heading = "Terms & Conditions",
     headingAccent = "",
     lastUpdated = "January 1, 2026",
@@ -76,18 +76,18 @@ const RichTextSection = forwardRef(function RichTextSection(
     <section
       ref={ref}
       className={className || ""}
-      style={{ width: '100%', background: bgColor || "#0f1923", }}
+      style={{ width: '100%', background: bgColor || "#ffffff", }}
     >
       <div className="site-container">
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
           {/* Heading */}
-          <div style={{ marginBottom: 40, paddingBottom: 32, borderBottom: "1px solid rgba(255,255,255,0.1)" }}>
+          <div style={{ marginBottom: 40, paddingBottom: 32, borderBottom: "1px solid #e5e7eb" }}>
             <h1 style={{
               fontFamily: "'Essonnes', 'Playfair Display', serif",
               fontSize: "var(--h1-size, 3rem)",
               fontWeight: 700,
               lineHeight: 1.15,
-              color: "#fff",
+              color: "#111827",
               margin: "0 0 16px",
             }}>
               {heading}
@@ -108,7 +108,7 @@ const RichTextSection = forwardRef(function RichTextSection(
               <p style={{
                 fontFamily: "'Barlow', sans-serif",
                 fontSize: 14,
-                color: "rgba(255,255,255,0.45)",
+                color: "#9ca3af",
                 margin: 0,
               }}>
                 Last updated: {lastUpdated}
@@ -128,10 +128,9 @@ const RichTextSection = forwardRef(function RichTextSection(
                     fontFamily: "'Barlow', sans-serif",
                     fontSize: isSectionHeader ? 15 : 16,
                     fontWeight: isSectionHeader ? 700 : 400,
-                    color: isSectionHeader ? "#fff" : "rgba(255,255,255,0.72)",
+                    color: isSectionHeader ? "#111827" : "#4b5563",
                     lineHeight: 1.75,
                     margin: "0 0 20px",
-                    textTransform: isSectionHeader ? "none" : "none",
                     letterSpacing: isSectionHeader ? "0.02em" : "normal",
                   }}
                 >
@@ -143,7 +142,7 @@ const RichTextSection = forwardRef(function RichTextSection(
 
           {/* PDF Download */}
           {showPdf && pdfUrl && (
-            <div style={{ marginTop: 40, paddingBottom: 32, borderTop: "1px solid rgba(255,255,255,0.1)" }}>
+            <div style={{ marginTop: 40, paddingBottom: 32, borderTop: "1px solid #e5e7eb" }}>
               <a
                 href={pdfUrl}
                 download

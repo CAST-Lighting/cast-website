@@ -43,13 +43,6 @@ runtime.registerComponent(
           return item?.title || "Feature"
         } }),
 
-      // ✏️ Content — Mission Block
-      missionHeading: TextInput({ label: "✏️ Content — Mission Heading", defaultValue: "Our Mission" }),
-      missionBody: TextArea({
-        label: "✏️ Content — Mission Body",
-        defaultValue:
-          "To provide landscape lighting professionals with the highest-quality fixtures available — products that are beautiful, durable, and easy to install. We believe outdoor lighting should enhance properties for a lifetime, and we build every product with that standard in mind." }),
-
       // 🔘 Buttons
       btn1Label: TextInput({ label: "🔘 Buttons — Button 1 Label", defaultValue: "Shop Products" }),
       btn1Href: TextInput({ label: "🔘 Buttons — Button 1 Link", defaultValue: "/shop" }),
