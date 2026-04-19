@@ -24,7 +24,7 @@ const CmsCategoryGrid = forwardRef(function CmsCategoryGrid(
   {
     className,
     bgColor = "#F5F5F5",
-    columns = 4,
+    columns = 6,
   }: CmsCategoryGridProps,
   ref: Ref<HTMLElement>
 ) {
