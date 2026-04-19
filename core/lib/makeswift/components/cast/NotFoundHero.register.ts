@@ -1,5 +1,5 @@
 import { lazy } from "react"
-import { Style, TextInput, TextArea, Color, Number } from "@makeswift/runtime/controls"
+import { Style, TextInput, TextArea, Color } from "@makeswift/runtime/controls"
 import { runtime } from "~/lib/makeswift/runtime"
 
 runtime.registerComponent(
@@ -9,8 +9,6 @@ runtime.registerComponent(
     label: "404 / Not Found Hero",
     props: {
       className: Style({ properties: [Style.Padding, Style.Margin] }),
-      paddingTop: Number({ label: "📐 Layout — Padding Top (px)", defaultValue: 80 }),
-      paddingBottom: Number({ label: "📐 Layout — Padding Bottom (px)", defaultValue: 80 }),
 
       // 🎨 Background
       bgColor: Color({ label: "🎨 Background — Color", defaultValue: "#0f1923" }),

@@ -9,8 +9,6 @@ runtime.registerComponent(
     label: "Search / Results Grid",
     props: {
       className: Style({ properties: [Style.Padding, Style.Margin] }),
-      paddingTop: Number({ label: "📐 Layout — Padding Top (px)", defaultValue: 48 }),
-      paddingBottom: Number({ label: "📐 Layout — Padding Bottom (px)", defaultValue: 96 }),
 
       // 🎨 Background
       bgColor: Color({ label: "🎨 Background — Color", defaultValue: "#0f1923" }),

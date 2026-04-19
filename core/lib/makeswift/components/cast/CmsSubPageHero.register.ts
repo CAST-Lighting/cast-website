@@ -4,8 +4,6 @@ import { runtime } from "~/lib/makeswift/runtime"
 
 const heroControls = {
   className: Style({ properties: [Style.Padding, Style.Margin] }),
-  paddingTop: Number({ label: "📐 Layout — Padding Top (px)", defaultValue: 165 }),
-  paddingBottom: Number({ label: "📐 Layout — Padding Bottom (px)", defaultValue: 64 }),
 
   // 🎨 Background
   bgImage: Image({ label: "🎨 Background — Image" }),
