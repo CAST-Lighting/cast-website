@@ -8,7 +8,6 @@ interface DistributorFinderProps {
   overline?: string
   heading?: string
   subheading?: string
-  formHeading?: string
   bgColor?: string
   bgImage?: string
   bgOpacity?: number
@@ -23,15 +22,6 @@ const PLACEHOLDER_DISTRIBUTORS = [
   { name: "Eastern Pro Lighting", city: "Atlanta", state: "GA", type: "Lighting Showroom", phone: "(404) 555-0367", brands: ["CAST", "Unique Lighting"] },
 ]
 
-const Benefit = ({ text }: { text: string }) => (
-  <div style={{ display: "flex", gap: 10, alignItems: "flex-start" }}>
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style={{ flexShrink: 0, marginTop: 2 }}>
-      <circle cx="12" cy="12" r="11" fill="var(--color-accent)" opacity="0.15" />
-      <path d="M7 12l4 4 6-7" stroke="var(--color-accent)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-    <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 15, color: "var(--color-content)", lineHeight: 1.5 }}>{text}</span>
-  </div>
-)
 
 const DistributorFinder = forwardRef(function DistributorFinder(
   {
@@ -40,7 +30,6 @@ const DistributorFinder = forwardRef(function DistributorFinder(
     overline = "Find Or Become A Distributor",
     heading = "CAST Distribution Partners",
     subheading = "CAST Lighting works with a select network of professional landscape supply distributors across the country. Find a distributor near you, or apply to carry CAST in your territory.",
-    formHeading = "Apply To Become A CAST Distributor",
     bgColor,
     bgImage,
     bgOpacity,
@@ -52,16 +41,10 @@ const DistributorFinder = forwardRef(function DistributorFinder(
 ) {
   const [zip, setZip] = useState("")
   const [searched, setSearched] = useState(false)
-  const [submitted, setSubmitted] = useState(false)
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault()
     setSearched(true)
-  }
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    setSubmitted(true)
   }
 
   const hasGradient = !!(gradientFrom && gradientTo)
@@ -80,9 +63,7 @@ const DistributorFinder = forwardRef(function DistributorFinder(
       <style>{`
         .df-main-grid { display: grid; grid-template-columns: 1fr 300px; gap: 32px; align-items: flex-start; }
         .df-map { border-radius: 10px; height: 420px; display: flex; align-items: center; justify-content: center; border: 1px solid #d1d9e0; position: relative; overflow: hidden; background: #e2e8ed; }
-        .df-form-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start; }
-        .df-input { width: 100%; padding: 10px 14px; border: 1px solid rgba(255,255,255,0.12); border-radius: 6px; font-family: 'Barlow', sans-serif; font-size: 14px; color: var(--color-title); box-sizing: border-box; outline: none; background: rgba(255,255,255,0.05); }
-        @media (max-width: 900px) { .df-main-grid { grid-template-columns: 1fr; } .df-map { height: 300px; } .df-form-inner { grid-template-columns: 1fr; } }
+        @media (max-width: 900px) { .df-main-grid { grid-template-columns: 1fr; } .df-map { height: 300px; } }
       `}</style>
       <div className="site-container" style={{ paddingTop: 64, paddingBottom: 72 }}>
         <div className="df-main-grid">
@@ -107,67 +88,6 @@ const DistributorFinder = forwardRef(function DistributorFinder(
               </div>
             </div>
 
-            {/* Application form */}
-            <div>
-            <div style={{ background: "#2d353c", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 12, padding: "36px 32px", boxShadow: "0 4px 24px rgba(0,0,0,0.06)" }}>
-              {submitted ? (
-                <div style={{ textAlign: "center", padding: "40px 0" }}>
-                  <svg width="56" height="56" viewBox="0 0 24 24" fill="none" style={{ marginBottom: 16 }}>
-                    <circle cx="12" cy="12" r="11" fill="var(--color-accent)" opacity="0.15" />
-                    <path d="M7 12l4 4 6-7" stroke="var(--color-accent)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                  <h3 style={{ fontFamily: "'Essonnes', 'Playfair Display', serif", fontSize: "var(--h3-size)", fontWeight: 700, color: "var(--color-title)", margin: "0 0 10px" }}>Application Received</h3>
-                  <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 15, color: "var(--color-content)", lineHeight: 1.6, margin: 0 }}>Our distribution team will review your application and follow up within 3–5 business days.</p>
-                </div>
-              ) : (
-                <div className="df-form-inner">
-                  {/* Left: heading + benefits */}
-                  <div>
-                    <h3 style={{ fontFamily: "'Essonnes', 'Playfair Display', serif", fontSize: "var(--h3-size)", fontWeight: 700, color: "var(--color-title)", margin: "0 0 8px" }}>{formHeading}</h3>
-                    <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 14, color: "var(--color-content)", lineHeight: 1.5, margin: "0 0 24px" }}>Carry the industry's best outdoor lighting brand in your market.</p>
-                    <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
-                      <Benefit text="Exclusive territory protection available" />
-                      <Benefit text="Industry-leading margins on all CAST products" />
-                      <Benefit text="Full marketing support and co-op funds" />
-                      <Benefit text="CAST factory training and certification" />
-                    </div>
-                  </div>
-                  {/* Right: fields */}
-                  <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 14 }}>
-                    <div>
-                      <label style={{ fontFamily: "'Barlow', sans-serif", fontSize: 12, fontWeight: 600, color: "rgba(255,255,255,0.5)", display: "block", marginBottom: 6 }}>Company Name *</label>
-                      <input required type="text" placeholder="Acme Landscape Supply" className="df-input" />
-                    </div>
-                    <div>
-                      <label style={{ fontFamily: "'Barlow', sans-serif", fontSize: 12, fontWeight: 600, color: "rgba(255,255,255,0.5)", display: "block", marginBottom: 6 }}>Contact Name *</label>
-                      <input required type="text" placeholder="Jane Doe" className="df-input" />
-                    </div>
-                    <div>
-                      <label style={{ fontFamily: "'Barlow', sans-serif", fontSize: 12, fontWeight: 600, color: "rgba(255,255,255,0.5)", display: "block", marginBottom: 6 }}>Email *</label>
-                      <input required type="email" placeholder="jane@acmesupply.com" className="df-input" />
-                    </div>
-                    <div>
-                      <label style={{ fontFamily: "'Barlow', sans-serif", fontSize: 12, fontWeight: 600, color: "rgba(255,255,255,0.5)", display: "block", marginBottom: 6 }}>Territory / State *</label>
-                      <input required type="text" placeholder="e.g. Southern California" className="df-input" />
-                    </div>
-                    <div>
-                      <label style={{ fontFamily: "'Barlow', sans-serif", fontSize: 12, fontWeight: 600, color: "rgba(255,255,255,0.5)", display: "block", marginBottom: 6 }}>Annual Revenue Range</label>
-                      <select className="df-input" style={{ background: "#2d353c", appearance: "none" }}>
-                        <option value="">Select...</option>
-                        <option>Under $500K</option>
-                        <option>$500K – $2M</option>
-                        <option>$2M – $10M</option>
-                        <option>Over $10M</option>
-                      </select>
-                    </div>
-                    <button type="submit" className="sg-btn-solid-md" style={{ width: "100%", justifyContent: "center", marginTop: 4 }}>
-                      Submit Application
-                    </button>
-                  </form>
-                </div>
-              )}
-            </div>
-            </div>{/* end form */}
           </div>{/* end left column */}
 
           {/* Right: search + distributor tiles */}
