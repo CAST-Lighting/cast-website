@@ -56,8 +56,8 @@ const LoginSection = forwardRef(function LoginSection(
       style={{ width: '100%', background: bgColor || "#0f1923" }}
     >
       <style>{`
-        .ls-layout { display: grid; grid-template-columns: 1fr 1px 1fr; gap: 48px; align-items: start; padding: 72px 0; }
-        @media (max-width: 900px) { .ls-layout { grid-template-columns: 1fr; padding: 48px 0; } .ls-divider { display: none; } }
+        .ls-layout { display: grid; grid-template-columns: 1fr 1px 1fr; gap: 48px; align-items: start; }
+        @media (max-width: 900px) { .ls-layout { grid-template-columns: 1fr; } .ls-divider { display: none; } }
         .ls-label { font-family: 'Barlow', sans-serif; font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.85); display: block; margin-bottom: 6px; }
         .ls-input { width: 100%; padding: 11px 14px; border: 1px solid rgba(255,255,255,0.12); border-radius: 6px; font-family: 'Barlow', sans-serif; font-size: 14px; color: #fff; box-sizing: border-box; outline: none; background: rgba(255,255,255,0.05); }
         .ls-input:focus { border-color: #007CB0; }

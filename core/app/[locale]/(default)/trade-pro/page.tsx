@@ -63,7 +63,7 @@ function FallbackPage() {
         </section>
 
         {/* Form + Sidebar */}
-        <div style={{ padding: '64px 0 80px' }}>
+        <div style={{ padding: '64px 0 0' }}>
           <div className="reg-container">
             <div className="reg-grid">
               {/* Form */}

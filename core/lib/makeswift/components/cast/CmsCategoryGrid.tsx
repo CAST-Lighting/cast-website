@@ -133,7 +133,7 @@ const CmsCategoryGrid = forwardRef(function CmsCategoryGrid(
 
         {/* Editor note */}
         {!cms && (
-          <p style={{ fontFamily: "'Barlow',sans-serif", fontSize: 13, color: t.subtle, textAlign: "center", marginTop: 32, fontStyle: "italic", opacity: 0.6 }}>
+          <p style={{ fontFamily: "'Barlow',sans-serif", fontSize: 13, color: t.subtle, textAlign: "center", marginTop: 8, fontStyle: "italic", opacity: 0.6 }}>
             Live category pages will show real BigCommerce subcategories here.
           </p>
         )}
