@@ -137,7 +137,7 @@ const MediaGallery = forwardRef(function MediaGallery(
   const overlayOpacity = typeof bgOpacity === "number" ? bgOpacity / 100 : 0.85
   const sectionBackground = hasGradient
     ? `linear-gradient(${gradientDirection || "to bottom"}, ${gradientFrom}, ${gradientTo})`
-    : bgColor || "#2d353c"
+    : bgColor || "#f0f2f5"
 
   return (
     <div
@@ -217,23 +217,45 @@ const MediaGallery = forwardRef(function MediaGallery(
         {lightbox !== null && (
           <div
             onClick={() => setLightbox(null)}
-            style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.85)", zIndex: 9999, display: "flex", alignItems: "center", justifyContent: "center" }}
+            style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.92)", zIndex: 9999, display: "flex", alignItems: "center", justifyContent: "center" }}
           >
+            {/* Close */}
+            <button onClick={() => setLightbox(null)} style={{ position: "absolute", top: 20, right: 24, background: "none", border: "none", color: "#fff", fontSize: 32, cursor: "pointer", lineHeight: 1, zIndex: 1 }} aria-label="Close">×</button>
+
+            {/* Prev */}
             <button
-              onClick={() => setLightbox(null)}
-              style={{ position: "absolute", top: 20, right: 24, background: "none", border: "none", color: "#fff", fontSize: 32, cursor: "pointer", lineHeight: 1 }}
-              aria-label="Close"
-            >×</button>
-            <div style={{ maxWidth: "80vw", maxHeight: "80vh", textAlign: "center" }}>
+              onClick={e => { e.stopPropagation(); setLightbox(l => l !== null ? (l - 1 + list.length) % list.length : null) }}
+              style={{ position: "absolute", left: 20, top: "50%", transform: "translateY(-50%)", background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.2)", borderRadius: "50%", width: 48, height: 48, display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer", color: "#fff", zIndex: 1 }}
+              aria-label="Previous"
+            >
+              <ArrowLeft style={{ width: 20, height: 20 }} />
+            </button>
+
+            {/* Media */}
+            <div onClick={e => e.stopPropagation()} style={{ maxWidth: "80vw", maxHeight: "80vh", textAlign: "center" }}>
               {list[lightbox]?.src ? (
-                <img src={list[lightbox].src} alt={list[lightbox]?.caption} style={{ maxWidth: "100%", maxHeight: "80vh", borderRadius: 8 }} />
+                list[lightbox]?.type === "video" ? (
+                  <video src={list[lightbox].src} controls style={{ maxWidth: "100%", maxHeight: "78vh", borderRadius: 8 }} />
+                ) : (
+                  <img src={list[lightbox].src} alt={list[lightbox]?.caption} style={{ maxWidth: "100%", maxHeight: "78vh", borderRadius: 8, objectFit: "contain" }} />
+                )
               ) : (
                 <PlaceholderImage isVideo={list[lightbox]?.type === "video"} />
               )}
               {list[lightbox]?.caption && (
-                <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 14, color: "#fff", marginTop: 12 }}>{list[lightbox]?.caption}</p>
+                <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 14, color: "rgba(255,255,255,0.7)", marginTop: 12 }}>{list[lightbox]?.caption}</p>
               )}
+              <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 12, color: "rgba(255,255,255,0.35)", margin: "8px 0 0" }}>{lightbox + 1} / {list.length}</p>
             </div>
+
+            {/* Next */}
+            <button
+              onClick={e => { e.stopPropagation(); setLightbox(l => l !== null ? (l + 1) % list.length : null) }}
+              style={{ position: "absolute", right: 20, top: "50%", transform: "translateY(-50%)", background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.2)", borderRadius: "50%", width: 48, height: 48, display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer", color: "#fff", zIndex: 1 }}
+              aria-label="Next"
+            >
+              <ArrowRight style={{ width: 20, height: 20 }} />
+            </button>
           </div>
         )}
       </div>

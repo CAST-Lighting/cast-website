@@ -81,7 +81,10 @@ const BlogGrid = forwardRef(function BlogGrid(
       const res = await fetch("/api/cast/blog?status=Published")
       if (!res.ok) throw new Error(`HTTP ${res.status}`)
       const data: BlogPost[] = await res.json()
-      setAllPosts(data)
+      // Deduplicate by id
+      const seen = new Set<string>()
+      const unique = data.filter(p => { if (seen.has(p.id)) return false; seen.add(p.id); return true })
+      setAllPosts(unique)
     } catch (err) {
       setError(err instanceof Error ? err.message : "Failed to load posts")
     } finally {
