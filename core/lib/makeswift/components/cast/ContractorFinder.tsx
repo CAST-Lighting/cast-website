@@ -246,3 +246,14 @@ const ContractorFinder = forwardRef(function ContractorFinder(
                 <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 12, color: "rgba(255,255,255,0.4)", margin: 0, textAlign: "center" }}>
                   We'll reach out within one business day. No spam, ever.
                 </p>
+              </form>
+            )}
+          </div>
+
+        </div>
+      </div>
+    </div>
+  )
+})
+
+export default ContractorFinder
