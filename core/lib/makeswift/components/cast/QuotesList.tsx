@@ -103,7 +103,7 @@ function QuotesList(
           overflow: hidden;
           display: flex;
           flex-direction: column;
-          transition: border-color 200ms, box-shadow 200ms;
+          transition: border-color 200ms ease, box-shadow 200ms ease;
         }
         .ql-card:hover {
           border-color: rgba(0,124,176,0.4);
@@ -123,7 +123,7 @@ function QuotesList(
           background: none; border: none; cursor: pointer;
           color: ${t.subtle}; padding: 0;
           display: inline-flex; align-items: center;
-          transition: color 150ms; flex-shrink: 0;
+          transition: color 200ms ease; flex-shrink: 0;
         }
         .ql-rename-btn:hover { color: ${t.accent}; }
       `}</style>

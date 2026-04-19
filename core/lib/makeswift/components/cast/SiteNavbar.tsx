@@ -129,7 +129,7 @@ const SiteNavbar = forwardRef(function SiteNavbar(
               >
                 <a
                   href={item.href || "#"}
-                  className="flex items-center gap-1 text-secondary-foreground hover:text-primary transition-colors py-2"
+                  className="flex items-center gap-1 text-secondary-foreground hover:text-primary transition-colors duration-200 ease-in py-2"
                 >
                   {item.label}
                   {item.dropdown && <ChevronDown className="w-3.5 h-3.5" />}
@@ -141,7 +141,7 @@ const SiteNavbar = forwardRef(function SiteNavbar(
                         <a
                           key={sub.label}
                           href={sub.href}
-                          className="block px-4 py-2.5 text-sm text-secondary-foreground hover:text-primary hover:bg-primary/5 transition-colors"
+                          className="block px-4 py-2.5 text-sm text-secondary-foreground hover:text-primary hover:bg-primary/5 transition-colors duration-200 ease-in"
                         >
                           {sub.label}
                         </a>
@@ -155,17 +155,17 @@ const SiteNavbar = forwardRef(function SiteNavbar(
 
           <div className="flex items-center gap-4">
             {!landingPageMode && <button
-              className="text-secondary-foreground hover:text-primary transition-colors"
+              className="text-secondary-foreground hover:text-primary transition-colors duration-200 ease-in"
               onClick={() => setSearchOpen(!searchOpen)}
             >
               <Search className="w-5 h-5" />
             </button>}
-            <button className="text-secondary-foreground hover:text-primary transition-colors" onClick={() => setCartOpen(true)}>
+            <button className="text-secondary-foreground hover:text-primary transition-colors duration-200 ease-in" onClick={() => setCartOpen(true)}>
               <ShoppingCart className="w-5 h-5" />
             </button>
             <a
               href={resolvedCtaHref}
-              className="hidden md:inline-flex items-center px-5 py-2 rounded-md bg-primary text-primary-foreground font-semibold text-sm hover:bg-warm-glow transition-colors"
+              className="hidden md:inline-flex items-center px-5 py-2 rounded-md bg-primary text-primary-foreground font-semibold text-sm hover:bg-warm-glow transition-colors duration-200 ease-in"
             >
               {resolvedCtaLabel}
             </a>
@@ -197,7 +197,7 @@ const SiteNavbar = forwardRef(function SiteNavbar(
                 autoFocus
                 className="w-full bg-transparent text-gray-900 placeholder:text-muted-foreground/50 focus:outline-none font-body text-lg"
               />
-              <button type="submit" className="flex-shrink-0 bg-[#007CB0] hover:bg-[#005f8a] text-white rounded-full px-5 py-2 font-semibold text-sm transition-colors" style={{ fontFamily: "'Barlow', sans-serif" }}>
+              <button type="submit" className="flex-shrink-0 bg-[#007CB0] hover:bg-[#005f8a] text-white rounded-full px-5 py-2 font-semibold text-sm transition-colors duration-200 ease-in" style={{ fontFamily: "'Barlow', sans-serif" }}>
                 Search
               </button>
             </form>
@@ -220,7 +220,7 @@ const SiteNavbar = forwardRef(function SiteNavbar(
                   {item.label}
                   {item.dropdown && (
                     <ChevronDown
-                      className={`w-4 h-4 transition-transform ${mobileExpanded === item.label ? "rotate-180" : ""}`}
+                      className={`w-4 h-4 transition-transform duration-200 ease-in ${mobileExpanded === item.label ? "rotate-180" : ""}`}
                     />
                   )}
                 </button>
@@ -239,8 +239,8 @@ const SiteNavbar = forwardRef(function SiteNavbar(
                 )}
               </div>
             ))}
-            <a href={resolvedCtaHref} className="block w-full text-center px-5 py-2 rounded-md bg-primary text-primary-foreground font-semibold text-sm mt-2">
-              {resolvedCtaLabel}
+            <a href="#" className="block w-full text-center px-5 py-2 rounded-md bg-primary text-primary-foreground font-semibold text-sm mt-2">
+              LOGIN / SIGNUP
             </a>
           </div>
         )}
@@ -260,7 +260,7 @@ const SiteNavbar = forwardRef(function SiteNavbar(
               <h2 className="text-lg font-semibold font-display text-foreground">Your Cart</h2>
               <button
                 onClick={() => setCartOpen(false)}
-                className="text-muted-foreground hover:text-foreground transition-colors"
+                className="text-muted-foreground hover:text-foreground transition-colors duration-200 ease-in"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -272,7 +272,7 @@ const SiteNavbar = forwardRef(function SiteNavbar(
               <a
                 href="/shop"
                 onClick={() => setCartOpen(false)}
-                className="inline-flex items-center px-6 py-2.5 rounded-md bg-primary text-primary-foreground font-semibold text-sm hover:bg-warm-glow transition-colors"
+                className="inline-flex items-center px-6 py-2.5 rounded-md bg-primary text-primary-foreground font-semibold text-sm hover:bg-warm-glow transition-colors duration-200 ease-in"
               >
                 Shop Now
               </a>

@@ -140,7 +140,7 @@ const AboutContent = forwardRef(function AboutContent(
           border-radius: 12px;
           background: rgba(255,255,255,0.03);
           border: 1px solid rgba(255,255,255,0.07);
-          transition: border-color 200ms, background 200ms;
+          transition: border-color 200ms ease, background 200ms ease;
         }
         .ac-card:hover {
           border-color: rgba(0,124,176,0.4);

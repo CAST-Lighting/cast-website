@@ -143,10 +143,10 @@ const PartsGrid = forwardRef(function PartsGrid(
               </h2>
             </div>
             <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-              <button onClick={() => scroll("left")} disabled={!canScrollLeft} className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-foreground hover:border-primary hover:text-primary transition-colors disabled:opacity-30 disabled:cursor-not-allowed">
+              <button onClick={() => scroll("left")} disabled={!canScrollLeft} className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-foreground hover:border-primary hover:text-primary transition-colors duration-200 ease-in disabled:opacity-30 disabled:cursor-not-allowed">
                 <ArrowLeft className="w-4 h-4" />
               </button>
-              <button onClick={() => scroll("right")} disabled={!canScrollRight} className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-foreground hover:border-primary hover:text-primary transition-colors disabled:opacity-30 disabled:cursor-not-allowed">
+              <button onClick={() => scroll("right")} disabled={!canScrollRight} className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-foreground hover:border-primary hover:text-primary transition-colors duration-200 ease-in disabled:opacity-30 disabled:cursor-not-allowed">
                 <ArrowRight className="w-4 h-4" />
               </button>
             </div>
@@ -163,13 +163,13 @@ const PartsGrid = forwardRef(function PartsGrid(
             {list.map((part, i) => (
               <div
                 key={i}
-                style={{ background: t.cardBg, border: `1px solid ${t.cardBorder}`, borderRadius: 10, overflow: "hidden", width: 220, minWidth: 220, maxWidth: 220, flexShrink: 0, display: "flex", flexDirection: "column", transition: "border-color 200ms, box-shadow 200ms" }}
+                style={{ background: t.cardBg, border: `1px solid ${t.cardBorder}`, borderRadius: 10, overflow: "hidden", width: 220, minWidth: 220, maxWidth: 220, flexShrink: 0, display: "flex", flexDirection: "column", transition: "border-color 200ms ease, box-shadow 200ms ease" }}
                 onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(0,124,176,0.4)"; (e.currentTarget as HTMLDivElement).style.boxShadow = "0 4px 24px rgba(0,0,0,0.08)"; }}
                 onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.borderColor = t.cardBorder; (e.currentTarget as HTMLDivElement).style.boxShadow = "none"; }}
               >
                 <div style={{ aspectRatio: "1", position: "relative", overflow: "hidden" }}>
                   {part.image
-                    ? <img src={part.image} alt={part.name} style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 300ms" }} onMouseEnter={e => { (e.currentTarget as HTMLImageElement).style.transform = "scale(1.05)"; }} onMouseLeave={e => { (e.currentTarget as HTMLImageElement).style.transform = "scale(1)"; }} />
+                    ? <img src={part.image} alt={part.name} style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 200ms ease" }} onMouseEnter={e => { (e.currentTarget as HTMLImageElement).style.transform = "scale(1.05)"; }} onMouseLeave={e => { (e.currentTarget as HTMLImageElement).style.transform = "scale(1)"; }} />
                     : (
                       <div style={{ width: "100%", height: "100%", background: "linear-gradient(135deg, #1a2e3a 0%, #0d4a5c 50%, #1a3a4a 100%)", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 10 }}>
                         <div style={{ position: "absolute", inset: 0, backgroundImage: "linear-gradient(rgba(175,229,253,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(175,229,253,0.04) 1px, transparent 1px)", backgroundSize: "24px 24px" }} />

@@ -234,7 +234,7 @@ const EventsGrid = forwardRef(function EventsGrid(
                     overflow: "hidden",
                     display: "flex",
                     flexDirection: "column",
-                    transition: "border-color 200ms, box-shadow 200ms, transform 200ms",
+                    transition: "border-color 200ms ease, box-shadow 200ms ease, transform 200ms ease",
                   }}
                   onMouseEnter={(e) => {
                     const el = e.currentTarget

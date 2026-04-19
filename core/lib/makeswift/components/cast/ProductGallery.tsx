@@ -137,13 +137,13 @@ const ProductGallery = forwardRef(function ProductGallery(
               </p>
             </div>
             <div className="flex items-center gap-3 mt-4 md:mt-0">
-              <button onClick={() => scroll('left')} disabled={!canScrollLeft} className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-foreground hover:border-primary hover:text-primary transition-colors disabled:opacity-30 disabled:cursor-not-allowed">
+              <button onClick={() => scroll('left')} disabled={!canScrollLeft} className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-foreground hover:border-primary hover:text-primary transition-colors duration-200 ease-in disabled:opacity-30 disabled:cursor-not-allowed">
                 <ArrowLeft className="w-4 h-4" />
               </button>
-              <button onClick={() => scroll('right')} disabled={!canScrollRight} className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-foreground hover:border-primary hover:text-primary transition-colors disabled:opacity-30 disabled:cursor-not-allowed">
+              <button onClick={() => scroll('right')} disabled={!canScrollRight} className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-foreground hover:border-primary hover:text-primary transition-colors duration-200 ease-in disabled:opacity-30 disabled:cursor-not-allowed">
                 <ArrowRight className="w-4 h-4" />
               </button>
-              <a href={viewAllHref || '/shop'} className="flex items-center gap-2 text-primary hover:text-accent transition-colors text-size-medium font-medium ml-4">
+              <a href={viewAllHref || '/shop'} className="flex items-center gap-2 text-primary hover:text-accent transition-colors duration-200 ease-in text-size-medium font-medium ml-4">
                 {viewAllLabel || 'View All'} <ArrowRight className="w-4 h-4" />
               </a>
             </div>
@@ -161,19 +161,19 @@ const ProductGallery = forwardRef(function ProductGallery(
               <a
                 key={product.entityId}
                 href={product.path}
-                className="group flex-shrink-0 w-[280px] bg-card border border-border rounded-xl overflow-hidden hover:border-primary/40 transition-all duration-300 shadow-md shadow-black/20 hover:shadow-lg hover:shadow-black/30 no-underline"
+                className="group flex-shrink-0 w-[280px] bg-card border border-border rounded-xl overflow-hidden hover:border-primary/40 transition-all duration-200 ease-in shadow-md shadow-black/20 hover:shadow-lg hover:shadow-black/30 no-underline"
               >
                 <div className="relative overflow-hidden aspect-square">
                   <img
                     src={product.image}
                     alt={product.imageAlt}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200 ease-in"
                   />
                 </div>
                 <div className="p-5">
                   <h3 className="heading-card-sm text-foreground mb-1">{product.name}</h3>
                   {product.price && <p className="text-primary text-size-large font-bold mb-3">{product.price}</p>}
-                  <span className="inline-flex items-center gap-1.5 text-size-small text-muted-foreground group-hover:text-primary transition-colors">
+                  <span className="inline-flex items-center gap-1.5 text-size-small text-muted-foreground group-hover:text-primary transition-colors duration-200 ease-in">
                     View Product <ArrowRight className="w-3.5 h-3.5" />
                   </span>
                 </div>

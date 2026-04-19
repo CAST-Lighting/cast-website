@@ -145,7 +145,7 @@ const NotFoundHero = forwardRef(function NotFoundHero(
             border: "1px solid rgba(255,255,255,0.12)",
             borderRadius: 10,
             overflow: "hidden",
-            transition: "border-color 200ms",
+            transition: "border-color 200ms ease",
           }}
         >
           <div style={{ display: "flex", alignItems: "center", paddingLeft: 16, color: "rgba(255,255,255,0.35)" }}>
@@ -178,7 +178,7 @@ const NotFoundHero = forwardRef(function NotFoundHero(
               fontFamily: "'Barlow', sans-serif",
               fontSize: 14,
               fontWeight: 600,
-              transition: "background 200ms",
+              transition: "background 200ms ease",
             }}
           >
             Search

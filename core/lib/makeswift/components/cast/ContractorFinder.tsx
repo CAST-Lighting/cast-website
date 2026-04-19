@@ -107,7 +107,7 @@ const ContractorFinder = forwardRef(function ContractorFinder(
         .cf-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; position: relative; z-index: 10; }
         .cf-name-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
         .cf-radio-group { display: flex; flex-wrap: wrap; gap: 10px; }
-        .cf-radio-label { display: flex; align-items: center; gap: 8px; cursor: pointer; font-family: 'Barlow', sans-serif; font-size: 13px; color: rgba(255,255,255,0.8); padding: 8px 14px; border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; transition: border-color 150ms, background 150ms; }
+        .cf-radio-label { display: flex; align-items: center; gap: 8px; cursor: pointer; font-family: 'Barlow', sans-serif; font-size: 13px; color: rgba(255,255,255,0.8); padding: 8px 14px; border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; transition: border-color 200ms ease, background 200ms ease; }
         .cf-radio-label:has(input:checked) { border-color: #007CB0; background: rgba(0,124,176,0.12); color: #fff; }
         .cf-radio-label input { accent-color: #007CB0; }
         .cf-select { width: 100%; padding: 10px 14px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; color: #fff; font-family: 'Barlow', sans-serif; font-size: 15px; box-sizing: border-box; appearance: none; }

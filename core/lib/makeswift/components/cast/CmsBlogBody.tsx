@@ -48,9 +48,9 @@ const PROSE_STYLES = `
   .bp-prose table { width: 100%; border-collapse: collapse; margin: 1.5em 0; font-family: 'Barlow', sans-serif; font-size: 15px; }
   .bp-prose th { background: rgba(0,124,176,0.06); color: #0f1923; padding: 10px 14px; text-align: left; border-bottom: 2px solid rgba(0,124,176,0.3); }
   .bp-prose td { color: rgba(0,0,0,0.65); padding: 10px 14px; border-bottom: 1px solid rgba(0,73,96,0.08); }
-  .bp-share-btn { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; border: 1px solid rgba(0,73,96,0.15); background: none; cursor: pointer; transition: border-color 150ms, background 150ms; color: rgba(0,73,96,0.5); text-decoration: none; }
+  .bp-share-btn { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; border: 1px solid rgba(0,73,96,0.15); background: none; cursor: pointer; transition: border-color 200ms ease, background 200ms ease; color: rgba(0,73,96,0.5); text-decoration: none; }
   .bp-share-btn:hover { border-color: #007CB0; background: rgba(0,124,176,0.08); color: #007CB0; }
-  .bp-tag { font-family: 'Barlow', sans-serif; font-size: 12px; font-weight: 600; color: #007CB0; background: rgba(0,124,176,0.07); border: 1px solid rgba(0,124,176,0.2); border-radius: 100px; padding: 5px 14px; text-decoration: none; transition: all 200ms; }
+  .bp-tag { font-family: 'Barlow', sans-serif; font-size: 12px; font-weight: 600; color: #007CB0; background: rgba(0,124,176,0.07); border: 1px solid rgba(0,124,176,0.2); border-radius: 100px; padding: 5px 14px; text-decoration: none; transition: all 200ms ease; }
   .bp-tag:hover { background: rgba(0,124,176,0.15); color: #005f88; border-color: rgba(0,124,176,0.4); }
   .bp-audio { width: 100%; outline: none; }
   .bp-audio::-webkit-media-controls-panel { background: #f0f4f6; }
@@ -230,7 +230,7 @@ const CmsBlogBody = forwardRef(function CmsBlogBody(
 
         {/* Back to blog */}
         <div style={{ marginTop: 40, textAlign: "center" }}>
-          <a href={blogPath} style={{ fontFamily: "'Barlow',sans-serif", fontSize: 14, fontWeight: 600, color: "#007CB0", textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 8, padding: "10px 24px", border: "1px solid rgba(0,124,176,0.3)", borderRadius: 8, transition: "all 200ms" }}>
+          <a href={blogPath} style={{ fontFamily: "'Barlow',sans-serif", fontSize: 14, fontWeight: 600, color: "#007CB0", textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 8, padding: "10px 24px", border: "1px solid rgba(0,124,176,0.3)", borderRadius: 8, transition: "all 200ms ease" }}>
             More from the Blog →
           </a>
         </div>

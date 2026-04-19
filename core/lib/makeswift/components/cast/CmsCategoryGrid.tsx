@@ -67,7 +67,7 @@ const CmsCategoryGrid = forwardRef(function CmsCategoryGrid(
           display: flex;
           flex-direction: column;
           text-decoration: none;
-          transition: border-color 200ms, box-shadow 200ms, transform 180ms;
+          transition: border-color 200ms ease, box-shadow 200ms ease, transform 200ms ease;
         }
         .ccg-card:hover {
           border-color: rgba(0,124,176,0.45);
@@ -101,7 +101,7 @@ const CmsCategoryGrid = forwardRef(function CmsCategoryGrid(
                   <img
                     src={cat.image}
                     alt={cat.name}
-                    style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", transition: "transform 300ms" }}
+                    style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", transition: "transform 200ms ease" }}
                     onMouseEnter={e => (e.currentTarget.style.transform = "scale(1.04)")}
                     onMouseLeave={e => (e.currentTarget.style.transform = "scale(1)")}
                   />

@@ -69,7 +69,7 @@ function TradeProMultiStepForm({ formTitle, formSubtitle, formSubmitLabel }: { f
       {/* Step indicator */}
       <div style={{ display: 'flex', gap: 4, marginBottom: 20 }}>
         {STEPS.map((s, i) => (
-          <div key={i} style={{ flex: 1, height: 3, borderRadius: 2, background: i <= step ? '#007CB0' : 'rgba(255,255,255,0.15)', transition: 'background 200ms' }} />
+          <div key={i} style={{ flex: 1, height: 3, borderRadius: 2, background: i <= step ? '#007CB0' : 'rgba(255,255,255,0.15)', transition: 'background 200ms ease' }} />
         ))}
       </div>
       <p style={{ fontFamily: "'Barlow',sans-serif", fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: 'rgba(175,229,253,0.6)', marginBottom: 14 }}>
@@ -279,7 +279,7 @@ const HeroBanner = forwardRef(function HeroBanner(
             <button
               key={i}
               onClick={() => setCurrent(i)}
-              className={`h-2 rounded-full transition-all duration-300 ${i === current ? "w-6" : "w-2 opacity-50"}`}
+              className={`h-2 rounded-full transition-all duration-200 ease-in ${i === current ? "w-6" : "w-2 opacity-50"}`}
               style={{ background: i === current ? 'var(--color-accent)' : '#fff' }}
               aria-label={`Slide ${i + 1}`}
             />

@@ -53,7 +53,7 @@ const DEFAULT_PRODUCTS: Product[] = [
 const PRICE_RANGES = ["$0 – $100", "$101 – $500", "$501 – $1,000", "$1,000+"]
 
 const ProductCard = ({ product, t }: { product: Product; t: Theme }) => (
-  <div style={{ background: t.cardBg, border: `1px solid ${t.cardBorder}`, borderRadius: 10, overflow: "hidden", display: "flex", flexDirection: "column", transition: "border-color 200ms, box-shadow 200ms" }}
+  <div style={{ background: t.cardBg, border: `1px solid ${t.cardBorder}`, borderRadius: 10, overflow: "hidden", display: "flex", flexDirection: "column", transition: "border-color 200ms ease, box-shadow 200ms ease" }}
     onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(0,124,176,0.4)"; (e.currentTarget as HTMLDivElement).style.boxShadow = "0 4px 24px rgba(0,0,0,0.18)"; }}
     onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.borderColor = t.cardBorder; (e.currentTarget as HTMLDivElement).style.boxShadow = "none"; }}
   >
@@ -189,7 +189,7 @@ const ShopGrid = forwardRef(function ShopGrid(
           border: 1px solid ${t.cardBorder}; border-radius: 4px;
           padding: 8px 12px; font-family: 'Barlow', sans-serif; font-size: 14px;
           outline: none; color: var(--color-title);
-          transition: border-color 200ms;
+          transition: border-color 200ms ease;
         }
         .sg-search-input:focus { border-color: var(--color-accent); }
         .sg-section-heading {

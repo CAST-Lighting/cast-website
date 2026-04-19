@@ -76,7 +76,7 @@ function OrdersGrid(
           overflow: hidden;
           display: flex;
           flex-direction: column;
-          transition: border-color 200ms, box-shadow 200ms;
+          transition: border-color 200ms ease, box-shadow 200ms ease;
         }
         .og-card:hover {
           border-color: rgba(0,124,176,0.4);

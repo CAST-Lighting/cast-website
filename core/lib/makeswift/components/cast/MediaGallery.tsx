@@ -159,10 +159,10 @@ const MediaGallery = forwardRef(function MediaGallery(
               {heading}{headingAccent && <> <span className="text-gradient-warm">{headingAccent}</span></>}
             </h2>
             <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-              <button onClick={() => scroll("left")} disabled={!canScrollLeft} style={{ width: 36, height: 36, borderRadius: "50%", border: `1px solid ${t.cardBorder}`, background: t.cardBg, display: "flex", alignItems: "center", justifyContent: "center", cursor: canScrollLeft ? "pointer" : "not-allowed", opacity: canScrollLeft ? 1 : 0.3, transition: "border-color 200ms, background 200ms", color: t.heading }} onMouseEnter={e => { if (canScrollLeft) { (e.currentTarget as HTMLButtonElement).style.borderColor = t.accent; }}} onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.borderColor = t.cardBorder; (e.currentTarget as HTMLButtonElement).style.background = t.cardBg; }}>
+              <button onClick={() => scroll("left")} disabled={!canScrollLeft} style={{ width: 36, height: 36, borderRadius: "50%", border: `1px solid ${t.cardBorder}`, background: t.cardBg, display: "flex", alignItems: "center", justifyContent: "center", cursor: canScrollLeft ? "pointer" : "not-allowed", opacity: canScrollLeft ? 1 : 0.3, transition: "border-color 200ms ease, background 200ms ease", color: t.heading }} onMouseEnter={e => { if (canScrollLeft) { (e.currentTarget as HTMLButtonElement).style.borderColor = t.accent; }}} onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.borderColor = t.cardBorder; (e.currentTarget as HTMLButtonElement).style.background = t.cardBg; }}>
                 <ArrowLeft style={{ width: 16, height: 16 }} />
               </button>
-              <button onClick={() => scroll("right")} disabled={!canScrollRight} style={{ width: 36, height: 36, borderRadius: "50%", border: `1px solid ${t.cardBorder}`, background: t.cardBg, display: "flex", alignItems: "center", justifyContent: "center", cursor: canScrollRight ? "pointer" : "not-allowed", opacity: canScrollRight ? 1 : 0.3, transition: "border-color 200ms, background 200ms", color: t.heading }} onMouseEnter={e => { if (canScrollRight) { (e.currentTarget as HTMLButtonElement).style.borderColor = t.accent; }}} onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.borderColor = t.cardBorder; (e.currentTarget as HTMLButtonElement).style.background = t.cardBg; }}>
+              <button onClick={() => scroll("right")} disabled={!canScrollRight} style={{ width: 36, height: 36, borderRadius: "50%", border: `1px solid ${t.cardBorder}`, background: t.cardBg, display: "flex", alignItems: "center", justifyContent: "center", cursor: canScrollRight ? "pointer" : "not-allowed", opacity: canScrollRight ? 1 : 0.3, transition: "border-color 200ms ease, background 200ms ease", color: t.heading }} onMouseEnter={e => { if (canScrollRight) { (e.currentTarget as HTMLButtonElement).style.borderColor = t.accent; }}} onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.borderColor = t.cardBorder; (e.currentTarget as HTMLButtonElement).style.background = t.cardBg; }}>
                 <ArrowRight style={{ width: 16, height: 16 }} />
               </button>
             </div>
@@ -180,7 +180,7 @@ const MediaGallery = forwardRef(function MediaGallery(
               <div
                 key={i}
                 onClick={() => setLightbox(i)}
-                style={{ background: t.cardBg, border: `1px solid ${t.cardBorder}`, borderRadius: 10, overflow: "hidden", width: 320, minWidth: 320, maxWidth: 320, flexShrink: 0, cursor: "pointer", transition: "border-color 200ms, box-shadow 200ms" }}
+                style={{ background: t.cardBg, border: `1px solid ${t.cardBorder}`, borderRadius: 10, overflow: "hidden", width: 320, minWidth: 320, maxWidth: 320, flexShrink: 0, cursor: "pointer", transition: "border-color 200ms ease, box-shadow 200ms ease" }}
                 onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(0,124,176,0.4)"; (e.currentTarget as HTMLDivElement).style.boxShadow = "0 4px 24px rgba(0,0,0,0.08)"; }}
                 onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.borderColor = t.cardBorder; (e.currentTarget as HTMLDivElement).style.boxShadow = "none"; }}
               >
@@ -197,7 +197,7 @@ const MediaGallery = forwardRef(function MediaGallery(
                         </div>
                       </div>
                     ) : (
-                      <img src={item.src} alt={item.caption} style={{ width: "100%", aspectRatio: "16/9", objectFit: "cover", display: "block", borderRadius: "10px 10px 0 0", transition: "transform 300ms" }} onMouseEnter={e => { (e.currentTarget as HTMLImageElement).style.transform = "scale(1.03)"; }} onMouseLeave={e => { (e.currentTarget as HTMLImageElement).style.transform = "scale(1)"; }} />
+                      <img src={item.src} alt={item.caption} style={{ width: "100%", aspectRatio: "16/9", objectFit: "cover", display: "block", borderRadius: "10px 10px 0 0", transition: "transform 200ms ease" }} onMouseEnter={e => { (e.currentTarget as HTMLImageElement).style.transform = "scale(1.03)"; }} onMouseLeave={e => { (e.currentTarget as HTMLImageElement).style.transform = "scale(1)"; }} />
                     )
                   ) : (
                     <PlaceholderImage caption={item.caption} isVideo={item.type === "video"} />

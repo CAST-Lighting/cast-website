@@ -109,7 +109,7 @@ const CategoryGrid = forwardRef(function CategoryGrid(
           text-decoration: none;
           padding: 18px 14px 14px;
           gap: 10px;
-          transition: border-color 200ms, box-shadow 200ms, transform 180ms;
+          transition: border-color 200ms ease, box-shadow 200ms ease, transform 200ms ease;
           text-align: center;
         }
         .cat-card:hover {
@@ -122,7 +122,7 @@ const CategoryGrid = forwardRef(function CategoryGrid(
           background: rgba(0,124,176,0.08);
           display: flex; align-items: center; justify-content: center;
           flex-shrink: 0;
-          transition: background 200ms;
+          transition: background 200ms ease;
         }
         .cat-card:hover .cat-icon-wrap {
           background: rgba(0,124,176,0.16);

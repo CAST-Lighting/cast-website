@@ -171,7 +171,7 @@ const SiteFooter = forwardRef(function SiteFooter(
               </div>
               <div className="flex items-center gap-3 mt-5">
                 {socialLinks.map(({ icon: Icon, href, label }) => (
-                  <a key={label} href={href} aria-label={label} target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full flex items-center justify-center transition-colors" style={{ background: '#ffffff', color: '#014960' }}>
+                  <a key={label} href={href} aria-label={label} target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full flex items-center justify-center transition-colors duration-200 ease-in" style={{ background: '#ffffff', color: '#014960' }}>
                     <Icon />
                   </a>
                 ))}
@@ -184,7 +184,7 @@ const SiteFooter = forwardRef(function SiteFooter(
                 <ul className="space-y-2.5">
                   {col.links.map((link, i) => (
                     <li key={i}>
-                      <a href={link.href || '#'} className="text-size-small transition-colors" style={{ color: 'rgba(255,255,255,0.65)' }} onMouseOver={e => (e.currentTarget.style.color = '#7fbee8')} onMouseOut={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.65)')}>
+                      <a href={link.href || '#'} className="text-size-small transition-colors duration-200 ease-in" style={{ color: 'rgba(255,255,255,0.65)' }} onMouseOver={e => (e.currentTarget.style.color = '#7fbee8')} onMouseOut={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.65)')}>
                         {link.label}
                       </a>
                     </li>
@@ -199,8 +199,8 @@ const SiteFooter = forwardRef(function SiteFooter(
               {copyright || "© 2026 CAST Lighting. All rights reserved."}
             </p>
             <div className="flex gap-6 text-size-small" style={{ color: 'rgba(255,255,255,0.45)' }}>
-              <a href="/privacy" className="transition-colors" style={{ color: 'rgba(255,255,255,0.45)' }} onMouseOver={e => (e.currentTarget.style.color = '#7fbee8')} onMouseOut={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.45)')}>Privacy Policy</a>
-              <a href="/returns" className="transition-colors" style={{ color: 'rgba(255,255,255,0.45)' }} onMouseOver={e => (e.currentTarget.style.color = '#7fbee8')} onMouseOut={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.45)')}>Terms of Service</a>
+              <a href="/privacy" className="transition-colors duration-200 ease-in" style={{ color: 'rgba(255,255,255,0.45)' }} onMouseOver={e => (e.currentTarget.style.color = '#7fbee8')} onMouseOut={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.45)')}>Privacy Policy</a>
+              <a href="/returns" className="transition-colors duration-200 ease-in" style={{ color: 'rgba(255,255,255,0.45)' }} onMouseOver={e => (e.currentTarget.style.color = '#7fbee8')} onMouseOut={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.45)')}>Terms of Service</a>
             </div>
           </div>
         </div>

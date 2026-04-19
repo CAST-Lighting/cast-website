@@ -48,8 +48,8 @@ const NavigationTopper = forwardRef(function NavigationTopper(
                 href={link.href || "/trade-pro"}
                 className={
                   i === 0
-                    ? "text-primary hover:text-warm-glow transition-colors font-semibold tracking-wide"
-                    : "text-secondary-foreground hover:text-primary transition-colors hidden sm:inline tracking-wide"
+                    ? "text-primary hover:text-warm-glow transition-colors duration-200 ease-in font-semibold tracking-wide"
+                    : "text-secondary-foreground hover:text-primary transition-colors duration-200 ease-in hidden sm:inline tracking-wide"
                 }
               >
                 {link.label}
@@ -61,7 +61,7 @@ const NavigationTopper = forwardRef(function NavigationTopper(
           {!hidePhone && (
             <a
               href={`tel:${resolvedPhone.replace(/\D/g, "")}`}
-              className="flex items-center gap-1.5 text-secondary-foreground hover:text-primary transition-colors"
+              className="flex items-center gap-1.5 text-secondary-foreground hover:text-primary transition-colors duration-200 ease-in"
             >
               <Phone className="w-3.5 h-3.5" />
               <span>{resolvedPhone}</span>
@@ -72,7 +72,7 @@ const NavigationTopper = forwardRef(function NavigationTopper(
               <span className="text-muted-foreground">|</span>
               <a
                 href={link.href || "/contact"}
-                className="text-secondary-foreground hover:text-primary transition-colors"
+                className="text-secondary-foreground hover:text-primary transition-colors duration-200 ease-in"
               >
                 {link.label}
               </a>

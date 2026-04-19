@@ -125,12 +125,12 @@ const ProductHero = forwardRef(function ProductHero(
           width: 72px; height: 72px; border-radius: 4px; border: 2px solid transparent;
           background: rgba(0,73,96,0.06); cursor: pointer; overflow: hidden; flex-shrink: 0;
           display: flex; align-items: center; justify-content: center;
-          transition: border-color 200ms;
+          transition: border-color 200ms ease;
         }
         .ph-thumb.active { border-color: #007CB0; }
         .ph-thumb:hover { border-color: #7EBEE8; }
         .ph-qty { display: flex; align-items: center; border: 2px solid rgba(0,73,96,0.2); border-radius: 4px; overflow: hidden; width: fit-content; background: #fff; }
-        .ph-qty button { width: 38px; height: 38px; border: none; background: #fff; cursor: pointer; font-size: 20px; color: #007CB0; display: flex; align-items: center; justify-content: center; transition: background 200ms; }
+        .ph-qty button { width: 38px; height: 38px; border: none; background: #fff; cursor: pointer; font-size: 20px; color: #007CB0; display: flex; align-items: center; justify-content: center; transition: background 200ms ease; }
         .ph-qty button:hover { background: #f0f8ff; }
         .ph-qty input { width: 48px; border: none; text-align: center; font-family: 'Barlow', sans-serif; font-size: 16px; font-weight: 700; color: #25262d; outline: none; background: #fff; }
         .ph-tradepro-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(0,73,96,0.08); color: #007CB0; font-family: 'Barlow', sans-serif; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; padding: 4px 10px; border-radius: 3px; }
@@ -240,7 +240,7 @@ const ProductHero = forwardRef(function ProductHero(
                   </button>
                   {isTradeProUser && (
                     <button
-                      style={{ width: 48, height: 48, border: "2px solid rgba(0,73,96,0.2)", borderRadius: 4, background: "rgba(0,73,96,0.06)", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, transition: "border-color 200ms" }}
+                      style={{ width: 48, height: 48, border: "2px solid rgba(0,73,96,0.2)", borderRadius: 4, background: "rgba(0,73,96,0.06)", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, transition: "border-color 200ms ease" }}
                       aria-label="Add to wishlist"
                       onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.borderColor = "#7EBEE8" }}
                       onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(0,73,96,0.2)" }}

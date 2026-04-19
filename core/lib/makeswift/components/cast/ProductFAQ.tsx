@@ -88,7 +88,7 @@ const ProductFAQ = forwardRef(function ProductFAQ(
                       style={{ width: "100%", display: "flex", justifyContent: "space-between", alignItems: "center", gap: 16, padding: "20px 0", background: "none", border: "none", cursor: "pointer", textAlign: "left" }}
                     >
                       <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 16, fontWeight: 600, color: t.heading, lineHeight: 1.3 }}>{faq.question}</span>
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={t.accent} strokeWidth="2.5" style={{ flexShrink: 0, transform: open === idx ? "rotate(180deg)" : "none", transition: "transform 200ms" }}>
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={t.accent} strokeWidth="2.5" style={{ flexShrink: 0, transform: open === idx ? "rotate(180deg)" : "none", transition: "transform 200ms ease" }}>
                         <path d="M6 9l6 6 6-6" />
                       </svg>
                     </button>

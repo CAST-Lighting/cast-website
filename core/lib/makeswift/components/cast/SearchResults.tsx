@@ -136,7 +136,7 @@ const SearchResults = forwardRef(function SearchResults(
           overflow: hidden;
           display: flex;
           flex-direction: column;
-          transition: border-color 200ms, box-shadow 200ms, transform 200ms;
+          transition: border-color 200ms ease, box-shadow 200ms ease, transform 200ms ease;
           text-decoration: none;
           color: inherit;
         }
@@ -167,7 +167,7 @@ const SearchResults = forwardRef(function SearchResults(
           font-family: 'Barlow', sans-serif;
           font-size: 14px; font-weight: 600;
           cursor: pointer;
-          transition: all 200ms;
+          transition: all 200ms ease;
         }
         .sr-page-btn:hover { border-color: rgba(0,124,176,0.5); color: #007CB0; }
         .sr-page-btn.active { background: #007CB0; border-color: #007CB0; color: #fff; }
@@ -220,7 +220,7 @@ const SearchResults = forwardRef(function SearchResults(
                 <X style={{ width: 16, height: 16 }} />
               </button>
             )}
-            <button type="submit" style={{ background: "#007CB0", border: "none", padding: "14px 24px", cursor: "pointer", color: "#fff", fontFamily: "'Barlow', sans-serif", fontSize: 14, fontWeight: 600, transition: "background 200ms" }}>
+            <button type="submit" style={{ background: "#007CB0", border: "none", padding: "14px 24px", cursor: "pointer", color: "#fff", fontFamily: "'Barlow', sans-serif", fontSize: 14, fontWeight: 600, transition: "background 200ms ease" }}>
               Search
             </button>
           </form>

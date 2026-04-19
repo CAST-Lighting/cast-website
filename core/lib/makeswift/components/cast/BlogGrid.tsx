@@ -150,7 +150,7 @@ const BlogGrid = forwardRef(function BlogGrid(
                     cursor: "pointer",
                     whiteSpace: "nowrap",
                     display: "inline-block",
-                    transition: "all 200ms",
+                    transition: "all 200ms ease",
                   }}
                 >
                   {cat.label || cat.value || "Tag"}
@@ -269,7 +269,7 @@ const BlogGrid = forwardRef(function BlogGrid(
                       border: "1px solid rgba(255,255,255,0.08)",
                       borderRadius: 10,
                       overflow: "hidden",
-                      transition: "border-color 200ms, box-shadow 200ms, transform 200ms",
+                      transition: "border-color 200ms ease, box-shadow 200ms ease, transform 200ms ease",
                       color: "inherit",
                     }}
                     onMouseEnter={(e) => {
@@ -442,7 +442,7 @@ const BlogGrid = forwardRef(function BlogGrid(
                     borderRadius: 8,
                     padding: "12px 32px",
                     cursor: "pointer",
-                    transition: "all 200ms",
+                    transition: "all 200ms ease",
                   }}
                 >
                   ← Previous
@@ -471,7 +471,7 @@ const BlogGrid = forwardRef(function BlogGrid(
                     borderRadius: 8,
                     padding: "12px 32px",
                     cursor: "pointer",
-                    transition: "all 200ms",
+                    transition: "all 200ms ease",
                   }}
                 >
                   Next →

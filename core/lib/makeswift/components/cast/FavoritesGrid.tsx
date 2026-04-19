@@ -121,7 +121,7 @@ function FavoritesGrid(
           overflow: hidden;
           display: flex;
           flex-direction: column;
-          transition: border-color 200ms, box-shadow 200ms;
+          transition: border-color 200ms ease, box-shadow 200ms ease;
         }
         .fav-card:hover {
           border-color: rgba(0,124,176,0.4);
@@ -136,7 +136,7 @@ function FavoritesGrid(
           width: 28px; height: 28px; border: none; background: transparent;
           color: ${t.accent}; cursor: pointer; font-size: 16px;
           display: flex; align-items: center; justify-content: center;
-          transition: background 150ms;
+          transition: background 200ms ease;
         }
         .fav-qty button:hover { background: rgba(0,124,176,0.08); }
         .fav-qty input {
@@ -153,7 +153,7 @@ function FavoritesGrid(
           border-radius: 4px; color: ${t.subtle};
           font-family: 'Barlow', sans-serif; font-size: 11px; font-weight: 600;
           padding: 5px 9px; cursor: pointer;
-          transition: border-color 150ms, color 150ms; white-space: nowrap;
+          transition: border-color 200ms ease, color 200ms ease; white-space: nowrap;
         }
         .fav-remove-btn:hover { border-color: #ef4444; color: #ef4444; }
         .fav-remove-btn:disabled { opacity: 0.35; cursor: not-allowed; }
@@ -216,7 +216,7 @@ function FavoritesGrid(
               const isRemoving = removing === item.id
 
               return (
-                <div key={item.id} className="fav-card" style={{ opacity: isRemoving ? 0.4 : 1, transition: "opacity 200ms" }}>
+                <div key={item.id} className="fav-card" style={{ opacity: isRemoving ? 0.4 : 1, transition: "opacity 200ms ease" }}>
 
                   {/* Image — exactly like ShopGrid */}
                   <a href={item.href} style={{ textDecoration: "none", display: "block" }}>

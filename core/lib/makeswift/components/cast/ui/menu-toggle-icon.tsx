@@ -8,7 +8,7 @@ interface MenuToggleIconProps extends React.SVGAttributes<SVGElement> {
   duration?: number;
 }
 
-function MenuToggleIcon({ open, duration = 300, className, ...props }: MenuToggleIconProps) {
+function MenuToggleIcon({ open, duration = 200, className, ...props }: MenuToggleIconProps) {
   return (
     <svg
       className={cn('h-6 w-6', className)}
@@ -25,7 +25,7 @@ function MenuToggleIcon({ open, duration = 300, className, ...props }: MenuToggl
         y1="6"
         x2="20"
         y2="6"
-        className="origin-center transition-all"
+        className="origin-center transition-all ease-in"
         style={{
           transitionDuration: `${duration}ms`,
           transform: open ? 'translateY(6px) rotate(45deg)' : 'none',
@@ -36,7 +36,7 @@ function MenuToggleIcon({ open, duration = 300, className, ...props }: MenuToggl
         y1="12"
         x2="20"
         y2="12"
-        className="origin-center transition-all"
+        className="origin-center transition-all ease-in"
         style={{
           transitionDuration: `${duration}ms`,
           opacity: open ? 0 : 1,
@@ -47,7 +47,7 @@ function MenuToggleIcon({ open, duration = 300, className, ...props }: MenuToggl
         y1="18"
         x2="20"
         y2="18"
-        className="origin-center transition-all"
+        className="origin-center transition-all ease-in"
         style={{
           transitionDuration: `${duration}ms`,
           transform: open ? 'translateY(-6px) rotate(-45deg)' : 'none',

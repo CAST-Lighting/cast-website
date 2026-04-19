@@ -92,11 +92,11 @@ const TradeProSection = forwardRef(function TradeProSection(
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
             {benefits.map((b, i) => {
               const Icon = BENEFIT_ICONS[i % BENEFIT_ICONS.length] as React.ElementType
-              const cardClass = "p-6 rounded-xl border border-border bg-secondary/30 hover:border-primary/30 transition-all group"
+              const cardClass = "p-6 rounded-xl border border-border bg-secondary/30 hover:border-primary/30 transition-all duration-200 ease-in group"
               const cardStyle = b.href ? { textDecoration: "none", display: "block", cursor: "pointer" } : undefined
               const inner = (
                 <>
-                  <div className="icon-box mb-5 group-hover:bg-primary/20 transition-colors">
+                  <div className="icon-box mb-5 group-hover:bg-primary/20 transition-colors duration-200 ease-in">
                     {b.icon
                       ? <img src={b.icon} alt="" style={{ width: 24, height: 24, objectFit: "contain" }} />
                       : <Icon className="w-6 h-6 text-primary" />}
