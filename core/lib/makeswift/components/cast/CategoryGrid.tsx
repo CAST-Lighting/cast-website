@@ -33,6 +33,7 @@ const CategoryGrid = forwardRef(function CategoryGrid(
     sectionTitleAccent,
     sectionDescription,
     categories: propCategories,
+    columns = 6,
     mode = 'light',
   }: {
     className?: string
@@ -47,6 +48,7 @@ const CategoryGrid = forwardRef(function CategoryGrid(
     sectionTitleAccent?: string
     sectionDescription?: string
     categories?: CategoryItem[]
+    columns?: number
     mode?: 'dark' | 'light'
   },
   ref: Ref<HTMLElement>
@@ -78,6 +80,7 @@ const CategoryGrid = forwardRef(function CategoryGrid(
       : FALLBACK_CATEGORIES
 
   const isLight = mode === 'light'
+  const cols = Math.min(Math.max(columns ?? 6, 1), 8)
 
   return (
     <section
@@ -88,10 +91,10 @@ const CategoryGrid = forwardRef(function CategoryGrid(
       <style>{`
         .cat-grid {
           display: grid;
-          grid-template-columns: repeat(4, 1fr);
+          grid-template-columns: repeat(${cols}, 1fr);
           gap: 20px;
         }
-        @media (max-width: 1200px) { .cat-grid { grid-template-columns: repeat(4, 1fr); } }
+        @media (max-width: 1100px) { .cat-grid { grid-template-columns: repeat(${Math.min(cols, 4)}, 1fr); } }
         @media (max-width: 900px)  { .cat-grid { grid-template-columns: repeat(3, 1fr); } }
         @media (max-width: 640px)  { .cat-grid { grid-template-columns: repeat(2, 1fr); } }
         @media (max-width: 380px)  { .cat-grid { grid-template-columns: 1fr; } }
