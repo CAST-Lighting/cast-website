@@ -63,7 +63,9 @@ const DistributorFinder = forwardRef(function DistributorFinder(
       <style>{`
         .df-main-grid { display: grid; grid-template-columns: 1fr 300px; gap: 32px; align-items: flex-start; }
         .df-map { border-radius: 10px; height: 420px; display: flex; align-items: center; justify-content: center; border: 1px solid #d1d9e0; position: relative; overflow: hidden; background: #e2e8ed; }
-        @media (max-width: 900px) { .df-main-grid { grid-template-columns: 1fr; } .df-map { height: 300px; } }
+        .df-right { display: flex; flex-direction: column; gap: 12px; padding-top: 0; }
+        @media (min-width: 901px) { .df-right { padding-top: 0; } }
+        @media (max-width: 900px) { .df-main-grid { grid-template-columns: 1fr; gap: 16px; } .df-map { height: 300px; } }
       `}</style>
       <div className="site-container" style={{ paddingTop: 64, paddingBottom: 72 }}>
         <div className="df-main-grid">
@@ -73,9 +75,6 @@ const DistributorFinder = forwardRef(function DistributorFinder(
 
             {/* Map */}
             <div>
-              <h2 style={{ fontSize: "var(--h3-size)", fontWeight: "var(--heading-weight, 700)", lineHeight: "var(--heading-line-height, 1.1)", fontFamily: "'Essonnes', 'Playfair Display', serif", color: "var(--color-title)", margin: "0 0 16px" }}>
-                {searched ? `Results near "${zip}"` : "Current Distributors"}
-              </h2>
               <div className="df-map">
                 <div style={{ position: "absolute", inset: 0, backgroundImage: "linear-gradient(rgba(0,73,96,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(0,73,96,0.06) 1px, transparent 1px)", backgroundSize: "30px 30px" }} />
                 <div style={{ textAlign: "center", position: "relative" }}>
@@ -91,7 +90,7 @@ const DistributorFinder = forwardRef(function DistributorFinder(
           </div>{/* end left column */}
 
           {/* Right: search + distributor tiles */}
-          <div style={{ display: "flex", flexDirection: "column", gap: 12, paddingTop: 52 }}>
+          <div className="df-right">
             <form onSubmit={handleSearch} style={{ display: "flex", gap: 0, width: "100%", background: "rgba(255,255,255,0.06)", borderRadius: 8, overflow: "hidden", border: "1px solid rgba(255,255,255,0.12)", marginBottom: 4 }}>
               <input
                 type="text"
