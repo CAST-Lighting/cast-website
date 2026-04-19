@@ -9,7 +9,6 @@ runtime.registerComponent(
     label: "Hero / Product Hero",
     props: {
       className: Style({ properties: [Style.Padding, Style.Margin] }),
-      sectionStyle: Style({ properties: [Style.Padding, Style.Margin] }),
 
       // 🎨 Background
       bgColor: Color({ label: "🎨 Background — Color", defaultValue: "#25262d" }),

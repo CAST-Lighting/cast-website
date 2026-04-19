@@ -273,8 +273,8 @@ const ShopGrid = forwardRef(function ShopGrid(
             {Object.keys(grouped).length === 0 ? (
               <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 16, color: "var(--color-content)" }}>No products found.</p>
             ) : (
-              Object.entries(grouped).map(([cat, prods]) => (
-                <div key={cat} style={{ marginBottom: 56 }}>
+              Object.entries(grouped).map(([cat, prods], idx, arr) => (
+                <div key={cat} style={{ marginBottom: idx < arr.length - 1 ? 56 : 0 }}>
                   <p className="sg-section-heading">Shop Lighting</p>
                   <h3 className="sg-section-title">{cat}</h3>
                   <div style={{ display: "flex", justifyContent: "flex-end", marginBottom: 16 }}>

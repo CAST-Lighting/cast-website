@@ -27,7 +27,7 @@ function FallbackPage() {
         @media (max-width: 640px) { .reg-row-2, .reg-row-3 { grid-template-columns: 1fr; } }
       `}</style>
 
-      <div style={{ background: '#0f1923', minHeight: '100vh' }}>
+      <div style={{ background: '#0f1923' }}>
         {/* Hero — SubPageHeroStatic pattern */}
         <section
           className="relative overflow-hidden"
@@ -63,7 +63,7 @@ function FallbackPage() {
         </section>
 
         {/* Form + Sidebar */}
-        <div>
+        <div style={{ padding: '64px 0 80px' }}>
           <div className="reg-container">
             <div className="reg-grid">
               {/* Form */}
