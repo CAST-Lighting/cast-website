@@ -79,7 +79,7 @@ const RichTextSection = forwardRef(function RichTextSection(
       style={{ width: '100%', background: bgColor || "#0f1923", }}
     >
       <div className="site-container">
-        <div style={{ maxWidth: 800, margin: "0 auto" }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
           {/* Heading */}
           <div style={{ marginBottom: 40, paddingBottom: 32, borderBottom: "1px solid rgba(255,255,255,0.1)" }}>
             <h1 style={{
