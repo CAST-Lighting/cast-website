@@ -57,7 +57,7 @@ function OrdersGrid(
   return (
     <div
       ref={ref as Ref<HTMLDivElement>}
-      className={`cast-orders-grid-defaults ${className || ""}`}
+      className={`cast-section-default cast-orders-grid-defaults ${className || ""}`}
       style={{ width: '100%', background: bgColor, fontFamily: "'Barlow', sans-serif" }}
     >
       <style>{`

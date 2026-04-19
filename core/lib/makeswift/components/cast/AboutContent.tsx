@@ -96,7 +96,7 @@ const AboutContent = forwardRef(function AboutContent(
   return (
     <section
       ref={ref}
-      className={className || ""}
+      className={`cast-section-default ${className || ""}`}
       style={{ width: "100%", background: bgColor || "#0f1923" }}
     >
       <style>{`

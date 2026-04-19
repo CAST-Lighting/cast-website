@@ -58,7 +58,7 @@ const ProductFAQ = forwardRef(function ProductFAQ(
   return (
     <div
       ref={ref}
-      className={`cast-product-f-a-q-defaults ${className || ""} ${sectionStyle || ""}`}
+      className={`cast-section-default cast-product-f-a-q-defaults ${className || ""} ${sectionStyle || ""}`}
       style={{ position: "relative", width: "100%", boxSizing: "border-box", ...(!bgImage ? { background: sectionBackground } : {}), }}
     >
       {bgImage && (

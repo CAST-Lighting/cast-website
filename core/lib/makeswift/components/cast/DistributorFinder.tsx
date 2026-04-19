@@ -56,7 +56,7 @@ const DistributorFinder = forwardRef(function DistributorFinder(
   return (
     <div
       ref={ref}
-      className={`cast-distributor-finder-defaults ${className || ""} ${sectionStyle || ""}`}
+      className={`cast-section-default cast-distributor-finder-defaults ${className || ""} ${sectionStyle || ""}`}
       style={{ width: "100%", boxSizing: "border-box", background: sectionBackground, }}
     >
       {/* Main content */}

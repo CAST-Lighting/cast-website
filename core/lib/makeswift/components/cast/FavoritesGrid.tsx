@@ -102,7 +102,7 @@ function FavoritesGrid(
   return (
     <div
       ref={ref as Ref<HTMLDivElement>}
-      className={className || ""}
+      className={`cast-section-default ${className || ""}`}
       style={{ width: '100%', background: bgColor, fontFamily: "'Barlow', sans-serif" }}
     >
       <style>{`

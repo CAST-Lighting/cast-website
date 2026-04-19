@@ -57,7 +57,7 @@ const TradeProSignup = forwardRef(function TradeProSignup(
   return (
     <div
       ref={ref}
-      className={className || ""}
+      className={`cast-section-default ${className || ""}`}
       style={{ width: '100%', background: bgColor || "#0f1923", minHeight: "100vh" }}
     >
       {/* ── Form + Sidebar ── */}

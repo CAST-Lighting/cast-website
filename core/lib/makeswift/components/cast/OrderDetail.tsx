@@ -106,7 +106,7 @@ function OrderDetail(
   return (
     <div
       ref={ref as Ref<HTMLDivElement>}
-      className={`cast-order-detail-defaults ${className || ""}`}
+      className={`cast-section-default cast-order-detail-defaults ${className || ""}`}
       style={{ width: '100%', background: bgColor, fontFamily: "'Barlow', sans-serif" }}
     >
       <style>{`

@@ -146,7 +146,7 @@ const ShopGrid = forwardRef(function ShopGrid(
   return (
     <div
       ref={ref}
-      className={`${className || ""} ${sectionStyle || ""}`}
+      className={`cast-section-default ${className || ""} ${sectionStyle || ""}`}
       style={{ position: "relative", width: "100%", boxSizing: "border-box", ...(!bgImage ? { background: sectionBackground } : {}), }}
     >
       {bgImage && (

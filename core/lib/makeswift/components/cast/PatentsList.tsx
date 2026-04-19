@@ -96,7 +96,7 @@ const PatentsList = forwardRef(function PatentsList(
   return (
     <section
       ref={ref}
-      className={className || ""}
+      className={`cast-section-default ${className || ""}`}
       style={{ width: '100%', background: bgColor || "#0f1923", }}
     >
       <div className="site-container">

@@ -85,7 +85,7 @@ const CategoryGrid = forwardRef(function CategoryGrid(
   return (
     <section
       ref={ref}
-      className={`relative overflow-hidden ${className || ""}`}
+      className={`cast-section-default relative overflow-hidden ${className || ""}`}
       style={{ width: '100%', fontFamily: "'Barlow', sans-serif", ...(!bgImage ? { background: sectionBackground } : {}) } as React.CSSProperties}
     >
       <style>{`

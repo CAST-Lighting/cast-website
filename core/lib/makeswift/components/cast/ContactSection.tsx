@@ -70,7 +70,7 @@ const ContactSection = forwardRef(function ContactSection(
   return (
     <section
       ref={ref}
-      className={`relative overflow-hidden ${className || ""}`}
+      className={`cast-section-default relative overflow-hidden ${className || ""}`}
       style={{ width: "100%", background: bgColor || "#0d1620" }}
     >
       <style>{`

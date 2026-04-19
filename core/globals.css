@@ -704,6 +704,13 @@
   --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
+/* ============================================================
+   Makeswift section default padding
+   CSS baseline — overridden by Makeswift-generated className styles when user explicitly sets padding
+   ============================================================ */
+.cast-section-default { padding-top: 60px; padding-bottom: 60px; }
+.cast-footer-default { padding-top: 60px; }
+
 
 
 

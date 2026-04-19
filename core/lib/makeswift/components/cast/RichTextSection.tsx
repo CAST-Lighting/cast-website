@@ -75,7 +75,7 @@ const RichTextSection = forwardRef(function RichTextSection(
   return (
     <section
       ref={ref}
-      className={className || ""}
+      className={`cast-section-default ${className || ""}`}
       style={{ width: '100%', background: bgColor || "#ffffff", }}
     >
       <div className="site-container">

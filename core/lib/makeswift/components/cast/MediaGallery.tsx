@@ -142,7 +142,7 @@ const MediaGallery = forwardRef(function MediaGallery(
   return (
     <div
       ref={ref}
-      className={`cast-media-gallery-defaults ${className || ""} ${sectionStyle || ""}`}
+      className={`cast-section-default cast-media-gallery-defaults ${className || ""} ${sectionStyle || ""}`}
       style={{ position: "relative", width: "100%", boxSizing: "border-box", ...(!bgImage ? { background: sectionBackground } : {}), }}
     >
       {bgImage && (

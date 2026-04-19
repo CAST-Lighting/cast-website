@@ -74,7 +74,7 @@ const NewsletterCtaFull = forwardRef(function NewsletterCtaFull(
   return (
     <section
       ref={ref}
-      className={`relative ${className || ""}`}
+      className={`cast-section-default relative ${className || ""}`}
       style={{
         background: bgImage ? undefined : sectionBg,
         fontFamily: "'Barlow', sans-serif",

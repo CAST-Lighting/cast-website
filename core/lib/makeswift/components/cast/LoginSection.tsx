@@ -52,7 +52,7 @@ const LoginSection = forwardRef(function LoginSection(
   return (
     <section
       ref={ref}
-      className={className || ""}
+      className={`cast-section-default ${className || ""}`}
       style={{ width: '100%', background: bgColor || "#0f1923", flex: 1 }}
     >
       <style>{`

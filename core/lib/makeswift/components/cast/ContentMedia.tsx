@@ -92,7 +92,7 @@ const ContentMedia = forwardRef(function ContentMedia(
   return (
     <section
       ref={ref}
-      className={`relative overflow-hidden ${className || ""}`}
+      className={`cast-section-default relative overflow-hidden ${className || ""}`}
       style={{ width: '100%', ...(!bgImage ? { background: sectionBackground } : {}), } as React.CSSProperties}
     >
       {bgImage && (

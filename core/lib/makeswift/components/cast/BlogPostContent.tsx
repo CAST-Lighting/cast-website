@@ -97,7 +97,7 @@ const BlogPostContent = forwardRef(function BlogPostContent(
   return (
     <section
       ref={ref}
-      className={`cast-blog-post-content-defaults relative ${className || ""}`}
+      className={`cast-section-default cast-blog-post-content-defaults relative ${className || ""}`}
       style={{ width: '100%', background: bgColor || '#0f1923' }}
     >
       <div className="site-container" style={{ maxWidth: 1200 }}>

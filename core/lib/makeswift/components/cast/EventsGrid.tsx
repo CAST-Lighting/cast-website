@@ -105,7 +105,7 @@ const EventsGrid = forwardRef(function EventsGrid(
   return (
     <section
       ref={ref}
-      className={className || ""}
+      className={`cast-section-default ${className || ""}`}
       style={{ width: '100%', background: bgColor || "#0f1923", }}
     >
       <div className="site-container">

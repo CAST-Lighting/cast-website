@@ -104,7 +104,7 @@ const CmsBlogBody = forwardRef(function CmsBlogBody(
   const hasAudio = !!audioUrl || !cms
 
   return (
-    <div ref={ref as Ref<HTMLDivElement>} className={className || ""} style={{ width: '100%', background: bgColor, minHeight: 200 }}>
+    <div ref={ref as Ref<HTMLDivElement>} className={`cast-section-default ${className || ""}`} style={{ width: '100%', background: bgColor, minHeight: 200 }}>
       <style>{PROSE_STYLES}</style>
 
       {/* Featured Image */}

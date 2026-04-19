@@ -48,7 +48,7 @@ const NewsletterCta = forwardRef(function NewsletterCta(
   return (
     <section
       ref={ref}
-      className={`relative ${className || ""}`}
+      className={`cast-section-default relative ${className || ""}`}
       style={{ width: '100%', ...(!bgImageUrl ? { background: sectionBackground } : {}), } as React.CSSProperties}
     >
       {/* bg image layer */}

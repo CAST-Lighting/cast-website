@@ -141,7 +141,7 @@ const SiteFooter = forwardRef(function SiteFooter(
   return (
     <footer
       ref={ref}
-      className={`relative border-t border-border ${className || ""}`}
+      className={`cast-footer-default relative border-t border-border ${className || ""}`}
       style={{ width: '100%', ...(!bgImageUrl ? { background: sectionBackground } : {}), } as React.CSSProperties}
     >
       {bgImageUrl && (
