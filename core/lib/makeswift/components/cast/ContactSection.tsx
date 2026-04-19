@@ -227,4 +227,16 @@ const ContactSection = forwardRef(function ContactSection(
                 </div>
 
                 <button type="submit" className="sg-btn-solid-dark-lg" style={{ width: "100%", marginTop: 4 }}>
-         
+                  {submitLabel || "Send Message"}
+                </button>
+              </form>
+            )}
+          </div>
+
+        </div>
+      </div>
+    </section>
+  )
+})
+
+export default ContactSection

@@ -129,4 +129,12 @@ const ComparisonSection = forwardRef(function ComparisonSection(
                   </li>
                 ))}
               </ul>
-            </di
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+})
+
+export default ComparisonSection

@@ -140,3 +140,5 @@ const ReadyCTA = forwardRef(function ReadyCTA(
     </section>
   )
 })
+
+export default ReadyCTA

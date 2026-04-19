@@ -283,4 +283,17 @@ const ReviewsCarousel = forwardRef(function ReviewsCarousel(
                       color: t.subtle,
                       margin: 0,
                     }}>
-         
+                      {review.role}{review.location ? ` · ${review.location}` : ""}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+})
+
+export default ReviewsCarousel

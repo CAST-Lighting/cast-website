@@ -41,7 +41,7 @@ const StyleGuide = forwardRef(function StyleGuide(
                 ].map(({ tag, size, label }) => (
                   <div key={tag} style={{ display: 'flex', alignItems: 'baseline', gap: 16, marginBottom: 20, borderBottom: '1px solid #f0f0f0', paddingBottom: 16 }}>
                     <span style={{ fontSize: 11, fontWeight: 700, color: '#007cb0', letterSpacing: '0.1em', textTransform: 'uppercase', width: 28 }}>{tag}</span>
-                    <span style={{ fontFamily: "'Essonnes','Playfair Display',serif", fontSize: size, fontWeight: 700, lineHeight: 1.1, color: '#014960', flex: 1 }}>
+                    <span style={{ fontFamily: "'Essonnes','Playfair Display',serif", fontSize: size, fontWeight: 700, lineHeight: 1.1, color: '#004960', flex: 1 }}>
                       CAST Lighting
                     </span>
                     <span style={{ fontSize: 12, color: '#90a4ae', whiteSpace: 'nowrap' }}>{label} / {size}px</span>
@@ -130,7 +130,7 @@ const StyleGuide = forwardRef(function StyleGuide(
 
         {/* ── BUTTONS — DARK BACKGROUND ─────────────────────────────────── */}
         <Section title="Buttons — Dark Background">
-          <div style={{ background: '#014960', borderRadius: 16, padding: 48 }}>
+          <div style={{ background: '#004960', borderRadius: 16, padding: 48 }}>
             <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#7EBEE8', marginBottom: 32, marginTop: 0 }}>
               Use on dark / branded sections
             </p>
@@ -202,7 +202,7 @@ const StyleGuide = forwardRef(function StyleGuide(
         <Section title="Logo Variants">
           <div style={{ display: 'grid', gap: 16 }}>
             <Label>On Dark Background</Label>
-            <div style={{ background: '#014960', borderRadius: 12, padding: 40, display: 'flex', gap: 48, flexWrap: 'wrap', alignItems: 'center' }}>
+            <div style={{ background: '#004960', borderRadius: 12, padding: 40, display: 'flex', gap: 48, flexWrap: 'wrap', alignItems: 'center' }}>
               {[
                 { src: '/images/logos/cast__lighting_white.svg', label: 'Lighting / White' },
                 { src: '/images/logos/cast__lighting_baby-blue.svg', label: 'Lighting / Baby Blue' },
@@ -258,10 +258,10 @@ const StyleGuide = forwardRef(function StyleGuide(
             <table style={{ width: '100%', borderCollapse: 'collapse', fontFamily: "'Barlow', sans-serif", fontSize: 14 }}>
               <thead>
                 <tr style={{ background: '#f5f5f5' }}>
-                  <th style={{ padding: '12px 16px', textAlign: 'left', color: '#014960', fontWeight: 700 }}>Class Name</th>
-                  <th style={{ padding: '12px 16px', textAlign: 'left', color: '#014960', fontWeight: 700 }}>Style</th>
-                  <th style={{ padding: '12px 16px', textAlign: 'left', color: '#014960', fontWeight: 700 }}>Size</th>
-                  <th style={{ padding: '12px 16px', textAlign: 'left', color: '#014960', fontWeight: 700 }}>Background</th>
+                  <th style={{ padding: '12px 16px', textAlign: 'left', color: '#004960', fontWeight: 700 }}>Class Name</th>
+                  <th style={{ padding: '12px 16px', textAlign: 'left', color: '#004960', fontWeight: 700 }}>Style</th>
+                  <th style={{ padding: '12px 16px', textAlign: 'left', color: '#004960', fontWeight: 700 }}>Size</th>
+                  <th style={{ padding: '12px 16px', textAlign: 'left', color: '#004960', fontWeight: 700 }}>Background</th>
                 </tr>
               </thead>
               <tbody>
@@ -310,7 +310,7 @@ function Section({ title, children }: { title: string; children: React.ReactNode
   return (
     <div style={{ marginBottom: 64 }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 24 }}>
-        <h2 style={{ fontFamily: "'Essonnes','Playfair Display',serif", fontSize: 28, fontWeight: 700, color: '#014960', margin: 0 }}>
+        <h2 style={{ fontFamily: "'Essonnes','Playfair Display',serif", fontSize: 28, fontWeight: 700, color: '#004960', margin: 0 }}>
           {title}
         </h2>
         <div style={{ flex: 1, height: 1, background: '#e0e0e0' }} />
@@ -350,4 +350,6 @@ function ColorSwatch({ hex, name, pantone, usage }: { hex: string; name: string;
         <div style={{ fontSize: 11, color: '#546f7a', marginBottom: 4 }}>Pantone {pantone}</div>
         <div style={{ fontSize: 11, color: '#90a4ae' }}>{usage}</div>
       </div>
-    <
+    </div>
+  )
+}
