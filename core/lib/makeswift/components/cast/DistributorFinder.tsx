@@ -80,7 +80,9 @@ const DistributorFinder = forwardRef(function DistributorFinder(
       <style>{`
         .df-main-grid { display: grid; grid-template-columns: 1fr 300px; gap: 32px; align-items: flex-start; }
         .df-map { border-radius: 10px; height: 420px; display: flex; align-items: center; justify-content: center; border: 1px solid #d1d9e0; position: relative; overflow: hidden; background: #e2e8ed; }
-        @media (max-width: 900px) { .df-main-grid { grid-template-columns: 1fr; } .df-map { height: 300px; } }
+        .df-form-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start; }
+        .df-input { width: 100%; padding: 10px 14px; border: 1px solid rgba(255,255,255,0.12); border-radius: 6px; font-family: 'Barlow', sans-serif; font-size: 14px; color: var(--color-title); box-sizing: border-box; outline: none; background: rgba(255,255,255,0.05); }
+        @media (max-width: 900px) { .df-main-grid { grid-template-columns: 1fr; } .df-map { height: 300px; } .df-form-inner { grid-template-columns: 1fr; } }
       `}</style>
       <div className="site-container" style={{ paddingTop: 64, paddingBottom: 72 }}>
         <div className="df-main-grid">
@@ -118,37 +120,39 @@ const DistributorFinder = forwardRef(function DistributorFinder(
                   <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 15, color: "var(--color-content)", lineHeight: 1.6, margin: 0 }}>Our distribution team will review your application and follow up within 3–5 business days.</p>
                 </div>
               ) : (
-                <>
-                  <h3 style={{ fontFamily: "'Essonnes', 'Playfair Display', serif", fontSize: "var(--h3-size)", fontWeight: 700, color: "var(--color-title)", margin: "0 0 8px" }}>{formHeading}</h3>
-                  <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 14, color: "var(--color-content)", lineHeight: 1.5, margin: "0 0 24px" }}>Carry the industry's best outdoor lighting brand in your market.</p>
-
-                  <div style={{ display: "flex", flexDirection: "column", gap: 14, marginBottom: 20 }}>
-                    <Benefit text="Exclusive territory protection available" />
-                    <Benefit text="Industry-leading margins on all CAST products" />
-                    <Benefit text="Full marketing support and co-op funds" />
-                    <Benefit text="CAST factory training and certification" />
+                <div className="df-form-inner">
+                  {/* Left: heading + benefits */}
+                  <div>
+                    <h3 style={{ fontFamily: "'Essonnes', 'Playfair Display', serif", fontSize: "var(--h3-size)", fontWeight: 700, color: "var(--color-title)", margin: "0 0 8px" }}>{formHeading}</h3>
+                    <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 14, color: "var(--color-content)", lineHeight: 1.5, margin: "0 0 24px" }}>Carry the industry's best outdoor lighting brand in your market.</p>
+                    <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+                      <Benefit text="Exclusive territory protection available" />
+                      <Benefit text="Industry-leading margins on all CAST products" />
+                      <Benefit text="Full marketing support and co-op funds" />
+                      <Benefit text="CAST factory training and certification" />
+                    </div>
                   </div>
-
+                  {/* Right: fields */}
                   <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 14 }}>
                     <div>
-                      <label style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, fontWeight: 600, color: "var(--color-title)", display: "block", marginBottom: 6 }}>Company Name*</label>
-                      <input required type="text" placeholder="Acme Landscape Supply" style={{ width: "100%", padding: "10px 14px", border: "1px solid rgba(255,255,255,0.12)", borderRadius: 6, fontFamily: "'Barlow', sans-serif", fontSize: 14, color: "var(--color-title)", boxSizing: "border-box", outline: "none" }} />
+                      <label style={{ fontFamily: "'Barlow', sans-serif", fontSize: 12, fontWeight: 600, color: "rgba(255,255,255,0.5)", display: "block", marginBottom: 6 }}>Company Name *</label>
+                      <input required type="text" placeholder="Acme Landscape Supply" className="df-input" />
                     </div>
                     <div>
-                      <label style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, fontWeight: 600, color: "var(--color-title)", display: "block", marginBottom: 6 }}>Contact Name*</label>
-                      <input required type="text" placeholder="Jane Doe" style={{ width: "100%", padding: "10px 14px", border: "1px solid rgba(255,255,255,0.12)", borderRadius: 6, fontFamily: "'Barlow', sans-serif", fontSize: 14, color: "var(--color-title)", boxSizing: "border-box", outline: "none" }} />
+                      <label style={{ fontFamily: "'Barlow', sans-serif", fontSize: 12, fontWeight: 600, color: "rgba(255,255,255,0.5)", display: "block", marginBottom: 6 }}>Contact Name *</label>
+                      <input required type="text" placeholder="Jane Doe" className="df-input" />
                     </div>
                     <div>
-                      <label style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, fontWeight: 600, color: "var(--color-title)", display: "block", marginBottom: 6 }}>Email*</label>
-                      <input required type="email" placeholder="jane@acmesupply.com" style={{ width: "100%", padding: "10px 14px", border: "1px solid rgba(255,255,255,0.12)", borderRadius: 6, fontFamily: "'Barlow', sans-serif", fontSize: 14, color: "var(--color-title)", boxSizing: "border-box", outline: "none" }} />
+                      <label style={{ fontFamily: "'Barlow', sans-serif", fontSize: 12, fontWeight: 600, color: "rgba(255,255,255,0.5)", display: "block", marginBottom: 6 }}>Email *</label>
+                      <input required type="email" placeholder="jane@acmesupply.com" className="df-input" />
                     </div>
                     <div>
-                      <label style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, fontWeight: 600, color: "var(--color-title)", display: "block", marginBottom: 6 }}>Territory / State*</label>
-                      <input required type="text" placeholder="e.g. Southern California" style={{ width: "100%", padding: "10px 14px", border: "1px solid rgba(255,255,255,0.12)", borderRadius: 6, fontFamily: "'Barlow', sans-serif", fontSize: 14, color: "var(--color-title)", boxSizing: "border-box", outline: "none" }} />
+                      <label style={{ fontFamily: "'Barlow', sans-serif", fontSize: 12, fontWeight: 600, color: "rgba(255,255,255,0.5)", display: "block", marginBottom: 6 }}>Territory / State *</label>
+                      <input required type="text" placeholder="e.g. Southern California" className="df-input" />
                     </div>
                     <div>
-                      <label style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, fontWeight: 600, color: "var(--color-title)", display: "block", marginBottom: 6 }}>Annual Revenue Range</label>
-                      <select style={{ width: "100%", padding: "10px 14px", border: "1px solid rgba(255,255,255,0.12)", borderRadius: 6, fontFamily: "'Barlow', sans-serif", fontSize: 14, color: "var(--color-title)", boxSizing: "border-box", background: "#2d353c", outline: "none" }}>
+                      <label style={{ fontFamily: "'Barlow', sans-serif", fontSize: 12, fontWeight: 600, color: "rgba(255,255,255,0.5)", display: "block", marginBottom: 6 }}>Annual Revenue Range</label>
+                      <select className="df-input" style={{ background: "#2d353c", appearance: "none" }}>
                         <option value="">Select...</option>
                         <option>Under $500K</option>
                         <option>$500K – $2M</option>
@@ -160,7 +164,7 @@ const DistributorFinder = forwardRef(function DistributorFinder(
                       Submit Application
                     </button>
                   </form>
-                </>
+                </div>
               )}
             </div>
             </div>{/* end form */}
@@ -180,7 +184,7 @@ const DistributorFinder = forwardRef(function DistributorFinder(
                 Find
               </button>
             </form>
-            {PLACEHOLDER_DISTRIBUTORS.map((d, i) => (
+            {PLACEHOLDER_DISTRIBUTORS.slice(0, 4).map((d, i) => (
               <div key={i} style={{ background: "#2d353c", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 10, padding: "16px 18px" }}>
                 <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 14, fontWeight: 700, color: "var(--color-title)", margin: "0 0 4px" }}>{d.name}</p>
                 <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 12, color: "var(--color-content)", margin: "0 0 4px" }}>{d.city}, {d.state} · {d.type}</p>
