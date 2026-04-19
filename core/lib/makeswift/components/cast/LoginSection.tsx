@@ -53,7 +53,7 @@ const LoginSection = forwardRef(function LoginSection(
     <section
       ref={ref}
       className={className || ""}
-      style={{ width: '100%', background: bgColor || "#0f1923" }}
+      style={{ width: '100%', background: bgColor || "#0f1923", flex: 1 }}
     >
       <style>{`
         .ls-layout { display: grid; grid-template-columns: 1fr 1px 1fr; gap: 48px; align-items: start; }
