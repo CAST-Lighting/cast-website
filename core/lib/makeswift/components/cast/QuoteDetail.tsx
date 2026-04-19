@@ -268,9 +268,17 @@ function QuoteDetail(
                     </div>
                   </td>
                   <td>
-                    <a href={`/shop-all/${item.productId}`} style={{ textDecoration: "none" }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
                       <p style={{ fontFamily: "'Barlow',sans-serif", fontSize: 13, fontWeight: 700, color: t.heading, margin: 0, lineHeight: 1.3 }}>{item.name}</p>
-                    </a>
+                      <a href={`/shop-all/${item.productId}`} title="View product" style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", flexShrink: 0, width: 24, height: 24, borderRadius: 4, border: `1px solid ${t.cardBorder}`, color: t.accent, textDecoration: "none", transition: "border-color 200ms ease, background 200ms ease" }}
+                        onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = t.accent; (e.currentTarget as HTMLElement).style.background = t.inputBg }}
+                        onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = t.cardBorder; (e.currentTarget as HTMLElement).style.background = "transparent" }}>
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                          <circle cx="12" cy="12" r="3"/>
+                        </svg>
+                      </a>
+                    </div>
                   </td>
                   <td>
                     <p style={{ fontFamily: "'Barlow',sans-serif", fontSize: 11, fontWeight: 700, color: t.accent, textTransform: "uppercase", letterSpacing: "0.05em", margin: 0 }}>{item.modelNumber}</p>
@@ -303,7 +311,15 @@ function QuoteDetail(
                 }
               </div>
               <div>
-                <p style={{ fontFamily: "'Barlow',sans-serif", fontSize: 13, fontWeight: 700, color: t.heading, margin: "0 0 2px", lineHeight: 1.3 }}>{item.name}</p>
+                <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 2 }}>
+                  <p style={{ fontFamily: "'Barlow',sans-serif", fontSize: 13, fontWeight: 700, color: t.heading, margin: 0, lineHeight: 1.3 }}>{item.name}</p>
+                  <a href={`/shop-all/${item.productId}`} title="View product" style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", flexShrink: 0, width: 22, height: 22, borderRadius: 4, border: `1px solid ${t.cardBorder}`, color: t.accent, textDecoration: "none" }}>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                      <circle cx="12" cy="12" r="3"/>
+                    </svg>
+                  </a>
+                </div>
                 <p style={{ fontFamily: "'Barlow',sans-serif", fontSize: 11, fontWeight: 700, color: t.accent, textTransform: "uppercase", letterSpacing: "0.05em", margin: "0 0 4px" }}>{item.modelNumber}</p>
                 <p style={{ fontFamily: "'Barlow',sans-serif", fontSize: 12, color: t.subtle, margin: 0 }}>
                   Qty. {item.qty} × {item.price} = <strong style={{ color: t.accent }}>{item.lineTotal}</strong>
