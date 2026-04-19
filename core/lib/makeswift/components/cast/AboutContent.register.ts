@@ -13,12 +13,24 @@ runtime.registerComponent(
       // 🎨 Background
       bgColor: Color({ label: "🎨 Background — Color", defaultValue: "#0f1923" }),
 
-      // ✏️ Content
+      // ✏️ Content — Editorial Split
+      overline: TextInput({ label: "✏️ Content — Overline Label", defaultValue: "About CAST Lighting" }),
       sectionHeading: TextInput({ label: "✏️ Content — Section Heading", defaultValue: "Built to Last. Built in America." }),
       sectionBody: TextArea({
         label: "✏️ Content — Section Body",
         defaultValue:
           "Since 2001, CAST Lighting has been designing and manufacturing professional-grade landscape lighting fixtures in the USA. Every product is crafted from solid brass or copper — materials chosen for their beauty and ability to withstand decades of outdoor exposure without corroding or deteriorating." }),
+
+      // 📊 Stats — Callout Tiles (shown right of editorial copy)
+      stats: List({
+        label: "📊 Stats — Callout Tiles",
+        type: Shape({
+          type: {
+            value: TextInput({ label: "Value", defaultValue: "2001" }),
+            label: TextInput({ label: "Label", defaultValue: "Year Founded" }) } }),
+        getItemLabel(item) {
+          return item?.value || "Stat"
+        } }),
 
       // 🃏 Cards — Feature Cards
       features: List({
@@ -31,7 +43,7 @@ runtime.registerComponent(
           return item?.title || "Feature"
         } }),
 
-      // ✏️ Content — Mission
+      // ✏️ Content — Mission Block
       missionHeading: TextInput({ label: "✏️ Content — Mission Heading", defaultValue: "Our Mission" }),
       missionBody: TextArea({
         label: "✏️ Content — Mission Body",
