@@ -1,6 +1,7 @@
 "use client"
 import { forwardRef, type Ref } from "react"
 import { Check, X } from "lucide-react"
+import { getTheme } from "~/lib/makeswift/theme"
 
 const FALLBACK_CAST = [
   "Solid brass & copper construction",
@@ -60,6 +61,7 @@ const ComparisonSection = forwardRef(function ComparisonSection(
   },
   ref: Ref<HTMLElement>
 ) {
+  const t = getTheme(lightMode ? 'light' : 'dark')
   const bgImageUrl = bgImage
   const hasGradient = !!(gradientFrom && gradientTo)
   const overlayOpacity = typeof bgOpacity === 'number' ? bgOpacity / 100 : 0.85
@@ -96,40 +98,40 @@ const ComparisonSection = forwardRef(function ComparisonSection(
             <span className="text-style-overline" style={{ margin: "0 0 12px", display: "block", color: "var(--cast-light-blue)" }}>{overline || "CAST vs Other Brands"}</span>
           </div>
           <div className="text-center mb-14">
-            <h2 className="heading-style-h2 text-foreground mb-3">
+            <h2 className="heading-style-h2 text-foreground mb-3" style={{ color: t.heading }}>
               {heading || "Why Contractors Choose"} <span className="text-gradient-warm">{headingAccent || "CAST"}</span>
             </h2>
-            <p className="section-desc max-w-xl mx-auto">
+            <p className="section-desc max-w-xl mx-auto" style={{ color: t.body }}>
               {description || "See how CAST Lighting compares to other landscape lighting brands."}
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             {/* CAST */}
-            <div className="rounded-2xl border-2 border-primary/40 bg-primary/5 p-10 glow-warm-sm">
-              <h3 className="heading-style-h3 text-primary mb-8">{castTitle || "CAST Advantages"}</h3>
+            <div className="rounded-2xl border-2 border-primary/40 bg-primary/5 p-10 glow-warm-sm" style={{ background: lightMode ? 'rgba(0,73,96,0.05)' : undefined, borderColor: lightMode ? 'rgba(0,73,96,0.4)' : undefined }}>
+              <h3 className="heading-style-h3 text-primary mb-8" style={{ color: t.heading }}>{castTitle || "CAST Advantages"}</h3>
               <ul className="space-y-5">
                 {castList.map((item, i) => (
                   <li key={i} className="flex items-start gap-4">
                     <div className="flex-shrink-0 w-7 h-7 rounded-full bg-primary/20 flex items-center justify-center mt-0.5">
                       <Check className="w-4 h-4 text-primary" />
                     </div>
-                    <span className="text-size-large text-foreground">{item}</span>
+                    <span className="text-size-large text-foreground" style={{ color: t.body }}>{item}</span>
                   </li>
                 ))}
               </ul>
             </div>
 
             {/* Others */}
-            <div className="rounded-2xl border border-border bg-card p-10">
-              <h3 className="heading-style-h3 text-muted-foreground mb-8">{othersTitle || "Other Lighting Brands"}</h3>
+            <div className="rounded-2xl border border-border bg-card p-10" style={{ background: t.cardBg, borderColor: t.cardBorder }}>
+              <h3 className="heading-style-h3 text-muted-foreground mb-8" style={{ color: t.body }}>{othersTitle || "Other Lighting Brands"}</h3>
               <ul className="space-y-5">
                 {otherList.map((item, i) => (
                   <li key={i} className="flex items-start gap-4">
                     <div className="flex-shrink-0 w-7 h-7 rounded-full bg-destructive/10 flex items-center justify-center mt-0.5">
                       <X className="w-4 h-4 text-destructive" />
                     </div>
-                    <span className="text-size-large text-muted-foreground">{item}</span>
+                    <span className="text-size-large text-muted-foreground" style={{ color: t.body }}>{item}</span>
                   </li>
                 ))}
               </ul>

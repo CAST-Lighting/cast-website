@@ -1,6 +1,7 @@
 "use client"
 import { forwardRef, type Ref, useState, useRef, useEffect } from "react"
 import { ArrowLeft, ArrowRight } from "lucide-react"
+import { getTheme } from "~/lib/makeswift/theme"
 
 interface BCProduct {
   entityId: number
@@ -107,6 +108,7 @@ const ProductGallery = forwardRef(function ProductGallery(
     requestAnimationFrame(animate)
   }
 
+  const t = getTheme(lightMode ? 'light' : 'dark')
   const hasGradient = !!(gradientFrom && gradientTo)
   const overlayOpacity = typeof bgOpacity === 'number' ? bgOpacity / 100 : 0.85
   const sectionBackground = lightMode
@@ -132,22 +134,22 @@ const ProductGallery = forwardRef(function ProductGallery(
         <div className="site-container mb-10">
           <div className="flex flex-col md:flex-row md:items-end md:justify-between">
             <div>
-              <h2 className="heading-style-h2 text-foreground mb-3">
+              <h2 className="heading-style-h2 text-foreground mb-3" style={{ color: t.heading }}>
                 {sectionTitle || 'Our Favorite'}{' '}
                 <span className="text-gradient-warm">{sectionTitleAccent || 'Picks'}</span>
               </h2>
-              <p className="section-desc max-w-md">
+              <p className="section-desc max-w-md" style={{ color: t.body }}>
                 {sectionDescription || 'Explore our most popular landscape lighting fixtures trusted by contractors nationwide.'}
               </p>
             </div>
             <div className="flex items-center gap-3 mt-4 md:mt-0">
-              <button onClick={() => scroll('left')} disabled={!canScrollLeft} className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-foreground hover:border-primary hover:text-primary transition-colors duration-200 ease-in disabled:opacity-30 disabled:cursor-not-allowed">
+              <button onClick={() => scroll('left')} disabled={!canScrollLeft} style={{ width: 40, height: 40, borderRadius: '50%', border: `1px solid ${t.cardBorder}`, background: 'transparent', display: 'flex', alignItems: 'center', justifyContent: 'center', color: t.heading, cursor: canScrollLeft ? 'pointer' : 'not-allowed', opacity: canScrollLeft ? 1 : 0.3, transition: 'border-color 200ms ease, color 200ms ease' }}>
                 <ArrowLeft className="w-4 h-4" />
               </button>
-              <button onClick={() => scroll('right')} disabled={!canScrollRight} className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-foreground hover:border-primary hover:text-primary transition-colors duration-200 ease-in disabled:opacity-30 disabled:cursor-not-allowed">
+              <button onClick={() => scroll('right')} disabled={!canScrollRight} style={{ width: 40, height: 40, borderRadius: '50%', border: `1px solid ${t.cardBorder}`, background: 'transparent', display: 'flex', alignItems: 'center', justifyContent: 'center', color: t.heading, cursor: canScrollRight ? 'pointer' : 'not-allowed', opacity: canScrollRight ? 1 : 0.3, transition: 'border-color 200ms ease, color 200ms ease' }}>
                 <ArrowRight className="w-4 h-4" />
               </button>
-              <a href={viewAllHref || '/shop'} className="flex items-center gap-2 text-primary hover:text-accent transition-colors duration-200 ease-in text-size-medium font-medium ml-4">
+              <a href={viewAllHref || '/shop'} className="flex items-center gap-2 text-primary hover:text-accent transition-colors duration-200 ease-in text-size-medium font-medium ml-4" style={{ color: t.accent }}>
                 {viewAllLabel || 'View All'} <ArrowRight className="w-4 h-4" />
               </a>
             </div>
@@ -166,6 +168,7 @@ const ProductGallery = forwardRef(function ProductGallery(
                 key={product.entityId}
                 href={product.path}
                 className="group flex-shrink-0 w-[280px] bg-card border border-border rounded-xl overflow-hidden hover:border-primary/40 transition-all duration-200 ease-in shadow-md shadow-black/20 hover:shadow-lg hover:shadow-black/30 no-underline"
+                style={{ background: t.cardBg, borderColor: t.cardBorder }}
               >
                 <div className="relative overflow-hidden aspect-square">
                   <img
@@ -175,9 +178,9 @@ const ProductGallery = forwardRef(function ProductGallery(
                   />
                 </div>
                 <div className="p-5">
-                  <h3 className="heading-card-sm text-foreground mb-1">{product.name}</h3>
-                  {product.price && <p className="text-primary text-size-large font-bold mb-3">{product.price}</p>}
-                  <span className="inline-flex items-center gap-1.5 text-size-small text-muted-foreground group-hover:text-primary transition-colors duration-200 ease-in">
+                  <h3 className="heading-card-sm text-foreground mb-1" style={{ color: t.heading }}>{product.name}</h3>
+                  {product.price && <p className="text-primary text-size-large font-bold mb-3" style={{ color: t.accent }}>{product.price}</p>}
+                  <span className="inline-flex items-center gap-1.5 text-size-small text-muted-foreground group-hover:text-primary transition-colors duration-200 ease-in" style={{ color: t.body }}>
                     View Product <ArrowRight className="w-3.5 h-3.5" />
                   </span>
                 </div>

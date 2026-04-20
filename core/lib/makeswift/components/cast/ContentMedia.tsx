@@ -112,11 +112,11 @@ const ContentMedia = forwardRef(function ContentMedia(
 
             {/* ── Content column ── */}
             <div style={{ order: contentOrder }}>
-              <h2 className="heading-style-h2 text-foreground mb-6 leading-tight">
+              <h2 className="heading-style-h2 text-foreground mb-6 leading-tight" style={{ color: t.heading }}>
                 {heading || "Unmatched Quality, Technology &"}{" "}
                 <span className="text-gradient-warm">{headingAccent || "Durability"}</span>
               </h2>
-              <p className="section-desc mb-8">
+              <p className="section-desc mb-8" style={{ color: t.body }}>
                 {bodyText || "Every CAST fixture is made from solid brass and copper alloys that will never rust or corrode. Our proprietary LED technology delivers superior color rendering and energy efficiency."}
               </p>
 
