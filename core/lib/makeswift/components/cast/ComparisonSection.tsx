@@ -38,6 +38,7 @@ const ComparisonSection = forwardRef(function ComparisonSection(
     othersTitle,
     castPoints,
     otherPoints,
+    lightMode,
   }: {
     className?: string
     bgImage?: string
@@ -55,15 +56,18 @@ const ComparisonSection = forwardRef(function ComparisonSection(
     othersTitle?: string
     castPoints?: PointItem[]
     otherPoints?: PointItem[]
+    lightMode?: boolean
   },
   ref: Ref<HTMLElement>
 ) {
   const bgImageUrl = bgImage
   const hasGradient = !!(gradientFrom && gradientTo)
   const overlayOpacity = typeof bgOpacity === 'number' ? bgOpacity / 100 : 0.85
-  const sectionBackground = hasGradient
-    ? `linear-gradient(${gradientDirection || 'to bottom'}, ${gradientFrom}, ${gradientTo})`
-    : bgColor || '#1a2332'
+  const sectionBackground = lightMode
+    ? '#F5F5F5'
+    : hasGradient
+      ? `linear-gradient(${gradientDirection || 'to bottom'}, ${gradientFrom}, ${gradientTo})`
+      : bgColor || '#1a2332'
 
   const castList = (castPoints && castPoints.length > 0)
     ? castPoints.map((p) => p.text || '')

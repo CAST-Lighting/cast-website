@@ -30,6 +30,7 @@ interface BrandLogosProps {
   gradientDirection?: string
   logos?: LogoItem[]
   mode?: 'dark' | 'light'
+  lightMode?: boolean
 }
 
 const BrandLogos = forwardRef(function BrandLogos(
@@ -46,16 +47,19 @@ const BrandLogos = forwardRef(function BrandLogos(
     gradientDirection,
     logos: logosProp,
     mode = 'dark',
+    lightMode,
   }: BrandLogosProps,
   ref: Ref<HTMLElement>
 ) {
   const logos = logosProp && logosProp.length > 0 ? logosProp : FALLBACK_LOGOS
-  const t = getTheme(mode)
+  const t = getTheme(lightMode ? 'light' : mode)
   const overlayOpacity = typeof bgOpacity === "number" ? bgOpacity / 100 : 0.88
   const hasGradient = !!(gradientFrom && gradientTo)
-  const bg = hasGradient
-    ? `linear-gradient(${gradientDirection || 'to bottom'}, ${gradientFrom}, ${gradientTo})`
-    : bgColor || t.bg
+  const bg = lightMode
+    ? '#F5F5F5'
+    : hasGradient
+      ? `linear-gradient(${gradientDirection || 'to bottom'}, ${gradientFrom}, ${gradientTo})`
+      : bgColor || t.bg
 
   return (
     <section
@@ -107,7 +111,7 @@ const BrandLogos = forwardRef(function BrandLogos(
                 key={i}
                 style={{
                   padding: "14px 28px",
-                  background: "rgba(255,255,255,0.05)",
+                  background: lightMode ? "#FFFFFF" : "rgba(255,255,255,0.05)",
                   border: `1px solid ${t.cardBorder}`,
                   borderRadius: 8,
                   display: "flex",
@@ -120,7 +124,7 @@ const BrandLogos = forwardRef(function BrandLogos(
                   <img
                     src={logo.image}
                     alt={logo.name || `Partner ${i + 1}`}
-                    style={{ height: 32, objectFit: "contain", filter: "brightness(0) invert(0.7)" }}
+                    style={{ height: 32, objectFit: "contain", filter: lightMode ? "brightness(0) invert(0)" : "brightness(0) invert(0.7)" }}
                   />
                 ) : (
                   <span style={{

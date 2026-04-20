@@ -25,6 +25,7 @@ interface MediaGalleryProps {
   gradientTo?: string
   gradientDirection?: string
   mode?: 'dark' | 'light'
+  lightMode?: boolean
 }
 
 const PlaceholderImage = ({ caption, isVideo }: { caption?: string; isVideo?: boolean }) => (
@@ -66,12 +67,13 @@ const MediaGallery = forwardRef(function MediaGallery(
     gradientTo,
     gradientDirection,
     mode = 'dark',
+    lightMode,
   }: MediaGalleryProps,
   ref: Ref<HTMLDivElement>
 ) {
   const cms = useCmsData()
   const cmsImages = cms?.type === 'product' ? cms.meta?.images : null
-  const t = getTheme(mode)
+  const t = getTheme(lightMode ? 'light' : mode)
 
   const [lightbox, setLightbox] = useState<number | null>(null)
   const scrollRef = useRef<HTMLDivElement>(null)
@@ -135,9 +137,11 @@ const MediaGallery = forwardRef(function MediaGallery(
 
   const hasGradient = !!(gradientFrom && gradientTo)
   const overlayOpacity = typeof bgOpacity === "number" ? bgOpacity / 100 : 0.85
-  const sectionBackground = hasGradient
-    ? `linear-gradient(${gradientDirection || "to bottom"}, ${gradientFrom}, ${gradientTo})`
-    : bgColor || "#f0f2f5"
+  const sectionBackground = lightMode
+    ? '#F5F5F5'
+    : hasGradient
+      ? `linear-gradient(${gradientDirection || "to bottom"}, ${gradientFrom}, ${gradientTo})`
+      : bgColor || "#f0f2f5"
 
   return (
     <div
