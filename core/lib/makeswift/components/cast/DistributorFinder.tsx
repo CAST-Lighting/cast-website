@@ -14,6 +14,7 @@ interface DistributorFinderProps {
   gradientFrom?: string
   gradientTo?: string
   gradientDirection?: string
+  lightMode?: boolean
 }
 
 const PLACEHOLDER_DISTRIBUTORS = [
@@ -35,7 +36,8 @@ const DistributorFinder = forwardRef(function DistributorFinder(
     bgOpacity,
     gradientFrom,
     gradientTo,
-    gradientDirection
+    gradientDirection,
+    lightMode,
   }: DistributorFinderProps,
   ref: Ref<HTMLDivElement>
 ) {
@@ -49,9 +51,11 @@ const DistributorFinder = forwardRef(function DistributorFinder(
 
   const hasGradient = !!(gradientFrom && gradientTo)
   const overlayOpacity = typeof bgOpacity === 'number' ? bgOpacity / 100 : 0.85
-  const sectionBackground = hasGradient
-    ? `linear-gradient(${gradientDirection || 'to bottom'}, ${gradientFrom}, ${gradientTo})`
-    : bgColor || "#25262d"
+  const sectionBackground = lightMode
+    ? '#F5F5F5'
+    : hasGradient
+      ? `linear-gradient(${gradientDirection || 'to bottom'}, ${gradientFrom}, ${gradientTo})`
+      : bgColor || "#25262d"
 
   return (
     <div
@@ -91,26 +95,26 @@ const DistributorFinder = forwardRef(function DistributorFinder(
 
           {/* Right: search + distributor tiles */}
           <div className="df-right">
-            <form onSubmit={handleSearch} style={{ display: "flex", gap: 0, width: "100%", background: "rgba(255,255,255,0.06)", borderRadius: 8, overflow: "hidden", border: "1px solid rgba(255,255,255,0.12)", marginBottom: 4 }}>
+            <form onSubmit={handleSearch} style={{ display: "flex", gap: 0, width: "100%", background: lightMode ? "#FFFFFF" : "rgba(255,255,255,0.06)", borderRadius: 8, overflow: "hidden", border: lightMode ? "1px solid #d0d0d0" : "1px solid rgba(255,255,255,0.12)", marginBottom: 4 }}>
               <input
                 type="text"
                 value={zip}
                 onChange={e => setZip(e.target.value)}
                 placeholder="Enter your ZIP code"
-                style={{ flex: 1, padding: "11px 14px", border: "none", background: "transparent", fontFamily: "'Barlow', sans-serif", fontSize: 14, color: "#fff", outline: "none" }}
+                style={{ flex: 1, padding: "11px 14px", border: "none", background: "transparent", fontFamily: "'Barlow', sans-serif", fontSize: 14, color: lightMode ? '#0D1620' : "#fff", outline: "none" }}
               />
               <button type="submit" style={{ background: "var(--color-accent)", color: "#fff", border: "none", padding: "11px 18px", fontFamily: "'Barlow', sans-serif", fontSize: 13, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.06em", cursor: "pointer", flexShrink: 0 }}>
                 Find
               </button>
             </form>
             {PLACEHOLDER_DISTRIBUTORS.slice(0, 4).map((d, i) => (
-              <div key={i} style={{ background: "#2d353c", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 10, padding: "16px 18px" }}>
+              <div key={i} style={{ background: lightMode ? "#FFFFFF" : "#2d353c", border: lightMode ? "1px solid #d0d0d0" : "1px solid rgba(255,255,255,0.1)", borderRadius: 10, padding: "16px 18px" }}>
                 <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 14, fontWeight: 700, color: "var(--color-title)", margin: "0 0 4px" }}>{d.name}</p>
                 <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 12, color: "var(--color-content)", margin: "0 0 4px" }}>{d.city}, {d.state} · {d.type}</p>
                 <a href={`tel:${d.phone}`} style={{ fontFamily: "'Barlow', sans-serif", fontSize: 12, fontWeight: 600, color: "var(--color-accent)", textDecoration: "none", display: "block", marginBottom: 8 }}>{d.phone}</a>
                 <div style={{ display: "flex", gap: 5, flexWrap: "wrap" }}>
                   {d.brands.map((b, bi) => (
-                    <span key={bi} style={{ background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.2)", borderRadius: 3, fontSize: 10, fontFamily: "'Barlow', sans-serif", fontWeight: 600, color: "rgba(255,255,255,0.85)", padding: "2px 7px" }}>{b}</span>
+                    <span key={bi} style={{ background: lightMode ? "rgba(0,0,0,0.05)" : "rgba(255,255,255,0.1)", border: lightMode ? "1px solid #d0d0d0" : "1px solid rgba(255,255,255,0.2)", borderRadius: 3, fontSize: 10, fontFamily: "'Barlow', sans-serif", fontWeight: 600, color: lightMode ? "#0D1620" : "rgba(255,255,255,0.85)", padding: "2px 7px" }}>{b}</span>
                   ))}
                 </div>
               </div>
