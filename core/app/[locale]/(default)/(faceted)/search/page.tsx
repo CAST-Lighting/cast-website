@@ -92,7 +92,7 @@ export default async function Search(props: Props) {
     return `?${params.toString()}`;
   }
 
-  /* ─── No search term ─── */
+  /* ─── No search term — show preview results layout ─── */
   if (!searchTerm) {
     return (
       <>
@@ -104,18 +104,105 @@ export default async function Search(props: Props) {
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: 24, maxWidth: 768, margin: '0 auto' }}>
               <div className="badge-pill" style={{ alignSelf: 'center' }}>
                 <span style={{ width: 8, height: 8, borderRadius: '50%', background: 'var(--color-accent, #007CB0)', flexShrink: 0, display: 'inline-block' }} />
-                <span>Search</span>
+                <span>Search Results</span>
               </div>
-              <h1 className="heading-style-h1" style={{ color: 'var(--color-blue-grey-100, #e2e8f0)' }}>Enter a search term</h1>
-              <p className="section-desc" style={{ color: 'var(--color-blue-grey-300, rgba(255,255,255,0.6))', maxWidth: 576 }}>Start typing to find products</p>
+              <h1 className="heading-style-h1" style={{ color: 'var(--color-blue-grey-100, #e2e8f0)' }}>&ldquo;brass path light&rdquo;</h1>
+              <p className="section-desc" style={{ color: 'var(--color-blue-grey-300, rgba(255,255,255,0.6))', maxWidth: 576 }}>
+                24 results across products, documentation, and articles
+              </p>
             </div>
           </div>
         </section>
-        <div style={{ background: '#25262d', minHeight: 400, padding: '64px 0' }}>
-          <div className="site-container" style={{ textAlign: 'center' }}>
-            <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 18, color: 'rgba(255,255,255,0.6)' }}>
-              Use the search bar above to find products.
-            </p>
+
+        <div style={{ background: '#25262d', padding: '64px 0 80px' }}>
+          <div className="site-container">
+
+            {/* ─── Section label helper ─── */}
+            {/* PRODUCTS */}
+            <div className="cast-results-section">
+              <div className="cast-results-section-header">
+                <h2 className="cast-results-section-title">Products</h2>
+                <span className="cast-results-section-count">18 results</span>
+              </div>
+              <div className="cast-product-grid">
+                {dummyProducts.map((p) => (
+                  <div key={p.id} className="cast-product-card">
+                    <div className="cast-product-image-link">
+                      <div className="cast-product-image-wrapper">
+                        <div className="cast-product-placeholder">
+                          <div className="cast-product-placeholder-grid" />
+                          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" style={{ opacity: 0.5, position: 'relative', zIndex: 1 }}>
+                            <circle cx="12" cy="12" r="10" stroke="#007CB0" strokeWidth="1.5" />
+                            <path d="M8 12h8M12 8v8" stroke="#007CB0" strokeWidth="1.5" strokeLinecap="round" />
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="cast-product-details">
+                      <p className="cast-product-category">{p.category}</p>
+                      <h3 className="cast-product-title">{p.title}</h3>
+                      <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 16, fontWeight: 700, color: '#fff' }}>{p.price}</span>
+                      <a href="#" className="sg-btn-solid-md cast-product-btn">View Product →</a>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* DOCUMENTATION */}
+            <div className="cast-results-section">
+              <div className="cast-results-section-header">
+                <h2 className="cast-results-section-title">Documentation</h2>
+                <span className="cast-results-section-count">4 results</span>
+              </div>
+              <div className="cast-doc-list">
+                {dummyDocs.map((doc) => (
+                  <a key={doc.id} href="#" className="cast-doc-card">
+                    <div className="cast-doc-icon">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="#7EBEE8" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                        <polyline points="14 2 14 8 20 8" stroke="#7EBEE8" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                        <line x1="16" y1="13" x2="8" y2="13" stroke="#7EBEE8" strokeWidth="1.5" strokeLinecap="round"/>
+                        <line x1="16" y1="17" x2="8" y2="17" stroke="#7EBEE8" strokeWidth="1.5" strokeLinecap="round"/>
+                        <polyline points="10 9 9 9 8 9" stroke="#7EBEE8" strokeWidth="1.5" strokeLinecap="round"/>
+                      </svg>
+                    </div>
+                    <div className="cast-doc-content">
+                      <p className="cast-doc-label">{doc.type}</p>
+                      <h3 className="cast-doc-title">{doc.title}</h3>
+                      <p className="cast-doc-excerpt">{doc.excerpt}</p>
+                    </div>
+                    <div className="cast-doc-arrow">→</div>
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            {/* BLOG POSTS */}
+            <div className="cast-results-section">
+              <div className="cast-results-section-header">
+                <h2 className="cast-results-section-title">Blog Posts</h2>
+                <span className="cast-results-section-count">2 results</span>
+              </div>
+              <div className="cast-blog-list">
+                {dummyBlogPosts.map((post) => (
+                  <a key={post.id} href="#" className="cast-blog-card">
+                    <div className="cast-blog-image-wrapper">
+                      <div className="cast-product-placeholder" style={{ borderRadius: 8 }}>
+                        <div className="cast-product-placeholder-grid" />
+                      </div>
+                    </div>
+                    <div className="cast-blog-content">
+                      <p className="cast-doc-label">{post.date} · {post.readTime}</p>
+                      <h3 className="cast-blog-title">{post.title}</h3>
+                      <p className="cast-blog-excerpt">{post.excerpt}</p>
+                      <span className="cast-blog-cta">Read Article →</span>
+                    </div>
+                  </a>
+                ))}
+              </div>
+            </div>
+
           </div>
         </div>
       </>
@@ -610,6 +697,28 @@ export default async function Search(props: Props) {
   );
 }
 
+/* ─── Dummy data for results preview ──────────────────────────── */
+const dummyProducts = [
+  { id: 'p1', category: 'Path Lights', title: 'Classic Brass Path Light', price: '$189.00' },
+  { id: 'p2', category: 'Path Lights', title: 'Low-Profile Copper Path Light', price: '$164.00' },
+  { id: 'p3', category: 'Spotlights', title: 'Adjustable Brass Spotlight', price: '$212.00' },
+  { id: 'p4', category: 'Well Lights', title: 'Brass In-Ground Well Light', price: '$248.00' },
+  { id: 'p5', category: 'Flood Lights', title: 'Solid Brass Flood Light', price: '$179.00' },
+  { id: 'p6', category: 'Path Lights', title: 'Victorian Brass Path Light', price: '$224.00' },
+];
+
+const dummyDocs = [
+  { id: 'd1', type: 'Installation Guide', title: 'Path Light Installation & Wiring Guide', excerpt: 'Step-by-step instructions for in-ground path light installation, including wire depth, transformer load calculations, and fixture spacing.' },
+  { id: 'd2', type: 'Spec Sheet', title: 'Brass Path Light Series — Technical Specifications', excerpt: 'Full spec data: lumen output, beam angles, IP ratings, material specs, and finish options for all path light SKUs.' },
+  { id: 'd3', type: 'Warranty', title: 'Lifetime Warranty Coverage — What\'s Included', excerpt: 'CAST Lighting\'s lifetime warranty covers all solid brass and copper fixtures against defects in materials and workmanship, for the life of the original installation.' },
+  { id: 'd4', type: 'FAQ', title: 'Choosing the Right Path Light for Your Project', excerpt: 'Guidance on wattage selection, halogen vs. LED, fixture height, and spacing recommendations for residential and commercial landscape lighting.' },
+];
+
+const dummyBlogPosts = [
+  { id: 'b1', date: 'March 14, 2025', readTime: '6 min read', title: 'Why Solid Brass Outlasts Composite in Landscape Lighting', excerpt: 'After 20 years on the market, we\'ve seen every material hold up — or not — in real installations. Here\'s what the data shows about brass longevity versus aluminum and composite alternatives.' },
+  { id: 'b2', date: 'January 28, 2025', readTime: '4 min read', title: 'Path Light Spacing: The Contractor\'s Complete Guide', excerpt: 'The most common mistake landscape contractors make is under-spacing path lights. We break down the math, the aesthetics, and the lumen output formulas that make every installation look intentional.' },
+];
+
 /* ─── Styles ────────────────────────────────────────────────────── */
 const castSearchStyles = `
   /* Hero v2 (SubPageHeroStatic pattern) */
@@ -907,6 +1016,167 @@ const castSearchStyles = `
     border-top: 1px solid rgba(255,255,255,0.08);
   }
 
+  /* Results preview sections */
+  .cast-results-section {
+    margin-bottom: 64px;
+  }
+  .cast-results-section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 28px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .cast-results-section-title {
+    font-family: 'Essonnes', 'Playfair Display', serif;
+    font-size: clamp(22px, 2.5vw, 30px);
+    font-weight: 700;
+    color: #fff;
+    margin: 0;
+  }
+  .cast-results-section-count {
+    font-family: 'Barlow', sans-serif;
+    font-size: 13px;
+    color: rgba(255,255,255,0.4);
+    font-weight: 500;
+  }
+
+  /* Documentation list */
+  .cast-doc-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .cast-doc-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    background: #2d353c;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 10px;
+    padding: 20px 24px;
+    text-decoration: none;
+    transition: border-color 200ms, box-shadow 200ms;
+  }
+  .cast-doc-card:hover {
+    border-color: rgba(0,124,176,0.4);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  }
+  .cast-doc-icon {
+    width: 40px;
+    height: 40px;
+    background: rgba(126,190,232,0.1);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .cast-doc-content {
+    flex: 1;
+    min-width: 0;
+  }
+  .cast-doc-label {
+    font-family: 'Barlow', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #7EBEE8;
+    margin: 0 0 6px;
+  }
+  .cast-doc-title {
+    font-family: 'Essonnes', 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: #fff;
+    margin: 0 0 8px;
+    transition: color 200ms;
+  }
+  .cast-doc-card:hover .cast-doc-title { color: #7EBEE8; }
+  .cast-doc-excerpt {
+    font-family: 'Barlow', sans-serif;
+    font-size: 14px;
+    color: rgba(255,255,255,0.55);
+    margin: 0;
+    line-height: 1.6;
+  }
+  .cast-doc-arrow {
+    font-size: 20px;
+    color: rgba(255,255,255,0.3);
+    align-self: center;
+    flex-shrink: 0;
+    transition: color 200ms, transform 200ms;
+  }
+  .cast-doc-card:hover .cast-doc-arrow {
+    color: #7EBEE8;
+    transform: translateX(3px);
+  }
+
+  /* Blog list */
+  .cast-blog-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .cast-blog-card {
+    display: flex;
+    gap: 28px;
+    background: #2d353c;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 10px;
+    overflow: hidden;
+    text-decoration: none;
+    transition: border-color 200ms, box-shadow 200ms;
+  }
+  .cast-blog-card:hover {
+    border-color: rgba(0,124,176,0.4);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  }
+  .cast-blog-image-wrapper {
+    width: 220px;
+    flex-shrink: 0;
+    aspect-ratio: 16/10;
+    overflow: hidden;
+  }
+  .cast-blog-content {
+    flex: 1;
+    min-width: 0;
+    padding: 24px 24px 24px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .cast-blog-title {
+    font-family: 'Essonnes', 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: #fff;
+    margin: 0;
+    line-height: 1.35;
+    transition: color 200ms;
+  }
+  .cast-blog-card:hover .cast-blog-title { color: #7EBEE8; }
+  .cast-blog-excerpt {
+    font-family: 'Barlow', sans-serif;
+    font-size: 14px;
+    color: rgba(255,255,255,0.55);
+    margin: 0;
+    line-height: 1.65;
+    flex: 1;
+  }
+  .cast-blog-cta {
+    font-family: 'Barlow', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: #7EBEE8;
+    letter-spacing: 0.02em;
+    transition: color 200ms;
+  }
+  .cast-blog-card:hover .cast-blog-cta { color: #fff; }
+
   /* Responsive */
   @media (max-width: 1100px) {
     .cast-product-grid { grid-template-columns: repeat(2, 1fr); }
@@ -917,9 +1187,13 @@ const castSearchStyles = `
       width: 100%;
       position: static;
     }
+    .cast-blog-image-wrapper { width: 160px; }
   }
   @media (max-width: 575px) {
     .cast-product-grid { grid-template-columns: 1fr; }
     .cast-toolbar { flex-direction: column; align-items: flex-start; }
+    .cast-blog-card { flex-direction: column; }
+    .cast-blog-image-wrapper { width: 100%; }
+    .cast-blog-content { padding: 20px; }
   }
 `;
