@@ -20,6 +20,7 @@ interface RetailSignupProps {
   submitLabel?: string
   // Layout
   bgColor?: string
+  lightMode?: boolean
 }
 
 const DEFAULT_BENEFITS: BenefitItem[] = [
@@ -39,6 +40,7 @@ const RetailSignup = forwardRef(function RetailSignup(
     loginHref = "/login",
     submitLabel = "Register & Continue to Checkout →",
     bgColor = "#0f1923",
+    lightMode,
   }: RetailSignupProps,
   ref: Ref<HTMLDivElement>
 ) {
@@ -54,7 +56,7 @@ const RetailSignup = forwardRef(function RetailSignup(
     <div
       ref={ref}
       className={`cast-section-default ${className || ""}`}
-      style={{ width: '100%', background: bgColor || "#0f1923", minHeight: "100vh" }}
+      style={{ width: '100%', background: lightMode ? '#F5F5F5' : (bgColor || "#0f1923"), minHeight: "100vh" }}
     >
       {/* ── Form + Sidebar ── */}
       <style>{`
