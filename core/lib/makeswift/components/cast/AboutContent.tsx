@@ -23,6 +23,7 @@ interface AboutContentProps {
   btn1Href?: string
   btn2Label?: string
   btn2Href?: string
+  lightMode?: boolean
 }
 
 const ICONS: ReactNode[] = [
@@ -87,6 +88,7 @@ const AboutContent = forwardRef(function AboutContent(
     btn1Href = "/shop",
     btn2Label = "Contact Us",
     btn2Href = "/contact",
+    lightMode,
   }: AboutContentProps,
   ref: Ref<HTMLElement>
 ) {
@@ -97,7 +99,7 @@ const AboutContent = forwardRef(function AboutContent(
     <section
       ref={ref}
       className={`cast-section-default ${className || ""}`}
-      style={{ width: "100%", background: bgColor || "#0f1923" }}
+      style={{ width: "100%", background: lightMode ? '#F5F5F5' : (bgColor || "#0f1923") }}
     >
       <style>{`
         /* ── Editorial split ── */
@@ -124,6 +126,10 @@ const AboutContent = forwardRef(function AboutContent(
           background: rgba(255,255,255,0.04);
           border: 1px solid rgba(255,255,255,0.08);
         }
+        .ac-stat-tile.light {
+          background: #FFFFFF;
+          border-color: #d0d0d0;
+        }
 
         /* ── Feature cards ── */
         .ac-cards {
@@ -142,6 +148,14 @@ const AboutContent = forwardRef(function AboutContent(
           transition: border-color 200ms ease, background 200ms ease;
         }
         .ac-card:hover {
+          border-color: rgba(0,124,176,0.4);
+          background: rgba(0,124,176,0.06);
+        }
+        .ac-card.light {
+          background: #FFFFFF;
+          border-color: #d0d0d0;
+        }
+        .ac-card.light:hover {
           border-color: rgba(0,124,176,0.4);
           background: rgba(0,124,176,0.06);
         }
@@ -172,7 +186,7 @@ const AboutContent = forwardRef(function AboutContent(
               fontSize: "clamp(1.9rem, 3.2vw, 2.6rem)",
               fontWeight: 700,
               lineHeight: 1.15,
-              color: "#fff",
+              color: lightMode ? '#0D1620' : "#fff",
               margin: 0,
             }}>
               {sectionHeading}
@@ -182,7 +196,7 @@ const AboutContent = forwardRef(function AboutContent(
               fontFamily: "'Barlow', sans-serif",
               fontSize: 16,
               lineHeight: 1.85,
-              color: "rgba(255,255,255,0.65)",
+              color: lightMode ? '#0D1620' : "rgba(255,255,255,0.65)",
               margin: 0,
             }}>
               {sectionBody}
@@ -201,7 +215,7 @@ const AboutContent = forwardRef(function AboutContent(
           {/* Right — stat callouts */}
           <div className="ac-stats-grid">
             {stats.map((s, i) => (
-              <div key={i} className="ac-stat-tile">
+              <div key={i} className={`ac-stat-tile${lightMode ? ' light' : ''}`}>
                 <div style={{
                   fontFamily: "'Essonnes', 'Playfair Display', serif",
                   fontSize: "clamp(1.4rem, 2.2vw, 1.85rem)",
@@ -216,7 +230,7 @@ const AboutContent = forwardRef(function AboutContent(
                   fontFamily: "'Barlow', sans-serif",
                   fontSize: 12,
                   fontWeight: 600,
-                  color: "rgba(255,255,255,0.48)",
+                  color: lightMode ? '#0D1620' : "rgba(255,255,255,0.48)",
                   lineHeight: 1.45,
                   textTransform: "uppercase",
                   letterSpacing: "0.04em",
@@ -232,7 +246,7 @@ const AboutContent = forwardRef(function AboutContent(
         {/* ── 2. Feature Cards ───────────────────────────────── */}
         <div className="ac-cards">
           {features.map((item, i) => (
-            <div key={i} className="ac-card">
+            <div key={i} className={`ac-card${lightMode ? ' light' : ''}`}>
               {/* Icon circle */}
               <div style={{
                 width: 44, height: 44,
@@ -251,7 +265,7 @@ const AboutContent = forwardRef(function AboutContent(
                 fontFamily: "'Barlow', sans-serif",
                 fontSize: 15,
                 fontWeight: 700,
-                color: "#fff",
+                color: lightMode ? '#0D1620' : "#fff",
                 margin: "0 0 8px",
                 lineHeight: 1.3,
               }}>
@@ -261,7 +275,7 @@ const AboutContent = forwardRef(function AboutContent(
                 fontFamily: "'Barlow', sans-serif",
                 fontSize: 14,
                 lineHeight: 1.72,
-                color: "rgba(255,255,255,0.55)",
+                color: lightMode ? '#0D1620' : "rgba(255,255,255,0.55)",
                 margin: 0,
               }}>
                 {item.desc || "Feature description."}

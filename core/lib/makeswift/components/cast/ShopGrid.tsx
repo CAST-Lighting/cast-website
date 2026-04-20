@@ -27,6 +27,7 @@ interface ShopGridProps {
   gradientTo?: string
   gradientDirection?: string
   mode?: 'dark' | 'light'
+  lightMode?: boolean
 }
 
 const DEFAULT_PRODUCTS: Product[] = [
@@ -111,7 +112,7 @@ const ProductCard = ({ product, t }: { product: Product; t: Theme }) => (
 )
 
 const ShopGrid = forwardRef(function ShopGrid(
-  { className, sectionStyle, heading, headingAccent = "", products, bgColor, bgImage, bgOpacity, gradientFrom, gradientTo, gradientDirection, mode = 'dark' }: ShopGridProps,
+  { className, sectionStyle, heading, headingAccent = "", products, bgColor, bgImage, bgOpacity, gradientFrom, gradientTo, gradientDirection, mode = 'dark', lightMode }: ShopGridProps,
   ref: Ref<HTMLDivElement>
 ) {
   const [activeCategory, setActiveCategory] = useState("All")
@@ -136,12 +137,14 @@ const ShopGrid = forwardRef(function ShopGrid(
     grouped[cat].push(p)
   })
 
-  const t = getTheme(mode)
+  const t = getTheme(lightMode ? 'light' : mode)
   const hasGradient = !!(gradientFrom && gradientTo)
   const overlayOpacity = typeof bgOpacity === 'number' ? bgOpacity / 100 : 0.85
-  const sectionBackground = hasGradient
-    ? `linear-gradient(${gradientDirection || 'to bottom'}, ${gradientFrom}, ${gradientTo})`
-    : bgColor || t.bg
+  const sectionBackground = lightMode
+    ? '#F5F5F5'
+    : hasGradient
+      ? `linear-gradient(${gradientDirection || 'to bottom'}, ${gradientFrom}, ${gradientTo})`
+      : bgColor || t.bg
 
   return (
     <div

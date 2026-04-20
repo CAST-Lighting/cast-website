@@ -155,6 +155,7 @@ interface HeroBannerProps {
   hideForm?: boolean
   bgColor?: string
   bgOpacity?: number
+  lightMode?: boolean
   // Shared props
   badgeText?: string
   headingLine1?: string
@@ -181,7 +182,7 @@ const HeroBanner = forwardRef(function HeroBanner(
     phrase1, phrase2, phrase3,
     btn1Label, btn1Href, btn2Label, btn2Href,
     hideForm,
-    bgColor, bgOpacity, gradientFrom, gradientTo, gradientDirection,
+    bgColor, bgOpacity, lightMode, gradientFrom, gradientTo, gradientDirection,
     // Shared
     badgeText, headingLine1, description,
     formTitle, formSubtitle, formSubmitLabel,
@@ -256,10 +257,11 @@ const HeroBanner = forwardRef(function HeroBanner(
         position: 'relative',
         zIndex: 2,
         '--section-line-height': lineHeight,
+        ...(lightMode ? { backgroundColor: '#F5F5F5' } : {}),
       } as React.CSSProperties}
     >
       {/* Slide images */}
-      {images.map((src, i) => (
+      {!lightMode && images.map((src, i) => (
         <div
           key={i}
           className="absolute inset-0 transition-opacity duration-1000 ease-in-out"
@@ -270,7 +272,7 @@ const HeroBanner = forwardRef(function HeroBanner(
       ))}
 
       {/* Overlay */}
-      <div className="absolute inset-0" style={{ background: overlayBg, opacity: overlayOpacity, zIndex: 1 }} />
+      {!lightMode && <div className="absolute inset-0" style={{ background: overlayBg, opacity: overlayOpacity, zIndex: 1 }} />}
 
       {/* Slide indicators */}
       {images.length > 1 && (
@@ -308,7 +310,7 @@ const HeroBanner = forwardRef(function HeroBanner(
             )}
 
             {/* Heading */}
-            <h1 className="heading-style-h1" style={{ color: 'var(--color-blue-grey-100)' }}>
+            <h1 className="heading-style-h1" style={{ color: lightMode ? '#0D1620' : 'var(--color-blue-grey-100)' }}>
               {headingLine1 || "Premium Landscape Lighting"}
               {staticAccentText ? (
                 headingAccent?.trim() ? (
@@ -341,7 +343,7 @@ const HeroBanner = forwardRef(function HeroBanner(
 
             {/* Description — only show if populated */}
             {description?.trim() && (
-              <p className="section-desc max-w-md" style={{ color: 'var(--color-blue-grey-300)' }}>
+              <p className="section-desc max-w-md" style={{ color: lightMode ? '#0D1620' : 'var(--color-blue-grey-300)' }}>
                 {description}
               </p>
             )}
@@ -375,7 +377,7 @@ const HeroBanner = forwardRef(function HeroBanner(
             <div
               className="rounded-2xl p-6 lg:p-8 border border-white/10 relative overflow-hidden"
               style={{
-                background: 'linear-gradient(160deg, hsl(193 98% 16% / 0.97), hsl(198 100% 28% / 0.93))',
+                background: lightMode ? '#FFFFFF' : 'linear-gradient(160deg, hsl(193 98% 16% / 0.97), hsl(198 100% 28% / 0.93))',
                 backdropFilter: 'blur(24px)',
                 boxShadow: '0 8px 60px -12px hsl(204 72% 70% / 0.3), 0 2px 20px -4px hsl(193 98% 19% / 0.5), inset 0 1px 0 0 hsl(204 72% 70% / 0.15)',
               }}
