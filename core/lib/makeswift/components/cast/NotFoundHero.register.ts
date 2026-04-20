@@ -23,4 +23,5 @@ runtime.registerComponent(
 
       // 🔘 Buttons
       btnLabel: TextInput({ label: "🔘 Buttons — Button Label", defaultValue: "Back to Home" }),
-      btnHref: 
+      btnHref: TextInput({ label: "🔘 Buttons — Button URL", defaultValue: "/" }) } }
+)

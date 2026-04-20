@@ -40,4 +40,5 @@ runtime.registerComponent(
       btn1Label: TextInput({ label: "🔘 Buttons — Button 1 Label", defaultValue: "Shop Products" }),
       btn1Href: TextInput({ label: "🔘 Buttons — Button 1 Link", defaultValue: "#" }),
       btn2Label: TextInput({ label: "🔘 Buttons — Button 2 Label", defaultValue: "" }),
-      btn2Href: Tex
+      btn2Href: TextInput({ label: "🔘 Buttons — Button 2 Link", defaultValue: "#" }) } }
+)

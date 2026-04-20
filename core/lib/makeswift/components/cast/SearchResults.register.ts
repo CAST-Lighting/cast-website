@@ -22,4 +22,5 @@ runtime.registerComponent(
       emptyBody: TextArea({ label: "✏️ Content — Empty State Body", defaultValue: "Try a different search term or browse our product categories." }),
 
       // 📐 Layout
-      pageSize: Number({ label: "📐 Layout
+      pageSize: Number({ label: "📐 Layout — Products Per Page", defaultValue: 12, min: 4, max: 48, step: 4 }) } }
+)

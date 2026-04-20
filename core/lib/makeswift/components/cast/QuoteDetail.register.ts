@@ -14,4 +14,5 @@ runtime.registerComponent(
       // ─── 📐 Layout ────────────────────────────────────────────────
 
       // ─── 🎨 Background ────────────────────────────────────────────
-      bgColor: 
+      bgColor: Color({ label: "🎨 Background — Color", defaultValue: "#F5F5F5" }) } }
+)

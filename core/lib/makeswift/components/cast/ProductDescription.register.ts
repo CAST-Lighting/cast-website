@@ -38,4 +38,5 @@ runtime.registerComponent(
         type: Shape({
           type: {
             text: TextInput({ label: "Bullet Text", defaultValue: "Feature or specification" }) } }),
-        
+        getItemLabel(item) { return item?.text?.slice(0, 40) || "Bullet"; } }) } }
+)

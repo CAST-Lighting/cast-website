@@ -45,4 +45,6 @@ runtime.registerComponent(
             name: TextInput({ label: "Part Name", defaultValue: "Part Name" }),
             partNumber: TextInput({ label: "Part Number", defaultValue: "PART-001" }),
             price: TextInput({ label: "Price", defaultValue: "$0.00" }),
-            href: TextInput({ label: "Product URL", defaultValue: "#" })
+            href: TextInput({ label: "Product URL", defaultValue: "#" }) } }),
+        getItemLabel(item) { return item?.name || "Part"; } }) } }
+)

@@ -72,4 +72,5 @@ runtime.registerComponent(
       ...heroControls,
       badgeText: TextInput({ label: "✏️ Content — Badge Text", defaultValue: "Search Results" }),
       headingLine1: TextInput({ label: "✏️ Content — Default Heading (search term overrides)", defaultValue: "Search Term" }),
-      description: TextArea({ label: "✏️ Content — Default De
+      description: TextArea({ label: "✏️ Content — Default Description (result count overrides)", defaultValue: "Products found" }) } }
+)

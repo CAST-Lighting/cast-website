@@ -44,4 +44,5 @@ runtime.registerComponent(
       submitLabel: TextInput({ label: "📋 Form — Submit Button Label", defaultValue: "Submit Application →" }),
 
       // 🎨 Background
-      bgColor: 
+      bgColor: Color({ label: "🎨 Background — Color", defaultValue: "#f5f5f5" }) } }
+)

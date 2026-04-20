@@ -45,4 +45,6 @@ runtime.registerComponent(
             price: TextInput({ label: "Price", defaultValue: "$0.00" }),
             category: TextInput({ label: "Category", defaultValue: "Category" }),
             badge: TextInput({ label: "Badge (optional)", defaultValue: "" }),
-            href: TextInput({ label: "Product URL", defaultValue: "#" }) } 
+            href: TextInput({ label: "Product URL", defaultValue: "#" }) } }),
+        getItemLabel(item) { return item?.name || "Product"; } }) } }
+)

@@ -10,4 +10,7 @@ runtime.registerComponent(
     props: {
       className: Style({ properties: [Style.Padding, Style.Margin] }),
       lightMode: Checkbox({ label: '💡 Light Mode', defaultValue: false }),
-      bgColor:       Color({ la
+      bgColor:       Color({ label: "🎨 Background — Color", defaultValue: "#F5F5F5" }),
+    },
+  }
+)

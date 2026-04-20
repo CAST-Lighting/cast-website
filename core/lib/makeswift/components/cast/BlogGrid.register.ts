@@ -29,4 +29,5 @@ runtime.registerComponent(
         } }),
 
       // ✏️ Content
-      emptyMessage: TextInput({ label: "✏�
+      emptyMessage: TextInput({ label: "✏️ Content — Empty State Message", defaultValue: "No posts found." }) } }
+)

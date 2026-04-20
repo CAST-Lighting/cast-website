@@ -44,4 +44,6 @@ runtime.registerComponent(
         label: "📦 Items — Benefit Items",
         type: Shape({
           type: {
-            text: TextInput({ label: "Text", defaultValue: "Benefit item" })
+            text: TextInput({ label: "Text", defaultValue: "Benefit item" }) } }),
+        getItemLabel(item) { return item?.text || "Item"; } }) } }
+)

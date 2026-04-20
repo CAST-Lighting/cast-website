@@ -49,4 +49,5 @@ runtime.registerComponent(
               defaultValue: "image" }),
             src: Image({ label: "Image / Video Thumbnail" }),
             caption: TextInput({ label: "Caption", defaultValue: "Media caption" }) } }),
- 
+        getItemLabel(item) { return item?.caption || "Media Item"; } }) } }
+)

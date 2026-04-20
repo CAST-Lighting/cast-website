@@ -49,4 +49,6 @@ runtime.registerComponent(
         label: "🃏 Cards — Other Brand Points",
         type: Shape({
           type: {
-            text: TextInput({ label: "Point", defaultValue: "" })
+            text: TextInput({ label: "Point", defaultValue: "" }) } }),
+        getItemLabel(item) { return item?.text || "Point" } }) } }
+)

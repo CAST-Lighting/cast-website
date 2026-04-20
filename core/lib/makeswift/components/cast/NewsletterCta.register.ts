@@ -40,4 +40,5 @@ runtime.registerComponent(
 
       // 📋 Form
       submitLabel: TextInput({ label: "📋 Form — Submit Button Label", defaultValue: "Submit" }),
-      inputPlaceholder: TextInput({ label: 
+      inputPlaceholder: TextInput({ label: "📋 Form — Input Placeholder", defaultValue: "Enter your email" }) } }
+)

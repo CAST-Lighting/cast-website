@@ -47,4 +47,6 @@ runtime.registerComponent(
             image: Image({ label: "Product Image" }),
             name: TextInput({ label: "Product Name", defaultValue: "Product Name" }),
             price: TextInput({ label: "Price", defaultValue: "$0.00" }),
-            badge: TextInput({ label: "Badge (optional)", defaultValue: "" })
+            badge: TextInput({ label: "Badge (optional)", defaultValue: "" }) } }),
+        getItemLabel(item) { return item?.name || "Item"; } }) } }
+)

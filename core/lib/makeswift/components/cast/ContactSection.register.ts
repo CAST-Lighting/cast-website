@@ -25,4 +25,5 @@ runtime.registerComponent(
 
       // 📋 Form
       formHeading: TextInput({ label: "📋 Form — Heading", defaultValue: "Form Heading Here" }),
-      submitLabel: TextInput({
+      submitLabel: TextInput({ label: "📋 Form — Submit Button Label", defaultValue: "Submit" }) } }
+)

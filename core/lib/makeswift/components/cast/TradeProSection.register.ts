@@ -52,4 +52,5 @@ runtime.registerComponent(
 
       // 🔘 Buttons
       btnLabel: TextInput({ label: "🔘 Buttons — Button Label", defaultValue: "Join The TradePro Program" }),
-      btnHref: TextInput(
+      btnHref: TextInput({ label: "🔘 Buttons — Button Href", defaultValue: "/trade-pro" }) } }
+)

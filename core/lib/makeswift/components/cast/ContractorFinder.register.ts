@@ -36,4 +36,5 @@ runtime.registerComponent(
 
       // 📋 Form
       formHeading: TextInput({ label: "📋 Form — Heading", defaultValue: "Request a Contractor" }),
-      submitLabel: TextInput({ label: "�
+      submitLabel: TextInput({ label: "📋 Form — Submit Button Label", defaultValue: "Find My Contractor" }) } }
+)

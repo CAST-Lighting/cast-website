@@ -43,4 +43,6 @@ runtime.registerComponent(
           type: {
             image: Image({ label: "Logo Image" }),
             name: TextInput({ label: "Brand Name", defaultValue: "Brand Name" }),
-            url: TextInput({ label: "Link URL", defaultValue: "#" }) 
+            url: TextInput({ label: "Link URL", defaultValue: "#" }) } }),
+        getItemLabel(item) { return item?.name || "Brand"; } }) } }
+)

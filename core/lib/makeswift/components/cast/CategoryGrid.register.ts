@@ -45,4 +45,6 @@ runtime.registerComponent(
         type: Shape({
           type: {
             name: TextInput({ label: "Name", defaultValue: "" }),
-            href: TextInput({ label: "Link", defaultValue: "" }) } 
+            href: TextInput({ label: "Link", defaultValue: "" }) } }),
+        getItemLabel(item) { return item?.name || "Category" } }) } }
+)

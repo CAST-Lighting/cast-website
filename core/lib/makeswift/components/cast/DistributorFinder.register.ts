@@ -35,4 +35,5 @@ runtime.registerComponent(
       subheading: TextInput({ label: "✏️ Content — Subheading", defaultValue: "Lorem ipsum dolor sit amet, consectetur adipiscing elit." }),
 
       // 📋 Form
-      formHeading: TextInput(
+      formHeading: TextInput({ label: "📋 Form — Heading", defaultValue: "Form Heading Here" }) } }
+)

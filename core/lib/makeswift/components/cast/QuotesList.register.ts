@@ -16,4 +16,5 @@ runtime.registerComponent(
 
       // ✏️ Content
       heading: TextInput({ label: "✏️ Content — Heading", defaultValue: "My Quotes" }),
-      emptyMessage: TextInput({ label: "✏�
+      emptyMessage: TextInput({ label: "✏️ Content — Empty State Message", defaultValue: "No quotes yet." }) } }
+)

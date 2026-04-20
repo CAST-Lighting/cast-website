@@ -48,4 +48,7 @@ runtime.registerComponent(
           { value: "to right", label: "→ Left to Right" },
           { value: "to left", label: "← Right to Left" },
           { value: "135deg", label: "↘ Diagonal ↘" },
-          { value: "225deg", label
+          { value: "225deg", label: "↙ Diagonal ↙" },
+        ],
+        defaultValue: "135deg" }) } }
+)

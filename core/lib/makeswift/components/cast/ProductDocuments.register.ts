@@ -43,4 +43,6 @@ runtime.registerComponent(
             title: TextInput({ label: "Document Title", defaultValue: "Document Title" }),
             description: TextArea({ label: "Description", defaultValue: "Document description." }),
             fileUrl: TextInput({ label: "File URL", defaultValue: "#" }),
-            fileType: TextInput({ label: "File Type (PDF, IES, DWG…)", defaultValue: "PDF" }) } })
+            fileType: TextInput({ label: "File Type (PDF, IES, DWG…)", defaultValue: "PDF" }) } }),
+        getItemLabel(item) { return item?.title || "Document"; } }) } }
+)

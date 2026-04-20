@@ -42,4 +42,5 @@ runtime.registerComponent(
           type: {
             question: TextInput({ label: "Question", defaultValue: "Question goes here?" }),
             answer: TextArea({ label: "Answer", defaultValue: "Lorem ipsum dolor sit amet, consectetur adipiscing elit." }) } }),
-        g
+        getItemLabel(item) { return item?.question?.slice(0, 50) || "FAQ"; } }) } }
+)
