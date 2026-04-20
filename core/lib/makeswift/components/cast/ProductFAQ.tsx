@@ -21,6 +21,7 @@ interface ProductFAQProps {
   gradientTo?: string
   gradientDirection?: string
   mode?: 'dark' | 'light'
+  lightMode?: boolean
 }
 
 const DEFAULT_FAQS: FAQ[] = [
@@ -43,17 +44,18 @@ const ProductFAQ = forwardRef(function ProductFAQ(
     gradientTo,
     gradientDirection,
     mode = 'dark',
+    lightMode,
   }: ProductFAQProps,
   ref: Ref<HTMLDivElement>
 ) {
   const [open, setOpen] = useState<number | null>(null)
-  const t = getTheme(mode)
+  const t = getTheme(lightMode ? 'light' : mode)
   const list = faqs && faqs.length > 0 ? faqs : DEFAULT_FAQS
   const hasGradient = !!(gradientFrom && gradientTo)
   const overlayOpacity = typeof bgOpacity === 'number' ? bgOpacity / 100 : 0.85
   const sectionBackground = hasGradient
     ? `linear-gradient(${gradientDirection || 'to bottom'}, ${gradientFrom}, ${gradientTo})`
-    : bgColor || "#f0f2f5"
+    : (lightMode ? '#F5F5F5' : (bgColor || "#f0f2f5"))
 
   return (
     <div

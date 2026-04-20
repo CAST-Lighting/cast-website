@@ -7,6 +7,7 @@ export interface CmsCategoryGridProps {
   className?: string
   bgColor?: string
   columns?: number
+  lightMode?: boolean
 }
 
 const PLACEHOLDER_CATEGORIES = [
@@ -25,6 +26,7 @@ const CmsCategoryGrid = forwardRef(function CmsCategoryGrid(
     className,
     bgColor = "#F5F5F5",
     columns = 6,
+    lightMode,
   }: CmsCategoryGridProps,
   ref: Ref<HTMLElement>
 ) {
@@ -48,7 +50,7 @@ const CmsCategoryGrid = forwardRef(function CmsCategoryGrid(
     <div
       ref={ref as Ref<HTMLDivElement>}
       className={`cast-section-default ${className || ""}`}
-      style={{ width: '100%', background: bgColor, fontFamily: "'Barlow', sans-serif" }}
+      style={{ width: '100%', background: lightMode ? '#F5F5F5' : bgColor, fontFamily: "'Barlow', sans-serif" }}
     >
       <style>{`
         .ccg-grid {

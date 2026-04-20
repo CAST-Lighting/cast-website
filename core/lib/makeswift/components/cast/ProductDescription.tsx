@@ -14,6 +14,7 @@ interface ProductDescriptionProps {
   gradientFrom?: string
   gradientTo?: string
   gradientDirection?: string
+  lightMode?: boolean
 }
 
 const DEFAULT_BULLETS = [
@@ -37,7 +38,8 @@ const ProductDescription = forwardRef(function ProductDescription(
     bgOpacity,
     gradientFrom,
     gradientTo,
-    gradientDirection
+    gradientDirection,
+    lightMode,
   }: ProductDescriptionProps,
   ref: Ref<HTMLDivElement>
 ) {
@@ -47,7 +49,7 @@ const ProductDescription = forwardRef(function ProductDescription(
   const overlayOpacity = typeof bgOpacity === 'number' ? bgOpacity / 100 : 0.85
   const sectionBackground = hasGradient
     ? `linear-gradient(${gradientDirection || 'to bottom'}, ${gradientFrom}, ${gradientTo})`
-    : bgColor || "#25262d"
+    : (lightMode ? '#F5F5F5' : (bgColor || "#25262d"))
 
   return (
     <div
