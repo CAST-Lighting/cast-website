@@ -10,6 +10,7 @@ interface RichTextSectionProps {
   pdfLabel?: string
   pdfUrl?: string
   showPdf?: boolean
+  lightMode?: boolean
 }
 
 const DEFAULT_CONTENT = `These Terms and Conditions ("Terms") govern your access to and use of the CAST Lighting website, products, and services (collectively, "Services"). By accessing or using our Services, you agree to be bound by these Terms. If you do not agree with any part of these Terms, you may not access the Services.
@@ -61,6 +62,7 @@ const RichTextSection = forwardRef(function RichTextSection(
     pdfLabel = "Download PDF Version",
     pdfUrl = "",
     showPdf = false,
+    lightMode,
   }: RichTextSectionProps,
   ref: Ref<HTMLElement>
 ) {
@@ -76,7 +78,7 @@ const RichTextSection = forwardRef(function RichTextSection(
     <section
       ref={ref}
       className={`cast-section-default ${className || ""}`}
-      style={{ width: '100%', background: bgColor || "#ffffff", }}
+      style={{ width: '100%', background: lightMode ? '#F5F5F5' : (bgColor || "#ffffff"), }}
     >
       <div className="site-container">
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>

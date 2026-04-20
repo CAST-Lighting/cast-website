@@ -19,6 +19,7 @@ interface EventsGridProps {
   headingAccent?: string
   overline?: string
   emptyMessage?: string
+  lightMode?: boolean
 }
 
 const PLACEHOLDER_EVENTS: CastEvent[] = [
@@ -74,6 +75,7 @@ const EventsGrid = forwardRef(function EventsGrid(
     headingAccent = "Events",
     overline = "Training & Community",
     emptyMessage = "No upcoming events at this time.",
+    lightMode,
   }: EventsGridProps,
   ref: Ref<HTMLElement>
 ) {
@@ -106,7 +108,7 @@ const EventsGrid = forwardRef(function EventsGrid(
     <section
       ref={ref}
       className={`cast-section-default ${className || ""}`}
-      style={{ width: '100%', background: bgColor || "#0f1923", }}
+      style={{ width: '100%', background: lightMode ? '#F5F5F5' : (bgColor || "#0f1923"), }}
     >
       <div className="site-container">
         {/* Section Header */}
@@ -129,7 +131,7 @@ const EventsGrid = forwardRef(function EventsGrid(
             fontSize: "var(--h2-size, 2.5rem)",
             fontWeight: 700,
             lineHeight: 1.15,
-            color: "#fff",
+            color: lightMode ? '#0D1620' : "#fff",
             margin: 0,
           }}>
             {heading || "Upcoming"}{" "}
@@ -161,7 +163,7 @@ const EventsGrid = forwardRef(function EventsGrid(
             <p style={{
               fontFamily: "'Barlow', sans-serif",
               fontSize: 15,
-              color: "rgba(255,255,255,0.4)",
+              color: lightMode ? '#0D1620' : "rgba(255,255,255,0.4)",
               marginTop: 16,
             }}>
               Loading events...
@@ -204,7 +206,7 @@ const EventsGrid = forwardRef(function EventsGrid(
             <p style={{
               fontFamily: "'Barlow', sans-serif",
               fontSize: 20,
-              color: "rgba(255,255,255,0.4)",
+              color: lightMode ? '#0D1620' : "rgba(255,255,255,0.4)",
               margin: 0,
             }}>
               {emptyMessage}
@@ -228,8 +230,8 @@ const EventsGrid = forwardRef(function EventsGrid(
                 <div
                   key={event.id}
                   style={{
-                    background: "#25262d",
-                    border: "1px solid rgba(255,255,255,0.08)",
+                    background: lightMode ? "#FFFFFF" : "#25262d",
+                    border: lightMode ? "1px solid #d0d0d0" : "1px solid rgba(255,255,255,0.08)",
                     borderRadius: 10,
                     overflow: "hidden",
                     display: "flex",
@@ -244,7 +246,7 @@ const EventsGrid = forwardRef(function EventsGrid(
                   }}
                   onMouseLeave={(e) => {
                     const el = e.currentTarget
-                    el.style.borderColor = "rgba(255,255,255,0.08)"
+                    el.style.borderColor = lightMode ? "#d0d0d0" : "rgba(255,255,255,0.08)"
                     el.style.boxShadow = "none"
                     el.style.transform = "translateY(0)"
                   }}
@@ -318,7 +320,7 @@ const EventsGrid = forwardRef(function EventsGrid(
                       fontFamily: "'Essonnes', 'Playfair Display', serif",
                       fontSize: "var(--heading-card-sm, 1.2rem)",
                       fontWeight: 700,
-                      color: "#fff",
+                      color: lightMode ? '#0D1620' : "#fff",
                       lineHeight: 1.35,
                       margin: 0,
                     }}>
@@ -328,7 +330,7 @@ const EventsGrid = forwardRef(function EventsGrid(
                       <p style={{
                         fontFamily: "'Barlow', sans-serif",
                         fontSize: 14,
-                        color: "rgba(255,255,255,0.52)",
+                        color: lightMode ? '#0D1620' : "rgba(255,255,255,0.52)",
                         lineHeight: 1.65,
                         margin: 0,
                         flex: 1,
