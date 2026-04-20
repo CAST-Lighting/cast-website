@@ -1,5 +1,6 @@
 "use client"
 import { forwardRef, type Ref, type ReactNode } from "react"
+import { getTheme } from "~/lib/makeswift/theme"
 
 interface StatItem {
   value?: string
@@ -94,6 +95,7 @@ const AboutContent = forwardRef(function AboutContent(
 ) {
   const stats    = statsProp    && statsProp.length    > 0 ? statsProp    : DEFAULT_STATS
   const features = featuresProp && featuresProp.length > 0 ? featuresProp : DEFAULT_FEATURES
+  const t = getTheme(lightMode ? 'light' : 'dark')
 
   return (
     <section
@@ -186,7 +188,7 @@ const AboutContent = forwardRef(function AboutContent(
               fontSize: "clamp(1.9rem, 3.2vw, 2.6rem)",
               fontWeight: 700,
               lineHeight: 1.15,
-              color: lightMode ? '#0D1620' : "#fff",
+              color: t.heading,
               margin: 0,
             }}>
               {sectionHeading}
@@ -196,7 +198,7 @@ const AboutContent = forwardRef(function AboutContent(
               fontFamily: "'Barlow', sans-serif",
               fontSize: 16,
               lineHeight: 1.85,
-              color: lightMode ? '#0D1620' : "rgba(255,255,255,0.65)",
+              color: t.body,
               margin: 0,
             }}>
               {sectionBody}
@@ -204,10 +206,10 @@ const AboutContent = forwardRef(function AboutContent(
 
             <div style={{ display: "flex", flexWrap: "wrap", gap: 12, marginTop: 4 }}>
               {btn1Label && (
-                <a href={btn1Href || "#"} className="sg-btn-solid-dark-md">{btn1Label}</a>
+                <a href={btn1Href || "#"} className={t.btnPrimary}>{btn1Label}</a>
               )}
               {btn2Label && (
-                <a href={btn2Href || "#"} className="sg-btn-outline-dark-md">{btn2Label}</a>
+                <a href={btn2Href || "#"} className={t.btnOutline}>{btn2Label}</a>
               )}
             </div>
           </div>
@@ -230,7 +232,7 @@ const AboutContent = forwardRef(function AboutContent(
                   fontFamily: "'Barlow', sans-serif",
                   fontSize: 12,
                   fontWeight: 600,
-                  color: lightMode ? '#0D1620' : "rgba(255,255,255,0.48)",
+                  color: t.body,
                   lineHeight: 1.45,
                   textTransform: "uppercase",
                   letterSpacing: "0.04em",
@@ -265,7 +267,7 @@ const AboutContent = forwardRef(function AboutContent(
                 fontFamily: "'Barlow', sans-serif",
                 fontSize: 15,
                 fontWeight: 700,
-                color: lightMode ? '#0D1620' : "#fff",
+                color: t.heading,
                 margin: "0 0 8px",
                 lineHeight: 1.3,
               }}>
@@ -275,7 +277,7 @@ const AboutContent = forwardRef(function AboutContent(
                 fontFamily: "'Barlow', sans-serif",
                 fontSize: 14,
                 lineHeight: 1.72,
-                color: lightMode ? '#0D1620' : "rgba(255,255,255,0.55)",
+                color: t.body,
                 margin: 0,
               }}>
                 {item.desc || "Feature description."}

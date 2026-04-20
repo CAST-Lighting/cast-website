@@ -122,7 +122,7 @@ const PatentsList = forwardRef(function PatentsList(
             fontSize: "var(--h2-size, 2.5rem)",
             fontWeight: 700,
             lineHeight: 1.15,
-            color: lightMode ? '#0D1620' : "#fff",
+            color: lightMode ? '#014960' : "#fff",
             margin: "0 0 16px",
           }}>
             {heading}
@@ -143,7 +143,7 @@ const PatentsList = forwardRef(function PatentsList(
             <p style={{
               fontFamily: "'Barlow', sans-serif",
               fontSize: 17,
-              color: lightMode ? '#0D1620' : "rgba(255,255,255,0.65)",
+              color: lightMode ? '#1a3a4a' : "rgba(255,255,255,0.65)",
               lineHeight: 1.7,
               margin: 0,
             }}>
@@ -186,9 +186,9 @@ const PatentsList = forwardRef(function PatentsList(
         <div style={{ borderRadius: 10, overflow: "hidden", border: lightMode ? "1px solid #d0d0d0" : "1px solid rgba(255,255,255,0.08)" }}>
           {/* Table Header */}
           <div className="pl-table-header">
-            <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: lightMode ? '#0D1620' : "rgba(255,255,255,0.4)" }}>Patent No.</span>
-            <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: lightMode ? '#0D1620' : "rgba(255,255,255,0.4)" }}>Title &amp; Description</span>
-            <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: lightMode ? '#0D1620' : "rgba(255,255,255,0.4)", textAlign: "right" }}>Date / Category</span>
+            <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: lightMode ? '#014960' : "rgba(255,255,255,0.4)" }}>Patent No.</span>
+            <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: lightMode ? '#014960' : "rgba(255,255,255,0.4)" }}>Title &amp; Description</span>
+            <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: lightMode ? '#014960' : "rgba(255,255,255,0.4)", textAlign: "right" }}>Date / Category</span>
           </div>
 
           {/* Patent Rows */}
@@ -229,7 +229,7 @@ const PatentsList = forwardRef(function PatentsList(
                     fontFamily: "'Barlow', sans-serif",
                     fontSize: 15,
                     fontWeight: 700,
-                    color: lightMode ? '#0D1620' : "#fff",
+                    color: lightMode ? '#014960' : "#fff",
                     margin: "0 0 6px",
                     lineHeight: 1.4,
                   }}>
@@ -239,7 +239,7 @@ const PatentsList = forwardRef(function PatentsList(
                     <p style={{
                       fontFamily: "'Barlow', sans-serif",
                       fontSize: 13,
-                      color: lightMode ? '#0D1620' : "rgba(255,255,255,0.48)",
+                      color: lightMode ? '#1a3a4a' : "rgba(255,255,255,0.48)",
                       margin: 0,
                       lineHeight: 1.6,
                     }}>
@@ -254,7 +254,7 @@ const PatentsList = forwardRef(function PatentsList(
                     <p style={{
                       fontFamily: "'Barlow', sans-serif",
                       fontSize: 13,
-                      color: lightMode ? '#0D1620' : "rgba(255,255,255,0.55)",
+                      color: lightMode ? '#1a3a4a' : "rgba(255,255,255,0.55)",
                       margin: "0 0 4px",
                       whiteSpace: "nowrap",
                     }}>

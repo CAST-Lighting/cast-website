@@ -246,7 +246,7 @@ const ContractorFinder = forwardRef(function ContractorFinder(
                 {/* Description */}
                 <div style={fieldWrap}>
                   <label style={activeLabelStyle}>Tell us about your project</label>
-                  <textarea value={description} onChange={e => setDescription(e.target.value)} placeholder="Describe your space, size of the area, any specific lighting goals…" rows={4} style={{ ...inputStyle, resize: "vertical" }} />
+                  <textarea value={description} onChange={e => setDescription(e.target.value)} placeholder="Describe your space, size of the area, any specific lighting goals…" rows={4} style={{ ...activeInputStyle, resize: "vertical" }} />
                 </div>
 
                 <button type="submit" style={{ width: "100%", padding: "14px 24px", background: "linear-gradient(135deg, #007CB0, #7EBEE8)", border: "none", borderRadius: 8, fontFamily: "'Barlow', sans-serif", fontSize: 15, fontWeight: 700, color: "#0d1620", cursor: "pointer", letterSpacing: "0.03em", marginTop: 4 }}>

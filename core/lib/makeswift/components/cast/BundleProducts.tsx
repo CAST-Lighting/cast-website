@@ -91,9 +91,9 @@ const BundleProducts = forwardRef(function BundleProducts(
       <div className="relative" style={{ zIndex: 10 }}>
       <div className="site-container">
         {overline && (
-          <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 12, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.12em", color: "var(--color-content)", margin: "0 0 10px" }}>{overline}</p>
+          <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 12, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.12em", color: t.body, margin: "0 0 10px" }}>{overline}</p>
         )}
-        <h2 style={{ fontSize: "var(--h2-size)", fontWeight: "var(--heading-weight, 700)", lineHeight: "var(--heading-line-height, 1.1)", fontFamily: "'Essonnes', 'Playfair Display', serif", color: "var(--color-title)", margin: "0 0 32px" }}>
+        <h2 style={{ fontSize: "var(--h2-size)", fontWeight: "var(--heading-weight, 700)", lineHeight: "var(--heading-line-height, 1.1)", fontFamily: "'Essonnes', 'Playfair Display', serif", color: t.heading, margin: "0 0 32px" }}>
           {heading}{headingAccent && <> <span className="text-gradient-warm">{headingAccent}</span></>}
         </h2>
 
@@ -121,7 +121,7 @@ const BundleProducts = forwardRef(function BundleProducts(
                 )}
               </div>
               <div style={{ padding: "14px 14px" }}>
-                <h3 className="heading-card-sm" style={{ margin: "0 0 6px", display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical" as const, overflow: "hidden" }}>{item.name}</h3>
+                <h3 className="heading-card-sm" style={{ margin: "0 0 6px", display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical" as const, overflow: "hidden", color: t.heading }}>{item.name}</h3>
                 <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 16, fontWeight: 700, color: t.heading, margin: 0 }}>{item.price}</p>
               </div>
             </div>

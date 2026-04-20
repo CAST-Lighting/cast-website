@@ -1,6 +1,7 @@
 "use client"
 
 import { forwardRef, useState, type Ref } from "react"
+import { getTheme } from "~/lib/makeswift/theme"
 
 interface DistributorFinderProps {
   className?: string
@@ -43,6 +44,7 @@ const DistributorFinder = forwardRef(function DistributorFinder(
 ) {
   const [zip, setZip] = useState("")
   const [searched, setSearched] = useState(false)
+  const t = getTheme(lightMode ? 'light' : 'dark')
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault()
@@ -109,8 +111,8 @@ const DistributorFinder = forwardRef(function DistributorFinder(
             </form>
             {PLACEHOLDER_DISTRIBUTORS.slice(0, 4).map((d, i) => (
               <div key={i} style={{ background: lightMode ? "#FFFFFF" : "#2d353c", border: lightMode ? "1px solid #d0d0d0" : "1px solid rgba(255,255,255,0.1)", borderRadius: 10, padding: "16px 18px" }}>
-                <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 14, fontWeight: 700, color: "var(--color-title)", margin: "0 0 4px" }}>{d.name}</p>
-                <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 12, color: "var(--color-content)", margin: "0 0 4px" }}>{d.city}, {d.state} · {d.type}</p>
+                <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 14, fontWeight: 700, color: t.heading, margin: "0 0 4px" }}>{d.name}</p>
+                <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 12, color: t.body, margin: "0 0 4px" }}>{d.city}, {d.state} · {d.type}</p>
                 <a href={`tel:${d.phone}`} style={{ fontFamily: "'Barlow', sans-serif", fontSize: 12, fontWeight: 600, color: "var(--color-accent)", textDecoration: "none", display: "block", marginBottom: 8 }}>{d.phone}</a>
                 <div style={{ display: "flex", gap: 5, flexWrap: "wrap" }}>
                   {d.brands.map((b, bi) => (
