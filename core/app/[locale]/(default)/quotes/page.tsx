@@ -2,6 +2,7 @@ import { redirect } from 'next/navigation';
 import { setRequestLocale } from 'next-intl/server';
 
 import { getSessionCustomerAccessToken } from '~/auth';
+import { CmsPageRenderer } from '~/lib/makeswift/cms-page-renderer';
 
 interface Props {
   params: Promise<{ locale: string }>;
@@ -95,7 +96,6 @@ export default async function QuotesPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
 
-  // Auth-gated page — always use code layout (no Makeswift override)
   const customerAccessToken = await getSessionCustomerAccessToken();
   if (!customerAccessToken) {
     redirect('/login');
@@ -103,7 +103,7 @@ export default async function QuotesPage({ params }: Props) {
 
   const quotes = await getQuotes();
 
-  return (
+  const fallback = (
     <>
       <style>{`
         .quotes-grid {
@@ -226,5 +226,13 @@ export default async function QuotesPage({ params }: Props) {
         </div>
       </div>
     </>
+  );
+
+  return (
+    <CmsPageRenderer
+      templatePath="/quotes"
+      data={{}}
+      fallback={fallback}
+    />
   );
 }
