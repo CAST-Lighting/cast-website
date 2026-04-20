@@ -28,8 +28,11 @@ export const withAuth: MiddlewareFactory = (next) => {
         await clearAnonymousSession();
       }
 
+      // Allow Makeswift editor through — it sets the Next.js draft mode cookie
+      const isDraftMode = req.cookies.has('__prerender_bypass');
+
       if (!req.auth) {
-        if (isProtectedRoute && isGetRequest) {
+        if (isProtectedRoute && isGetRequest && !isDraftMode) {
           return redirectToLogin(req.url);
         }
 
@@ -38,7 +41,7 @@ export const withAuth: MiddlewareFactory = (next) => {
 
       const { customerAccessToken } = req.auth.user ?? {};
 
-      if (isProtectedRoute && isGetRequest && !customerAccessToken) {
+      if (isProtectedRoute && isGetRequest && !customerAccessToken && !isDraftMode) {
         return redirectToLogin(req.url);
       }
 
