@@ -1,4 +1,5 @@
 import { redirect } from 'next/navigation';
+import { draftMode } from 'next/headers';
 import { setRequestLocale } from 'next-intl/server';
 
 import { getSessionCustomerAccessToken } from '~/auth';
@@ -96,8 +97,9 @@ export default async function QuotesPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
 
+  const { isEnabled: isDraftMode } = await draftMode();
   const customerAccessToken = await getSessionCustomerAccessToken();
-  if (!customerAccessToken) {
+  if (!customerAccessToken && !isDraftMode) {
     redirect('/login');
   }
 
