@@ -22,6 +22,7 @@ interface LoginSectionProps {
   retailBtnHref?: string
   // Divider label
   dividerLabel?: string
+  lightMode?: boolean
 }
 
 const LoginSection = forwardRef(function LoginSection(
@@ -42,6 +43,7 @@ const LoginSection = forwardRef(function LoginSection(
     retailBtnLabel = "Open a Retail Account",
     retailBtnHref = "/retail-signup",
     dividerLabel = "New to CAST Lighting?",
+    lightMode,
   }: LoginSectionProps,
   ref: Ref<HTMLElement>
 ) {
@@ -53,16 +55,16 @@ const LoginSection = forwardRef(function LoginSection(
     <section
       ref={ref}
       className={`cast-section-default ${className || ""}`}
-      style={{ width: '100%', background: bgColor || "#0f1923", flex: 1 }}
+      style={{ width: '100%', background: lightMode ? '#F5F5F5' : (bgColor || "#0f1923"), flex: 1 }}
     >
       <style>{`
         .ls-layout { display: grid; grid-template-columns: 1fr 1px 1fr; gap: 48px; align-items: start; }
         @media (max-width: 900px) { .ls-layout { grid-template-columns: 1fr; } .ls-divider { display: none; } }
-        .ls-label { font-family: 'Barlow', sans-serif; font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.85); display: block; margin-bottom: 6px; }
-        .ls-input { width: 100%; padding: 11px 14px; border: 1px solid rgba(255,255,255,0.12); border-radius: 6px; font-family: 'Barlow', sans-serif; font-size: 14px; color: #fff; box-sizing: border-box; outline: none; background: rgba(255,255,255,0.05); }
+        .ls-label { font-family: 'Barlow', sans-serif; font-size: 13px; font-weight: 600; color: ${lightMode ? '#0D1620' : 'rgba(255,255,255,0.85)'}; display: block; margin-bottom: 6px; }
+        .ls-input { width: 100%; padding: 11px 14px; border: 1px solid ${lightMode ? '#d0d0d0' : 'rgba(255,255,255,0.12)'}; border-radius: 6px; font-family: 'Barlow', sans-serif; font-size: 14px; color: ${lightMode ? '#0D1620' : '#fff'}; box-sizing: border-box; outline: none; background: ${lightMode ? '#FFFFFF' : 'rgba(255,255,255,0.05)'}; }
         .ls-input:focus { border-color: #007CB0; }
-        .ls-input::placeholder { color: rgba(255,255,255,0.35); }
-        .ls-account-card { display: flex; flex-direction: column; gap: 14px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 20px; transition: border-color 200ms ease; }
+        .ls-input::placeholder { color: ${lightMode ? 'rgba(0,0,0,0.35)' : 'rgba(255,255,255,0.35)'}; }
+        .ls-account-card { display: flex; flex-direction: column; gap: 14px; background: ${lightMode ? '#FFFFFF' : 'rgba(255,255,255,0.04)'}; border: 1px solid ${lightMode ? '#d0d0d0' : 'rgba(255,255,255,0.08)'}; border-radius: 10px; padding: 20px; transition: border-color 200ms ease; }
         .ls-account-card:hover { border-color: rgba(0,124,176,0.4); }
       `}</style>
 
@@ -72,10 +74,10 @@ const LoginSection = forwardRef(function LoginSection(
           {/* Left — Login Form */}
           <div style={{ display: "flex", flexDirection: "column", gap: 28 }}>
             <div>
-              <h2 style={{ fontFamily: "'Essonnes','Playfair Display',serif", fontSize: "var(--h2-size)", fontWeight: 700, color: "#fff", margin: "0 0 8px", lineHeight: 1.1 }}>
+              <h2 style={{ fontFamily: "'Essonnes','Playfair Display',serif", fontSize: "var(--h2-size)", fontWeight: 700, color: lightMode ? '#0D1620' : "#fff", margin: "0 0 8px", lineHeight: 1.1 }}>
                 {loginHeading}
               </h2>
-              <p style={{ fontFamily: "'Barlow',sans-serif", fontSize: 16, color: "rgba(255,255,255,0.6)", margin: 0 }}>
+              <p style={{ fontFamily: "'Barlow',sans-serif", fontSize: 16, color: lightMode ? '#0D1620' : "rgba(255,255,255,0.6)", margin: 0 }}>
                 {loginSubheading}
               </p>
             </div>
@@ -120,11 +122,11 @@ const LoginSection = forwardRef(function LoginSection(
           </div>
 
           {/* Center divider */}
-          <div className="ls-divider" style={{ width: 1, background: "rgba(255,255,255,0.08)", alignSelf: "stretch" }} />
+          <div className="ls-divider" style={{ width: 1, background: lightMode ? "#d0d0d0" : "rgba(255,255,255,0.08)", alignSelf: "stretch" }} />
 
           {/* Right — Account options */}
           <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-            <p style={{ fontFamily: "'Barlow',sans-serif", fontSize: 13, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: "rgba(255,255,255,0.45)", margin: "0 0 4px" }}>
+            <p style={{ fontFamily: "'Barlow',sans-serif", fontSize: 13, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: lightMode ? '#0D1620' : "rgba(255,255,255,0.45)", margin: "0 0 4px" }}>
               {dividerLabel}
             </p>
 
@@ -137,10 +139,10 @@ const LoginSection = forwardRef(function LoginSection(
                 </svg>
               </div>
               <div>
-                <h3 style={{ fontFamily: "'Essonnes','Playfair Display',serif", fontSize: "var(--h3-size)", fontWeight: 700, color: "#fff", margin: "0 0 8px", lineHeight: 1.2 }}>
+                <h3 style={{ fontFamily: "'Essonnes','Playfair Display',serif", fontSize: "var(--h3-size)", fontWeight: 700, color: lightMode ? '#0D1620' : "#fff", margin: "0 0 8px", lineHeight: 1.2 }}>
                   {tradeProHeading}
                 </h3>
-                <p style={{ fontFamily: "'Barlow',sans-serif", fontSize: 14, color: "rgba(255,255,255,0.6)", lineHeight: 1.6, margin: 0 }}>
+                <p style={{ fontFamily: "'Barlow',sans-serif", fontSize: 14, color: lightMode ? '#0D1620' : "rgba(255,255,255,0.6)", lineHeight: 1.6, margin: 0 }}>
                   {tradeProDescription}
                 </p>
               </div>
@@ -158,10 +160,10 @@ const LoginSection = forwardRef(function LoginSection(
                 </svg>
               </div>
               <div>
-                <h3 style={{ fontFamily: "'Essonnes','Playfair Display',serif", fontSize: "var(--h3-size)", fontWeight: 700, color: "#fff", margin: "0 0 8px", lineHeight: 1.2 }}>
+                <h3 style={{ fontFamily: "'Essonnes','Playfair Display',serif", fontSize: "var(--h3-size)", fontWeight: 700, color: lightMode ? '#0D1620' : "#fff", margin: "0 0 8px", lineHeight: 1.2 }}>
                   {retailHeading}
                 </h3>
-                <p style={{ fontFamily: "'Barlow',sans-serif", fontSize: 14, color: "rgba(255,255,255,0.6)", lineHeight: 1.6, margin: 0 }}>
+                <p style={{ fontFamily: "'Barlow',sans-serif", fontSize: 14, color: lightMode ? '#0D1620' : "rgba(255,255,255,0.6)", lineHeight: 1.6, margin: 0 }}>
                   {retailDescription}
                 </p>
               </div>

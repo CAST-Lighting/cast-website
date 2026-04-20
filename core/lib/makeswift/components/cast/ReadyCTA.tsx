@@ -20,6 +20,7 @@ interface ReadyCTAProps {
   btn2Label?: string
   btn2Href?: string
   mode?: ThemeMode
+  lightMode?: boolean
 }
 
 const ReadyCTA = forwardRef(function ReadyCTA(
@@ -40,15 +41,18 @@ const ReadyCTA = forwardRef(function ReadyCTA(
     btn2Label = "Join TradePro",
     btn2Href = "/trade-pro",
     mode = 'dark',
+    lightMode,
   }: ReadyCTAProps,
   ref: Ref<HTMLElement>
 ) {
-  const t = getTheme(mode)
+  const t = getTheme(lightMode ? 'light' : mode)
   const hasGradient = !!(gradientFrom && gradientTo)
   const overlayOpacity = typeof bgOpacity === "number" ? bgOpacity / 100 : 0.88
-  const sectionBackground = hasGradient
-    ? `linear-gradient(${gradientDirection || "135deg"}, ${gradientFrom}, ${gradientTo})`
-    : bgColor || "var(--color-primary, #004960)"
+  const sectionBackground = lightMode
+    ? '#F5F5F5'
+    : hasGradient
+      ? `linear-gradient(${gradientDirection || "135deg"}, ${gradientFrom}, ${gradientTo})`
+      : bgColor || "var(--color-primary, #004960)"
 
   return (
     <section

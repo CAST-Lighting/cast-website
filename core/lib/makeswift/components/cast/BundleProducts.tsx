@@ -26,6 +26,7 @@ interface BundleProductsProps {
   gradientTo?: string
   gradientDirection?: string
   mode?: 'dark' | 'light'
+  lightMode?: boolean
 }
 
 const BundleProducts = forwardRef(function BundleProducts(
@@ -44,12 +45,13 @@ const BundleProducts = forwardRef(function BundleProducts(
     gradientTo,
     gradientDirection,
     mode = 'dark',
+    lightMode,
   }: BundleProductsProps,
   ref: Ref<HTMLDivElement>
 ) {
   const cms = useCmsData()
   const cmsRelated = cms?.type === 'product' ? cms.meta?.relatedProducts : null
-  const t = getTheme(mode)
+  const t = getTheme(lightMode ? 'light' : mode)
 
   const DEFAULT_ITEMS: BundleItem[] = [
     { name: "Accessory #1", price: "$49.99", badge: "Popular" },
@@ -72,7 +74,7 @@ const BundleProducts = forwardRef(function BundleProducts(
   const overlayOpacity = typeof bgOpacity === 'number' ? bgOpacity / 100 : 0.85
   const sectionBackground = hasGradient
     ? `linear-gradient(${gradientDirection || 'to bottom'}, ${gradientFrom}, ${gradientTo})`
-    : bgColor || "#f0f2f5"
+    : (lightMode ? '#F5F5F5' : (bgColor || "#f0f2f5"))
 
   return (
     <div

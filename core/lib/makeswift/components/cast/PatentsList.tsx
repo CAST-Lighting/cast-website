@@ -18,6 +18,7 @@ interface PatentsListProps {
   overline?: string
   description?: string
   patents?: Patent[]
+  lightMode?: boolean
 }
 
 const DEFAULT_PATENTS: Patent[] = [
@@ -74,6 +75,7 @@ const PatentsList = forwardRef(function PatentsList(
     overline = "Intellectual Property",
     description,
     patents: propPatents,
+    lightMode,
   }: PatentsListProps,
   ref: Ref<HTMLElement>
 ) {
@@ -97,7 +99,7 @@ const PatentsList = forwardRef(function PatentsList(
     <section
       ref={ref}
       className={`cast-section-default ${className || ""}`}
-      style={{ width: '100%', background: bgColor || "#0f1923", }}
+      style={{ width: '100%', background: lightMode ? '#F5F5F5' : (bgColor || "#0f1923"), }}
     >
       <div className="site-container">
         {/* Section Header */}
@@ -120,7 +122,7 @@ const PatentsList = forwardRef(function PatentsList(
             fontSize: "var(--h2-size, 2.5rem)",
             fontWeight: 700,
             lineHeight: 1.15,
-            color: "#fff",
+            color: lightMode ? '#0D1620' : "#fff",
             margin: "0 0 16px",
           }}>
             {heading}
@@ -141,7 +143,7 @@ const PatentsList = forwardRef(function PatentsList(
             <p style={{
               fontFamily: "'Barlow', sans-serif",
               fontSize: 17,
-              color: "rgba(255,255,255,0.65)",
+              color: lightMode ? '#0D1620' : "rgba(255,255,255,0.65)",
               lineHeight: 1.7,
               margin: 0,
             }}>
@@ -172,7 +174,7 @@ const PatentsList = forwardRef(function PatentsList(
 
         {/* Patents Table */}
         <style>{`
-          .pl-table-header { display: grid; grid-template-columns: 200px 1fr auto; gap: 0 24px; padding: 14px 24px; background: #25262d; border-bottom: 1px solid rgba(255,255,255,0.10); }
+          .pl-table-header { display: grid; grid-template-columns: 200px 1fr auto; gap: 0 24px; padding: 14px 24px; background: ${lightMode ? '#EBEBEB' : '#25262d'}; border-bottom: ${lightMode ? '1px solid #d0d0d0' : '1px solid rgba(255,255,255,0.10)'}; }
           .pl-table-row { display: grid; grid-template-columns: 200px 1fr auto; gap: 0 24px; padding: 20px 24px; align-items: start; }
           .pl-date-col { text-align: right; min-width: 130px; }
           @media (max-width: 640px) {
@@ -181,12 +183,12 @@ const PatentsList = forwardRef(function PatentsList(
             .pl-date-col { text-align: left; min-width: 0; }
           }
         `}</style>
-        <div style={{ borderRadius: 10, overflow: "hidden", border: "1px solid rgba(255,255,255,0.08)" }}>
+        <div style={{ borderRadius: 10, overflow: "hidden", border: lightMode ? "1px solid #d0d0d0" : "1px solid rgba(255,255,255,0.08)" }}>
           {/* Table Header */}
           <div className="pl-table-header">
-            <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: "rgba(255,255,255,0.4)" }}>Patent No.</span>
-            <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: "rgba(255,255,255,0.4)" }}>Title &amp; Description</span>
-            <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: "rgba(255,255,255,0.4)", textAlign: "right" }}>Date / Category</span>
+            <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: lightMode ? '#0D1620' : "rgba(255,255,255,0.4)" }}>Patent No.</span>
+            <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: lightMode ? '#0D1620' : "rgba(255,255,255,0.4)" }}>Title &amp; Description</span>
+            <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: lightMode ? '#0D1620' : "rgba(255,255,255,0.4)", textAlign: "right" }}>Date / Category</span>
           </div>
 
           {/* Patent Rows */}
@@ -203,8 +205,8 @@ const PatentsList = forwardRef(function PatentsList(
                 key={i}
                 className="pl-table-row"
                 style={{
-                  background: isEven ? "rgba(255,255,255,0.02)" : "transparent",
-                  borderBottom: i < items.length - 1 ? "1px solid rgba(255,255,255,0.06)" : "none",
+                  background: lightMode ? (isEven ? "rgba(0,0,0,0.02)" : "#FFFFFF") : (isEven ? "rgba(255,255,255,0.02)" : "transparent"),
+                  borderBottom: i < items.length - 1 ? (lightMode ? "1px solid #d0d0d0" : "1px solid rgba(255,255,255,0.06)") : "none",
                 }}
               >
                 {/* Patent Number */}
@@ -227,7 +229,7 @@ const PatentsList = forwardRef(function PatentsList(
                     fontFamily: "'Barlow', sans-serif",
                     fontSize: 15,
                     fontWeight: 700,
-                    color: "#fff",
+                    color: lightMode ? '#0D1620' : "#fff",
                     margin: "0 0 6px",
                     lineHeight: 1.4,
                   }}>
@@ -237,7 +239,7 @@ const PatentsList = forwardRef(function PatentsList(
                     <p style={{
                       fontFamily: "'Barlow', sans-serif",
                       fontSize: 13,
-                      color: "rgba(255,255,255,0.48)",
+                      color: lightMode ? '#0D1620' : "rgba(255,255,255,0.48)",
                       margin: 0,
                       lineHeight: 1.6,
                     }}>
@@ -252,7 +254,7 @@ const PatentsList = forwardRef(function PatentsList(
                     <p style={{
                       fontFamily: "'Barlow', sans-serif",
                       fontSize: 13,
-                      color: "rgba(255,255,255,0.55)",
+                      color: lightMode ? '#0D1620' : "rgba(255,255,255,0.55)",
                       margin: "0 0 4px",
                       whiteSpace: "nowrap",
                     }}>

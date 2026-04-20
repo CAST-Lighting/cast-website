@@ -21,6 +21,7 @@ interface TradeProSignupProps {
   submitLabel?: string
   // Layout
   bgColor?: string
+  lightMode?: boolean
 }
 
 const DEFAULT_BENEFITS: BenefitItem[] = [
@@ -43,6 +44,7 @@ const TradeProSignup = forwardRef(function TradeProSignup(
     loginHref = "/login",
     submitLabel = "Submit Application →",
     bgColor = "#0f1923",
+    lightMode,
   }: TradeProSignupProps,
   ref: Ref<HTMLDivElement>
 ) {
@@ -58,7 +60,7 @@ const TradeProSignup = forwardRef(function TradeProSignup(
     <div
       ref={ref}
       className={`cast-section-default ${className || ""}`}
-      style={{ width: '100%', background: bgColor || "#0f1923", minHeight: "100vh" }}
+      style={{ width: '100%', background: lightMode ? '#F5F5F5' : (bgColor || "#0f1923"), minHeight: "100vh" }}
     >
       {/* ── Form + Sidebar ── */}
       <style>{`

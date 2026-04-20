@@ -5,6 +5,7 @@ import { useCmsData } from "~/lib/makeswift/cms-context"
 export interface CmsBlogBodyProps {
   className?: string
   bgColor?: string
+  lightMode?: boolean
 }
 
 const PLACEHOLDER_HTML = `
@@ -72,6 +73,7 @@ const CmsBlogBody = forwardRef(function CmsBlogBody(
   {
     className,
     bgColor = "#F5F5F5",
+    lightMode,
   }: CmsBlogBodyProps,
   ref: Ref<HTMLElement>
 ) {
@@ -104,7 +106,7 @@ const CmsBlogBody = forwardRef(function CmsBlogBody(
   const hasAudio = !!audioUrl || !cms
 
   return (
-    <div ref={ref as Ref<HTMLDivElement>} className={`cast-section-default ${className || ""}`} style={{ width: '100%', background: bgColor, minHeight: 200 }}>
+    <div ref={ref as Ref<HTMLDivElement>} className={`cast-section-default ${className || ""}`} style={{ width: '100%', background: lightMode ? '#F5F5F5' : bgColor, minHeight: 200 }}>
       <style>{PROSE_STYLES}</style>
 
       {/* Featured Image */}

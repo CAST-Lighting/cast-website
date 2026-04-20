@@ -26,6 +26,7 @@ interface BlogGridProps {
   postsPerPage?: number
   categoryTags?: CategoryTag[]
   emptyMessage?: string
+  lightMode?: boolean
 }
 
 const DEFAULT_CATEGORY_TAGS: CategoryTag[] = [
@@ -62,6 +63,7 @@ const BlogGrid = forwardRef(function BlogGrid(
     postsPerPage = 9,
     categoryTags: categoryTagsProp,
     emptyMessage = "No posts found.",
+    lightMode,
   }: BlogGridProps,
   ref: Ref<HTMLDivElement>
 ) {
@@ -117,13 +119,13 @@ const BlogGrid = forwardRef(function BlogGrid(
     <div
       ref={ref}
       className={`cast-section-default ${className || ""}`}
-      style={{ width: '100%', background: bgColor || "#0f1923" }}
+      style={{ width: '100%', background: lightMode ? '#F5F5F5' : (bgColor || "#0f1923") }}
     >
       {/* ── Category Filter Pills ── */}
       <div
         style={{
-          background: "#141e2a",
-          borderBottom: "1px solid rgba(255,255,255,0.08)",
+          background: lightMode ? '#FFFFFF' : "#141e2a",
+          borderBottom: lightMode ? "1px solid #d0d0d0" : "1px solid rgba(255,255,255,0.08)",
           padding: "18px 0",
           marginBottom: 0,
         }}
@@ -144,9 +146,9 @@ const BlogGrid = forwardRef(function BlogGrid(
                     letterSpacing: "0.09em",
                     padding: "8px 18px",
                     borderRadius: 100,
-                    border: isActive ? "none" : "1px solid rgba(255,255,255,0.18)",
+                    border: isActive ? "none" : lightMode ? "1px solid #d0d0d0" : "1px solid rgba(255,255,255,0.18)",
                     background: isActive ? "#007CB0" : "transparent",
-                    color: isActive ? "#fff" : "rgba(255,255,255,0.65)",
+                    color: isActive ? "#fff" : lightMode ? "#0D1620" : "rgba(255,255,255,0.65)",
                     cursor: "pointer",
                     whiteSpace: "nowrap",
                     display: "inline-block",
@@ -182,7 +184,7 @@ const BlogGrid = forwardRef(function BlogGrid(
                 style={{
                   fontFamily: "'Barlow', sans-serif",
                   fontSize: 15,
-                  color: "rgba(255,255,255,0.4)",
+                  color: lightMode ? "#0D1620" : "rgba(255,255,255,0.4)",
                   marginTop: 16,
                 }}
               >
@@ -223,7 +225,7 @@ const BlogGrid = forwardRef(function BlogGrid(
                 style={{
                   fontFamily: "'Barlow', sans-serif",
                   fontSize: 20,
-                  color: "rgba(255,255,255,0.4)",
+                  color: lightMode ? "#0D1620" : "rgba(255,255,255,0.4)",
                   margin: "0 0 16px",
                 }}
               >
@@ -265,8 +267,8 @@ const BlogGrid = forwardRef(function BlogGrid(
                     style={{
                       textDecoration: "none",
                       display: "block",
-                      background: "#2d353c",
-                      border: "1px solid rgba(255,255,255,0.08)",
+                      background: lightMode ? "#FFFFFF" : "#2d353c",
+                      border: lightMode ? "1px solid #d0d0d0" : "1px solid rgba(255,255,255,0.08)",
                       borderRadius: 10,
                       overflow: "hidden",
                       transition: "border-color 200ms ease, box-shadow 200ms ease, transform 200ms ease",
@@ -280,7 +282,7 @@ const BlogGrid = forwardRef(function BlogGrid(
                     }}
                     onMouseLeave={(e) => {
                       const el = e.currentTarget
-                      el.style.borderColor = "rgba(255,255,255,0.08)"
+                      el.style.borderColor = lightMode ? "#d0d0d0" : "rgba(255,255,255,0.08)"
                       el.style.boxShadow = "none"
                       el.style.transform = "translateY(0)"
                     }}
@@ -369,7 +371,7 @@ const BlogGrid = forwardRef(function BlogGrid(
                           fontFamily: "'Essonnes', 'Playfair Display', serif",
                           fontSize: "var(--h4-size, 1.25rem)",
                           fontWeight: 700,
-                          color: "#fff",
+                          color: lightMode ? "#0D1620" : "#fff",
                           lineHeight: 1.3,
                           margin: 0,
                         }}
@@ -381,7 +383,7 @@ const BlogGrid = forwardRef(function BlogGrid(
                           style={{
                             fontFamily: "'Barlow', sans-serif",
                             fontSize: 14,
-                            color: "rgba(255,255,255,0.52)",
+                            color: lightMode ? "#0D1620" : "rgba(255,255,255,0.52)",
                             lineHeight: 1.65,
                             margin: 0,
                           }}
@@ -401,7 +403,7 @@ const BlogGrid = forwardRef(function BlogGrid(
                           style={{
                             fontFamily: "'Barlow', sans-serif",
                             fontSize: 12,
-                            color: "rgba(255,255,255,0.38)",
+                            color: lightMode ? "#0D1620" : "rgba(255,255,255,0.38)",
                           }}
                         >
                           {formatDate(post.publishedDate)}
@@ -436,8 +438,8 @@ const BlogGrid = forwardRef(function BlogGrid(
                     fontFamily: "'Barlow', sans-serif",
                     fontSize: 14,
                     fontWeight: 600,
-                    color: "#fff",
-                    background: "#2d353c",
+                    color: lightMode ? "#0D1620" : "#fff",
+                    background: lightMode ? "#FFFFFF" : "#2d353c",
                     border: "1px solid rgba(0,124,176,0.35)",
                     borderRadius: 8,
                     padding: "12px 32px",
@@ -452,7 +454,7 @@ const BlogGrid = forwardRef(function BlogGrid(
                 style={{
                   fontFamily: "'Barlow', sans-serif",
                   fontSize: 14,
-                  color: "rgba(255,255,255,0.4)",
+                  color: lightMode ? "#0D1620" : "rgba(255,255,255,0.4)",
                   alignSelf: "center",
                 }}
               >
@@ -465,8 +467,8 @@ const BlogGrid = forwardRef(function BlogGrid(
                     fontFamily: "'Barlow', sans-serif",
                     fontSize: 14,
                     fontWeight: 600,
-                    color: "#fff",
-                    background: "#2d353c",
+                    color: lightMode ? "#0D1620" : "#fff",
+                    background: lightMode ? "#FFFFFF" : "#2d353c",
                     border: "1px solid rgba(0,124,176,0.35)",
                     borderRadius: 8,
                     padding: "12px 32px",

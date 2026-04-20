@@ -47,6 +47,7 @@ interface SearchResultsProps {
   emptyHeading?: string
   emptyBody?: string
   pageSize?: number
+  lightMode?: boolean
 }
 
 const SearchResults = forwardRef(function SearchResults(
@@ -59,6 +60,7 @@ const SearchResults = forwardRef(function SearchResults(
     emptyHeading = "No results found",
     emptyBody = "Try a different search term or browse our product categories.",
     pageSize = 12,
+    lightMode,
   }: SearchResultsProps,
   ref: Ref<HTMLDivElement>
 ) {
@@ -140,7 +142,7 @@ const SearchResults = forwardRef(function SearchResults(
       className={`cast-section-default ${className || ""}`}
       style={{
         width: '100%',
-        background: bgColor || "#0f1923",
+        background: lightMode ? '#F5F5F5' : (bgColor || "#0f1923"),
         minHeight: "80vh",
       }}
     >
@@ -154,8 +156,8 @@ const SearchResults = forwardRef(function SearchResults(
         @media (max-width: 900px) { .sr-product-grid { grid-template-columns: repeat(2, 1fr); } }
         @media (max-width: 575px) { .sr-product-grid { grid-template-columns: 1fr; } }
         .sr-card {
-          background: #2d353c;
-          border: 1px solid rgba(255,255,255,0.08);
+          background: ${lightMode ? '#FFFFFF' : '#2d353c'};
+          border: 1px solid ${lightMode ? '#d0d0d0' : 'rgba(255,255,255,0.08)'};
           border-radius: 10px;
           overflow: hidden;
           display: flex;
@@ -172,11 +174,11 @@ const SearchResults = forwardRef(function SearchResults(
         .sr-sort-select {
           font-family: 'Barlow', sans-serif;
           font-size: 13px;
-          border: 1px solid rgba(255,255,255,0.12);
+          border: 1px solid ${lightMode ? '#d0d0d0' : 'rgba(255,255,255,0.12)'};
           border-radius: 6px;
           padding: 8px 12px;
-          color: #fff;
-          background: #2d353c;
+          color: ${lightMode ? '#0D1620' : '#fff'};
+          background: ${lightMode ? '#FFFFFF' : '#2d353c'};
           outline: none;
           cursor: pointer;
         }
@@ -184,10 +186,10 @@ const SearchResults = forwardRef(function SearchResults(
         .sr-page-btn {
           display: inline-flex; align-items: center; justify-content: center;
           min-width: 40px; height: 40px;
-          border: 1px solid rgba(255,255,255,0.12);
+          border: 1px solid ${lightMode ? '#d0d0d0' : 'rgba(255,255,255,0.12)'};
           border-radius: 6px;
           background: transparent;
-          color: rgba(255,255,255,0.7);
+          color: ${lightMode ? '#0D1620' : 'rgba(255,255,255,0.7)'};
           font-family: 'Barlow', sans-serif;
           font-size: 14px; font-weight: 600;
           cursor: pointer;
@@ -197,7 +199,7 @@ const SearchResults = forwardRef(function SearchResults(
         .sr-page-btn.active { background: #007CB0; border-color: #007CB0; color: #fff; }
         .sr-page-btn:disabled { opacity: 0.3; cursor: default; }
         .sr-skeleton {
-          background: linear-gradient(90deg, #2d353c 25%, #3a444d 50%, #2d353c 75%);
+          background: ${lightMode ? 'linear-gradient(90deg, #e0e0e0 25%, #f0f0f0 50%, #e0e0e0 75%)' : 'linear-gradient(90deg, #2d353c 25%, #3a444d 50%, #2d353c 75%)'};
           background-size: 200% 100%;
           animation: shimmer 1.5s infinite;
           border-radius: 10px;
@@ -212,7 +214,7 @@ const SearchResults = forwardRef(function SearchResults(
             fontFamily: "'Essonnes', 'Playfair Display', serif",
             fontSize: "var(--h2-size)",
             fontWeight: 700,
-            color: "#fff",
+            color: lightMode ? '#0D1620' : "#fff",
             lineHeight: 1.2,
             margin: "0 0 24px",
           }}>
@@ -227,8 +229,8 @@ const SearchResults = forwardRef(function SearchResults(
           </h1>
 
           {/* Search bar */}
-          <form onSubmit={handleSubmit} style={{ display: "flex", maxWidth: 600, background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.12)", borderRadius: 10, overflow: "hidden" }}>
-            <div style={{ display: "flex", alignItems: "center", paddingLeft: 16, color: "rgba(255,255,255,0.35)" }}>
+          <form onSubmit={handleSubmit} style={{ display: "flex", maxWidth: 600, background: lightMode ? "#FFFFFF" : "rgba(255,255,255,0.06)", border: lightMode ? "1px solid #d0d0d0" : "1px solid rgba(255,255,255,0.12)", borderRadius: 10, overflow: "hidden" }}>
+            <div style={{ display: "flex", alignItems: "center", paddingLeft: 16, color: lightMode ? "#0D1620" : "rgba(255,255,255,0.35)" }}>
               <Search style={{ width: 18, height: 18 }} />
             </div>
             <input
@@ -236,7 +238,7 @@ const SearchResults = forwardRef(function SearchResults(
               value={query}
               onChange={e => setQuery(e.target.value)}
               placeholder={placeholder}
-              style={{ flex: 1, background: "transparent", border: "none", outline: "none", padding: "14px 16px", fontFamily: "'Barlow', sans-serif", fontSize: 15, color: "#fff" }}
+              style={{ flex: 1, background: "transparent", border: "none", outline: "none", padding: "14px 16px", fontFamily: "'Barlow', sans-serif", fontSize: 15, color: lightMode ? '#0D1620' : "#fff" }}
             />
             {query && (
               <button type="button" onClick={() => { setQuery(""); setSubmittedQuery(""); setProducts([]); setHasSearched(false) }}
@@ -253,9 +255,9 @@ const SearchResults = forwardRef(function SearchResults(
         {/* Results header bar */}
         {hasSearched && !loading && (
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 24, flexWrap: "wrap", gap: 12 }}>
-            <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 15, color: "rgba(255,255,255,0.6)", margin: 0 }}>
+            <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 15, color: lightMode ? '#0D1620' : "rgba(255,255,255,0.6)", margin: 0 }}>
               {total > 0 ? (
-                <>Showing <strong style={{ color: "#fff" }}>{products.length}</strong> of <strong style={{ color: "#fff" }}>{total}</strong> results for "<strong style={{ color: "#007CB0" }}>{submittedQuery}</strong>"</>
+                <>Showing <strong style={{ color: lightMode ? '#0D1620' : "#fff" }}>{products.length}</strong> of <strong style={{ color: lightMode ? '#0D1620' : "#fff" }}>{total}</strong> results for "<strong style={{ color: "#007CB0" }}>{submittedQuery}</strong>"</>
               ) : (
                 <>No results for "<strong style={{ color: "#007CB0" }}>{submittedQuery}</strong>"</>
               )}
@@ -295,10 +297,10 @@ const SearchResults = forwardRef(function SearchResults(
             <div style={{ width: 64, height: 64, borderRadius: "50%", background: "rgba(0,124,176,0.1)", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 24px" }}>
               <Search style={{ width: 28, height: 28, color: "#007CB0" }} />
             </div>
-            <h2 style={{ fontFamily: "'Essonnes', 'Playfair Display', serif", fontSize: 28, fontWeight: 700, color: "#fff", margin: "0 0 12px" }}>
+            <h2 style={{ fontFamily: "'Essonnes', 'Playfair Display', serif", fontSize: 28, fontWeight: 700, color: lightMode ? '#0D1620' : "#fff", margin: "0 0 12px" }}>
               {emptyHeading}
             </h2>
-            <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 16, color: "rgba(255,255,255,0.55)", margin: "0 0 32px", maxWidth: 420, marginLeft: "auto", marginRight: "auto" }}>
+            <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 16, color: lightMode ? '#0D1620' : "rgba(255,255,255,0.55)", margin: "0 0 32px", maxWidth: 420, marginLeft: "auto", marginRight: "auto" }}>
               {emptyBody}
             </p>
             <a href="/shop" className="sg-btn-solid-md" style={{ textDecoration: "none" }}>
@@ -339,17 +341,17 @@ const SearchResults = forwardRef(function SearchResults(
                         {product.brand}
                       </p>
                     )}
-                    <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 15, fontWeight: 600, color: "#fff", margin: 0, lineHeight: 1.35 }}>
+                    <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 15, fontWeight: 600, color: lightMode ? '#0D1620' : "#fff", margin: 0, lineHeight: 1.35 }}>
                       {product.name}
                     </p>
                     <div style={{ display: "flex", alignItems: "center", gap: 8, marginTop: "auto" }}>
                       {product.salePrice ? (
                         <>
-                          <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 18, fontWeight: 700, color: "#fff" }}>{product.salePrice}</span>
-                          <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 14, color: "rgba(255,255,255,0.4)", textDecoration: "line-through" }}>{product.price}</span>
+                          <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 18, fontWeight: 700, color: lightMode ? '#0D1620' : "#fff" }}>{product.salePrice}</span>
+                          <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 14, color: lightMode ? '#0D1620' : "rgba(255,255,255,0.4)", textDecoration: "line-through" }}>{product.price}</span>
                         </>
                       ) : (
-                        <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 18, fontWeight: 700, color: "#fff" }}>{product.price}</span>
+                        <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 18, fontWeight: 700, color: lightMode ? '#0D1620' : "#fff" }}>{product.price}</span>
                       )}
                     </div>
                   </div>
@@ -388,13 +390,13 @@ const SearchResults = forwardRef(function SearchResults(
           <div>
             {/* ── PRODUCTS ── */}
             <div style={{ marginBottom: 56 }}>
-              <div style={{ display: "flex", alignItems: "baseline", gap: 14, marginBottom: 20, paddingBottom: 14, borderBottom: "1px solid rgba(255,255,255,0.1)" }}>
-                <h2 style={{ fontFamily: "'Essonnes', 'Playfair Display', serif", fontSize: "clamp(20px,2.2vw,28px)", fontWeight: 700, color: "#fff", margin: 0 }}>Products</h2>
-                <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, color: "rgba(255,255,255,0.4)" }}>18 results</span>
+              <div style={{ display: "flex", alignItems: "baseline", gap: 14, marginBottom: 20, paddingBottom: 14, borderBottom: lightMode ? "1px solid #d0d0d0" : "1px solid rgba(255,255,255,0.1)" }}>
+                <h2 style={{ fontFamily: "'Essonnes', 'Playfair Display', serif", fontSize: "clamp(20px,2.2vw,28px)", fontWeight: 700, color: lightMode ? '#0D1620' : "#fff", margin: 0 }}>Products</h2>
+                <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, color: lightMode ? '#0D1620' : "rgba(255,255,255,0.4)" }}>18 results</span>
               </div>
               <div className="sr-product-grid">
                 {DUMMY_PRODUCTS.map(p => (
-                  <div key={p.id} style={{ background: "#2d353c", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 10, overflow: "hidden", display: "flex", flexDirection: "column" }}>
+                  <div key={p.id} style={{ background: lightMode ? "#FFFFFF" : "#2d353c", border: lightMode ? "1px solid #d0d0d0" : "1px solid rgba(255,255,255,0.08)", borderRadius: 10, overflow: "hidden", display: "flex", flexDirection: "column" }}>
                     <div style={{ aspectRatio: "1/1", background: "linear-gradient(135deg, #1a2e3a 0%, #0d4a5c 50%, #1a3a4a 100%)", position: "relative", display: "flex", alignItems: "center", justifyContent: "center" }}>
                       <div style={{ position: "absolute", inset: 0, backgroundImage: "linear-gradient(rgba(0,124,176,0.04) 1px, transparent 1px),linear-gradient(90deg,rgba(0,124,176,0.04) 1px,transparent 1px)", backgroundSize: "24px 24px" }} />
                       <svg width="36" height="36" viewBox="0 0 24 24" fill="none" style={{ opacity: 0.4, position: "relative", zIndex: 1 }}>
@@ -404,8 +406,8 @@ const SearchResults = forwardRef(function SearchResults(
                     </div>
                     <div style={{ padding: "16px 14px", flex: 1, display: "flex", flexDirection: "column", gap: 6 }}>
                       <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 10, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: "#007CB0", margin: 0 }}>{p.category}</p>
-                      <p style={{ fontFamily: "'Essonnes','Playfair Display',serif", fontSize: 16, fontWeight: 600, color: "#fff", margin: 0, lineHeight: 1.3 }}>{p.name}</p>
-                      <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 17, fontWeight: 700, color: "#fff", margin: "4px 0 0" }}>{p.price}</p>
+                      <p style={{ fontFamily: "'Essonnes','Playfair Display',serif", fontSize: 16, fontWeight: 600, color: lightMode ? '#0D1620' : "#fff", margin: 0, lineHeight: 1.3 }}>{p.name}</p>
+                      <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 17, fontWeight: 700, color: lightMode ? '#0D1620' : "#fff", margin: "4px 0 0" }}>{p.price}</p>
                       <div style={{ marginTop: "auto", paddingTop: 10 }}>
                         <span className="sg-btn-solid-md" style={{ display: "block", textAlign: "center", fontSize: 13 }}>View Product →</span>
                       </div>
@@ -417,13 +419,13 @@ const SearchResults = forwardRef(function SearchResults(
 
             {/* ── DOCUMENTATION ── */}
             <div style={{ marginBottom: 56 }}>
-              <div style={{ display: "flex", alignItems: "baseline", gap: 14, marginBottom: 20, paddingBottom: 14, borderBottom: "1px solid rgba(255,255,255,0.1)" }}>
-                <h2 style={{ fontFamily: "'Essonnes', 'Playfair Display', serif", fontSize: "clamp(20px,2.2vw,28px)", fontWeight: 700, color: "#fff", margin: 0 }}>Documentation</h2>
-                <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, color: "rgba(255,255,255,0.4)" }}>4 results</span>
+              <div style={{ display: "flex", alignItems: "baseline", gap: 14, marginBottom: 20, paddingBottom: 14, borderBottom: lightMode ? "1px solid #d0d0d0" : "1px solid rgba(255,255,255,0.1)" }}>
+                <h2 style={{ fontFamily: "'Essonnes', 'Playfair Display', serif", fontSize: "clamp(20px,2.2vw,28px)", fontWeight: 700, color: lightMode ? '#0D1620' : "#fff", margin: 0 }}>Documentation</h2>
+                <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, color: lightMode ? '#0D1620' : "rgba(255,255,255,0.4)" }}>4 results</span>
               </div>
               <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
                 {DUMMY_DOCS.map(doc => (
-                  <div key={doc.id} style={{ display: "flex", alignItems: "flex-start", gap: 18, background: "#2d353c", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 10, padding: "18px 22px" }}>
+                  <div key={doc.id} style={{ display: "flex", alignItems: "flex-start", gap: 18, background: lightMode ? "#FFFFFF" : "#2d353c", border: lightMode ? "1px solid #d0d0d0" : "1px solid rgba(255,255,255,0.08)", borderRadius: 10, padding: "18px 22px" }}>
                     <div style={{ width: 38, height: 38, borderRadius: 8, background: "rgba(126,190,232,0.1)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, marginTop: 2 }}>
                       <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
                         <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="#7EBEE8" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -434,10 +436,10 @@ const SearchResults = forwardRef(function SearchResults(
                     </div>
                     <div style={{ flex: 1, minWidth: 0 }}>
                       <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 10, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.12em", color: "#7EBEE8", margin: "0 0 5px" }}>{doc.type}</p>
-                      <p style={{ fontFamily: "'Essonnes','Playfair Display',serif", fontSize: 17, fontWeight: 600, color: "#fff", margin: "0 0 6px", lineHeight: 1.3 }}>{doc.title}</p>
-                      <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, color: "rgba(255,255,255,0.5)", margin: 0, lineHeight: 1.6 }}>{doc.excerpt}</p>
+                      <p style={{ fontFamily: "'Essonnes','Playfair Display',serif", fontSize: 17, fontWeight: 600, color: lightMode ? '#0D1620' : "#fff", margin: "0 0 6px", lineHeight: 1.3 }}>{doc.title}</p>
+                      <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, color: lightMode ? '#0D1620' : "rgba(255,255,255,0.5)", margin: 0, lineHeight: 1.6 }}>{doc.excerpt}</p>
                     </div>
-                    <span style={{ fontSize: 18, color: "rgba(255,255,255,0.3)", alignSelf: "center", flexShrink: 0 }}>→</span>
+                    <span style={{ fontSize: 18, color: lightMode ? '#0D1620' : "rgba(255,255,255,0.3)", alignSelf: "center", flexShrink: 0 }}>→</span>
                   </div>
                 ))}
               </div>
@@ -445,20 +447,20 @@ const SearchResults = forwardRef(function SearchResults(
 
             {/* ── BLOG POSTS ── */}
             <div>
-              <div style={{ display: "flex", alignItems: "baseline", gap: 14, marginBottom: 20, paddingBottom: 14, borderBottom: "1px solid rgba(255,255,255,0.1)" }}>
-                <h2 style={{ fontFamily: "'Essonnes', 'Playfair Display', serif", fontSize: "clamp(20px,2.2vw,28px)", fontWeight: 700, color: "#fff", margin: 0 }}>Blog Posts</h2>
-                <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, color: "rgba(255,255,255,0.4)" }}>2 results</span>
+              <div style={{ display: "flex", alignItems: "baseline", gap: 14, marginBottom: 20, paddingBottom: 14, borderBottom: lightMode ? "1px solid #d0d0d0" : "1px solid rgba(255,255,255,0.1)" }}>
+                <h2 style={{ fontFamily: "'Essonnes', 'Playfair Display', serif", fontSize: "clamp(20px,2.2vw,28px)", fontWeight: 700, color: lightMode ? '#0D1620' : "#fff", margin: 0 }}>Blog Posts</h2>
+                <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, color: lightMode ? '#0D1620' : "rgba(255,255,255,0.4)" }}>2 results</span>
               </div>
               <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
                 {DUMMY_BLOG_POSTS.map(post => (
-                  <div key={post.id} style={{ display: "flex", gap: 24, background: "#2d353c", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 10, overflow: "hidden" }}>
+                  <div key={post.id} style={{ display: "flex", gap: 24, background: lightMode ? "#FFFFFF" : "#2d353c", border: lightMode ? "1px solid #d0d0d0" : "1px solid rgba(255,255,255,0.08)", borderRadius: 10, overflow: "hidden" }}>
                     <div style={{ width: 200, flexShrink: 0, background: "linear-gradient(135deg, #1a2e3a 0%, #0d4a5c 50%, #1a3a4a 100%)", position: "relative" }}>
                       <div style={{ position: "absolute", inset: 0, backgroundImage: "linear-gradient(rgba(0,124,176,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,124,176,0.04) 1px,transparent 1px)", backgroundSize: "24px 24px" }} />
                     </div>
                     <div style={{ flex: 1, minWidth: 0, padding: "22px 22px 22px 0", display: "flex", flexDirection: "column", gap: 8 }}>
                       <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 10, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.12em", color: "#7EBEE8", margin: 0 }}>{post.date} · {post.readTime}</p>
-                      <p style={{ fontFamily: "'Essonnes','Playfair Display',serif", fontSize: 19, fontWeight: 600, color: "#fff", margin: 0, lineHeight: 1.3 }}>{post.title}</p>
-                      <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, color: "rgba(255,255,255,0.5)", margin: 0, lineHeight: 1.65, flex: 1 }}>{post.excerpt}</p>
+                      <p style={{ fontFamily: "'Essonnes','Playfair Display',serif", fontSize: 19, fontWeight: 600, color: lightMode ? '#0D1620' : "#fff", margin: 0, lineHeight: 1.3 }}>{post.title}</p>
+                      <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, color: lightMode ? '#0D1620' : "rgba(255,255,255,0.5)", margin: 0, lineHeight: 1.65, flex: 1 }}>{post.excerpt}</p>
                       <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, fontWeight: 700, color: "#7EBEE8" }}>Read Article →</span>
                     </div>
                   </div>

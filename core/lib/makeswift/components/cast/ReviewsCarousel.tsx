@@ -28,6 +28,7 @@ interface ReviewsCarouselProps {
   headingAccent?: string
   reviews?: Review[]
   mode?: ThemeMode
+  lightMode?: boolean
 }
 
 const DEFAULT_REVIEWS: Review[] = [
@@ -107,10 +108,11 @@ const ReviewsCarousel = forwardRef(function ReviewsCarousel(
     headingAccent = "Nationwide",
     reviews: reviewsProp,
     mode = 'dark',
+    lightMode,
   }: ReviewsCarouselProps,
   ref: Ref<HTMLElement>
 ) {
-  const t = getTheme(mode)
+  const t = getTheme(lightMode ? 'light' : mode)
   const cms = useCmsData()
   const cmsReviews = cms?.type === 'product' ? cms.meta?.reviews : null
 
@@ -171,9 +173,11 @@ const ReviewsCarousel = forwardRef(function ReviewsCarousel(
 
   const hasGradient = !!(gradientFrom && gradientTo)
   const overlayOpacity = typeof bgOpacity === "number" ? bgOpacity / 100 : 0.88
-  const sectionBackground = hasGradient
-    ? `linear-gradient(${gradientDirection || "to bottom"}, ${gradientFrom}, ${gradientTo})`
-    : bgColor || "#f8f9fa"
+  const sectionBackground = lightMode
+    ? '#F5F5F5'
+    : hasGradient
+      ? `linear-gradient(${gradientDirection || "to bottom"}, ${gradientFrom}, ${gradientTo})`
+      : bgColor || "#f8f9fa"
 
   return (
     <section

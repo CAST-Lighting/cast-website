@@ -23,6 +23,7 @@ interface ProductDocumentsProps {
   gradientTo?: string
   gradientDirection?: string
   mode?: ThemeMode
+  lightMode?: boolean
 }
 
 const DEFAULT_DOCS: Doc[] = [
@@ -54,16 +55,17 @@ const ProductDocuments = forwardRef(function ProductDocuments(
     gradientTo,
     gradientDirection,
     mode = 'dark',
+    lightMode,
   }: ProductDocumentsProps,
   ref: Ref<HTMLDivElement>
 ) {
-  const t = getTheme(mode)
+  const t = getTheme(lightMode ? 'light' : mode)
   const list = documents && documents.length > 0 ? documents : DEFAULT_DOCS
   const hasGradient = !!(gradientFrom && gradientTo)
   const overlayOpacity = typeof bgOpacity === 'number' ? bgOpacity / 100 : 0.85
   const sectionBackground = hasGradient
     ? `linear-gradient(${gradientDirection || 'to bottom'}, ${gradientFrom}, ${gradientTo})`
-    : bgColor || "#f0f2f5"
+    : (lightMode ? '#F5F5F5' : (bgColor || "#f0f2f5"))
 
   return (
     <div

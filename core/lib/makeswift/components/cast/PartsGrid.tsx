@@ -27,6 +27,7 @@ interface PartsGridProps {
   gradientTo?: string
   gradientDirection?: string
   mode?: 'dark' | 'light'
+  lightMode?: boolean
 }
 
 const PartsGrid = forwardRef(function PartsGrid(
@@ -44,12 +45,13 @@ const PartsGrid = forwardRef(function PartsGrid(
     gradientTo,
     gradientDirection,
     mode = 'dark',
+    lightMode,
   }: PartsGridProps,
   ref: Ref<HTMLDivElement>
 ) {
   const cms = useCmsData()
   const cmsRelated = cms?.type === 'product' ? cms.meta?.relatedProducts : null
-  const t = getTheme(mode)
+  const t = getTheme(lightMode ? 'light' : mode)
 
   const scrollRef = useRef<HTMLDivElement>(null)
   const [canScrollLeft, setCanScrollLeft] = useState(false)
@@ -116,7 +118,7 @@ const PartsGrid = forwardRef(function PartsGrid(
   const overlayOpacity = typeof bgOpacity === "number" ? bgOpacity / 100 : 0.85
   const sectionBackground = hasGradient
     ? `linear-gradient(${gradientDirection || "to bottom"}, ${gradientFrom}, ${gradientTo})`
-    : bgColor || "#f0f2f5"
+    : (lightMode ? '#F5F5F5' : (bgColor || "#f0f2f5"))
 
   return (
     <div

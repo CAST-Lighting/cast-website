@@ -12,6 +12,7 @@ interface NotFoundHeroProps {
   searchPlaceholder?: string
   btnLabel?: string
   btnHref?: string
+  lightMode?: boolean
 }
 
 const NotFoundHero = forwardRef(function NotFoundHero(
@@ -25,6 +26,7 @@ const NotFoundHero = forwardRef(function NotFoundHero(
     searchPlaceholder = "Search products, guides, resources...",
     btnLabel = "Back to Home",
     btnHref = "/",
+    lightMode,
   }: NotFoundHeroProps,
   ref: Ref<HTMLElement>
 ) {
@@ -42,7 +44,7 @@ const NotFoundHero = forwardRef(function NotFoundHero(
       ref={ref}
       className={className || ""}
       style={{
-        width: '100%', background: bgColor || "#0f1923",
+        width: '100%', background: lightMode ? '#F5F5F5' : (bgColor || "#0f1923"),
         minHeight: "100vh",
         display: "flex",
         alignItems: "center",
@@ -101,7 +103,7 @@ const NotFoundHero = forwardRef(function NotFoundHero(
             fontFamily: "'Essonnes', 'Playfair Display', serif",
             fontSize: "var(--h2-size)",
             fontWeight: 700,
-            color: "#fff",
+            color: lightMode ? '#0D1620' : "#fff",
             lineHeight: 1.2,
             margin: "0 0 16px",
           }}
@@ -123,7 +125,7 @@ const NotFoundHero = forwardRef(function NotFoundHero(
           style={{
             fontFamily: "'Barlow', sans-serif",
             fontSize: 17,
-            color: "rgba(255,255,255,0.6)",
+            color: lightMode ? '#0D1620' : "rgba(255,255,255,0.6)",
             lineHeight: 1.7,
             margin: "0 0 40px",
             maxWidth: 520,
@@ -141,14 +143,14 @@ const NotFoundHero = forwardRef(function NotFoundHero(
             display: "flex",
             maxWidth: 480,
             margin: "0 auto 32px",
-            background: "rgba(255,255,255,0.06)",
-            border: "1px solid rgba(255,255,255,0.12)",
+            background: lightMode ? "#FFFFFF" : "rgba(255,255,255,0.06)",
+            border: lightMode ? "1px solid #d0d0d0" : "1px solid rgba(255,255,255,0.12)",
             borderRadius: 10,
             overflow: "hidden",
             transition: "border-color 200ms ease",
           }}
         >
-          <div style={{ display: "flex", alignItems: "center", paddingLeft: 16, color: "rgba(255,255,255,0.35)" }}>
+          <div style={{ display: "flex", alignItems: "center", paddingLeft: 16, color: lightMode ? '#0D1620' : "rgba(255,255,255,0.35)" }}>
             <Search style={{ width: 18, height: 18 }} />
           </div>
           <input
@@ -164,7 +166,7 @@ const NotFoundHero = forwardRef(function NotFoundHero(
               padding: "14px 16px",
               fontFamily: "'Barlow', sans-serif",
               fontSize: 15,
-              color: "#fff",
+              color: lightMode ? '#0D1620' : "#fff",
             }}
           />
           <button

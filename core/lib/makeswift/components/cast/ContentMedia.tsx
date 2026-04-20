@@ -48,6 +48,7 @@ const ContentMedia = forwardRef(function ContentMedia(
     stat,
     statLabel,
     mode = 'dark',
+    lightMode,
   }: {
     className?: string
     bgImage?: string
@@ -72,15 +73,18 @@ const ContentMedia = forwardRef(function ContentMedia(
     stat?: string
     statLabel?: string
     mode?: 'dark' | 'light'
+    lightMode?: boolean
   },
   ref: Ref<HTMLElement>
 ) {
-  const t = getTheme(mode)
+  const t = getTheme(lightMode ? 'light' : mode)
   const hasGradient = !!(gradientFrom && gradientTo)
   const overlayOpacity = typeof bgOpacity === 'number' ? bgOpacity / 100 : 0.85
-  const sectionBackground = hasGradient
-    ? `linear-gradient(${gradientDirection || 'to bottom'}, ${gradientFrom}, ${gradientTo})`
-    : bgColor || t.bg
+  const sectionBackground = lightMode
+    ? '#F5F5F5'
+    : hasGradient
+      ? `linear-gradient(${gradientDirection || 'to bottom'}, ${gradientFrom}, ${gradientTo})`
+      : bgColor || t.bg
 
   const features = (featuresProp && featuresProp.length > 0) ? featuresProp : FALLBACK_FEATURES
   const embedSrc = toEmbedUrl(videoUrl || '')
