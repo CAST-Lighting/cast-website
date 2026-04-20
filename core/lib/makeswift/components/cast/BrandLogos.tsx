@@ -90,7 +90,7 @@ const BrandLogos = forwardRef(function BrandLogos(
                 fontFamily: "'Barlow', sans-serif",
                 fontSize: 18,
                 fontWeight: 600,
-                color: t.body,
+                color: t.heading,
                 margin: 0,
               }}>
                 {heading}{headingAccent && <> <span className="text-gradient-warm">{headingAccent}</span></>}

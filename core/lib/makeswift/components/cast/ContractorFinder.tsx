@@ -135,10 +135,10 @@ const ContractorFinder = forwardRef(function ContractorFinder(
             {overline && (
               <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 12, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.12em", color: "#7EBEE8", margin: "0 0 14px" }}>{overline}</p>
             )}
-            <h2 style={{ fontFamily: "'Essonnes', 'Playfair Display', serif", fontSize: "var(--h2-size)", fontWeight: 700, color: lightMode ? '#0D1620' : "#fff", lineHeight: 1.15, margin: "0 0 20px" }}>
+            <h2 style={{ fontFamily: "'Essonnes', 'Playfair Display', serif", fontSize: "var(--h2-size)", fontWeight: 700, color: lightMode ? '#014960' : "#fff", lineHeight: 1.15, margin: "0 0 20px" }}>
               {heading}
             </h2>
-            <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 17, color: lightMode ? '#0D1620' : "rgba(255,255,255,0.7)", lineHeight: 1.7, margin: "0 0 44px" }}>
+            <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 17, color: lightMode ? '#1a3a4a' : "rgba(255,255,255,0.7)", lineHeight: 1.7, margin: "0 0 44px" }}>
               {subheading}
             </p>
 
@@ -149,8 +149,8 @@ const ContractorFinder = forwardRef(function ContractorFinder(
                   <Shield style={{ width: 20, height: 20, color: "#7EBEE8" }} />
                 </div>
                 <div>
-                  <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 15, fontWeight: 700, color: lightMode ? '#0D1620' : "#fff", margin: "0 0 4px" }}>CAST-Certified Network</p>
-                  <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 14, color: lightMode ? '#0D1620' : "rgba(255,255,255,0.6)", margin: 0, lineHeight: 1.5 }}>Every contractor in our network is trained and certified on CAST products and installation standards.</p>
+                  <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 15, fontWeight: 700, color: lightMode ? '#014960' : "#fff", margin: "0 0 4px" }}>CAST-Certified Network</p>
+                  <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 14, color: lightMode ? '#1a3a4a' : "rgba(255,255,255,0.6)", margin: 0, lineHeight: 1.5 }}>Every contractor in our network is trained and certified on CAST products and installation standards.</p>
                 </div>
               </div>
               <div className="cf-trust-item">
@@ -158,8 +158,8 @@ const ContractorFinder = forwardRef(function ContractorFinder(
                   <MapPin style={{ width: 20, height: 20, color: "#7EBEE8" }} />
                 </div>
                 <div>
-                  <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 15, fontWeight: 700, color: lightMode ? '#0D1620' : "#fff", margin: "0 0 4px" }}>Local Professionals</p>
-                  <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 14, color: lightMode ? '#0D1620' : "rgba(255,255,255,0.6)", margin: 0, lineHeight: 1.5 }}>We match you with contractors who know your region, local codes, and landscape conditions.</p>
+                  <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 15, fontWeight: 700, color: lightMode ? '#014960' : "#fff", margin: "0 0 4px" }}>Local Professionals</p>
+                  <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 14, color: lightMode ? '#1a3a4a' : "rgba(255,255,255,0.6)", margin: 0, lineHeight: 1.5 }}>We match you with contractors who know your region, local codes, and landscape conditions.</p>
                 </div>
               </div>
               <div className="cf-trust-item">
@@ -167,8 +167,8 @@ const ContractorFinder = forwardRef(function ContractorFinder(
                   <Star style={{ width: 20, height: 20, color: "#7EBEE8" }} />
                 </div>
                 <div>
-                  <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 15, fontWeight: 700, color: lightMode ? '#0D1620' : "#fff", margin: "0 0 4px" }}>No Cost to You</p>
-                  <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 14, color: lightMode ? '#0D1620' : "rgba(255,255,255,0.6)", margin: 0, lineHeight: 1.5 }}>Our contractor matching service is completely free. We'll reach out within one business day.</p>
+                  <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 15, fontWeight: 700, color: lightMode ? '#014960' : "#fff", margin: "0 0 4px" }}>No Cost to You</p>
+                  <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 14, color: lightMode ? '#1a3a4a' : "rgba(255,255,255,0.6)", margin: 0, lineHeight: 1.5 }}>Our contractor matching service is completely free. We'll reach out within one business day.</p>
                 </div>
               </div>
             </div>
@@ -177,14 +177,14 @@ const ContractorFinder = forwardRef(function ContractorFinder(
           {/* Right: form */}
           <div style={{ background: lightMode ? '#FFFFFF' : "#1a2332", border: lightMode ? "1px solid #d0d0d0" : "1px solid rgba(255,255,255,0.08)", borderRadius: 16, padding: "40px 36px" }}>
             {formHeading && (
-              <h3 style={{ fontFamily: "'Essonnes', 'Playfair Display', serif", fontSize: 28, fontWeight: 700, color: lightMode ? '#0D1620' : "#fff", margin: "0 0 28px" }}>{formHeading}</h3>
+              <h3 style={{ fontFamily: "'Essonnes', 'Playfair Display', serif", fontSize: 28, fontWeight: 700, color: lightMode ? '#014960' : "#fff", margin: "0 0 28px" }}>{formHeading}</h3>
             )}
 
             {submitted ? (
               <div style={{ textAlign: "center", padding: "40px 0" }}>
                 <div style={{ fontSize: 48, marginBottom: 16 }}>✓</div>
-                <h3 style={{ fontFamily: "'Essonnes', 'Playfair Display', serif", fontSize: 22, fontWeight: 700, color: lightMode ? '#0D1620' : "#fff", margin: "0 0 8px" }}>Request Received!</h3>
-                <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 15, color: lightMode ? '#0D1620' : "rgba(255,255,255,0.6)", margin: 0, lineHeight: 1.6 }}>
+                <h3 style={{ fontFamily: "'Essonnes', 'Playfair Display', serif", fontSize: 22, fontWeight: 700, color: lightMode ? '#014960' : "#fff", margin: "0 0 8px" }}>Request Received!</h3>
+                <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 15, color: lightMode ? '#1a3a4a' : "rgba(255,255,255,0.6)", margin: 0, lineHeight: 1.6 }}>
                   We'll connect you with a CAST-certified contractor in your area within one business day.
                 </p>
               </div>

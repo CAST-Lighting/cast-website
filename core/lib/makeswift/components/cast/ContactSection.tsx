@@ -51,7 +51,7 @@ const ContactSection = forwardRef(function ContactSection(
     ? { ...inputStyle, background: '#FFFFFF', border: '1px solid #d0d0d0', color: '#0D1620' }
     : inputStyle
   const activeLabelStyle: React.CSSProperties = lightMode
-    ? { ...labelStyle, color: '#0D1620' }
+    ? { ...labelStyle, color: '#1a3a4a' }
     : labelStyle
 
   const [role, setRole] = useState("")
@@ -101,15 +101,15 @@ const ContactSection = forwardRef(function ContactSection(
           {/* Left: info */}
           <div>
             {overline && (
-              <p className="text-style-overline" style={{ margin: "0 0 16px", color: "var(--cast-mid-blue)" }}>
+              <p className="text-style-overline" style={{ margin: "0 0 16px", color: "var(--cast-light-blue)" }}>
                 {overline}
               </p>
             )}
-            <h2 style={{ fontFamily: "'Essonnes', 'Playfair Display', serif", fontSize: "var(--h2-size)", fontWeight: 700, color: lightMode ? '#0D1620' : "#fff", lineHeight: 1.15, margin: "0 0 20px" }}>
+            <h2 style={{ fontFamily: "'Essonnes', 'Playfair Display', serif", fontSize: "var(--h2-size)", fontWeight: 700, color: lightMode ? '#014960' : "#fff", lineHeight: 1.15, margin: "0 0 20px" }}>
               {heading || "Get In"} <span style={{ background: "linear-gradient(135deg, #007CB0, #7EBEE8)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>{headingAccent || "Touch"}</span>
             </h2>
             {description && (
-              <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 17, color: lightMode ? '#0D1620' : "rgba(255,255,255,0.7)", lineHeight: 1.7, margin: "0 0 40px" }}>{description}</p>
+              <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 17, color: lightMode ? '#1a3a4a' : "rgba(255,255,255,0.7)", lineHeight: 1.7, margin: "0 0 40px" }}>{description}</p>
             )}
             <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
               {phone && (
@@ -117,7 +117,7 @@ const ContactSection = forwardRef(function ContactSection(
                   <div style={{ width: 40, height: 40, borderRadius: 8, background: "rgba(0,124,176,0.12)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
                     <Phone style={{ width: 18, height: 18, color: "#007CB0" }} />
                   </div>
-                  <a href={`tel:${phone.replace(/\D/g, "")}`} style={{ fontFamily: "'Barlow', sans-serif", fontSize: 16, color: lightMode ? '#0D1620' : "#fff", textDecoration: "none" }}>{phone}</a>
+                  <a href={`tel:${phone.replace(/\D/g, "")}`} style={{ fontFamily: "'Barlow', sans-serif", fontSize: 16, color: lightMode ? '#014960' : "#fff", textDecoration: "none" }}>{phone}</a>
                 </div>
               )}
               {email && (
@@ -125,7 +125,7 @@ const ContactSection = forwardRef(function ContactSection(
                   <div style={{ width: 40, height: 40, borderRadius: 8, background: "rgba(0,124,176,0.12)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
                     <Mail style={{ width: 18, height: 18, color: "#007CB0" }} />
                   </div>
-                  <a href={`mailto:${email}`} style={{ fontFamily: "'Barlow', sans-serif", fontSize: 16, color: lightMode ? '#0D1620' : "#fff", textDecoration: "none" }}>{email}</a>
+                  <a href={`mailto:${email}`} style={{ fontFamily: "'Barlow', sans-serif", fontSize: 16, color: lightMode ? '#014960' : "#fff", textDecoration: "none" }}>{email}</a>
                 </div>
               )}
               {address && (
@@ -133,7 +133,7 @@ const ContactSection = forwardRef(function ContactSection(
                   <div style={{ width: 40, height: 40, borderRadius: 8, background: "rgba(0,124,176,0.12)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
                     <MapPin style={{ width: 18, height: 18, color: "#007CB0" }} />
                   </div>
-                  <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 16, color: lightMode ? '#0D1620' : "rgba(255,255,255,0.7)" }}>{address}</span>
+                  <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 16, color: lightMode ? '#1a3a4a' : "rgba(255,255,255,0.7)" }}>{address}</span>
                 </div>
               )}
             </div>
@@ -142,14 +142,14 @@ const ContactSection = forwardRef(function ContactSection(
           {/* Right: form */}
           <div style={{ background: lightMode ? '#FFFFFF' : "#1a2332", border: lightMode ? "1px solid #d0d0d0" : "1px solid rgba(255,255,255,0.08)", borderRadius: 16, padding: "40px 36px" }}>
             {formHeading && (
-              <h3 style={{ fontFamily: "'Essonnes', 'Playfair Display', serif", fontSize: 24, fontWeight: 700, color: lightMode ? '#0D1620' : "#fff", margin: "0 0 28px" }}>{formHeading}</h3>
+              <h3 style={{ fontFamily: "'Essonnes', 'Playfair Display', serif", fontSize: 24, fontWeight: 700, color: lightMode ? '#014960' : "#fff", margin: "0 0 28px" }}>{formHeading}</h3>
             )}
 
             {submitted ? (
               <div style={{ textAlign: "center", padding: "40px 0" }}>
                 <div style={{ fontSize: 48, marginBottom: 16 }}>✓</div>
-                <h3 style={{ fontFamily: "'Essonnes', 'Playfair Display', serif", fontSize: 22, fontWeight: 700, color: lightMode ? '#0D1620' : "#fff", margin: "0 0 8px" }}>Message Sent!</h3>
-                <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 15, color: lightMode ? '#0D1620' : "rgba(255,255,255,0.6)", margin: 0 }}>
+                <h3 style={{ fontFamily: "'Essonnes', 'Playfair Display', serif", fontSize: 22, fontWeight: 700, color: lightMode ? '#014960' : "#fff", margin: "0 0 8px" }}>Message Sent!</h3>
+                <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 15, color: lightMode ? '#1a3a4a' : "rgba(255,255,255,0.6)", margin: 0 }}>
                   Thanks for reaching out. Our team will be in touch shortly.
                 </p>
               </div>
