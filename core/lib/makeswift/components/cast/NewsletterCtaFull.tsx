@@ -16,6 +16,7 @@ interface NewsletterCtaFullProps {
   description?: string
   buttonText?: string
   items?: Array<{ text?: string }>
+  lightMode?: boolean
 }
 
 const DEFAULT_ITEMS = [
@@ -39,24 +40,27 @@ const NewsletterCtaFull = forwardRef(function NewsletterCtaFull(
     description = "Get the latest on new products, contractor resources, and exclusive offers delivered straight to your inbox.",
     buttonText = "Subscribe",
     items,
+    lightMode,
   }: NewsletterCtaFullProps,
   ref: Ref<HTMLElement>
 ) {
-  const t = getTheme("dark")
+  const t = getTheme(lightMode ? 'light' : 'dark')
   const [email, setEmail] = useState("")
   const [firstName, setFirstName] = useState("")
   const [submitted, setSubmitted] = useState(false)
 
   const hasGradient = !!(gradientFrom && gradientTo)
-  const sectionBg = hasGradient
-    ? `linear-gradient(${gradientDirection || "to bottom"}, ${gradientFrom}, ${gradientTo})`
-    : bgColor || "#25262d"
+  const sectionBg = lightMode
+    ? '#F5F5F5'
+    : hasGradient
+      ? `linear-gradient(${gradientDirection || "to bottom"}, ${gradientFrom}, ${gradientTo})`
+      : bgColor || "#25262d"
 
   const overlayStyle = overlayColor
     ? { background: overlayColor, opacity: typeof overlayOpacity === "number" ? overlayOpacity / 100 : 0 }
     : null
 
-  const cardBg = containerBgColor || "#1a2332"
+  const cardBg = lightMode ? '#FFFFFF' : (containerBgColor || "#1a2332")
 
   const benefitItems = items && items.length > 0 ? items : DEFAULT_ITEMS
 
@@ -166,8 +170,8 @@ const NewsletterCtaFull = forwardRef(function NewsletterCtaFull(
 
           {/* Right — form */}
           <div style={{
-            background: "rgba(255,255,255,0.04)",
-            border: "1px solid rgba(255,255,255,0.08)",
+            background: lightMode ? "rgba(0,0,0,0.03)" : "rgba(255,255,255,0.04)",
+            border: lightMode ? "1px solid #d0d0d0" : "1px solid rgba(255,255,255,0.08)",
             borderRadius: 12,
             padding: "36px 32px",
           }}>

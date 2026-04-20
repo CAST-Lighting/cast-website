@@ -32,6 +32,7 @@ const TradeProSection = forwardRef(function TradeProSection(
     btnLabel,
     btnHref,
     mode = 'dark',
+    lightMode,
   }: {
     className?: string
     bgImage?: string
@@ -49,16 +50,19 @@ const TradeProSection = forwardRef(function TradeProSection(
     btnLabel?: string
     btnHref?: string
     mode?: ThemeMode
+    lightMode?: boolean
   },
   ref: Ref<HTMLElement>
 ) {
-  const t = getTheme(mode)
+  const t = getTheme(lightMode ? 'light' : mode)
   const bgImageUrl = bgImage
   const hasGradient = !!(gradientFrom && gradientTo)
   const overlayOpacity = typeof bgOpacity === 'number' ? bgOpacity / 100 : 0.85
-  const sectionBackground = hasGradient
-    ? `linear-gradient(${gradientDirection || 'to bottom'}, ${gradientFrom}, ${gradientTo})`
-    : bgColor || '#1e2d3e'
+  const sectionBackground = lightMode
+    ? '#F5F5F5'
+    : hasGradient
+      ? `linear-gradient(${gradientDirection || 'to bottom'}, ${gradientFrom}, ${gradientTo})`
+      : bgColor || '#1e2d3e'
 
   const benefits = (benefitsProp && benefitsProp.length > 0) ? benefitsProp : FALLBACK_BENEFITS
 
