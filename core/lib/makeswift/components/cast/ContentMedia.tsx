@@ -156,8 +156,8 @@ const ContentMedia = forwardRef(function ContentMedia(
                     />
                   ) : (
                     <div className="w-full h-[280px] md:h-[500px] flex items-center justify-center"
-                      style={{ background: "rgba(255,255,255,0.06)", border: "1px dashed rgba(255,255,255,0.15)" }}>
-                      <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 14, color: "rgba(255,255,255,0.4)" }}>
+                      style={{ background: lightMode ? "rgba(0,0,0,0.04)" : "rgba(255,255,255,0.06)", border: lightMode ? "1px dashed rgba(0,0,0,0.2)" : "1px dashed rgba(255,255,255,0.15)" }}>
+                      <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 14, color: lightMode ? "rgba(0,0,0,0.4)" : "rgba(255,255,255,0.4)" }}>
                         Add an image URL in the panel
                       </span>
                     </div>

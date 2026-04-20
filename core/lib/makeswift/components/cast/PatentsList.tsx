@@ -153,12 +153,12 @@ const PatentsList = forwardRef(function PatentsList(
         </div>
 
         {loading && !hasPropPatents && (
-          <div style={{ opacity: 0.4, borderRadius: 10, overflow: "hidden", border: "1px solid rgba(255,255,255,0.08)" }}>
+          <div style={{ opacity: 0.4, borderRadius: 10, overflow: "hidden", border: lightMode ? "1px solid #d0d0d0" : "1px solid rgba(255,255,255,0.08)" }}>
             {[1, 2, 3].map((i) => (
               <div key={i} style={{
                 height: 72,
-                background: i % 2 === 0 ? "rgba(255,255,255,0.02)" : "transparent",
-                borderBottom: i < 3 ? "1px solid rgba(255,255,255,0.06)" : "none",
+                background: lightMode ? (i % 2 === 0 ? "rgba(0,0,0,0.03)" : "#FFFFFF") : (i % 2 === 0 ? "rgba(255,255,255,0.02)" : "transparent"),
+                borderBottom: i < 3 ? (lightMode ? "1px solid #d0d0d0" : "1px solid rgba(255,255,255,0.06)") : "none",
               }} />
             ))}
           </div>
@@ -166,7 +166,7 @@ const PatentsList = forwardRef(function PatentsList(
 
         {!loading && items.length === 0 && (
           <div style={{ textAlign: "center", padding: "80px 0" }}>
-            <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 20, color: "rgba(255,255,255,0.4)", margin: 0 }}>
+            <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 20, color: lightMode ? "rgba(0,0,0,0.4)" : "rgba(255,255,255,0.4)", margin: 0 }}>
               No patents to display.
             </p>
           </div>

@@ -39,40 +39,53 @@ const STEPS = [
   },
 ]
 
-function TradeProMultiStepForm({ formTitle, formSubtitle, formSubmitLabel }: { formTitle?: string; formSubtitle?: string; formSubmitLabel?: string }) {
+function TradeProMultiStepForm({ formTitle, formSubtitle, formSubmitLabel, lightMode }: { formTitle?: string; formSubtitle?: string; formSubmitLabel?: string; lightMode?: boolean }) {
   const [step, setStep] = useState(0)
   const [submitted, setSubmitted] = useState(false)
   const [values, setValues] = useState<Record<string, string | boolean>>({})
   const totalSteps = STEPS.length
   const current = STEPS[step]
 
-  const inputStyle = { border: '1px solid rgba(175,229,253,0.2)', background: 'rgba(255,255,255,0.06)', color: '#fff', width: '100%', padding: '10px 14px', borderRadius: 6, fontFamily: "'Barlow', sans-serif", fontSize: 14, outline: 'none', boxSizing: 'border-box' as const }
-  const labelStyle = { fontFamily: "'Barlow', sans-serif", fontSize: 12, fontWeight: 600, color: 'rgba(175,229,253,0.8)', display: 'block', marginBottom: 4, textTransform: 'uppercase' as const, letterSpacing: '0.06em' }
+  const inputStyle = {
+    border: lightMode ? '1px solid #d0d0d0' : '1px solid rgba(175,229,253,0.2)',
+    background: lightMode ? '#FFFFFF' : 'rgba(255,255,255,0.06)',
+    color: lightMode ? '#0D1620' : '#fff',
+    width: '100%', padding: '10px 14px', borderRadius: 6,
+    fontFamily: "'Barlow', sans-serif", fontSize: 14, outline: 'none',
+    boxSizing: 'border-box' as const
+  }
+  const labelStyle = {
+    fontFamily: "'Barlow', sans-serif", fontSize: 12, fontWeight: 600,
+    color: lightMode ? '#004960' : 'rgba(175,229,253,0.8)',
+    display: 'block', marginBottom: 4,
+    textTransform: 'uppercase' as const, letterSpacing: '0.06em'
+  }
+  const mutedText = lightMode ? 'rgba(0,0,0,0.55)' : 'rgba(255,255,255,0.7)'
 
   if (submitted) return (
     <div style={{ textAlign: 'center', padding: '32px 0' }}>
       <div style={{ width: 56, height: 56, borderRadius: '50%', background: 'rgba(0,124,176,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px' }}>
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7EBEE8" strokeWidth="2.5" strokeLinecap="round"><polyline points="20 6 9 17 4 12"/></svg>
       </div>
-      <h4 style={{ fontFamily: "'Essonnes','Playfair Display',serif", fontSize: 'var(--h4-size)', color: '#fff', margin: '0 0 8px' }}>Application Submitted!</h4>
-      <p style={{ fontFamily: "'Barlow',sans-serif", fontSize: 14, color: 'rgba(255,255,255,0.6)', margin: 0 }}>We'll review your application and follow up within 2–5 business days.</p>
+      <h4 style={{ fontFamily: "'Essonnes','Playfair Display',serif", fontSize: 'var(--h4-size)', color: lightMode ? '#0D1620' : '#fff', margin: '0 0 8px' }}>Application Submitted!</h4>
+      <p style={{ fontFamily: "'Barlow',sans-serif", fontSize: 14, color: lightMode ? 'rgba(0,0,0,0.6)' : 'rgba(255,255,255,0.6)', margin: 0 }}>We'll review your application and follow up within 2–5 business days.</p>
     </div>
   )
 
   return (
     <div>
-      <h3 className="heading-style-h4 mb-1" style={{ color: '#fff' }}>{formTitle || "Become a TradePro"}</h3>
-      <p style={{ fontFamily: "'Barlow',sans-serif", fontSize: 13, color: 'var(--color-blue-grey-300)', marginBottom: 16 }}>
+      <h3 className="heading-style-h4 mb-1" style={{ color: lightMode ? '#0D1620' : '#fff' }}>{formTitle || "Become a TradePro"}</h3>
+      <p style={{ fontFamily: "'Barlow',sans-serif", fontSize: 13, color: lightMode ? 'rgba(0,0,0,0.6)' : 'var(--color-blue-grey-300)', marginBottom: 16 }}>
         {formSubtitle || "Apply for exclusive contractor pricing, training, and dedicated support."}
       </p>
 
       {/* Step indicator */}
       <div style={{ display: 'flex', gap: 4, marginBottom: 20 }}>
         {STEPS.map((s, i) => (
-          <div key={i} style={{ flex: 1, height: 3, borderRadius: 2, background: i <= step ? '#007CB0' : 'rgba(255,255,255,0.15)', transition: 'background 200ms ease' }} />
+          <div key={i} style={{ flex: 1, height: 3, borderRadius: 2, background: i <= step ? '#007CB0' : (lightMode ? 'rgba(0,0,0,0.15)' : 'rgba(255,255,255,0.15)'), transition: 'background 200ms ease' }} />
         ))}
       </div>
-      <p style={{ fontFamily: "'Barlow',sans-serif", fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: 'rgba(175,229,253,0.6)', marginBottom: 14 }}>
+      <p style={{ fontFamily: "'Barlow',sans-serif", fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: lightMode ? '#004960' : 'rgba(175,229,253,0.6)', marginBottom: 14 }}>
         Step {step + 1} of {totalSteps} — {current.title}
       </p>
 
@@ -82,19 +95,19 @@ function TradeProMultiStepForm({ formTitle, formSubtitle, formSubmitLabel }: { f
             <div key={field.id}>
               <label style={labelStyle}>{field.label}{field.required && <span style={{ color: '#7EBEE8' }}> *</span>}</label>
               {field.type === 'select' ? (
-                <select style={{ ...inputStyle, background: 'rgba(40,90,110,0.8)', appearance: 'none' }} required={field.required} value={String(values[field.id] || '')} onChange={e => setValues(v => ({...v, [field.id]: e.target.value}))}>
+                <select style={{ ...inputStyle, background: lightMode ? '#FFFFFF' : 'rgba(40,90,110,0.8)', appearance: 'none' }} required={field.required} value={String(values[field.id] || '')} onChange={e => setValues(v => ({...v, [field.id]: e.target.value}))}>
                   <option value="">Select...</option>
                   {(field.options || []).map(o => <option key={o} value={o}>{o}</option>)}
                 </select>
               ) : field.type === 'checkbox' ? (
                 <label style={{ display: 'flex', alignItems: 'center', gap: 8, cursor: 'pointer' }}>
                   <input type="checkbox" checked={Boolean(values[field.id])} onChange={e => setValues(v => ({...v, [field.id]: e.target.checked}))} style={{ accentColor: '#007CB0', width: 16, height: 16 }} />
-                  <span style={{ fontFamily: "'Barlow',sans-serif", fontSize: 13, color: 'rgba(255,255,255,0.7)' }}>Yes, I am tax exempt</span>
+                  <span style={{ fontFamily: "'Barlow',sans-serif", fontSize: 13, color: mutedText }}>Yes, I am tax exempt</span>
                 </label>
               ) : field.type === 'radio' ? (
                 <div style={{ display: 'flex', gap: 16 }}>
                   {(field.options || []).map(o => (
-                    <label key={o} style={{ display: 'flex', alignItems: 'center', gap: 6, cursor: 'pointer', fontFamily: "'Barlow',sans-serif", fontSize: 13, color: 'rgba(255,255,255,0.7)' }}>
+                    <label key={o} style={{ display: 'flex', alignItems: 'center', gap: 6, cursor: 'pointer', fontFamily: "'Barlow',sans-serif", fontSize: 13, color: mutedText }}>
                       <input type="radio" name={field.id} value={o} checked={values[field.id] === o} onChange={() => setValues(v => ({...v, [field.id]: o}))} style={{ accentColor: '#007CB0' }} />
                       {o}
                     </label>
@@ -389,6 +402,7 @@ const HeroBanner = forwardRef(function HeroBanner(
                 formTitle={formTitle}
                 formSubtitle={formSubtitle}
                 formSubmitLabel={formSubmitLabel}
+                lightMode={lightMode}
               />
             </div>
           </div>}

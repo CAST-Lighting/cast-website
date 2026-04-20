@@ -110,7 +110,7 @@ const LoginSection = forwardRef(function LoginSection(
                   onChange={e => setRemember(e.target.checked)}
                   style={{ width: 16, height: 16, accentColor: "#007CB0", cursor: "pointer" }}
                 />
-                <label htmlFor="ls-remember" style={{ fontFamily: "'Barlow',sans-serif", fontSize: 14, color: "rgba(255,255,255,0.65)", cursor: "pointer" }}>
+                <label htmlFor="ls-remember" style={{ fontFamily: "'Barlow',sans-serif", fontSize: 14, color: lightMode ? '#0D1620' : "rgba(255,255,255,0.65)", cursor: "pointer" }}>
                   Remember me
                 </label>
               </div>
