@@ -97,7 +97,7 @@ const ProductCard = ({ product, t }: { product: Product; t: Theme }) => (
           {product.category}
         </p>
       )}
-      <h3 className="heading-card-sm" style={{ margin: 0 }}>{product.name}</h3>
+      <h3 className="heading-card-sm" style={{ margin: 0, color: t.heading }}>{product.name}</h3>
       {product.sku && <p style={{ fontFamily: "'Barlow',sans-serif", fontSize: 11, color: "rgba(1,73,96,0.6)", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.08em", margin: "2px 0 0" }}>#{product.sku}</p>}
       <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 18, fontWeight: 700, color: t.heading, margin: 0 }}>{product.price}</p>
       <a
@@ -176,14 +176,14 @@ const ShopGrid = forwardRef(function ShopGrid(
           font-weight: 700;
           text-transform: uppercase;
           letter-spacing: 0.1em;
-          color: var(--color-content);
+          color: ${t.body};
           margin: 0 0 10px;
         }
         .sg-filter-section { margin-bottom: 24px; }
         .sg-filter-section:last-child { margin-bottom: 0; }
         .sg-filter-item {
           display: flex; align-items: center; gap: 8px;
-          font-family: 'Barlow', sans-serif; font-size: 14px; color: var(--color-content);
+          font-family: 'Barlow', sans-serif; font-size: 14px; color: ${t.body};
           padding: 4px 0; cursor: pointer;
         }
         .sg-filter-item input { cursor: pointer; accent-color: var(--color-primary); }
@@ -191,22 +191,23 @@ const ShopGrid = forwardRef(function ShopGrid(
           width: 100%; box-sizing: border-box;
           border: 1px solid ${t.cardBorder}; border-radius: 4px;
           padding: 8px 12px; font-family: 'Barlow', sans-serif; font-size: 14px;
-          outline: none; color: var(--color-title);
+          outline: none; color: ${t.heading};
+          background: ${t.cardBg};
           transition: border-color 200ms ease;
         }
-        .sg-search-input:focus { border-color: var(--color-accent); }
+        .sg-search-input:focus { border-color: ${t.accent}; }
         .sg-section-heading {
           font-family: 'Barlow', sans-serif;
           font-size: 13px; font-weight: 700;
           text-transform: uppercase; letter-spacing: 0.1em;
-          color: var(--color-content); margin: 0 0 6px;
+          color: ${t.body}; margin: 0 0 6px;
         }
         .sg-section-title {
           font-size: var(--h3-size);
           font-weight: var(--heading-weight, 700);
           line-height: var(--heading-line-height, 1.1);
           font-family: 'Essonnes', 'Playfair Display', serif;
-          color: var(--color-title); margin: 0 0 20px;
+          color: ${t.heading}; margin: 0 0 20px;
         }
         .sg-product-grid {
           display: grid;
@@ -229,7 +230,7 @@ const ShopGrid = forwardRef(function ShopGrid(
 
           {/* Sidebar */}
           <aside className="sg-sidebar">
-            <h2 style={{ fontFamily: "'Essonnes', 'Playfair Display', serif", fontSize: "var(--h2-size)", fontWeight: 700, color: "var(--color-title)", margin: "0 0 20px" }}>Filters</h2>
+            <h2 style={{ fontFamily: "'Essonnes', 'Playfair Display', serif", fontSize: "var(--h2-size)", fontWeight: 700, color: t.heading, margin: "0 0 20px" }}>Filters</h2>
 
             <div className="sg-filter-section">
               <p className="sg-filter-label">Quick Search</p>
@@ -274,14 +275,14 @@ const ShopGrid = forwardRef(function ShopGrid(
           {/* Product sections */}
           <div style={{ flex: 1, minWidth: 0 }}>
             {Object.keys(grouped).length === 0 ? (
-              <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 16, color: "var(--color-content)" }}>No products found.</p>
+              <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 16, color: t.body }}>No products found.</p>
             ) : (
               Object.entries(grouped).map(([cat, prods], idx, arr) => (
                 <div key={cat} style={{ marginBottom: idx < arr.length - 1 ? 56 : 0 }}>
                   <p className="sg-section-heading">Shop Lighting</p>
                   <h3 className="sg-section-title">{cat}</h3>
                   <div style={{ display: "flex", justifyContent: "flex-end", marginBottom: 16 }}>
-                    <select style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, border: `1px solid ${t.cardBorder}`, borderRadius: 4, padding: "6px 12px", color: "var(--color-title)", background: t.cardBg }}>
+                    <select style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, border: `1px solid ${t.cardBorder}`, borderRadius: 4, padding: "6px 12px", color: t.heading, background: t.cardBg }}>
                       <option>Sort Products</option>
                       <option>Price: Low to High</option>
                       <option>Price: High to Low</option>

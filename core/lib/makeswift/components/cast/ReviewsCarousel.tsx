@@ -222,10 +222,10 @@ const ReviewsCarousel = forwardRef(function ReviewsCarousel(
               </div>
             </div>
             <div className="flex items-center gap-3 mt-4 md:mt-0">
-              <button onClick={() => scroll("left")} disabled={!canScrollLeft} className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-foreground hover:border-primary hover:text-primary transition-colors duration-200 ease-in disabled:opacity-30 disabled:cursor-not-allowed">
+              <button onClick={() => scroll("left")} disabled={!canScrollLeft} className="w-10 h-10 rounded-full flex items-center justify-center hover:border-primary hover:text-primary transition-colors duration-200 ease-in disabled:opacity-30 disabled:cursor-not-allowed" style={{ border: `1px solid ${t.cardBorder}`, color: t.heading }}>
                 <ArrowLeft className="w-4 h-4" />
               </button>
-              <button onClick={() => scroll("right")} disabled={!canScrollRight} className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-foreground hover:border-primary hover:text-primary transition-colors duration-200 ease-in disabled:opacity-30 disabled:cursor-not-allowed">
+              <button onClick={() => scroll("right")} disabled={!canScrollRight} className="w-10 h-10 rounded-full flex items-center justify-center hover:border-primary hover:text-primary transition-colors duration-200 ease-in disabled:opacity-30 disabled:cursor-not-allowed" style={{ border: `1px solid ${t.cardBorder}`, color: t.heading }}>
                 <ArrowRight className="w-4 h-4" />
               </button>
             </div>

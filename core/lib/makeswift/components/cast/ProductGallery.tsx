@@ -1,6 +1,7 @@
 "use client"
 import { forwardRef, type Ref, useState, useRef, useEffect } from "react"
 import { ArrowLeft, ArrowRight } from "lucide-react"
+import { getTheme } from "~/lib/makeswift/theme"
 
 interface BCProduct {
   entityId: number
@@ -114,6 +115,7 @@ const ProductGallery = forwardRef(function ProductGallery(
     : hasGradient
       ? `linear-gradient(${gradientDirection || 'to bottom'}, ${gradientFrom}, ${gradientTo})`
       : bgColor || '#0d1b2e'
+  const t = getTheme(lightMode ? 'light' : 'dark')
 
   return (
     <section
@@ -132,19 +134,19 @@ const ProductGallery = forwardRef(function ProductGallery(
         <div className="site-container mb-10">
           <div className="flex flex-col md:flex-row md:items-end md:justify-between">
             <div>
-              <h2 className="heading-style-h2 text-foreground mb-3">
+              <h2 className="heading-style-h2 mb-3" style={{ color: t.heading }}>
                 {sectionTitle || 'Our Favorite'}{' '}
                 <span className="text-gradient-warm">{sectionTitleAccent || 'Picks'}</span>
               </h2>
-              <p className="section-desc max-w-md">
+              <p className="section-desc max-w-md" style={{ color: t.body }}>
                 {sectionDescription || 'Explore our most popular landscape lighting fixtures trusted by contractors nationwide.'}
               </p>
             </div>
             <div className="flex items-center gap-3 mt-4 md:mt-0">
-              <button onClick={() => scroll('left')} disabled={!canScrollLeft} className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-foreground hover:border-primary hover:text-primary transition-colors duration-200 ease-in disabled:opacity-30 disabled:cursor-not-allowed">
+              <button onClick={() => scroll('left')} disabled={!canScrollLeft} className="w-10 h-10 rounded-full flex items-center justify-center hover:border-primary hover:text-primary transition-colors duration-200 ease-in disabled:opacity-30 disabled:cursor-not-allowed" style={{ border: `1px solid ${t.cardBorder}`, color: t.heading }}>
                 <ArrowLeft className="w-4 h-4" />
               </button>
-              <button onClick={() => scroll('right')} disabled={!canScrollRight} className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-foreground hover:border-primary hover:text-primary transition-colors duration-200 ease-in disabled:opacity-30 disabled:cursor-not-allowed">
+              <button onClick={() => scroll('right')} disabled={!canScrollRight} className="w-10 h-10 rounded-full flex items-center justify-center hover:border-primary hover:text-primary transition-colors duration-200 ease-in disabled:opacity-30 disabled:cursor-not-allowed" style={{ border: `1px solid ${t.cardBorder}`, color: t.heading }}>
                 <ArrowRight className="w-4 h-4" />
               </button>
               <a href={viewAllHref || '/shop'} className="flex items-center gap-2 text-primary hover:text-accent transition-colors duration-200 ease-in text-size-medium font-medium ml-4">
@@ -165,7 +167,8 @@ const ProductGallery = forwardRef(function ProductGallery(
               <a
                 key={product.entityId}
                 href={product.path}
-                className="group flex-shrink-0 w-[280px] bg-card border border-border rounded-xl overflow-hidden hover:border-primary/40 transition-all duration-200 ease-in shadow-md shadow-black/20 hover:shadow-lg hover:shadow-black/30 no-underline"
+                className="group flex-shrink-0 w-[280px] rounded-xl overflow-hidden hover:border-primary/40 transition-all duration-200 ease-in shadow-md shadow-black/20 hover:shadow-lg hover:shadow-black/30 no-underline"
+                style={{ background: t.cardBg, border: `1px solid ${t.cardBorder}` }}
               >
                 <div className="relative overflow-hidden aspect-square">
                   <img
@@ -175,9 +178,9 @@ const ProductGallery = forwardRef(function ProductGallery(
                   />
                 </div>
                 <div className="p-5">
-                  <h3 className="heading-card-sm text-foreground mb-1">{product.name}</h3>
+                  <h3 className="heading-card-sm mb-1" style={{ color: t.heading }}>{product.name}</h3>
                   {product.price && <p className="text-primary text-size-large font-bold mb-3">{product.price}</p>}
-                  <span className="inline-flex items-center gap-1.5 text-size-small text-muted-foreground group-hover:text-primary transition-colors duration-200 ease-in">
+                  <span className="inline-flex items-center gap-1.5 text-size-small group-hover:text-primary transition-colors duration-200 ease-in" style={{ color: t.body }}>
                     View Product <ArrowRight className="w-3.5 h-3.5" />
                   </span>
                 </div>

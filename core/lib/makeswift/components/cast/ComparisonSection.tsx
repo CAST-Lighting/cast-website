@@ -1,6 +1,7 @@
 "use client"
 import { forwardRef, type Ref } from "react"
 import { Check, X } from "lucide-react"
+import { getTheme } from "~/lib/makeswift/theme"
 
 const FALLBACK_CAST = [
   "Solid brass & copper construction",
@@ -68,6 +69,7 @@ const ComparisonSection = forwardRef(function ComparisonSection(
     : hasGradient
       ? `linear-gradient(${gradientDirection || 'to bottom'}, ${gradientFrom}, ${gradientTo})`
       : bgColor || '#1a2332'
+  const t = getTheme(lightMode ? 'light' : 'dark')
 
   const castList = (castPoints && castPoints.length > 0)
     ? castPoints.map((p) => p.text || '')
@@ -96,10 +98,10 @@ const ComparisonSection = forwardRef(function ComparisonSection(
             <span className="text-style-overline" style={{ margin: "0 0 12px", display: "block", color: "var(--cast-light-blue)" }}>{overline || "CAST vs Other Brands"}</span>
           </div>
           <div className="text-center mb-14">
-            <h2 className="heading-style-h2 text-foreground mb-3">
+            <h2 className="heading-style-h2 mb-3" style={{ color: t.heading }}>
               {heading || "Why Contractors Choose"} <span className="text-gradient-warm">{headingAccent || "CAST"}</span>
             </h2>
-            <p className="section-desc max-w-xl mx-auto">
+            <p className="section-desc max-w-xl mx-auto" style={{ color: t.body }}>
               {description || "See how CAST Lighting compares to other landscape lighting brands."}
             </p>
           </div>
@@ -114,22 +116,22 @@ const ComparisonSection = forwardRef(function ComparisonSection(
                     <div className="flex-shrink-0 w-7 h-7 rounded-full bg-primary/20 flex items-center justify-center mt-0.5">
                       <Check className="w-4 h-4 text-primary" />
                     </div>
-                    <span className="text-size-large text-foreground">{item}</span>
+                    <span className="text-size-large" style={{ color: t.heading }}>{item}</span>
                   </li>
                 ))}
               </ul>
             </div>
 
             {/* Others */}
-            <div className="rounded-2xl border border-border bg-card p-10">
-              <h3 className="heading-style-h3 text-muted-foreground mb-8">{othersTitle || "Other Lighting Brands"}</h3>
+            <div className="rounded-2xl p-10" style={{ border: `1px solid ${t.cardBorder}`, background: t.cardBg }}>
+              <h3 className="heading-style-h3 mb-8" style={{ color: t.body }}>{othersTitle || "Other Lighting Brands"}</h3>
               <ul className="space-y-5">
                 {otherList.map((item, i) => (
                   <li key={i} className="flex items-start gap-4">
                     <div className="flex-shrink-0 w-7 h-7 rounded-full bg-destructive/10 flex items-center justify-center mt-0.5">
                       <X className="w-4 h-4 text-destructive" />
                     </div>
-                    <span className="text-size-large text-muted-foreground">{item}</span>
+                    <span className="text-size-large" style={{ color: t.body }}>{item}</span>
                   </li>
                 ))}
               </ul>

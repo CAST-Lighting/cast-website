@@ -112,7 +112,7 @@ const ContentMedia = forwardRef(function ContentMedia(
 
             {/* ── Content column ── */}
             <div style={{ order: contentOrder }}>
-              <h2 className="heading-style-h2 text-foreground mb-6 leading-tight">
+              <h2 className="heading-style-h2 mb-6 leading-tight" style={{ color: t.heading }}>
                 {heading || "Unmatched Quality, Technology &"}{" "}
                 <span className="text-gradient-warm">{headingAccent || "Durability"}</span>
               </h2>

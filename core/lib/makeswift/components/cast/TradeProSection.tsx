@@ -85,10 +85,10 @@ const TradeProSection = forwardRef(function TradeProSection(
             <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 12, fontWeight: 700, textTransform: "uppercase" as const, letterSpacing: "0.14em", color: "#7EBEE8", margin: "0 0 12px", display: "block" }}>{overline || "Benefits for Contractors & Installers"}</span>
           </div>
           <div className="text-center mb-14">
-            <h2 className="heading-style-h2 text-foreground mb-3">
+            <h2 className="heading-style-h2 mb-3" style={{ color: t.heading }}>
               {heading || "The TradePro"} <span className="text-gradient-warm">{headingAccent || "Advantage"}</span>
             </h2>
-            <p className="section-desc max-w-xl mx-auto">
+            <p className="section-desc max-w-xl mx-auto" style={{ color: t.body }}>
               {description || "Access professional products with lifetime warranties that give you design control in the field."}
             </p>
           </div>
@@ -96,8 +96,9 @@ const TradeProSection = forwardRef(function TradeProSection(
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
             {benefits.map((b, i) => {
               const Icon = BENEFIT_ICONS[i % BENEFIT_ICONS.length] as React.ElementType
-              const cardClass = "p-6 rounded-xl border border-border bg-secondary/30 hover:border-primary/30 transition-all duration-200 ease-in group"
-              const cardStyle = b.href ? { textDecoration: "none", display: "block", cursor: "pointer" } : undefined
+              const cardClass = "p-6 rounded-xl transition-all duration-200 ease-in group"
+              const cardStyleBase = { background: t.cardBg, border: `1px solid ${t.cardBorder}` }
+              const cardStyle = b.href ? { ...cardStyleBase, textDecoration: "none", display: "block", cursor: "pointer" } : cardStyleBase
               const inner = (
                 <>
                   <div className="icon-box mb-5 group-hover:bg-primary/20 transition-colors duration-200 ease-in">
@@ -105,13 +106,13 @@ const TradeProSection = forwardRef(function TradeProSection(
                       ? <img src={b.icon} alt="" style={{ width: 24, height: 24, objectFit: "contain" }} />
                       : <Icon className="w-6 h-6 text-primary" />}
                   </div>
-                  <h3 className="heading-style-h3 text-foreground mb-2">{b.title}</h3>
-                  <p className="text-size-small text-muted-foreground leading-relaxed">{b.desc}</p>
+                  <h3 className="heading-style-h3 mb-2" style={{ color: t.heading }}>{b.title}</h3>
+                  <p className="text-size-small leading-relaxed" style={{ color: t.body }}>{b.desc}</p>
                 </>
               )
               return b.href
-                ? <a key={i} href={b.href} className={cardClass} style={cardStyle}>{inner}</a>
-                : <div key={i} className={cardClass}>{inner}</div>
+                ? <a key={i} href={b.href} className={cardClass} style={cardStyle as React.CSSProperties}>{inner}</a>
+                : <div key={i} className={cardClass} style={cardStyle}>{inner}</div>
             })}
           </div>
 
