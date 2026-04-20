@@ -109,7 +109,7 @@ const ComparisonSection = forwardRef(function ComparisonSection(
           <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             {/* CAST */}
             <div className="rounded-2xl border-2 border-primary/40 bg-primary/5 p-10 glow-warm-sm">
-              <h3 className="heading-style-h3 text-primary mb-8">{castTitle || "CAST Advantages"}</h3>
+              <h3 className="heading-style-h3 mb-8" style={{ color: t.heading }}>{castTitle || "CAST Advantages"}</h3>
               <ul className="space-y-5">
                 {castList.map((item, i) => (
                   <li key={i} className="flex items-start gap-4">

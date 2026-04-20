@@ -222,7 +222,7 @@ const ShopGrid = forwardRef(function ShopGrid(
       <div className="relative" style={{ zIndex: 10 }}>
       <div className="site-container">
         {heading && (
-          <h2 style={{ fontSize: "var(--h2-size)", fontWeight: "var(--heading-weight, 700)", lineHeight: "var(--heading-line-height, 1.1)", fontFamily: "'Essonnes', 'Playfair Display', serif", color: "var(--color-title)", margin: "0 0 32px" }}>
+          <h2 style={{ fontSize: "var(--h2-size)", fontWeight: "var(--heading-weight, 700)", lineHeight: "var(--heading-line-height, 1.1)", fontFamily: "'Essonnes', 'Playfair Display', serif", color: t.heading, margin: "0 0 32px" }}>
             {heading}{headingAccent && <> <span className="text-gradient-warm">{headingAccent}</span></>}
           </h2>
         )}
