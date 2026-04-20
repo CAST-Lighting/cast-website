@@ -8,7 +8,6 @@ import './components/cast/SiteFooter.register';
 // Hero & Landing sections
 import './components/cast/HeroBanner.register';   // Universal Hero — keep
 import './components/cast/BlogPostContent.register';
-import './components/cast/ProductHero.register';   // CMS Content / Product Details
 
 // Product & Shop
 import './components/cast/CategoryGrid.register';
@@ -53,7 +52,6 @@ import './components/cast/NotFoundHero.register';
 
 // CMS Content Components
 import './components/cast/CmsBlogBody.register';
-// CmsProductContent replaced by ProductHero.register (same type ID: cast-cms-product-content)
 import './components/cast/CmsCategoryGrid.register';
 
 // Auth
