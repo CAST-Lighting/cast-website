@@ -1,5 +1,5 @@
 import { lazy } from "react"
-import { Style, TextInput, Color, Image, Select, Number as NumberControl} from "@makeswift/runtime/controls"
+import { Style, TextInput, Color, Image, Select, Number as NumberControl, Checkbox} from "@makeswift/runtime/controls"
 import { runtime } from "~/lib/makeswift/runtime"
 
 runtime.registerComponent(
@@ -35,5 +35,4 @@ runtime.registerComponent(
       subheading: TextInput({ label: "✏️ Content — Subheading", defaultValue: "Lorem ipsum dolor sit amet, consectetur adipiscing elit." }),
 
       // 📋 Form
-      formHeading: TextInput({ label: "📋 Form — Heading", defaultValue: "Form Heading Here" }) } }
-)
+      formHeading: TextInput(

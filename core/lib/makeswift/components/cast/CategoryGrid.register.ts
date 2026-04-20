@@ -1,5 +1,5 @@
 import { lazy } from "react"
-import { Style, Color, Image, Select, TextInput, List, Shape, Number as NumberControl} from "@makeswift/runtime/controls"
+import { Style, Color, Image, Select, TextInput, List, Shape, Number as NumberControl, Checkbox} from "@makeswift/runtime/controls"
 import { runtime } from "~/lib/makeswift/runtime"
 
 runtime.registerComponent(
@@ -45,6 +45,4 @@ runtime.registerComponent(
         type: Shape({
           type: {
             name: TextInput({ label: "Name", defaultValue: "" }),
-            href: TextInput({ label: "Link", defaultValue: "" }) } }),
-        getItemLabel(item) { return item?.name || "Category" } }) } }
-)
+            href: TextInput({ label: "Link", defaultValue: "" }) } 

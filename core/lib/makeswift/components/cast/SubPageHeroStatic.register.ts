@@ -1,5 +1,5 @@
 import { lazy } from "react"
-import { Style, Color, Image, Select, TextInput, Number as NumberControl} from "@makeswift/runtime/controls"
+import { Style, Color, Image, Select, TextInput, Number as NumberControl, Checkbox} from "@makeswift/runtime/controls"
 import { runtime } from "~/lib/makeswift/runtime"
 
 runtime.registerComponent(
@@ -40,5 +40,4 @@ runtime.registerComponent(
       btn1Label: TextInput({ label: "🔘 Buttons — Button 1 Label", defaultValue: "Shop Products" }),
       btn1Href: TextInput({ label: "🔘 Buttons — Button 1 Link", defaultValue: "#" }),
       btn2Label: TextInput({ label: "🔘 Buttons — Button 2 Label", defaultValue: "" }),
-      btn2Href: TextInput({ label: "🔘 Buttons — Button 2 Link", defaultValue: "#" }) } }
-)
+      btn2Href: Tex

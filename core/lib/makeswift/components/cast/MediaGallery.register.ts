@@ -1,5 +1,5 @@
 import { lazy } from "react"
-import { Style, TextInput, List, Shape, Image, Select, Color, Number as NumberControl} from "@makeswift/runtime/controls"
+import { Style, TextInput, List, Shape, Image, Select, Color, Number as NumberControl, Checkbox} from "@makeswift/runtime/controls"
 import { runtime } from "~/lib/makeswift/runtime"
 
 runtime.registerComponent(
@@ -49,5 +49,4 @@ runtime.registerComponent(
               defaultValue: "image" }),
             src: Image({ label: "Image / Video Thumbnail" }),
             caption: TextInput({ label: "Caption", defaultValue: "Media caption" }) } }),
-        getItemLabel(item) { return item?.caption || "Media Item"; } }) } }
-)
+ 

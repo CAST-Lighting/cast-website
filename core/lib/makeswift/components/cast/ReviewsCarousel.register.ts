@@ -1,5 +1,5 @@
 import { lazy } from "react"
-import { Style, TextInput, List, Shape, Color, Number, Image, Select } from "@makeswift/runtime/controls"
+import { Style, TextInput, List, Shape, Color, Number, Image, Select, Checkbox} from "@makeswift/runtime/controls"
 import { runtime } from "~/lib/makeswift/runtime"
 
 runtime.registerComponent(
@@ -32,6 +32,4 @@ runtime.registerComponent(
             location: TextInput({ label: "Location", defaultValue: "City, ST" }),
             rating: Number({ label: "Rating (1–5)", defaultValue: 5, min: 1, max: 5, step: 1 }),
             quote: TextInput({ label: "Review Text", defaultValue: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore." }),
-            avatar: Image({ label: "Reviewer Photo" }) } }),
-        getItemLabel(item) { return item?.name || "Review"; } }) } }
-)
+            avatar: Image({ label: "Reviewer Photo" }) }

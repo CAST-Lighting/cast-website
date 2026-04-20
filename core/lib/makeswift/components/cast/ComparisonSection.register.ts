@@ -1,5 +1,5 @@
 import { lazy } from "react"
-import { Style, Color, Image, Select, TextInput, List, Shape, Number as NumberControl} from "@makeswift/runtime/controls"
+import { Style, Color, Image, Select, TextInput, List, Shape, Number as NumberControl, Checkbox} from "@makeswift/runtime/controls"
 import { runtime } from "~/lib/makeswift/runtime"
 
 runtime.registerComponent(
@@ -49,6 +49,4 @@ runtime.registerComponent(
         label: "🃏 Cards — Other Brand Points",
         type: Shape({
           type: {
-            text: TextInput({ label: "Point", defaultValue: "" }) } }),
-        getItemLabel(item) { return item?.text || "Point" } }) } }
-)
+            text: TextInput({ label: "Point", defaultValue: "" })

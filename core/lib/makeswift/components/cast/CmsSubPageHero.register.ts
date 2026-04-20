@@ -1,5 +1,5 @@
 import { lazy } from "react"
-import { Style, TextInput, TextArea, Image, Color, Number } from "@makeswift/runtime/controls"
+import { Style, TextInput, TextArea, Image, Color, Number, Checkbox} from "@makeswift/runtime/controls"
 import { runtime } from "~/lib/makeswift/runtime"
 
 const heroControls = {
@@ -72,5 +72,4 @@ runtime.registerComponent(
       ...heroControls,
       badgeText: TextInput({ label: "✏️ Content — Badge Text", defaultValue: "Search Results" }),
       headingLine1: TextInput({ label: "✏️ Content — Default Heading (search term overrides)", defaultValue: "Search Term" }),
-      description: TextArea({ label: "✏️ Content — Default Description (result count overrides)", defaultValue: "Products found" }) } }
-)
+      description: TextArea({ label: "✏️ Content — Default De

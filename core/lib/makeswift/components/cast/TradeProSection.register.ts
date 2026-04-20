@@ -1,5 +1,5 @@
 import { lazy } from "react"
-import { Style, Color, Image, Select, TextInput, List, Shape, Number as NumberControl } from "@makeswift/runtime/controls"
+import { Style, Color, Image, Select, TextInput, List, Shape, Number as NumberControl, Checkbox} from "@makeswift/runtime/controls"
 import { runtime } from "~/lib/makeswift/runtime"
 
 runtime.registerComponent(
@@ -52,5 +52,4 @@ runtime.registerComponent(
 
       // 🔘 Buttons
       btnLabel: TextInput({ label: "🔘 Buttons — Button Label", defaultValue: "Join The TradePro Program" }),
-      btnHref: TextInput({ label: "🔘 Buttons — Button Href", defaultValue: "/trade-pro" }) } }
-)
+      btnHref: TextInput(

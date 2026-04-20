@@ -1,5 +1,5 @@
 import { lazy } from "react"
-import { Style, TextInput, Color } from "@makeswift/runtime/controls"
+import { Style, TextInput, Color, Checkbox} from "@makeswift/runtime/controls"
 import { runtime } from "~/lib/makeswift/runtime"
 
 runtime.registerComponent(
@@ -12,5 +12,4 @@ runtime.registerComponent(
       lightMode: Checkbox({ label: '💡 Light Mode', defaultValue: false }),
       bgColor:      Color({ label: "🎨 Background — Color", defaultValue: "#F5F5F5" }),
       heading:      TextInput({ label: "✏️ Content — Heading",             defaultValue: "My Orders" }),
-      emptyMessage: TextInput({ label: "✏️ Content — Empty State Message", defaultValue: "No orders yet." }) } }
-)
+      emptyMessage: TextInput({ label: "✏�

@@ -1,5 +1,5 @@
 import { lazy } from "react"
-import { Style, TextInput, Color } from "@makeswift/runtime/controls"
+import { Style, TextInput, Color, Checkbox} from "@makeswift/runtime/controls"
 import { runtime } from "~/lib/makeswift/runtime"
 
 runtime.registerComponent(
@@ -16,5 +16,4 @@ runtime.registerComponent(
 
       // ✏️ Content
       heading: TextInput({ label: "✏️ Content — Heading", defaultValue: "My Quotes" }),
-      emptyMessage: TextInput({ label: "✏️ Content — Empty State Message", defaultValue: "No quotes yet." }) } }
-)
+      emptyMessage: TextInput({ label: "✏�

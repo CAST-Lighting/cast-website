@@ -1,5 +1,5 @@
 import { lazy } from "react"
-import { Style, Color, TextInput, TextArea, List, Shape } from "@makeswift/runtime/controls"
+import { Style, Color, TextInput, TextArea, List, Shape, Checkbox} from "@makeswift/runtime/controls"
 import { runtime } from "~/lib/makeswift/runtime"
 
 runtime.registerComponent(
@@ -44,5 +44,4 @@ runtime.registerComponent(
       submitLabel: TextInput({ label: "📋 Form — Submit Button Label", defaultValue: "Submit Application →" }),
 
       // 🎨 Background
-      bgColor: Color({ label: "🎨 Background — Color", defaultValue: "#f5f5f5" }) } }
-)
+      bgColor: 

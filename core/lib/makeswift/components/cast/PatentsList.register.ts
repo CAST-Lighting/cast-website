@@ -1,5 +1,5 @@
 import { lazy } from "react"
-import { Style, TextInput, TextArea, Color, List, Shape, Number as NumberControl} from "@makeswift/runtime/controls"
+import { Style, TextInput, TextArea, Color, List, Shape, Number as NumberControl, Checkbox} from "@makeswift/runtime/controls"
 import { runtime } from "~/lib/makeswift/runtime"
 
 runtime.registerComponent(
@@ -31,6 +31,4 @@ runtime.registerComponent(
             date: TextInput({ label: "Issue Date", defaultValue: "Jan 1, 2024" }),
             category: TextInput({ label: "Category", defaultValue: "Fixture Design" }) } }),
         getItemLabel(item) {
-          return item?.patentNumber || item?.title || "Patent"
-        } }) } }
-)
+      

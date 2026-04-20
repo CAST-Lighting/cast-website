@@ -1,5 +1,5 @@
 import { lazy } from "react"
-import { Style, Color, Number } from "@makeswift/runtime/controls"
+import { Style, Color, Number, Checkbox} from "@makeswift/runtime/controls"
 import { runtime } from "~/lib/makeswift/runtime"
 
 runtime.registerComponent(
@@ -12,5 +12,4 @@ runtime.registerComponent(
       className: Style({ properties: [Style.Padding, Style.Margin] }),
       lightMode: Checkbox({ label: '💡 Light Mode', defaultValue: false }),
       bgColor: Color({ label: "🎨 Background Color", defaultValue: "#27474f" }),
-      columns: Number({ label: "📐 Columns", defaultValue: 6, min: 1, max: 6, step: 1 }) } }
-)
+      columns: Numbe

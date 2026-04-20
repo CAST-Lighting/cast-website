@@ -1,5 +1,5 @@
 import { lazy } from "react"
-import { Style, TextInput, TextArea, Color, Number } from "@makeswift/runtime/controls"
+import { Style, TextInput, TextArea, Color, Number, Checkbox} from "@makeswift/runtime/controls"
 import { runtime } from "~/lib/makeswift/runtime"
 
 runtime.registerComponent(
@@ -22,5 +22,4 @@ runtime.registerComponent(
       emptyBody: TextArea({ label: "✏️ Content — Empty State Body", defaultValue: "Try a different search term or browse our product categories." }),
 
       // 📐 Layout
-      pageSize: Number({ label: "📐 Layout — Products Per Page", defaultValue: 12, min: 4, max: 48, step: 4 }) } }
-)
+      pageSize: Number({ label: "📐 Layout

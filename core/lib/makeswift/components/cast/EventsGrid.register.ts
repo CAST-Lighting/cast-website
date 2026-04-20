@@ -1,5 +1,5 @@
 import { lazy } from "react"
-import { Style, TextInput, Color, Number as NumberControl} from "@makeswift/runtime/controls"
+import { Style, TextInput, Color, Number as NumberControl, Checkbox} from "@makeswift/runtime/controls"
 import { runtime } from "~/lib/makeswift/runtime"
 
 runtime.registerComponent(
@@ -18,5 +18,4 @@ runtime.registerComponent(
       heading: TextInput({ label: "✏️ Content — Heading", defaultValue: "Upcoming" }),
       headingAccent: TextInput({ label: "✏️ Content — Heading Accent", defaultValue: "Events" }),
       overline: TextInput({ label: "✏️ Content — Label over Title", defaultValue: "Training & Community" }),
-      emptyMessage: TextInput({ label: "✏️ Content — Empty State Message", defaultValue: "No upcoming events at this time." }) } }
-)
+      emptyMessage: TextInput({ label: "✏️ Content — Emp

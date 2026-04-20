@@ -1,5 +1,5 @@
 import { lazy } from "react"
-import { Style, Color, TextInput, List, Shape, Number as NumberControl} from "@makeswift/runtime/controls"
+import { Style, Color, TextInput, List, Shape, Number as NumberControl, Checkbox} from "@makeswift/runtime/controls"
 import { runtime } from "~/lib/makeswift/runtime"
 
 runtime.registerComponent(
@@ -29,5 +29,4 @@ runtime.registerComponent(
         } }),
 
       // ✏️ Content
-      emptyMessage: TextInput({ label: "✏️ Content — Empty State Message", defaultValue: "No posts found." }) } }
-)
+      emptyMessage: TextInput({ label: "✏�

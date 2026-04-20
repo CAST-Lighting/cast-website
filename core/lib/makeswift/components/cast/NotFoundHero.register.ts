@@ -1,5 +1,5 @@
 import { lazy } from "react"
-import { Style, TextInput, TextArea, Color } from "@makeswift/runtime/controls"
+import { Style, TextInput, TextArea, Color, Checkbox} from "@makeswift/runtime/controls"
 import { runtime } from "~/lib/makeswift/runtime"
 
 runtime.registerComponent(
@@ -23,5 +23,4 @@ runtime.registerComponent(
 
       // 🔘 Buttons
       btnLabel: TextInput({ label: "🔘 Buttons — Button Label", defaultValue: "Back to Home" }),
-      btnHref: TextInput({ label: "🔘 Buttons — Button URL", defaultValue: "/" }) } }
-)
+      btnHref: 

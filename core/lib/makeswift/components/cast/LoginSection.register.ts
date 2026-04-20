@@ -1,5 +1,5 @@
 import { lazy } from "react"
-import { Style, TextInput, TextArea, Color, Number } from "@makeswift/runtime/controls"
+import { Style, TextInput, TextArea, Color, Number, Checkbox} from "@makeswift/runtime/controls"
 import { runtime } from "~/lib/makeswift/runtime"
 
 // @ts-expect-error Makeswift control types vs optional props
@@ -37,5 +37,4 @@ runtime.registerComponent(
       retailHeading: TextInput({ label: "✏️ Content — Retail Heading", defaultValue: "Create a Retail Account" }),
       retailDescription: TextArea({ label: "✏️ Content — Retail Description", defaultValue: "Carry CAST Lighting in your store. Access co-op marketing, protected territories, and full distributor support." }),
       retailBtnLabel: TextInput({ label: "🔘 Buttons — Retail Button Label", defaultValue: "Open a Retail Account" }),
-      retailBtnHref: TextInput({ label: "🔘 Buttons — Retail Button URL", defaultValue: "/retail-signup" }) } }
-)
+      retailBtnHref: TextInput({ label: "
