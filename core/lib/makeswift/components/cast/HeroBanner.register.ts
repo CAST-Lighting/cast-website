@@ -10,6 +10,7 @@ runtime.registerComponent(
     props: {
 
       className: Style({ properties: [Style.Padding, Style.Margin] }),
+      lightMode: Checkbox({ label: '💡 Light Mode', defaultValue: false }),
       // ─── LAYOUT ──────────────────────────────────────────────────────
       lineHeight:    NumberControl({ label: '📐 Layout — Line Height',    defaultValue: 1.6, min: 1, max: 3,   step: 0.05 }),
 

@@ -9,6 +9,7 @@ runtime.registerComponent(
     label: "Hero / Shop Hero",
     props: {
       className: Style({ properties: [Style.Padding, Style.Margin] }),
+      lightMode: Checkbox({ label: '💡 Light Mode', defaultValue: false }),
 
       // ✏️ Content
       headline: TextInput({ label: "✏️ Content — Headline", defaultValue: "Shop CAST Lighting Products" }),

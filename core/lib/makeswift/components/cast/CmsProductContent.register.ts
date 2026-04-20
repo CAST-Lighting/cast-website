@@ -10,5 +10,6 @@ runtime.registerComponent(
     label: "CMS Content / Product Details",
     props: {
       className: Style({ properties: [Style.Padding, Style.Margin] }),
+      lightMode: Checkbox({ label: '💡 Light Mode', defaultValue: false }),
       bgColor: Color({ label: "🎨 Background Color", defaultValue: "#0f1923" }) } }
 )

@@ -9,6 +9,7 @@ runtime.registerComponent(
     label: "Utilities / GDPR Cookie Popup",
     props: {
       className: Style({ properties: [Style.Padding, Style.Margin] }),
+      lightMode: Checkbox({ label: '💡 Light Mode', defaultValue: false }),
 
       // ✏️ Content
       heading: TextInput({ label: "✏️ Content — Heading", defaultValue: "We Value Your Privacy" }),

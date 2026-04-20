@@ -9,6 +9,7 @@ runtime.registerComponent(
     label: "Account / Orders Grid",
     props: {
       className: Style({ properties: [Style.Padding, Style.Margin] }),
+      lightMode: Checkbox({ label: '💡 Light Mode', defaultValue: false }),
       bgColor:      Color({ label: "🎨 Background — Color", defaultValue: "#F5F5F5" }),
       heading:      TextInput({ label: "✏️ Content — Heading",             defaultValue: "My Orders" }),
       emptyMessage: TextInput({ label: "✏️ Content — Empty State Message", defaultValue: "No orders yet." }) } }

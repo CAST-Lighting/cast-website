@@ -4,6 +4,7 @@ import { runtime } from "~/lib/makeswift/runtime"
 
 const heroControls = {
   className: Style({ properties: [Style.Padding, Style.Margin] }),
+      lightMode: Checkbox({ label: '💡 Light Mode', defaultValue: false }),
 
   // 🎨 Background
   bgImage: Image({ label: "🎨 Background — Image" }),
