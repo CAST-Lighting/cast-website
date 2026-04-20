@@ -9,6 +9,7 @@ runtime.registerComponent(
     label: "Account / Favorites Grid",
     props: {
       className: Style({ properties: [Style.Padding, Style.Margin] }),
+      lightMode: Checkbox({ label: '💡 Light Mode', defaultValue: false }),
 
       // 🎨 Background
       bgColor: Color({ label: "🎨 Background — Color", defaultValue: "#f5f5f5" }),

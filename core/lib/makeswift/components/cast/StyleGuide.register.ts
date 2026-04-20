@@ -9,4 +9,5 @@ runtime.registerComponent(
     label: "Utilities / Style Guide",
     props: {
       className: Style({ properties: [Style.Padding, Style.Margin] }) } }
+      lightMode: Checkbox({ label: '💡 Light Mode', defaultValue: false }),
 )

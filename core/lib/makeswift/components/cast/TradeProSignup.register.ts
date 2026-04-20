@@ -9,6 +9,7 @@ runtime.registerComponent(
     label: "Forms / TradePro Signup",
     props: {
       className: Style({ properties: [Style.Padding, Style.Margin] }),
+      lightMode: Checkbox({ label: '💡 Light Mode', defaultValue: false }),
 
       // ✏️ Content — Hero
       badgeText: TextInput({ label: "✏️ Content — Badge Text", defaultValue: "Account Application" }),

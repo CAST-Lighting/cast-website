@@ -9,6 +9,7 @@ runtime.registerComponent(
     label: "Product / Shop Grid",
     props: {
       className: Style({ properties: [Style.Padding, Style.Margin] }),
+      lightMode: Checkbox({ label: '💡 Light Mode', defaultValue: false }),
 
       // 🎨 Background
       bgColor: Color({ label: "🎨 Background — Color", defaultValue: "#25262d" }),

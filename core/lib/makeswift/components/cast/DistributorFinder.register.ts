@@ -9,6 +9,7 @@ runtime.registerComponent(
     label: "Forms / Distributor Finder",
     props: {
       className: Style({ properties: [Style.Padding, Style.Margin] }),
+      lightMode: Checkbox({ label: '💡 Light Mode', defaultValue: false }),
       sectionStyle: Style({ properties: [Style.Padding, Style.Margin] }),
 
       // 🎨 Background

@@ -9,6 +9,7 @@ runtime.registerComponent(
     label: "Account / Quote Detail",
     props: {
       className: Style({ properties: [Style.Padding, Style.Margin] }),
+      lightMode: Checkbox({ label: '💡 Light Mode', defaultValue: false }),
 
       // ─── 📐 Layout ────────────────────────────────────────────────
 
