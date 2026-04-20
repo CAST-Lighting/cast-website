@@ -1,7 +1,9 @@
 import { redirect, notFound } from 'next/navigation';
+import { draftMode } from 'next/headers';
 import { setRequestLocale } from 'next-intl/server';
 
 import { getSessionCustomerAccessToken } from '~/auth';
+import { CmsPageRenderer } from '~/lib/makeswift/cms-page-renderer';
 
 interface Props {
   params: Promise<{ locale: string; quoteId: string }>;
@@ -126,8 +128,9 @@ export default async function QuoteDetailPage({ params }: Props) {
   const { locale, quoteId } = await params;
   setRequestLocale(locale);
 
+  const { isEnabled: isDraftMode } = await draftMode();
   const customerAccessToken = await getSessionCustomerAccessToken();
-  if (!customerAccessToken) {
+  if (!customerAccessToken && !isDraftMode) {
     redirect('/login');
   }
 
@@ -137,7 +140,7 @@ export default async function QuoteDetailPage({ params }: Props) {
   const { bg, color } = getStatusStyle(quote.status);
   const fmt = (n: number) => `$${Number(n).toFixed(2)}`;
 
-  return (
+  const fallback = (
     <>
       <style>{`
         .quote-table { width: 100%; border-collapse: collapse; }
@@ -356,5 +359,13 @@ export default async function QuoteDetailPage({ params }: Props) {
         </div>
       </div>
     </>
+  );
+
+  return (
+    <CmsPageRenderer
+      templatePath="/account/quote-single"
+      data={{}}
+      fallback={fallback}
+    />
   );
 }
