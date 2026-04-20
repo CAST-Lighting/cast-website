@@ -36,6 +36,7 @@ interface ProductGalleryProps {
   gradientTo?: string
   gradientDirection?: string
   lineHeight?: number
+  lightMode?: boolean
 }
 
 const ProductGallery = forwardRef(function ProductGallery(
@@ -52,7 +53,8 @@ const ProductGallery = forwardRef(function ProductGallery(
     gradientFrom,
     gradientTo,
     gradientDirection,
-    lineHeight
+    lineHeight,
+    lightMode,
   }: ProductGalleryProps,
   ref: Ref<HTMLElement>
 ) {
@@ -107,9 +109,11 @@ const ProductGallery = forwardRef(function ProductGallery(
 
   const hasGradient = !!(gradientFrom && gradientTo)
   const overlayOpacity = typeof bgOpacity === 'number' ? bgOpacity / 100 : 0.85
-  const sectionBackground = hasGradient
-    ? `linear-gradient(${gradientDirection || 'to bottom'}, ${gradientFrom}, ${gradientTo})`
-    : bgColor || '#0d1b2e'
+  const sectionBackground = lightMode
+    ? '#F5F5F5'
+    : hasGradient
+      ? `linear-gradient(${gradientDirection || 'to bottom'}, ${gradientFrom}, ${gradientTo})`
+      : bgColor || '#0d1b2e'
 
   return (
     <section

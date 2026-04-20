@@ -43,6 +43,7 @@ interface ContractorFinderProps {
   subheading?: string
   formHeading?: string
   submitLabel?: string
+  lightMode?: boolean
 }
 
 const ContractorFinder = forwardRef(function ContractorFinder(
@@ -59,6 +60,7 @@ const ContractorFinder = forwardRef(function ContractorFinder(
     subheading = "Tell us about your project and we'll connect you with a CAST-certified landscape lighting contractor in your area.",
     formHeading = "Request a Contractor",
     submitLabel = "Find My Contractor",
+    lightMode,
   }: ContractorFinderProps,
   ref: Ref<HTMLDivElement>
 ) {
@@ -74,9 +76,17 @@ const ContractorFinder = forwardRef(function ContractorFinder(
 
   const hasGradient = !!(gradientFrom && gradientTo)
   const overlayOpacity = typeof bgOpacity === "number" ? bgOpacity / 100 : 0.85
-  const sectionBackground = hasGradient
-    ? `linear-gradient(${gradientDirection || "to bottom"}, ${gradientFrom}, ${gradientTo})`
-    : bgColor || "#0d1620"
+  const sectionBackground = lightMode
+    ? '#F5F5F5'
+    : hasGradient
+      ? `linear-gradient(${gradientDirection || "to bottom"}, ${gradientFrom}, ${gradientTo})`
+      : bgColor || "#0d1620"
+  const activeInputStyle: React.CSSProperties = lightMode
+    ? { ...inputStyle, background: '#FFFFFF', border: '1px solid #d0d0d0', color: '#0D1620' }
+    : inputStyle
+  const activeLabelStyle: React.CSSProperties = lightMode
+    ? { ...labelStyle, color: '#0D1620' }
+    : labelStyle
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -107,11 +117,11 @@ const ContractorFinder = forwardRef(function ContractorFinder(
         .cf-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; position: relative; z-index: 10; }
         .cf-name-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
         .cf-radio-group { display: flex; flex-wrap: wrap; gap: 10px; }
-        .cf-radio-label { display: flex; align-items: center; gap: 8px; cursor: pointer; font-family: 'Barlow', sans-serif; font-size: 13px; color: rgba(255,255,255,0.8); padding: 8px 14px; border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; transition: border-color 200ms ease, background 200ms ease; }
-        .cf-radio-label:has(input:checked) { border-color: #007CB0; background: rgba(0,124,176,0.12); color: #fff; }
+        .cf-radio-label { display: flex; align-items: center; gap: 8px; cursor: pointer; font-family: 'Barlow', sans-serif; font-size: 13px; color: ${lightMode ? '#0D1620' : 'rgba(255,255,255,0.8)'}; padding: 8px 14px; border: 1px solid ${lightMode ? '#d0d0d0' : 'rgba(255,255,255,0.12)'}; border-radius: 8px; transition: border-color 200ms ease, background 200ms ease; }
+        .cf-radio-label:has(input:checked) { border-color: #007CB0; background: rgba(0,124,176,0.12); color: ${lightMode ? '#0D1620' : '#fff'}; }
         .cf-radio-label input { accent-color: #007CB0; }
-        .cf-select { width: 100%; padding: 10px 14px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; color: #fff; font-family: 'Barlow', sans-serif; font-size: 15px; box-sizing: border-box; appearance: none; }
-        .cf-select option { background: #1a2332; color: #fff; }
+        .cf-select { width: 100%; padding: 10px 14px; background: ${lightMode ? '#FFFFFF' : 'rgba(255,255,255,0.06)'}; border: 1px solid ${lightMode ? '#d0d0d0' : 'rgba(255,255,255,0.12)'}; border-radius: 8px; color: ${lightMode ? '#0D1620' : '#fff'}; font-family: 'Barlow', sans-serif; font-size: 15px; box-sizing: border-box; appearance: none; }
+        .cf-select option { background: ${lightMode ? '#fff' : '#1a2332'}; color: ${lightMode ? '#0D1620' : '#fff'}; }
         .cf-trust-item { display: flex; align-items: flex-start; gap: 14px; }
         @media (max-width: 900px) { .cf-grid { grid-template-columns: 1fr; gap: 40px; } }
         @media (max-width: 480px) { .cf-name-row { grid-template-columns: 1fr; } }
@@ -125,10 +135,10 @@ const ContractorFinder = forwardRef(function ContractorFinder(
             {overline && (
               <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 12, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.12em", color: "#7EBEE8", margin: "0 0 14px" }}>{overline}</p>
             )}
-            <h2 style={{ fontFamily: "'Essonnes', 'Playfair Display', serif", fontSize: "var(--h2-size)", fontWeight: 700, color: "#fff", lineHeight: 1.15, margin: "0 0 20px" }}>
+            <h2 style={{ fontFamily: "'Essonnes', 'Playfair Display', serif", fontSize: "var(--h2-size)", fontWeight: 700, color: lightMode ? '#0D1620' : "#fff", lineHeight: 1.15, margin: "0 0 20px" }}>
               {heading}
             </h2>
-            <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 17, color: "rgba(255,255,255,0.7)", lineHeight: 1.7, margin: "0 0 44px" }}>
+            <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 17, color: lightMode ? '#0D1620' : "rgba(255,255,255,0.7)", lineHeight: 1.7, margin: "0 0 44px" }}>
               {subheading}
             </p>
 
@@ -139,8 +149,8 @@ const ContractorFinder = forwardRef(function ContractorFinder(
                   <Shield style={{ width: 20, height: 20, color: "#7EBEE8" }} />
                 </div>
                 <div>
-                  <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 15, fontWeight: 700, color: "#fff", margin: "0 0 4px" }}>CAST-Certified Network</p>
-                  <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 14, color: "rgba(255,255,255,0.6)", margin: 0, lineHeight: 1.5 }}>Every contractor in our network is trained and certified on CAST products and installation standards.</p>
+                  <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 15, fontWeight: 700, color: lightMode ? '#0D1620' : "#fff", margin: "0 0 4px" }}>CAST-Certified Network</p>
+                  <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 14, color: lightMode ? '#0D1620' : "rgba(255,255,255,0.6)", margin: 0, lineHeight: 1.5 }}>Every contractor in our network is trained and certified on CAST products and installation standards.</p>
                 </div>
               </div>
               <div className="cf-trust-item">
@@ -148,8 +158,8 @@ const ContractorFinder = forwardRef(function ContractorFinder(
                   <MapPin style={{ width: 20, height: 20, color: "#7EBEE8" }} />
                 </div>
                 <div>
-                  <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 15, fontWeight: 700, color: "#fff", margin: "0 0 4px" }}>Local Professionals</p>
-                  <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 14, color: "rgba(255,255,255,0.6)", margin: 0, lineHeight: 1.5 }}>We match you with contractors who know your region, local codes, and landscape conditions.</p>
+                  <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 15, fontWeight: 700, color: lightMode ? '#0D1620' : "#fff", margin: "0 0 4px" }}>Local Professionals</p>
+                  <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 14, color: lightMode ? '#0D1620' : "rgba(255,255,255,0.6)", margin: 0, lineHeight: 1.5 }}>We match you with contractors who know your region, local codes, and landscape conditions.</p>
                 </div>
               </div>
               <div className="cf-trust-item">
@@ -157,24 +167,24 @@ const ContractorFinder = forwardRef(function ContractorFinder(
                   <Star style={{ width: 20, height: 20, color: "#7EBEE8" }} />
                 </div>
                 <div>
-                  <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 15, fontWeight: 700, color: "#fff", margin: "0 0 4px" }}>No Cost to You</p>
-                  <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 14, color: "rgba(255,255,255,0.6)", margin: 0, lineHeight: 1.5 }}>Our contractor matching service is completely free. We'll reach out within one business day.</p>
+                  <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 15, fontWeight: 700, color: lightMode ? '#0D1620' : "#fff", margin: "0 0 4px" }}>No Cost to You</p>
+                  <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 14, color: lightMode ? '#0D1620' : "rgba(255,255,255,0.6)", margin: 0, lineHeight: 1.5 }}>Our contractor matching service is completely free. We'll reach out within one business day.</p>
                 </div>
               </div>
             </div>
           </div>
 
           {/* Right: form */}
-          <div style={{ background: "#1a2332", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 16, padding: "40px 36px" }}>
+          <div style={{ background: lightMode ? '#FFFFFF' : "#1a2332", border: lightMode ? "1px solid #d0d0d0" : "1px solid rgba(255,255,255,0.08)", borderRadius: 16, padding: "40px 36px" }}>
             {formHeading && (
-              <h3 style={{ fontFamily: "'Essonnes', 'Playfair Display', serif", fontSize: 28, fontWeight: 700, color: "#fff", margin: "0 0 28px" }}>{formHeading}</h3>
+              <h3 style={{ fontFamily: "'Essonnes', 'Playfair Display', serif", fontSize: 28, fontWeight: 700, color: lightMode ? '#0D1620' : "#fff", margin: "0 0 28px" }}>{formHeading}</h3>
             )}
 
             {submitted ? (
               <div style={{ textAlign: "center", padding: "40px 0" }}>
                 <div style={{ fontSize: 48, marginBottom: 16 }}>✓</div>
-                <h3 style={{ fontFamily: "'Essonnes', 'Playfair Display', serif", fontSize: 22, fontWeight: 700, color: "#fff", margin: "0 0 8px" }}>Request Received!</h3>
-                <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 15, color: "rgba(255,255,255,0.6)", margin: 0, lineHeight: 1.6 }}>
+                <h3 style={{ fontFamily: "'Essonnes', 'Playfair Display', serif", fontSize: 22, fontWeight: 700, color: lightMode ? '#0D1620' : "#fff", margin: "0 0 8px" }}>Request Received!</h3>
+                <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 15, color: lightMode ? '#0D1620' : "rgba(255,255,255,0.6)", margin: 0, lineHeight: 1.6 }}>
                   We'll connect you with a CAST-certified contractor in your area within one business day.
                 </p>
               </div>
@@ -183,7 +193,7 @@ const ContractorFinder = forwardRef(function ContractorFinder(
 
                 {/* Project type */}
                 <div style={fieldWrap}>
-                  <label style={labelStyle}>I need help with… *</label>
+                  <label style={activeLabelStyle}>I need help with… *</label>
                   <div className="cf-radio-group">
                     {PROJECT_TYPES.map(opt => (
                       <label key={opt} className="cf-radio-label">
@@ -197,36 +207,36 @@ const ContractorFinder = forwardRef(function ContractorFinder(
                 {/* First + Last */}
                 <div className="cf-name-row">
                   <div style={fieldWrap}>
-                    <label style={labelStyle}>First Name *</label>
-                    <input type="text" value={firstName} onChange={e => setFirstName(e.target.value)} placeholder="John" required style={inputStyle} />
+                    <label style={activeLabelStyle}>First Name *</label>
+                    <input type="text" value={firstName} onChange={e => setFirstName(e.target.value)} placeholder="John" required style={activeInputStyle} />
                   </div>
                   <div style={fieldWrap}>
-                    <label style={labelStyle}>Last Name *</label>
-                    <input type="text" value={lastName} onChange={e => setLastName(e.target.value)} placeholder="Smith" required style={inputStyle} />
+                    <label style={activeLabelStyle}>Last Name *</label>
+                    <input type="text" value={lastName} onChange={e => setLastName(e.target.value)} placeholder="Smith" required style={activeInputStyle} />
                   </div>
                 </div>
 
                 {/* Email */}
                 <div style={fieldWrap}>
-                  <label style={labelStyle}>Email Address *</label>
-                  <input type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="john@example.com" required style={inputStyle} />
+                  <label style={activeLabelStyle}>Email Address *</label>
+                  <input type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="john@example.com" required style={activeInputStyle} />
                 </div>
 
                 {/* Phone + Zip */}
                 <div className="cf-name-row">
                   <div style={fieldWrap}>
-                    <label style={labelStyle}>Phone Number *</label>
-                    <input type="tel" value={phone} onChange={e => setPhone(e.target.value)} placeholder="(555) 000-0000" required style={inputStyle} />
+                    <label style={activeLabelStyle}>Phone Number *</label>
+                    <input type="tel" value={phone} onChange={e => setPhone(e.target.value)} placeholder="(555) 000-0000" required style={activeInputStyle} />
                   </div>
                   <div style={fieldWrap}>
-                    <label style={labelStyle}>Zip Code *</label>
-                    <input type="text" value={zip} onChange={e => setZip(e.target.value)} placeholder="07058" required style={inputStyle} />
+                    <label style={activeLabelStyle}>Zip Code *</label>
+                    <input type="text" value={zip} onChange={e => setZip(e.target.value)} placeholder="07058" required style={activeInputStyle} />
                   </div>
                 </div>
 
                 {/* Timeline */}
                 <div style={fieldWrap}>
-                  <label style={labelStyle}>Project Timeline *</label>
+                  <label style={activeLabelStyle}>Project Timeline *</label>
                   <select value={timeline} onChange={e => setTimeline(e.target.value)} required className="cf-select">
                     <option value="" disabled>When are you looking to start?</option>
                     {TIMELINE_OPTIONS.map(opt => <option key={opt} value={opt}>{opt}</option>)}
@@ -235,7 +245,7 @@ const ContractorFinder = forwardRef(function ContractorFinder(
 
                 {/* Description */}
                 <div style={fieldWrap}>
-                  <label style={labelStyle}>Tell us about your project</label>
+                  <label style={activeLabelStyle}>Tell us about your project</label>
                   <textarea value={description} onChange={e => setDescription(e.target.value)} placeholder="Describe your space, size of the area, any specific lighting goals…" rows={4} style={{ ...inputStyle, resize: "vertical" }} />
                 </div>
 
@@ -243,7 +253,7 @@ const ContractorFinder = forwardRef(function ContractorFinder(
                   {submitLabel}
                 </button>
 
-                <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 12, color: "rgba(255,255,255,0.4)", margin: 0, textAlign: "center" }}>
+                <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 12, color: lightMode ? '#0D1620' : "rgba(255,255,255,0.4)", margin: 0, textAlign: "center" }}>
                   We'll reach out within one business day. No spam, ever.
                 </p>
               </form>
