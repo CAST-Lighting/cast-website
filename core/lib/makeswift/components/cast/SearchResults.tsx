@@ -3,6 +3,30 @@
 import { forwardRef, useState, useEffect, useCallback, type Ref } from "react"
 import { Search, X, ArrowLeft, ArrowRight } from "lucide-react"
 
+/* ── Dummy data for editor preview ── */
+const DUMMY_PRODUCTS = [
+  { id: "dp1", category: "Path Lights", name: "Classic Brass Path Light", price: "$189.00" },
+  { id: "dp2", category: "Path Lights", name: "Low-Profile Copper Path Light", price: "$164.00" },
+  { id: "dp3", category: "Spotlights", name: "Adjustable Brass Spotlight", price: "$212.00" },
+  { id: "dp4", category: "Well Lights", name: "Brass In-Ground Well Light", price: "$248.00" },
+  { id: "dp5", category: "Flood Lights", name: "Solid Brass Flood Light", price: "$179.00" },
+  { id: "dp6", category: "Path Lights", name: "Victorian Brass Path Light", price: "$224.00" },
+  { id: "dp7", category: "Deck Lights", name: "Copper Step & Deck Light", price: "$142.00" },
+  { id: "dp8", category: "Spotlights", name: "Compact Brass MR16 Spot", price: "$195.00" },
+]
+
+const DUMMY_DOCS = [
+  { id: "dd1", type: "Installation Guide", title: "Path Light Installation & Wiring Guide", excerpt: "Step-by-step instructions for in-ground path light installation, including wire depth, transformer load calculations, and fixture spacing." },
+  { id: "dd2", type: "Spec Sheet", title: "Brass Path Light Series — Technical Specifications", excerpt: "Full spec data: lumen output, beam angles, IP ratings, material specs, and finish options for all path light SKUs." },
+  { id: "dd3", type: "Warranty", title: "Lifetime Warranty Coverage — What's Included", excerpt: "CAST Lighting's lifetime warranty covers all solid brass and copper fixtures against defects in materials and workmanship." },
+  { id: "dd4", type: "FAQ", title: "Choosing the Right Path Light for Your Project", excerpt: "Guidance on wattage selection, halogen vs. LED, fixture height, and spacing recommendations for residential and commercial installs." },
+]
+
+const DUMMY_BLOG_POSTS = [
+  { id: "db1", date: "March 14, 2025", readTime: "6 min read", title: "Why Solid Brass Outlasts Composite in Landscape Lighting", excerpt: "After 20 years on the market, we've seen every material hold up — or not — in real installations. Here's what the data shows about brass longevity versus aluminum and composite alternatives." },
+  { id: "db2", date: "January 28, 2025", readTime: "4 min read", title: "Path Light Spacing: The Contractor's Complete Guide", excerpt: "The most common mistake landscape contractors make is under-spacing path lights. We break down the math, the aesthetics, and the lumen output formulas that make every installation look intentional." },
+]
+
 interface Product {
   id: number
   name: string
@@ -359,15 +383,88 @@ const SearchResults = forwardRef(function SearchResults(
           </>
         )}
 
-        {/* Initial state — no search yet */}
+        {/* Initial state — dummy results preview */}
         {!hasSearched && !loading && (
-          <div style={{ textAlign: "center", padding: "60px 24px" }}>
-            <div style={{ width: 64, height: 64, borderRadius: "50%", background: "rgba(0,124,176,0.1)", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 24px" }}>
-              <Search style={{ width: 28, height: 28, color: "#007CB0" }} />
+          <div>
+            {/* ── PRODUCTS ── */}
+            <div style={{ marginBottom: 56 }}>
+              <div style={{ display: "flex", alignItems: "baseline", gap: 14, marginBottom: 20, paddingBottom: 14, borderBottom: "1px solid rgba(255,255,255,0.1)" }}>
+                <h2 style={{ fontFamily: "'Essonnes', 'Playfair Display', serif", fontSize: "clamp(20px,2.2vw,28px)", fontWeight: 700, color: "#fff", margin: 0 }}>Products</h2>
+                <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, color: "rgba(255,255,255,0.4)" }}>18 results</span>
+              </div>
+              <div className="sr-product-grid">
+                {DUMMY_PRODUCTS.map(p => (
+                  <div key={p.id} style={{ background: "#2d353c", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 10, overflow: "hidden", display: "flex", flexDirection: "column" }}>
+                    <div style={{ aspectRatio: "1/1", background: "linear-gradient(135deg, #1a2e3a 0%, #0d4a5c 50%, #1a3a4a 100%)", position: "relative", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                      <div style={{ position: "absolute", inset: 0, backgroundImage: "linear-gradient(rgba(0,124,176,0.04) 1px, transparent 1px),linear-gradient(90deg,rgba(0,124,176,0.04) 1px,transparent 1px)", backgroundSize: "24px 24px" }} />
+                      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" style={{ opacity: 0.4, position: "relative", zIndex: 1 }}>
+                        <circle cx="12" cy="12" r="10" stroke="#007CB0" strokeWidth="1.5" />
+                        <path d="M8 12h8M12 8v8" stroke="#007CB0" strokeWidth="1.5" strokeLinecap="round" />
+                      </svg>
+                    </div>
+                    <div style={{ padding: "16px 14px", flex: 1, display: "flex", flexDirection: "column", gap: 6 }}>
+                      <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 10, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: "#007CB0", margin: 0 }}>{p.category}</p>
+                      <p style={{ fontFamily: "'Essonnes','Playfair Display',serif", fontSize: 16, fontWeight: 600, color: "#fff", margin: 0, lineHeight: 1.3 }}>{p.name}</p>
+                      <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 17, fontWeight: 700, color: "#fff", margin: "4px 0 0" }}>{p.price}</p>
+                      <div style={{ marginTop: "auto", paddingTop: 10 }}>
+                        <span className="sg-btn-solid-md" style={{ display: "block", textAlign: "center", fontSize: 13 }}>View Product →</span>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
-            <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 17, color: "rgba(255,255,255,0.5)", margin: 0 }}>
-              Enter a search term above to find products
-            </p>
+
+            {/* ── DOCUMENTATION ── */}
+            <div style={{ marginBottom: 56 }}>
+              <div style={{ display: "flex", alignItems: "baseline", gap: 14, marginBottom: 20, paddingBottom: 14, borderBottom: "1px solid rgba(255,255,255,0.1)" }}>
+                <h2 style={{ fontFamily: "'Essonnes', 'Playfair Display', serif", fontSize: "clamp(20px,2.2vw,28px)", fontWeight: 700, color: "#fff", margin: 0 }}>Documentation</h2>
+                <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, color: "rgba(255,255,255,0.4)" }}>4 results</span>
+              </div>
+              <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+                {DUMMY_DOCS.map(doc => (
+                  <div key={doc.id} style={{ display: "flex", alignItems: "flex-start", gap: 18, background: "#2d353c", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 10, padding: "18px 22px" }}>
+                    <div style={{ width: 38, height: 38, borderRadius: 8, background: "rgba(126,190,232,0.1)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, marginTop: 2 }}>
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="#7EBEE8" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                        <polyline points="14 2 14 8 20 8" stroke="#7EBEE8" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                        <line x1="16" y1="13" x2="8" y2="13" stroke="#7EBEE8" strokeWidth="1.5" strokeLinecap="round"/>
+                        <line x1="16" y1="17" x2="8" y2="17" stroke="#7EBEE8" strokeWidth="1.5" strokeLinecap="round"/>
+                      </svg>
+                    </div>
+                    <div style={{ flex: 1, minWidth: 0 }}>
+                      <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 10, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.12em", color: "#7EBEE8", margin: "0 0 5px" }}>{doc.type}</p>
+                      <p style={{ fontFamily: "'Essonnes','Playfair Display',serif", fontSize: 17, fontWeight: 600, color: "#fff", margin: "0 0 6px", lineHeight: 1.3 }}>{doc.title}</p>
+                      <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, color: "rgba(255,255,255,0.5)", margin: 0, lineHeight: 1.6 }}>{doc.excerpt}</p>
+                    </div>
+                    <span style={{ fontSize: 18, color: "rgba(255,255,255,0.3)", alignSelf: "center", flexShrink: 0 }}>→</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* ── BLOG POSTS ── */}
+            <div>
+              <div style={{ display: "flex", alignItems: "baseline", gap: 14, marginBottom: 20, paddingBottom: 14, borderBottom: "1px solid rgba(255,255,255,0.1)" }}>
+                <h2 style={{ fontFamily: "'Essonnes', 'Playfair Display', serif", fontSize: "clamp(20px,2.2vw,28px)", fontWeight: 700, color: "#fff", margin: 0 }}>Blog Posts</h2>
+                <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, color: "rgba(255,255,255,0.4)" }}>2 results</span>
+              </div>
+              <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+                {DUMMY_BLOG_POSTS.map(post => (
+                  <div key={post.id} style={{ display: "flex", gap: 24, background: "#2d353c", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 10, overflow: "hidden" }}>
+                    <div style={{ width: 200, flexShrink: 0, background: "linear-gradient(135deg, #1a2e3a 0%, #0d4a5c 50%, #1a3a4a 100%)", position: "relative" }}>
+                      <div style={{ position: "absolute", inset: 0, backgroundImage: "linear-gradient(rgba(0,124,176,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,124,176,0.04) 1px,transparent 1px)", backgroundSize: "24px 24px" }} />
+                    </div>
+                    <div style={{ flex: 1, minWidth: 0, padding: "22px 22px 22px 0", display: "flex", flexDirection: "column", gap: 8 }}>
+                      <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 10, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.12em", color: "#7EBEE8", margin: 0 }}>{post.date} · {post.readTime}</p>
+                      <p style={{ fontFamily: "'Essonnes','Playfair Display',serif", fontSize: 19, fontWeight: 600, color: "#fff", margin: 0, lineHeight: 1.3 }}>{post.title}</p>
+                      <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, color: "rgba(255,255,255,0.5)", margin: 0, lineHeight: 1.65, flex: 1 }}>{post.excerpt}</p>
+                      <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, fontWeight: 700, color: "#7EBEE8" }}>Read Article →</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         )}
       </div>
