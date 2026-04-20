@@ -35,6 +35,7 @@ const CategoryGrid = forwardRef(function CategoryGrid(
     categories: propCategories,
     columns = 6,
     mode = 'light',
+    lightMode,
   }: {
     className?: string
     bgImage?: string
@@ -50,6 +51,7 @@ const CategoryGrid = forwardRef(function CategoryGrid(
     categories?: CategoryItem[]
     columns?: number
     mode?: 'dark' | 'light'
+    lightMode?: boolean
   },
   ref: Ref<HTMLElement>
 ) {
@@ -62,12 +64,14 @@ const CategoryGrid = forwardRef(function CategoryGrid(
       .catch(() => {})
   }, [])
 
-  const t = getTheme(mode)
+  const t = getTheme(lightMode ? 'light' : mode)
   const hasGradient = !!(gradientFrom && gradientTo)
   const overlayOpacity = typeof bgOpacity === 'number' ? bgOpacity / 100 : 0.85
-  const sectionBackground = hasGradient
-    ? `linear-gradient(${gradientDirection || 'to bottom'}, ${gradientFrom}, ${gradientTo})`
-    : bgColor || t.bg
+  const sectionBackground = lightMode
+    ? '#F5F5F5'
+    : hasGradient
+      ? `linear-gradient(${gradientDirection || 'to bottom'}, ${gradientFrom}, ${gradientTo})`
+      : bgColor || t.bg
 
   const hasPropCategories = propCategories && propCategories.length > 0
   const displayCategories = hasPropCategories
