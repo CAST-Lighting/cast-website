@@ -94,9 +94,11 @@ const ProductHero = forwardRef(function ProductHero(
   // Background
   const hasGradient = !!(gradientFrom && gradientTo)
   const overlayOpacity = bgOpacity / 100
-  const sectionBg = hasGradient
-    ? `linear-gradient(${gradientDirection}, ${gradientFrom}, ${gradientTo})`
-    : bgColor
+  const sectionBg = lightMode
+    ? '#F5F5F5'
+    : hasGradient
+      ? `linear-gradient(${gradientDirection}, ${gradientFrom}, ${gradientTo})`
+      : bgColor
 
   // Theme colors
   const headingColor = lightMode ? '#014960' : '#ffffff'
