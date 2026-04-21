@@ -17,6 +17,7 @@ import './components/cast/BundleProducts.register';
 import './components/cast/PartsGrid.register';
 
 // Product Detail
+import './components/cast/ProductHero.register';
 import './components/cast/ProductDescription.register';
 import './components/cast/ProductDocuments.register';
 import './components/cast/ProductFAQ.register';
@@ -53,7 +54,6 @@ import './components/cast/NotFoundHero.register';
 // CMS Content Components
 import './components/cast/CmsBlogBody.register';
 import './components/cast/CmsCategoryGrid.register';
-import './components/cast/CmsProductContent.register';
 
 // Auth
 import './components/cast/LoginSection.register';
