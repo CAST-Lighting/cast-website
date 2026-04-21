@@ -53,6 +53,7 @@ import './components/cast/NotFoundHero.register';
 // CMS Content Components
 import './components/cast/CmsBlogBody.register';
 import './components/cast/CmsCategoryGrid.register';
+import './components/cast/CmsProductContent.register';
 
 // Auth
 import './components/cast/LoginSection.register';
